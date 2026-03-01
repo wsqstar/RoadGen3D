@@ -63,8 +63,11 @@ class LatentStore:
         latent_path = self.latent_file_path(asset_id)
         if not latent_path.exists():
             raise FileNotFoundError(f"Latent file for asset '{asset_id}' not found at: {latent_path}")
-        latent = torch.load(latent_path, map_location="cpu")
+        # Prefer safe tensor-only deserialization on newer PyTorch.
+        try:
+            latent = torch.load(latent_path, map_location="cpu", weights_only=True)
+        except TypeError:
+            latent = torch.load(latent_path, map_location="cpu")
         if not hasattr(latent, "shape"):
             raise TypeError(f"Latent for asset '{asset_id}' is not a tensor-like object: {latent_path}")
         return latent
-
