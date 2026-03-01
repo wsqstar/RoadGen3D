@@ -1,0 +1,17 @@
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+
+.venv/
+.uv-cache/
+.uv-python/
+
+models/*
+!models/.gitkeep
+
+artifacts/m1/*
+!artifacts/m1/.gitkeep
+
+data/m1/*
+!data/m1/.gitkeep
