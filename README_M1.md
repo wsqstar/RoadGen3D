@@ -253,3 +253,20 @@ CLI 示例：
 - `artifacts/real/scene.glb`
 - `artifacts/real/scene.ply`
 - `artifacts/real/scene_layout.json`
+
+## 9. M3 质量门槛与多样性规则
+
+为避免“低模资产 + 同款堆叠”，M3 现在默认启用以下规则（无需额外 CLI/UI 参数）：
+
+- 资产最低面数硬门槛（`scripts/m3_02_generate_procedural_assets.py`）：
+  - `bench: 300`, `lamp: 500`, `trash: 300`, `tree: 1500`
+  - `bus_stop: 800`, `mailbox: 250`, `hydrant: 350`, `bollard: 180`
+- 每个资产最多重试 `10` 次，复杂度按 `complexity_level=min(3, attempt//2)` 增长。
+- 生成时强制满足 `min_faces <= faces <= poly_budget_k*1000`，否则脚本硬失败并返回非零退出。
+- 街道检索从 top-k 同类候选中使用 `Softmax(score/0.12)` 加权采样。
+- 类别内优先不重复，候选耗尽后再放宽重复（优先填满场景）。
+- `scene_layout.json` 的 `summary` 新增：
+  - `unique_asset_count`
+  - `diversity_ratio`
+  - `per_category_unique`
+  - `selection_source_counts`（`faiss_softmax` / `faiss_relaxed_repeat` / `fallback_pool`）

@@ -48,6 +48,10 @@ SIDE_PREF: Dict[str, str] = {
     "bollard": "both",
 }
 
+SOFTMAX_TEMPERATURE = 0.12
+CATEGORY_NO_REPEAT_FIRST = True
+FILL_PRIORITY = True
+
 
 @dataclass(frozen=True)
 class _MeshCacheEntry:
@@ -216,25 +220,58 @@ def _pick_category_candidate(
     index_store: FaissIndexStore,
     asset_by_id: Dict[str, Dict[str, str]],
     category_pool: List[Dict[str, str]],
+    used_asset_ids: set[str],
     rng: random.Random,
 ) -> Tuple[Dict[str, str], float, str]:
+    def _softmax_weights(scores: List[float], temperature: float) -> List[float]:
+        if not scores:
+            return []
+        temp = max(float(temperature), 1e-6)
+        arr = np.asarray(scores, dtype=np.float64)
+        shifted = (arr - float(arr.max())) / temp
+        weights = np.exp(shifted)
+        total = float(weights.sum())
+        if not np.isfinite(total) or total <= 0.0:
+            return [1.0 / len(scores)] * len(scores)
+        return (weights / total).tolist()
+
+    def _pick_weighted(candidates: List[Tuple[Dict[str, str], float]]) -> Tuple[Dict[str, str], float]:
+        scores = [float(score) for _, score in candidates]
+        weights = _softmax_weights(scores, SOFTMAX_TEMPERATURE)
+        pick_idx = rng.choices(range(len(candidates)), weights=weights, k=1)[0]
+        row, score = candidates[pick_idx]
+        return row, float(score)
+
     slot_query = f"{query}, {category} street asset"
     query_embedding = embedder.encode_texts([slot_query])
     hits = index_store.search(query_embedding, topk=max(1, int(topk)))[0]
-    # Collect all matching candidates from top-k, then randomly sample one
-    matching_hits = []
+    matching_hits: List[Tuple[Dict[str, str], float]] = []
     for hit in hits:
         row = asset_by_id.get(hit.asset_id)
         if row is not None and row["category"] == category:
             matching_hits.append((row, float(hit.score)))
+
     if matching_hits:
-        # Weighted random sample favoring higher scores (but allowing variety)
-        row, score = rng.choice(matching_hits)
-        return row, score, "faiss"
+        available_hits = [candidate for candidate in matching_hits if candidate[0]["asset_id"] not in used_asset_ids]
+        if CATEGORY_NO_REPEAT_FIRST and available_hits:
+            row, score = _pick_weighted(available_hits)
+            return row, score, "faiss_softmax"
+        if FILL_PRIORITY:
+            row, score = _pick_weighted(matching_hits)
+            return row, score, "faiss_relaxed_repeat"
+
     if not category_pool:
         raise RuntimeError(f"empty category pool: {category}")
-    row = rng.choice(category_pool)
-    return row, 0.0, "fallback_pool"
+
+    available_pool = [row for row in category_pool if row["asset_id"] not in used_asset_ids]
+    if CATEGORY_NO_REPEAT_FIRST and available_pool:
+        return rng.choice(available_pool), 0.0, "fallback_pool"
+    if FILL_PRIORITY:
+        return rng.choice(category_pool), 0.0, "fallback_pool"
+
+    raise RuntimeError(
+        f"Unable to pick candidate for category '{category}' from FAISS or fallback pool."
+    )
 
 
 def _build_base_scene(
@@ -357,6 +394,7 @@ def compose_street_scene(
     rng = random.Random(int(config.seed))
     placements: List[StreetPlacement] = []
     existing_bboxes: List[Tuple[float, float, float, float]] = []
+    used_asset_ids_by_category: Dict[str, set[str]] = {category: set() for category in DEFAULT_CATEGORIES}
     dropped_slots = 0
     instance_counter = 1
     clearance = 0.2
@@ -380,6 +418,7 @@ def compose_street_scene(
                 index_store=index_store,
                 asset_by_id=asset_by_id,
                 category_pool=pool,
+                used_asset_ids=used_asset_ids_by_category.setdefault(category, set()),
                 rng=rng,
             )
             entry = mesh_cache[row["asset_id"]]
@@ -422,6 +461,7 @@ def compose_street_scene(
                     selection_source=source,
                 )
                 placements.append(placement)
+                used_asset_ids_by_category.setdefault(category, set()).add(row["asset_id"])
                 instance_counter += 1
                 placed = True
                 break
@@ -438,6 +478,19 @@ def compose_street_scene(
     _add_instance_meshes(scene=scene, placements=placements, mesh_cache=mesh_cache)
     outputs = _export_scene(scene=scene, out_dir=out_dir, export_format=export_format)
 
+    unique_asset_count = len({placement.asset_id for placement in placements})
+    diversity_ratio = float(unique_asset_count / len(placements)) if placements else 0.0
+    per_category_unique = {
+        category: len({placement.asset_id for placement in placements if placement.category == category})
+        for category in DEFAULT_CATEGORIES
+        if any(placement.category == category for placement in placements)
+    }
+    selection_source_counts: Dict[str, int] = {}
+    for placement in placements:
+        selection_source_counts[placement.selection_source] = (
+            selection_source_counts.get(placement.selection_source, 0) + 1
+        )
+
     layout_path = (out_dir / "scene_layout.json").resolve()
     layout_payload = {
         "query": config.query,
@@ -445,6 +498,10 @@ def compose_street_scene(
         "summary": {
             "instance_count": len(placements),
             "dropped_slots": int(dropped_slots),
+            "unique_asset_count": int(unique_asset_count),
+            "diversity_ratio": float(diversity_ratio),
+            "per_category_unique": per_category_unique,
+            "selection_source_counts": selection_source_counts,
         },
         "placements": [placement.to_dict() for placement in placements],
         "outputs": outputs,

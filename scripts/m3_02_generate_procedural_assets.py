@@ -74,6 +74,20 @@ STYLE_COLORS: Dict[str, Tuple[Tuple[int, ...], Tuple[int, ...]]] = {
 
 STYLE_ORDER = list(STYLE_COLORS.keys())
 
+MIN_FACES_BY_CATEGORY: Dict[str, int] = {
+    "bench": 300,
+    "lamp": 500,
+    "trash": 300,
+    "tree": 1500,
+    "bus_stop": 800,
+    "mailbox": 250,
+    "hydrant": 350,
+    "bollard": 180,
+}
+
+MAX_GENERATION_ATTEMPTS = 10
+ANISOTROPIC_SCALE_WARN_THRESHOLD = 6.0
+
 
 def _color(mesh: trimesh.Trimesh, rgba: Tuple[int, ...]) -> trimesh.Trimesh:
     mesh.visual.face_colors = list(rgba)
@@ -88,13 +102,26 @@ def _concat(parts: List[trimesh.Trimesh]) -> trimesh.Trimesh:
 # Dimension fitting
 # ---------------------------------------------------------------------------
 
-def fit_to_target_box(mesh: trimesh.Trimesh, target_h: float, target_w: float, target_d: float) -> trimesh.Trimesh:
+def fit_to_target_box(
+    mesh: trimesh.Trimesh,
+    target_h: float,
+    target_w: float,
+    target_d: float,
+    *,
+    label: str = "",
+) -> trimesh.Trimesh:
     """Anisotropic scale so bounding box matches target exactly, then ground at Y=0."""
     bounds = mesh.bounds
     span = bounds[1] - bounds[0]
     sx = target_w / max(float(span[0]), 1e-6)
     sy = target_h / max(float(span[1]), 1e-6)
     sz = target_d / max(float(span[2]), 1e-6)
+    if max(abs(sx), abs(sy), abs(sz)) > ANISOTROPIC_SCALE_WARN_THRESHOLD:
+        name = label if label else "mesh"
+        print(
+            f"  WARN: {name} has large anisotropic scale factors "
+            f"(sx={sx:.2f}, sy={sy:.2f}, sz={sz:.2f})"
+        )
     mesh.apply_transform(np.diag([sx, sy, sz, 1.0]))
     mesh.apply_translation([0.0, -float(mesh.bounds[0][1]), 0.0])
     return mesh
@@ -104,7 +131,13 @@ def fit_to_target_box(mesh: trimesh.Trimesh, target_h: float, target_w: float, t
 # BENCH generators (15 variants)
 # ---------------------------------------------------------------------------
 
-def _bench_variant(idx: int, style: str, primary: tuple, accent: tuple) -> trimesh.Trimesh:
+def _bench_variant(
+    idx: int,
+    style: str,
+    primary: tuple,
+    accent: tuple,
+    complexity_level: int = 0,
+) -> trimesh.Trimesh:
     parts: List[trimesh.Trimesh] = []
 
     # Common dimensions (will be scaled to target later)
@@ -300,7 +333,74 @@ def _bench_variant(idx: int, style: str, primary: tuple, accent: tuple) -> trime
 # LAMP generators
 # ---------------------------------------------------------------------------
 
-def _lamp_variant(idx: int, style: str, primary: tuple, accent: tuple) -> trimesh.Trimesh:
+def _lamp_detail_parts(
+    idx: int,
+    pole_h: float,
+    pole_r: float,
+    primary: tuple,
+    accent: tuple,
+    complexity_level: int,
+) -> List[trimesh.Trimesh]:
+    if complexity_level <= 0:
+        return []
+    parts: List[trimesh.Trimesh] = []
+    detail_sections = 16 + complexity_level * 8
+
+    # Base flange rings and segmented collar details.
+    ring_count = 1 + complexity_level
+    for ring_idx in range(ring_count):
+        y = 0.10 + (pole_h * 0.75) * (ring_idx + 1) / (ring_count + 1)
+        ring = _color(
+            trimesh.creation.cylinder(
+                radius=pole_r + 0.03 + 0.005 * ring_idx,
+                height=0.025 + 0.005 * complexity_level,
+                sections=detail_sections,
+            ),
+            accent if ring_idx % 2 else primary,
+        )
+        ring.apply_translation([0.0, y, 0.0])
+        parts.append(ring)
+
+    # Add side support arms and shades to break "single-pole" silhouette.
+    arm_count = max(2, 2 + complexity_level)
+    arm_len = 0.35 + 0.10 * complexity_level
+    for arm_idx in range(arm_count):
+        angle = (360.0 / arm_count) * arm_idx + idx * 3.0
+        arm = _color(
+            trimesh.creation.cylinder(
+                radius=0.015 + 0.004 * complexity_level,
+                height=arm_len,
+                sections=detail_sections,
+            ),
+            accent,
+        )
+        arm.apply_translation([arm_len * 0.5, pole_h - 0.25, 0.0])
+        arm.apply_transform(trimesh.transformations.rotation_matrix(math.radians(65.0), [0, 0, 1]))
+        arm.apply_transform(trimesh.transformations.rotation_matrix(math.radians(angle), [0, 1, 0]))
+        parts.append(arm)
+
+        shade = _color(
+            trimesh.creation.cone(
+                radius=0.10 + 0.02 * complexity_level,
+                height=0.14 + 0.03 * complexity_level,
+                sections=detail_sections,
+            ),
+            primary if arm_idx % 2 else accent,
+        )
+        dx = (0.20 + 0.12 * complexity_level) * math.cos(math.radians(angle))
+        dz = (0.20 + 0.12 * complexity_level) * math.sin(math.radians(angle))
+        shade.apply_translation([dx, pole_h + 0.12, dz])
+        parts.append(shade)
+    return parts
+
+
+def _lamp_variant(
+    idx: int,
+    style: str,
+    primary: tuple,
+    accent: tuple,
+    complexity_level: int = 0,
+) -> trimesh.Trimesh:
     parts: List[trimesh.Trimesh] = []
     pole_h = 4.2
     pole_r = 0.06
@@ -455,6 +555,16 @@ def _lamp_variant(idx: int, style: str, primary: tuple, accent: tuple) -> trimes
         crown.apply_translation([0, pole_h + 0.05, 0])
         parts.extend([pole, crown])
 
+    parts.extend(
+        _lamp_detail_parts(
+            idx=idx,
+            pole_h=pole_h,
+            pole_r=pole_r,
+            primary=primary,
+            accent=accent,
+            complexity_level=complexity_level,
+        )
+    )
     return _concat(parts)
 
 
@@ -462,7 +572,13 @@ def _lamp_variant(idx: int, style: str, primary: tuple, accent: tuple) -> trimes
 # TRASH generators
 # ---------------------------------------------------------------------------
 
-def _trash_variant(idx: int, style: str, primary: tuple, accent: tuple) -> trimesh.Trimesh:
+def _trash_variant(
+    idx: int,
+    style: str,
+    primary: tuple,
+    accent: tuple,
+    complexity_level: int = 0,
+) -> trimesh.Trimesh:
     parts: List[trimesh.Trimesh] = []
     body_h = 0.85
     body_r = 0.28
@@ -607,7 +723,76 @@ def _trash_variant(idx: int, style: str, primary: tuple, accent: tuple) -> trime
 # TREE generators
 # ---------------------------------------------------------------------------
 
-def _tree_variant(idx: int, style: str, primary: tuple, accent: tuple) -> trimesh.Trimesh:
+def _tree_detail_parts(
+    idx: int,
+    trunk_h: float,
+    trunk_r: float,
+    canopy_base: float,
+    primary: tuple,
+    accent: tuple,
+    complexity_level: int,
+) -> List[trimesh.Trimesh]:
+    if complexity_level <= 0:
+        return []
+    parts: List[trimesh.Trimesh] = []
+    rng = np.random.default_rng(1000 + idx * 31 + complexity_level * 17)
+
+    # Layered branch scaffold: trunk + 2-3 branch levels.
+    branch_levels = min(3, 1 + complexity_level)
+    branch_sections = 14 + 6 * complexity_level
+    for level in range(branch_levels):
+        base_h = trunk_h * (0.45 + 0.18 * level)
+        branch_count = 4 + complexity_level + level
+        branch_len = 0.45 + 0.12 * complexity_level - 0.05 * level
+        branch_pitch = 40.0 + 8.0 * level
+        for b_idx in range(branch_count):
+            angle = (360.0 / branch_count) * b_idx + float(rng.uniform(-12.0, 12.0))
+            branch = _color(
+                trimesh.creation.cylinder(
+                    radius=max(0.035, trunk_r * (0.55 - 0.10 * level)),
+                    height=max(0.20, branch_len),
+                    sections=branch_sections,
+                ),
+                accent,
+            )
+            branch.apply_translation([branch_len * 0.5, base_h, 0.0])
+            branch.apply_transform(
+                trimesh.transformations.rotation_matrix(math.radians(branch_pitch), [0, 0, 1])
+            )
+            branch.apply_transform(
+                trimesh.transformations.rotation_matrix(math.radians(angle), [0, 1, 0])
+            )
+            parts.append(branch)
+
+    # Multi-cluster foliage blobs to avoid single primitive canopies.
+    blob_count = 6 + complexity_level * 3 + max(0, complexity_level - 1) * 2
+    blob_subdiv = 2 + (1 if complexity_level >= 2 else 0) + (1 if complexity_level >= 3 else 0)
+    for _ in range(blob_count):
+        radius = float(rng.uniform(0.22, 0.50 + 0.08 * complexity_level))
+        theta = float(rng.uniform(0.0, math.tau))
+        radial = float(rng.uniform(0.1, 0.95))
+        x = radial * math.cos(theta)
+        z = radial * math.sin(theta)
+        y = canopy_base + float(rng.uniform(0.45, 1.85 + 0.10 * complexity_level))
+        blob = _color(
+            trimesh.creation.icosphere(
+                subdivisions=blob_subdiv,
+                radius=radius,
+            ),
+            primary,
+        )
+        blob.apply_translation([x, y, z])
+        parts.append(blob)
+    return parts
+
+
+def _tree_variant(
+    idx: int,
+    style: str,
+    primary: tuple,
+    accent: tuple,
+    complexity_level: int = 0,
+) -> trimesh.Trimesh:
     parts: List[trimesh.Trimesh] = []
     trunk_h = 3.0
     trunk_r = 0.18
@@ -733,6 +918,17 @@ def _tree_variant(idx: int, style: str, primary: tuple, accent: tuple) -> trimes
             tier.apply_translation([0, canopy_base + ti * 0.60 + h / 2, 0])
             parts.append(tier)
 
+    parts.extend(
+        _tree_detail_parts(
+            idx=idx,
+            trunk_h=trunk_h,
+            trunk_r=trunk_r,
+            canopy_base=canopy_base,
+            primary=primary,
+            accent=accent,
+            complexity_level=complexity_level,
+        )
+    )
     return _concat(parts)
 
 
@@ -740,7 +936,13 @@ def _tree_variant(idx: int, style: str, primary: tuple, accent: tuple) -> trimes
 # BUS STOP generators
 # ---------------------------------------------------------------------------
 
-def _bus_stop_variant(idx: int, style: str, primary: tuple, accent: tuple) -> trimesh.Trimesh:
+def _bus_stop_variant(
+    idx: int,
+    style: str,
+    primary: tuple,
+    accent: tuple,
+    complexity_level: int = 0,
+) -> trimesh.Trimesh:
     parts: List[trimesh.Trimesh] = []
     W, H, D = 3.20, 2.60, 1.30
 
@@ -881,7 +1083,13 @@ def _bus_stop_variant(idx: int, style: str, primary: tuple, accent: tuple) -> tr
 # MAILBOX generators
 # ---------------------------------------------------------------------------
 
-def _mailbox_variant(idx: int, style: str, primary: tuple, accent: tuple) -> trimesh.Trimesh:
+def _mailbox_variant(
+    idx: int,
+    style: str,
+    primary: tuple,
+    accent: tuple,
+    complexity_level: int = 0,
+) -> trimesh.Trimesh:
     parts: List[trimesh.Trimesh] = []
     post_h = 0.80
     box_h = 0.45
@@ -1004,7 +1212,13 @@ def _mailbox_variant(idx: int, style: str, primary: tuple, accent: tuple) -> tri
 # HYDRANT generators
 # ---------------------------------------------------------------------------
 
-def _hydrant_variant(idx: int, style: str, primary: tuple, accent: tuple) -> trimesh.Trimesh:
+def _hydrant_variant(
+    idx: int,
+    style: str,
+    primary: tuple,
+    accent: tuple,
+    complexity_level: int = 0,
+) -> trimesh.Trimesh:
     parts: List[trimesh.Trimesh] = []
     body_h = 0.65
     body_r = 0.12
@@ -1161,7 +1375,13 @@ def _hydrant_variant(idx: int, style: str, primary: tuple, accent: tuple) -> tri
 # BOLLARD generators
 # ---------------------------------------------------------------------------
 
-def _bollard_variant(idx: int, style: str, primary: tuple, accent: tuple) -> trimesh.Trimesh:
+def _bollard_variant(
+    idx: int,
+    style: str,
+    primary: tuple,
+    accent: tuple,
+    complexity_level: int = 0,
+) -> trimesh.Trimesh:
     parts: List[trimesh.Trimesh] = []
     h = 0.90
     r = 0.08
@@ -1352,6 +1572,12 @@ def generate_all(
 
     rows: List[Dict[str, str]] = []
     summary: Dict[str, List[int]] = {}
+    quality_counts = {
+        "below_min_attempts": 0,
+        "over_budget_attempts": 0,
+        "retry_count": 0,
+        "below_min_count": 0,
+    }
 
     for spec in specs:
         gen_fn = GENERATORS.get(spec.category)
@@ -1360,14 +1586,75 @@ def generate_all(
 
         style_idx = STYLE_ORDER.index(spec.style_tag) if spec.style_tag in STYLE_ORDER else 0
         primary, accent = STYLE_COLORS.get(spec.style_tag, STYLE_COLORS["modern"])
-
-        raw_mesh = gen_fn(style_idx, spec.style_tag, primary, accent)
-        mesh = fit_to_target_box(raw_mesh, spec.target_h, spec.target_w, spec.target_d)
-
-        n_faces = len(mesh.faces)
         budget = spec.poly_budget_k * 1000
-        if n_faces > budget:
-            print(f"  WARN: {spec.asset_id} has {n_faces} faces (budget {budget}), but accepting (procedural geometry)")
+        min_faces = MIN_FACES_BY_CATEGORY.get(spec.category, 0)
+
+        mesh: trimesh.Trimesh | None = None
+        n_faces = -1
+        for attempt in range(MAX_GENERATION_ATTEMPTS):
+            complexity_level = min(3, attempt // 2)
+            raw_mesh = gen_fn(
+                style_idx,
+                spec.style_tag,
+                primary,
+                accent,
+                complexity_level=complexity_level,
+            )
+            candidate = fit_to_target_box(
+                raw_mesh,
+                spec.target_h,
+                spec.target_w,
+                spec.target_d,
+                label=f"{spec.asset_id}#a{attempt}",
+            )
+            face_count = int(len(candidate.faces))
+            if face_count < min_faces and complexity_level > 0:
+                refined_mesh = raw_mesh.copy()
+                for refine_idx in range(complexity_level):
+                    refined_mesh = refined_mesh.subdivide()
+                    refined_candidate = fit_to_target_box(
+                        refined_mesh.copy(),
+                        spec.target_h,
+                        spec.target_w,
+                        spec.target_d,
+                        label=f"{spec.asset_id}#a{attempt}.r{refine_idx + 1}",
+                    )
+                    refined_face_count = int(len(refined_candidate.faces))
+                    if refined_face_count > budget:
+                        break
+                    candidate = refined_candidate
+                    face_count = refined_face_count
+                    if face_count >= min_faces:
+                        break
+            if face_count < min_faces:
+                quality_counts["below_min_attempts"] += 1
+                quality_counts["retry_count"] += 1
+                print(
+                    f"  RETRY: {spec.asset_id} faces={face_count:,} < min={min_faces:,} "
+                    f"(attempt {attempt + 1}/{MAX_GENERATION_ATTEMPTS}, complexity={complexity_level})"
+                )
+                continue
+            if face_count > budget:
+                quality_counts["over_budget_attempts"] += 1
+                quality_counts["retry_count"] += 1
+                print(
+                    f"  RETRY: {spec.asset_id} faces={face_count:,} > budget={budget:,} "
+                    f"(attempt {attempt + 1}/{MAX_GENERATION_ATTEMPTS}, complexity={complexity_level})"
+                )
+                continue
+            mesh = candidate
+            n_faces = face_count
+            break
+
+        if mesh is None:
+            raise RuntimeError(
+                f"Failed to satisfy face constraints for {spec.asset_id}: "
+                f"min_faces={min_faces}, budget={budget}. "
+                f"Try increasing poly budget or generator detail controls."
+            )
+
+        if n_faces < min_faces:
+            quality_counts["below_min_count"] += 1
 
         glb_path = (mesh_out_dir / f"{spec.asset_id}.glb").resolve()
         mesh.export(str(glb_path))
@@ -1397,6 +1684,12 @@ def generate_all(
         summary.setdefault(spec.category, []).append(n_faces)
         print(f"  [{spec.asset_id}] faces={n_faces:,}  style={spec.style_tag}")
 
+    if quality_counts["below_min_count"] > 0:
+        raise RuntimeError(
+            f"Generation quality gate failed: below_min_count={quality_counts['below_min_count']} "
+            "(all generated assets must satisfy category minimum faces)."
+        )
+
     # Write manifest
     with manifest_out.open("w", encoding="utf-8") as f:
         for row in rows:
@@ -1413,6 +1706,13 @@ def generate_all(
         print(f"{cat:<12} {len(faces):>5} {int(np.mean(faces)):>10,} {min(faces):>8,} {max(faces):>8,}")
     print("-" * 48)
     print(f"{'TOTAL':<12} {total:>5}")
+    print(
+        "Quality gates: "
+        f"below_min_count={quality_counts['below_min_count']}, "
+        f"below_min_attempts={quality_counts['below_min_attempts']}, "
+        f"over_budget_attempts={quality_counts['over_budget_attempts']}, "
+        f"retry_count={quality_counts['retry_count']}"
+    )
     print(f"\nManifest: {manifest_out}")
     print(f"Meshes:   {mesh_out_dir}")
 
