@@ -37,6 +37,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--topk-per-category", type=int, default=20)
     parser.add_argument("--max-trials-per-slot", type=int, default=30)
     parser.add_argument("--export-format", choices=["glb", "ply", "both"], default="both")
+    parser.add_argument("--placement-policy", choices=["rule", "learned"], default="rule")
+    parser.add_argument("--policy-ckpt", type=Path, default=None)
+    parser.add_argument("--policy-temperature", type=float, default=0.12)
     return parser.parse_args()
 
 
@@ -64,6 +67,9 @@ def main() -> int:
             device=args.device,
             export_format=args.export_format,
             out_dir=args.out_dir,
+            placement_policy=args.placement_policy,
+            policy_ckpt=args.policy_ckpt,
+            policy_temperature=float(args.policy_temperature),
         )
     except ModelLoadError as exc:
         print(str(exc), file=sys.stderr)

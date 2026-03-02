@@ -197,3 +197,90 @@ cd /Users/shiqi/Coding/github/GIStudio/RoadGen3D
 - 详细运行手册见：`README_M1.md`
 - 手动模型下载见：`docs/manual_download.md`
 - Shape-E 环境说明见：`docs/shapee_setup.md`
+
+---
+
+## 8. 可学习系统（M4）
+
+M4 在 M3 的规则布局器上增加了可训练布局策略，目标是学习“每个槽位在 top-k 候选中应该选谁”。
+
+### 8.1 学什么
+- 学习对象：`slot + candidate -> score`
+- 学习来源：用当前 `rule` 策略自动蒸馏出的 slot 级数据（监督学习）
+- 不改变：类别约束、AABB 碰撞强约束、fallback pool 机制
+
+### 8.2 怎么学
+1. 数据蒸馏：`scripts/m4_01_collect_policy_data.py`
+2. 特征构建：`src/roadgen3d/layout_features.py`（固定 32 维）
+3. 训练模型：`src/roadgen3d/layout_policy.py`（MLP: `32 -> 64 -> 32 -> 1`）
+4. 训练脚本：`scripts/m4_02_train_layout_policy.py`
+
+训练输出：
+- `artifacts/m4/layout_policy.pt`
+- `artifacts/m4/layout_policy_meta.json`
+- `artifacts/m4/train_curve.json`
+
+### 8.3 如何启用 learned policy
+
+```bash
+.venv/bin/python scripts/m3_01_compose_street.py \
+  --query "modern clean urban street" \
+  --manifest data/real/real_assets_manifest.jsonl \
+  --artifacts artifacts/real \
+  --out-dir artifacts/real \
+  --placement-policy learned \
+  --policy-ckpt artifacts/m4/layout_policy.pt \
+  --policy-temperature 0.12 \
+  --model-dir /Users/shiqi/Coding/github/GIStudio/RoadGen3D/models/clip-vit-base-patch32 \
+  --local-files-only
+```
+
+如果 checkpoint 缺失或加载失败，系统会自动回退到 `rule`，并在输出中写入回退原因。
+
+## 9. 评测系统（M4）
+
+M4 新增工程评测闭环，目标是稳定衡量可学习策略与规则策略的工程质量，而不是只看单次可视化结果。
+
+### 9.1 评测输入
+- query 集（默认 `data/eval/queries_m4.txt`，缺省时使用内置 20 条模板）
+- real manifest（`data/real/real_assets_manifest.jsonl`）
+- real FAISS 索引（`artifacts/real/index_ip.faiss + id_map.json`）
+- 策略模式（`rule` 或 `learned`）
+
+### 9.2 指标定义
+- `instance_count`
+- `diversity_ratio`
+- `dropped_slot_rate = dropped_slots / (instance_count + dropped_slots)`
+- `overlap_rate`（AABB 两两重叠比率，目标 0）
+- `retrieval_top3_category_hit`
+- `latency_ms_total`
+- `latency_ms_per_instance`
+
+### 9.3 报告输出
+- `artifacts/m4/eval_report.json`
+- `artifacts/m4/eval_per_scene.csv`
+
+`scene_layout.json` 的 `summary` 也会稳定包含：
+- `policy_used`
+- `latency_ms_total`
+- `latency_ms_per_instance`
+- `dropped_slot_rate`
+- `overlap_rate`
+- `retrieval_top3_category_hit`
+
+### 9.4 评测命令
+
+```bash
+.venv/bin/python scripts/m4_10_eval_engineering.py \
+  --queries data/eval/queries_m4.txt \
+  --manifest data/real/real_assets_manifest.jsonl \
+  --artifacts artifacts/real \
+  --out-dir artifacts/m4 \
+  --placement-policy learned \
+  --policy-ckpt artifacts/m4/layout_policy.pt \
+  --compare-rule \
+  --model-dir /Users/shiqi/Coding/github/GIStudio/RoadGen3D/models/clip-vit-base-patch32 \
+  --local-files-only
+```
+
+`learned` 模式下可启用 `--compare-rule`，报告会附带 `comparison_vs_rule` 的差值统计。

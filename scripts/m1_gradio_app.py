@@ -40,12 +40,16 @@ from roadgen3d.decoder import PlaceholderVoxelDecoder
 from roadgen3d.decoder_shapee import ShapeEDecoder
 from roadgen3d.embedder import ClipTextEmbedder, ModelLoadError
 from roadgen3d.index_store import FaissIndexStore
+from roadgen3d.layout_policy import PolicyTrainConfig
 from roadgen3d.latent_store import LatentStore, load_asset_records
 from roadgen3d.pipeline import M1Pipeline
 from roadgen3d.street_layout import compose_street_scene
 from roadgen3d.types import StreetComposeConfig
 from scripts.m1_01_seed_assets import seed_assets
 from scripts.m2_11_encode_shapee_latents import encode_latents as encode_shapee_latents
+from scripts.m4_01_collect_policy_data import collect_policy_data
+from scripts.m4_02_train_layout_policy import train_from_jsonl
+from scripts.m4_10_eval_engineering import run_eval as run_m4_eval
 
 
 def _to_path(path_text: str) -> Path:
@@ -442,6 +446,9 @@ def run_street_compose(
     street_topk_per_category: int,
     street_max_trials_per_slot: int,
     export_format: str,
+    street_placement_policy: str = "rule",
+    policy_ckpt_text: str = "",
+    policy_temperature: float = 0.12,
 ) -> Tuple[str, List[List[str]], str, str | None, List[str]]:
     try:
         profile = dataset_profile.strip().lower()
@@ -477,6 +484,9 @@ def run_street_compose(
             device=device,
             export_format=export_format,
             out_dir=artifacts_dir,
+            placement_policy=street_placement_policy,
+            policy_ckpt=_to_path(policy_ckpt_text) if policy_ckpt_text.strip() else None,
+            policy_temperature=float(policy_temperature),
         )
 
         layout_path = Path(result.outputs["scene_layout"])
@@ -499,8 +509,11 @@ def run_street_compose(
             f"- query: {result.query}\n"
             f"- instance_count: {result.instance_count}\n"
             f"- dropped_slots: {result.dropped_slots}\n"
+            f"- policy_used: {result.outputs.get('policy_used', street_placement_policy)}\n"
             f"- scene_layout: {result.outputs.get('scene_layout', '')}"
         )
+        if result.outputs.get("policy_fallback_reason"):
+            summary += f"\n- policy_fallback_reason: {result.outputs['policy_fallback_reason']}"
         model_path = result.outputs.get("scene_glb") or None
         files: List[str] = []
         if result.outputs.get("scene_glb"):
@@ -517,6 +530,151 @@ def run_street_compose(
         return f"Street compose failed: {exc}\n{detail}", [], "", None, []
 
 
+def run_m4_train_policy(
+    dataset_profile: str,
+    real_manifest_text: str,
+    artifacts_dir_text: str,
+    m4_artifacts_dir_text: str,
+    m4_queries_text: str,
+    model_name: str,
+    model_dir_text: str,
+    local_files_only: bool,
+    device: str,
+    street_length_m: float,
+    street_road_width_m: float,
+    street_sidewalk_width_m: float,
+    street_lane_count: int,
+    street_density: float,
+    street_topk_per_category: int,
+    street_max_trials_per_slot: int,
+    m4_collect_seed_start: int,
+    m4_collect_seed_end: int,
+    m4_recollect_data: bool,
+    m4_resume_training: bool,
+    m4_train_epochs: int,
+    m4_train_batch_size: int,
+    m4_train_lr: float,
+    m4_train_weight_decay: float,
+    m4_train_entropy_weight: float,
+    m4_train_patience: int,
+    m4_run_eval_after_train: bool,
+    m4_eval_seed_start: int,
+    m4_eval_seed_end: int,
+    export_format: str,
+    policy_temperature: float,
+    policy_ckpt_text: str,
+) -> Tuple[str, str, str, str]:
+    started_at = datetime.now()
+    try:
+        profile = dataset_profile.strip().lower()
+        if profile != "real":
+            return "M4 training requires dataset_profile='real'.", "{}", "{}", policy_ckpt_text
+
+        manifest_path = _to_path(real_manifest_text)
+        artifacts_dir = _to_path(artifacts_dir_text)
+        m4_artifacts_dir = _to_path(m4_artifacts_dir_text)
+        model_dir = _to_path(model_dir_text) if model_dir_text.strip() else None
+        queries_path = _to_path(m4_queries_text) if m4_queries_text.strip() else None
+        policy_ckpt = _to_path(policy_ckpt_text) if policy_ckpt_text.strip() else (m4_artifacts_dir / "layout_policy.pt")
+        resume_ckpt = policy_ckpt if bool(m4_resume_training) and policy_ckpt.exists() else None
+
+        data_path = m4_artifacts_dir / "policy_train.jsonl"
+        collected_rows = None
+        if bool(m4_recollect_data) or not data_path.exists():
+            collected_rows = collect_policy_data(
+                manifest=manifest_path,
+                artifacts=artifacts_dir,
+                out=data_path,
+                queries_path=queries_path if (queries_path and queries_path.exists()) else None,
+                seed_start=int(m4_collect_seed_start),
+                seed_end=int(m4_collect_seed_end),
+                model_name=model_name,
+                model_dir=model_dir,
+                local_files_only=bool(local_files_only),
+                device=device,
+                length_m=float(street_length_m),
+                road_width_m=float(street_road_width_m),
+                sidewalk_width_m=float(street_sidewalk_width_m),
+                lane_count=int(street_lane_count),
+                density=float(street_density),
+                topk_per_category=int(street_topk_per_category),
+                max_trials_per_slot=int(street_max_trials_per_slot),
+            )
+
+        train_summary = train_from_jsonl(
+            data_path=data_path,
+            out_dir=m4_artifacts_dir,
+            config=PolicyTrainConfig(
+                epochs=int(m4_train_epochs),
+                batch_size=int(m4_train_batch_size),
+                lr=float(m4_train_lr),
+                weight_decay=float(m4_train_weight_decay),
+                entropy_weight=float(m4_train_entropy_weight),
+                patience=int(m4_train_patience),
+                device=device,
+            ),
+            resume_ckpt=resume_ckpt,
+        )
+        ckpt_out = str(train_summary["outputs"]["checkpoint"])
+
+        eval_report: Dict[str, object] = {}
+        if bool(m4_run_eval_after_train):
+            eval_args = argparse.Namespace(
+                queries=queries_path if (queries_path and queries_path.exists()) else (ROOT / "data/eval/queries_m4.txt"),
+                manifest=manifest_path,
+                artifacts=artifacts_dir,
+                out_dir=m4_artifacts_dir,
+                model_name=model_name,
+                model_dir=model_dir,
+                local_files_only=bool(local_files_only),
+                device=device,
+                placement_policy="learned",
+                policy_ckpt=Path(ckpt_out),
+                policy_temperature=float(policy_temperature),
+                compare_rule=True,
+                seed_start=int(m4_eval_seed_start),
+                seed_end=int(m4_eval_seed_end),
+                length_m=float(street_length_m),
+                road_width_m=float(street_road_width_m),
+                sidewalk_width_m=float(street_sidewalk_width_m),
+                lane_count=int(street_lane_count),
+                density=float(street_density),
+                topk_per_category=int(street_topk_per_category),
+                max_trials_per_slot=int(street_max_trials_per_slot),
+                export_format=export_format,
+            )
+            eval_report = run_m4_eval(eval_args)
+
+        duration_sec = time.time() - started_at.timestamp()
+        log = (
+            "M4 train done.\n"
+            f"- started_at: {started_at.strftime('%Y-%m-%d %H:%M:%S')}\n"
+            f"- duration_sec: {duration_sec:.2f}\n"
+            f"- recollect_data: {bool(m4_recollect_data)}\n"
+            f"- resumed_from: {train_summary.get('resumed_from', '')}\n"
+            f"- policy_ckpt: {ckpt_out}\n"
+            f"- collected_rows: {len(collected_rows) if collected_rows is not None else 'reuse_existing_data'}\n"
+            f"- run_eval_after_train: {bool(m4_run_eval_after_train)}"
+        )
+        return (
+            log,
+            json.dumps(train_summary, indent=2, ensure_ascii=True),
+            json.dumps(eval_report, indent=2, ensure_ascii=True),
+            ckpt_out,
+        )
+    except ModelLoadError as exc:
+        return f"Model load error: {exc}", "{}", "{}", policy_ckpt_text
+    except Exception as exc:
+        duration_sec = time.time() - started_at.timestamp()
+        detail = traceback.format_exc(limit=4)
+        return (
+            f"M4 train failed.\n- duration_sec: {duration_sec:.2f}\n- error: {exc}\n{detail}",
+            "{}",
+            "{}",
+            policy_ckpt_text,
+        )
+
+
 def build_demo() -> gr.Blocks:
     default_data = str((ROOT / "data/m1").resolve())
     default_artifacts = str((ROOT / "artifacts/real").resolve())
@@ -526,13 +684,17 @@ def build_demo() -> gr.Blocks:
     default_real_mesh_root = str((ROOT / "data/real/meshes").resolve())
     default_real_latents_dir = str((ROOT / "data/real/latents").resolve())
     default_render_cache_dir = str((ROOT / "artifacts/real/shapee_render_cache").resolve())
+    default_m4_artifacts_dir = str((ROOT / "artifacts/m4").resolve())
+    default_m4_queries = str((ROOT / "data/eval/queries_m4.txt").resolve())
+    default_policy_ckpt = str((ROOT / "artifacts/m4/layout_policy.pt").resolve())
 
-    with gr.Blocks(title="RoadGen3D M3 Gradio") as demo:
+    with gr.Blocks(title="RoadGen3D M4 Gradio") as demo:
+        learned_policy_state = gr.State("learned")
         gr.Markdown(
             """
-            # RoadGen3D M3 UI
-            - Top buttons first: `1/2/3/4`，覆盖数据准备、latent 准备、单资产查询和街道组合。
-            - Default profile: `real`, decoder: `shapee (strict)`
+            # RoadGen3D M4 UI
+            - Top buttons first: `1/2/3/4/5/6`，覆盖准备、检索、街道组合与可学习策略训练。
+            - Default profile: `real`, decoder: `shapee (strict)`, street policy: `learned`
             """
         )
 
@@ -556,6 +718,8 @@ def build_demo() -> gr.Blocks:
             encode_btn = gr.Button("2) Prepare Real Latents", variant="primary")
             run_btn = gr.Button("3) Run Query Pipeline", variant="primary")
             street_btn = gr.Button("4) Run Street Compose", variant="primary")
+            train_btn = gr.Button("5) Train Layout Policy (M4)", variant="primary")
+            train_and_street_btn = gr.Button("6) Train + Run Street", variant="primary")
 
         with gr.Row():
             real_manifest = gr.Textbox(label="Real Manifest Path", value=default_real_manifest)
@@ -606,6 +770,14 @@ def build_demo() -> gr.Blocks:
                 )
                 model_name = gr.Textbox(label="Model Name", value="openai/clip-vit-base-patch32")
             with gr.Row():
+                street_placement_policy = gr.Dropdown(
+                    label="Street Placement Policy",
+                    choices=["rule", "learned"],
+                    value="learned",
+                )
+                policy_ckpt = gr.Textbox(label="Policy CKPT Path", value=default_policy_ckpt)
+                policy_temperature = gr.Number(label="Policy Temperature", value=0.12)
+            with gr.Row():
                 street_length_m = gr.Number(label="Street Length (m)", value=80.0)
                 street_road_width_m = gr.Number(label="Road Width (m)", value=8.0)
                 street_sidewalk_width_m = gr.Number(label="Sidewalk Width (m)", value=2.5)
@@ -636,8 +808,33 @@ def build_demo() -> gr.Blocks:
                 seed = gr.Number(label="Seed", value=42, precision=0)
                 latent_dim = gr.Number(label="Latent Dim", value=256, precision=0)
 
+        with gr.Accordion("M4 Training & Evaluation", open=False):
+            with gr.Row():
+                m4_artifacts_dir = gr.Textbox(label="M4 Artifacts Dir", value=default_m4_artifacts_dir)
+                m4_queries = gr.Textbox(label="M4 Queries File", value=default_m4_queries)
+            with gr.Row():
+                m4_collect_seed_start = gr.Number(label="Collect Seed Start", value=0, precision=0)
+                m4_collect_seed_end = gr.Number(label="Collect Seed End", value=49, precision=0)
+                m4_eval_seed_start = gr.Number(label="Eval Seed Start", value=0, precision=0)
+                m4_eval_seed_end = gr.Number(label="Eval Seed End", value=4, precision=0)
+            with gr.Row():
+                m4_recollect_data = gr.Checkbox(label="Recollect Distilled Data", value=True)
+                m4_resume_training = gr.Checkbox(label="Resume From Existing CKPT", value=True)
+                m4_run_eval_after_train = gr.Checkbox(label="Run Eval After Train", value=True)
+            with gr.Row():
+                m4_train_epochs = gr.Number(label="Train Epochs", value=20, precision=0)
+                m4_train_batch_size = gr.Number(label="Train Batch Size", value=256, precision=0)
+                m4_train_lr = gr.Number(label="Train LR", value=1e-3)
+            with gr.Row():
+                m4_train_weight_decay = gr.Number(label="Train Weight Decay", value=1e-4)
+                m4_train_entropy_weight = gr.Number(label="Train Entropy Weight", value=0.01)
+                m4_train_patience = gr.Number(label="Train Patience", value=3, precision=0)
+
         prepare_log = gr.Textbox(label="Prepare Log", lines=8)
         encode_log = gr.Textbox(label="Encode Log", lines=8)
+        m4_train_log = gr.Textbox(label="M4 Train Log", lines=8)
+        m4_train_json = gr.Code(label="M4 Train Summary JSON", language="json")
+        m4_eval_json = gr.Code(label="M4 Eval Report JSON", language="json")
         assets_preview = gr.Dataframe(
             headers=["asset_id", "description", "latent_path"],
             datatype=["str", "str", "str"],
@@ -756,6 +953,116 @@ def build_demo() -> gr.Blocks:
                 street_topk_per_category,
                 street_max_trials_per_slot,
                 export_format,
+                learned_policy_state,
+                policy_ckpt,
+                policy_temperature,
+            ],
+            outputs=[
+                street_summary,
+                street_instances,
+                street_layout_json,
+                street_model_view,
+                street_files,
+            ],
+        )
+        train_btn.click(
+            fn=run_m4_train_policy,
+            inputs=[
+                dataset_profile,
+                real_manifest,
+                artifacts_dir,
+                m4_artifacts_dir,
+                m4_queries,
+                model_name,
+                model_dir,
+                local_files_only,
+                device,
+                street_length_m,
+                street_road_width_m,
+                street_sidewalk_width_m,
+                street_lane_count,
+                street_density,
+                street_topk_per_category,
+                street_max_trials_per_slot,
+                m4_collect_seed_start,
+                m4_collect_seed_end,
+                m4_recollect_data,
+                m4_resume_training,
+                m4_train_epochs,
+                m4_train_batch_size,
+                m4_train_lr,
+                m4_train_weight_decay,
+                m4_train_entropy_weight,
+                m4_train_patience,
+                m4_run_eval_after_train,
+                m4_eval_seed_start,
+                m4_eval_seed_end,
+                export_format,
+                policy_temperature,
+                policy_ckpt,
+            ],
+            outputs=[m4_train_log, m4_train_json, m4_eval_json, policy_ckpt],
+        )
+        train_and_street_btn.click(
+            fn=run_m4_train_policy,
+            inputs=[
+                dataset_profile,
+                real_manifest,
+                artifacts_dir,
+                m4_artifacts_dir,
+                m4_queries,
+                model_name,
+                model_dir,
+                local_files_only,
+                device,
+                street_length_m,
+                street_road_width_m,
+                street_sidewalk_width_m,
+                street_lane_count,
+                street_density,
+                street_topk_per_category,
+                street_max_trials_per_slot,
+                m4_collect_seed_start,
+                m4_collect_seed_end,
+                m4_recollect_data,
+                m4_resume_training,
+                m4_train_epochs,
+                m4_train_batch_size,
+                m4_train_lr,
+                m4_train_weight_decay,
+                m4_train_entropy_weight,
+                m4_train_patience,
+                m4_run_eval_after_train,
+                m4_eval_seed_start,
+                m4_eval_seed_end,
+                export_format,
+                policy_temperature,
+                policy_ckpt,
+            ],
+            outputs=[m4_train_log, m4_train_json, m4_eval_json, policy_ckpt],
+        ).then(
+            fn=run_street_compose,
+            inputs=[
+                dataset_profile,
+                query,
+                real_manifest,
+                artifacts_dir,
+                model_name,
+                model_dir,
+                local_files_only,
+                device,
+                street_length_m,
+                street_road_width_m,
+                street_sidewalk_width_m,
+                street_lane_count,
+                street_density,
+                street_seed,
+                street_topk_per_category,
+                street_max_trials_per_slot,
+                export_format,
+                street_placement_policy,
+                policy_ckpt,
+                policy_temperature,
             ],
             outputs=[
                 street_summary,

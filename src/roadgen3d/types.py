@@ -70,7 +70,7 @@ class StreetPlacement:
     yaw_deg: float
     scale: float
     bbox_xz: List[float]  # [xmin, xmax, zmin, zmax]
-    selection_source: str  # faiss | fallback_pool
+    selection_source: str  # faiss_softmax | faiss_relaxed_repeat | policy_* | fallback_pool
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)

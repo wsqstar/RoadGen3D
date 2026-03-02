@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import math
 import random
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
@@ -12,7 +13,15 @@ from typing import Dict, List, Optional, Tuple
 import numpy as np
 
 from .embedder import ClipTextEmbedder
+from .eval_metrics import (
+    compute_dropped_slot_rate,
+    compute_latency_ms_per_instance,
+    compute_overlap_rate,
+    evaluate_topk_category_hits,
+)
 from .index_store import FaissIndexStore
+from .layout_features import CandidateDescriptor, PolicyFeatureContext, vectorize_slot_candidates
+from .layout_policy import LayoutPolicyRuntime
 from .types import StreetComposeConfig, StreetComposeResult, StreetPlacement
 
 DEFAULT_CATEGORIES: Tuple[str, ...] = (
@@ -222,7 +231,12 @@ def _pick_category_candidate(
     category_pool: List[Dict[str, str]],
     used_asset_ids: set[str],
     rng: random.Random,
-) -> Tuple[Dict[str, str], float, str]:
+    placement_policy: str = "rule",
+    policy_runtime: Optional[LayoutPolicyRuntime] = None,
+    policy_temperature: float = SOFTMAX_TEMPERATURE,
+    feature_context: Optional[PolicyFeatureContext] = None,
+    return_details: bool = False,
+) -> Tuple[Dict[str, str], float, str] | Tuple[Dict[str, str], float, str, Dict[str, object]]:
     def _softmax_weights(scores: List[float], temperature: float) -> List[float]:
         if not scores:
             return []
@@ -235,39 +249,101 @@ def _pick_category_candidate(
             return [1.0 / len(scores)] * len(scores)
         return (weights / total).tolist()
 
-    def _pick_weighted(candidates: List[Tuple[Dict[str, str], float]]) -> Tuple[Dict[str, str], float]:
+    def _pick_weighted(
+        candidates: List[Tuple[Dict[str, str], float]],
+        temperature: float,
+    ) -> Tuple[Dict[str, str], float, int]:
         scores = [float(score) for _, score in candidates]
-        weights = _softmax_weights(scores, SOFTMAX_TEMPERATURE)
+        weights = _softmax_weights(scores, temperature)
         pick_idx = rng.choices(range(len(candidates)), weights=weights, k=1)[0]
         row, score = candidates[pick_idx]
-        return row, float(score)
+        return row, float(score), int(pick_idx)
+
+    def _pick_with_policy(candidates: List[Tuple[Dict[str, str], float]]) -> Tuple[Dict[str, str], float, int]:
+        if not candidates:
+            raise RuntimeError("Policy candidate set cannot be empty.")
+        if policy_runtime is None or feature_context is None:
+            row, score, idx = _pick_weighted(candidates, policy_temperature)
+            return row, score, idx
+
+        candidate_desc = [
+            CandidateDescriptor(asset_id=row["asset_id"], category=row["category"], score=float(score))
+            for row, score in candidates
+        ]
+        features = vectorize_slot_candidates(feature_context, candidate_desc)
+        logits = policy_runtime.score_candidates(features)
+        weights = _softmax_weights(logits.tolist(), policy_temperature)
+        pick_idx = int(rng.choices(range(len(candidates)), weights=weights, k=1)[0])
+        row, score = candidates[pick_idx]
+        return row, float(score), pick_idx
 
     slot_query = f"{query}, {category} street asset"
     query_embedding = embedder.encode_texts([slot_query])
     hits = index_store.search(query_embedding, topk=max(1, int(topk)))[0]
     matching_hits: List[Tuple[Dict[str, str], float]] = []
+    all_hits: List[Dict[str, object]] = []
     for hit in hits:
         row = asset_by_id.get(hit.asset_id)
+        if row is not None:
+            all_hits.append(
+                {
+                    "asset_id": row["asset_id"],
+                    "category": row["category"],
+                    "score": float(hit.score),
+                }
+            )
         if row is not None and row["category"] == category:
             matching_hits.append((row, float(hit.score)))
+
+    top3_hit = any(str(item.get("category", "")).strip().lower() == category for item in all_hits[:3])
+
+    decision_payload: Dict[str, object] = {
+        "candidates": all_hits,
+        "chosen_index": -1,
+        "top3_hit": bool(top3_hit),
+    }
 
     if matching_hits:
         available_hits = [candidate for candidate in matching_hits if candidate[0]["asset_id"] not in used_asset_ids]
         if CATEGORY_NO_REPEAT_FIRST and available_hits:
-            row, score = _pick_weighted(available_hits)
-            return row, score, "faiss_softmax"
+            if placement_policy == "learned":
+                row, score, local_idx = _pick_with_policy(available_hits)
+                source = "policy_softmax"
+            else:
+                row, score, local_idx = _pick_weighted(available_hits, policy_temperature)
+                source = "faiss_softmax"
+            decision_payload["chosen_index"] = int(local_idx)
+            if return_details:
+                return row, score, source, decision_payload
+            return row, score, source
         if FILL_PRIORITY:
-            row, score = _pick_weighted(matching_hits)
-            return row, score, "faiss_relaxed_repeat"
+            if placement_policy == "learned":
+                row, score, local_idx = _pick_with_policy(matching_hits)
+                source = "policy_relaxed_repeat"
+            else:
+                row, score, local_idx = _pick_weighted(matching_hits, policy_temperature)
+                source = "faiss_relaxed_repeat"
+            decision_payload["chosen_index"] = int(local_idx)
+            if return_details:
+                return row, score, source, decision_payload
+            return row, score, source
 
     if not category_pool:
         raise RuntimeError(f"empty category pool: {category}")
 
     available_pool = [row for row in category_pool if row["asset_id"] not in used_asset_ids]
     if CATEGORY_NO_REPEAT_FIRST and available_pool:
-        return rng.choice(available_pool), 0.0, "fallback_pool"
+        row = rng.choice(available_pool)
+        if return_details:
+            decision_payload["chosen_index"] = 0
+            return row, 0.0, "fallback_pool", decision_payload
+        return row, 0.0, "fallback_pool"
     if FILL_PRIORITY:
-        return rng.choice(category_pool), 0.0, "fallback_pool"
+        row = rng.choice(category_pool)
+        if return_details:
+            decision_payload["chosen_index"] = 0
+            return row, 0.0, "fallback_pool", decision_payload
+        return row, 0.0, "fallback_pool"
 
     raise RuntimeError(
         f"Unable to pick candidate for category '{category}' from FAISS or fallback pool."
@@ -348,6 +424,9 @@ def compose_street_scene(
     device: str = "cpu",
     export_format: str = "both",
     out_dir: Path = Path("artifacts/real"),
+    placement_policy: str = "rule",
+    policy_ckpt: Optional[Path] = None,
+    policy_temperature: float = SOFTMAX_TEMPERATURE,
 ) -> StreetComposeResult:
     """
     Compose a street scene by category-aware retrieval and collision-aware placement.
@@ -361,6 +440,9 @@ def compose_street_scene(
     manifest_path = Path(manifest_path).resolve()
     artifacts_dir = Path(artifacts_dir).resolve()
     out_dir = Path(out_dir).resolve()
+    policy_mode = str(placement_policy).strip().lower()
+    if policy_mode not in {"rule", "learned"}:
+        raise ValueError("placement_policy must be 'rule' or 'learned'")
 
     rows = _load_real_manifest(manifest_path)
     asset_by_id = {row["asset_id"]: row for row in rows}
@@ -391,14 +473,34 @@ def compose_street_scene(
         id_map_path=artifacts_dir / "id_map.json",
     )
 
+    policy_runtime: Optional[LayoutPolicyRuntime] = None
+    policy_used = "rule"
+    policy_fallback_reason = ""
+    if policy_mode == "learned":
+        ckpt_path = Path(policy_ckpt).expanduser().resolve() if policy_ckpt else None
+        if ckpt_path is None or not ckpt_path.exists():
+            policy_fallback_reason = (
+                "Policy checkpoint missing; fallback to rule policy."
+                if ckpt_path is None
+                else f"Policy checkpoint not found: {ckpt_path}. Fallback to rule policy."
+            )
+        else:
+            try:
+                policy_runtime = LayoutPolicyRuntime.from_checkpoint(ckpt_path, device=device)
+                policy_used = "learned"
+            except Exception as exc:
+                policy_fallback_reason = f"Policy runtime load failed ({exc}); fallback to rule policy."
+
     rng = random.Random(int(config.seed))
     placements: List[StreetPlacement] = []
     existing_bboxes: List[Tuple[float, float, float, float]] = []
     used_asset_ids_by_category: Dict[str, set[str]] = {category: set() for category in DEFAULT_CATEGORIES}
+    retrieval_predictions: List[Dict[str, object]] = []
     dropped_slots = 0
     instance_counter = 1
     clearance = 0.2
     effective_density = max(float(config.density), 0.1)
+    start_perf = time.perf_counter()
 
     for category in DEFAULT_CATEGORIES:
         pool = category_to_rows.get(category, [])
@@ -410,7 +512,29 @@ def compose_street_scene(
         segment = float(config.length_m) / float(slot_count)
         for slot_idx in range(slot_count):
             x_center = -float(config.length_m) / 2.0 + (slot_idx + 0.5) * segment
-            row, score, source = _pick_category_candidate(
+            side_pref = SIDE_PREF.get(category, "both")
+            if side_pref == "right":
+                side = -1.0
+            elif side_pref == "left":
+                side = 1.0
+            else:
+                side = 1.0 if (slot_idx % 2 == 0) else -1.0
+            slot_z_center = side * (float(config.road_width_m) / 2.0 + float(config.sidewalk_width_m) * 0.5)
+            feature_ctx = PolicyFeatureContext(
+                query=config.query,
+                category=category,
+                slot_idx=int(slot_idx),
+                slot_x=float(x_center),
+                slot_z=float(slot_z_center),
+                length_m=float(config.length_m),
+                road_width_m=float(config.road_width_m),
+                sidewalk_width_m=float(config.sidewalk_width_m),
+                lane_count=int(config.lane_count),
+                density=float(config.density),
+                topk=int(config.topk_per_category),
+                used_asset_ids=set(used_asset_ids_by_category.setdefault(category, set())),
+            )
+            row, score, source, decision_details = _pick_category_candidate(
                 query=config.query,
                 category=category,
                 topk=config.topk_per_category,
@@ -420,6 +544,17 @@ def compose_street_scene(
                 category_pool=pool,
                 used_asset_ids=used_asset_ids_by_category.setdefault(category, set()),
                 rng=rng,
+                placement_policy=policy_used,
+                policy_runtime=policy_runtime,
+                policy_temperature=policy_temperature,
+                feature_context=feature_ctx,
+                return_details=True,
+            )
+            retrieval_predictions.append(
+                {
+                    "target_category": category,
+                    "hits": decision_details.get("candidates", []),
+                }
             )
             entry = mesh_cache[row["asset_id"]]
             placed = False
@@ -478,8 +613,16 @@ def compose_street_scene(
     _add_instance_meshes(scene=scene, placements=placements, mesh_cache=mesh_cache)
     outputs = _export_scene(scene=scene, out_dir=out_dir, export_format=export_format)
 
+    elapsed_ms_total = (time.perf_counter() - start_perf) * 1000.0
     unique_asset_count = len({placement.asset_id for placement in placements})
     diversity_ratio = float(unique_asset_count / len(placements)) if placements else 0.0
+    dropped_slot_rate = compute_dropped_slot_rate(instance_count=len(placements), dropped_slots=int(dropped_slots))
+    overlap_rate = compute_overlap_rate([placement.bbox_xz for placement in placements])
+    retrieval_top3_category_hit = evaluate_topk_category_hits(retrieval_predictions, topk=3)
+    latency_ms_per_instance = compute_latency_ms_per_instance(
+        latency_ms_total=elapsed_ms_total,
+        instance_count=len(placements),
+    )
     per_category_unique = {
         category: len({placement.asset_id for placement in placements if placement.category == category})
         for category in DEFAULT_CATEGORIES
@@ -498,8 +641,14 @@ def compose_street_scene(
         "summary": {
             "instance_count": len(placements),
             "dropped_slots": int(dropped_slots),
+            "dropped_slot_rate": float(dropped_slot_rate),
             "unique_asset_count": int(unique_asset_count),
             "diversity_ratio": float(diversity_ratio),
+            "overlap_rate": float(overlap_rate),
+            "retrieval_top3_category_hit": float(retrieval_top3_category_hit),
+            "policy_used": policy_used,
+            "latency_ms_total": float(elapsed_ms_total),
+            "latency_ms_per_instance": float(latency_ms_per_instance),
             "per_category_unique": per_category_unique,
             "selection_source_counts": selection_source_counts,
         },
@@ -509,6 +658,9 @@ def compose_street_scene(
     layout_path.write_text(json.dumps(layout_payload, indent=2, ensure_ascii=True), encoding="utf-8")
 
     outputs["scene_layout"] = str(layout_path)
+    outputs["policy_used"] = policy_used
+    if policy_fallback_reason:
+        outputs["policy_fallback_reason"] = policy_fallback_reason
     return StreetComposeResult(
         query=config.query,
         instance_count=len(placements),
