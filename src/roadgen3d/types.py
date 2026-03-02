@@ -1,4 +1,4 @@
-"""Shared datatypes for the milestone-1 pipeline."""
+"""Shared datatypes for RoadGen3D pipelines."""
 
 from __future__ import annotations
 
@@ -39,3 +39,54 @@ class PipelineResult:
         payload["top_hit"] = asdict(self.top_hit)
         return payload
 
+
+@dataclass(frozen=True)
+class StreetComposeConfig:
+    """Configuration for M3 street composition."""
+
+    query: str
+    length_m: float
+    road_width_m: float
+    sidewalk_width_m: float
+    lane_count: int
+    density: float
+    seed: int
+    topk_per_category: int
+    max_trials_per_slot: int
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass(frozen=True)
+class StreetPlacement:
+    """One placed instance in the composed street scene."""
+
+    instance_id: str
+    asset_id: str
+    category: str
+    score: float
+    position_xyz: List[float]
+    yaw_deg: float
+    scale: float
+    bbox_xz: List[float]  # [xmin, xmax, zmin, zmax]
+    selection_source: str  # faiss | fallback_pool
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass(frozen=True)
+class StreetComposeResult:
+    """Top-level output for M3 street composition."""
+
+    query: str
+    instance_count: int
+    dropped_slots: int
+    placements: List[StreetPlacement]
+    outputs: Dict[str, str]
+
+    def to_dict(self) -> Dict[str, Any]:
+        payload = asdict(self)
+        payload["placements"] = [placement.to_dict() for placement in self.placements]
+        return payload

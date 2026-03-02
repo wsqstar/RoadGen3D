@@ -42,6 +42,8 @@ from roadgen3d.embedder import ClipTextEmbedder, ModelLoadError
 from roadgen3d.index_store import FaissIndexStore
 from roadgen3d.latent_store import LatentStore, load_asset_records
 from roadgen3d.pipeline import M1Pipeline
+from roadgen3d.street_layout import compose_street_scene
+from roadgen3d.types import StreetComposeConfig
 from scripts.m1_01_seed_assets import seed_assets
 from scripts.m2_11_encode_shapee_latents import encode_latents as encode_shapee_latents
 
@@ -422,6 +424,99 @@ def run_query_pipeline(
         return f"Pipeline failed: {exc}\n{detail}", [], "", None, []
 
 
+def run_street_compose(
+    dataset_profile: str,
+    query: str,
+    real_manifest_text: str,
+    artifacts_dir_text: str,
+    model_name: str,
+    model_dir_text: str,
+    local_files_only: bool,
+    device: str,
+    street_length_m: float,
+    street_road_width_m: float,
+    street_sidewalk_width_m: float,
+    street_lane_count: int,
+    street_density: float,
+    street_seed: int,
+    street_topk_per_category: int,
+    street_max_trials_per_slot: int,
+    export_format: str,
+) -> Tuple[str, List[List[str]], str, str | None, List[str]]:
+    try:
+        profile = dataset_profile.strip().lower()
+        if profile != "real":
+            return "Street compose requires dataset_profile='real'.", [], "", None, []
+        if not query.strip():
+            return "Query cannot be empty.", [], "", None, []
+
+        manifest_path = _to_path(real_manifest_text)
+        artifacts_dir = _to_path(artifacts_dir_text)
+        model_dir = _to_path(model_dir_text) if model_dir_text.strip() else None
+        if model_dir is not None and not model_dir.exists():
+            return f"Model directory does not exist: {model_dir}", [], "", None, []
+
+        config = StreetComposeConfig(
+            query=query,
+            length_m=float(street_length_m),
+            road_width_m=float(street_road_width_m),
+            sidewalk_width_m=float(street_sidewalk_width_m),
+            lane_count=int(street_lane_count),
+            density=float(street_density),
+            seed=int(street_seed),
+            topk_per_category=int(street_topk_per_category),
+            max_trials_per_slot=int(street_max_trials_per_slot),
+        )
+        result = compose_street_scene(
+            config=config,
+            manifest_path=manifest_path,
+            artifacts_dir=artifacts_dir,
+            model_name=model_name,
+            model_dir=model_dir,
+            local_files_only=bool(local_files_only),
+            device=device,
+            export_format=export_format,
+            out_dir=artifacts_dir,
+        )
+
+        layout_path = Path(result.outputs["scene_layout"])
+        layout_json_text = layout_path.read_text(encoding="utf-8")
+        instance_rows = [
+            [
+                placement.instance_id,
+                placement.asset_id,
+                placement.category,
+                f"{placement.score:.6f}",
+                f"{placement.position_xyz[0]:.3f}",
+                f"{placement.position_xyz[2]:.3f}",
+                f"{placement.yaw_deg:.2f}",
+                placement.selection_source,
+            ]
+            for placement in result.placements
+        ]
+        summary = (
+            "Street compose done.\n"
+            f"- query: {result.query}\n"
+            f"- instance_count: {result.instance_count}\n"
+            f"- dropped_slots: {result.dropped_slots}\n"
+            f"- scene_layout: {result.outputs.get('scene_layout', '')}"
+        )
+        model_path = result.outputs.get("scene_glb") or None
+        files: List[str] = []
+        if result.outputs.get("scene_glb"):
+            files.append(result.outputs["scene_glb"])
+        if result.outputs.get("scene_ply"):
+            files.append(result.outputs["scene_ply"])
+        if result.outputs.get("scene_layout"):
+            files.append(result.outputs["scene_layout"])
+        return summary, instance_rows, layout_json_text, model_path, files
+    except ModelLoadError as exc:
+        return f"Model load error: {exc}", [], "", None, []
+    except Exception as exc:
+        detail = traceback.format_exc(limit=3)
+        return f"Street compose failed: {exc}\n{detail}", [], "", None, []
+
+
 def build_demo() -> gr.Blocks:
     default_data = str((ROOT / "data/m1").resolve())
     default_artifacts = str((ROOT / "artifacts/real").resolve())
@@ -432,11 +527,11 @@ def build_demo() -> gr.Blocks:
     default_real_latents_dir = str((ROOT / "data/real/latents").resolve())
     default_render_cache_dir = str((ROOT / "artifacts/real/shapee_render_cache").resolve())
 
-    with gr.Blocks(title="RoadGen3D M2 Gradio") as demo:
+    with gr.Blocks(title="RoadGen3D M3 Gradio") as demo:
         gr.Markdown(
             """
-            # RoadGen3D M2 UI
-            - Top buttons first: `Prepare Assets + Index` -> `Run Query Pipeline`
+            # RoadGen3D M3 UI
+            - Top buttons first: `1/2/3/4`，覆盖数据准备、latent 准备、单资产查询和街道组合。
             - Default profile: `real`, decoder: `shapee (strict)`
             """
         )
@@ -460,6 +555,7 @@ def build_demo() -> gr.Blocks:
             prepare_btn = gr.Button("1) Prepare Assets + Index", variant="primary")
             encode_btn = gr.Button("2) Prepare Real Latents", variant="primary")
             run_btn = gr.Button("3) Run Query Pipeline", variant="primary")
+            street_btn = gr.Button("4) Run Street Compose", variant="primary")
 
         with gr.Row():
             real_manifest = gr.Textbox(label="Real Manifest Path", value=default_real_manifest)
@@ -509,6 +605,28 @@ def build_demo() -> gr.Blocks:
                     value="both",
                 )
                 model_name = gr.Textbox(label="Model Name", value="openai/clip-vit-base-patch32")
+            with gr.Row():
+                street_length_m = gr.Number(label="Street Length (m)", value=80.0)
+                street_road_width_m = gr.Number(label="Road Width (m)", value=8.0)
+                street_sidewalk_width_m = gr.Number(label="Sidewalk Width (m)", value=2.5)
+                street_lane_count = gr.Slider(label="Lane Count", minimum=1, maximum=4, step=1, value=2)
+            with gr.Row():
+                street_density = gr.Slider(label="Street Density", minimum=0.2, maximum=2.0, step=0.1, value=1.0)
+                street_seed = gr.Number(label="Street Seed", value=42, precision=0)
+                street_topk_per_category = gr.Slider(
+                    label="TopK Per Category",
+                    minimum=1,
+                    maximum=50,
+                    step=1,
+                    value=20,
+                )
+                street_max_trials_per_slot = gr.Slider(
+                    label="Max Trials Per Slot",
+                    minimum=1,
+                    maximum=100,
+                    step=1,
+                    value=30,
+                )
 
         with gr.Accordion("Mock Dataset Parameters (Only for dataset_profile=mock)", open=False):
             with gr.Row():
@@ -540,6 +658,18 @@ def build_demo() -> gr.Blocks:
 
         model_view = gr.Model3D(label="3D Preview (GLB)")
         mesh_files = gr.Files(label="Mesh Downloads (GLB/PLY)")
+
+        street_summary = gr.Textbox(label="Street Compose Summary", lines=8)
+        street_instances = gr.Dataframe(
+            headers=["instance_id", "asset_id", "category", "score", "x", "z", "yaw_deg", "source"],
+            datatype=["str", "str", "str", "str", "str", "str", "str", "str"],
+            row_count=(0, "dynamic"),
+            col_count=(8, "fixed"),
+            label="Street Instances",
+        )
+        street_layout_json = gr.Code(label="Street Layout JSON", language="json")
+        street_model_view = gr.Model3D(label="Street Scene Preview (GLB)")
+        street_files = gr.Files(label="Street Scene Downloads")
 
         prepare_btn.click(
             fn=prepare_assets_and_index,
@@ -605,6 +735,35 @@ def build_demo() -> gr.Blocks:
                 export_format,
             ],
             outputs=[run_summary, hits_table, result_json, model_view, mesh_files],
+        )
+        street_btn.click(
+            fn=run_street_compose,
+            inputs=[
+                dataset_profile,
+                query,
+                real_manifest,
+                artifacts_dir,
+                model_name,
+                model_dir,
+                local_files_only,
+                device,
+                street_length_m,
+                street_road_width_m,
+                street_sidewalk_width_m,
+                street_lane_count,
+                street_density,
+                street_seed,
+                street_topk_per_category,
+                street_max_trials_per_slot,
+                export_format,
+            ],
+            outputs=[
+                street_summary,
+                street_instances,
+                street_layout_json,
+                street_model_view,
+                street_files,
+            ],
         )
     return demo
 

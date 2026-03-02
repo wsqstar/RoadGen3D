@@ -173,6 +173,7 @@ UV_CACHE_DIR=/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.uv-cache \
 - `1) Prepare Assets + Index`：`mock` 模式对应 `m1_01 + m1_02 + m1_03`；`real` 模式从 manifest 建索引
 - `2) Prepare Real Latents`：调用 `m2_11` 准备 real latent（默认 `mesh_ref` 模式，不依赖 Blender）
 - `3) Run Query Pipeline`：对应 `m1_06`，支持 `decoder=placeholder|shapee`
+- `4) Run Street Compose`：M3 街道组合，输出 `scene.glb/scene.ply/scene_layout.json`
 - `Model3D`：直接预览导出的 GLB
 - `Mesh Downloads`：下载 `GLB/PLY`
 
@@ -213,3 +214,42 @@ Shape-E 的环境和模型准备见：
   --decoder shapee \
   --export-format both
 ```
+
+## 8. M3 真实街道组合
+
+M3 目标：从 real manifest 做多资产编排，输出场景级文件。
+
+M3 的 manifest 行必须包含：
+
+- `asset_id`
+- `category`
+- `text_desc`
+- `mesh_path`
+- `latent_path`
+
+CLI 示例：
+
+```bash
+.venv/bin/python scripts/m3_01_compose_street.py \
+  --query "modern clean urban street" \
+  --manifest data/real/real_assets_manifest.jsonl \
+  --artifacts artifacts/real \
+  --out-dir artifacts/real \
+  --length-m 80 \
+  --road-width-m 8 \
+  --sidewalk-width-m 2.5 \
+  --lane-count 2 \
+  --density 1.0 \
+  --seed 42 \
+  --topk-per-category 20 \
+  --max-trials-per-slot 30 \
+  --model-dir /Users/shiqi/Coding/github/GIStudio/RoadGen3D/models/clip-vit-base-patch32 \
+  --local-files-only \
+  --export-format both
+```
+
+输出文件：
+
+- `artifacts/real/scene.glb`
+- `artifacts/real/scene.ply`
+- `artifacts/real/scene_layout.json`
