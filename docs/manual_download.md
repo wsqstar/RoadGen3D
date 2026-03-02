@@ -5,6 +5,7 @@
 ## 1. 目标模型
 
 - Hugging Face 模型：`openai/clip-vit-base-patch32`
+- 推荐环境：`torch>=2.6`（新版 `transformers` 针对 `.bin` 权重的安全限制）
 
 ## 2. 本地目录约定
 
@@ -48,6 +49,9 @@ python scripts/m1_02_embed_texts.py \
 ```
 
 若模型目录缺失或文件不完整，脚本会输出清晰错误并以非零状态退出。
+
+如果你使用的是 `.bin` 权重且 torch<2.6，可能会遇到 `CVE-2025-32434` 相关报错。
+建议优先升级 torch，或改用 safetensors 权重文件。
 
 ## 5. Shape-E 说明（后续阶段）
 

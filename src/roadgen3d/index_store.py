@@ -3,12 +3,19 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 from typing import Iterable, List, Sequence
 
 import numpy as np
 
 from .types import RetrievalHit
+
+# Mitigate duplicate OpenMP runtime conflicts (macOS + faiss/torch stacks).
+os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
+os.environ.setdefault("OMP_NUM_THREADS", "1")
+os.environ.setdefault("MKL_NUM_THREADS", "1")
+os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
 
 
 class FaissUnavailableError(RuntimeError):
@@ -86,4 +93,3 @@ class FaissIndexStore:
                 hits.append(RetrievalHit(asset_id=self.asset_ids[int(idx)], score=float(score)))
             all_hits.append(hits)
         return all_hits
-

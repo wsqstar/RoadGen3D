@@ -1,9 +1,9 @@
-"""Placeholder latent-to-voxel decoder for milestone-1."""
+"""Decoder interfaces and placeholder latent-to-voxel implementation."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Tuple
+from typing import Dict, Protocol, Tuple
 
 import numpy as np
 
@@ -12,6 +12,13 @@ import numpy as np
 class DecoderConfig:
     resolution: int = 64
     threshold: float = 0.5
+
+
+class DecoderProtocol(Protocol):
+    """Common decoder contract used by the pipeline."""
+
+    def decode(self, latent) -> Tuple[np.ndarray, np.ndarray, Dict[str, object]]:
+        ...
 
 
 class PlaceholderVoxelDecoder:
@@ -30,7 +37,7 @@ class PlaceholderVoxelDecoder:
         self.resolution = int(resolution)
         self.threshold = float(threshold)
 
-    def decode(self, latent) -> Tuple[np.ndarray, np.ndarray]:
+    def decode(self, latent) -> Tuple[np.ndarray, np.ndarray, Dict[str, object]]:
         try:
             import torch
         except ImportError as exc:
@@ -49,5 +56,9 @@ class PlaceholderVoxelDecoder:
         logits = (x + y + z) / 3.0 + bias
         prob = torch.sigmoid(logits).cpu().numpy().astype(np.float32)
         voxel = (prob > self.threshold).astype(np.uint8)
-        return prob, voxel
-
+        meta: Dict[str, object] = {
+            "decoder": "placeholder",
+            "resolution": self.resolution,
+            "threshold": self.threshold,
+        }
+        return prob, voxel, meta

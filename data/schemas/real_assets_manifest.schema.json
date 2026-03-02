@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://roadgen3d.local/schemas/real_assets_manifest.schema.json",
+  "title": "RoadGen3D Real Assets Manifest Row",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "asset_id",
+    "category",
+    "text_desc",
+    "mesh_path",
+    "latent_path",
+    "license",
+    "source",
+    "split"
+  ],
+  "properties": {
+    "asset_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "category": {
+      "type": "string",
+      "minLength": 1
+    },
+    "text_desc": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mesh_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "latent_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "license": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "split": {
+      "type": "string",
+      "enum": [
+        "train",
+        "val",
+        "test"
+      ]
+    }
+  }
+}

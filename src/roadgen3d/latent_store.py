@@ -68,6 +68,13 @@ class LatentStore:
             latent = torch.load(latent_path, map_location="cpu", weights_only=True)
         except TypeError:
             latent = torch.load(latent_path, map_location="cpu")
+        if isinstance(latent, dict) and "mesh_path" in latent:
+            mesh_path = Path(str(latent["mesh_path"])).expanduser()
+            if not mesh_path.is_absolute():
+                mesh_path = (self.assets_root / mesh_path).resolve()
+            if not mesh_path.exists():
+                raise FileNotFoundError(f"Mesh reference for asset '{asset_id}' not found at: {mesh_path}")
+            return {"mesh_path": str(mesh_path)}
         if not hasattr(latent, "shape"):
             raise TypeError(f"Latent for asset '{asset_id}' is not a tensor-like object: {latent_path}")
         return latent

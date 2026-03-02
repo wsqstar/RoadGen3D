@@ -94,10 +94,11 @@ def test_decode_output_shape_and_binary():
 
     latent = torch.randn(1, 256)
     decoder = PlaceholderVoxelDecoder(resolution=64, threshold=0.5)
-    prob, voxel = decoder.decode(latent)
+    prob, voxel, meta = decoder.decode(latent)
     assert prob.shape == (64, 64, 64)
     assert voxel.shape == (64, 64, 64)
     assert set(np.unique(voxel)).issubset({0, 1})
+    assert meta["decoder"] == "placeholder"
 
 
 def test_pipeline_end_to_end(tmp_path: Path):
@@ -147,6 +148,8 @@ def test_pipeline_end_to_end(tmp_path: Path):
     assert result.top_hit.asset_id == "bench_01"
     assert (artifacts / "voxel_prob.npy").exists()
     assert (artifacts / "voxel_bin.npy").exists()
+    assert "mesh_glb" in result.outputs
+    assert "mesh_ply" in result.outputs
 
     result_path = artifacts / "pipeline_result.json"
     pipeline.save_result_json(result, hits, result_path)

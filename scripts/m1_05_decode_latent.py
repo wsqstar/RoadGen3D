@@ -37,7 +37,11 @@ def main() -> int:
         store = LatentStore(assets_jsonl_path=assets_path)
         latent = store.load(args.asset_id)
         decoder = PlaceholderVoxelDecoder(resolution=args.resolution, threshold=args.threshold)
-        voxel_prob, voxel_bin = decoder.decode(latent)
+        decoded = decoder.decode(latent)
+        if len(decoded) == 3:
+            voxel_prob, voxel_bin, _ = decoded
+        else:
+            voxel_prob, voxel_bin = decoded
 
         args.out.mkdir(parents=True, exist_ok=True)
         prob_path = args.out / "voxel_prob.npy"
@@ -65,4 +69,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
