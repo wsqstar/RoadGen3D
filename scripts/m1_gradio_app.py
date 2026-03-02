@@ -6,12 +6,14 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import queue
 import sys
+import threading
 import time
 import traceback
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, Iterator, List, Tuple
 
 # Mitigate duplicate OpenMP runtime conflicts (common with torch/faiss on macOS).
 os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
@@ -563,116 +565,184 @@ def run_m4_train_policy(
     export_format: str,
     policy_temperature: float,
     policy_ckpt_text: str,
-) -> Tuple[str, str, str, str]:
+) -> Iterator[Tuple[str, str, str, str]]:
     started_at = datetime.now()
-    try:
-        profile = dataset_profile.strip().lower()
-        if profile != "real":
-            return "M4 training requires dataset_profile='real'.", "{}", "{}", policy_ckpt_text
+    profile = dataset_profile.strip().lower()
+    if profile != "real":
+        yield "M4 training requires dataset_profile='real'.", "{}", "{}", policy_ckpt_text
+        return
 
-        manifest_path = _to_path(real_manifest_text)
-        artifacts_dir = _to_path(artifacts_dir_text)
-        m4_artifacts_dir = _to_path(m4_artifacts_dir_text)
-        model_dir = _to_path(model_dir_text) if model_dir_text.strip() else None
-        queries_path = _to_path(m4_queries_text) if m4_queries_text.strip() else None
-        policy_ckpt = _to_path(policy_ckpt_text) if policy_ckpt_text.strip() else (m4_artifacts_dir / "layout_policy.pt")
-        resume_ckpt = policy_ckpt if bool(m4_resume_training) and policy_ckpt.exists() else None
+    log_lines = [
+        "M4 training started...",
+        f"- started_at: {started_at.strftime('%Y-%m-%d %H:%M:%S')}",
+        f"- recollect_data: {bool(m4_recollect_data)}",
+        f"- resume_training: {bool(m4_resume_training)}",
+        f"- run_eval_after_train: {bool(m4_run_eval_after_train)}",
+    ]
+    train_json = "{}"
+    eval_json = "{}"
+    ckpt_out = policy_ckpt_text
+    epoch_curve: List[Dict[str, float]] = []
 
-        data_path = m4_artifacts_dir / "policy_train.jsonl"
-        collected_rows = None
-        if bool(m4_recollect_data) or not data_path.exists():
-            collected_rows = collect_policy_data(
-                manifest=manifest_path,
-                artifacts=artifacts_dir,
-                out=data_path,
-                queries_path=queries_path if (queries_path and queries_path.exists()) else None,
-                seed_start=int(m4_collect_seed_start),
-                seed_end=int(m4_collect_seed_end),
-                model_name=model_name,
-                model_dir=model_dir,
-                local_files_only=bool(local_files_only),
-                device=device,
-                length_m=float(street_length_m),
-                road_width_m=float(street_road_width_m),
-                sidewalk_width_m=float(street_sidewalk_width_m),
-                lane_count=int(street_lane_count),
-                density=float(street_density),
-                topk_per_category=int(street_topk_per_category),
-                max_trials_per_slot=int(street_max_trials_per_slot),
+    def _snapshot() -> Tuple[str, str, str, str]:
+        return ("\n".join(log_lines), train_json, eval_json, ckpt_out)
+
+    yield _snapshot()
+
+    events: queue.Queue[Tuple[str, object]] = queue.Queue()
+    done_event = threading.Event()
+
+    def _worker() -> None:
+        try:
+            manifest_path = _to_path(real_manifest_text)
+            artifacts_dir = _to_path(artifacts_dir_text)
+            m4_artifacts_dir = _to_path(m4_artifacts_dir_text)
+            model_dir = _to_path(model_dir_text) if model_dir_text.strip() else None
+            queries_path = _to_path(m4_queries_text) if m4_queries_text.strip() else None
+            policy_ckpt = (
+                _to_path(policy_ckpt_text)
+                if policy_ckpt_text.strip()
+                else (m4_artifacts_dir / "layout_policy.pt")
             )
+            resume_ckpt = policy_ckpt if bool(m4_resume_training) and policy_ckpt.exists() else None
 
-        train_summary = train_from_jsonl(
-            data_path=data_path,
-            out_dir=m4_artifacts_dir,
-            config=PolicyTrainConfig(
-                epochs=int(m4_train_epochs),
-                batch_size=int(m4_train_batch_size),
-                lr=float(m4_train_lr),
-                weight_decay=float(m4_train_weight_decay),
-                entropy_weight=float(m4_train_entropy_weight),
-                patience=int(m4_train_patience),
-                device=device,
-            ),
-            resume_ckpt=resume_ckpt,
-        )
-        ckpt_out = str(train_summary["outputs"]["checkpoint"])
+            data_path = m4_artifacts_dir / "policy_train.jsonl"
+            if bool(m4_recollect_data) or not data_path.exists():
+                events.put(("log", f"- collecting distilled data -> {data_path}"))
+                collected_rows = collect_policy_data(
+                    manifest=manifest_path,
+                    artifacts=artifacts_dir,
+                    out=data_path,
+                    queries_path=queries_path if (queries_path and queries_path.exists()) else None,
+                    seed_start=int(m4_collect_seed_start),
+                    seed_end=int(m4_collect_seed_end),
+                    model_name=model_name,
+                    model_dir=model_dir,
+                    local_files_only=bool(local_files_only),
+                    device=device,
+                    length_m=float(street_length_m),
+                    road_width_m=float(street_road_width_m),
+                    sidewalk_width_m=float(street_sidewalk_width_m),
+                    lane_count=int(street_lane_count),
+                    density=float(street_density),
+                    topk_per_category=int(street_topk_per_category),
+                    max_trials_per_slot=int(street_max_trials_per_slot),
+                )
+                events.put(("log", f"- collected_rows: {len(collected_rows)}"))
+            else:
+                events.put(("log", f"- reuse existing distilled data: {data_path}"))
 
-        eval_report: Dict[str, object] = {}
-        if bool(m4_run_eval_after_train):
-            eval_args = argparse.Namespace(
-                queries=queries_path if (queries_path and queries_path.exists()) else (ROOT / "data/eval/queries_m4.txt"),
-                manifest=manifest_path,
-                artifacts=artifacts_dir,
+            events.put(("log", "- training policy model..."))
+            train_summary = train_from_jsonl(
+                data_path=data_path,
                 out_dir=m4_artifacts_dir,
-                model_name=model_name,
-                model_dir=model_dir,
-                local_files_only=bool(local_files_only),
-                device=device,
-                placement_policy="learned",
-                policy_ckpt=Path(ckpt_out),
-                policy_temperature=float(policy_temperature),
-                compare_rule=True,
-                seed_start=int(m4_eval_seed_start),
-                seed_end=int(m4_eval_seed_end),
-                length_m=float(street_length_m),
-                road_width_m=float(street_road_width_m),
-                sidewalk_width_m=float(street_sidewalk_width_m),
-                lane_count=int(street_lane_count),
-                density=float(street_density),
-                topk_per_category=int(street_topk_per_category),
-                max_trials_per_slot=int(street_max_trials_per_slot),
-                export_format=export_format,
+                config=PolicyTrainConfig(
+                    epochs=int(m4_train_epochs),
+                    batch_size=int(m4_train_batch_size),
+                    lr=float(m4_train_lr),
+                    weight_decay=float(m4_train_weight_decay),
+                    entropy_weight=float(m4_train_entropy_weight),
+                    patience=int(m4_train_patience),
+                    device=device,
+                ),
+                resume_ckpt=resume_ckpt,
+                progress_callback=lambda payload: events.put(("epoch", payload)),
             )
-            eval_report = run_m4_eval(eval_args)
+            events.put(("train_summary", train_summary))
 
-        duration_sec = time.time() - started_at.timestamp()
-        log = (
-            "M4 train done.\n"
-            f"- started_at: {started_at.strftime('%Y-%m-%d %H:%M:%S')}\n"
-            f"- duration_sec: {duration_sec:.2f}\n"
-            f"- recollect_data: {bool(m4_recollect_data)}\n"
-            f"- resumed_from: {train_summary.get('resumed_from', '')}\n"
-            f"- policy_ckpt: {ckpt_out}\n"
-            f"- collected_rows: {len(collected_rows) if collected_rows is not None else 'reuse_existing_data'}\n"
-            f"- run_eval_after_train: {bool(m4_run_eval_after_train)}"
-        )
-        return (
-            log,
-            json.dumps(train_summary, indent=2, ensure_ascii=True),
-            json.dumps(eval_report, indent=2, ensure_ascii=True),
-            ckpt_out,
-        )
-    except ModelLoadError as exc:
-        return f"Model load error: {exc}", "{}", "{}", policy_ckpt_text
-    except Exception as exc:
-        duration_sec = time.time() - started_at.timestamp()
-        detail = traceback.format_exc(limit=4)
-        return (
-            f"M4 train failed.\n- duration_sec: {duration_sec:.2f}\n- error: {exc}\n{detail}",
-            "{}",
-            "{}",
-            policy_ckpt_text,
-        )
+            if bool(m4_run_eval_after_train):
+                events.put(("log", "- running engineering eval (learned vs rule)..."))
+                eval_args = argparse.Namespace(
+                    queries=queries_path if (queries_path and queries_path.exists()) else (ROOT / "data/eval/queries_m4.txt"),
+                    manifest=manifest_path,
+                    artifacts=artifacts_dir,
+                    out_dir=m4_artifacts_dir,
+                    model_name=model_name,
+                    model_dir=model_dir,
+                    local_files_only=bool(local_files_only),
+                    device=device,
+                    placement_policy="learned",
+                    policy_ckpt=Path(str(train_summary["outputs"]["checkpoint"])),
+                    policy_temperature=float(policy_temperature),
+                    compare_rule=True,
+                    seed_start=int(m4_eval_seed_start),
+                    seed_end=int(m4_eval_seed_end),
+                    length_m=float(street_length_m),
+                    road_width_m=float(street_road_width_m),
+                    sidewalk_width_m=float(street_sidewalk_width_m),
+                    lane_count=int(street_lane_count),
+                    density=float(street_density),
+                    topk_per_category=int(street_topk_per_category),
+                    max_trials_per_slot=int(street_max_trials_per_slot),
+                    export_format=export_format,
+                )
+                eval_report = run_m4_eval(eval_args)
+                events.put(("eval_report", eval_report))
+
+            events.put(("done", None))
+        except ModelLoadError as exc:
+            events.put(("error", f"Model load error: {exc}"))
+        except Exception as exc:
+            detail = traceback.format_exc(limit=4)
+            events.put(("error", f"M4 train failed.\n- error: {exc}\n{detail}"))
+        finally:
+            done_event.set()
+
+    worker = threading.Thread(target=_worker, daemon=True)
+    worker.start()
+
+    while not done_event.is_set() or not events.empty():
+        try:
+            event, payload = events.get(timeout=0.2)
+        except queue.Empty:
+            continue
+
+        if event == "log":
+            log_lines.append(str(payload))
+        elif event == "epoch":
+            info = payload if isinstance(payload, dict) else {}
+            epoch = int(float(info.get("epoch", 0.0)))
+            train_loss = float(info.get("train_loss", 0.0))
+            val_loss = float(info.get("val_loss", 0.0))
+            best_so_far = float(info.get("best_val_loss_so_far", val_loss))
+            epoch_curve.append(
+                {
+                    "epoch": float(epoch),
+                    "train_loss": train_loss,
+                    "val_loss": val_loss,
+                    "best_val_loss_so_far": best_so_far,
+                }
+            )
+            log_lines.append(
+                f"- epoch {epoch}: train_loss={train_loss:.6f}, val_loss={val_loss:.6f}, best={best_so_far:.6f}"
+            )
+            train_json = json.dumps(
+                {
+                    "status": "training",
+                    "latest_epoch": epoch,
+                    "latest_train_loss": train_loss,
+                    "latest_val_loss": val_loss,
+                    "curve_tail": epoch_curve[-20:],
+                },
+                indent=2,
+                ensure_ascii=True,
+            )
+        elif event == "train_summary":
+            summary = payload if isinstance(payload, dict) else {}
+            ckpt_out = str(summary.get("outputs", {}).get("checkpoint", ckpt_out))
+            train_json = json.dumps(summary, indent=2, ensure_ascii=True)
+            log_lines.append(f"- training done: {ckpt_out}")
+        elif event == "eval_report":
+            report = payload if isinstance(payload, dict) else {}
+            eval_json = json.dumps(report, indent=2, ensure_ascii=True)
+            log_lines.append("- eval done.")
+        elif event == "error":
+            log_lines.append(str(payload))
+        elif event == "done":
+            duration_sec = time.time() - started_at.timestamp()
+            log_lines.append(f"- duration_sec: {duration_sec:.2f}")
+
+        yield _snapshot()
 
 
 def build_demo() -> gr.Blocks:

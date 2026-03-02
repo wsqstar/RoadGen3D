@@ -1,0 +1,705 @@
+{
+  "query": "orderly transit corridor",
+  "config": {
+    "query": "orderly transit corridor",
+    "length_m": 80.0,
+    "road_width_m": 8.0,
+    "sidewalk_width_m": 2.5,
+    "lane_count": 2,
+    "density": 1.0,
+    "seed": 3,
+    "topk_per_category": 20,
+    "max_trials_per_slot": 30
+  },
+  "summary": {
+    "instance_count": 33,
+    "dropped_slots": 1,
+    "dropped_slot_rate": 0.029411764705882353,
+    "unique_asset_count": 27,
+    "diversity_ratio": 0.8181818181818182,
+    "overlap_rate": 0.0,
+    "retrieval_top3_category_hit": 1.0,
+    "policy_used": "rule",
+    "latency_ms_total": 213.7997909449041,
+    "latency_ms_per_instance": 6.478781543784972,
+    "per_category_unique": {
+      "bench": 3,
+      "lamp": 4,
+      "trash": 4,
+      "tree": 5,
+      "mailbox": 2,
+      "hydrant": 2,
+      "bollard": 7
+    },
+    "selection_source_counts": {
+      "faiss_softmax": 27,
+      "faiss_relaxed_repeat": 6
+    }
+  },
+  "placements": [
+    {
+      "instance_id": "inst_0001",
+      "asset_id": "bench_001",
+      "category": "bench",
+      "score": 0.6540387868881226,
+      "position_xyz": [
+        -26.53397899077881,
+        -0.0,
+        5.119955166548079
+      ],
+      "yaw_deg": 181.66272061753912,
+      "scale": 1.0,
+      "bbox_xz": [
+        -27.642304785910145,
+        -25.425653195647474,
+        4.5939671814430865,
+        5.645943151653072
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0002",
+      "asset_id": "bench_007",
+      "category": "bench",
+      "score": 0.6219218373298645,
+      "position_xyz": [
+        -1.3034134222805607,
+        -0.0,
+        -5.736832008445126
+      ],
+      "yaw_deg": 5.39950531354336,
+      "scale": 1.0,
+      "bbox_xz": [
+        -2.4276498143633933,
+        -0.1791770301977278,
+        -6.320190597148823,
+        -5.153473419741429
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0003",
+      "asset_id": "bench_013",
+      "category": "bench",
+      "score": 0.6445586085319519,
+      "position_xyz": [
+        25.869659549806762,
+        -0.0,
+        5.745644835510463
+      ],
+      "yaw_deg": 179.52421612035917,
+      "scale": 1.0,
+      "bbox_xz": [
+        24.76719943390803,
+        26.972119665705495,
+        5.238181672266434,
+        6.253107998754492
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0004",
+      "asset_id": "lamp_002",
+      "category": "lamp",
+      "score": 0.6094412803649902,
+      "position_xyz": [
+        -30.070940373901994,
+        -0.0,
+        5.389068140544162
+      ],
+      "yaw_deg": 174.40986278437637,
+      "scale": 1.0,
+      "bbox_xz": [
+        -30.489471530111842,
+        -29.652409217692146,
+        4.9705369843343155,
+        5.807599296754009
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0005",
+      "asset_id": "lamp_015",
+      "category": "lamp",
+      "score": 0.6325168013572693,
+      "position_xyz": [
+        -8.89586407857011,
+        -0.0,
+        -5.226818789616699
+      ],
+      "yaw_deg": 3.860029699223844,
+      "scale": 1.0,
+      "bbox_xz": [
+        -9.308874233891364,
+        -8.482853923248856,
+        -5.639828944937953,
+        -4.8138086342954445
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0006",
+      "asset_id": "lamp_007",
+      "category": "lamp",
+      "score": 0.6258592009544373,
+      "position_xyz": [
+        8.692094314680991,
+        -0.0,
+        5.508230246286818
+      ],
+      "yaw_deg": 181.45759332690108,
+      "scale": 1.0,
+      "bbox_xz": [
+        8.287071614739533,
+        9.09711701462245,
+        5.10320754634536,
+        5.913252946228275
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0007",
+      "asset_id": "lamp_013",
+      "category": "lamp",
+      "score": 0.6722030639648438,
+      "position_xyz": [
+        28.59303525440925,
+        -0.0,
+        -4.884472763021054
+      ],
+      "yaw_deg": -0.4360145813525307,
+      "scale": 1.0,
+      "bbox_xz": [
+        28.191519077241946,
+        28.994551431576557,
+        -5.285988938339942,
+        -4.482956587702166
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0008",
+      "asset_id": "trash_014",
+      "category": "trash",
+      "score": 0.6253101229667664,
+      "position_xyz": [
+        -28.863561599233556,
+        -0.0,
+        5.464129483611202
+      ],
+      "yaw_deg": 186.737578681342,
+      "scale": 1.0,
+      "bbox_xz": [
+        -29.45220719940182,
+        -28.274915999065293,
+        4.875483883442938,
+        6.0527750837794665
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0009",
+      "asset_id": "trash_009",
+      "category": "trash",
+      "score": 0.641292929649353,
+      "position_xyz": [
+        -8.863400018985875,
+        -0.0,
+        4.847454309730877
+      ],
+      "yaw_deg": 174.1755017632107,
+      "scale": 1.0,
+      "bbox_xz": [
+        -9.4471116913954,
+        -8.27968834657635,
+        4.263742637321352,
+        5.431165982140403
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0010",
+      "asset_id": "trash_004",
+      "category": "trash",
+      "score": 0.6535404324531555,
+      "position_xyz": [
+        11.39644041669461,
+        -0.0,
+        5.18616186662743
+      ],
+      "yaw_deg": 182.02637265386886,
+      "scale": 1.0,
+      "bbox_xz": [
+        10.834283467033682,
+        11.958597366355537,
+        4.624004916966501,
+        5.748318816288358
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0011",
+      "asset_id": "trash_007",
+      "category": "trash",
+      "score": 0.6402769088745117,
+      "position_xyz": [
+        30.02172895148718,
+        -0.0,
+        -5.364133741155097
+      ],
+      "yaw_deg": -2.385432179677119,
+      "scale": 1.0,
+      "bbox_xz": [
+        29.45746468531397,
+        30.58599321766039,
+        -5.928398007328308,
+        -4.799869474981886
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0012",
+      "asset_id": "tree_007",
+      "category": "tree",
+      "score": 0.6690161228179932,
+      "position_xyz": [
+        -30.71316319639995,
+        -0.0,
+        -4.893599433603244
+      ],
+      "yaw_deg": 7.855834317901042,
+      "scale": 1.0,
+      "bbox_xz": [
+        -32.32228332214711,
+        -29.10404307065279,
+        -6.502719559350403,
+        -3.2844793078560843
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0013",
+      "asset_id": "tree_001",
+      "category": "tree",
+      "score": 0.6648150682449341,
+      "position_xyz": [
+        -17.01070113408679,
+        -0.0,
+        -4.889362466883732
+      ],
+      "yaw_deg": 7.434127156944982,
+      "scale": 1.0,
+      "bbox_xz": [
+        -18.61192677887061,
+        -15.409475489302972,
+        -6.490588111667551,
+        -3.2881368220999128
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0014",
+      "asset_id": "tree_002",
+      "category": "tree",
+      "score": 0.6091961860656738,
+      "position_xyz": [
+        0.20732251042297056,
+        -0.0,
+        5.463817020174199
+      ],
+      "yaw_deg": 175.37799973880956,
+      "scale": 1.0,
+      "bbox_xz": [
+        -1.3393395758247362,
+        1.7539845966706773,
+        3.917154933926492,
+        7.010479106421906
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0015",
+      "asset_id": "tree_006",
+      "category": "tree",
+      "score": 0.6326945424079895,
+      "position_xyz": [
+        16.220597057053855,
+        -0.0,
+        -5.465042538013795
+      ],
+      "yaw_deg": -6.9846307656763305,
+      "scale": 1.0,
+      "bbox_xz": [
+        14.627869680366306,
+        17.813324433741403,
+        -7.057769914701343,
+        -3.872315161326247
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0016",
+      "asset_id": "tree_014",
+      "category": "tree",
+      "score": 0.64748215675354,
+      "position_xyz": [
+        33.469418044764744,
+        -0.0,
+        4.8385180931097285
+      ],
+      "yaw_deg": 184.80952514012003,
+      "scale": 1.0,
+      "bbox_xz": [
+        31.919014996466327,
+        35.01982109306316,
+        3.2881150448113132,
+        6.388921141408144
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0017",
+      "asset_id": "mailbox_004",
+      "category": "mailbox",
+      "score": 0.6684143543243408,
+      "position_xyz": [
+        -20.824916471831347,
+        -0.0,
+        -5.629080675289714
+      ],
+      "yaw_deg": 0.47404205293429236,
+      "scale": 1.0,
+      "bbox_xz": [
+        -21.32738826612161,
+        -20.322444677541085,
+        -6.131552469579977,
+        -5.126608880999451
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0018",
+      "asset_id": "mailbox_014",
+      "category": "mailbox",
+      "score": 0.732917070388794,
+      "position_xyz": [
+        20.920331712876372,
+        -0.0,
+        -4.911523620971774
+      ],
+      "yaw_deg": -5.062618987115908,
+      "scale": 1.0,
+      "bbox_xz": [
+        20.395028713210685,
+        21.44563471254206,
+        -5.436826620637462,
+        -4.386220621306086
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0019",
+      "asset_id": "hydrant_013",
+      "category": "hydrant",
+      "score": 0.7084736227989197,
+      "position_xyz": [
+        -19.118414226547507,
+        -0.0,
+        -5.478825506085748
+      ],
+      "yaw_deg": -2.4583315093303444,
+      "scale": 1.0,
+      "bbox_xz": [
+        -19.57890735063867,
+        -18.657921102456346,
+        -5.939318635520022,
+        -5.0183323766514745
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0020",
+      "asset_id": "hydrant_006",
+      "category": "hydrant",
+      "score": 0.7065110206604004,
+      "position_xyz": [
+        19.759313551373754,
+        -0.0,
+        -5.34047788355094
+      ],
+      "yaw_deg": 6.7297981278020895,
+      "scale": 1.0,
+      "bbox_xz": [
+        19.28173928072332,
+        20.23688782202419,
+        -5.818052154201375,
+        -4.862903612900505
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0021",
+      "asset_id": "bollard_006",
+      "category": "bollard",
+      "score": 0.711522102355957,
+      "position_xyz": [
+        -38.11188861607737,
+        -0.0,
+        5.693267835919109
+      ],
+      "yaw_deg": 186.07965202601676,
+      "scale": 1.0,
+      "bbox_xz": [
+        -38.44942443561196,
+        -37.774352796542786,
+        5.355732016384523,
+        6.030803655453695
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0022",
+      "asset_id": "bollard_009",
+      "category": "bollard",
+      "score": 0.6574960947036743,
+      "position_xyz": [
+        -31.436213002177194,
+        -0.0,
+        5.495523009126419
+      ],
+      "yaw_deg": 185.38717886845834,
+      "scale": 1.0,
+      "bbox_xz": [
+        -31.77239656861385,
+        -31.100029435740538,
+        5.159339442689762,
+        5.831706575563076
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0023",
+      "asset_id": "bollard_008",
+      "category": "bollard",
+      "score": 0.6831614971160889,
+      "position_xyz": [
+        -24.569748671434805,
+        -0.0,
+        5.039041836141505
+      ],
+      "yaw_deg": 177.45709942456534,
+      "scale": 1.0,
+      "bbox_xz": [
+        -24.900171508928977,
+        -24.239325833940633,
+        4.708618998647333,
+        5.369464673635676
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0024",
+      "asset_id": "bollard_004",
+      "category": "bollard",
+      "score": 0.7024728059768677,
+      "position_xyz": [
+        -17.717077951918736,
+        -0.0,
+        4.79507681008536
+      ],
+      "yaw_deg": 186.45774850880548,
+      "scale": 1.0,
+      "bbox_xz": [
+        -18.055343646969455,
+        -17.378812256868017,
+        4.4568111150346414,
+        5.133342505136078
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0025",
+      "asset_id": "bollard_003",
+      "category": "bollard",
+      "score": 0.6935178637504578,
+      "position_xyz": [
+        -11.290440788754925,
+        -0.0,
+        5.646567164984049
+      ],
+      "yaw_deg": 186.39479737638078,
+      "scale": 1.0,
+      "bbox_xz": [
+        -11.628585380191602,
+        -10.952296197318248,
+        5.308422573547372,
+        5.984711756420726
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0026",
+      "asset_id": "bollard_011",
+      "category": "bollard",
+      "score": 0.668108344078064,
+      "position_xyz": [
+        -7.322299361797082,
+        -0.0,
+        -5.004701732689038
+      ],
+      "yaw_deg": -5.250854551412207,
+      "scale": 1.0,
+      "bbox_xz": [
+        -7.658214365992337,
+        -6.986384357601827,
+        -5.340616736884293,
+        -4.668786728493783
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0027",
+      "asset_id": "bollard_014",
+      "category": "bollard",
+      "score": 0.6942415833473206,
+      "position_xyz": [
+        1.0537019118026154,
+        -0.0,
+        -5.137836090374088
+      ],
+      "yaw_deg": -2.5383574813120777,
+      "scale": 1.0,
+      "bbox_xz": [
+        0.723288536704835,
+        1.3841152869003959,
+        -5.468249465471868,
+        -4.807422715276307
+      ],
+      "selection_source": "faiss_softmax"
+    },
+    {
+      "instance_id": "inst_0028",
+      "asset_id": "bollard_004",
+      "category": "bollard",
+      "score": 0.7024728059768677,
+      "position_xyz": [
+        7.021841473349355,
+        -0.0,
+        -5.2728025033209365
+      ],
+      "yaw_deg": 4.5172017885885385,
+      "scale": 1.0,
+      "bbox_xz": [
+        6.687384957382889,
+        7.35629798931582,
+        -5.607259019287402,
+        -4.938345987354471
+      ],
+      "selection_source": "faiss_relaxed_repeat"
+    },
+    {
+      "instance_id": "inst_0029",
+      "asset_id": "bollard_014",
+      "category": "bollard",
+      "score": 0.6942415833473206,
+      "position_xyz": [
+        11.518817733498178,
+        -0.0,
+        -4.958328081117877
+      ],
+      "yaw_deg": 6.748264180378111,
+      "scale": 1.0,
+      "bbox_xz": [
+        11.179995317370983,
+        11.857640149625373,
+        -5.297150497245073,
+        -4.6195056649906805
+      ],
+      "selection_source": "faiss_relaxed_repeat"
+    },
+    {
+      "instance_id": "inst_0030",
+      "asset_id": "bollard_011",
+      "category": "bollard",
+      "score": 0.668108344078064,
+      "position_xyz": [
+        19.33166942486893,
+        -0.0,
+        4.799931852195329
+      ],
+      "yaw_deg": 176.34235253909333,
+      "scale": 1.0,
+      "bbox_xz": [
+        18.998949713925672,
+        19.66438913581219,
+        4.467212141252071,
+        5.132651563138587
+      ],
+      "selection_source": "faiss_relaxed_repeat"
+    },
+    {
+      "instance_id": "inst_0031",
+      "asset_id": "bollard_004",
+      "category": "bollard",
+      "score": 0.7024728059768677,
+      "position_xyz": [
+        25.27897900111928,
+        -0.0,
+        -5.748191350273621
+      ],
+      "yaw_deg": -7.1226625710433105,
+      "scale": 1.0,
+      "bbox_xz": [
+        24.93944438338006,
+        25.618513618858497,
+        -6.08772596801284,
+        -5.408656732534402
+      ],
+      "selection_source": "faiss_relaxed_repeat"
+    },
+    {
+      "instance_id": "inst_0032",
+      "asset_id": "bollard_006",
+      "category": "bollard",
+      "score": 0.711522102355957,
+      "position_xyz": [
+        31.121823441155055,
+        -0.0,
+        5.336613120914386
+      ],
+      "yaw_deg": 177.77335336982375,
+      "scale": 1.0,
+      "bbox_xz": [
+        30.792061255051824,
+        31.451585627258286,
+        5.006850934811154,
+        5.666375307017618
+      ],
+      "selection_source": "faiss_relaxed_repeat"
+    },
+    {
+      "instance_id": "inst_0033",
+      "asset_id": "bollard_004",
+      "category": "bollard",
+      "score": 0.7024728059768677,
+      "position_xyz": [
+        36.51214005063099,
+        -0.0,
+        4.8737550238341845
+      ],
+      "yaw_deg": 180.88841509860623,
+      "scale": 1.0,
+      "bbox_xz": [
+        36.18521693372571,
+        36.83906316753627,
+        4.5468319069289045,
+        5.200678140739464
+      ],
+      "selection_source": "faiss_relaxed_repeat"
+    }
+  ],
+  "outputs": {
+    "scene_glb": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/m4/eval_scenes/rule/rule_q038_s0003/scene.glb",
+    "scene_ply": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/m4/eval_scenes/rule/rule_q038_s0003/scene.ply"
+  }
+}

@@ -6,7 +6,7 @@ import hashlib
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Sequence, Tuple
+from typing import Callable, Dict, List, Optional, Sequence, Tuple
 
 import numpy as np
 
@@ -149,6 +149,7 @@ def train_layout_policy(
     out_dir: Path,
     config: PolicyTrainConfig,
     resume_checkpoint: Path | None = None,
+    progress_callback: Optional[Callable[[Dict[str, float]], None]] = None,
 ) -> Dict[str, object]:
     """Train MLP using per-slot candidate CE + entropy regularization."""
     if torch is None:
@@ -227,6 +228,16 @@ def train_layout_policy(
         train_loss = float(np.mean(train_losses)) if train_losses else 0.0
         val_loss = float(np.mean(val_losses)) if val_losses else train_loss
         curve.append({"epoch": float(epoch + 1), "train_loss": train_loss, "val_loss": val_loss})
+        if progress_callback is not None:
+            progress_callback(
+                {
+                    "epoch": float(epoch + 1),
+                    "train_loss": float(train_loss),
+                    "val_loss": float(val_loss),
+                    "best_val_loss_so_far": float(min(best_val, val_loss)),
+                    "no_improve": float(no_improve),
+                }
+            )
 
         if val_loss < best_val - 1e-6:
             best_val = val_loss

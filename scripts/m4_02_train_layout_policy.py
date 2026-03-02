@@ -7,7 +7,7 @@ import argparse
 import json
 import sys
 from pathlib import Path
-from typing import Dict, List
+from typing import Callable, Dict, List, Optional
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
@@ -138,6 +138,7 @@ def train_from_jsonl(
     out_dir: Path,
     config: PolicyTrainConfig,
     resume_ckpt: Path | None = None,
+    progress_callback: Optional[Callable[[Dict[str, float]], None]] = None,
 ) -> Dict[str, object]:
     raw_rows = _load_jsonl(Path(data_path).resolve())
     samples, ingest_stats = _to_training_samples(raw_rows)
@@ -154,6 +155,7 @@ def train_from_jsonl(
         out_dir=out_dir,
         config=config,
         resume_checkpoint=resume_ckpt,
+        progress_callback=progress_callback,
     )
 
     summary = {
