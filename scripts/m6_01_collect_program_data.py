@@ -7,7 +7,7 @@ import argparse
 import json
 import sys
 from pathlib import Path
-from typing import Dict, List
+from typing import Callable, Dict, List, Optional
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
@@ -74,7 +74,11 @@ def _load_bboxes(path: Path | None) -> List[tuple[float, float, float, float]]:
     return bboxes
 
 
-def collect_program_data(args: argparse.Namespace) -> List[Dict[str, object]]:
+def collect_program_data(
+    args: argparse.Namespace,
+    *,
+    progress_callback: Optional[Callable[[Dict[str, float]], None]] = None,
+) -> List[Dict[str, object]]:
     rows = _load_real_manifest(Path(args.manifest).resolve())
     inventory = InventorySummary(
         category_counts={},
@@ -96,6 +100,17 @@ def collect_program_data(args: argparse.Namespace) -> List[Dict[str, object]]:
     bboxes = _load_bboxes(args.osm_bboxes_jsonl)
     solver_runtime = LayoutSolverRuntime(backend=str(args.layout_solver))
     samples: List[Dict[str, object]] = []
+
+    # Pre-compute total work items for progress reporting
+    total_combos = 0
+    num_seeds = max(0, int(args.seed_end) - int(args.seed_start) + 1)
+    for _profile in args.constraint_profiles:
+        for _mode in args.layout_modes:
+            _m = str(_mode).strip().lower()
+            _nb = len(bboxes) if _m == "osm" else 1
+            total_combos += len(queries) * num_seeds * _nb
+    total_combos = max(total_combos, 1)
+    processed_combos = 0
 
     for profile in args.constraint_profiles:
         load_constraint_set(profile)  # validate early
@@ -164,6 +179,13 @@ def collect_program_data(args: argparse.Namespace) -> List[Dict[str, object]]:
                                 "road_segment_graph_summary": graph.summary() if graph is not None else None,
                             }
                         )
+                        processed_combos += 1
+                        if progress_callback is not None:
+                            progress_callback({
+                                "processed_slots": float(processed_combos),
+                                "total_slots": float(total_combos),
+                                "ratio": float(processed_combos) / float(total_combos),
+                            })
 
     out_path = Path(args.out).resolve()
     out_path.parent.mkdir(parents=True, exist_ok=True)

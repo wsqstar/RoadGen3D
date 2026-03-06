@@ -14,6 +14,12 @@ import numpy as np
 
 from .design_rules import load_constraint_set
 from .embedder import ClipTextEmbedder
+from .entrance_analysis import (
+    CarriagewayBoundary,
+    PlacedAssetRegistry,
+    evaluate_all_entrances,
+    score_entrance_impact,
+)
 from .eval_metrics import (
     compute_balance_score,
     compute_cross_section_feasibility,
@@ -638,6 +644,20 @@ def compose_street_scene(
         else:
             poi_ctx = PoiContext((), (), ())
 
+    # --- Entrance analysis registry ---
+    entrance_registry = PlacedAssetRegistry()
+    entrance_points_xz: Tuple[Tuple[float, float], ...] = ()
+    carriageway_boundary: Optional[CarriagewayBoundary] = None
+    if poi_ctx is not None and poi_ctx.entrance_points_xz:
+        entrance_points_xz = poi_ctx.entrance_points_xz
+    if placement_ctx is not None and hasattr(placement_ctx, "carriageway_polygon") and placement_ctx.carriageway_polygon is not None:
+        carriageway_boundary = CarriagewayBoundary.from_polygon(placement_ctx.carriageway_polygon)
+    else:
+        carriageway_boundary = CarriagewayBoundary.from_template(
+            road_width_m=float(config.road_width_m),
+            length_m=float(config.length_m),
+        )
+
     inventory_summary = InventorySummary(
         category_counts={category: len(pool) for category, pool in category_to_rows.items() if pool},
         asset_ids_by_category={
@@ -793,6 +813,20 @@ def compose_street_scene(
                 c_feasibility = cr.feasibility_score
                 c_violated = cr.violated_rules
 
+            # Entrance openness / noise-shielding impact
+            if entrance_points_xz and carriageway_boundary is not None:
+                e_penalty, e_bonus, e_violated = score_entrance_impact(
+                    candidate_xz=(x, z),
+                    candidate_category=category,
+                    candidate_bbox_xz=(bbox[0], bbox[1], bbox[2], bbox[3]),
+                    entrance_points_xz=entrance_points_xz,
+                    registry=entrance_registry,
+                    carriageway_boundary=carriageway_boundary,
+                )
+                c_penalty += e_penalty - e_bonus
+                c_feasibility *= math.exp(-e_penalty)
+                c_violated = tuple(list(c_violated) + list(e_violated))
+
             trial_candidates.append((x, z, yaw_deg, bbox, c_penalty, c_feasibility, c_violated))
             if config.constraint_mode != "soft":
                 break
@@ -831,6 +865,11 @@ def compose_street_scene(
             placed_counts[category] = placed_counts.get(category, 0) + 1
             instance_counter += 1
             placed = True
+            entrance_registry.add(
+                position_xz=(float(bx), float(bz)),
+                category=category,
+                bbox_xz=(float(bbbox[0]), float(bbbox[1]), float(bbbox[2]), float(bbbox[3])),
+            )
 
         if not placed:
             dropped_slots += 1
@@ -896,6 +935,15 @@ def compose_street_scene(
             rule_violation_counts[rule_name] = rule_violation_counts.get(rule_name, 0) + 1
 
     rule_satisfaction_rate = compute_rule_satisfaction_rate(solver_result.rule_evaluations)
+
+    # --- Entrance analysis (post-placement) ---
+    entrance_report = evaluate_all_entrances(
+        entrance_points_xz=entrance_points_xz,
+        registry=entrance_registry,
+        carriageway_boundary=carriageway_boundary,
+    )
+    mean_entrance_openness = float(entrance_report.mean_openness)
+    mean_noise_shielding = float(entrance_report.mean_shielding)
     topology_validity = compute_topology_validity(solver_result.topology_validity)
     cross_section_feasibility = compute_cross_section_feasibility(solver_result.cross_section_feasibility)
     editability = compute_editability(solver_result.edits)
@@ -953,6 +1001,11 @@ def compose_street_scene(
             "program_fallback_reason": program_fallback_reason,
             "solver_fallback_reason": str(solver_result.fallback_reason),
             "road_segment_graph_summary": solver_result.road_segment_graph_summary,
+            "mean_entrance_openness": float(mean_entrance_openness),
+            "mean_noise_shielding": float(mean_noise_shielding),
+            "entrances_below_openness_threshold": int(entrance_report.entrances_below_openness_threshold),
+            "min_entrance_openness": float(entrance_report.min_openness),
+            "entrance_count": len(entrance_points_xz),
         },
         "placements": [placement.to_dict() for placement in placements],
         "outputs": outputs,

@@ -176,6 +176,21 @@ def compute_explainability(conflicts: Sequence[object]) -> float:
     return float(explained / len(conflicts))
 
 
+# ---------------------------------------------------------------------------
+# Entrance analysis metrics (M7)
+# ---------------------------------------------------------------------------
+
+
+def compute_mean_entrance_openness(placements: Sequence[Dict[str, object]], summary: Dict[str, object]) -> float:
+    """Return pre-computed mean entrance openness from the scene summary."""
+    return float(summary.get("mean_entrance_openness", 1.0))
+
+
+def compute_mean_noise_shielding(placements: Sequence[Dict[str, object]], summary: Dict[str, object]) -> float:
+    """Return pre-computed mean noise shielding from the scene summary."""
+    return float(summary.get("mean_noise_shielding", 0.0))
+
+
 def aggregate_scene_rows(rows: Sequence[Dict[str, object]]) -> Dict[str, float]:
     if not rows:
         return {
@@ -228,6 +243,12 @@ def aggregate_scene_rows(rows: Sequence[Dict[str, object]]) -> Dict[str, float]:
         if any(key in item for item in rows):
             result[key] = _mean(key)
 
+    # M7 entrance analysis fields (optional – backward safe)
+    _m7_keys = ("mean_entrance_openness", "mean_noise_shielding")
+    for key in _m7_keys:
+        if any(key in item for item in rows):
+            result[key] = _mean(key)
+
     return result
 
 
@@ -251,6 +272,10 @@ def compare_mode_reports(rule_summary: Dict[str, float], learned_summary: Dict[s
     }
     # M5 compliance keys (optional)
     for k in ("compliance_rate_total", "avg_feasibility_score", "avg_constraint_penalty"):
+        if k in rule_summary or k in learned_summary:
+            keys.add(k)
+    # M7 entrance keys (optional)
+    for k in ("mean_entrance_openness", "mean_noise_shielding"):
         if k in rule_summary or k in learned_summary:
             keys.add(k)
     delta: Dict[str, float] = {}

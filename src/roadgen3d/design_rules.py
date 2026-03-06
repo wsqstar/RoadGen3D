@@ -174,6 +174,71 @@ _TRANSIT_RULES: Tuple[DesignRuleSpec, ...] = (
     ),
 )
 
+_NOISE_AWARE_RULES: Tuple[DesignRuleSpec, ...] = (
+    DesignRuleSpec(
+        name="max_lane_count",
+        description="Keep the template street within a compact complete-street lane count.",
+        target="lane_count",
+        mode="hard",
+        operator="<=",
+        value=2,
+    ),
+    DesignRuleSpec(
+        name="min_clear_path_width",
+        description="Maintain a usable pedestrian clear path on both sides.",
+        target="band_min_width",
+        mode="hard",
+        operator=">=",
+        value=2.2,
+        parameters={"band_kind": "clear_path"},
+    ),
+    DesignRuleSpec(
+        name="wide_furnishing_strip",
+        description="Reserve a wide furnishing strip for noise-shielding assets (trees, bollards).",
+        target="band_min_width",
+        mode="hard",
+        operator=">=",
+        value=1.2,
+        parameters={"band_kind": "furnishing"},
+    ),
+    DesignRuleSpec(
+        name="min_tree_count",
+        description="Noise-aware streets require trees for canopy-based noise shielding.",
+        target="category_min_count",
+        mode="hard",
+        operator=">=",
+        value=2,
+        parameters={"category": "tree"},
+    ),
+    DesignRuleSpec(
+        name="furniture_buffer_allocation",
+        description="Street furniture should occupy furnishing or transit-edge bands, not the pedestrian clear path.",
+        target="category_allowed_band",
+        mode="hard",
+        operator="in",
+        value=("furnishing", "transit_edge"),
+        parameters={"category": "all"},
+    ),
+    DesignRuleSpec(
+        name="entrance_openness",
+        description="At least 60% angular openness must be maintained within 4 m of each entrance.",
+        target="entrance_openness_threshold",
+        mode="soft",
+        operator=">=",
+        value=0.6,
+        parameters={"radius_m": 4.0},
+    ),
+    DesignRuleSpec(
+        name="noise_shielding",
+        description="At least 30% of detection rays from entrances toward the carriageway should be intercepted by shielding assets.",
+        target="noise_shielding_threshold",
+        mode="soft",
+        operator=">=",
+        value=0.3,
+        parameters={"ray_count": 7, "fan_half_angle_deg": 30.0},
+    ),
+)
+
 _CONSTRAINT_SETS: Dict[str, ConstraintSet] = {
     "balanced_complete_street_v1": ConstraintSet(
         name="balanced_complete_street_v1",
@@ -189,6 +254,11 @@ _CONSTRAINT_SETS: Dict[str, ConstraintSet] = {
         name="transit_priority_v1",
         description="Transit-priority profile with a reserved transit edge and explicit substitution reporting.",
         rules=_TRANSIT_RULES,
+    ),
+    "noise_aware_v1": ConstraintSet(
+        name="noise_aware_v1",
+        description="Noise-aware profile with entrance openness and carriageway noise-shielding rules.",
+        rules=_NOISE_AWARE_RULES,
     ),
 }
 

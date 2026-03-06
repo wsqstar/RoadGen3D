@@ -1517,12 +1517,34 @@ def run_m6_train_program(
         try:
             import plotly.graph_objects as go
         except Exception:
-            return None
+            if not curve:
+                return None
+            try:
+                import matplotlib.pyplot as plt
+            except Exception:
+                return None
+            epochs = [float(item.get("epoch", 0.0)) for item in curve]
+            train_vals = [float(item.get("train_loss", 0.0)) for item in curve]
+            val_vals = [float(item.get("val_loss", 0.0)) for item in curve]
+            fig, ax = plt.subplots(figsize=(6.2, 3.2))
+            ax.plot(epochs, train_vals, marker="o", linewidth=1.8, label="train_loss")
+            ax.plot(epochs, val_vals, marker="s", linewidth=1.8, label="val_loss")
+            ax.set_xlabel("epoch")
+            ax.set_ylabel("loss")
+            ax.set_title("M6 Train/Val Loss Curve")
+            ax.grid(alpha=0.25)
+            ax.legend(loc="best")
+            fig.tight_layout()
+            return fig
+
         fig = go.Figure()
         if curve:
-            fig.add_trace(go.Scatter(x=[c["epoch"] for c in curve], y=[c["train_loss"] for c in curve], mode="lines+markers", name="train_loss"))
-            fig.add_trace(go.Scatter(x=[c["epoch"] for c in curve], y=[c["val_loss"] for c in curve], mode="lines+markers", name="val_loss"))
-        fig.update_layout(template="plotly_white", height=320, margin={"l": 36, "r": 16, "t": 32, "b": 36})
+            fig.add_trace(go.Scatter(x=[c["epoch"] for c in curve], y=[c["train_loss"] for c in curve], mode="lines+markers", name="train_loss", line={"width": 2}))
+            fig.add_trace(go.Scatter(x=[c["epoch"] for c in curve], y=[c["val_loss"] for c in curve], mode="lines+markers", name="val_loss", line={"width": 2}))
+            title = "M6 Train/Val Loss Curve"
+        else:
+            title = "M6 Train/Val Loss Curve (waiting first epoch...)"
+        fig.update_layout(title=title, xaxis_title="epoch", yaxis_title="loss", template="plotly_white", height=320, margin={"l": 36, "r": 16, "t": 48, "b": 36})
         return fig
 
     log_lines = [
@@ -1548,82 +1570,168 @@ def run_m6_train_program(
         )
 
     yield _snapshot()
-    try:
-        m6_artifacts_dir = _to_path(m6_artifacts_dir_text)
-        queries_path = _to_path(m4_queries_text) if m4_queries_text.strip() else (ROOT / "data/eval/queries_m4.txt")
-        program_ckpt = _to_path(program_ckpt_text) if program_ckpt_text.strip() else (m6_artifacts_dir / "program_generator.pt")
-        bbox = None
-        if str(layout_mode).strip().lower() == "osm":
-            bbox = (float(m5_bbox_min_lon), float(m5_bbox_min_lat), float(m5_bbox_max_lon), float(m5_bbox_max_lat))
-        collect_args = argparse.Namespace(
-            manifest=_to_path(real_manifest_text),
-            out=m6_artifacts_dir / "program_train.jsonl",
-            queries=queries_path,
-            layout_modes=[str(layout_mode).strip().lower()],
-            constraint_profiles=[
-                "balanced_complete_street_v1",
-                "pedestrian_priority_v1",
-                "transit_priority_v1",
-            ],
-            seed_start=0,
-            seed_end=19,
-            length_m=float(street_length_m),
-            road_width_m=float(street_road_width_m),
-            sidewalk_width_m=float(street_sidewalk_width_m),
-            lane_count=int(street_lane_count),
-            density=float(street_density),
-            topk_per_category=int(street_topk_per_category),
-            max_trials_per_slot=int(street_max_trials_per_slot),
-            layout_solver="milp_template_v1",
-            osm_bboxes_jsonl=None,
-            osm_cache_dir=_to_path(str((ROOT / "artifacts/m5/osm_cache").resolve())),
-        )
-        if bbox is not None:
-            bbox_file = m6_artifacts_dir / "bbox.jsonl"
-            bbox_file.parent.mkdir(parents=True, exist_ok=True)
-            bbox_file.write_text(json.dumps({"bbox": list(bbox)}, ensure_ascii=True) + "\n", encoding="utf-8")
-            collect_args.osm_bboxes_jsonl = bbox_file
-        rows = collect_program_data(collect_args)
-        log_lines.append(f"- [phase:distill] collected_rows: {len(rows)}")
-        progress_percent = 35.0
-        train_summary = train_program_from_jsonl(
-            data_path=m6_artifacts_dir / "program_train.jsonl",
-            out_dir=m6_artifacts_dir,
-            config=ProgramTrainConfig(
-                epochs=int(program_train_epochs),
-                batch_size=int(program_train_batch_size),
-                lr=float(program_train_lr),
-                weight_decay=float(program_train_weight_decay),
-                patience=int(program_train_patience),
-                device=device,
-            ),
-            resume_ckpt=program_ckpt if program_ckpt.exists() else None,
-            progress_callback=lambda payload: curve.append(
+
+    total_epochs = max(int(program_train_epochs), 1)
+    events: queue.Queue[Tuple[str, object]] = queue.Queue()
+    done_event = threading.Event()
+    last_collect_log_step = -1
+
+    def _worker() -> None:
+        try:
+            m6_artifacts_dir = _to_path(m6_artifacts_dir_text)
+            queries_path = _to_path(m4_queries_text) if m4_queries_text.strip() else (ROOT / "data/eval/queries_m4.txt")
+            program_ckpt = _to_path(program_ckpt_text) if program_ckpt_text.strip() else (m6_artifacts_dir / "program_generator.pt")
+            bbox = None
+            if str(layout_mode).strip().lower() == "osm":
+                bbox = (float(m5_bbox_min_lon), float(m5_bbox_min_lat), float(m5_bbox_max_lon), float(m5_bbox_max_lat))
+            collect_args = argparse.Namespace(
+                manifest=_to_path(real_manifest_text),
+                out=m6_artifacts_dir / "program_train.jsonl",
+                queries=queries_path,
+                layout_modes=[str(layout_mode).strip().lower()],
+                constraint_profiles=[
+                    "balanced_complete_street_v1",
+                    "pedestrian_priority_v1",
+                    "transit_priority_v1",
+                ],
+                seed_start=0,
+                seed_end=19,
+                length_m=float(street_length_m),
+                road_width_m=float(street_road_width_m),
+                sidewalk_width_m=float(street_sidewalk_width_m),
+                lane_count=int(street_lane_count),
+                density=float(street_density),
+                topk_per_category=int(street_topk_per_category),
+                max_trials_per_slot=int(street_max_trials_per_slot),
+                layout_solver="milp_template_v1",
+                osm_bboxes_jsonl=None,
+                osm_cache_dir=_to_path(str((ROOT / "artifacts/m5/osm_cache").resolve())),
+            )
+            if bbox is not None:
+                bbox_file = m6_artifacts_dir / "bbox.jsonl"
+                bbox_file.parent.mkdir(parents=True, exist_ok=True)
+                bbox_file.write_text(json.dumps({"bbox": list(bbox)}, ensure_ascii=True) + "\n", encoding="utf-8")
+                collect_args.osm_bboxes_jsonl = bbox_file
+
+            events.put(("log", "- [phase:distill] collecting program data..."))
+            rows = collect_program_data(
+                collect_args,
+                progress_callback=lambda payload: events.put(("collect_progress", payload)),
+            )
+            events.put(("log", f"- [phase:distill] collected_rows: {len(rows)}"))
+
+            events.put(("log", "- [phase:train] training program generator..."))
+            train_summary = train_program_from_jsonl(
+                data_path=m6_artifacts_dir / "program_train.jsonl",
+                out_dir=m6_artifacts_dir,
+                config=ProgramTrainConfig(
+                    epochs=int(program_train_epochs),
+                    batch_size=int(program_train_batch_size),
+                    lr=float(program_train_lr),
+                    weight_decay=float(program_train_weight_decay),
+                    patience=int(program_train_patience),
+                    device=device,
+                ),
+                resume_ckpt=program_ckpt if program_ckpt.exists() else None,
+                progress_callback=lambda payload: events.put(("epoch", payload)),
+            )
+            events.put(("train_summary", train_summary))
+            events.put(("done", None))
+        except Exception as exc:
+            detail = traceback.format_exc(limit=4)
+            events.put(("error", f"M6 train failed.\n- error: {exc}\n{detail}"))
+        finally:
+            done_event.set()
+
+    worker = threading.Thread(target=_worker, daemon=True)
+    worker.start()
+
+    while not done_event.is_set() or not events.empty():
+        try:
+            event, payload = events.get(timeout=0.2)
+        except queue.Empty:
+            continue
+
+        if event == "log":
+            log_lines.append(str(payload))
+
+        elif event == "collect_progress":
+            info = payload if isinstance(payload, dict) else {}
+            ratio = min(max(float(info.get("ratio", 0.0)), 0.0), 1.0)
+            progress_percent = max(progress_percent, 35.0 * ratio)
+            step = int(ratio * 20.0)
+            if step > last_collect_log_step:
+                processed = int(float(info.get("processed_slots", 0)))
+                total = int(float(info.get("total_slots", 1)))
+                log_lines.append(
+                    f"- distill progress (not training): {processed}/{total} ({ratio * 100.0:.1f}%)"
+                )
+                last_collect_log_step = step
+            train_json = json.dumps(
                 {
-                    "epoch": float(payload.get("epoch", 0.0)),
-                    "train_loss": float(payload.get("train_loss", 0.0)),
-                    "val_loss": float(payload.get("val_loss", 0.0)),
+                    "status": "distill_collecting",
+                    "collect_ratio": ratio,
+                    "processed_slots": int(float(info.get("processed_slots", 0))),
+                    "total_slots": int(float(info.get("total_slots", 0))),
+                },
+                indent=2,
+                ensure_ascii=True,
+            )
+
+        elif event == "epoch":
+            info = payload if isinstance(payload, dict) else {}
+            epoch = int(float(info.get("epoch", 0)))
+            train_loss = float(info.get("train_loss", 0.0))
+            val_loss = float(info.get("val_loss", 0.0))
+            best_so_far = float(info.get("best_val_loss_so_far", val_loss))
+            curve.append(
+                {
+                    "epoch": float(epoch),
+                    "train_loss": train_loss,
+                    "val_loss": val_loss,
+                    "best_val_loss_so_far": best_so_far,
                 }
-            ),
-        )
-        train_json = json.dumps(train_summary, indent=2, ensure_ascii=True)
-        eval_json = json.dumps(
-            {
-                "status": "trained",
-                "best_val_loss": train_summary.get("best_val_loss", 0.0),
-                "split": train_summary.get("split", {}),
-            },
-            indent=2,
-            ensure_ascii=True,
-        )
-        program_ckpt_out = str(train_summary["outputs"]["checkpoint"])
-        progress_percent = 100.0
-        log_lines.append(f"- checkpoint: {program_ckpt_out}")
-        yield _snapshot()
-    except Exception as exc:
-        detail = traceback.format_exc(limit=4)
-        log_lines.append(f"M6 train failed.\n- error: {exc}\n{detail}")
-        progress_percent = 100.0
+            )
+            log_lines.append(
+                f"- epoch {epoch}: train_loss={train_loss:.6f}, val_loss={val_loss:.6f}, best={best_so_far:.6f}"
+            )
+            progress_percent = max(progress_percent, 35.0 + 55.0 * min(float(epoch) / float(total_epochs), 1.0))
+            train_json = json.dumps(
+                {
+                    "status": "training",
+                    "latest_epoch": epoch,
+                    "latest_train_loss": train_loss,
+                    "latest_val_loss": val_loss,
+                    "curve_tail": curve[-20:],
+                },
+                indent=2,
+                ensure_ascii=True,
+            )
+
+        elif event == "train_summary":
+            summary = payload if isinstance(payload, dict) else {}
+            program_ckpt_out = str(summary.get("outputs", {}).get("checkpoint", program_ckpt_out))
+            train_json = json.dumps(summary, indent=2, ensure_ascii=True)
+            eval_json = json.dumps(
+                {
+                    "status": "trained",
+                    "best_val_loss": summary.get("best_val_loss", 0.0),
+                    "split": summary.get("split", {}),
+                },
+                indent=2,
+                ensure_ascii=True,
+            )
+            log_lines.append(f"- checkpoint: {program_ckpt_out}")
+
+        elif event == "error":
+            log_lines.append(str(payload))
+            progress_percent = 100.0
+
+        elif event == "done":
+            duration_sec = (datetime.now() - started_at).total_seconds()
+            log_lines.append(f"- duration_sec: {duration_sec:.2f}")
+            progress_percent = 100.0
+
         yield _snapshot()
 
 

@@ -520,3 +520,53 @@ class StreetComposeResult:
         payload["street_program"] = self.street_program.to_dict() if self.street_program is not None else None
         payload["solver_result"] = self.solver_result.to_dict() if self.solver_result is not None else None
         return payload
+
+
+# ---------------------------------------------------------------------------
+# Entrance analysis types (M7)
+# ---------------------------------------------------------------------------
+
+
+@dataclass(frozen=True)
+class PlacedAsset:
+    """Lightweight record of an already-placed asset for entrance analysis."""
+
+    position_xz: Tuple[float, float]
+    category: str
+    bbox_xz: Tuple[float, float, float, float]  # (x_min, x_max, z_min, z_max)
+    bbox_radius: float  # max(half_x, half_z)
+
+
+@dataclass(frozen=True)
+class EntranceAssessment:
+    """Evaluation result for a single entrance point."""
+
+    entrance_xz: Tuple[float, float]
+    openness_score: float  # [0, 1]
+    shielding_score: float  # [0, 1]
+    blocked_angle_deg: float
+    shielding_ray_hits: int
+    shielding_ray_total: int
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass(frozen=True)
+class SceneEntranceReport:
+    """Scene-level entrance openness and noise shielding summary."""
+
+    assessments: Tuple[EntranceAssessment, ...]
+    mean_openness: float
+    mean_shielding: float
+    min_openness: float
+    entrances_below_openness_threshold: int
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "mean_openness": self.mean_openness,
+            "mean_shielding": self.mean_shielding,
+            "min_openness": self.min_openness,
+            "entrances_below_openness_threshold": self.entrances_below_openness_threshold,
+            "assessments": [a.to_dict() for a in self.assessments],
+        }
