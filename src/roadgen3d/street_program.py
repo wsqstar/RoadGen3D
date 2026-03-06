@@ -119,6 +119,13 @@ def _merge_goals(query: str, base_goals: Sequence[str]) -> Tuple[str, ...]:
     return tuple(ordered)
 
 
+def _goal_weights(goals: Sequence[str]) -> Dict[str, float]:
+    if not goals:
+        return {}
+    total = float(len(goals))
+    return {str(goal): float(1.0 / total) for goal in goals}
+
+
 def _build_cross_section_bands(
     *,
     road_width_m: float,
@@ -254,6 +261,10 @@ def infer_street_program(
     control_points: List[str] = ["entry", "midblock", "exit"]
     if requirements.get("bus_stop", 0) > 0:
         control_points.append("transit_stop")
+    merged_goals = _merge_goals(str(config.query), tuple(defaults["design_goals"]))
+    reserved_band_categories: Dict[str, str] = {}
+    if profile_name == "transit_priority_v1":
+        reserved_band_categories["right_transit_edge"] = "bus_stop"
 
     notes = (
         "heuristic_program_generator_v1",
@@ -272,12 +283,14 @@ def infer_street_program(
         bands=bands,
         furniture_requirements=requirements,
         control_points=tuple(control_points),
-        design_goals=_merge_goals(str(config.query), tuple(defaults["design_goals"])),
+        design_goals=merged_goals,
         context_conditions={
             "layout_mode": str(config.layout_mode),
             "city_context": str(config.city_context),
             "target_street_type": str(config.target_street_type),
             "program_generator": str(config.program_generator),
         },
+        reserved_band_categories=reserved_band_categories,
+        design_goal_weights=_goal_weights(merged_goals),
         notes=notes,
     )

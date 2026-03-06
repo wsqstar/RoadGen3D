@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import replace
 from typing import Dict, Iterable, List, Sequence, Set, Tuple
 
+from .milp_solver import solve_candidate_assignment
 from .street_priors import CATEGORY_SUBSTITUTIONS, SIDE_PREF
 from .types import (
     ConstraintSet,
@@ -509,22 +510,24 @@ def _evaluate_rule(
     )
 
 
-def solve_layout(solver_input: LayoutSolverInput) -> LayoutSolverResult:
-    """Compile a StreetProgram plus rules into a constrained slot plan."""
-
-    resolved_program, rule_effects, edits, conflicts = _compile_program(solver_input)
-    slot_plans = _build_slot_plans(
-        solver_input=solver_input,
-        resolved_program=resolved_program,
-        rule_effects=rule_effects,
-        edits=edits,
-        conflicts=conflicts,
-    )
+def _finalize_result(
+    *,
+    solver_input: LayoutSolverInput,
+    resolved_program: StreetProgram,
+    slot_plans: Sequence[LayoutSlotPlan],
+    rule_effects: Dict[str, Dict[str, List[str]]],
+    edits: Sequence[LayoutEdit],
+    conflicts: Sequence[LayoutConflict],
+    backend_requested: str,
+    backend_used: str,
+    fallback_reason: str = "",
+    road_segment_graph_summary: Dict[str, object] | None = None,
+) -> LayoutSolverResult:
     evaluations = tuple(
         _evaluate_rule(
             rule=rule,
             resolved_program=resolved_program,
-            slot_plans=slot_plans,
+            slot_plans=tuple(slot_plans),
             rule_effects=rule_effects,
             conflicts=conflicts,
         )
@@ -554,7 +557,7 @@ def solve_layout(solver_input: LayoutSolverInput) -> LayoutSolverResult:
 
     return LayoutSolverResult(
         resolved_program=resolved_program,
-        slot_plans=slot_plans,
+        slot_plans=tuple(slot_plans),
         rule_evaluations=evaluations,
         edits=tuple(edits),
         conflicts=tuple(conflicts),
@@ -563,4 +566,105 @@ def solve_layout(solver_input: LayoutSolverInput) -> LayoutSolverResult:
         rule_satisfaction_rate=float(max(0.0, min(rule_satisfaction_rate, 1.0))),
         editability=float(max(0.0, min(editability, 1.0))),
         conflict_explainability=float(max(0.0, min(conflict_explainability, 1.0))),
+        backend_requested=backend_requested,
+        backend_used=backend_used,
+        fallback_reason=fallback_reason,
+        road_segment_graph_summary=dict(road_segment_graph_summary) if road_segment_graph_summary is not None else None,
     )
+
+
+def solve_layout(solver_input: LayoutSolverInput) -> LayoutSolverResult:
+    """Compile a StreetProgram plus rules into a constrained slot plan using the banded solver."""
+
+    resolved_program, rule_effects, edits, conflicts = _compile_program(solver_input)
+    slot_plans = _build_slot_plans(
+        solver_input=solver_input,
+        resolved_program=resolved_program,
+        rule_effects=rule_effects,
+        edits=edits,
+        conflicts=conflicts,
+    )
+    return _finalize_result(
+        solver_input=solver_input,
+        resolved_program=resolved_program,
+        slot_plans=slot_plans,
+        rule_effects=rule_effects,
+        edits=edits,
+        conflicts=conflicts,
+        backend_requested="banded",
+        backend_used="banded",
+    )
+
+
+class LayoutSolverRuntime:
+    """Dispatch between banded and milp_template_v1 layout-solving backends."""
+
+    def __init__(self, backend: str = "banded") -> None:
+        self.backend = str(backend).strip().lower() or "banded"
+
+    def solve(self, solver_input: LayoutSolverInput) -> LayoutSolverResult:
+        requested = str(self.backend)
+        if requested == "banded":
+            banded = solve_layout(solver_input)
+            return LayoutSolverResult(
+                resolved_program=banded.resolved_program,
+                slot_plans=banded.slot_plans,
+                rule_evaluations=banded.rule_evaluations,
+                edits=banded.edits,
+                conflicts=banded.conflicts,
+                topology_validity=banded.topology_validity,
+                cross_section_feasibility=banded.cross_section_feasibility,
+                rule_satisfaction_rate=banded.rule_satisfaction_rate,
+                editability=banded.editability,
+                conflict_explainability=banded.conflict_explainability,
+                backend_requested=requested,
+                backend_used="banded",
+                fallback_reason="",
+                road_segment_graph_summary=banded.road_segment_graph_summary,
+            )
+
+        if requested != "milp_template_v1":
+            raise ValueError("layout solver backend must be 'banded' or 'milp_template_v1'")
+
+        resolved_program, rule_effects, edits, conflicts = _compile_program(solver_input)
+        slot_plans, milp_conflicts, meta = solve_candidate_assignment(
+            program=resolved_program,
+            length_m=float(solver_input.config.length_m),
+            segment_length_m=float(getattr(solver_input.config, "segment_length_m", 12.0)),
+            graph=solver_input.road_segment_graph,
+            requirements=dict(resolved_program.furniture_requirements),
+            required_categories=_required_categories(solver_input.constraint_set),
+            reserved_band_categories=dict(resolved_program.reserved_band_categories),
+        )
+        all_conflicts = list(conflicts) + list(milp_conflicts)
+        if not slot_plans and bool(getattr(solver_input.config, "allow_solver_fallback", True)):
+            fallback = solve_layout(solver_input)
+            return LayoutSolverResult(
+                resolved_program=fallback.resolved_program,
+                slot_plans=fallback.slot_plans,
+                rule_evaluations=fallback.rule_evaluations,
+                edits=fallback.edits + tuple(edits),
+                conflicts=fallback.conflicts + tuple(all_conflicts),
+                topology_validity=fallback.topology_validity,
+                cross_section_feasibility=fallback.cross_section_feasibility,
+                rule_satisfaction_rate=fallback.rule_satisfaction_rate,
+                editability=fallback.editability,
+                conflict_explainability=fallback.conflict_explainability,
+                backend_requested=requested,
+                backend_used="banded",
+                fallback_reason="milp_template_v1 produced no feasible slot assignment; fallback to banded",
+                road_segment_graph_summary=meta.get("road_segment_graph_summary"),
+            )
+
+        return _finalize_result(
+            solver_input=solver_input,
+            resolved_program=resolved_program,
+            slot_plans=slot_plans,
+            rule_effects=rule_effects,
+            edits=edits,
+            conflicts=all_conflicts,
+            backend_requested=requested,
+            backend_used="milp_template_v1",
+            fallback_reason="",
+            road_segment_graph_summary=meta.get("road_segment_graph_summary"),
+        )

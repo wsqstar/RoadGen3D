@@ -62,6 +62,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--placement-policy", choices=["rule", "learned"], default="rule")
     parser.add_argument("--policy-ckpt", type=Path, default=None)
     parser.add_argument("--policy-temperature", type=float, default=0.12)
+    parser.add_argument("--program-generator", choices=["heuristic_v1", "learned_v1"], default="learned_v1")
+    parser.add_argument("--program-ckpt", type=Path, default=None)
+    parser.add_argument("--layout-solver", choices=["banded", "milp_template_v1"], default="milp_template_v1")
+    parser.add_argument("--no-solver-fallback", action="store_true")
+    parser.add_argument("--segment-length-m", type=float, default=12.0)
     parser.add_argument("--compare-rule", action="store_true")
     parser.add_argument("--seed-start", type=int, default=0)
     parser.add_argument("--seed-end", type=int, default=4)
@@ -128,6 +133,11 @@ def _run_mode(
     city_context: str,
     target_street_type: str,
     policy_ckpt: Path | None,
+    program_generator: str,
+    program_ckpt: Path | None,
+    layout_solver: str,
+    allow_solver_fallback: bool,
+    segment_length_m: float,
     policy_temperature: float,
     out_root: Path,
 ) -> List[Dict[str, object]]:
@@ -148,6 +158,10 @@ def _run_mode(
                 design_rule_profile=str(design_rule_profile),
                 city_context=str(city_context),
                 target_street_type=str(target_street_type),
+                program_generator=str(program_generator),
+                layout_solver=str(layout_solver),
+                allow_solver_fallback=bool(allow_solver_fallback),
+                segment_length_m=float(segment_length_m),
             )
             scene_id = f"{mode}_q{scene_index:03d}_s{seed:04d}"
             scene_index += 1
@@ -164,6 +178,7 @@ def _run_mode(
                 out_dir=scene_out,
                 placement_policy=mode,
                 policy_ckpt=policy_ckpt,
+                program_ckpt=program_ckpt,
                 policy_temperature=float(policy_temperature),
             )
 
@@ -194,6 +209,10 @@ def _run_mode(
                 "cross_section_feasibility": _safe_float(summary, "cross_section_feasibility"),
                 "editability": _safe_float(summary, "editability"),
                 "conflict_explainability": _safe_float(summary, "conflict_explainability"),
+                "program_generator_used": str(summary.get("program_generator_used", "")),
+                "layout_solver_used": str(summary.get("layout_solver_used", "")),
+                "program_fallback_reason": str(summary.get("program_fallback_reason", "")),
+                "solver_fallback_reason": str(summary.get("solver_fallback_reason", "")),
                 "scene_layout_path": str(layout_path),
                 "scene_glb": str(result.outputs.get("scene_glb", "")),
                 "scene_ply": str(result.outputs.get("scene_ply", "")),
@@ -236,6 +255,11 @@ def run_eval(args: argparse.Namespace) -> Dict[str, object]:
         city_context=city_context,
         target_street_type=target_street_type,
         policy_ckpt=Path(args.policy_ckpt).resolve() if args.policy_ckpt else None,
+        program_generator=str(getattr(args, "program_generator", "learned_v1")),
+        program_ckpt=Path(str(getattr(args, "program_ckpt"))).resolve() if getattr(args, "program_ckpt", None) else None,
+        layout_solver=str(getattr(args, "layout_solver", "milp_template_v1")),
+        allow_solver_fallback=not bool(getattr(args, "no_solver_fallback", False)),
+        segment_length_m=float(getattr(args, "segment_length_m", 12.0)),
         policy_temperature=float(args.policy_temperature),
         out_root=out_dir / "eval_scenes",
     )
@@ -267,6 +291,11 @@ def run_eval(args: argparse.Namespace) -> Dict[str, object]:
             city_context=city_context,
             target_street_type=target_street_type,
             policy_ckpt=None,
+            program_generator=str(getattr(args, "program_generator", "learned_v1")),
+            program_ckpt=Path(str(getattr(args, "program_ckpt"))).resolve() if getattr(args, "program_ckpt", None) else None,
+            layout_solver=str(getattr(args, "layout_solver", "milp_template_v1")),
+            allow_solver_fallback=not bool(getattr(args, "no_solver_fallback", False)),
+            segment_length_m=float(getattr(args, "segment_length_m", 12.0)),
             policy_temperature=float(args.policy_temperature),
             out_root=out_dir / "eval_scenes",
         )

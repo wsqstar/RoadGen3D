@@ -31,10 +31,19 @@ from .eval_metrics import (
 from .index_store import FaissIndexStore
 from .layout_features import CandidateDescriptor, PolicyFeatureContext, vectorize_slot_candidates
 from .layout_policy import LayoutPolicyRuntime
-from .layout_solver import solve_layout
+from .layout_solver import LayoutSolverRuntime, solve_layout
+from .osm_segment_graph import build_segment_graph
+from .program_generator import ProgramGeneratorRuntime
 from .street_priors import DEFAULT_CATEGORIES, DEFAULT_SPACING_M, SIDE_PREF
 from .street_program import infer_street_program
-from .types import LayoutSolverInput, StreetComposeConfig, StreetComposeResult, StreetPlacement
+from .types import (
+    InventorySummary,
+    LayoutSolverInput,
+    ProgramGenerationInput,
+    StreetComposeConfig,
+    StreetComposeResult,
+    StreetPlacement,
+)
 
 SOFTMAX_TEMPERATURE = 0.12
 CATEGORY_NO_REPEAT_FIRST = True
@@ -93,10 +102,12 @@ def _validate_config(config: StreetComposeConfig) -> None:
         raise ValueError("constraint_weight must be in [0.0, 1.0]")
     if not 0.0 <= config.constraint_veto_threshold <= 1.0:
         raise ValueError("constraint_veto_threshold must be in [0.0, 1.0]")
-    if str(config.program_generator).strip().lower() not in {"heuristic_v1"}:
-        raise ValueError("program_generator must be 'heuristic_v1'")
-    if str(config.layout_solver).strip().lower() not in {"banded"}:
-        raise ValueError("layout_solver must be 'banded'")
+    if str(config.program_generator).strip().lower() not in {"heuristic_v1", "learned_v1"}:
+        raise ValueError("program_generator must be 'heuristic_v1' or 'learned_v1'")
+    if str(config.layout_solver).strip().lower() not in {"banded", "milp_template_v1"}:
+        raise ValueError("layout_solver must be 'banded' or 'milp_template_v1'")
+    if float(getattr(config, "segment_length_m", 12.0)) <= 0.0:
+        raise ValueError("segment_length_m must be > 0")
 
 
 def _validate_export_format(export_format: str) -> str:
@@ -510,6 +521,7 @@ def compose_street_scene(
     out_dir: Path = Path("artifacts/real"),
     placement_policy: str = "rule",
     policy_ckpt: Optional[Path] = None,
+    program_ckpt: Optional[Path] = None,
     policy_temperature: float = SOFTMAX_TEMPERATURE,
 ) -> StreetComposeResult:
     """
@@ -575,6 +587,24 @@ def compose_street_scene(
             except Exception as exc:
                 policy_fallback_reason = f"Policy runtime load failed ({exc}); fallback to rule policy."
 
+    program_runtime = ProgramGeneratorRuntime(backend="heuristic_v1")
+    program_used = "heuristic_v1"
+    program_fallback_reason = ""
+    if str(config.program_generator).strip().lower() == "learned_v1":
+        ckpt_path = Path(program_ckpt).expanduser().resolve() if program_ckpt else None
+        if ckpt_path is None or not ckpt_path.exists():
+            program_fallback_reason = (
+                "Program generator checkpoint missing; fallback to heuristic_v1."
+                if ckpt_path is None
+                else f"Program generator checkpoint not found: {ckpt_path}. Fallback to heuristic_v1."
+            )
+        else:
+            try:
+                program_runtime = ProgramGeneratorRuntime.from_checkpoint(ckpt_path, device=device)
+                program_used = "learned_v1"
+            except Exception as exc:
+                program_fallback_reason = f"Program generator load failed ({exc}); fallback to heuristic_v1."
+
     rng = random.Random(int(config.seed))
     placements: List[StreetPlacement] = []
     existing_bboxes: List[Tuple[float, float, float, float]] = []
@@ -586,6 +616,7 @@ def compose_street_scene(
     start_perf = time.perf_counter()
 
     placement_ctx = None
+    projected = None
     if config.layout_mode == "osm":
         from .osm_ingest import fetch_osm_data, parse_osm_features, project_to_local
         from .placement_zones import build_placement_context
@@ -607,14 +638,42 @@ def compose_street_scene(
         else:
             poi_ctx = PoiContext((), (), ())
 
-    street_program = infer_street_program(config, available_categories)
+    inventory_summary = InventorySummary(
+        category_counts={category: len(pool) for category, pool in category_to_rows.items() if pool},
+        asset_ids_by_category={
+            category: tuple(row["asset_id"] for row in pool)
+            for category, pool in category_to_rows.items()
+            if pool
+        },
+    )
+    road_segment_graph = build_segment_graph(projected, config) if projected is not None else None
+    program_result = program_runtime.generate(
+        ProgramGenerationInput(
+            query=config.query,
+            compose_config=config,
+            available_categories=tuple(available_categories),
+            constraint_profile=str(config.design_rule_profile),
+            placement_context=placement_ctx,
+            inventory_summary=inventory_summary,
+            road_segment_graph=road_segment_graph,
+        )
+    )
+    if program_result.backend_used == "learned_v1":
+        program_used = "learned_v1"
+    if program_result.fallback_reason and not program_fallback_reason:
+        program_fallback_reason = program_result.fallback_reason
+    street_program = program_result.program
     constraint_set = load_constraint_set(config.design_rule_profile)
-    solver_result = solve_layout(
+    solver_runtime = LayoutSolverRuntime(backend=str(config.layout_solver))
+    solver_result = solver_runtime.solve(
         LayoutSolverInput(
             program=street_program,
             config=config,
             available_categories=tuple(available_categories),
             constraint_set=constraint_set,
+            placement_context=placement_ctx,
+            inventory_summary=inventory_summary,
+            road_segment_graph=road_segment_graph,
         )
     )
     resolved_program = solver_result.resolved_program
@@ -849,7 +908,8 @@ def compose_street_scene(
     layout_payload = {
         "query": config.query,
         "config": config.to_dict(),
-        "street_program": street_program.to_dict(),
+        "program_generation": program_result.to_dict(),
+        "street_program": resolved_program.to_dict(),
         "constraint_set": constraint_set.to_dict(),
         "solver": solver_result.to_dict(),
         "summary": {
@@ -877,8 +937,10 @@ def compose_street_scene(
             "style_consistency": float(style_consistency),
             "balance_score": float(balance_score),
             "design_rule_profile": str(config.design_rule_profile),
-            "program_generator": str(config.program_generator),
-            "layout_solver": str(config.layout_solver),
+            "program_generator_requested": str(config.program_generator),
+            "program_generator_used": str(program_result.backend_used),
+            "layout_solver_requested": str(config.layout_solver),
+            "layout_solver_used": str(solver_result.backend_used),
             "cross_section_type": str(resolved_program.cross_section_type),
             "rule_satisfaction_rate": float(rule_satisfaction_rate),
             "topology_validity": float(topology_validity),
@@ -888,6 +950,9 @@ def compose_street_scene(
             "solver_edit_count": int(len(solver_result.edits)),
             "solver_conflict_count": int(len(solver_result.conflicts)),
             "rule_evaluation_counts": rule_evaluation_counts,
+            "program_fallback_reason": program_fallback_reason,
+            "solver_fallback_reason": str(solver_result.fallback_reason),
+            "road_segment_graph_summary": solver_result.road_segment_graph_summary,
         },
         "placements": [placement.to_dict() for placement in placements],
         "outputs": outputs,
@@ -898,8 +963,16 @@ def compose_street_scene(
     outputs["policy_used"] = policy_used
     outputs["design_rule_profile"] = str(config.design_rule_profile)
     outputs["program_cross_section_type"] = str(resolved_program.cross_section_type)
+    outputs["program_generator_requested"] = str(config.program_generator)
+    outputs["program_generator_used"] = str(program_result.backend_used)
+    outputs["layout_solver_requested"] = str(config.layout_solver)
+    outputs["layout_solver_used"] = str(solver_result.backend_used)
+    if solver_result.fallback_reason:
+        outputs["solver_fallback_reason"] = str(solver_result.fallback_reason)
     if policy_fallback_reason:
         outputs["policy_fallback_reason"] = policy_fallback_reason
+    if program_fallback_reason:
+        outputs["program_fallback_reason"] = program_fallback_reason
     return StreetComposeResult(
         query=config.query,
         instance_count=len(placements),

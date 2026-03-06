@@ -39,6 +39,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--export-format", choices=["glb", "ply", "both"], default="both")
     parser.add_argument("--placement-policy", choices=["rule", "learned"], default="rule")
     parser.add_argument("--policy-ckpt", type=Path, default=None)
+    parser.add_argument("--program-generator", choices=["heuristic_v1", "learned_v1"], default="heuristic_v1")
+    parser.add_argument("--program-ckpt", type=Path, default=None)
     parser.add_argument("--policy-temperature", type=float, default=0.12)
     # -- M5 arguments --
     parser.add_argument("--layout-mode", choices=["template", "osm"], default="template",
@@ -59,6 +61,9 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--city-context", type=str, default="generic_city")
     parser.add_argument("--target-street-type", type=str, default="mixed_use")
+    parser.add_argument("--layout-solver", choices=["banded", "milp_template_v1"], default="banded")
+    parser.add_argument("--no-solver-fallback", action="store_true")
+    parser.add_argument("--segment-length-m", type=float, default=12.0)
     return parser.parse_args()
 
 
@@ -81,9 +86,13 @@ def main() -> int:
         constraint_weight=float(args.constraint_weight),
         constraint_veto_threshold=float(args.constraint_veto_threshold),
         poi_rule_set=args.poi_rule_set,
+        program_generator=args.program_generator,
         design_rule_profile=args.design_rule_profile,
         city_context=args.city_context,
         target_street_type=args.target_street_type,
+        layout_solver=args.layout_solver,
+        allow_solver_fallback=not bool(args.no_solver_fallback),
+        segment_length_m=float(args.segment_length_m),
     )
     try:
         result = compose_street_scene(
@@ -98,6 +107,7 @@ def main() -> int:
             out_dir=args.out_dir,
             placement_policy=args.placement_policy,
             policy_ckpt=args.policy_ckpt,
+            program_ckpt=args.program_ckpt,
             policy_temperature=float(args.policy_temperature),
         )
     except ModelLoadError as exc:

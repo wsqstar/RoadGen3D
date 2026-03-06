@@ -69,6 +69,8 @@ class StreetComposeConfig:
     city_context: str = "generic_city"
     target_street_type: str = "mixed_use"
     layout_solver: str = "banded"
+    allow_solver_fallback: bool = True
+    segment_length_m: float = 12.0
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -109,6 +111,8 @@ class StreetProgram:
     control_points: Tuple[str, ...]
     design_goals: Tuple[str, ...]
     context_conditions: Dict[str, str]
+    reserved_band_categories: Dict[str, str] = field(default_factory=dict)
+    design_goal_weights: Dict[str, float] = field(default_factory=dict)
     notes: Tuple[str, ...] = ()
 
     def to_dict(self) -> Dict[str, Any]:
@@ -153,6 +157,63 @@ class ConstraintSet:
             "name": self.name,
             "description": self.description,
             "rules": [rule.to_dict() for rule in self.rules],
+        }
+
+
+@dataclass(frozen=True)
+class InventorySummary:
+    """Compact summary of the asset inventory available to program/solver runtimes."""
+
+    category_counts: Dict[str, int]
+    asset_ids_by_category: Dict[str, Tuple[str, ...]] = field(default_factory=dict)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "category_counts": dict(self.category_counts),
+            "asset_ids_by_category": {
+                key: list(value)
+                for key, value in self.asset_ids_by_category.items()
+            },
+        }
+
+
+@dataclass(frozen=True)
+class ProgramGenerationInput:
+    """Input to heuristic or learned street-program generation."""
+
+    query: str
+    compose_config: StreetComposeConfig
+    available_categories: Tuple[str, ...]
+    constraint_profile: str
+    placement_context: object | None = None
+    inventory_summary: Optional[InventorySummary] = None
+    road_segment_graph: object | None = None
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "query": self.query,
+            "compose_config": self.compose_config.to_dict(),
+            "available_categories": list(self.available_categories),
+            "constraint_profile": self.constraint_profile,
+            "inventory_summary": self.inventory_summary.to_dict() if self.inventory_summary is not None else None,
+        }
+
+
+@dataclass(frozen=True)
+class ProgramGenerationResult:
+    """Output of program generation including runtime metadata."""
+
+    program: StreetProgram
+    backend_requested: str
+    backend_used: str
+    fallback_reason: str = ""
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "program": self.program.to_dict(),
+            "backend_requested": self.backend_requested,
+            "backend_used": self.backend_used,
+            "fallback_reason": self.fallback_reason,
         }
 
 
@@ -226,6 +287,9 @@ class LayoutSolverInput:
     config: StreetComposeConfig
     available_categories: Tuple[str, ...]
     constraint_set: ConstraintSet
+    placement_context: object | None = None
+    inventory_summary: Optional[InventorySummary] = None
+    road_segment_graph: object | None = None
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -233,6 +297,7 @@ class LayoutSolverInput:
             "config": self.config.to_dict(),
             "available_categories": list(self.available_categories),
             "constraint_set": self.constraint_set.to_dict(),
+            "inventory_summary": self.inventory_summary.to_dict() if self.inventory_summary is not None else None,
         }
 
 
@@ -250,6 +315,10 @@ class LayoutSolverResult:
     rule_satisfaction_rate: float
     editability: float
     conflict_explainability: float
+    backend_requested: str = "banded"
+    backend_used: str = "banded"
+    fallback_reason: str = ""
+    road_segment_graph_summary: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -263,6 +332,148 @@ class LayoutSolverResult:
             "rule_satisfaction_rate": float(self.rule_satisfaction_rate),
             "editability": float(self.editability),
             "conflict_explainability": float(self.conflict_explainability),
+            "backend_requested": self.backend_requested,
+            "backend_used": self.backend_used,
+            "fallback_reason": self.fallback_reason,
+            "road_segment_graph_summary": self.road_segment_graph_summary,
+        }
+
+
+@dataclass(frozen=True)
+class RoadSegmentBand:
+    """One usable functional band on a road segment."""
+
+    band_id: str
+    segment_id: str
+    side: str
+    kind: str
+    width_m: float
+    allowed_categories: Tuple[str, ...] = ()
+    nearest_poi_types: Tuple[str, ...] = ()
+
+    def to_dict(self) -> Dict[str, Any]:
+        payload = asdict(self)
+        payload["allowed_categories"] = list(self.allowed_categories)
+        payload["nearest_poi_types"] = list(self.nearest_poi_types)
+        return payload
+
+
+@dataclass(frozen=True)
+class RoadSegmentNode:
+    """One segment on a road polyline graph."""
+
+    segment_id: str
+    road_id: int
+    start_xy: Tuple[float, float]
+    end_xy: Tuple[float, float]
+    center_xy: Tuple[float, float]
+    length_m: float
+    is_junction: bool = False
+    is_accessible: bool = True
+    poi_types: Tuple[str, ...] = ()
+    bands: Tuple[RoadSegmentBand, ...] = ()
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "segment_id": self.segment_id,
+            "road_id": int(self.road_id),
+            "start_xy": list(self.start_xy),
+            "end_xy": list(self.end_xy),
+            "center_xy": list(self.center_xy),
+            "length_m": float(self.length_m),
+            "is_junction": bool(self.is_junction),
+            "is_accessible": bool(self.is_accessible),
+            "poi_types": list(self.poi_types),
+            "bands": [band.to_dict() for band in self.bands],
+        }
+
+
+@dataclass(frozen=True)
+class RoadSegmentEdge:
+    """Adjacency relation between two road graph segments."""
+
+    edge_id: str
+    from_segment_id: str
+    to_segment_id: str
+    weight: float = 1.0
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass(frozen=True)
+class RoadSegmentGraph:
+    """Discrete graph summary used by OSM segment-level layout solving."""
+
+    nodes: Tuple[RoadSegmentNode, ...]
+    edges: Tuple[RoadSegmentEdge, ...]
+    mode: str = "osm"
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "mode": self.mode,
+            "nodes": [node.to_dict() for node in self.nodes],
+            "edges": [edge.to_dict() for edge in self.edges],
+        }
+
+    def summary(self) -> Dict[str, Any]:
+        return {
+            "mode": self.mode,
+            "segment_count": len(self.nodes),
+            "edge_count": len(self.edges),
+            "junction_segment_count": sum(1 for node in self.nodes if node.is_junction),
+            "avg_segment_length_m": (
+                sum(float(node.length_m) for node in self.nodes) / len(self.nodes)
+                if self.nodes
+                else 0.0
+            ),
+        }
+
+
+@dataclass(frozen=True)
+class WorkspaceReadiness:
+    """Read-only status summary for one-click workspace preparation."""
+
+    manifest_ok: bool
+    latents_ok: bool
+    index_ok: bool
+    osm_cache_ok: bool
+    missing_items: Tuple[str, ...] = ()
+    recommended_next_action: str = ""
+    details: Dict[str, Any] = field(default_factory=dict)
+
+    def to_dict(self) -> Dict[str, Any]:
+        payload = asdict(self)
+        payload["missing_items"] = list(self.missing_items)
+        return payload
+
+
+@dataclass(frozen=True)
+class StepResult:
+    """One step in workspace preparation."""
+
+    step: str
+    status: str
+    message: str
+    outputs: Dict[str, Any] = field(default_factory=dict)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass(frozen=True)
+class PrepareWorkspaceResult:
+    """Aggregated result for one-click workspace preparation."""
+
+    summary: str
+    readiness: WorkspaceReadiness
+    steps: Tuple[StepResult, ...]
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "summary": self.summary,
+            "readiness": self.readiness.to_dict(),
+            "steps": [step.to_dict() for step in self.steps],
         }
 
 

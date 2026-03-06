@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import queue
@@ -44,14 +45,18 @@ from roadgen3d.embedder import ClipTextEmbedder, ModelLoadError
 from roadgen3d.index_store import FaissIndexStore
 from roadgen3d.layout_policy import PolicyTrainConfig
 from roadgen3d.latent_store import LatentStore, load_asset_records
+from roadgen3d.osm_ingest import fetch_osm_data
 from roadgen3d.pipeline import M1Pipeline
+from roadgen3d.program_generator import ProgramTrainConfig
 from roadgen3d.street_layout import compose_street_scene
-from roadgen3d.types import StreetComposeConfig
+from roadgen3d.types import PrepareWorkspaceResult, StepResult, StreetComposeConfig, WorkspaceReadiness
 from scripts.m1_01_seed_assets import seed_assets
 from scripts.m2_11_encode_shapee_latents import encode_latents as encode_shapee_latents
 from scripts.m4_01_collect_policy_data import collect_policy_data
 from scripts.m4_02_train_layout_policy import train_from_jsonl
 from scripts.m4_10_eval_engineering import run_eval as run_m4_eval
+from scripts.m6_01_collect_program_data import collect_program_data
+from scripts.m6_02_train_program_generator import train_from_jsonl as train_program_from_jsonl
 
 
 def _to_path(path_text: str) -> Path:
@@ -139,6 +144,493 @@ def _build_index_from_assets(
     index_store = FaissIndexStore.build(embeddings=embeddings, asset_ids=asset_ids)
     index_store.save(index_path=artifacts_dir / "index_ip.faiss", id_map_path=artifacts_dir / "id_map.json")
     return asset_ids, embeddings, embedder
+
+
+def _bbox_hash(bbox: Tuple[float, float, float, float]) -> str:
+    key = f"{bbox[0]:.6f},{bbox[1]:.6f},{bbox[2]:.6f},{bbox[3]:.6f}"
+    return hashlib.md5(key.encode("utf-8")).hexdigest()[:12]
+
+
+def inspect_workspace_readiness(
+    dataset_profile: str,
+    data_dir_text: str,
+    artifacts_dir_text: str,
+    real_manifest_text: str,
+    model_dir_text: str,
+    real_latents_dir_text: str,
+    layout_mode: str = "template",
+    aoi_bbox: Tuple[float, float, float, float] | None = None,
+    osm_cache_dir_text: str = "",
+) -> WorkspaceReadiness:
+    profile = str(dataset_profile).strip().lower()
+    artifacts_dir = _to_path(artifacts_dir_text)
+    model_dir = _to_path(model_dir_text) if str(model_dir_text).strip() else None
+    latents_dir = _to_path(real_latents_dir_text) if str(real_latents_dir_text).strip() else None
+    missing: List[str] = []
+    details: Dict[str, Any] = {
+        "profile": profile,
+        "artifacts_dir": str(artifacts_dir),
+        "model_dir": str(model_dir) if model_dir is not None else "",
+    }
+
+    manifest_ok = False
+    latents_ok = False
+    if profile == "mock":
+        data_dir = _to_path(data_dir_text)
+        manifest_ok = bool((data_dir / "assets.jsonl").exists()) or data_dir.exists()
+        latents_ok = True
+        details["assets_path"] = str((data_dir / "assets.jsonl").resolve())
+    else:
+        manifest_path = _to_path(real_manifest_text)
+        manifest_ok = manifest_path.exists()
+        details["manifest_path"] = str(manifest_path)
+        if manifest_ok:
+            try:
+                rows = _load_real_manifest_rows(manifest_path)
+                latents_ok = all(Path(row["latent_path"]).exists() for row in rows)
+                details["manifest_asset_count"] = len(rows)
+                if not latents_ok:
+                    missing.append("latents")
+            except Exception as exc:
+                manifest_ok = False
+                details["manifest_error"] = str(exc)
+        else:
+            missing.append("manifest")
+        if latents_dir is not None:
+            details["latents_dir"] = str(latents_dir)
+
+    index_ok = bool((artifacts_dir / "index_ip.faiss").exists() and (artifacts_dir / "id_map.json").exists())
+    if not index_ok:
+        missing.append("index")
+
+    osm_cache_ok = True
+    if str(layout_mode).strip().lower() == "osm":
+        if aoi_bbox is None:
+            osm_cache_ok = False
+            missing.append("osm_cache")
+        else:
+            cache_dir = _to_path(osm_cache_dir_text) if str(osm_cache_dir_text).strip() else (artifacts_dir / "osm_cache").resolve()
+            cache_path = cache_dir / f"overpass_{_bbox_hash(aoi_bbox)}.json"
+            osm_cache_ok = cache_path.exists()
+            details["osm_cache_path"] = str(cache_path)
+            if not osm_cache_ok:
+                missing.append("osm_cache")
+
+    if model_dir is not None and not model_dir.exists():
+        missing.append("model_dir")
+        details["model_dir_error"] = "missing"
+
+    if profile == "mock":
+        recommended = "Prepare Workspace to seed assets and rebuild index."
+    elif not manifest_ok:
+        recommended = "Fix the real manifest path and rerun Prepare Workspace."
+    elif not latents_ok:
+        recommended = "Prepare Workspace to encode missing latents."
+    elif not index_ok:
+        recommended = "Prepare Workspace to build the FAISS index."
+    elif not osm_cache_ok:
+        recommended = "Prepare Workspace to prefetch OSM cache for the AOI."
+    else:
+        recommended = "Workspace is ready. Go to Generate Street."
+
+    return WorkspaceReadiness(
+        manifest_ok=bool(manifest_ok),
+        latents_ok=bool(latents_ok),
+        index_ok=bool(index_ok),
+        osm_cache_ok=bool(osm_cache_ok),
+        missing_items=tuple(sorted(set(missing))),
+        recommended_next_action=recommended,
+        details=details,
+    )
+
+
+def prepare_manifest_assets(
+    dataset_profile: str,
+    data_dir_text: str,
+    artifacts_dir_text: str,
+    real_manifest_text: str,
+    num_assets: int,
+    seed: int,
+    latent_dim: int,
+) -> StepResult:
+    profile = str(dataset_profile).strip().lower()
+    data_dir = _to_path(data_dir_text)
+    artifacts_dir = _to_path(artifacts_dir_text)
+    if profile == "mock":
+        rows = seed_assets(out_dir=data_dir, num_assets=int(num_assets), seed=int(seed), latent_dim=int(latent_dim))
+        return StepResult(
+            step="prepare_manifest_assets",
+            status="completed",
+            message=f"Seeded {len(rows)} mock assets.",
+            outputs={"assets_path": str((data_dir / 'assets.jsonl').resolve()), "asset_count": len(rows)},
+        )
+
+    manifest_path = _to_path(real_manifest_text)
+    rows = _load_real_manifest_rows(manifest_path)
+    assets_path = _write_assets_jsonl(rows, artifacts_dir / "real_assets_for_pipeline.jsonl")
+    return StepResult(
+        step="prepare_manifest_assets",
+        status="completed",
+        message=f"Normalized {len(rows)} real assets for pipeline indexing.",
+        outputs={"assets_path": str(assets_path), "asset_count": len(rows)},
+    )
+
+
+def prepare_latents_if_needed(
+    dataset_profile: str,
+    real_manifest_text: str,
+    real_mesh_root_text: str,
+    real_latents_dir_text: str,
+    shapee_model_dir_text: str,
+    render_cache_dir_text: str,
+    encode_mode: str,
+    device: str,
+    shapee_local_only: bool,
+    force_reencode: bool,
+) -> StepResult:
+    profile = str(dataset_profile).strip().lower()
+    if profile != "real":
+        return StepResult(step="prepare_latents_if_needed", status="skipped", message="Mock profile does not require latent encoding.")
+
+    manifest_path = _to_path(real_manifest_text)
+    rows = _load_real_manifest_rows(manifest_path)
+    all_exist = all(Path(row["latent_path"]).exists() for row in rows)
+    if all_exist and not bool(force_reencode):
+        return StepResult(
+            step="prepare_latents_if_needed",
+            status="skipped",
+            message="All latents already exist; skipped encoding.",
+            outputs={"manifest_path": str(manifest_path), "asset_count": len(rows)},
+        )
+
+    log = encode_real_latents(
+        dataset_profile=dataset_profile,
+        real_manifest_text=real_manifest_text,
+        real_mesh_root_text=real_mesh_root_text,
+        real_latents_dir_text=real_latents_dir_text,
+        shapee_model_dir_text=shapee_model_dir_text,
+        render_cache_dir_text=render_cache_dir_text,
+        encode_mode=encode_mode,
+        device=device,
+        shapee_local_only=shapee_local_only,
+        skip_existing=not bool(force_reencode),
+        no_placeholder_fallback=False,
+        no_mesh_reference_fallback=False,
+        verbose=False,
+    )
+    return StepResult(
+        step="prepare_latents_if_needed",
+        status="completed" if "failed" not in log.lower() else "error",
+        message=log,
+        outputs={"manifest_path": str(manifest_path)},
+    )
+
+
+def prepare_index_if_needed(
+    dataset_profile: str,
+    data_dir_text: str,
+    artifacts_dir_text: str,
+    real_manifest_text: str,
+    num_assets: int,
+    seed: int,
+    latent_dim: int,
+    model_name: str,
+    model_dir_text: str,
+    local_files_only: bool,
+    device: str,
+    force_reindex: bool,
+) -> StepResult:
+    artifacts_dir = _to_path(artifacts_dir_text)
+    index_ok = (artifacts_dir / "index_ip.faiss").exists() and (artifacts_dir / "id_map.json").exists()
+    if index_ok and not bool(force_reindex):
+        return StepResult(
+            step="prepare_index_if_needed",
+            status="skipped",
+            message="FAISS index already exists; skipped rebuild.",
+            outputs={"index_path": str((artifacts_dir / 'index_ip.faiss').resolve())},
+        )
+    log, preview = prepare_assets_and_index(
+        dataset_profile=dataset_profile,
+        data_dir_text=data_dir_text,
+        artifacts_dir_text=artifacts_dir_text,
+        real_manifest_text=real_manifest_text,
+        num_assets=num_assets,
+        seed=seed,
+        latent_dim=latent_dim,
+        model_name=model_name,
+        model_dir_text=model_dir_text,
+        local_files_only=local_files_only,
+        device=device,
+    )
+    return StepResult(
+        step="prepare_index_if_needed",
+        status="completed" if "failed" not in log.lower() and "error" not in log.lower() else "error",
+        message=log,
+        outputs={"preview_count": len(preview), "index_path": str((artifacts_dir / 'index_ip.faiss').resolve())},
+    )
+
+
+def prepare_osm_cache_if_needed(
+    layout_mode: str,
+    artifacts_dir_text: str,
+    osm_cache_dir_text: str,
+    force_osm_refresh: bool,
+    aoi_bbox: Tuple[float, float, float, float] | None,
+) -> StepResult:
+    if str(layout_mode).strip().lower() != "osm":
+        return StepResult(step="prepare_osm_cache_if_needed", status="skipped", message="Template mode does not require OSM cache.")
+    if aoi_bbox is None:
+        return StepResult(step="prepare_osm_cache_if_needed", status="skipped", message="OSM mode selected without AOI bbox.")
+    artifacts_dir = _to_path(artifacts_dir_text)
+    cache_dir = _to_path(osm_cache_dir_text) if str(osm_cache_dir_text).strip() else (artifacts_dir / "osm_cache").resolve()
+    fetch_osm_data(bbox=aoi_bbox, cache_dir=cache_dir, force_refetch=bool(force_osm_refresh))
+    return StepResult(
+        step="prepare_osm_cache_if_needed",
+        status="completed",
+        message=f"OSM cache ready for bbox={aoi_bbox}.",
+        outputs={"cache_dir": str(cache_dir), "bbox": list(aoi_bbox)},
+    )
+
+
+def prepare_workspace(
+    dataset_profile: str,
+    data_dir_text: str,
+    artifacts_dir_text: str,
+    real_manifest_text: str,
+    real_mesh_root_text: str,
+    real_latents_dir_text: str,
+    num_assets: int,
+    seed: int,
+    latent_dim: int,
+    model_name: str,
+    model_dir_text: str,
+    local_files_only: bool,
+    device: str,
+    shapee_model_dir_text: str,
+    render_cache_dir_text: str,
+    encode_mode: str,
+    shapee_local_only: bool,
+    layout_mode: str = "template",
+    osm_cache_dir_text: str = "",
+    force_reindex: bool = False,
+    force_reencode: bool = False,
+    force_osm_refresh: bool = False,
+    aoi_bbox: Tuple[float, float, float, float] | None = None,
+) -> PrepareWorkspaceResult:
+    steps: List[StepResult] = []
+    initial = inspect_workspace_readiness(
+        dataset_profile=dataset_profile,
+        data_dir_text=data_dir_text,
+        artifacts_dir_text=artifacts_dir_text,
+        real_manifest_text=real_manifest_text,
+        model_dir_text=model_dir_text,
+        real_latents_dir_text=real_latents_dir_text,
+        layout_mode=layout_mode,
+        aoi_bbox=aoi_bbox,
+        osm_cache_dir_text=osm_cache_dir_text,
+    )
+    steps.append(
+        StepResult(
+            step="inspect_workspace_readiness",
+            status="completed",
+            message=initial.recommended_next_action,
+            outputs=initial.to_dict(),
+        )
+    )
+    manifest_step = prepare_manifest_assets(
+        dataset_profile=dataset_profile,
+        data_dir_text=data_dir_text,
+        artifacts_dir_text=artifacts_dir_text,
+        real_manifest_text=real_manifest_text,
+        num_assets=num_assets,
+        seed=seed,
+        latent_dim=latent_dim,
+    )
+    steps.append(manifest_step)
+    latent_step = prepare_latents_if_needed(
+        dataset_profile=dataset_profile,
+        real_manifest_text=real_manifest_text,
+        real_mesh_root_text=real_mesh_root_text,
+        real_latents_dir_text=real_latents_dir_text,
+        shapee_model_dir_text=shapee_model_dir_text,
+        render_cache_dir_text=render_cache_dir_text,
+        encode_mode=encode_mode,
+        device=device,
+        shapee_local_only=shapee_local_only,
+        force_reencode=force_reencode,
+    )
+    steps.append(latent_step)
+    index_step = prepare_index_if_needed(
+        dataset_profile=dataset_profile,
+        data_dir_text=data_dir_text,
+        artifacts_dir_text=artifacts_dir_text,
+        real_manifest_text=real_manifest_text,
+        num_assets=num_assets,
+        seed=seed,
+        latent_dim=latent_dim,
+        model_name=model_name,
+        model_dir_text=model_dir_text,
+        local_files_only=local_files_only,
+        device=device,
+        force_reindex=force_reindex,
+    )
+    steps.append(index_step)
+    osm_step = prepare_osm_cache_if_needed(
+        layout_mode=layout_mode,
+        artifacts_dir_text=artifacts_dir_text,
+        osm_cache_dir_text=osm_cache_dir_text,
+        force_osm_refresh=force_osm_refresh,
+        aoi_bbox=aoi_bbox,
+    )
+    steps.append(osm_step)
+    final_readiness = inspect_workspace_readiness(
+        dataset_profile=dataset_profile,
+        data_dir_text=data_dir_text,
+        artifacts_dir_text=artifacts_dir_text,
+        real_manifest_text=real_manifest_text,
+        model_dir_text=model_dir_text,
+        real_latents_dir_text=real_latents_dir_text,
+        layout_mode=layout_mode,
+        aoi_bbox=aoi_bbox,
+        osm_cache_dir_text=osm_cache_dir_text,
+    )
+    summary = "\n".join(
+        [
+            "Prepare Workspace done.",
+            f"- manifest_ok: {final_readiness.manifest_ok}",
+            f"- latents_ok: {final_readiness.latents_ok}",
+            f"- index_ok: {final_readiness.index_ok}",
+            f"- osm_cache_ok: {final_readiness.osm_cache_ok}",
+            f"- recommended_next_action: {final_readiness.recommended_next_action}",
+        ]
+    )
+    return PrepareWorkspaceResult(summary=summary, readiness=final_readiness, steps=tuple(steps))
+
+
+def _readiness_cards(readiness: WorkspaceReadiness) -> List[List[str]]:
+    return [
+        ["manifest", "ok" if readiness.manifest_ok else "missing"],
+        ["latents", "ok" if readiness.latents_ok else "missing"],
+        ["index", "ok" if readiness.index_ok else "missing"],
+        ["osm_cache", "ok" if readiness.osm_cache_ok else "missing"],
+    ]
+
+
+def _steps_table(result: PrepareWorkspaceResult) -> List[List[str]]:
+    return [
+        [step.step, step.status, step.message]
+        for step in result.steps
+    ]
+
+
+def _extract_program_summary(layout_json_text: str) -> str:
+    if not layout_json_text.strip():
+        return "{}"
+    payload = json.loads(layout_json_text)
+    program = payload.get("street_program", {}) or {}
+    bands = program.get("bands", []) or []
+    summary = {
+        "road_type": program.get("road_type", ""),
+        "cross_section_type": program.get("cross_section_type", ""),
+        "lane_count": program.get("lane_count", 0),
+        "band_widths": {band.get("name", ""): band.get("width_m", 0.0) for band in bands},
+        "furniture_requirements": program.get("furniture_requirements", {}),
+        "design_goals": program.get("design_goals", []),
+    }
+    return json.dumps(summary, indent=2, ensure_ascii=True)
+
+
+def _extract_solver_summary(layout_json_text: str) -> str:
+    if not layout_json_text.strip():
+        return "{}"
+    payload = json.loads(layout_json_text)
+    summary = payload.get("summary", {}) or {}
+    solver = payload.get("solver", {}) or {}
+    result = {
+        "layout_solver_used": summary.get("layout_solver_used", ""),
+        "rule_satisfaction_rate": summary.get("rule_satisfaction_rate", 0.0),
+        "topology_validity": summary.get("topology_validity", 0.0),
+        "cross_section_feasibility": summary.get("cross_section_feasibility", 0.0),
+        "editability": summary.get("editability", 0.0),
+        "conflict_explainability": summary.get("conflict_explainability", 0.0),
+        "fallback_reason": summary.get("solver_fallback_reason", ""),
+        "edits": solver.get("edits", []),
+        "conflicts": solver.get("conflicts", []),
+    }
+    return json.dumps(result, indent=2, ensure_ascii=True)
+
+
+def run_prepare_workspace(
+    dataset_profile: str,
+    data_dir_text: str,
+    artifacts_dir_text: str,
+    real_manifest_text: str,
+    real_mesh_root_text: str,
+    real_latents_dir_text: str,
+    num_assets: int,
+    seed: int,
+    latent_dim: int,
+    model_name: str,
+    model_dir_text: str,
+    local_files_only: bool,
+    device: str,
+    shapee_model_dir_text: str,
+    render_cache_dir_text: str,
+    encode_mode: str,
+    shapee_local_only: bool,
+    layout_mode: str,
+    osm_cache_dir_text: str,
+    force_reindex: bool,
+    force_reencode: bool,
+    force_osm_refresh: bool,
+    m5_bbox_min_lon: float,
+    m5_bbox_min_lat: float,
+    m5_bbox_max_lon: float,
+    m5_bbox_max_lat: float,
+) -> Tuple[str, str, List[List[str]], List[List[str]]]:
+    try:
+        bbox = None
+        if str(layout_mode).strip().lower() == "osm":
+            bbox = (
+                float(m5_bbox_min_lon),
+                float(m5_bbox_min_lat),
+                float(m5_bbox_max_lon),
+                float(m5_bbox_max_lat),
+            )
+        result = prepare_workspace(
+            dataset_profile=dataset_profile,
+            data_dir_text=data_dir_text,
+            artifacts_dir_text=artifacts_dir_text,
+            real_manifest_text=real_manifest_text,
+            real_mesh_root_text=real_mesh_root_text,
+            real_latents_dir_text=real_latents_dir_text,
+            num_assets=int(num_assets),
+            seed=int(seed),
+            latent_dim=int(latent_dim),
+            model_name=model_name,
+            model_dir_text=model_dir_text,
+            local_files_only=local_files_only,
+            device=device,
+            shapee_model_dir_text=shapee_model_dir_text,
+            render_cache_dir_text=render_cache_dir_text,
+            encode_mode=encode_mode,
+            shapee_local_only=shapee_local_only,
+            layout_mode=layout_mode,
+            osm_cache_dir_text=osm_cache_dir_text,
+            force_reindex=force_reindex,
+            force_reencode=force_reencode,
+            force_osm_refresh=force_osm_refresh,
+            aoi_bbox=bbox,
+        )
+        return (
+            result.summary,
+            json.dumps(result.readiness.to_dict(), indent=2, ensure_ascii=True),
+            _readiness_cards(result.readiness),
+            _steps_table(result),
+        )
+    except Exception as exc:
+        detail = traceback.format_exc(limit=3)
+        return f"Prepare workspace failed: {exc}\n{detail}", "{}", [], []
 
 
 def prepare_assets_and_index(
@@ -459,6 +951,15 @@ def run_street_compose(
     m5_bbox_min_lat: float = 0.0,
     m5_bbox_max_lon: float = 0.0,
     m5_bbox_max_lat: float = 0.0,
+    design_rule_profile: str = "balanced_complete_street_v1",
+    program_generator: str = "heuristic_v1",
+    layout_solver: str = "banded",
+    program_ckpt_text: str = "",
+    osm_cache_dir_text: str = "",
+    city_context: str = "generic_city",
+    target_street_type: str = "mixed_use",
+    allow_solver_fallback: bool = True,
+    segment_length_m: float = 12.0,
 ) -> Tuple[str, List[List[str]], str, str | None, List[str]]:
     try:
         profile = dataset_profile.strip().lower()
@@ -486,8 +987,16 @@ def run_street_compose(
             layout_mode=str(m5_layout_mode).strip(),
             constraint_mode=str(m5_constraint_mode).strip(),
             aoi_bbox=(float(m5_bbox_min_lon), float(m5_bbox_min_lat), float(m5_bbox_max_lon), float(m5_bbox_max_lat)) if str(m5_layout_mode).strip() == "osm" else None,
+            osm_cache_dir=str(osm_cache_dir_text).strip() or "artifacts/m5/osm_cache",
             constraint_weight=float(m5_constraint_weight),
             constraint_veto_threshold=float(m5_constraint_veto),
+            design_rule_profile=str(design_rule_profile).strip(),
+            city_context=str(city_context).strip(),
+            target_street_type=str(target_street_type).strip(),
+            program_generator=str(program_generator).strip(),
+            layout_solver=str(layout_solver).strip(),
+            allow_solver_fallback=bool(allow_solver_fallback),
+            segment_length_m=float(segment_length_m),
         )
         result = compose_street_scene(
             config=config,
@@ -501,11 +1010,14 @@ def run_street_compose(
             out_dir=artifacts_dir,
             placement_policy=street_placement_policy,
             policy_ckpt=_to_path(policy_ckpt_text) if policy_ckpt_text.strip() else None,
+            program_ckpt=_to_path(program_ckpt_text) if program_ckpt_text.strip() else None,
             policy_temperature=float(policy_temperature),
         )
 
         layout_path = Path(result.outputs["scene_layout"])
         layout_json_text = layout_path.read_text(encoding="utf-8")
+        layout_payload = json.loads(layout_json_text)
+        layout_summary = layout_payload.get("summary", {})
         instance_rows = [
             [
                 placement.instance_id,
@@ -525,10 +1037,17 @@ def run_street_compose(
             f"- instance_count: {result.instance_count}\n"
             f"- dropped_slots: {result.dropped_slots}\n"
             f"- policy_used: {result.outputs.get('policy_used', street_placement_policy)}\n"
+            f"- program_generator_used: {result.outputs.get('program_generator_used', program_generator)}\n"
+            f"- layout_solver_used: {result.outputs.get('layout_solver_used', layout_solver)}\n"
+            f"- cross_section_type: {layout_summary.get('cross_section_type', '')}\n"
             f"- scene_layout: {result.outputs.get('scene_layout', '')}"
         )
         if result.outputs.get("policy_fallback_reason"):
             summary += f"\n- policy_fallback_reason: {result.outputs['policy_fallback_reason']}"
+        if result.outputs.get("program_fallback_reason"):
+            summary += f"\n- program_fallback_reason: {result.outputs['program_fallback_reason']}"
+        if result.outputs.get("solver_fallback_reason"):
+            summary += f"\n- solver_fallback_reason: {result.outputs['solver_fallback_reason']}"
         model_path = result.outputs.get("scene_glb") or None
         files: List[str] = []
         if result.outputs.get("scene_glb"):
@@ -573,7 +1092,19 @@ def run_best_model_street(
     m5_bbox_min_lat: float = 0.0,
     m5_bbox_max_lon: float = 0.0,
     m5_bbox_max_lat: float = 0.0,
+    design_rule_profile: str = "balanced_complete_street_v1",
+    program_generator: str = "heuristic_v1",
+    layout_solver: str = "banded",
+    program_ckpt_text: str = "",
+    osm_cache_dir_text: str = "",
+    city_context: str = "generic_city",
+    target_street_type: str = "mixed_use",
+    allow_solver_fallback: bool = True,
+    segment_length_m: float = 12.0,
+    research_target: str = "layout_policy",
 ) -> Tuple[str, List[List[str]], str, str | None, List[str], str, str, str | None, List[str]]:
+    if str(research_target).strip().lower() == "program_generator":
+        program_generator = "learned_v1"
     summary, rows, layout_json, model_path, files = run_street_compose(
         dataset_profile=dataset_profile,
         query=query,
@@ -603,10 +1134,20 @@ def run_best_model_street(
         m5_bbox_min_lat=m5_bbox_min_lat,
         m5_bbox_max_lon=m5_bbox_max_lon,
         m5_bbox_max_lat=m5_bbox_max_lat,
+        design_rule_profile=design_rule_profile,
+        program_generator=program_generator,
+        layout_solver=layout_solver,
+        program_ckpt_text=program_ckpt_text,
+        osm_cache_dir_text=osm_cache_dir_text,
+        city_context=city_context,
+        target_street_type=target_street_type,
+        allow_solver_fallback=allow_solver_fallback,
+        segment_length_m=segment_length_m,
     )
     best_log = (
         "Best model run done.\n"
         f"- policy_mode: learned\n"
+        f"- program_generator: {program_generator}\n"
         f"- policy_ckpt: {policy_ckpt_text}\n"
         f"{summary}"
     )
@@ -939,6 +1480,273 @@ def run_m4_train_policy(
         yield _snapshot()
 
 
+def run_m6_train_program(
+    dataset_profile: str,
+    real_manifest_text: str,
+    m6_artifacts_dir_text: str,
+    m4_queries_text: str,
+    device: str,
+    street_length_m: float,
+    street_road_width_m: float,
+    street_sidewalk_width_m: float,
+    street_lane_count: int,
+    street_density: float,
+    street_topk_per_category: int,
+    street_max_trials_per_slot: int,
+    design_rule_profile: str,
+    layout_mode: str,
+    m5_bbox_min_lon: float,
+    m5_bbox_min_lat: float,
+    m5_bbox_max_lon: float,
+    m5_bbox_max_lat: float,
+    program_train_epochs: int,
+    program_train_batch_size: int,
+    program_train_lr: float,
+    program_train_weight_decay: float,
+    program_train_patience: int,
+    program_ckpt_text: str,
+    policy_ckpt_text: str = "",
+) -> Iterator[Tuple[str, str, str, str, str, float, Any]]:
+    started_at = datetime.now()
+    profile = dataset_profile.strip().lower()
+    if profile != "real":
+        yield "Program training requires dataset_profile='real'.", "{}", "{}", policy_ckpt_text, program_ckpt_text, 0.0, None
+        return
+
+    def _curve_plot(curve: List[Dict[str, float]]) -> Any:
+        try:
+            import plotly.graph_objects as go
+        except Exception:
+            return None
+        fig = go.Figure()
+        if curve:
+            fig.add_trace(go.Scatter(x=[c["epoch"] for c in curve], y=[c["train_loss"] for c in curve], mode="lines+markers", name="train_loss"))
+            fig.add_trace(go.Scatter(x=[c["epoch"] for c in curve], y=[c["val_loss"] for c in curve], mode="lines+markers", name="val_loss"))
+        fig.update_layout(template="plotly_white", height=320, margin={"l": 36, "r": 16, "t": 32, "b": 36})
+        return fig
+
+    log_lines = [
+        "M6 program training started...",
+        f"- started_at: {started_at.strftime('%Y-%m-%d %H:%M:%S')}",
+    ]
+    train_json = "{}"
+    eval_json = "{}"
+    policy_ckpt_out = policy_ckpt_text
+    program_ckpt_out = program_ckpt_text
+    progress_percent = 0.0
+    curve: List[Dict[str, float]] = []
+
+    def _snapshot() -> Tuple[str, str, str, str, str, float, Any]:
+        return (
+            "\n".join(log_lines),
+            train_json,
+            eval_json,
+            policy_ckpt_out,
+            program_ckpt_out,
+            float(progress_percent),
+            _curve_plot(curve),
+        )
+
+    yield _snapshot()
+    try:
+        m6_artifacts_dir = _to_path(m6_artifacts_dir_text)
+        queries_path = _to_path(m4_queries_text) if m4_queries_text.strip() else (ROOT / "data/eval/queries_m4.txt")
+        program_ckpt = _to_path(program_ckpt_text) if program_ckpt_text.strip() else (m6_artifacts_dir / "program_generator.pt")
+        bbox = None
+        if str(layout_mode).strip().lower() == "osm":
+            bbox = (float(m5_bbox_min_lon), float(m5_bbox_min_lat), float(m5_bbox_max_lon), float(m5_bbox_max_lat))
+        collect_args = argparse.Namespace(
+            manifest=_to_path(real_manifest_text),
+            out=m6_artifacts_dir / "program_train.jsonl",
+            queries=queries_path,
+            layout_modes=[str(layout_mode).strip().lower()],
+            constraint_profiles=[
+                "balanced_complete_street_v1",
+                "pedestrian_priority_v1",
+                "transit_priority_v1",
+            ],
+            seed_start=0,
+            seed_end=19,
+            length_m=float(street_length_m),
+            road_width_m=float(street_road_width_m),
+            sidewalk_width_m=float(street_sidewalk_width_m),
+            lane_count=int(street_lane_count),
+            density=float(street_density),
+            topk_per_category=int(street_topk_per_category),
+            max_trials_per_slot=int(street_max_trials_per_slot),
+            layout_solver="milp_template_v1",
+            osm_bboxes_jsonl=None,
+            osm_cache_dir=_to_path(str((ROOT / "artifacts/m5/osm_cache").resolve())),
+        )
+        if bbox is not None:
+            bbox_file = m6_artifacts_dir / "bbox.jsonl"
+            bbox_file.parent.mkdir(parents=True, exist_ok=True)
+            bbox_file.write_text(json.dumps({"bbox": list(bbox)}, ensure_ascii=True) + "\n", encoding="utf-8")
+            collect_args.osm_bboxes_jsonl = bbox_file
+        rows = collect_program_data(collect_args)
+        log_lines.append(f"- [phase:distill] collected_rows: {len(rows)}")
+        progress_percent = 35.0
+        train_summary = train_program_from_jsonl(
+            data_path=m6_artifacts_dir / "program_train.jsonl",
+            out_dir=m6_artifacts_dir,
+            config=ProgramTrainConfig(
+                epochs=int(program_train_epochs),
+                batch_size=int(program_train_batch_size),
+                lr=float(program_train_lr),
+                weight_decay=float(program_train_weight_decay),
+                patience=int(program_train_patience),
+                device=device,
+            ),
+            resume_ckpt=program_ckpt if program_ckpt.exists() else None,
+            progress_callback=lambda payload: curve.append(
+                {
+                    "epoch": float(payload.get("epoch", 0.0)),
+                    "train_loss": float(payload.get("train_loss", 0.0)),
+                    "val_loss": float(payload.get("val_loss", 0.0)),
+                }
+            ),
+        )
+        train_json = json.dumps(train_summary, indent=2, ensure_ascii=True)
+        eval_json = json.dumps(
+            {
+                "status": "trained",
+                "best_val_loss": train_summary.get("best_val_loss", 0.0),
+                "split": train_summary.get("split", {}),
+            },
+            indent=2,
+            ensure_ascii=True,
+        )
+        program_ckpt_out = str(train_summary["outputs"]["checkpoint"])
+        progress_percent = 100.0
+        log_lines.append(f"- checkpoint: {program_ckpt_out}")
+        yield _snapshot()
+    except Exception as exc:
+        detail = traceback.format_exc(limit=4)
+        log_lines.append(f"M6 train failed.\n- error: {exc}\n{detail}")
+        progress_percent = 100.0
+        yield _snapshot()
+
+
+def run_research_train(
+    research_target: str,
+    dataset_profile: str,
+    real_manifest_text: str,
+    artifacts_dir_text: str,
+    m4_artifacts_dir_text: str,
+    m6_artifacts_dir_text: str,
+    m4_queries_text: str,
+    model_name: str,
+    model_dir_text: str,
+    local_files_only: bool,
+    device: str,
+    street_length_m: float,
+    street_road_width_m: float,
+    street_sidewalk_width_m: float,
+    street_lane_count: int,
+    street_density: float,
+    street_topk_per_category: int,
+    street_max_trials_per_slot: int,
+    design_rule_profile: str,
+    layout_mode: str,
+    m5_bbox_min_lon: float,
+    m5_bbox_min_lat: float,
+    m5_bbox_max_lon: float,
+    m5_bbox_max_lat: float,
+    m4_collect_seed_start: int,
+    m4_collect_seed_end: int,
+    m4_recollect_data: bool,
+    m4_resume_training: bool,
+    m4_train_epochs: int,
+    m4_train_batch_size: int,
+    m4_train_lr: float,
+    m4_train_weight_decay: float,
+    m4_train_entropy_weight: float,
+    m4_train_patience: int,
+    m4_run_eval_after_train: bool,
+    m4_eval_seed_start: int,
+    m4_eval_seed_end: int,
+    export_format: str,
+    policy_temperature: float,
+    policy_ckpt_text: str,
+    program_train_epochs: int,
+    program_train_batch_size: int,
+    program_train_lr: float,
+    program_train_weight_decay: float,
+    program_train_patience: int,
+    program_ckpt_text: str,
+) -> Iterator[Tuple[str, str, str, str, str, float, Any]]:
+    if str(research_target).strip().lower() == "program_generator":
+        yield from run_m6_train_program(
+            dataset_profile=dataset_profile,
+            real_manifest_text=real_manifest_text,
+            m6_artifacts_dir_text=m6_artifacts_dir_text,
+            m4_queries_text=m4_queries_text,
+            device=device,
+            street_length_m=street_length_m,
+            street_road_width_m=street_road_width_m,
+            street_sidewalk_width_m=street_sidewalk_width_m,
+            street_lane_count=street_lane_count,
+            street_density=street_density,
+            street_topk_per_category=street_topk_per_category,
+            street_max_trials_per_slot=street_max_trials_per_slot,
+            design_rule_profile=design_rule_profile,
+            layout_mode=layout_mode,
+            m5_bbox_min_lon=m5_bbox_min_lon,
+            m5_bbox_min_lat=m5_bbox_min_lat,
+            m5_bbox_max_lon=m5_bbox_max_lon,
+            m5_bbox_max_lat=m5_bbox_max_lat,
+            program_train_epochs=program_train_epochs,
+            program_train_batch_size=program_train_batch_size,
+            program_train_lr=program_train_lr,
+            program_train_weight_decay=program_train_weight_decay,
+            program_train_patience=program_train_patience,
+            program_ckpt_text=program_ckpt_text,
+            policy_ckpt_text=policy_ckpt_text,
+        )
+        return
+
+    generator = run_m4_train_policy(
+        dataset_profile=dataset_profile,
+        real_manifest_text=real_manifest_text,
+        artifacts_dir_text=artifacts_dir_text,
+        m4_artifacts_dir_text=m4_artifacts_dir_text,
+        m4_queries_text=m4_queries_text,
+        model_name=model_name,
+        model_dir_text=model_dir_text,
+        local_files_only=local_files_only,
+        device=device,
+        street_length_m=street_length_m,
+        street_road_width_m=street_road_width_m,
+        street_sidewalk_width_m=street_sidewalk_width_m,
+        street_lane_count=street_lane_count,
+        street_density=street_density,
+        street_topk_per_category=street_topk_per_category,
+        street_max_trials_per_slot=street_max_trials_per_slot,
+        m4_collect_seed_start=m4_collect_seed_start,
+        m4_collect_seed_end=m4_collect_seed_end,
+        m4_recollect_data=m4_recollect_data,
+        m4_resume_training=m4_resume_training,
+        m4_train_epochs=m4_train_epochs,
+        m4_train_batch_size=m4_train_batch_size,
+        m4_train_lr=m4_train_lr,
+        m4_train_weight_decay=m4_train_weight_decay,
+        m4_train_entropy_weight=m4_train_entropy_weight,
+        m4_train_patience=m4_train_patience,
+        m4_run_eval_after_train=m4_run_eval_after_train,
+        m4_eval_seed_start=m4_eval_seed_start,
+        m4_eval_seed_end=m4_eval_seed_end,
+        export_format=export_format,
+        policy_temperature=policy_temperature,
+        policy_ckpt_text=policy_ckpt_text,
+    )
+    for log_text, train_json, eval_json, policy_ckpt_value, progress, plot in generator:
+        yield log_text, train_json, eval_json, policy_ckpt_value, program_ckpt_text, progress, plot
+
+
+def _toggle_osm_visibility(layout_mode: str) -> Dict[str, Any]:
+    return gr.update(visible=str(layout_mode).strip().lower() == "osm")
+
+
 def build_demo() -> gr.Blocks:
     default_data = str((ROOT / "data/m1").resolve())
     default_artifacts = str((ROOT / "artifacts/real").resolve())
@@ -949,37 +1757,53 @@ def build_demo() -> gr.Blocks:
     default_real_latents_dir = str((ROOT / "data/real/latents").resolve())
     default_render_cache_dir = str((ROOT / "artifacts/real/shapee_render_cache").resolve())
     default_m4_artifacts_dir = str((ROOT / "artifacts/m4").resolve())
+    default_m6_artifacts_dir = str((ROOT / "artifacts/m6").resolve())
     default_m4_queries = str((ROOT / "data/eval/queries_m4.txt").resolve())
     default_policy_ckpt = str((ROOT / "artifacts/m4/layout_policy.pt").resolve())
+    default_program_ckpt = str((ROOT / "artifacts/m6/program_generator.pt").resolve())
+    default_osm_cache_dir = str((ROOT / "artifacts/m5/osm_cache").resolve())
 
-    with gr.Blocks(title="RoadGen3D M5 Gradio") as demo:
-        gr.Markdown("# RoadGen3D M5 UI")
+    with gr.Blocks(title="RoadGen3D StreetGen") as demo:
+        gr.Markdown("# RoadGen3D 神经符号街道生成")
+        gr.Markdown("默认工作流：`准备 -> 生成 -> 研究`")
 
         with gr.Tabs():
-            # ── Tab A: 准备与索引 ──
-            with gr.Tab("A: 准备与索引"):
-                gr.Markdown(
-                    """
-                    **为什么先准备索引与 latent（RAG 入口）**
-                    - 输入：`real_assets_manifest.jsonl`（含 asset_id / text_desc / latent_path）+ CLIP 模型
-                    - 输出：`index_ip.faiss` / `id_map.json` / `real_assets_for_pipeline.jsonl`
-                    - 步骤 1 生成 CLIP embedding 并构建 FAISS inner-product 索引；步骤 2 为每个 mesh 编码 Shape-E latent
-                    - 后续步骤 3/4/5/6 均依赖此索引与 latent，若数据变动需重新执行
-                    """
-                )
+            with gr.Tab("1) 准备"):
+                gr.Markdown("一键准备工作区：校验 manifest、补齐 latent、构建索引，并在需要时预热 OSM cache。")
                 with gr.Row():
-                    prepare_btn = gr.Button("1) Prepare Assets + Index", variant="primary")
-                    encode_btn = gr.Button("2) Prepare Real Latents", variant="primary")
-                with gr.Row():
-                    dataset_profile = gr.Dropdown(label="Dataset Profile", choices=["mock", "real"], value="real")
-                    model_name = gr.Textbox(label="Model Name", value="openai/clip-vit-base-patch32")
+                    dataset_profile = gr.Dropdown(label="数据源", choices=["real", "mock"], value="real")
+                    model_name = gr.Textbox(label="CLIP Model", value="openai/clip-vit-base-patch32")
                     local_files_only = gr.Checkbox(label="Local Files Only", value=True)
                     device = gr.Dropdown(label="Device", choices=["cpu", "mps", "cuda"], value="cpu")
                 with gr.Row():
-                    real_manifest = gr.Textbox(label="Real Manifest Path", value=default_real_manifest)
+                    real_manifest = gr.Textbox(label="Manifest", value=default_real_manifest)
                     artifacts_dir = gr.Textbox(label="Artifacts Dir", value=default_artifacts)
-                    model_dir = gr.Textbox(label="CLIP Model Dir", value=default_model_dir)
-                with gr.Accordion("Encode Parameters", open=False):
+                    model_dir = gr.Textbox(label="Model Dir", value=default_model_dir)
+                prepare_workspace_btn = gr.Button("Prepare Workspace", variant="primary")
+                with gr.Row():
+                    prepare_summary = gr.Textbox(label="Workspace Readiness Summary", lines=7)
+                    readiness_cards = gr.Dataframe(
+                        headers=["item", "status"],
+                        datatype=["str", "str"],
+                        row_count=(0, "dynamic"),
+                        col_count=(2, "fixed"),
+                        label="Readiness Cards",
+                    )
+                with gr.Row():
+                    readiness_json = gr.Code(label="Readiness JSON", language="json")
+                    prepare_steps = gr.Dataframe(
+                        headers=["step", "status", "message"],
+                        datatype=["str", "str", "str"],
+                        row_count=(0, "dynamic"),
+                        col_count=(3, "fixed"),
+                        label="Prepare Steps",
+                    )
+                with gr.Accordion("Advanced", open=False):
+                    with gr.Row():
+                        data_dir = gr.Textbox(label="Mock Data Dir", value=default_data)
+                        num_assets = gr.Slider(label="Mock Num Assets", minimum=1, maximum=256, step=1, value=8)
+                        seed = gr.Number(label="Seed", value=42, precision=0)
+                        latent_dim = gr.Number(label="Latent Dim", value=256, precision=0)
                     with gr.Row():
                         encode_mode = gr.Dropdown(label="Encode Mode", choices=["mesh_ref", "auto", "shapee"], value="mesh_ref")
                         shapee_model_dir = gr.Textbox(label="Shape-E Model Dir", value=default_shapee_model_dir)
@@ -987,198 +1811,174 @@ def build_demo() -> gr.Blocks:
                     with gr.Row():
                         real_mesh_root = gr.Textbox(label="Real Mesh Root", value=default_real_mesh_root)
                         real_latents_dir = gr.Textbox(label="Real Latents Dir", value=default_real_latents_dir)
-                        render_cache_dir = gr.Textbox(label="Shape-E Render Cache Dir", value=default_render_cache_dir)
+                        render_cache_dir = gr.Textbox(label="Render Cache Dir", value=default_render_cache_dir)
                     with gr.Row():
-                        encode_skip_existing = gr.Checkbox(label="Encode: Skip Existing", value=False)
-                        encode_no_placeholder_fallback = gr.Checkbox(label="Encode: No Placeholder Fallback", value=True)
-                        encode_no_mesh_reference_fallback = gr.Checkbox(label="Encode: No Mesh-Reference Fallback", value=False)
-                        encode_verbose = gr.Checkbox(label="Encode: Verbose", value=False)
-                with gr.Accordion("Mock Dataset Parameters (dataset_profile=mock)", open=False):
-                    with gr.Row():
-                        data_dir = gr.Textbox(label="Data Dir (mock)", value=default_data)
-                        num_assets = gr.Slider(label="Num Assets (mock)", minimum=1, maximum=256, step=1, value=8)
-                    with gr.Row():
-                        seed = gr.Number(label="Seed", value=42, precision=0)
-                        latent_dim = gr.Number(label="Latent Dim", value=256, precision=0)
-                prepare_log = gr.Textbox(label="Prepare Log", lines=8)
-                encode_log = gr.Textbox(label="Encode Log", lines=8)
-                assets_preview = gr.Dataframe(
-                    headers=["asset_id", "description", "latent_path"],
-                    datatype=["str", "str", "str"],
-                    row_count=(0, "dynamic"),
-                    col_count=(3, "fixed"),
-                    label="Assets Preview",
-                )
+                        prepare_layout_mode = gr.Dropdown(label="Prepare Layout Mode", choices=["template", "osm"], value="template")
+                        osm_cache_dir = gr.Textbox(label="OSM Cache Dir", value=default_osm_cache_dir)
+                        force_reindex = gr.Checkbox(label="Force Reindex", value=False)
+                        force_reencode = gr.Checkbox(label="Force Reencode", value=False)
+                        force_osm_refresh = gr.Checkbox(label="Force OSM Refresh", value=False)
+                    with gr.Row(visible=False) as prepare_bbox_row:
+                        prepare_bbox_min_lon = gr.Number(label="AOI Min Lon", value=0.0)
+                        prepare_bbox_min_lat = gr.Number(label="AOI Min Lat", value=0.0)
+                        prepare_bbox_max_lon = gr.Number(label="AOI Max Lon", value=0.0)
+                        prepare_bbox_max_lat = gr.Number(label="AOI Max Lat", value=0.0)
 
-            # ── Tab B: 推理与街道 ──
-            with gr.Tab("B: 推理与街道"):
-                gr.Markdown(
-                    """
-                    **单资产链路：text → retrieve → latent/mesh_ref → voxel → mesh**
-                    - 步骤 3 根据 query 在 FAISS 索引中检索 top-k 资产，通过 Shape-E decoder 生成 voxel 并导出 GLB/PLY
-                    - 步骤 4 街道链路：多类别资产检索 + AABB 碰撞编排 + 完整街道场景导出
-                    - voxel 路径用于诊断；街道主路径直接组合 mesh reference，无需 voxel 中间步骤
-                    - 可选 learned policy（来自 Tab C 训练）或 rule-based 启发式策略
-                    """
-                )
+            with gr.Tab("2) 生成街道"):
+                gr.Markdown("默认入口：先生成 `StreetProgram`，再做约束求解与资产实现。")
+                query = gr.Textbox(label="Query", value="pedestrian-friendly boulevard with transit access")
                 with gr.Row():
-                    run_btn = gr.Button("3) Run Query Pipeline", variant="primary")
-                    street_btn = gr.Button("4) Run Street Compose", variant="primary")
+                    m5_layout_mode = gr.Dropdown(label="Layout Mode", choices=["template", "osm"], value="template")
+                    design_rule_profile = gr.Dropdown(
+                        label="Design Rule Profile",
+                        choices=["balanced_complete_street_v1", "pedestrian_priority_v1", "transit_priority_v1"],
+                        value="balanced_complete_street_v1",
+                    )
+                    program_generator = gr.Dropdown(
+                        label="Program Generator",
+                        choices=["learned_v1", "heuristic_v1"],
+                        value="learned_v1",
+                    )
+                    layout_solver = gr.Dropdown(
+                        label="Layout Solver",
+                        choices=["milp_template_v1", "banded"],
+                        value="milp_template_v1",
+                    )
+                    street_placement_policy = gr.Dropdown(
+                        label="Policy",
+                        choices=["rule", "learned"],
+                        value="learned",
+                    )
+                with gr.Row(visible=False) as street_bbox_row:
+                    m5_bbox_min_lon = gr.Number(label="AOI Min Lon", value=0.0)
+                    m5_bbox_min_lat = gr.Number(label="AOI Min Lat", value=0.0)
+                    m5_bbox_max_lon = gr.Number(label="AOI Max Lon", value=0.0)
+                    m5_bbox_max_lat = gr.Number(label="AOI Max Lat", value=0.0)
+                street_btn = gr.Button("Run Street", variant="primary")
                 with gr.Row():
-                    query = gr.Textbox(label="Query", value="a wooden park bench")
-                    topk = gr.Slider(label="Top K", minimum=1, maximum=10, step=1, value=1)
-                    decoder_choice = gr.Dropdown(label="Decoder", choices=["placeholder", "shapee"], value="shapee")
-                    shapee_strict = gr.Checkbox(label="Shape-E Strict (no fallback)", value=True)
-                with gr.Accordion("Voxel & Export", open=False):
-                    with gr.Row():
-                        resolution = gr.Slider(label="Resolution", minimum=16, maximum=128, step=16, value=64)
-                        threshold = gr.Slider(label="Threshold", minimum=0.05, maximum=0.95, step=0.05, value=0.5)
-                        voxel_size = gr.Number(label="Voxel Size", value=0.1)
-                    with gr.Row():
-                        export_method = gr.Dropdown(label="Export Method", choices=["marching_cubes", "cubes"], value="marching_cubes")
-                        export_format = gr.Dropdown(label="Export Format", choices=["both", "glb", "ply"], value="both")
-                with gr.Accordion("Street Parameters", open=False):
+                    street_model_view = gr.Model3D(label="Street Preview (GLB)")
+                    street_summary = gr.Textbox(label="Scene Summary", lines=10)
+                with gr.Row():
+                    street_program_summary = gr.Code(label="StreetProgram Summary", language="json")
+                    street_solver_summary = gr.Code(label="Solver Edits / Conflicts", language="json")
+                with gr.Accordion("Advanced", open=False):
                     with gr.Row():
                         street_length_m = gr.Number(label="Street Length (m)", value=80.0)
                         street_road_width_m = gr.Number(label="Road Width (m)", value=8.0)
                         street_sidewalk_width_m = gr.Number(label="Sidewalk Width (m)", value=2.5)
                         street_lane_count = gr.Slider(label="Lane Count", minimum=1, maximum=4, step=1, value=2)
+                        street_density = gr.Slider(label="Density", minimum=0.2, maximum=2.0, step=0.1, value=1.0)
                     with gr.Row():
-                        street_density = gr.Slider(label="Street Density", minimum=0.2, maximum=2.0, step=0.1, value=1.0)
-                        street_seed = gr.Number(label="Street Seed", value=42, precision=0)
+                        street_seed = gr.Number(label="Seed", value=42, precision=0)
                         street_topk_per_category = gr.Slider(label="TopK Per Category", minimum=1, maximum=50, step=1, value=20)
                         street_max_trials_per_slot = gr.Slider(label="Max Trials Per Slot", minimum=1, maximum=100, step=1, value=30)
+                        segment_length_m = gr.Number(label="Segment Length (m)", value=12.0)
+                        allow_solver_fallback = gr.Checkbox(label="Allow Solver Fallback", value=True)
                     with gr.Row():
-                        street_placement_policy = gr.Dropdown(label="Street Placement Policy", choices=["rule", "learned"], value="learned")
-                        policy_ckpt = gr.Textbox(label="Policy CKPT Path", value=default_policy_ckpt)
+                        export_format = gr.Dropdown(label="Export Format", choices=["both", "glb", "ply"], value="both")
+                        policy_ckpt = gr.Textbox(label="Policy CKPT", value=default_policy_ckpt)
+                        program_ckpt = gr.Textbox(label="Program CKPT", value=default_program_ckpt)
                         policy_temperature = gr.Number(label="Policy Temperature", value=0.12)
-                gr.Markdown("#### Single Asset Results")
-                run_summary = gr.Textbox(label="Run Summary", lines=9)
-                hits_table = gr.Dataframe(
-                    headers=["asset_id", "score"],
-                    datatype=["str", "str"],
-                    row_count=(0, "dynamic"),
-                    col_count=(2, "fixed"),
-                    label="Top-K Retrieval Hits",
-                )
-                result_json = gr.Code(label="Pipeline Result JSON", language="json")
-                model_view = gr.Model3D(label="3D Preview (GLB)")
-                mesh_files = gr.Files(label="Mesh Downloads (GLB/PLY)")
-                gr.Markdown("#### Street Compose Results")
-                street_summary = gr.Textbox(label="Street Compose Summary", lines=8)
-                street_instances = gr.Dataframe(
-                    headers=["instance_id", "asset_id", "category", "score", "x", "z", "yaw_deg", "source"],
-                    datatype=["str", "str", "str", "str", "str", "str", "str", "str"],
-                    row_count=(0, "dynamic"),
-                    col_count=(8, "fixed"),
-                    label="Street Instances",
-                )
-                street_layout_json = gr.Code(label="Street Layout JSON", language="json")
-                street_model_view = gr.Model3D(label="Street Scene Preview (GLB)")
-                street_files = gr.Files(label="Street Scene Downloads")
+                    with gr.Row():
+                        m5_constraint_mode = gr.Dropdown(label="Constraint Mode", choices=["off", "soft"], value="soft")
+                        m5_constraint_weight = gr.Slider(label="Constraint Weight", minimum=0.0, maximum=1.0, step=0.05, value=0.45)
+                        m5_constraint_veto = gr.Slider(label="Veto Threshold", minimum=0.0, maximum=1.0, step=0.05, value=0.95)
+                        street_osm_cache_dir = gr.Textbox(label="OSM Cache Dir", value=default_osm_cache_dir)
+                    with gr.Row():
+                        city_context = gr.Textbox(label="City Context", value="generic_city")
+                        target_street_type = gr.Textbox(label="Target Street Type", value="mixed_use")
+                with gr.Accordion("Scene Details", open=False):
+                    street_instances = gr.Dataframe(
+                        headers=["instance_id", "asset_id", "category", "score", "x", "z", "yaw_deg", "source"],
+                        datatype=["str", "str", "str", "str", "str", "str", "str", "str"],
+                        row_count=(0, "dynamic"),
+                        col_count=(8, "fixed"),
+                        label="Street Instances",
+                    )
+                    street_layout_json = gr.Code(label="Street Layout JSON", language="json")
+                    street_files = gr.Files(label="Scene Downloads")
 
-            # ── Tab C: M4 训练评测 ──
-            with gr.Tab("C: M4 训练评测"):
-                gr.Markdown(
-                    """
-                    **M4 可学习布局器：输入 / 流程 / 输出**
-                    - 输入：
-                      `real manifest + FAISS index + queries + seed 范围 + 当前 checkpoint(可选)`
-                    - 中间流程：
-                      `rule-based policy` 先在多 seed 场景上蒸馏 `slot→candidate` 样本（含 AABB 通过/碰撞），
-                      再训练 `learned policy` 候选打分函数；可 `resume` 续训，也可 `recollect` 重采样蒸馏数据。
-                    - 训练目标：
-                      使 learned policy 的放置决策质量优于或接近 rule 启发式（在相同约束下）。
-                    - 评测流程：
-                      learned vs rule 在相同 seed 对比，核心指标为
-                      `instance_count / dropped_slots`（并输出完整工程指标报告）。
-                    - 输出：
-                      `layout_policy.pt`、训练日志与 loss 曲线、`eval_report.json`、可视化街道结果（GLB/JSON）。
-                    """
-                )
+            with gr.Tab("3) 研究与训练"):
+                gr.Markdown("研究工具：用于改进 `learned_v1` / `learned policy`，不是默认运行入口。")
+                gr.Markdown("`Run Best Model` 使用当前“生成街道”页的查询与街道设置。")
                 with gr.Row():
-                    train_btn = gr.Button("5) Train Layout Policy (M4)", variant="primary")
-                    run_best_model_btn = gr.Button("6) Run Best Model (Street)", variant="primary")
+                    train_btn = gr.Button("Train + Eval", variant="primary")
+                    run_best_model_btn = gr.Button("Run Best Model")
                 with gr.Row():
+                    research_target = gr.Dropdown(
+                        label="Research Target",
+                        choices=["program_generator", "layout_policy"],
+                        value="program_generator",
+                    )
                     m4_artifacts_dir = gr.Textbox(label="M4 Artifacts Dir", value=default_m4_artifacts_dir)
-                    m4_queries = gr.Textbox(label="M4 Queries File", value=default_m4_queries)
-                with gr.Row():
-                    m4_collect_seed_start = gr.Number(label="Collect Seed Start", value=0, precision=0)
-                    m4_collect_seed_end = gr.Number(label="Collect Seed End", value=49, precision=0)
-                    m4_eval_seed_start = gr.Number(label="Eval Seed Start", value=0, precision=0)
-                    m4_eval_seed_end = gr.Number(label="Eval Seed End", value=4, precision=0)
-                with gr.Row():
-                    m4_recollect_data = gr.Checkbox(label="Recollect Distilled Data", value=True)
-                    m4_resume_training = gr.Checkbox(label="Resume From Existing CKPT", value=True)
-                    m4_run_eval_after_train = gr.Checkbox(label="Run Eval After Train", value=True)
-                with gr.Accordion("Training Hyperparameters", open=False):
+                    m6_artifacts_dir = gr.Textbox(label="M6 Artifacts Dir", value=default_m6_artifacts_dir)
+                    m4_queries = gr.Textbox(label="Queries File", value=default_m4_queries)
+                with gr.Accordion("Program Distillation", open=False):
                     with gr.Row():
-                        m4_train_epochs = gr.Number(label="Train Epochs", value=20, precision=0)
-                        m4_train_batch_size = gr.Number(label="Train Batch Size", value=256, precision=0)
-                        m4_train_lr = gr.Number(label="Train LR", value=1e-3)
+                        m4_collect_seed_start = gr.Number(label="Collect Seed Start", value=0, precision=0)
+                        m4_collect_seed_end = gr.Number(label="Collect Seed End", value=49, precision=0)
+                        m4_recollect_data = gr.Checkbox(label="Recollect Distilled Data", value=True)
+                        m4_resume_training = gr.Checkbox(label="Resume From Existing CKPT", value=True)
+                with gr.Accordion("Policy / Program Training", open=False):
                     with gr.Row():
-                        m4_train_weight_decay = gr.Number(label="Train Weight Decay", value=1e-4)
-                        m4_train_entropy_weight = gr.Number(label="Train Entropy Weight", value=0.01)
-                        m4_train_patience = gr.Number(label="Train Patience", value=3, precision=0)
-                m4_progress = gr.Slider(
-                    label="M4 Progress (%) [Distill + Train + Eval]",
+                        m4_train_epochs = gr.Number(label="Policy Epochs", value=20, precision=0)
+                        m4_train_batch_size = gr.Number(label="Policy Batch Size", value=256, precision=0)
+                        m4_train_lr = gr.Number(label="Policy LR", value=1e-3)
+                        m4_train_weight_decay = gr.Number(label="Policy Weight Decay", value=1e-4)
+                        m4_train_entropy_weight = gr.Number(label="Policy Entropy Weight", value=0.01)
+                        m4_train_patience = gr.Number(label="Policy Patience", value=3, precision=0)
+                    with gr.Row():
+                        program_train_epochs = gr.Number(label="Program Epochs", value=20, precision=0)
+                        program_train_batch_size = gr.Number(label="Program Batch Size", value=128, precision=0)
+                        program_train_lr = gr.Number(label="Program LR", value=1e-3)
+                        program_train_weight_decay = gr.Number(label="Program Weight Decay", value=1e-4)
+                        program_train_patience = gr.Number(label="Program Patience", value=3, precision=0)
+                with gr.Accordion("Evaluation", open=False):
+                    with gr.Row():
+                        m4_run_eval_after_train = gr.Checkbox(label="Run Eval After Train", value=True)
+                        m4_eval_seed_start = gr.Number(label="Eval Seed Start", value=0, precision=0)
+                        m4_eval_seed_end = gr.Number(label="Eval Seed End", value=4, precision=0)
+                research_progress = gr.Slider(
+                    label="Research Progress (%)",
                     minimum=0.0,
                     maximum=100.0,
                     value=0.0,
                     step=0.1,
                     interactive=False,
                 )
-                m4_loss_curve = gr.Plot(label="M4 Train/Val Loss Curve")
-                m4_train_log = gr.Textbox(label="M4 Train Log", lines=8)
-                m4_train_json = gr.Code(label="M4 Train Summary JSON", language="json")
-                m4_eval_json = gr.Code(label="M4 Eval Report JSON", language="json")
-                run_best_log = gr.Textbox(label="Run Best Model Log", lines=8)
-                with gr.Accordion("Run Best Layout JSON", open=False):
+                research_curve = gr.Plot(label="Training Curve")
+                research_log = gr.Textbox(label="Train + Eval Log", lines=10)
+                with gr.Row():
+                    research_train_json = gr.Code(label="Train Summary JSON", language="json")
+                    research_eval_json = gr.Code(label="Eval Summary JSON", language="json")
+                with gr.Accordion("Run Best Model Result", open=False):
+                    run_best_log = gr.Textbox(label="Run Best Model Log", lines=8)
+                    with gr.Row():
+                        run_best_program_summary = gr.Code(label="Best StreetProgram Summary", language="json")
+                        run_best_solver_summary = gr.Code(label="Best Solver Summary", language="json")
                     run_best_layout_json = gr.Code(label="Run Best Layout JSON", language="json")
-                run_best_model_view = gr.Model3D(label="Run Best Street Preview (GLB)")
-                run_best_files = gr.Files(label="Run Best Downloads")
+                    run_best_model_view = gr.Model3D(label="Run Best Street Preview (GLB)")
+                    run_best_files = gr.Files(label="Run Best Downloads")
 
-            # ── Tab D: M5 OSM 约束 ──
-            with gr.Tab("D: M5 OSM 约束"):
-                gr.Markdown(
-                    """
-                    **M5: OSM 道路放置区 + POI 规则引擎 + 合规评估**
-                    - Layout Mode `osm`：从 OpenStreetMap 获取真实道路几何，在人行道区域内采样家具放置位置
-                    - Layout Mode `template`：使用 M3/M4 模板化道路（默认，向后兼容）
-                    - Constraint Mode `soft`：根据 POI（入口/消防栓/公交站）距离计算惩罚分数，结合检索分数进行 best-of-K 选择
-                    - Constraint Mode `off`：关闭约束评分，仅使用检索分数排序
-                    - AOI BBox：感兴趣区域的经纬度边界框（仅 `osm` 模式需要），格式为 `(min_lon, min_lat, max_lon, max_lat)`
-                    - 合规评估：统计违规率、可行性分数、逐规则违规次数
-                    """
-                )
-                gr.Markdown("#### OSM & Constraint Parameters")
-                with gr.Row():
-                    m5_layout_mode = gr.Dropdown(label="Layout Mode", choices=["template", "osm"], value="template")
-                    m5_constraint_mode = gr.Dropdown(label="Constraint Mode", choices=["off", "soft"], value="soft")
-                with gr.Row():
-                    m5_constraint_weight = gr.Slider(label="Constraint Weight (λ)", minimum=0.0, maximum=1.0, step=0.05, value=0.45)
-                    m5_constraint_veto = gr.Slider(label="Veto Threshold", minimum=0.0, maximum=1.0, step=0.05, value=0.95)
-                gr.Markdown("#### AOI Bounding Box (WGS-84)")
-                with gr.Row():
-                    m5_bbox_min_lon = gr.Number(label="Min Lon", value=0.0)
-                    m5_bbox_min_lat = gr.Number(label="Min Lat", value=0.0)
-                    m5_bbox_max_lon = gr.Number(label="Max Lon", value=0.0)
-                    m5_bbox_max_lat = gr.Number(label="Max Lat", value=0.0)
-                gr.Markdown(
-                    """
-                    > **提示**：在 Tab B 点击 `4) Run Street Compose` 或 Tab C 点击 `6) Run Best Model` 时，
-                    > 上述 M5 参数会自动传入街道生成流程。`osm` 模式需要先填写有效的 AOI BBox。
-                    """
-                )
-
-        # ── Event Bindings (unchanged) ──
-        prepare_btn.click(
-            fn=prepare_assets_and_index,
+        prepare_layout_mode.change(
+            fn=_toggle_osm_visibility,
+            inputs=[prepare_layout_mode],
+            outputs=[prepare_bbox_row],
+        )
+        m5_layout_mode.change(
+            fn=_toggle_osm_visibility,
+            inputs=[m5_layout_mode],
+            outputs=[street_bbox_row],
+        )
+        prepare_workspace_btn.click(
+            fn=run_prepare_workspace,
             inputs=[
                 dataset_profile,
                 data_dir,
                 artifacts_dir,
                 real_manifest,
+                real_mesh_root,
+                real_latents_dir,
                 num_assets,
                 seed,
                 latent_dim,
@@ -1186,56 +1986,21 @@ def build_demo() -> gr.Blocks:
                 model_dir,
                 local_files_only,
                 device,
-            ],
-            outputs=[prepare_log, assets_preview],
-        )
-        encode_btn.click(
-            fn=_encode_start_log,
-            inputs=[dataset_profile, encode_mode],
-            outputs=[encode_log],
-            queue=False,
-        ).then(
-            fn=encode_real_latents,
-            inputs=[
-                dataset_profile,
-                real_manifest,
-                real_mesh_root,
-                real_latents_dir,
                 shapee_model_dir,
                 render_cache_dir,
                 encode_mode,
-                device,
                 shapee_local_only,
-                encode_skip_existing,
-                encode_no_placeholder_fallback,
-                encode_no_mesh_reference_fallback,
-                encode_verbose,
+                prepare_layout_mode,
+                osm_cache_dir,
+                force_reindex,
+                force_reencode,
+                force_osm_refresh,
+                prepare_bbox_min_lon,
+                prepare_bbox_min_lat,
+                prepare_bbox_max_lon,
+                prepare_bbox_max_lat,
             ],
-            outputs=[encode_log],
-        )
-        run_btn.click(
-            fn=run_query_pipeline,
-            inputs=[
-                dataset_profile,
-                query,
-                topk,
-                data_dir,
-                artifacts_dir,
-                real_manifest,
-                model_name,
-                model_dir,
-                local_files_only,
-                device,
-                decoder_choice,
-                shapee_model_dir,
-                shapee_strict,
-                resolution,
-                threshold,
-                voxel_size,
-                export_method,
-                export_format,
-            ],
-            outputs=[run_summary, hits_table, result_json, model_view, mesh_files],
+            outputs=[prepare_summary, readiness_json, readiness_cards, prepare_steps],
         )
         street_btn.click(
             fn=run_street_compose,
@@ -1268,6 +2033,15 @@ def build_demo() -> gr.Blocks:
                 m5_bbox_min_lat,
                 m5_bbox_max_lon,
                 m5_bbox_max_lat,
+                design_rule_profile,
+                program_generator,
+                layout_solver,
+                program_ckpt,
+                street_osm_cache_dir,
+                city_context,
+                target_street_type,
+                allow_solver_fallback,
+                segment_length_m,
             ],
             outputs=[
                 street_summary,
@@ -1276,14 +2050,24 @@ def build_demo() -> gr.Blocks:
                 street_model_view,
                 street_files,
             ],
+        ).then(
+            fn=_extract_program_summary,
+            inputs=[street_layout_json],
+            outputs=[street_program_summary],
+        ).then(
+            fn=_extract_solver_summary,
+            inputs=[street_layout_json],
+            outputs=[street_solver_summary],
         )
         train_btn.click(
-            fn=run_m4_train_policy,
+            fn=run_research_train,
             inputs=[
+                research_target,
                 dataset_profile,
                 real_manifest,
                 artifacts_dir,
                 m4_artifacts_dir,
+                m6_artifacts_dir,
                 m4_queries,
                 model_name,
                 model_dir,
@@ -1296,6 +2080,12 @@ def build_demo() -> gr.Blocks:
                 street_density,
                 street_topk_per_category,
                 street_max_trials_per_slot,
+                design_rule_profile,
+                m5_layout_mode,
+                m5_bbox_min_lon,
+                m5_bbox_min_lat,
+                m5_bbox_max_lon,
+                m5_bbox_max_lat,
                 m4_collect_seed_start,
                 m4_collect_seed_end,
                 m4_recollect_data,
@@ -1312,8 +2102,22 @@ def build_demo() -> gr.Blocks:
                 export_format,
                 policy_temperature,
                 policy_ckpt,
+                program_train_epochs,
+                program_train_batch_size,
+                program_train_lr,
+                program_train_weight_decay,
+                program_train_patience,
+                program_ckpt,
             ],
-            outputs=[m4_train_log, m4_train_json, m4_eval_json, policy_ckpt, m4_progress, m4_loss_curve],
+            outputs=[
+                research_log,
+                research_train_json,
+                research_eval_json,
+                policy_ckpt,
+                program_ckpt,
+                research_progress,
+                research_curve,
+            ],
         )
         run_best_model_btn.click(
             fn=run_best_model_street,
@@ -1345,6 +2149,16 @@ def build_demo() -> gr.Blocks:
                 m5_bbox_min_lat,
                 m5_bbox_max_lon,
                 m5_bbox_max_lat,
+                design_rule_profile,
+                program_generator,
+                layout_solver,
+                program_ckpt,
+                street_osm_cache_dir,
+                city_context,
+                target_street_type,
+                allow_solver_fallback,
+                segment_length_m,
+                research_target,
             ],
             outputs=[
                 street_summary,
@@ -1357,6 +2171,14 @@ def build_demo() -> gr.Blocks:
                 run_best_model_view,
                 run_best_files,
             ],
+        ).then(
+            fn=_extract_program_summary,
+            inputs=[run_best_layout_json],
+            outputs=[run_best_program_summary],
+        ).then(
+            fn=_extract_solver_summary,
+            inputs=[run_best_layout_json],
+            outputs=[run_best_solver_summary],
         )
     return demo
 
