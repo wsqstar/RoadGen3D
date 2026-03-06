@@ -18,6 +18,7 @@ if str(SRC) not in sys.path:
 from roadgen3d.embedder import ClipTextEmbedder, ModelLoadError  # noqa: E402
 from roadgen3d.index_store import FaissIndexStore  # noqa: E402
 from roadgen3d.layout_features import PolicyFeatureContext  # noqa: E402
+from roadgen3d.layout_reward import compute_optimal_index  # noqa: E402
 from roadgen3d.street_layout import (  # noqa: E402
     DEFAULT_CATEGORIES,
     DEFAULT_SPACING_M,
@@ -143,6 +144,7 @@ def collect_policy_data(
     samples: List[Dict[str, object]] = []
     seed_count = max(0, int(seed_end) - int(seed_start) + 1)
     slot_total_per_scene = 0
+    category_slot_counts: Dict[str, int] = {}
     for category in DEFAULT_CATEGORIES:
         pool = category_to_rows.get(category, [])
         if not pool:
@@ -150,6 +152,7 @@ def collect_policy_data(
         base_spacing = float(DEFAULT_SPACING_M[category])
         spacing = base_spacing / effective_density
         slot_count = max(1, int(float(length_m) // spacing))
+        category_slot_counts[category] = slot_count
         slot_total_per_scene += slot_count
     total_slots = max(1, len(queries) * seed_count * slot_total_per_scene)
     processed_slots = 0
@@ -160,6 +163,8 @@ def collect_policy_data(
             rng = random.Random(int(seed))
             existing_bboxes = []
             used_asset_ids_by_category: Dict[str, set[str]] = {category: set() for category in DEFAULT_CATEGORIES}
+            placed_score_sums: Dict[str, float] = {category: 0.0 for category in DEFAULT_CATEGORIES}
+            placed_counts: Dict[str, int] = {category: 0 for category in DEFAULT_CATEGORIES}
 
             for category in DEFAULT_CATEGORIES:
                 pool = category_to_rows.get(category, [])
@@ -189,6 +194,15 @@ def collect_policy_data(
                         density=float(density),
                         topk=int(topk_per_category),
                         used_asset_ids=set(used_before),
+                        placed_count_in_category=placed_counts.get(category, 0),
+                        total_slots_in_category=category_slot_counts.get(category, 1),
+                        category_pool_size=len(pool),
+                        mean_score_placed=(
+                            placed_score_sums[category] / placed_counts[category]
+                            if placed_counts.get(category, 0) > 0
+                            else 0.0
+                        ),
+                        total_slots_in_scene=max(slot_total_per_scene, 1),
                     )
 
                     row, score, source, details = _pick_category_candidate(
@@ -212,6 +226,16 @@ def collect_policy_data(
                     candidate_asset_ids = [str(item.get("asset_id", "")) for item in candidates]
                     candidate_scores = [float(item.get("score", 0.0)) for item in candidates]
                     candidate_categories = [str(item.get("category", "")) for item in candidates]
+
+                    # Compute optimal label via composite value function
+                    optimal_index = compute_optimal_index(
+                        candidate_asset_ids=candidate_asset_ids,
+                        candidate_scores=candidate_scores,
+                        candidate_categories=candidate_categories,
+                        target_category=category,
+                        used_asset_ids_before=set(used_before),
+                        category_pool_total=len(pool),
+                    )
 
                     entry = mesh_cache[chosen_asset_id]
                     dropped = True
@@ -240,6 +264,8 @@ def collect_policy_data(
                             continue
                         existing_bboxes.append(bbox)
                         used_asset_ids_by_category.setdefault(category, set()).add(chosen_asset_id)
+                        placed_score_sums[category] = placed_score_sums.get(category, 0.0) + float(score)
+                        placed_counts[category] = placed_counts.get(category, 0) + 1
                         dropped = False
                         break
 
@@ -264,9 +290,19 @@ def collect_policy_data(
                             "candidate_categories": candidate_categories,
                             "chosen_asset_id": chosen_asset_id,
                             "chosen_index": int(chosen_index),
+                            "optimal_index": int(optimal_index),
                             "chosen_source": str(source),
                             "used_asset_ids_before_slot": used_before,
                             "dropped": bool(dropped),
+                            "placed_count_in_category": placed_counts.get(category, 0),
+                            "total_slots_in_category": category_slot_counts.get(category, 1),
+                            "category_pool_size": len(pool),
+                            "mean_score_placed": (
+                                placed_score_sums[category] / placed_counts[category]
+                                if placed_counts.get(category, 0) > 0
+                                else 0.0
+                            ),
+                            "total_slots_in_scene": slot_total_per_scene,
                         }
                     )
                     processed_slots += 1

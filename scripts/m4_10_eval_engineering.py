@@ -15,7 +15,13 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from roadgen3d.eval_metrics import aggregate_scene_rows, compare_mode_reports  # noqa: E402
+from roadgen3d.eval_metrics import (  # noqa: E402
+    aggregate_scene_rows,
+    compare_mode_reports,
+    compute_balance_score,
+    compute_spacing_uniformity,
+    compute_style_consistency,
+)
 from roadgen3d.street_layout import compose_street_scene  # noqa: E402
 from roadgen3d.types import StreetComposeConfig  # noqa: E402
 
@@ -67,6 +73,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--topk-per-category", type=int, default=20)
     parser.add_argument("--max-trials-per-slot", type=int, default=30)
     parser.add_argument("--export-format", choices=["glb", "ply", "both"], default="glb")
+    parser.add_argument(
+        "--design-rule-profile",
+        choices=["balanced_complete_street_v1", "pedestrian_priority_v1", "transit_priority_v1"],
+        default="balanced_complete_street_v1",
+    )
+    parser.add_argument("--city-context", type=str, default="generic_city")
+    parser.add_argument("--target-street-type", type=str, default="mixed_use")
     return parser.parse_args()
 
 
@@ -111,6 +124,9 @@ def _run_mode(
     topk_per_category: int,
     max_trials_per_slot: int,
     export_format: str,
+    design_rule_profile: str,
+    city_context: str,
+    target_street_type: str,
     policy_ckpt: Path | None,
     policy_temperature: float,
     out_root: Path,
@@ -129,6 +145,9 @@ def _run_mode(
                 seed=int(seed),
                 topk_per_category=int(topk_per_category),
                 max_trials_per_slot=int(max_trials_per_slot),
+                design_rule_profile=str(design_rule_profile),
+                city_context=str(city_context),
+                target_street_type=str(target_street_type),
             )
             scene_id = f"{mode}_q{scene_index:03d}_s{seed:04d}"
             scene_index += 1
@@ -167,6 +186,14 @@ def _run_mode(
                 "retrieval_top3_category_hit": _safe_float(summary, "retrieval_top3_category_hit"),
                 "latency_ms_total": _safe_float(summary, "latency_ms_total"),
                 "latency_ms_per_instance": _safe_float(summary, "latency_ms_per_instance"),
+                "spacing_uniformity": _safe_float(summary, "spacing_uniformity"),
+                "style_consistency": _safe_float(summary, "style_consistency"),
+                "balance_score": _safe_float(summary, "balance_score"),
+                "rule_satisfaction_rate": _safe_float(summary, "rule_satisfaction_rate"),
+                "topology_validity": _safe_float(summary, "topology_validity"),
+                "cross_section_feasibility": _safe_float(summary, "cross_section_feasibility"),
+                "editability": _safe_float(summary, "editability"),
+                "conflict_explainability": _safe_float(summary, "conflict_explainability"),
                 "scene_layout_path": str(layout_path),
                 "scene_glb": str(result.outputs.get("scene_glb", "")),
                 "scene_ply": str(result.outputs.get("scene_ply", "")),
@@ -179,6 +206,9 @@ def run_eval(args: argparse.Namespace) -> Dict[str, object]:
     queries = _load_queries(args.queries)
     out_dir = Path(args.out_dir).resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
+    design_rule_profile = str(getattr(args, "design_rule_profile", "balanced_complete_street_v1"))
+    city_context = str(getattr(args, "city_context", "generic_city"))
+    target_street_type = str(getattr(args, "target_street_type", "mixed_use"))
 
     policy_mode = str(args.placement_policy).strip().lower()
     compare_rule = bool(args.compare_rule) or policy_mode == "learned"
@@ -202,6 +232,9 @@ def run_eval(args: argparse.Namespace) -> Dict[str, object]:
         topk_per_category=int(args.topk_per_category),
         max_trials_per_slot=int(args.max_trials_per_slot),
         export_format=args.export_format,
+        design_rule_profile=design_rule_profile,
+        city_context=city_context,
+        target_street_type=target_street_type,
         policy_ckpt=Path(args.policy_ckpt).resolve() if args.policy_ckpt else None,
         policy_temperature=float(args.policy_temperature),
         out_root=out_dir / "eval_scenes",
@@ -230,6 +263,9 @@ def run_eval(args: argparse.Namespace) -> Dict[str, object]:
             topk_per_category=int(args.topk_per_category),
             max_trials_per_slot=int(args.max_trials_per_slot),
             export_format=args.export_format,
+            design_rule_profile=design_rule_profile,
+            city_context=city_context,
+            target_street_type=target_street_type,
             policy_ckpt=None,
             policy_temperature=float(args.policy_temperature),
             out_root=out_dir / "eval_scenes",

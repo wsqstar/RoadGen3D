@@ -2,9 +2,8 @@
 
 from __future__ import annotations
 
-import hashlib
 import math
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Iterable, List, Sequence, Set
 
 import numpy as np
@@ -39,6 +38,12 @@ class PolicyFeatureContext:
     density: float
     topk: int
     used_asset_ids: Set[str]
+    # --- context-aware fields (M4 fix) ---
+    placed_count_in_category: int = 0
+    total_slots_in_category: int = 1
+    category_pool_size: int = 15
+    mean_score_placed: float = 0.0
+    total_slots_in_scene: int = 1
 
 
 @dataclass(frozen=True)
@@ -50,28 +55,21 @@ class CandidateDescriptor:
     score: float
 
 
-def _hash_to_unit_values(text: str, size: int) -> List[float]:
-    digest = hashlib.sha256(text.encode("utf-8")).digest()
-    values: List[float] = []
-    cursor = 0
-    while len(values) < size:
-        if cursor + 4 > len(digest):
-            digest = hashlib.sha256(digest).digest()
-            cursor = 0
-        chunk = digest[cursor : cursor + 4]
-        cursor += 4
-        as_int = int.from_bytes(chunk, byteorder="big", signed=False)
-        values.append((as_int / 4294967295.0) * 2.0 - 1.0)
-    return values
-
-
 def build_candidate_feature(
     context: PolicyFeatureContext,
     candidate: CandidateDescriptor,
     candidate_rank: int,
     candidate_count: int,
 ) -> np.ndarray:
-    """Build fixed-size 32-d feature vector for one candidate option."""
+    """Build fixed-size 32-d feature vector for one candidate option.
+
+    Layout (32 dims total):
+      [0..7]   numeric_block   – slot position, road geometry, density
+      [8..13]  candidate_block – score, rank, used_flag, category_match + context
+      [14..17] periodic        – sin/cos positional encoding
+      [18..23] context_block   – placement progress, diversity, scarcity
+      [24..31] category_onehot – 8 categories
+    """
     lane_norm = min(max(float(context.lane_count), 1.0), 8.0) / 8.0
     density_norm = min(max(float(context.density), 0.1), 3.0) / 3.0
     rank_norm = float(candidate_rank) / max(float(candidate_count - 1), 1.0)
@@ -102,19 +100,35 @@ def build_candidate_feature(
     ]
     candidate_block = [
         score,
-        max(min(score, 1.0), -1.0),
         rank_norm,
         1.0 - rank_norm,
         used_flag,
         1.0 if candidate.category == context.category else 0.0,
         float(candidate_count) / 64.0,
-        1.0,
     ]
 
-    hash_block = _hash_to_unit_values(
-        f"{context.query}|{context.category}|{candidate.asset_id}|{candidate.category}",
-        size=4,
-    )
+    # --- context-aware block (replaces old hash + constant) ---
+    placed_count = max(float(context.placed_count_in_category), 0.0)
+    total_cat_slots = max(float(context.total_slots_in_category), 1.0)
+    pool_size = max(float(context.category_pool_size), 1.0)
+    n_used = float(len(context.used_asset_ids))
+    total_scene_slots = max(float(context.total_slots_in_scene), 1.0)
+
+    placed_ratio = placed_count / total_cat_slots
+    unique_ratio = (n_used / placed_count) if placed_count > 0.0 else 1.0
+    remaining_unique_norm = max(0.0, pool_size - n_used) / pool_size
+    mean_score_placed = float(context.mean_score_placed)
+    is_first_slot = 1.0 if context.slot_idx == 0 else 0.0
+    slot_progress = float(context.slot_idx) / total_scene_slots
+
+    context_block = [
+        placed_ratio,
+        unique_ratio,
+        remaining_unique_norm,
+        mean_score_placed,
+        is_first_slot,
+        slot_progress,
+    ]
 
     category_one_hot = [0.0] * len(_POLICY_CATEGORIES)
     cat_idx = _POLICY_CATEGORY_TO_INDEX.get(context.category, None)
@@ -122,7 +136,7 @@ def build_candidate_feature(
         category_one_hot[cat_idx] = 1.0
 
     feature = np.asarray(
-        numeric_block + candidate_block + periodic + hash_block + category_one_hot,
+        numeric_block + candidate_block + periodic + context_block + category_one_hot,
         dtype=np.float32,
     )
     if feature.shape[0] != DEFAULT_POLICY_INPUT_DIM:

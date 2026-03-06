@@ -52,6 +52,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--constraint-weight", type=float, default=0.45)
     parser.add_argument("--constraint-veto-threshold", type=float, default=0.95)
     parser.add_argument("--poi-rule-set", type=str, default="entrance_fire_bus_stop_v1")
+    parser.add_argument(
+        "--design-rule-profile",
+        choices=["balanced_complete_street_v1", "pedestrian_priority_v1", "transit_priority_v1"],
+        default="balanced_complete_street_v1",
+    )
+    parser.add_argument("--city-context", type=str, default="generic_city")
+    parser.add_argument("--target-street-type", type=str, default="mixed_use")
     return parser.parse_args()
 
 
@@ -74,6 +81,9 @@ def main() -> int:
         constraint_weight=float(args.constraint_weight),
         constraint_veto_threshold=float(args.constraint_veto_threshold),
         poi_rule_set=args.poi_rule_set,
+        design_rule_profile=args.design_rule_profile,
+        city_context=args.city_context,
+        target_street_type=args.target_street_type,
     )
     try:
         result = compose_street_scene(

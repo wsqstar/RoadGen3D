@@ -12,50 +12,29 @@ from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 
+from .design_rules import load_constraint_set
 from .embedder import ClipTextEmbedder
 from .eval_metrics import (
+    compute_balance_score,
+    compute_cross_section_feasibility,
     compute_dropped_slot_rate,
+    compute_editability,
+    compute_explainability,
     compute_latency_ms_per_instance,
     compute_overlap_rate,
+    compute_rule_satisfaction_rate,
+    compute_spacing_uniformity,
+    compute_style_consistency,
+    compute_topology_validity,
     evaluate_topk_category_hits,
 )
 from .index_store import FaissIndexStore
 from .layout_features import CandidateDescriptor, PolicyFeatureContext, vectorize_slot_candidates
 from .layout_policy import LayoutPolicyRuntime
-from .types import StreetComposeConfig, StreetComposeResult, StreetPlacement
-
-DEFAULT_CATEGORIES: Tuple[str, ...] = (
-    "bench",
-    "lamp",
-    "trash",
-    "tree",
-    "bus_stop",
-    "mailbox",
-    "hydrant",
-    "bollard",
-)
-
-DEFAULT_SPACING_M: Dict[str, float] = {
-    "lamp": 18.0,
-    "tree": 14.0,
-    "bench": 22.0,
-    "trash": 18.0,
-    "bus_stop": 45.0,
-    "mailbox": 40.0,
-    "hydrant": 30.0,
-    "bollard": 6.0,
-}
-
-SIDE_PREF: Dict[str, str] = {
-    "bus_stop": "right",
-    "mailbox": "right",
-    "hydrant": "right",
-    "bench": "both",
-    "lamp": "both",
-    "trash": "both",
-    "tree": "both",
-    "bollard": "both",
-}
+from .layout_solver import solve_layout
+from .street_priors import DEFAULT_CATEGORIES, DEFAULT_SPACING_M, SIDE_PREF
+from .street_program import infer_street_program
+from .types import LayoutSolverInput, StreetComposeConfig, StreetComposeResult, StreetPlacement
 
 SOFTMAX_TEMPERATURE = 0.12
 CATEGORY_NO_REPEAT_FIRST = True
@@ -114,6 +93,10 @@ def _validate_config(config: StreetComposeConfig) -> None:
         raise ValueError("constraint_weight must be in [0.0, 1.0]")
     if not 0.0 <= config.constraint_veto_threshold <= 1.0:
         raise ValueError("constraint_veto_threshold must be in [0.0, 1.0]")
+    if str(config.program_generator).strip().lower() not in {"heuristic_v1"}:
+        raise ValueError("program_generator must be 'heuristic_v1'")
+    if str(config.layout_solver).strip().lower() not in {"banded"}:
+        raise ValueError("layout_solver must be 'banded'")
 
 
 def _validate_export_format(export_format: str) -> str:
@@ -229,6 +212,34 @@ def _sample_pose(
     z = z_center + rng.uniform(-z_jitter, z_jitter)
 
     yaw_base = 180.0 if side > 0 else 0.0
+    yaw_deg = yaw_base + rng.uniform(-8.0, 8.0)
+    return x, z, yaw_deg
+
+
+def _sample_pose_for_slot(
+    *,
+    slot_x_center: float,
+    slot_z_center: float,
+    slot_side: str,
+    slot_spacing_m: float,
+    band_width_m: float,
+    length_m: float,
+    rng: random.Random,
+) -> Tuple[float, float, float]:
+    jitter_x = min(1.5, max(0.25, 0.2 * float(slot_spacing_m)))
+    min_x = -float(length_m) / 2.0 + 0.5
+    max_x = float(length_m) / 2.0 - 0.5
+    x = float(np.clip(float(slot_x_center) + rng.uniform(-jitter_x, jitter_x), min_x, max_x))
+
+    z_jitter = max(0.1, float(band_width_m) * 0.18)
+    z = float(slot_z_center) + rng.uniform(-z_jitter, z_jitter)
+
+    if slot_side == "left":
+        yaw_base = 180.0
+    elif slot_side == "right":
+        yaw_base = 0.0
+    else:
+        yaw_base = 0.0
     yaw_deg = yaw_base + rng.uniform(-8.0, 8.0)
     return x, z, yaw_deg
 
@@ -363,25 +374,30 @@ def _pick_category_candidate(
 
 
 def _build_base_scene(
-    config: StreetComposeConfig,
+    length_m: float,
+    road_width_m: float,
+    left_side_width_m: float,
+    right_side_width_m: float,
 ):
     trimesh = _require_trimesh()
     scene = trimesh.Scene()
-    road = trimesh.creation.box(extents=(config.length_m, 0.06, config.road_width_m))
+    road = trimesh.creation.box(extents=(length_m, 0.06, road_width_m))
     road.visual.face_colors = [65, 68, 72, 255]
     road.apply_translation([0.0, -0.03, 0.0])
     scene.add_geometry(road, node_name="road_slab")
 
     sidewalk_color = [165, 168, 172, 255]
-    sidewalk_left = trimesh.creation.box(extents=(config.length_m, 0.08, config.sidewalk_width_m))
-    sidewalk_left.visual.face_colors = sidewalk_color
-    sidewalk_left.apply_translation([0.0, -0.04, config.road_width_m / 2.0 + config.sidewalk_width_m / 2.0])
-    scene.add_geometry(sidewalk_left, node_name="sidewalk_left")
+    if left_side_width_m > 0.0:
+        sidewalk_left = trimesh.creation.box(extents=(length_m, 0.08, left_side_width_m))
+        sidewalk_left.visual.face_colors = sidewalk_color
+        sidewalk_left.apply_translation([0.0, -0.04, road_width_m / 2.0 + left_side_width_m / 2.0])
+        scene.add_geometry(sidewalk_left, node_name="sidewalk_left")
 
-    sidewalk_right = trimesh.creation.box(extents=(config.length_m, 0.08, config.sidewalk_width_m))
-    sidewalk_right.visual.face_colors = sidewalk_color
-    sidewalk_right.apply_translation([0.0, -0.04, -config.road_width_m / 2.0 - config.sidewalk_width_m / 2.0])
-    scene.add_geometry(sidewalk_right, node_name="sidewalk_right")
+    if right_side_width_m > 0.0:
+        sidewalk_right = trimesh.creation.box(extents=(length_m, 0.08, right_side_width_m))
+        sidewalk_right.visual.face_colors = sidewalk_color
+        sidewalk_right.apply_translation([0.0, -0.04, -road_width_m / 2.0 - right_side_width_m / 2.0])
+        scene.add_geometry(sidewalk_right, node_name="sidewalk_right")
     return scene
 
 
@@ -567,10 +583,8 @@ def compose_street_scene(
     dropped_slots = 0
     instance_counter = 1
     clearance = 0.2
-    effective_density = max(float(config.density), 0.1)
     start_perf = time.perf_counter()
 
-    # -- M5: initialise OSM placement context --
     placement_ctx = None
     if config.layout_mode == "osm":
         from .osm_ingest import fetch_osm_data, parse_osm_features, project_to_local
@@ -581,7 +595,6 @@ def compose_street_scene(
         projected = project_to_local(features, config.aoi_bbox)
         placement_ctx = build_placement_context(projected, config)
 
-    # -- M5: initialise POI constraint context --
     poi_ctx = None
     rule_set = None
     if config.constraint_mode == "soft":
@@ -592,128 +605,154 @@ def compose_street_scene(
         if placement_ctx is not None:
             poi_ctx = build_poi_context(placement_ctx)
         else:
-            poi_ctx = PoiContext((), (), ())  # template mode: no POI → no penalties
+            poi_ctx = PoiContext((), (), ())
 
-    for category in DEFAULT_CATEGORIES:
+    street_program = infer_street_program(config, available_categories)
+    constraint_set = load_constraint_set(config.design_rule_profile)
+    solver_result = solve_layout(
+        LayoutSolverInput(
+            program=street_program,
+            config=config,
+            available_categories=tuple(available_categories),
+            constraint_set=constraint_set,
+        )
+    )
+    resolved_program = solver_result.resolved_program
+    slot_plans = list(solver_result.slot_plans)
+    if not slot_plans:
+        raise RuntimeError(
+            "Layout solver produced zero slots. "
+            "Check the design rule profile, asset coverage, or scene length."
+        )
+
+    band_by_name = {band.name: band for band in resolved_program.bands}
+    category_slot_counts: Dict[str, int] = {}
+    for slot in slot_plans:
+        category_slot_counts[slot.category] = category_slot_counts.get(slot.category, 0) + 1
+    total_scene_slots = max(len(slot_plans), 1)
+    placed_score_sums: Dict[str, float] = {category: 0.0 for category in DEFAULT_CATEGORIES}
+    placed_counts: Dict[str, int] = {category: 0 for category in DEFAULT_CATEGORIES}
+    slot_index_by_category: Dict[str, int] = {category: 0 for category in DEFAULT_CATEGORIES}
+
+    for slot in slot_plans:
+        category = slot.category
         pool = category_to_rows.get(category, [])
         if not pool:
+            dropped_slots += 1
             continue
-        base_spacing = float(DEFAULT_SPACING_M[category])
-        spacing = base_spacing / effective_density
-        slot_count = max(1, int(math.floor(float(config.length_m) / spacing)))
-        segment = float(config.length_m) / float(slot_count)
-        for slot_idx in range(slot_count):
-            x_center = -float(config.length_m) / 2.0 + (slot_idx + 0.5) * segment
-            side_pref = SIDE_PREF.get(category, "both")
-            if side_pref == "right":
-                side = -1.0
-            elif side_pref == "left":
-                side = 1.0
-            else:
-                side = 1.0 if (slot_idx % 2 == 0) else -1.0
-            slot_z_center = side * (float(config.road_width_m) / 2.0 + float(config.sidewalk_width_m) * 0.5)
-            feature_ctx = PolicyFeatureContext(
-                query=config.query,
-                category=category,
-                slot_idx=int(slot_idx),
-                slot_x=float(x_center),
-                slot_z=float(slot_z_center),
-                length_m=float(config.length_m),
-                road_width_m=float(config.road_width_m),
-                sidewalk_width_m=float(config.sidewalk_width_m),
-                lane_count=int(config.lane_count),
-                density=float(config.density),
-                topk=int(config.topk_per_category),
-                used_asset_ids=set(used_asset_ids_by_category.setdefault(category, set())),
-            )
-            row, score, source, decision_details = _pick_category_candidate(
-                query=config.query,
-                category=category,
-                topk=config.topk_per_category,
-                embedder=embedder,
-                index_store=index_store,
-                asset_by_id=asset_by_id,
-                category_pool=pool,
-                used_asset_ids=used_asset_ids_by_category.setdefault(category, set()),
-                rng=rng,
-                placement_policy=policy_used,
-                policy_runtime=policy_runtime,
-                policy_temperature=policy_temperature,
-                feature_context=feature_ctx,
-                return_details=True,
-            )
-            retrieval_predictions.append(
-                {
-                    "target_category": category,
-                    "hits": decision_details.get("candidates", []),
-                }
-            )
-            entry = mesh_cache[row["asset_id"]]
-            placed = False
-            trial_candidates: List[Tuple[float, float, float, Tuple[float, float, float, float], float, float, Tuple[str, ...]]] = []
-            for trial_idx in range(int(config.max_trials_per_slot)):
-                # -- M5: pose sampling branches on layout_mode --
-                if config.layout_mode == "osm" and placement_ctx is not None:
-                    pose = _sample_pose_osm(category, placement_ctx, rng)
-                    if pose is None:
-                        continue
-                    x, z, yaw_deg = pose
-                else:
-                    x, z, yaw_deg = _sample_pose(
-                        category=category,
-                        slot_idx=slot_idx,
-                        trial_idx=trial_idx,
-                        x_center=x_center,
-                        length_m=float(config.length_m),
-                        road_width_m=float(config.road_width_m),
-                        sidewalk_width_m=float(config.sidewalk_width_m),
-                        spacing_m=spacing,
-                        rng=rng,
-                    )
-                scale = 1.0
-                bbox = _compute_bbox(
-                    x=x,
-                    z=z,
-                    yaw_deg=yaw_deg,
-                    half_x=entry.half_x,
-                    half_z=entry.half_z,
-                    scale=scale,
-                    clearance=clearance,
-                )
-                if any(_bbox_intersects(bbox, existing) for existing in existing_bboxes):
+
+        feature_ctx = PolicyFeatureContext(
+            query=config.query,
+            category=category,
+            slot_idx=int(slot_index_by_category.get(category, 0)),
+            slot_x=float(slot.x_center_m),
+            slot_z=float(slot.z_center_m),
+            length_m=float(config.length_m),
+            road_width_m=float(resolved_program.road_width_m),
+            sidewalk_width_m=float(resolved_program.sidewalk_width_m),
+            lane_count=int(resolved_program.lane_count),
+            density=float(config.density),
+            topk=int(config.topk_per_category),
+            used_asset_ids=set(used_asset_ids_by_category.setdefault(category, set())),
+            placed_count_in_category=placed_counts.get(category, 0),
+            total_slots_in_category=category_slot_counts.get(category, 1),
+            category_pool_size=len(pool),
+            mean_score_placed=(
+                placed_score_sums[category] / placed_counts[category]
+                if placed_counts.get(category, 0) > 0
+                else 0.0
+            ),
+            total_slots_in_scene=total_scene_slots,
+        )
+        row, score, source, decision_details = _pick_category_candidate(
+            query=config.query,
+            category=category,
+            topk=config.topk_per_category,
+            embedder=embedder,
+            index_store=index_store,
+            asset_by_id=asset_by_id,
+            category_pool=pool,
+            used_asset_ids=used_asset_ids_by_category.setdefault(category, set()),
+            rng=rng,
+            placement_policy=policy_used,
+            policy_runtime=policy_runtime,
+            policy_temperature=policy_temperature,
+            feature_context=feature_ctx,
+            return_details=True,
+        )
+        retrieval_predictions.append(
+            {
+                "target_category": category,
+                "hits": decision_details.get("candidates", []),
+            }
+        )
+
+        band = band_by_name.get(slot.band_name)
+        if band is None:
+            dropped_slots += 1
+            slot_index_by_category[category] = slot_index_by_category.get(category, 0) + 1
+            continue
+
+        entry = mesh_cache[row["asset_id"]]
+        placed = False
+        trial_candidates: List[Tuple[float, float, float, Tuple[float, float, float, float], float, float, Tuple[str, ...]]] = []
+        for _trial_idx in range(int(config.max_trials_per_slot)):
+            if config.layout_mode == "osm" and placement_ctx is not None:
+                pose = _sample_pose_osm(category, placement_ctx, rng)
+                if pose is None:
                     continue
+                x, z, yaw_deg = pose
+            else:
+                x, z, yaw_deg = _sample_pose_for_slot(
+                    slot_x_center=float(slot.x_center_m),
+                    slot_z_center=float(slot.z_center_m),
+                    slot_side=str(slot.side),
+                    slot_spacing_m=float(slot.spacing_m),
+                    band_width_m=float(band.width_m),
+                    length_m=float(config.length_m),
+                    rng=rng,
+                )
+            scale = 1.0
+            bbox = _compute_bbox(
+                x=x,
+                z=z,
+                yaw_deg=yaw_deg,
+                half_x=entry.half_x,
+                half_z=entry.half_z,
+                scale=scale,
+                clearance=clearance,
+            )
+            if any(_bbox_intersects(bbox, existing) for existing in existing_bboxes):
+                continue
 
-                # -- M5: soft constraint scoring --
-                c_penalty, c_feasibility, c_violated = 0.0, 1.0, ()
-                if config.constraint_mode == "soft" and rule_set is not None and poi_ctx is not None:
-                    cr = _score_placement((x, z), category, rule_set, poi_ctx)
-                    if cr.penalty > config.constraint_veto_threshold:
-                        continue  # veto – too close to POI
-                    c_penalty = cr.penalty
-                    c_feasibility = cr.feasibility_score
-                    c_violated = cr.violated_rules
+            c_penalty, c_feasibility, c_violated = 0.0, 1.0, ()
+            if config.constraint_mode == "soft" and rule_set is not None and poi_ctx is not None:
+                cr = _score_placement((x, z), category, rule_set, poi_ctx)
+                if cr.penalty > config.constraint_veto_threshold:
+                    continue
+                c_penalty = cr.penalty
+                c_feasibility = cr.feasibility_score
+                c_violated = cr.violated_rules
 
-                trial_candidates.append((x, z, yaw_deg, bbox, c_penalty, c_feasibility, c_violated))
+            trial_candidates.append((x, z, yaw_deg, bbox, c_penalty, c_feasibility, c_violated))
+            if config.constraint_mode != "soft":
+                break
 
-                # In off mode, keep first-success behaviour (break immediately)
-                if config.constraint_mode != "soft":
-                    break
+        if trial_candidates:
+            if config.constraint_mode == "soft" and len(trial_candidates) > 1:
+                score_norm = min(1.0, max(0.0, float(score)))
+                best = max(
+                    trial_candidates,
+                    key=lambda candidate: (1.0 - config.constraint_weight) * score_norm + config.constraint_weight * candidate[5],
+                )
+            else:
+                best = trial_candidates[0]
 
-            # -- M5: pick best candidate by utility --
-            if trial_candidates:
-                if config.constraint_mode == "soft" and len(trial_candidates) > 1:
-                    score_norm = min(1.0, max(0.0, float(score)))
-                    best = max(
-                        trial_candidates,
-                        key=lambda c: (1.0 - config.constraint_weight) * score_norm + config.constraint_weight * c[5],
-                    )
-                else:
-                    best = trial_candidates[0]
-
-                bx, bz, byaw, bbbox, bpenalty, bfeas, bviolated = best
-                existing_bboxes.append(bbbox)
-                y = -entry.min_y * scale
-                placement = StreetPlacement(
+            bx, bz, byaw, bbbox, bpenalty, bfeas, bviolated = best
+            existing_bboxes.append(bbbox)
+            y = -entry.min_y * scale
+            placements.append(
+                StreetPlacement(
                     instance_id=f"inst_{instance_counter:04d}",
                     asset_id=row["asset_id"],
                     category=category,
@@ -727,24 +766,34 @@ def compose_street_scene(
                     feasibility_score=float(bfeas),
                     violated_rules=bviolated,
                 )
-                placements.append(placement)
-                used_asset_ids_by_category.setdefault(category, set()).add(row["asset_id"])
-                instance_counter += 1
-                placed = True
-            if not placed:
-                dropped_slots += 1
+            )
+            used_asset_ids_by_category.setdefault(category, set()).add(row["asset_id"])
+            placed_score_sums[category] = placed_score_sums.get(category, 0.0) + float(score)
+            placed_counts[category] = placed_counts.get(category, 0) + 1
+            instance_counter += 1
+            placed = True
+
+        if not placed:
+            dropped_slots += 1
+        slot_index_by_category[category] = slot_index_by_category.get(category, 0) + 1
 
     if not placements:
         raise RuntimeError(
             "Street composition produced zero placements. "
-            "Try larger length/density or check category coverage in manifest."
+            "Try a different design-rule profile, larger length/density, or check category coverage in manifest."
         )
 
-    # -- M5: build scene base from OSM geometry or template --
     if config.layout_mode == "osm" and placement_ctx is not None:
         scene = _build_osm_base_scene(placement_ctx)
     else:
-        scene = _build_base_scene(config=config)
+        left_side_width = sum(float(band.width_m) for band in resolved_program.bands if band.side == "left")
+        right_side_width = sum(float(band.width_m) for band in resolved_program.bands if band.side == "right")
+        scene = _build_base_scene(
+            length_m=float(config.length_m),
+            road_width_m=float(resolved_program.road_width_m),
+            left_side_width_m=float(left_side_width),
+            right_side_width_m=float(right_side_width),
+        )
     _add_instance_meshes(scene=scene, placements=placements, mesh_cache=mesh_cache)
     outputs = _export_scene(scene=scene, out_dir=out_dir, export_format=export_format)
 
@@ -758,6 +807,11 @@ def compose_street_scene(
         latency_ms_total=elapsed_ms_total,
         instance_count=len(placements),
     )
+
+    placement_dicts = [placement.to_dict() for placement in placements]
+    spacing_uniformity = compute_spacing_uniformity(placement_dicts)
+    style_consistency = compute_style_consistency(placement_dicts)
+    balance_score = compute_balance_score(placement_dicts)
     per_category_unique = {
         category: len({placement.asset_id for placement in placements if placement.category == category})
         for category in DEFAULT_CATEGORIES
@@ -769,24 +823,35 @@ def compose_street_scene(
             selection_source_counts.get(placement.selection_source, 0) + 1
         )
 
-    # -- M5: compliance statistics --
-    violations_total = sum(1 for p in placements if p.violated_rules)
+    violations_total = sum(1 for placement in placements if placement.violated_rules)
     compliance_rate_total = 1.0 - (violations_total / len(placements)) if placements else 0.0
     avg_constraint_penalty = (
-        sum(p.constraint_penalty for p in placements) / len(placements) if placements else 0.0
+        sum(placement.constraint_penalty for placement in placements) / len(placements) if placements else 0.0
     )
     avg_feasibility_score = (
-        sum(p.feasibility_score for p in placements) / len(placements) if placements else 1.0
+        sum(placement.feasibility_score for placement in placements) / len(placements) if placements else 1.0
     )
     rule_violation_counts: Dict[str, int] = {}
-    for p in placements:
-        for rule_name in p.violated_rules:
+    for placement in placements:
+        for rule_name in placement.violated_rules:
             rule_violation_counts[rule_name] = rule_violation_counts.get(rule_name, 0) + 1
+
+    rule_satisfaction_rate = compute_rule_satisfaction_rate(solver_result.rule_evaluations)
+    topology_validity = compute_topology_validity(solver_result.topology_validity)
+    cross_section_feasibility = compute_cross_section_feasibility(solver_result.cross_section_feasibility)
+    editability = compute_editability(solver_result.edits)
+    conflict_explainability = compute_explainability(solver_result.conflicts)
+    rule_evaluation_counts: Dict[str, int] = {}
+    for evaluation in solver_result.rule_evaluations:
+        rule_evaluation_counts[evaluation.status] = rule_evaluation_counts.get(evaluation.status, 0) + 1
 
     layout_path = (out_dir / "scene_layout.json").resolve()
     layout_payload = {
         "query": config.query,
         "config": config.to_dict(),
+        "street_program": street_program.to_dict(),
+        "constraint_set": constraint_set.to_dict(),
+        "solver": solver_result.to_dict(),
         "summary": {
             "instance_count": len(placements),
             "dropped_slots": int(dropped_slots),
@@ -800,7 +865,6 @@ def compose_street_scene(
             "latency_ms_per_instance": float(latency_ms_per_instance),
             "per_category_unique": per_category_unique,
             "selection_source_counts": selection_source_counts,
-            # -- M5 compliance fields (always present for traceability) --
             "layout_mode": config.layout_mode,
             "constraint_mode": config.constraint_mode,
             "aoi_bbox": list(config.aoi_bbox) if config.aoi_bbox else None,
@@ -809,6 +873,21 @@ def compose_street_scene(
             "rule_violation_counts": rule_violation_counts,
             "avg_constraint_penalty": float(avg_constraint_penalty),
             "avg_feasibility_score": float(avg_feasibility_score),
+            "spacing_uniformity": float(spacing_uniformity),
+            "style_consistency": float(style_consistency),
+            "balance_score": float(balance_score),
+            "design_rule_profile": str(config.design_rule_profile),
+            "program_generator": str(config.program_generator),
+            "layout_solver": str(config.layout_solver),
+            "cross_section_type": str(resolved_program.cross_section_type),
+            "rule_satisfaction_rate": float(rule_satisfaction_rate),
+            "topology_validity": float(topology_validity),
+            "cross_section_feasibility": float(cross_section_feasibility),
+            "editability": float(editability),
+            "conflict_explainability": float(conflict_explainability),
+            "solver_edit_count": int(len(solver_result.edits)),
+            "solver_conflict_count": int(len(solver_result.conflicts)),
+            "rule_evaluation_counts": rule_evaluation_counts,
         },
         "placements": [placement.to_dict() for placement in placements],
         "outputs": outputs,
@@ -817,6 +896,8 @@ def compose_street_scene(
 
     outputs["scene_layout"] = str(layout_path)
     outputs["policy_used"] = policy_used
+    outputs["design_rule_profile"] = str(config.design_rule_profile)
+    outputs["program_cross_section_type"] = str(resolved_program.cross_section_type)
     if policy_fallback_reason:
         outputs["policy_fallback_reason"] = policy_fallback_reason
     return StreetComposeResult(
@@ -825,4 +906,6 @@ def compose_street_scene(
         dropped_slots=int(dropped_slots),
         placements=placements,
         outputs=outputs,
+        street_program=resolved_program,
+        solver_result=solver_result,
     )

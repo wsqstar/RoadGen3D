@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, List, Sequence, Tuple
+import math
+from typing import Any, Dict, Iterable, List, Sequence, Tuple
 
 
 def aabb_intersects(a: Sequence[float], b: Sequence[float]) -> bool:
@@ -55,6 +56,126 @@ def evaluate_topk_category_hits(predictions: List[Dict[str, object]], topk: int 
     return float(success / len(predictions))
 
 
+# ---------------------------------------------------------------------------
+# Policy-sensitive metrics (M4 fix)
+# ---------------------------------------------------------------------------
+
+_BOTH_SIDE_CATEGORIES = {"bench", "lamp", "trash", "tree", "bollard"}
+
+
+def compute_spacing_uniformity(placements: Sequence[Dict[str, object]]) -> float:
+    """Per-category spacing uniformity along the x axis. 1.0 = perfectly even."""
+    from collections import defaultdict
+
+    by_cat: Dict[str, List[float]] = defaultdict(list)
+    for p in placements:
+        cat = str(p.get("category", ""))
+        pos = p.get("position_xyz") or [0.0, 0.0, 0.0]
+        by_cat[cat].append(float(pos[0]))
+
+    uniformities: List[float] = []
+    for cat, xs in by_cat.items():
+        if len(xs) < 2:
+            continue
+        xs_sorted = sorted(xs)
+        gaps = [xs_sorted[i + 1] - xs_sorted[i] for i in range(len(xs_sorted) - 1)]
+        mean_gap = sum(gaps) / len(gaps)
+        if mean_gap <= 1e-6:
+            continue
+        std_gap = math.sqrt(sum((g - mean_gap) ** 2 for g in gaps) / len(gaps))
+        cv = std_gap / mean_gap  # coefficient of variation
+        uniformities.append(max(0.0, 1.0 - cv))
+
+    return float(sum(uniformities) / len(uniformities)) if uniformities else 1.0
+
+
+def compute_style_consistency(placements: Sequence[Dict[str, object]]) -> float:
+    """Mean CLIP score of placed assets (excluding fallback_pool with score 0)."""
+    scores = [
+        float(p.get("score", 0.0))
+        for p in placements
+        if float(p.get("score", 0.0)) > 0.0
+    ]
+    return float(sum(scores) / len(scores)) if scores else 0.0
+
+
+def compute_balance_score(placements: Sequence[Dict[str, object]]) -> float:
+    """Left/right balance for categories that use both sides. 1.0 = balanced."""
+    left = 0
+    right = 0
+    for p in placements:
+        cat = str(p.get("category", ""))
+        if cat not in _BOTH_SIDE_CATEGORIES:
+            continue
+        pos = p.get("position_xyz") or [0.0, 0.0, 0.0]
+        z = float(pos[2])
+        if z > 0.0:
+            left += 1
+        elif z < 0.0:
+            right += 1
+    total = left + right
+    if total == 0:
+        return 1.0
+    return 1.0 - abs(left - right) / float(total)
+
+
+def compute_rule_satisfaction_rate(evaluations: Sequence[object]) -> float:
+    """Mean rule score from solver evaluations."""
+    if not evaluations:
+        return 1.0
+    scores: List[float] = []
+    for evaluation in evaluations:
+        if isinstance(evaluation, (int, float)):
+            scores.append(float(evaluation))
+            continue
+        if isinstance(evaluation, dict):
+            scores.append(float(evaluation.get("score", 0.0)))
+            continue
+        score = getattr(evaluation, "score", 0.0)
+        scores.append(float(score))
+    return float(sum(scores) / len(scores)) if scores else 1.0
+
+
+def compute_topology_validity(value: float) -> float:
+    """Clamp topology validity into [0, 1]."""
+    return float(max(0.0, min(float(value), 1.0)))
+
+
+def compute_cross_section_feasibility(value: float) -> float:
+    """Clamp cross-section feasibility into [0, 1]."""
+    return float(max(0.0, min(float(value), 1.0)))
+
+
+def compute_editability(edits: Sequence[object]) -> float:
+    """Share of edits that include an explanation."""
+    if not edits:
+        return 1.0
+    explained = 0
+    for edit in edits:
+        if isinstance(edit, dict):
+            reason = str(edit.get("reason", ""))
+        else:
+            reason = str(getattr(edit, "reason", ""))
+        if reason.strip():
+            explained += 1
+    return float(explained / len(edits))
+
+
+def compute_explainability(conflicts: Sequence[object]) -> float:
+    """Share of conflicts that carry a human-readable explanation."""
+    if not conflicts:
+        return 1.0
+    explained = 0
+    for conflict in conflicts:
+        if isinstance(conflict, dict):
+            message = str(conflict.get("message", ""))
+        else:
+            message = str(getattr(conflict, "message", ""))
+        if message.strip():
+            explained += 1
+    return float(explained / len(conflicts))
+
+
 def aggregate_scene_rows(rows: Sequence[Dict[str, object]]) -> Dict[str, float]:
     if not rows:
         return {
@@ -67,6 +188,14 @@ def aggregate_scene_rows(rows: Sequence[Dict[str, object]]) -> Dict[str, float]:
             "retrieval_top3_category_hit": 0.0,
             "latency_ms_total": 0.0,
             "latency_ms_per_instance": 0.0,
+            "spacing_uniformity": 0.0,
+            "style_consistency": 0.0,
+            "balance_score": 0.0,
+            "rule_satisfaction_rate": 0.0,
+            "topology_validity": 0.0,
+            "cross_section_feasibility": 0.0,
+            "editability": 0.0,
+            "conflict_explainability": 0.0,
         }
 
     def _mean(key: str) -> float:
@@ -83,6 +212,14 @@ def aggregate_scene_rows(rows: Sequence[Dict[str, object]]) -> Dict[str, float]:
         "retrieval_top3_category_hit": _mean("retrieval_top3_category_hit"),
         "latency_ms_total": _mean("latency_ms_total"),
         "latency_ms_per_instance": _mean("latency_ms_per_instance"),
+        "spacing_uniformity": _mean("spacing_uniformity"),
+        "style_consistency": _mean("style_consistency"),
+        "balance_score": _mean("balance_score"),
+        "rule_satisfaction_rate": _mean("rule_satisfaction_rate"),
+        "topology_validity": _mean("topology_validity"),
+        "cross_section_feasibility": _mean("cross_section_feasibility"),
+        "editability": _mean("editability"),
+        "conflict_explainability": _mean("conflict_explainability"),
     }
 
     # M5 compliance fields (optional – backward safe)
@@ -103,6 +240,14 @@ def compare_mode_reports(rule_summary: Dict[str, float], learned_summary: Dict[s
         "retrieval_top3_category_hit",
         "latency_ms_total",
         "latency_ms_per_instance",
+        "spacing_uniformity",
+        "style_consistency",
+        "balance_score",
+        "rule_satisfaction_rate",
+        "topology_validity",
+        "cross_section_feasibility",
+        "editability",
+        "conflict_explainability",
     }
     # M5 compliance keys (optional)
     for k in ("compliance_rate_total", "avg_feasibility_score", "avg_constraint_penalty"):

@@ -38,6 +38,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--patience", type=int, default=3)
     parser.add_argument("--device", default="cpu")
     parser.add_argument("--resume-ckpt", type=Path, default=None)
+    parser.add_argument("--use-optimal-labels", action="store_true", default=True,
+                        help="Use composite-value optimal labels instead of rule labels")
+    parser.add_argument("--no-optimal-labels", dest="use_optimal_labels", action="store_false")
+    parser.add_argument("--reward-weight", type=float, default=0.0,
+                        help="Reward weight for reward-weighted CE (0 = pure CE)")
     return parser.parse_args()
 
 
@@ -58,7 +63,10 @@ def _load_jsonl(path: Path) -> List[Dict[str, object]]:
     return rows
 
 
-def _to_training_samples(rows: List[Dict[str, object]]) -> tuple[List[Dict[str, object]], Dict[str, int]]:
+def _to_training_samples(
+    rows: List[Dict[str, object]],
+    use_optimal_labels: bool = True,
+) -> tuple[List[Dict[str, object]], Dict[str, int]]:
     samples: List[Dict[str, object]] = []
     skipped_no_candidates = 0
     skipped_no_choice = 0
@@ -81,7 +89,14 @@ def _to_training_samples(rows: List[Dict[str, object]]) -> tuple[List[Dict[str, 
         candidate_scores = candidate_scores[:n]
         candidate_categories = candidate_categories[:n]
 
-        chosen_index = int(row.get("chosen_index", -1))
+        # Choose label source: optimal (composite value) or rule (original)
+        if use_optimal_labels:
+            chosen_index = int(row.get("optimal_index", -1))
+            if chosen_index < 0 or chosen_index >= n:
+                # Fallback to rule label if optimal not available
+                chosen_index = int(row.get("chosen_index", -1))
+        else:
+            chosen_index = int(row.get("chosen_index", -1))
         if chosen_index < 0 or chosen_index >= n:
             chosen_asset = str(row.get("chosen_asset_id", ""))
             if chosen_asset and chosen_asset in candidate_asset_ids:
@@ -105,6 +120,11 @@ def _to_training_samples(rows: List[Dict[str, object]]) -> tuple[List[Dict[str, 
             density=float(road_params.get("density", 1.0)),
             topk=max(1, n),
             used_asset_ids=set(str(x) for x in (row.get("used_asset_ids_before_slot") or [])),
+            placed_count_in_category=int(row.get("placed_count_in_category", 0)),
+            total_slots_in_category=int(row.get("total_slots_in_category", 1)),
+            category_pool_size=int(row.get("category_pool_size", 15)),
+            mean_score_placed=float(row.get("mean_score_placed", 0.0)),
+            total_slots_in_scene=int(row.get("total_slots_in_scene", 1)),
         )
         candidates = [
             CandidateDescriptor(
@@ -138,10 +158,11 @@ def train_from_jsonl(
     out_dir: Path,
     config: PolicyTrainConfig,
     resume_ckpt: Path | None = None,
+    use_optimal_labels: bool = True,
     progress_callback: Optional[Callable[[Dict[str, float]], None]] = None,
 ) -> Dict[str, object]:
     raw_rows = _load_jsonl(Path(data_path).resolve())
-    samples, ingest_stats = _to_training_samples(raw_rows)
+    samples, ingest_stats = _to_training_samples(raw_rows, use_optimal_labels=use_optimal_labels)
     if not samples:
         raise RuntimeError(
             "No usable policy samples after preprocessing. "
@@ -186,12 +207,14 @@ def main() -> int:
             entropy_weight=float(args.entropy_weight),
             patience=int(args.patience),
             device=args.device,
+            reward_weight=float(args.reward_weight),
         )
         summary = train_from_jsonl(
             data_path=args.data.resolve(),
             out_dir=args.out_dir,
             config=config,
             resume_ckpt=args.resume_ckpt,
+            use_optimal_labels=bool(args.use_optimal_labels),
         )
 
         print(json.dumps(summary, indent=2, ensure_ascii=True))

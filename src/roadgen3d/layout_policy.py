@@ -29,6 +29,7 @@ class PolicyTrainConfig:
     entropy_weight: float = 0.01
     patience: int = 3
     device: str = "cpu"
+    reward_weight: float = 0.0  # >0 enables reward-weighted CE
 
 
 class LayoutPolicyMLP(nn.Module if nn is not None else object):
@@ -129,6 +130,7 @@ def _slot_logits_and_targets(model, batch_samples: Sequence[Dict[str, object]], 
         raise RuntimeError("torch is required for layout policy training")
     logits_list = []
     targets = []
+    rewards = []
     for sample in batch_samples:
         feats = np.asarray(sample["candidate_features"], dtype=np.float32)
         chosen_index = int(sample["chosen_index"])
@@ -140,7 +142,8 @@ def _slot_logits_and_targets(model, batch_samples: Sequence[Dict[str, object]], 
         logits = model(x).squeeze(-1)
         logits_list.append(logits)
         targets.append(chosen_index)
-    return logits_list, targets
+        rewards.append(float(sample.get("scene_reward", 0.0)))
+    return logits_list, targets, rewards
 
 
 def train_layout_policy(
@@ -195,14 +198,18 @@ def train_layout_policy(
         step = max(1, int(config.batch_size))
         for i in range(0, len(train_list), step):
             batch = train_list[i : i + step]
-            logits_list, targets = _slot_logits_and_targets(model, batch, device=device)
+            logits_list, targets, rewards = _slot_logits_and_targets(model, batch, device=device)
             if not logits_list:
                 continue
 
             ce_terms = []
             entropy_terms = []
-            for logits, target_idx in zip(logits_list, targets):
-                ce_terms.append(F.cross_entropy(logits.unsqueeze(0), torch.tensor([target_idx], device=device)))
+            for idx_in_batch, (logits, target_idx) in enumerate(zip(logits_list, targets)):
+                ce = F.cross_entropy(logits.unsqueeze(0), torch.tensor([target_idx], device=device))
+                # Reward weighting: scale CE by (1 + rw * normalized_reward)
+                if float(config.reward_weight) > 0.0 and rewards[idx_in_batch] > 0.0:
+                    ce = ce * (1.0 + float(config.reward_weight) * float(rewards[idx_in_batch]))
+                ce_terms.append(ce)
                 probs = torch.softmax(logits, dim=0)
                 entropy = -(probs * torch.log(probs + 1e-8)).sum()
                 entropy_terms.append(entropy)
@@ -219,7 +226,7 @@ def train_layout_policy(
         model.eval()
         val_losses: List[float] = []
         with torch.no_grad():
-            logits_list, targets = _slot_logits_and_targets(model, val_list, device=device)
+            logits_list, targets, _val_rewards = _slot_logits_and_targets(model, val_list, device=device)
             for logits, target_idx in zip(logits_list, targets):
                 val_losses.append(
                     float(F.cross_entropy(logits.unsqueeze(0), torch.tensor([target_idx], device=device)).item())
