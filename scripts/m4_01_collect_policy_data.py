@@ -8,7 +8,7 @@ import json
 import random
 import sys
 from pathlib import Path
-from typing import Dict, List
+from typing import Callable, Dict, List, Optional
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
@@ -111,6 +111,7 @@ def collect_policy_data(
     density: float,
     topk_per_category: int,
     max_trials_per_slot: int,
+    progress_callback: Optional[Callable[[Dict[str, float]], None]] = None,
 ) -> List[Dict[str, object]]:
     queries = _load_queries(queries_path)
     rows = _load_real_manifest(manifest.resolve())
@@ -140,6 +141,18 @@ def collect_policy_data(
 
     effective_density = max(float(density), 0.1)
     samples: List[Dict[str, object]] = []
+    seed_count = max(0, int(seed_end) - int(seed_start) + 1)
+    slot_total_per_scene = 0
+    for category in DEFAULT_CATEGORIES:
+        pool = category_to_rows.get(category, [])
+        if not pool:
+            continue
+        base_spacing = float(DEFAULT_SPACING_M[category])
+        spacing = base_spacing / effective_density
+        slot_count = max(1, int(float(length_m) // spacing))
+        slot_total_per_scene += slot_count
+    total_slots = max(1, len(queries) * seed_count * slot_total_per_scene)
+    processed_slots = 0
 
     for query_idx, query in enumerate(queries):
         for seed in range(int(seed_start), int(seed_end) + 1):
@@ -256,6 +269,18 @@ def collect_policy_data(
                             "dropped": bool(dropped),
                         }
                     )
+                    processed_slots += 1
+                    if progress_callback is not None and (
+                        processed_slots == total_slots or processed_slots % 64 == 0
+                    ):
+                        progress_callback(
+                            {
+                                "phase": "collect",
+                                "processed_slots": float(processed_slots),
+                                "total_slots": float(total_slots),
+                                "ratio": float(processed_slots / total_slots),
+                            }
+                        )
 
     with out_path.open("w", encoding="utf-8") as handle:
         for sample in samples:

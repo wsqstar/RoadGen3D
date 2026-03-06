@@ -40,6 +40,18 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--placement-policy", choices=["rule", "learned"], default="rule")
     parser.add_argument("--policy-ckpt", type=Path, default=None)
     parser.add_argument("--policy-temperature", type=float, default=0.12)
+    # -- M5 arguments --
+    parser.add_argument("--layout-mode", choices=["template", "osm"], default="template",
+                        help="Layout mode: template (straight road) or osm (real OSM geometry).")
+    parser.add_argument("--constraint-mode", choices=["off", "soft"], default="soft",
+                        help="Constraint mode: off or soft (POI penalty scoring).")
+    parser.add_argument("--aoi-bbox", nargs=4, type=float, default=None,
+                        metavar=("MIN_LON", "MIN_LAT", "MAX_LON", "MAX_LAT"),
+                        help="AOI bounding box for OSM mode.")
+    parser.add_argument("--osm-cache-dir", type=str, default="artifacts/m5/osm_cache")
+    parser.add_argument("--constraint-weight", type=float, default=0.45)
+    parser.add_argument("--constraint-veto-threshold", type=float, default=0.95)
+    parser.add_argument("--poi-rule-set", type=str, default="entrance_fire_bus_stop_v1")
     return parser.parse_args()
 
 
@@ -55,6 +67,13 @@ def main() -> int:
         seed=int(args.seed),
         topk_per_category=int(args.topk_per_category),
         max_trials_per_slot=int(args.max_trials_per_slot),
+        layout_mode=args.layout_mode,
+        constraint_mode=args.constraint_mode,
+        aoi_bbox=tuple(args.aoi_bbox) if args.aoi_bbox else None,
+        osm_cache_dir=args.osm_cache_dir,
+        constraint_weight=float(args.constraint_weight),
+        constraint_veto_threshold=float(args.constraint_veto_threshold),
+        poi_rule_set=args.poi_rule_set,
     )
     try:
         result = compose_street_scene(

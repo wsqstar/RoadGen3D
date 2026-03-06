@@ -73,7 +73,7 @@ def aggregate_scene_rows(rows: Sequence[Dict[str, object]]) -> Dict[str, float]:
         values = [float(item.get(key, 0.0)) for item in rows]
         return float(sum(values) / len(values))
 
-    return {
+    result = {
         "scene_count": float(len(rows)),
         "instance_count": _mean("instance_count"),
         "dropped_slots": _mean("dropped_slots"),
@@ -84,6 +84,14 @@ def aggregate_scene_rows(rows: Sequence[Dict[str, object]]) -> Dict[str, float]:
         "latency_ms_total": _mean("latency_ms_total"),
         "latency_ms_per_instance": _mean("latency_ms_per_instance"),
     }
+
+    # M5 compliance fields (optional – backward safe)
+    _m5_keys = ("compliance_rate_total", "avg_feasibility_score", "avg_constraint_penalty")
+    for key in _m5_keys:
+        if any(key in item for item in rows):
+            result[key] = _mean(key)
+
+    return result
 
 
 def compare_mode_reports(rule_summary: Dict[str, float], learned_summary: Dict[str, float]) -> Dict[str, float]:
@@ -96,6 +104,10 @@ def compare_mode_reports(rule_summary: Dict[str, float], learned_summary: Dict[s
         "latency_ms_total",
         "latency_ms_per_instance",
     }
+    # M5 compliance keys (optional)
+    for k in ("compliance_rate_total", "avg_feasibility_score", "avg_constraint_penalty"):
+        if k in rule_summary or k in learned_summary:
+            keys.add(k)
     delta: Dict[str, float] = {}
     for key in sorted(keys):
         delta[f"delta_{key}"] = float(learned_summary.get(key, 0.0) - rule_summary.get(key, 0.0))

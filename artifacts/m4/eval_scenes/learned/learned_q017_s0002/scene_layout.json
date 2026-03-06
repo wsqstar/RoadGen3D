@@ -6,1097 +6,811 @@
     "road_width_m": 8.0,
     "sidewalk_width_m": 2.5,
     "lane_count": 2,
-    "density": 1.5,
+    "density": 1.0,
     "seed": 2,
-    "topk_per_category": 31,
-    "max_trials_per_slot": 30
+    "topk_per_category": 20,
+    "max_trials_per_slot": 30,
+    "layout_mode": "template",
+    "constraint_mode": "soft",
+    "aoi_bbox": null,
+    "osm_cache_dir": "artifacts/m5/osm_cache",
+    "constraint_weight": 0.45,
+    "constraint_veto_threshold": 0.95,
+    "poi_rule_set": "entrance_fire_bus_stop_v1"
   },
   "summary": {
-    "instance_count": 53,
+    "instance_count": 33,
     "dropped_slots": 1,
-    "dropped_slot_rate": 0.018518518518518517,
-    "unique_asset_count": 36,
-    "diversity_ratio": 0.6792452830188679,
+    "dropped_slot_rate": 0.029411764705882353,
+    "unique_asset_count": 23,
+    "diversity_ratio": 0.696969696969697,
     "overlap_rate": 0.0,
-    "retrieval_top3_category_hit": 0.5185185185185185,
+    "retrieval_top3_category_hit": 0.5,
     "policy_used": "learned",
-    "latency_ms_total": 393.9504580339417,
-    "latency_ms_per_instance": 7.433027510074371,
+    "latency_ms_total": 258.05674999719486,
+    "latency_ms_per_instance": 7.819901515066511,
     "per_category_unique": {
-      "bench": 5,
-      "lamp": 6,
-      "trash": 2,
-      "tree": 8,
-      "bus_stop": 1,
-      "mailbox": 3,
-      "hydrant": 4,
-      "bollard": 7
+      "bench": 3,
+      "lamp": 4,
+      "trash": 4,
+      "tree": 5,
+      "mailbox": 2,
+      "hydrant": 2,
+      "bollard": 3
     },
     "selection_source_counts": {
-      "policy_softmax": 36,
-      "policy_relaxed_repeat": 17
-    }
+      "policy_softmax": 19,
+      "fallback_pool": 4,
+      "policy_relaxed_repeat": 10
+    },
+    "layout_mode": "template",
+    "constraint_mode": "soft",
+    "aoi_bbox": null,
+    "compliance_rate_total": 1.0,
+    "violations_total": 0,
+    "rule_violation_counts": {},
+    "avg_constraint_penalty": 0.0,
+    "avg_feasibility_score": 1.0
   },
   "placements": [
     {
       "instance_id": "inst_0001",
-      "asset_id": "bench_014",
+      "asset_id": "bench_008",
       "category": "bench",
-      "score": 0.6885248422622681,
+      "score": 0.6851462125778198,
       "position_xyz": [
-        -30.65651753882195,
+        -25.323184205488616,
         -0.0,
         4.806551367726809
       ],
       "yaw_deg": 173.35795192254275,
       "scale": 1.0,
       "bbox_xz": [
-        -31.785176690002434,
-        -29.52785838764147,
+        -26.451843356669098,
+        -24.194525054308134,
         4.204465394180186,
         5.408637341273431
       ],
-      "selection_source": "policy_softmax"
+      "selection_source": "policy_softmax",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
       "instance_id": "inst_0002",
+      "asset_id": "bench_014",
+      "category": "bench",
+      "score": 0.6885248422622681,
+      "position_xyz": [
+        -1.1812020520634254,
+        -0.0,
+        -5.22763733464107
+      ],
+      "yaw_deg": 5.663088114957953,
+      "scale": 1.0,
+      "bbox_xz": [
+        -2.3064130474551483,
+        -0.055991056671702344,
+        -5.8149839612939,
+        -4.64029070798824
+      ],
+      "selection_source": "policy_softmax",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
+    },
+    {
+      "instance_id": "inst_0003",
       "asset_id": "bench_001",
       "category": "bench",
       "score": 0.7023963928222656,
       "position_xyz": [
-        -15.29209003279443,
+        27.091942939708694,
         -0.0,
-        -5.080269598559779
+        4.96244974199449
       ],
-      "yaw_deg": -3.0698166785736927,
+      "yaw_deg": 186.50500282770693,
       "scale": 1.0,
       "bbox_xz": [
-        -16.406864361397876,
-        -14.177315704190983,
-        -5.628036615548465,
-        -4.532502581571093
+        25.963750200972292,
+        28.220135678445097,
+        4.362420171528207,
+        5.562479312460773
       ],
-      "selection_source": "policy_softmax"
-    },
-    {
-      "instance_id": "inst_0003",
-      "asset_id": "bench_008",
-      "category": "bench",
-      "score": 0.6851462125778198,
-      "position_xyz": [
-        0.3204052009225138,
-        -0.0,
-        5.331204017112003
-      ],
-      "yaw_deg": 174.53412592407687,
-      "scale": 1.0,
-      "bbox_xz": [
-        -0.8040784344674174,
-        1.444888836312445,
-        4.7468404938764,
-        5.915567540347606
-      ],
-      "selection_source": "policy_softmax"
+      "selection_source": "policy_softmax",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
       "instance_id": "inst_0004",
-      "asset_id": "bench_013",
-      "category": "bench",
-      "score": 0.6807451248168945,
-      "position_xyz": [
-        15.680595460616114,
-        -0.0,
-        -5.026987918762535
-      ],
-      "yaw_deg": 7.9171130071958835,
-      "scale": 1.0,
-      "bbox_xz": [
-        14.547851838943181,
-        16.813339082289048,
-        -5.6480947679767555,
-        -4.405881069548314
-      ],
-      "selection_source": "policy_softmax"
-    },
-    {
-      "instance_id": "inst_0005",
-      "asset_id": "bench_011",
-      "category": "bench",
-      "score": 0.6730953454971313,
-      "position_xyz": [
-        32.13253114228796,
-        -0.0,
-        5.194854188725854
-      ],
-      "yaw_deg": 176.29185186638924,
-      "scale": 1.0,
-      "bbox_xz": [
-        31.015013110592918,
-        33.250049173983,
-        4.637275448451248,
-        5.752432929000459
-      ],
-      "selection_source": "policy_softmax"
-    },
-    {
-      "instance_id": "inst_0006",
       "asset_id": "lamp_013",
       "category": "lamp",
       "score": 0.675342857837677,
       "position_xyz": [
-        -34.75099876206088,
+        -30.183462489265267,
         -0.0,
-        5.214893862097312
+        5.273994768313976
       ],
-      "yaw_deg": 177.09544204565884,
+      "yaw_deg": 173.7931242175124,
       "scale": 1.0,
       "bbox_xz": [
-        -35.16087631077645,
-        -34.34112121334531,
-        4.8050163151476095,
-        5.624771409047014
+        -30.603913825282742,
+        -29.763011153247792,
+        4.85354343394684,
+        5.694446102681112
       ],
-      "selection_source": "policy_softmax"
+      "selection_source": "policy_softmax",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0007",
+      "instance_id": "inst_0005",
       "asset_id": "lamp_009",
       "category": "lamp",
       "score": 0.6481276750564575,
       "position_xyz": [
-        -18.82463162651514,
+        -11.095389238281262,
         -0.0,
-        -5.224247230853972
+        -5.587429855022709
       ],
-      "yaw_deg": 0.9681657764239819,
+      "yaw_deg": -1.8933852920179692,
       "scale": 1.0,
       "bbox_xz": [
-        -19.227982452339702,
-        -18.421280800690575,
-        -5.627598056678536,
-        -4.820896405029407
+        -11.5018880073985,
+        -10.688890469164024,
+        -5.993928624139948,
+        -5.18093108590547
       ],
-      "selection_source": "policy_softmax"
+      "selection_source": "policy_softmax",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0008",
+      "instance_id": "inst_0006",
       "asset_id": "lamp_003",
       "category": "lamp",
       "score": 0.6451749801635742,
       "position_xyz": [
-        -8.095092429244318,
+        8.881167202472461,
         -0.0,
-        5.07514292876116
+        4.77802952456675
       ],
-      "yaw_deg": 174.18715828778346,
+      "yaw_deg": 177.6124800642831,
       "scale": 1.0,
       "bbox_xz": [
-        -8.51431989851548,
-        -7.675864959973155,
-        4.655915462818838,
-        5.494370394703482
+        8.473009204995456,
+        9.289325199949467,
+        4.369871530656614,
+        5.186187518476887
       ],
-      "selection_source": "policy_softmax"
+      "selection_source": "policy_softmax",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0009",
+      "instance_id": "inst_0007",
       "asset_id": "lamp_015",
       "category": "lamp",
       "score": 0.617817759513855,
       "position_xyz": [
-        8.162717371244327,
+        29.97630874070915,
         -0.0,
-        -5.07552030265413
+        -5.6182364781190905
       ],
-      "yaw_deg": -5.09050405082969,
+      "yaw_deg": -6.135672182238096,
       "scale": 1.0,
       "bbox_xz": [
-        7.745760367834883,
-        8.57967437465377,
-        -5.492477306063574,
-        -4.658563299244687
+        29.556077794571642,
+        30.39653968684666,
+        -6.038467424256598,
+        -5.198005531981583
       ],
-      "selection_source": "policy_softmax"
+      "selection_source": "policy_softmax",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
+    },
+    {
+      "instance_id": "inst_0008",
+      "asset_id": "trash_005",
+      "category": "trash",
+      "score": 0.0,
+      "position_xyz": [
+        -29.234096814632075,
+        -0.0,
+        -4.8999674053988755
+      ],
+      "yaw_deg": -2.595902286832139,
+      "scale": 1.0,
+      "bbox_xz": [
+        -29.799589682511748,
+        -28.668603946752402,
+        -5.465460273278548,
+        -4.334474537519203
+      ],
+      "selection_source": "fallback_pool",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
+    },
+    {
+      "instance_id": "inst_0009",
+      "asset_id": "trash_003",
+      "category": "trash",
+      "score": 0.0,
+      "position_xyz": [
+        -9.560910240665555,
+        -0.0,
+        -4.8073524999467665
+      ],
+      "yaw_deg": -6.366640491308388,
+      "scale": 1.0,
+      "bbox_xz": [
+        -10.147563270165655,
+        -8.974257211165455,
+        -5.394005529446868,
+        -4.220699470446665
+      ],
+      "selection_source": "fallback_pool",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
       "instance_id": "inst_0010",
-      "asset_id": "lamp_001",
-      "category": "lamp",
-      "score": 0.6163530349731445,
+      "asset_id": "trash_010",
+      "category": "trash",
+      "score": 0.0,
       "position_xyz": [
-        20.890279764264918,
+        9.910101729581353,
         -0.0,
-        5.484401691893978
+        4.938130478732206
       ],
-      "yaw_deg": 186.50549839836097,
+      "yaw_deg": 178.96586850516977,
       "scale": 1.0,
       "bbox_xz": [
-        20.468907851153975,
-        21.31165167737586,
-        5.0630297787830365,
-        5.905773605004919
+        9.353841936378789,
+        10.466361522783917,
+        4.381870685529643,
+        5.494390271934769
       ],
-      "selection_source": "policy_softmax"
+      "selection_source": "fallback_pool",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
       "instance_id": "inst_0011",
-      "asset_id": "lamp_008",
-      "category": "lamp",
-      "score": 0.6150737404823303,
+      "asset_id": "trash_006",
+      "category": "trash",
+      "score": 0.0,
       "position_xyz": [
-        34.20257624571863,
+        29.409598606399545,
         -0.0,
-        -5.396213022158396
+        5.580195109481573
       ],
-      "yaw_deg": 7.695625169154026,
+      "yaw_deg": 181.09000976062492,
       "scale": 1.0,
       "bbox_xz": [
-        33.77759545692324,
-        34.62755703451403,
-        -5.821193814146674,
-        -4.971232230170119
+        28.853003857903758,
+        29.96619335489533,
+        5.023600360985784,
+        6.136789857977361
       ],
-      "selection_source": "policy_softmax"
+      "selection_source": "fallback_pool",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
       "instance_id": "inst_0012",
-      "asset_id": "trash_004",
-      "category": "trash",
-      "score": 0.5883800983428955,
-      "position_xyz": [
-        -33.4491132401074,
-        -0.0,
-        -5.219644283876555
-      ],
-      "yaw_deg": -0.1597772503969388,
-      "scale": 1.0,
-      "bbox_xz": [
-        -34.00008789565854,
-        -32.898138584556264,
-        -5.770618939427694,
-        -4.668669628325416
-      ],
-      "selection_source": "policy_softmax"
-    },
-    {
-      "instance_id": "inst_0013",
-      "asset_id": "trash_007",
-      "category": "trash",
-      "score": 0.5859687328338623,
-      "position_xyz": [
-        -19.997476812108037,
-        -0.0,
-        -4.918475510208188
-      ],
-      "yaw_deg": -2.3372127221005456,
-      "scale": 1.0,
-      "bbox_xz": [
-        -20.56145890855861,
-        -19.433494715657464,
-        -5.48245760665876,
-        -4.3544934137576154
-      ],
-      "selection_source": "policy_softmax"
-    },
-    {
-      "instance_id": "inst_0014",
-      "asset_id": "trash_004",
-      "category": "trash",
-      "score": 0.5883800983428955,
-      "position_xyz": [
-        -5.467564900396788,
-        -0.0,
-        5.211012164881637
-      ],
-      "yaw_deg": 181.0832811267239,
-      "scale": 1.0,
-      "bbox_xz": [
-        -6.024119332891462,
-        -4.911010467902114,
-        4.654457732386963,
-        5.7675665973763115
-      ],
-      "selection_source": "policy_relaxed_repeat"
-    },
-    {
-      "instance_id": "inst_0015",
-      "asset_id": "trash_004",
-      "category": "trash",
-      "score": 0.5883800983428955,
-      "position_xyz": [
-        6.140668397973365,
-        -0.0,
-        5.4495716380702435
-      ],
-      "yaw_deg": 174.657114967906,
-      "scale": 1.0,
-      "bbox_xz": [
-        5.559598509737565,
-        6.721738286209165,
-        4.868501749834444,
-        6.030641526306043
-      ],
-      "selection_source": "policy_relaxed_repeat"
-    },
-    {
-      "instance_id": "inst_0016",
-      "asset_id": "trash_004",
-      "category": "trash",
-      "score": 0.5883800983428955,
-      "position_xyz": [
-        19.30441253869945,
-        -0.0,
-        5.661377835868047
-      ],
-      "yaw_deg": 176.95300999919138,
-      "scale": 1.0,
-      "bbox_xz": [
-        18.736303117466576,
-        19.87252195993232,
-        5.093268414635175,
-        6.229487257100918
-      ],
-      "selection_source": "policy_relaxed_repeat"
-    },
-    {
-      "instance_id": "inst_0017",
-      "asset_id": "trash_004",
-      "category": "trash",
-      "score": 0.5883800983428955,
-      "position_xyz": [
-        32.45678875694713,
-        -0.0,
-        -5.238108341644717
-      ],
-      "yaw_deg": 6.946469746140458,
-      "scale": 1.0,
-      "bbox_xz": [
-        31.8670282198328,
-        33.04654929406145,
-        -5.827868878759042,
-        -4.648347804530393
-      ],
-      "selection_source": "policy_relaxed_repeat"
-    },
-    {
-      "instance_id": "inst_0018",
-      "asset_id": "tree_013",
-      "category": "tree",
-      "score": 0.6942649483680725,
-      "position_xyz": [
-        -35.82015041226571,
-        -0.0,
-        -4.874508828551762
-      ],
-      "yaw_deg": -6.299744277671602,
-      "scale": 1.0,
-      "bbox_xz": [
-        -37.39976459196042,
-        -34.240536232571,
-        -6.454122981894315,
-        -3.294894675209209
-      ],
-      "selection_source": "policy_softmax"
-    },
-    {
-      "instance_id": "inst_0019",
-      "asset_id": "tree_008",
-      "category": "tree",
-      "score": 0.6925978064537048,
-      "position_xyz": [
-        -23.938170978445385,
-        -0.0,
-        -5.505168022030983
-      ],
-      "yaw_deg": -4.632336980869656,
-      "scale": 1.0,
-      "bbox_xz": [
-        -25.48503964950312,
-        -22.39130230738765,
-        -7.052036693088715,
-        -3.9582993509732507
-      ],
-      "selection_source": "policy_softmax"
-    },
-    {
-      "instance_id": "inst_0020",
       "asset_id": "tree_001",
       "category": "tree",
       "score": 0.6712496280670166,
       "position_xyz": [
-        -15.231247054830913,
+        -32.44596107755788,
         -0.0,
-        5.466961098904975
+        -4.79286498260718
       ],
-      "yaw_deg": 172.5099691220279,
+      "yaw_deg": 3.721336334123297,
       "scale": 1.0,
       "bbox_xz": [
-        -16.83352360723836,
-        -13.628970502423467,
-        3.8646845464975303,
-        7.06923765131242
+        -33.97445537104508,
+        -30.917466784070683,
+        -6.32135927609438,
+        -3.26437068911998
       ],
-      "selection_source": "policy_softmax"
+      "selection_source": "policy_softmax",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0021",
+      "instance_id": "inst_0013",
+      "asset_id": "tree_013",
+      "category": "tree",
+      "score": 0.6942649483680725,
+      "position_xyz": [
+        -16.598612328681,
+        -0.0,
+        -5.323755737665843
+      ],
+      "yaw_deg": -7.881639944257982,
+      "scale": 1.0,
+      "bbox_xz": [
+        -18.20821309860948,
+        -14.98901155875252,
+        -6.933356482160238,
+        -3.714154993171449
+      ],
+      "selection_source": "policy_softmax",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
+    },
+    {
+      "instance_id": "inst_0014",
+      "asset_id": "tree_008",
+      "category": "tree",
+      "score": 0.6925978064537048,
+      "position_xyz": [
+        1.4222099649242415,
+        -0.0,
+        5.194425227226912
+      ],
+      "yaw_deg": 182.8072480562265,
+      "scale": 1.0,
+      "bbox_xz": [
+        -0.08751012327277219,
+        2.9319300531212553,
+        3.684705139029898,
+        6.704145315423926
+      ],
+      "selection_source": "policy_softmax",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
+    },
+    {
+      "instance_id": "inst_0015",
       "asset_id": "tree_014",
       "category": "tree",
       "score": 0.6654436588287354,
       "position_xyz": [
-        -5.9843570236228025,
+        16.472538198681626,
         -0.0,
-        -5.077234558586458
+        -5.141750897716639
       ],
-      "yaw_deg": -6.6735491615267915,
+      "yaw_deg": -2.3280733481566074,
       "scale": 1.0,
       "bbox_xz": [
-        -7.571152809248317,
-        -4.397561237997288,
-        -6.664030344211972,
-        -3.4904387729609434
+        14.972793227387317,
+        17.972283169975935,
+        -6.641495869010948,
+        -3.6420059264223297
       ],
-      "selection_source": "policy_softmax"
+      "selection_source": "policy_softmax",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0022",
+      "instance_id": "inst_0016",
       "asset_id": "tree_003",
       "category": "tree",
       "score": 0.6474801898002625,
       "position_xyz": [
-        3.576034144480703,
+        32.26095309841864,
         -0.0,
-        5.479423507441804
+        4.974581332486375
       ],
-      "yaw_deg": 172.3383179155704,
+      "yaw_deg": 185.70697349196854,
       "scale": 1.0,
       "bbox_xz": [
-        1.970539148906603,
-        5.181529140054803,
-        3.873928511867704,
-        7.084918503015904
+        30.69284768346919,
+        33.82905851336809,
+        3.406475917536925,
+        6.542686747435825
       ],
-      "selection_source": "policy_softmax"
+      "selection_source": "policy_softmax",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0023",
-      "asset_id": "tree_004",
-      "category": "tree",
-      "score": 0.6345295310020447,
-      "position_xyz": [
-        15.574486278040773,
-        -0.0,
-        5.13556588135256
-      ],
-      "yaw_deg": 172.69057593276,
-      "scale": 1.0,
-      "bbox_xz": [
-        13.975609672875192,
-        17.173362883206355,
-        3.5366892761869795,
-        6.734442486518141
-      ],
-      "selection_source": "policy_softmax"
-    },
-    {
-      "instance_id": "inst_0024",
-      "asset_id": "tree_007",
-      "category": "tree",
-      "score": 0.6241629719734192,
-      "position_xyz": [
-        23.954260326269655,
-        -0.0,
-        4.7862689942434145
-      ],
-      "yaw_deg": 177.5072160885887,
-      "scale": 1.0,
-      "bbox_xz": [
-        22.451076239186495,
-        25.457444413352814,
-        3.283084907160254,
-        6.289453081326575
-      ],
-      "selection_source": "policy_softmax"
-    },
-    {
-      "instance_id": "inst_0025",
-      "asset_id": "tree_006",
-      "category": "tree",
-      "score": 0.6148342490196228,
-      "position_xyz": [
-        36.08733732897628,
-        -0.0,
-        5.455345140050765
-      ],
-      "yaw_deg": 179.564472193573,
-      "scale": 1.0,
-      "bbox_xz": [
-        34.6278717907943,
-        37.54680286715826,
-        3.9958796018687845,
-        6.914810678232746
-      ],
-      "selection_source": "policy_softmax"
-    },
-    {
-      "instance_id": "inst_0026",
-      "asset_id": "bus_stop_002",
-      "category": "bus_stop",
-      "score": 0.664840579032898,
-      "position_xyz": [
-        19.889673146747022,
-        -0.0,
-        -4.9964194942642814
-      ],
-      "yaw_deg": -1.679319037474194,
-      "scale": 1.0,
-      "bbox_xz": [
-        17.918445678345915,
-        21.86090061514813,
-        -5.997381924201978,
-        -3.9954570643265854
-      ],
-      "selection_source": "policy_softmax"
-    },
-    {
-      "instance_id": "inst_0027",
+      "instance_id": "inst_0017",
       "asset_id": "mailbox_014",
       "category": "mailbox",
       "score": 0.6888275742530823,
       "position_xyz": [
-        -27.801356367502045,
+        -19.000560514411905,
         -0.0,
-        -5.66948928224637
+        -5.4882041088221
       ],
-      "yaw_deg": 5.601133982477567,
+      "yaw_deg": -7.580590332518309,
       "scale": 1.0,
       "bbox_xz": [
-        -28.329204800168363,
-        -27.273507934835727,
-        -6.197337714912687,
-        -5.141640849580052
+        -19.537514792644487,
+        -18.463606236179324,
+        -6.025158387054681,
+        -4.95124983058952
       ],
-      "selection_source": "policy_softmax"
+      "selection_source": "policy_softmax",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0028",
+      "instance_id": "inst_0018",
       "asset_id": "mailbox_004",
       "category": "mailbox",
       "score": 0.6300902962684631,
       "position_xyz": [
-        1.3790056901874364,
+        19.35344545790998,
         -0.0,
-        -5.057347453345351
+        -5.617020659905823
       ],
-      "yaw_deg": -7.605299637534383,
+      "yaw_deg": -3.5876491826469863,
       "scale": 1.0,
       "bbox_xz": [
-        0.84194026396523,
-        1.9160711164096427,
-        -5.594412879567557,
-        -4.5202820271231445
+        18.835260758809106,
+        19.871630157010856,
+        -6.135205359006699,
+        -5.098835960804948
       ],
-      "selection_source": "policy_softmax"
+      "selection_source": "policy_softmax",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0029",
-      "asset_id": "mailbox_006",
-      "category": "mailbox",
-      "score": 0.6240260004997253,
+      "instance_id": "inst_0019",
+      "asset_id": "hydrant_004",
+      "category": "hydrant",
+      "score": 0.6527414917945862,
       "position_xyz": [
-        27.498302470616068,
+        -20.50402702722115,
         -0.0,
-        -5.0264817200168705
+        -4.786767716829312
       ],
-      "yaw_deg": -0.03280767312612021,
+      "yaw_deg": -6.332355507698786,
       "scale": 1.0,
       "bbox_xz": [
-        26.998130727303852,
-        27.998474213928283,
-        -5.526653463329085,
-        -4.526309976704656
+        -20.9800756327935,
+        -20.027978421648797,
+        -5.2628163224016635,
+        -4.31071911125696
       ],
-      "selection_source": "policy_softmax"
+      "selection_source": "policy_softmax",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0030",
+      "instance_id": "inst_0020",
       "asset_id": "hydrant_002",
       "category": "hydrant",
       "score": 0.6859304904937744,
       "position_xyz": [
-        -30.128892858144646,
+        20.854582502217657,
         -0.0,
-        -4.95127791632032
+        -5.434149402272283
       ],
-      "yaw_deg": -3.696920098757559,
+      "yaw_deg": -0.999613824179356,
       "scale": 1.0,
       "bbox_xz": [
-        -30.59449228858812,
-        -29.66329342770117,
-        -5.416877353718468,
-        -4.485678478922172
+        20.40025913962024,
+        21.308905864815074,
+        -5.888472772189166,
+        -4.979826032355399
       ],
-      "selection_source": "policy_softmax"
+      "selection_source": "policy_softmax",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0031",
-      "asset_id": "hydrant_013",
-      "category": "hydrant",
-      "score": 0.6671320199966431,
+      "instance_id": "inst_0021",
+      "asset_id": "bollard_006",
+      "category": "bollard",
+      "score": 0.641868531703949,
       "position_xyz": [
-        -10.067321373830435,
+        -36.786286983633076,
         -0.0,
-        -4.795303153038669
+        5.013082518745681
       ],
-      "yaw_deg": 4.869599630709404,
+      "yaw_deg": 180.36521742926573,
       "scale": 1.0,
       "bbox_xz": [
-        -10.537641059492088,
-        -9.597001688168781,
-        -5.265622843793738,
-        -4.324983462283601
+        -37.112081219635556,
+        -36.460492747630596,
+        4.6872882827432,
+        5.338876754748162
       ],
-      "selection_source": "policy_softmax"
+      "selection_source": "policy_softmax",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0032",
-      "asset_id": "hydrant_006",
-      "category": "hydrant",
-      "score": 0.664283037185669,
-      "position_xyz": [
-        11.008016720717182,
-        -0.0,
-        -5.453236331085326
-      ],
-      "yaw_deg": -4.293962221574841,
-      "scale": 1.0,
-      "bbox_xz": [
-        10.540000052440831,
-        11.476033388993532,
-        -5.921252999361676,
-        -4.9852196628089755
-      ],
-      "selection_source": "policy_softmax"
-    },
-    {
-      "instance_id": "inst_0033",
-      "asset_id": "hydrant_007",
-      "category": "hydrant",
-      "score": 0.653548538684845,
-      "position_xyz": [
-        29.27821602408352,
-        -0.0,
-        -5.322346168044072
-      ],
-      "yaw_deg": 2.866243445778382,
-      "scale": 1.0,
-      "bbox_xz": [
-        28.81602764554366,
-        29.74040440262338,
-        -5.784534546583931,
-        -4.860157789504212
-      ],
-      "selection_source": "policy_softmax"
-    },
-    {
-      "instance_id": "inst_0034",
+      "instance_id": "inst_0022",
       "asset_id": "bollard_008",
       "category": "bollard",
       "score": 0.6246185302734375,
       "position_xyz": [
-        -37.86255907144784,
+        -30.525172468790633,
         -0.0,
-        5.56785325389915
+        -5.023946613175866
       ],
-      "yaw_deg": 173.53515697373865,
+      "yaw_deg": 2.1480439457419607,
       "scale": 1.0,
       "bbox_xz": [
-        -38.20083840426887,
-        -37.52427973862681,
-        5.229573921078122,
-        5.906132586720179
+        -30.85476984046501,
+        -30.195575097116254,
+        -5.353543984850245,
+        -4.694349241501487
       ],
-      "selection_source": "policy_softmax"
+      "selection_source": "policy_softmax",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0035",
-      "asset_id": "bollard_006",
-      "category": "bollard",
-      "score": 0.641868531703949,
-      "position_xyz": [
-        -33.65541629178326,
-        -0.0,
-        5.007260517549261
-      ],
-      "yaw_deg": 186.31834639996424,
-      "scale": 1.0,
-      "bbox_xz": [
-        -33.99341358476173,
-        -33.31741899880479,
-        4.669263224570788,
-        5.345257810527734
-      ],
-      "selection_source": "policy_softmax"
-    },
-    {
-      "instance_id": "inst_0036",
+      "instance_id": "inst_0023",
       "asset_id": "bollard_011",
       "category": "bollard",
       "score": 0.6229270100593567,
       "position_xyz": [
-        -29.301328129623585,
+        -25.79134728419644,
         -0.0,
-        -5.044607463121947
+        -5.021140417442215
       ],
-      "yaw_deg": -0.4400131273142396,
+      "yaw_deg": 6.3895273225734694,
       "scale": 1.0,
       "bbox_xz": [
-        -29.62728439384297,
-        -28.9753718654042,
-        -5.370563727341332,
-        -4.718651198902562
+        -26.129481729685413,
+        -25.45321283870747,
+        -5.359274862931187,
+        -4.683005971953243
       ],
-      "selection_source": "policy_softmax"
+      "selection_source": "policy_softmax",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0037",
-      "asset_id": "bollard_004",
-      "category": "bollard",
-      "score": 0.6224753856658936,
-      "position_xyz": [
-        -26.270835999092345,
-        -0.0,
-        -5.004387245238061
-      ],
-      "yaw_deg": 2.5357604123846826,
-      "scale": 1.0,
-      "bbox_xz": [
-        -26.60124396462379,
-        -25.9404280335609,
-        -5.3347952107695065,
-        -4.673979279706616
-      ],
-      "selection_source": "policy_softmax"
-    },
-    {
-      "instance_id": "inst_0038",
-      "asset_id": "bollard_009",
-      "category": "bollard",
-      "score": 0.6145865321159363,
-      "position_xyz": [
-        -21.436682835509906,
-        -0.0,
-        4.974998880422522
-      ],
-      "yaw_deg": 181.93998446320006,
-      "scale": 1.0,
-      "bbox_xz": [
-        -21.765842770760003,
-        -21.10752290025981,
-        4.645838945172425,
-        5.3041588156726185
-      ],
-      "selection_source": "policy_softmax"
-    },
-    {
-      "instance_id": "inst_0039",
-      "asset_id": "bollard_003",
-      "category": "bollard",
-      "score": 0.6115289926528931,
-      "position_xyz": [
-        -17.732844991891913,
-        -0.0,
-        -4.772765935354405
-      ],
-      "yaw_deg": 2.157293547984347,
-      "scale": 1.0,
-      "bbox_xz": [
-        -18.062461770838166,
-        -17.40322821294566,
-        -5.102382714300656,
-        -4.443149156408154
-      ],
-      "selection_source": "policy_softmax"
-    },
-    {
-      "instance_id": "inst_0040",
-      "asset_id": "bollard_014",
-      "category": "bollard",
-      "score": 0.5986997485160828,
-      "position_xyz": [
-        -13.75986394670762,
-        -0.0,
-        -4.93393009830691
-      ],
-      "yaw_deg": -7.72580165828208,
-      "scale": 1.0,
-      "bbox_xz": [
-        -14.100533346367829,
-        -13.419194547047411,
-        -5.27459949796712,
-        -4.5932606986467
-      ],
-      "selection_source": "policy_softmax"
-    },
-    {
-      "instance_id": "inst_0041",
+      "instance_id": "inst_0024",
       "asset_id": "bollard_006",
       "category": "bollard",
       "score": 0.641868531703949,
       "position_xyz": [
-        -9.38451243671669,
+        -18.686328731990343,
         -0.0,
-        4.850457380637408
+        5.46955440141909
       ],
-      "yaw_deg": 185.049939460483,
+      "yaw_deg": 176.41213312574348,
       "scale": 1.0,
       "bbox_xz": [
-        -9.720030231074809,
-        -9.048994642358572,
-        4.51493958627929,
-        5.1859751749955265
+        -19.01890612895973,
+        -18.353751335020956,
+        5.136977004449704,
+        5.802131798388477
       ],
-      "selection_source": "policy_relaxed_repeat"
+      "selection_source": "policy_relaxed_repeat",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0042",
+      "instance_id": "inst_0025",
       "asset_id": "bollard_006",
       "category": "bollard",
       "score": 0.641868531703949,
       "position_xyz": [
-        -6.480739125318411,
+        -12.859603326032799,
         -0.0,
-        5.494245692501867
+        5.6297110286588055
       ],
-      "yaw_deg": 181.3796390986708,
+      "yaw_deg": 179.55553055405858,
       "scale": 1.0,
       "bbox_xz": [
-        -6.808712503683869,
-        -6.152765746952952,
-        5.166272314136409,
-        5.822219070867325
+        -13.185569237101106,
+        -12.533637414964492,
+        5.303745117590498,
+        5.9556769397271125
       ],
-      "selection_source": "policy_relaxed_repeat"
+      "selection_source": "policy_relaxed_repeat",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0043",
+      "instance_id": "inst_0026",
       "asset_id": "bollard_006",
       "category": "bollard",
       "score": 0.641868531703949,
       "position_xyz": [
-        -1.5132969664105669,
+        -5.285680353313539,
         -0.0,
-        -5.612126871880261
+        -4.885385107605516
       ],
-      "yaw_deg": 1.79717930301379,
+      "yaw_deg": 0.9471842604831089,
       "scale": 1.0,
       "bbox_xz": [
-        -1.8421556737109457,
-        -1.184438259110188,
-        -5.94098557918064,
-        -5.283268164579883
+        -5.612729614454563,
+        -4.9586310921725145,
+        -5.21243436874654,
+        -4.558335846464492
       ],
-      "selection_source": "policy_relaxed_repeat"
+      "selection_source": "policy_relaxed_repeat",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0044",
+      "instance_id": "inst_0027",
       "asset_id": "bollard_006",
       "category": "bollard",
       "score": 0.641868531703949,
       "position_xyz": [
-        2.253443301504191,
+        0.7907938915192056,
         -0.0,
-        -4.995330411258626
+        -4.802358142240606
       ],
-      "yaw_deg": -0.23999274671855808,
+      "yaw_deg": 7.8463038749718095,
       "scale": 1.0,
       "bbox_xz": [
-        1.9279208166386566,
-        2.578965786369725,
-        -5.32085289612416,
-        -4.6698079263930925
+        0.4498996360639401,
+        1.1316881469744713,
+        -5.143252397695871,
+        -4.4614638867853404
       ],
-      "selection_source": "policy_relaxed_repeat"
+      "selection_source": "policy_relaxed_repeat",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0045",
+      "instance_id": "inst_0028",
       "asset_id": "bollard_006",
       "category": "bollard",
       "score": 0.641868531703949,
       "position_xyz": [
-        5.73582501958973,
+        6.0053748386047525,
         -0.0,
-        -5.4830547356790165
+        -5.290231572520615
       ],
-      "yaw_deg": 0.04641133073814885,
+      "yaw_deg": 2.233783444512838,
       "scale": 1.0,
       "bbox_xz": [
-        5.4107238067936905,
-        6.0609262323857696,
-        -5.808155948475056,
-        -5.157953522882977
+        5.675597700089172,
+        6.335151977120333,
+        -5.620008711036196,
+        -4.960454434005035
       ],
-      "selection_source": "policy_relaxed_repeat"
+      "selection_source": "policy_relaxed_repeat",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0046",
+      "instance_id": "inst_0029",
       "asset_id": "bollard_006",
       "category": "bollard",
       "score": 0.641868531703949,
       "position_xyz": [
-        9.327693743866488,
+        11.936500924427037,
         -0.0,
-        5.503959740308197
+        5.74461951612116
       ],
-      "yaw_deg": 174.77919420714667,
+      "yaw_deg": 179.45526381901072,
       "scale": 1.0,
       "bbox_xz": [
-        8.99183804000507,
-        9.663549447727906,
-        5.168104036446779,
-        5.839815444169615
+        11.61031816176261,
+        12.262683687091464,
+        5.418436753456733,
+        6.070802278785587
       ],
-      "selection_source": "policy_relaxed_repeat"
+      "selection_source": "policy_relaxed_repeat",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0047",
+      "instance_id": "inst_0030",
       "asset_id": "bollard_006",
       "category": "bollard",
       "score": 0.641868531703949,
       "position_xyz": [
-        13.460112231963665,
+        19.168006363496843,
         -0.0,
-        -5.368336580751123
+        5.147969797939687
       ],
-      "yaw_deg": -0.5654929070857158,
+      "yaw_deg": 184.99065465798762,
       "scale": 1.0,
       "bbox_xz": [
-        13.133884626005408,
-        13.786339837921922,
-        -5.69456418670938,
-        -5.042108974792866
+        18.8326060940189,
+        19.503406632974787,
+        4.812569528461742,
+        5.483370067417631
       ],
-      "selection_source": "policy_relaxed_repeat"
+      "selection_source": "policy_relaxed_repeat",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0048",
+      "instance_id": "inst_0031",
       "asset_id": "bollard_006",
       "category": "bollard",
       "score": 0.641868531703949,
       "position_xyz": [
-        17.90848076587218,
+        23.83346856539015,
         -0.0,
-        5.620493707630169
+        5.185863383994171
       ],
-      "yaw_deg": 176.9348871109817,
+      "yaw_deg": 172.28545653986617,
       "scale": 1.0,
       "bbox_xz": [
-        17.57697573929799,
-        18.239985792446372,
-        5.288988681055978,
-        5.951998734204361
+        23.492820205199514,
+        24.174116925580783,
+        4.845215023803536,
+        5.526511744184806
       ],
-      "selection_source": "policy_relaxed_repeat"
+      "selection_source": "policy_relaxed_repeat",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0049",
+      "instance_id": "inst_0032",
       "asset_id": "bollard_006",
       "category": "bollard",
       "score": 0.641868531703949,
       "position_xyz": [
-        22.23409323630812,
+        31.814855465052897,
         -0.0,
-        -4.954159019051695
+        -5.648731219628591
       ],
-      "yaw_deg": 2.4545510581458068,
+      "yaw_deg": -5.426315582475661,
       "scale": 1.0,
       "bbox_xz": [
-        21.903854560974867,
-        22.56433191164137,
-        -5.284397694384948,
-        -4.623920343718442
+        31.47859494069923,
+        32.15111598940656,
+        -5.984991743982257,
+        -5.312470695274924
       ],
-      "selection_source": "policy_relaxed_repeat"
+      "selection_source": "policy_relaxed_repeat",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     },
     {
-      "instance_id": "inst_0050",
+      "instance_id": "inst_0033",
       "asset_id": "bollard_006",
       "category": "bollard",
       "score": 0.641868531703949,
       "position_xyz": [
-        26.54512762928601,
+        36.453803368426236,
         -0.0,
-        4.842948798153247
+        5.407921000929717
       ],
-      "yaw_deg": 182.13303043968827,
+      "yaw_deg": 176.10408242391887,
       "scale": 1.0,
       "bbox_xz": [
-        26.215561765744827,
-        26.874693492827195,
-        4.513382934612064,
-        5.17251466169443
+        36.12059920264326,
+        36.78700753420921,
+        5.074716835146745,
+        5.741125166712688
       ],
-      "selection_source": "policy_relaxed_repeat"
-    },
-    {
-      "instance_id": "inst_0051",
-      "asset_id": "bollard_006",
-      "category": "bollard",
-      "score": 0.641868531703949,
-      "position_xyz": [
-        30.206144274343696,
-        -0.0,
-        5.05807928026446
-      ],
-      "yaw_deg": 175.7266211449601,
-      "scale": 1.0,
-      "bbox_xz": [
-        29.872177366470755,
-        30.540111182216638,
-        4.72411237239152,
-        5.3920461881373996
-      ],
-      "selection_source": "policy_relaxed_repeat"
-    },
-    {
-      "instance_id": "inst_0052",
-      "asset_id": "bollard_006",
-      "category": "bollard",
-      "score": 0.641868531703949,
-      "position_xyz": [
-        33.37914570183012,
-        -0.0,
-        -4.931383626256968
-      ],
-      "yaw_deg": -1.9325744084600043,
-      "scale": 1.0,
-      "bbox_xz": [
-        33.050001377356125,
-        33.70829002630411,
-        -5.260527950730964,
-        -4.602239301782973
-      ],
-      "selection_source": "policy_relaxed_repeat"
-    },
-    {
-      "instance_id": "inst_0053",
-      "asset_id": "bollard_006",
-      "category": "bollard",
-      "score": 0.641868531703949,
-      "position_xyz": [
-        37.70942641921142,
-        -0.0,
-        -5.672614437828113
-      ],
-      "yaw_deg": -0.6819167896866443,
-      "scale": 1.0,
-      "bbox_xz": [
-        37.38294759572237,
-        38.035905242700466,
-        -5.999093261317159,
-        -5.346135614339066
-      ],
-      "selection_source": "policy_relaxed_repeat"
+      "selection_source": "policy_relaxed_repeat",
+      "constraint_penalty": 0.0,
+      "feasibility_score": 1.0,
+      "violated_rules": []
     }
   ],
   "outputs": {

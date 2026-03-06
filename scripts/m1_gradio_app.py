@@ -13,7 +13,7 @@ import time
 import traceback
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, Iterator, List, Tuple
+from typing import Any, Dict, Iterator, List, Tuple
 
 # Mitigate duplicate OpenMP runtime conflicts (common with torch/faiss on macOS).
 os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
@@ -451,6 +451,14 @@ def run_street_compose(
     street_placement_policy: str = "rule",
     policy_ckpt_text: str = "",
     policy_temperature: float = 0.12,
+    m5_layout_mode: str = "template",
+    m5_constraint_mode: str = "soft",
+    m5_constraint_weight: float = 0.45,
+    m5_constraint_veto: float = 0.95,
+    m5_bbox_min_lon: float = 0.0,
+    m5_bbox_min_lat: float = 0.0,
+    m5_bbox_max_lon: float = 0.0,
+    m5_bbox_max_lat: float = 0.0,
 ) -> Tuple[str, List[List[str]], str, str | None, List[str]]:
     try:
         profile = dataset_profile.strip().lower()
@@ -475,6 +483,11 @@ def run_street_compose(
             seed=int(street_seed),
             topk_per_category=int(street_topk_per_category),
             max_trials_per_slot=int(street_max_trials_per_slot),
+            layout_mode=str(m5_layout_mode).strip(),
+            constraint_mode=str(m5_constraint_mode).strip(),
+            aoi_bbox=(float(m5_bbox_min_lon), float(m5_bbox_min_lat), float(m5_bbox_max_lon), float(m5_bbox_max_lat)) if str(m5_layout_mode).strip() == "osm" else None,
+            constraint_weight=float(m5_constraint_weight),
+            constraint_veto_threshold=float(m5_constraint_veto),
         )
         result = compose_street_scene(
             config=config,
@@ -532,6 +545,84 @@ def run_street_compose(
         return f"Street compose failed: {exc}\n{detail}", [], "", None, []
 
 
+def run_best_model_street(
+    dataset_profile: str,
+    query: str,
+    real_manifest_text: str,
+    artifacts_dir_text: str,
+    model_name: str,
+    model_dir_text: str,
+    local_files_only: bool,
+    device: str,
+    street_length_m: float,
+    street_road_width_m: float,
+    street_sidewalk_width_m: float,
+    street_lane_count: int,
+    street_density: float,
+    street_seed: int,
+    street_topk_per_category: int,
+    street_max_trials_per_slot: int,
+    export_format: str,
+    policy_ckpt_text: str,
+    policy_temperature: float,
+    m5_layout_mode: str = "template",
+    m5_constraint_mode: str = "soft",
+    m5_constraint_weight: float = 0.45,
+    m5_constraint_veto: float = 0.95,
+    m5_bbox_min_lon: float = 0.0,
+    m5_bbox_min_lat: float = 0.0,
+    m5_bbox_max_lon: float = 0.0,
+    m5_bbox_max_lat: float = 0.0,
+) -> Tuple[str, List[List[str]], str, str | None, List[str], str, str, str | None, List[str]]:
+    summary, rows, layout_json, model_path, files = run_street_compose(
+        dataset_profile=dataset_profile,
+        query=query,
+        real_manifest_text=real_manifest_text,
+        artifacts_dir_text=artifacts_dir_text,
+        model_name=model_name,
+        model_dir_text=model_dir_text,
+        local_files_only=local_files_only,
+        device=device,
+        street_length_m=street_length_m,
+        street_road_width_m=street_road_width_m,
+        street_sidewalk_width_m=street_sidewalk_width_m,
+        street_lane_count=street_lane_count,
+        street_density=street_density,
+        street_seed=street_seed,
+        street_topk_per_category=street_topk_per_category,
+        street_max_trials_per_slot=street_max_trials_per_slot,
+        export_format=export_format,
+        street_placement_policy="learned",
+        policy_ckpt_text=policy_ckpt_text,
+        policy_temperature=policy_temperature,
+        m5_layout_mode=m5_layout_mode,
+        m5_constraint_mode=m5_constraint_mode,
+        m5_constraint_weight=m5_constraint_weight,
+        m5_constraint_veto=m5_constraint_veto,
+        m5_bbox_min_lon=m5_bbox_min_lon,
+        m5_bbox_min_lat=m5_bbox_min_lat,
+        m5_bbox_max_lon=m5_bbox_max_lon,
+        m5_bbox_max_lat=m5_bbox_max_lat,
+    )
+    best_log = (
+        "Best model run done.\n"
+        f"- policy_mode: learned\n"
+        f"- policy_ckpt: {policy_ckpt_text}\n"
+        f"{summary}"
+    )
+    return (
+        summary,
+        rows,
+        layout_json,
+        model_path,
+        files,
+        best_log,
+        layout_json,
+        model_path,
+        files,
+    )
+
+
 def run_m4_train_policy(
     dataset_profile: str,
     real_manifest_text: str,
@@ -565,11 +656,11 @@ def run_m4_train_policy(
     export_format: str,
     policy_temperature: float,
     policy_ckpt_text: str,
-) -> Iterator[Tuple[str, str, str, str]]:
+) -> Iterator[Tuple[str, str, str, str, float, Any]]:
     started_at = datetime.now()
     profile = dataset_profile.strip().lower()
     if profile != "real":
-        yield "M4 training requires dataset_profile='real'.", "{}", "{}", policy_ckpt_text
+        yield "M4 training requires dataset_profile='real'.", "{}", "{}", policy_ckpt_text, 0.0, []
         return
 
     log_lines = [
@@ -578,14 +669,85 @@ def run_m4_train_policy(
         f"- recollect_data: {bool(m4_recollect_data)}",
         f"- resume_training: {bool(m4_resume_training)}",
         f"- run_eval_after_train: {bool(m4_run_eval_after_train)}",
+        "- note: collect progress = distillation data collection, not model training loss.",
     ]
     train_json = "{}"
     eval_json = "{}"
     ckpt_out = policy_ckpt_text
+    progress_percent = 0.0
     epoch_curve: List[Dict[str, float]] = []
+    total_epochs = max(int(m4_train_epochs), 1)
 
-    def _snapshot() -> Tuple[str, str, str, str]:
-        return ("\n".join(log_lines), train_json, eval_json, ckpt_out)
+    def _to_curve_plot(curve: List[Dict[str, float]]) -> Any:
+        try:
+            import plotly.graph_objects as go
+        except Exception:
+            # Keep fallback behavior if plotly is unavailable.
+            if not curve:
+                return None
+            try:
+                import matplotlib.pyplot as plt
+            except Exception:
+                return None
+            epochs = [float(item.get("epoch", 0.0)) for item in curve]
+            train_vals = [float(item.get("train_loss", 0.0)) for item in curve]
+            val_vals = [float(item.get("val_loss", 0.0)) for item in curve]
+            fig, ax = plt.subplots(figsize=(6.2, 3.2))
+            ax.plot(epochs, train_vals, marker="o", linewidth=1.8, label="train_loss")
+            ax.plot(epochs, val_vals, marker="s", linewidth=1.8, label="val_loss")
+            ax.set_xlabel("epoch")
+            ax.set_ylabel("loss")
+            ax.grid(alpha=0.25)
+            ax.legend(loc="best")
+            fig.tight_layout()
+            return fig
+
+        fig = go.Figure()
+        if curve:
+            epochs = [float(item.get("epoch", 0.0)) for item in curve]
+            train_vals = [float(item.get("train_loss", 0.0)) for item in curve]
+            val_vals = [float(item.get("val_loss", 0.0)) for item in curve]
+            fig.add_trace(
+                go.Scatter(
+                    x=epochs,
+                    y=train_vals,
+                    mode="lines+markers",
+                    name="train_loss",
+                    line={"width": 2},
+                )
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=epochs,
+                    y=val_vals,
+                    mode="lines+markers",
+                    name="val_loss",
+                    line={"width": 2},
+                )
+            )
+            title = "M4 Train/Val Loss Curve"
+        else:
+            title = "M4 Train/Val Loss Curve (waiting first epoch...)"
+
+        fig.update_layout(
+            title=title,
+            xaxis_title="epoch",
+            yaxis_title="loss",
+            template="plotly_white",
+            margin={"l": 36, "r": 16, "t": 48, "b": 36},
+            height=320,
+        )
+        return fig
+
+    def _snapshot() -> Tuple[str, str, str, str, float, Any]:
+        return (
+            "\n".join(log_lines),
+            train_json,
+            eval_json,
+            ckpt_out,
+            float(progress_percent),
+            _to_curve_plot(epoch_curve),
+        )
 
     yield _snapshot()
 
@@ -608,7 +770,7 @@ def run_m4_train_policy(
 
             data_path = m4_artifacts_dir / "policy_train.jsonl"
             if bool(m4_recollect_data) or not data_path.exists():
-                events.put(("log", f"- collecting distilled data -> {data_path}"))
+                events.put(("log", f"- [phase:distill] collecting distilled data -> {data_path}"))
                 collected_rows = collect_policy_data(
                     manifest=manifest_path,
                     artifacts=artifacts_dir,
@@ -627,12 +789,13 @@ def run_m4_train_policy(
                     density=float(street_density),
                     topk_per_category=int(street_topk_per_category),
                     max_trials_per_slot=int(street_max_trials_per_slot),
+                    progress_callback=lambda payload: events.put(("collect_progress", payload)),
                 )
-                events.put(("log", f"- collected_rows: {len(collected_rows)}"))
+                events.put(("log", f"- [phase:distill] collected_rows: {len(collected_rows)}"))
             else:
-                events.put(("log", f"- reuse existing distilled data: {data_path}"))
+                events.put(("log", f"- [phase:distill] reuse existing distilled data: {data_path}"))
 
-            events.put(("log", "- training policy model..."))
+            events.put(("log", "- [phase:train] training policy model..."))
             train_summary = train_from_jsonl(
                 data_path=data_path,
                 out_dir=m4_artifacts_dir,
@@ -651,7 +814,8 @@ def run_m4_train_policy(
             events.put(("train_summary", train_summary))
 
             if bool(m4_run_eval_after_train):
-                events.put(("log", "- running engineering eval (learned vs rule)..."))
+                events.put(("eval_start", None))
+                events.put(("log", "- [phase:eval] running engineering eval (learned vs rule)..."))
                 eval_args = argparse.Namespace(
                     queries=queries_path if (queries_path and queries_path.exists()) else (ROOT / "data/eval/queries_m4.txt"),
                     manifest=manifest_path,
@@ -690,6 +854,7 @@ def run_m4_train_policy(
 
     worker = threading.Thread(target=_worker, daemon=True)
     worker.start()
+    last_collect_log_step = -1
 
     while not done_event.is_set() or not events.empty():
         try:
@@ -699,6 +864,29 @@ def run_m4_train_policy(
 
         if event == "log":
             log_lines.append(str(payload))
+        elif event == "collect_progress":
+            info = payload if isinstance(payload, dict) else {}
+            ratio = float(info.get("ratio", 0.0))
+            ratio = min(max(ratio, 0.0), 1.0)
+            progress_percent = max(progress_percent, 5.0 + 40.0 * ratio)
+            step = int(ratio * 20.0)  # 5% granularity
+            if step > last_collect_log_step:
+                processed = int(float(info.get("processed_slots", 0.0)))
+                total = int(float(info.get("total_slots", 1.0)))
+                log_lines.append(
+                    f"- distill progress (not training): {processed}/{total} ({ratio * 100.0:.1f}%)"
+                )
+                last_collect_log_step = step
+            train_json = json.dumps(
+                {
+                    "status": "distill_collecting",
+                    "collect_ratio": ratio,
+                    "processed_slots": int(float(info.get("processed_slots", 0.0))),
+                    "total_slots": int(float(info.get("total_slots", 0.0))),
+                },
+                indent=2,
+                ensure_ascii=True,
+            )
         elif event == "epoch":
             info = payload if isinstance(payload, dict) else {}
             epoch = int(float(info.get("epoch", 0.0)))
@@ -716,6 +904,7 @@ def run_m4_train_policy(
             log_lines.append(
                 f"- epoch {epoch}: train_loss={train_loss:.6f}, val_loss={val_loss:.6f}, best={best_so_far:.6f}"
             )
+            progress_percent = max(progress_percent, 45.0 + 45.0 * min(float(epoch) / float(total_epochs), 1.0))
             train_json = json.dumps(
                 {
                     "status": "training",
@@ -735,12 +924,17 @@ def run_m4_train_policy(
         elif event == "eval_report":
             report = payload if isinstance(payload, dict) else {}
             eval_json = json.dumps(report, indent=2, ensure_ascii=True)
-            log_lines.append("- eval done.")
+            log_lines.append("- [phase:eval] done.")
+            progress_percent = max(progress_percent, 99.0)
+        elif event == "eval_start":
+            progress_percent = max(progress_percent, 92.0)
         elif event == "error":
             log_lines.append(str(payload))
+            progress_percent = max(progress_percent, 100.0)
         elif event == "done":
             duration_sec = time.time() - started_at.timestamp()
             log_lines.append(f"- duration_sec: {duration_sec:.2f}")
+            progress_percent = 100.0
 
         yield _snapshot()
 
@@ -758,186 +952,226 @@ def build_demo() -> gr.Blocks:
     default_m4_queries = str((ROOT / "data/eval/queries_m4.txt").resolve())
     default_policy_ckpt = str((ROOT / "artifacts/m4/layout_policy.pt").resolve())
 
-    with gr.Blocks(title="RoadGen3D M4 Gradio") as demo:
-        learned_policy_state = gr.State("learned")
-        gr.Markdown(
-            """
-            # RoadGen3D M4 UI
-            - Top buttons first: `1/2/3/4/5/6`，覆盖准备、检索、街道组合与可学习策略训练。
-            - Default profile: `real`, decoder: `shapee (strict)`, street policy: `learned`
-            """
-        )
+    with gr.Blocks(title="RoadGen3D M5 Gradio") as demo:
+        gr.Markdown("# RoadGen3D M5 UI")
 
-        with gr.Row():
-            decoder_choice = gr.Dropdown(
-                label="Decoder",
-                choices=["placeholder", "shapee"],
-                value="shapee",
-            )
-            dataset_profile = gr.Dropdown(
-                label="Dataset Profile",
-                choices=["mock", "real"],
-                value="real",
-            )
-            query = gr.Textbox(label="Query", value="a wooden park bench")
-            topk = gr.Slider(label="Top K", minimum=1, maximum=10, step=1, value=1)
-
-        # Put action buttons at the top to avoid missing critical operations.
-        with gr.Row():
-            prepare_btn = gr.Button("1) Prepare Assets + Index", variant="primary")
-            encode_btn = gr.Button("2) Prepare Real Latents", variant="primary")
-            run_btn = gr.Button("3) Run Query Pipeline", variant="primary")
-            street_btn = gr.Button("4) Run Street Compose", variant="primary")
-            train_btn = gr.Button("5) Train Layout Policy (M4)", variant="primary")
-            train_and_street_btn = gr.Button("6) Train + Run Street", variant="primary")
-
-        with gr.Row():
-            real_manifest = gr.Textbox(label="Real Manifest Path", value=default_real_manifest)
-            artifacts_dir = gr.Textbox(label="Artifacts Dir", value=default_artifacts)
-            model_dir = gr.Textbox(label="CLIP Model Dir", value=default_model_dir)
-            shapee_model_dir = gr.Textbox(label="Shape-E Model Dir", value=default_shapee_model_dir)
-
-        with gr.Accordion("Advanced Parameters", open=False):
-            with gr.Row():
-                encode_mode = gr.Dropdown(
-                    label="Encode Mode",
-                    choices=["mesh_ref", "auto", "shapee"],
-                    value="mesh_ref",
+        with gr.Tabs():
+            # ── Tab A: 准备与索引 ──
+            with gr.Tab("A: 准备与索引"):
+                gr.Markdown(
+                    """
+                    **为什么先准备索引与 latent（RAG 入口）**
+                    - 输入：`real_assets_manifest.jsonl`（含 asset_id / text_desc / latent_path）+ CLIP 模型
+                    - 输出：`index_ip.faiss` / `id_map.json` / `real_assets_for_pipeline.jsonl`
+                    - 步骤 1 生成 CLIP embedding 并构建 FAISS inner-product 索引；步骤 2 为每个 mesh 编码 Shape-E latent
+                    - 后续步骤 3/4/5/6 均依赖此索引与 latent，若数据变动需重新执行
+                    """
                 )
-                shapee_strict = gr.Checkbox(label="Shape-E Strict (no fallback)", value=True)
-                local_files_only = gr.Checkbox(label="Local Files Only", value=True)
-                device = gr.Dropdown(label="Device", choices=["cpu", "mps", "cuda"], value="cpu")
-                shapee_local_only = gr.Checkbox(label="Shape-E Local Only", value=True)
-            with gr.Row():
-                real_mesh_root = gr.Textbox(label="Real Mesh Root", value=default_real_mesh_root)
-                real_latents_dir = gr.Textbox(label="Real Latents Dir", value=default_real_latents_dir)
-                render_cache_dir = gr.Textbox(label="Shape-E Render Cache Dir", value=default_render_cache_dir)
-            with gr.Row():
-                encode_skip_existing = gr.Checkbox(label="Encode: Skip Existing", value=False)
-                encode_no_placeholder_fallback = gr.Checkbox(
-                    label="Encode: No Placeholder Fallback",
-                    value=True,
-                )
-                encode_no_mesh_reference_fallback = gr.Checkbox(
-                    label="Encode: No Mesh-Reference Fallback",
-                    value=False,
-                )
-                encode_verbose = gr.Checkbox(label="Encode: Verbose", value=False)
-            with gr.Row():
-                resolution = gr.Slider(label="Resolution", minimum=16, maximum=128, step=16, value=64)
-                threshold = gr.Slider(label="Threshold", minimum=0.05, maximum=0.95, step=0.05, value=0.5)
-                voxel_size = gr.Number(label="Voxel Size", value=0.1)
-            with gr.Row():
-                export_method = gr.Dropdown(
-                    label="Export Method",
-                    choices=["marching_cubes", "cubes"],
-                    value="marching_cubes",
-                )
-                export_format = gr.Dropdown(
-                    label="Export Format",
-                    choices=["both", "glb", "ply"],
-                    value="both",
-                )
-                model_name = gr.Textbox(label="Model Name", value="openai/clip-vit-base-patch32")
-            with gr.Row():
-                street_placement_policy = gr.Dropdown(
-                    label="Street Placement Policy",
-                    choices=["rule", "learned"],
-                    value="learned",
-                )
-                policy_ckpt = gr.Textbox(label="Policy CKPT Path", value=default_policy_ckpt)
-                policy_temperature = gr.Number(label="Policy Temperature", value=0.12)
-            with gr.Row():
-                street_length_m = gr.Number(label="Street Length (m)", value=80.0)
-                street_road_width_m = gr.Number(label="Road Width (m)", value=8.0)
-                street_sidewalk_width_m = gr.Number(label="Sidewalk Width (m)", value=2.5)
-                street_lane_count = gr.Slider(label="Lane Count", minimum=1, maximum=4, step=1, value=2)
-            with gr.Row():
-                street_density = gr.Slider(label="Street Density", minimum=0.2, maximum=2.0, step=0.1, value=1.0)
-                street_seed = gr.Number(label="Street Seed", value=42, precision=0)
-                street_topk_per_category = gr.Slider(
-                    label="TopK Per Category",
-                    minimum=1,
-                    maximum=50,
-                    step=1,
-                    value=20,
-                )
-                street_max_trials_per_slot = gr.Slider(
-                    label="Max Trials Per Slot",
-                    minimum=1,
-                    maximum=100,
-                    step=1,
-                    value=30,
+                with gr.Row():
+                    prepare_btn = gr.Button("1) Prepare Assets + Index", variant="primary")
+                    encode_btn = gr.Button("2) Prepare Real Latents", variant="primary")
+                with gr.Row():
+                    dataset_profile = gr.Dropdown(label="Dataset Profile", choices=["mock", "real"], value="real")
+                    model_name = gr.Textbox(label="Model Name", value="openai/clip-vit-base-patch32")
+                    local_files_only = gr.Checkbox(label="Local Files Only", value=True)
+                    device = gr.Dropdown(label="Device", choices=["cpu", "mps", "cuda"], value="cpu")
+                with gr.Row():
+                    real_manifest = gr.Textbox(label="Real Manifest Path", value=default_real_manifest)
+                    artifacts_dir = gr.Textbox(label="Artifacts Dir", value=default_artifacts)
+                    model_dir = gr.Textbox(label="CLIP Model Dir", value=default_model_dir)
+                with gr.Accordion("Encode Parameters", open=False):
+                    with gr.Row():
+                        encode_mode = gr.Dropdown(label="Encode Mode", choices=["mesh_ref", "auto", "shapee"], value="mesh_ref")
+                        shapee_model_dir = gr.Textbox(label="Shape-E Model Dir", value=default_shapee_model_dir)
+                        shapee_local_only = gr.Checkbox(label="Shape-E Local Only", value=True)
+                    with gr.Row():
+                        real_mesh_root = gr.Textbox(label="Real Mesh Root", value=default_real_mesh_root)
+                        real_latents_dir = gr.Textbox(label="Real Latents Dir", value=default_real_latents_dir)
+                        render_cache_dir = gr.Textbox(label="Shape-E Render Cache Dir", value=default_render_cache_dir)
+                    with gr.Row():
+                        encode_skip_existing = gr.Checkbox(label="Encode: Skip Existing", value=False)
+                        encode_no_placeholder_fallback = gr.Checkbox(label="Encode: No Placeholder Fallback", value=True)
+                        encode_no_mesh_reference_fallback = gr.Checkbox(label="Encode: No Mesh-Reference Fallback", value=False)
+                        encode_verbose = gr.Checkbox(label="Encode: Verbose", value=False)
+                with gr.Accordion("Mock Dataset Parameters (dataset_profile=mock)", open=False):
+                    with gr.Row():
+                        data_dir = gr.Textbox(label="Data Dir (mock)", value=default_data)
+                        num_assets = gr.Slider(label="Num Assets (mock)", minimum=1, maximum=256, step=1, value=8)
+                    with gr.Row():
+                        seed = gr.Number(label="Seed", value=42, precision=0)
+                        latent_dim = gr.Number(label="Latent Dim", value=256, precision=0)
+                prepare_log = gr.Textbox(label="Prepare Log", lines=8)
+                encode_log = gr.Textbox(label="Encode Log", lines=8)
+                assets_preview = gr.Dataframe(
+                    headers=["asset_id", "description", "latent_path"],
+                    datatype=["str", "str", "str"],
+                    row_count=(0, "dynamic"),
+                    col_count=(3, "fixed"),
+                    label="Assets Preview",
                 )
 
-        with gr.Accordion("Mock Dataset Parameters (Only for dataset_profile=mock)", open=False):
-            with gr.Row():
-                data_dir = gr.Textbox(label="Data Dir (mock)", value=default_data)
-                num_assets = gr.Slider(label="Num Assets (mock)", minimum=1, maximum=256, step=1, value=8)
-            with gr.Row():
-                seed = gr.Number(label="Seed", value=42, precision=0)
-                latent_dim = gr.Number(label="Latent Dim", value=256, precision=0)
+            # ── Tab B: 推理与街道 ──
+            with gr.Tab("B: 推理与街道"):
+                gr.Markdown(
+                    """
+                    **单资产链路：text → retrieve → latent/mesh_ref → voxel → mesh**
+                    - 步骤 3 根据 query 在 FAISS 索引中检索 top-k 资产，通过 Shape-E decoder 生成 voxel 并导出 GLB/PLY
+                    - 步骤 4 街道链路：多类别资产检索 + AABB 碰撞编排 + 完整街道场景导出
+                    - voxel 路径用于诊断；街道主路径直接组合 mesh reference，无需 voxel 中间步骤
+                    - 可选 learned policy（来自 Tab C 训练）或 rule-based 启发式策略
+                    """
+                )
+                with gr.Row():
+                    run_btn = gr.Button("3) Run Query Pipeline", variant="primary")
+                    street_btn = gr.Button("4) Run Street Compose", variant="primary")
+                with gr.Row():
+                    query = gr.Textbox(label="Query", value="a wooden park bench")
+                    topk = gr.Slider(label="Top K", minimum=1, maximum=10, step=1, value=1)
+                    decoder_choice = gr.Dropdown(label="Decoder", choices=["placeholder", "shapee"], value="shapee")
+                    shapee_strict = gr.Checkbox(label="Shape-E Strict (no fallback)", value=True)
+                with gr.Accordion("Voxel & Export", open=False):
+                    with gr.Row():
+                        resolution = gr.Slider(label="Resolution", minimum=16, maximum=128, step=16, value=64)
+                        threshold = gr.Slider(label="Threshold", minimum=0.05, maximum=0.95, step=0.05, value=0.5)
+                        voxel_size = gr.Number(label="Voxel Size", value=0.1)
+                    with gr.Row():
+                        export_method = gr.Dropdown(label="Export Method", choices=["marching_cubes", "cubes"], value="marching_cubes")
+                        export_format = gr.Dropdown(label="Export Format", choices=["both", "glb", "ply"], value="both")
+                with gr.Accordion("Street Parameters", open=False):
+                    with gr.Row():
+                        street_length_m = gr.Number(label="Street Length (m)", value=80.0)
+                        street_road_width_m = gr.Number(label="Road Width (m)", value=8.0)
+                        street_sidewalk_width_m = gr.Number(label="Sidewalk Width (m)", value=2.5)
+                        street_lane_count = gr.Slider(label="Lane Count", minimum=1, maximum=4, step=1, value=2)
+                    with gr.Row():
+                        street_density = gr.Slider(label="Street Density", minimum=0.2, maximum=2.0, step=0.1, value=1.0)
+                        street_seed = gr.Number(label="Street Seed", value=42, precision=0)
+                        street_topk_per_category = gr.Slider(label="TopK Per Category", minimum=1, maximum=50, step=1, value=20)
+                        street_max_trials_per_slot = gr.Slider(label="Max Trials Per Slot", minimum=1, maximum=100, step=1, value=30)
+                    with gr.Row():
+                        street_placement_policy = gr.Dropdown(label="Street Placement Policy", choices=["rule", "learned"], value="learned")
+                        policy_ckpt = gr.Textbox(label="Policy CKPT Path", value=default_policy_ckpt)
+                        policy_temperature = gr.Number(label="Policy Temperature", value=0.12)
+                gr.Markdown("#### Single Asset Results")
+                run_summary = gr.Textbox(label="Run Summary", lines=9)
+                hits_table = gr.Dataframe(
+                    headers=["asset_id", "score"],
+                    datatype=["str", "str"],
+                    row_count=(0, "dynamic"),
+                    col_count=(2, "fixed"),
+                    label="Top-K Retrieval Hits",
+                )
+                result_json = gr.Code(label="Pipeline Result JSON", language="json")
+                model_view = gr.Model3D(label="3D Preview (GLB)")
+                mesh_files = gr.Files(label="Mesh Downloads (GLB/PLY)")
+                gr.Markdown("#### Street Compose Results")
+                street_summary = gr.Textbox(label="Street Compose Summary", lines=8)
+                street_instances = gr.Dataframe(
+                    headers=["instance_id", "asset_id", "category", "score", "x", "z", "yaw_deg", "source"],
+                    datatype=["str", "str", "str", "str", "str", "str", "str", "str"],
+                    row_count=(0, "dynamic"),
+                    col_count=(8, "fixed"),
+                    label="Street Instances",
+                )
+                street_layout_json = gr.Code(label="Street Layout JSON", language="json")
+                street_model_view = gr.Model3D(label="Street Scene Preview (GLB)")
+                street_files = gr.Files(label="Street Scene Downloads")
 
-        with gr.Accordion("M4 Training & Evaluation", open=False):
-            with gr.Row():
-                m4_artifacts_dir = gr.Textbox(label="M4 Artifacts Dir", value=default_m4_artifacts_dir)
-                m4_queries = gr.Textbox(label="M4 Queries File", value=default_m4_queries)
-            with gr.Row():
-                m4_collect_seed_start = gr.Number(label="Collect Seed Start", value=0, precision=0)
-                m4_collect_seed_end = gr.Number(label="Collect Seed End", value=49, precision=0)
-                m4_eval_seed_start = gr.Number(label="Eval Seed Start", value=0, precision=0)
-                m4_eval_seed_end = gr.Number(label="Eval Seed End", value=4, precision=0)
-            with gr.Row():
-                m4_recollect_data = gr.Checkbox(label="Recollect Distilled Data", value=True)
-                m4_resume_training = gr.Checkbox(label="Resume From Existing CKPT", value=True)
-                m4_run_eval_after_train = gr.Checkbox(label="Run Eval After Train", value=True)
-            with gr.Row():
-                m4_train_epochs = gr.Number(label="Train Epochs", value=20, precision=0)
-                m4_train_batch_size = gr.Number(label="Train Batch Size", value=256, precision=0)
-                m4_train_lr = gr.Number(label="Train LR", value=1e-3)
-            with gr.Row():
-                m4_train_weight_decay = gr.Number(label="Train Weight Decay", value=1e-4)
-                m4_train_entropy_weight = gr.Number(label="Train Entropy Weight", value=0.01)
-                m4_train_patience = gr.Number(label="Train Patience", value=3, precision=0)
+            # ── Tab C: M4 训练评测 ──
+            with gr.Tab("C: M4 训练评测"):
+                gr.Markdown(
+                    """
+                    **M4 可学习布局器：输入 / 流程 / 输出**
+                    - 输入：
+                      `real manifest + FAISS index + queries + seed 范围 + 当前 checkpoint(可选)`
+                    - 中间流程：
+                      `rule-based policy` 先在多 seed 场景上蒸馏 `slot→candidate` 样本（含 AABB 通过/碰撞），
+                      再训练 `learned policy` 候选打分函数；可 `resume` 续训，也可 `recollect` 重采样蒸馏数据。
+                    - 训练目标：
+                      使 learned policy 的放置决策质量优于或接近 rule 启发式（在相同约束下）。
+                    - 评测流程：
+                      learned vs rule 在相同 seed 对比，核心指标为
+                      `instance_count / dropped_slots`（并输出完整工程指标报告）。
+                    - 输出：
+                      `layout_policy.pt`、训练日志与 loss 曲线、`eval_report.json`、可视化街道结果（GLB/JSON）。
+                    """
+                )
+                with gr.Row():
+                    train_btn = gr.Button("5) Train Layout Policy (M4)", variant="primary")
+                    run_best_model_btn = gr.Button("6) Run Best Model (Street)", variant="primary")
+                with gr.Row():
+                    m4_artifacts_dir = gr.Textbox(label="M4 Artifacts Dir", value=default_m4_artifacts_dir)
+                    m4_queries = gr.Textbox(label="M4 Queries File", value=default_m4_queries)
+                with gr.Row():
+                    m4_collect_seed_start = gr.Number(label="Collect Seed Start", value=0, precision=0)
+                    m4_collect_seed_end = gr.Number(label="Collect Seed End", value=49, precision=0)
+                    m4_eval_seed_start = gr.Number(label="Eval Seed Start", value=0, precision=0)
+                    m4_eval_seed_end = gr.Number(label="Eval Seed End", value=4, precision=0)
+                with gr.Row():
+                    m4_recollect_data = gr.Checkbox(label="Recollect Distilled Data", value=True)
+                    m4_resume_training = gr.Checkbox(label="Resume From Existing CKPT", value=True)
+                    m4_run_eval_after_train = gr.Checkbox(label="Run Eval After Train", value=True)
+                with gr.Accordion("Training Hyperparameters", open=False):
+                    with gr.Row():
+                        m4_train_epochs = gr.Number(label="Train Epochs", value=20, precision=0)
+                        m4_train_batch_size = gr.Number(label="Train Batch Size", value=256, precision=0)
+                        m4_train_lr = gr.Number(label="Train LR", value=1e-3)
+                    with gr.Row():
+                        m4_train_weight_decay = gr.Number(label="Train Weight Decay", value=1e-4)
+                        m4_train_entropy_weight = gr.Number(label="Train Entropy Weight", value=0.01)
+                        m4_train_patience = gr.Number(label="Train Patience", value=3, precision=0)
+                m4_progress = gr.Slider(
+                    label="M4 Progress (%) [Distill + Train + Eval]",
+                    minimum=0.0,
+                    maximum=100.0,
+                    value=0.0,
+                    step=0.1,
+                    interactive=False,
+                )
+                m4_loss_curve = gr.Plot(label="M4 Train/Val Loss Curve")
+                m4_train_log = gr.Textbox(label="M4 Train Log", lines=8)
+                m4_train_json = gr.Code(label="M4 Train Summary JSON", language="json")
+                m4_eval_json = gr.Code(label="M4 Eval Report JSON", language="json")
+                run_best_log = gr.Textbox(label="Run Best Model Log", lines=8)
+                with gr.Accordion("Run Best Layout JSON", open=False):
+                    run_best_layout_json = gr.Code(label="Run Best Layout JSON", language="json")
+                run_best_model_view = gr.Model3D(label="Run Best Street Preview (GLB)")
+                run_best_files = gr.Files(label="Run Best Downloads")
 
-        prepare_log = gr.Textbox(label="Prepare Log", lines=8)
-        encode_log = gr.Textbox(label="Encode Log", lines=8)
-        m4_train_log = gr.Textbox(label="M4 Train Log", lines=8)
-        m4_train_json = gr.Code(label="M4 Train Summary JSON", language="json")
-        m4_eval_json = gr.Code(label="M4 Eval Report JSON", language="json")
-        assets_preview = gr.Dataframe(
-            headers=["asset_id", "description", "latent_path"],
-            datatype=["str", "str", "str"],
-            row_count=(0, "dynamic"),
-            col_count=(3, "fixed"),
-            label="Assets Preview",
-        )
+            # ── Tab D: M5 OSM 约束 ──
+            with gr.Tab("D: M5 OSM 约束"):
+                gr.Markdown(
+                    """
+                    **M5: OSM 道路放置区 + POI 规则引擎 + 合规评估**
+                    - Layout Mode `osm`：从 OpenStreetMap 获取真实道路几何，在人行道区域内采样家具放置位置
+                    - Layout Mode `template`：使用 M3/M4 模板化道路（默认，向后兼容）
+                    - Constraint Mode `soft`：根据 POI（入口/消防栓/公交站）距离计算惩罚分数，结合检索分数进行 best-of-K 选择
+                    - Constraint Mode `off`：关闭约束评分，仅使用检索分数排序
+                    - AOI BBox：感兴趣区域的经纬度边界框（仅 `osm` 模式需要），格式为 `(min_lon, min_lat, max_lon, max_lat)`
+                    - 合规评估：统计违规率、可行性分数、逐规则违规次数
+                    """
+                )
+                gr.Markdown("#### OSM & Constraint Parameters")
+                with gr.Row():
+                    m5_layout_mode = gr.Dropdown(label="Layout Mode", choices=["template", "osm"], value="template")
+                    m5_constraint_mode = gr.Dropdown(label="Constraint Mode", choices=["off", "soft"], value="soft")
+                with gr.Row():
+                    m5_constraint_weight = gr.Slider(label="Constraint Weight (λ)", minimum=0.0, maximum=1.0, step=0.05, value=0.45)
+                    m5_constraint_veto = gr.Slider(label="Veto Threshold", minimum=0.0, maximum=1.0, step=0.05, value=0.95)
+                gr.Markdown("#### AOI Bounding Box (WGS-84)")
+                with gr.Row():
+                    m5_bbox_min_lon = gr.Number(label="Min Lon", value=0.0)
+                    m5_bbox_min_lat = gr.Number(label="Min Lat", value=0.0)
+                    m5_bbox_max_lon = gr.Number(label="Max Lon", value=0.0)
+                    m5_bbox_max_lat = gr.Number(label="Max Lat", value=0.0)
+                gr.Markdown(
+                    """
+                    > **提示**：在 Tab B 点击 `4) Run Street Compose` 或 Tab C 点击 `6) Run Best Model` 时，
+                    > 上述 M5 参数会自动传入街道生成流程。`osm` 模式需要先填写有效的 AOI BBox。
+                    """
+                )
 
-        run_summary = gr.Textbox(label="Run Summary", lines=9)
-        hits_table = gr.Dataframe(
-            headers=["asset_id", "score"],
-            datatype=["str", "str"],
-            row_count=(0, "dynamic"),
-            col_count=(2, "fixed"),
-            label="Top-K Retrieval Hits",
-        )
-        result_json = gr.Code(label="Pipeline Result JSON", language="json")
-
-        model_view = gr.Model3D(label="3D Preview (GLB)")
-        mesh_files = gr.Files(label="Mesh Downloads (GLB/PLY)")
-
-        street_summary = gr.Textbox(label="Street Compose Summary", lines=8)
-        street_instances = gr.Dataframe(
-            headers=["instance_id", "asset_id", "category", "score", "x", "z", "yaw_deg", "source"],
-            datatype=["str", "str", "str", "str", "str", "str", "str", "str"],
-            row_count=(0, "dynamic"),
-            col_count=(8, "fixed"),
-            label="Street Instances",
-        )
-        street_layout_json = gr.Code(label="Street Layout JSON", language="json")
-        street_model_view = gr.Model3D(label="Street Scene Preview (GLB)")
-        street_files = gr.Files(label="Street Scene Downloads")
-
+        # ── Event Bindings (unchanged) ──
         prepare_btn.click(
             fn=prepare_assets_and_index,
             inputs=[
@@ -1023,9 +1257,17 @@ def build_demo() -> gr.Blocks:
                 street_topk_per_category,
                 street_max_trials_per_slot,
                 export_format,
-                learned_policy_state,
+                street_placement_policy,
                 policy_ckpt,
                 policy_temperature,
+                m5_layout_mode,
+                m5_constraint_mode,
+                m5_constraint_weight,
+                m5_constraint_veto,
+                m5_bbox_min_lon,
+                m5_bbox_min_lat,
+                m5_bbox_max_lon,
+                m5_bbox_max_lat,
             ],
             outputs=[
                 street_summary,
@@ -1071,47 +1313,10 @@ def build_demo() -> gr.Blocks:
                 policy_temperature,
                 policy_ckpt,
             ],
-            outputs=[m4_train_log, m4_train_json, m4_eval_json, policy_ckpt],
+            outputs=[m4_train_log, m4_train_json, m4_eval_json, policy_ckpt, m4_progress, m4_loss_curve],
         )
-        train_and_street_btn.click(
-            fn=run_m4_train_policy,
-            inputs=[
-                dataset_profile,
-                real_manifest,
-                artifacts_dir,
-                m4_artifacts_dir,
-                m4_queries,
-                model_name,
-                model_dir,
-                local_files_only,
-                device,
-                street_length_m,
-                street_road_width_m,
-                street_sidewalk_width_m,
-                street_lane_count,
-                street_density,
-                street_topk_per_category,
-                street_max_trials_per_slot,
-                m4_collect_seed_start,
-                m4_collect_seed_end,
-                m4_recollect_data,
-                m4_resume_training,
-                m4_train_epochs,
-                m4_train_batch_size,
-                m4_train_lr,
-                m4_train_weight_decay,
-                m4_train_entropy_weight,
-                m4_train_patience,
-                m4_run_eval_after_train,
-                m4_eval_seed_start,
-                m4_eval_seed_end,
-                export_format,
-                policy_temperature,
-                policy_ckpt,
-            ],
-            outputs=[m4_train_log, m4_train_json, m4_eval_json, policy_ckpt],
-        ).then(
-            fn=run_street_compose,
+        run_best_model_btn.click(
+            fn=run_best_model_street,
             inputs=[
                 dataset_profile,
                 query,
@@ -1130,9 +1335,16 @@ def build_demo() -> gr.Blocks:
                 street_topk_per_category,
                 street_max_trials_per_slot,
                 export_format,
-                street_placement_policy,
                 policy_ckpt,
                 policy_temperature,
+                m5_layout_mode,
+                m5_constraint_mode,
+                m5_constraint_weight,
+                m5_constraint_veto,
+                m5_bbox_min_lon,
+                m5_bbox_min_lat,
+                m5_bbox_max_lon,
+                m5_bbox_max_lat,
             ],
             outputs=[
                 street_summary,
@@ -1140,6 +1352,10 @@ def build_demo() -> gr.Blocks:
                 street_layout_json,
                 street_model_view,
                 street_files,
+                run_best_log,
+                run_best_layout_json,
+                run_best_model_view,
+                run_best_files,
             ],
         )
     return demo

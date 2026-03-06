@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
-from typing import Any, Dict, List
+from dataclasses import asdict, dataclass, field
+from typing import Any, Dict, List, Optional, Tuple
 
 
 @dataclass(frozen=True)
@@ -54,6 +54,15 @@ class StreetComposeConfig:
     topk_per_category: int
     max_trials_per_slot: int
 
+    # -- M5 fields (all have defaults for backward compat) --
+    layout_mode: str = "template"  # "template" | "osm"
+    constraint_mode: str = "soft"  # "off" | "soft"
+    aoi_bbox: Optional[Tuple[float, ...]] = None  # (min_lon, min_lat, max_lon, max_lat)
+    osm_cache_dir: str = "artifacts/m5/osm_cache"
+    constraint_weight: float = 0.45
+    constraint_veto_threshold: float = 0.95
+    poi_rule_set: str = "entrance_fire_bus_stop_v1"
+
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
 
@@ -72,8 +81,15 @@ class StreetPlacement:
     bbox_xz: List[float]  # [xmin, xmax, zmin, zmax]
     selection_source: str  # faiss_softmax | faiss_relaxed_repeat | policy_* | fallback_pool
 
+    # -- M5 constraint fields --
+    constraint_penalty: float = 0.0
+    feasibility_score: float = 1.0
+    violated_rules: Tuple[str, ...] = ()
+
     def to_dict(self) -> Dict[str, Any]:
-        return asdict(self)
+        payload = asdict(self)
+        payload["violated_rules"] = list(self.violated_rules)
+        return payload
 
 
 @dataclass(frozen=True)

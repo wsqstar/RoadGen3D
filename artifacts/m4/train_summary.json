@@ -1,19 +1,19 @@
 {
   "ingest": {
-    "raw_rows": 53000,
-    "usable_rows": 53000,
+    "raw_rows": 34000,
+    "usable_rows": 34000,
     "skipped_no_candidates": 0,
     "skipped_no_choice": 0
   },
   "split": {
-    "train": 47647,
-    "val": 5353
+    "train": 30566,
+    "val": 3434
   },
   "outputs": {
     "checkpoint": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/m4/layout_policy.pt",
     "meta_path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/m4/layout_policy_meta.json",
     "curve_path": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/m4/train_curve.json"
   },
-  "best_val_loss": 1.8857887504831465,
+  "best_val_loss": 1.694598684363416,
   "resumed_from": "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/artifacts/m4/layout_policy.pt"
 }
