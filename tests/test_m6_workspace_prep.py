@@ -183,6 +183,15 @@ def test_extract_program_summary_includes_poi_counts():
             "furniture_requirements": {"bench": 3},
             "control_points": ["entry", "transit_stop", "exit"],
             "design_goals": ["transit_access"],
+            "left_clear_path_width_m": 2.8,
+            "right_clear_path_width_m": 2.4,
+            "left_furnishing_width_m": 1.4,
+            "right_furnishing_width_m": 1.0,
+            "row_width_m": 15.6,
+            "width_expanded": True,
+            "width_reallocation_reason": "expanded total row width by 1.2m",
+            "poi_fit_feasible": True,
+            "poi_fit_report": {"candidate_poi_count": 3},
         },
         "summary": {
             "spatial_context": {
@@ -191,6 +200,9 @@ def test_extract_program_summary_includes_poi_counts():
                 "fire_points_xz": [],
             },
             "poi_exclusion_zones": [{"poi_type": "entrance"}],
+            "selected_road_required_left_width_m": 4.2,
+            "selected_road_required_right_width_m": 3.4,
+            "selected_road_final_row_width_m": 15.6,
         },
     }
 
@@ -200,3 +212,7 @@ def test_extract_program_summary_includes_poi_counts():
     assert result["poi_counts"] == {"entrance": 2, "bus_stop": 1}
     assert result["total_poi_points"] == 3
     assert result["exclusion_zone_count"] == 1
+    assert result["poi_fit_feasible"] is True
+    assert result["selected_road_required_left_width_m"] == 4.2
+    assert result["row_width_m"] == 15.6
+    assert result["width_expanded"] is True

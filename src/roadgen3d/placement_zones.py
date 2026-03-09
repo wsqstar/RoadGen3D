@@ -10,6 +10,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
+from .cross_section_synthesis import synthesize_poi_driven_cross_section
 from .poi_taxonomy import (
     CANONICAL_FIRE_POI,
     core_poi_count,
@@ -45,12 +46,28 @@ class PlacementContext:
 
     sidewalk_zone: Any  # shapely (Multi)Polygon – region where furniture can be placed
     carriageway: Any  # shapely (Multi)Polygon – road surface
+    left_sidewalk_zone: Any = None  # shapely (Multi)Polygon – left-side pedestrian corridor
+    right_sidewalk_zone: Any = None  # shapely (Multi)Polygon – right-side pedestrian corridor
     entrance_points: List[Tuple[float, float]] = field(default_factory=list)  # (x, y) local metres
     bus_stop_points: List[Tuple[float, float]] = field(default_factory=list)
     fire_points: List[Tuple[float, float]] = field(default_factory=list)
     poi_points_by_type: Dict[str, List[Tuple[float, float]]] = field(default_factory=dict)
     aoi_polygon: Any = None  # shapely Polygon – bounding box polygon
     origin_offset: Tuple[float, float] = (0.0, 0.0)
+    carriageway_polygon: Any = None
+    road_reference: Any = None
+    carriageway_width_m: float = 0.0
+    left_clear_path_width_m: float = 0.0
+    right_clear_path_width_m: float = 0.0
+    left_furnishing_width_m: float = 0.0
+    right_furnishing_width_m: float = 0.0
+    row_width_m: float = 0.0
+    width_expanded: bool = False
+    width_reallocation_reason: str = ""
+    poi_fit_feasible: bool = True
+    poi_fit_report: Dict[str, Any] = field(default_factory=dict)
+    required_left_width_m: float = 0.0
+    required_right_width_m: float = 0.0
 
 
 # ---------------------------------------------------------------------------
@@ -71,6 +88,34 @@ def build_carriageway_polygon(roads: list) -> Any:
             continue
         line = LineString(road.coords)
         half_w = max(road.width_m / 2.0, 0.5)
+        poly = line.buffer(half_w, cap_style="flat")
+        if not poly.is_empty:
+            polygons.append(poly)
+
+    if not polygons:
+        return MultiPolygon()
+
+    merged = unary_union(polygons)
+    if merged.geom_type == "Polygon":
+        return MultiPolygon([merged])
+    return merged
+
+
+def build_carriageway_polygon_with_width(
+    roads: list,
+    carriageway_width_m: float,
+) -> Any:
+    """Union of road centreline buffers using an explicit carriageway width."""
+
+    from shapely.geometry import LineString, MultiPolygon
+    from shapely.ops import unary_union
+
+    polygons = []
+    half_w = max(float(carriageway_width_m) / 2.0, 0.5)
+    for road in roads:
+        if len(road.coords) < 2:
+            continue
+        line = LineString(road.coords)
         poly = line.buffer(half_w, cap_style="flat")
         if not poly.is_empty:
             polygons.append(poly)
@@ -109,6 +154,55 @@ def build_sidewalk_zone(
         polys = [g for g in sidewalk.geoms if isinstance(g, ShapelyPolygon)]
         return MultiPolygon(polys) if polys else MultiPolygon()
     return sidewalk
+
+
+def build_sidewalk_zones_from_roads(
+    roads: list,
+    *,
+    carriageway_width_m: float,
+    left_sidewalk_width_m: float,
+    right_sidewalk_width_m: float,
+    aoi_polygon: Any,
+) -> Tuple[Any, Any, Any]:
+    """Build asymmetric left/right sidewalk corridors from road centerlines."""
+
+    from shapely.geometry import LineString, MultiPolygon
+    from shapely.ops import unary_union
+
+    left_polygons = []
+    right_polygons = []
+    carriageway_half = max(float(carriageway_width_m) / 2.0, 0.5)
+    left_total = max(float(left_sidewalk_width_m), 0.0)
+    right_total = max(float(right_sidewalk_width_m), 0.0)
+
+    for road in roads:
+        if len(road.coords) < 2:
+            continue
+        line = LineString(road.coords)
+        if left_total > 0.0:
+            outer_left = line.buffer(carriageway_half + left_total, cap_style="flat", single_sided=True)
+            inner_left = line.buffer(carriageway_half, cap_style="flat", single_sided=True)
+            left_zone = outer_left.difference(inner_left)
+            if not left_zone.is_empty:
+                left_polygons.append(left_zone)
+        if right_total > 0.0:
+            outer_right = line.buffer(-(carriageway_half + right_total), cap_style="flat", single_sided=True)
+            inner_right = line.buffer(-carriageway_half, cap_style="flat", single_sided=True)
+            right_zone = outer_right.difference(inner_right)
+            if not right_zone.is_empty:
+                right_polygons.append(right_zone)
+
+    def _merge(polygons: List[Any]) -> Any:
+        if not polygons:
+            return MultiPolygon()
+        merged = unary_union(polygons)
+        return _clip_to_aoi(merged, aoi_polygon)
+
+    left_sidewalk = _merge(left_polygons)
+    right_sidewalk = _merge(right_polygons)
+    union_sidewalk = left_sidewalk.union(right_sidewalk)
+    union_sidewalk = _clip_to_aoi(union_sidewalk, aoi_polygon)
+    return left_sidewalk, right_sidewalk, union_sidewalk
 
 
 def _clip_to_aoi(geometry: Any, aoi_polygon: Any) -> Any:
@@ -271,36 +365,58 @@ def build_placement_context(
 ) -> PlacementContext:
     """Build the full placement context from projected OSM features and config."""
     from shapely.geometry import box
+    from shapely.prepared import prep
 
-    sidewalk_width = float(config.sidewalk_width_m)
+    from .street_program import profile_defaults
+
     bbox_m = projected_features.bbox_m
     aoi_polygon = box(bbox_m[0], bbox_m[1], bbox_m[2], bbox_m[3])
+    poi_points_by_type = extract_poi_points_by_type(projected_features)
+    defaults = profile_defaults(str(getattr(config, "design_rule_profile", "balanced_complete_street_v1")))
+    min_clear_path_width_m = float(defaults["min_clear_path_width_m"])
+    min_furnishing_width_m = float(defaults["furnishing_width_m"])
+    right_edge_width_m = float(defaults.get("right_edge_width_m", min_furnishing_width_m))
 
-    carriageway_raw = build_carriageway_polygon(projected_features.roads)
+    cross_section = synthesize_poi_driven_cross_section(
+        roads=projected_features.roads,
+        poi_points_by_type=poi_points_by_type,
+        road_width_m=float(config.road_width_m),
+        lane_count=int(getattr(config, "lane_count", 1)),
+        sidewalk_seed_width_m=float(config.sidewalk_width_m),
+        base_lane_width_m=getattr(config, "base_lane_width_m", None),
+        min_clear_path_width_m=min_clear_path_width_m,
+        left_furnishing_min_width_m=min_furnishing_width_m,
+        right_furnishing_min_width_m=right_edge_width_m,
+    )
+
+    carriageway_raw = build_carriageway_polygon_with_width(
+        projected_features.roads,
+        cross_section.carriageway_width_m,
+    )
     # Clip carriageway to AOI so roads don't extend far beyond the scene
     carriageway = _clip_to_aoi(carriageway_raw, aoi_polygon)
-    sidewalk_zone = build_sidewalk_zone(carriageway, sidewalk_width, aoi_polygon)
+    left_sidewalk_zone, right_sidewalk_zone, sidewalk_zone = build_sidewalk_zones_from_roads(
+        projected_features.roads,
+        carriageway_width_m=cross_section.carriageway_width_m,
+        left_sidewalk_width_m=cross_section.left_sidewalk_width_m,
+        right_sidewalk_width_m=cross_section.right_sidewalk_width_m,
+        aoi_polygon=aoi_polygon,
+    )
 
-    # Filter POIs to those spatially near the selected road's carriageway.
-    # POIs from the full bbox may belong to other (filtered-out) roads.
-    _poi_buffer_m = sidewalk_width + 5.0  # sidewalk + 5 m margin
-    poi_points_by_type = extract_poi_points_by_type(projected_features)
-    if not carriageway.is_empty:
+    # Filter POIs to those retained by the synthesized road corridor.
+    if not carriageway.is_empty or not sidewalk_zone.is_empty:
         from shapely.geometry import Point as ShapelyPoint
-        from shapely.prepared import prep
 
-        relevance_zone = prep(carriageway.buffer(_poi_buffer_m))
+        corridor = carriageway.union(sidewalk_zone)
+        relevance_zone = prep(corridor.buffer(0.25))
         filtered_poi_points_by_type = {
-            poi_type: [
-                pt for pt in points
-                if relevance_zone.contains(ShapelyPoint(pt))
-            ]
-            for poi_type, points in poi_points_by_type.items()
+            poi_type: [pt for pt in points if relevance_zone.contains(ShapelyPoint(pt))]
+            for poi_type, points in cross_section.candidate_poi_points_by_type.items()
         }
     else:
         filtered_poi_points_by_type = {
             poi_type: list(points)
-            for poi_type, points in poi_points_by_type.items()
+            for poi_type, points in cross_section.candidate_poi_points_by_type.items()
         }
 
     filtered_entrances = list(filtered_poi_points_by_type.get("entrance", []))
@@ -311,7 +427,7 @@ def build_placement_context(
         "POI filtering: %s -> %s",
         poi_breakdown_string({
             poi_type: len(points)
-            for poi_type, points in poi_points_by_type.items()
+            for poi_type, points in cross_section.candidate_poi_points_by_type.items()
         }),
         poi_breakdown_string({
             poi_type: len(points)
@@ -322,12 +438,28 @@ def build_placement_context(
     return PlacementContext(
         sidewalk_zone=sidewalk_zone,
         carriageway=carriageway,
+        left_sidewalk_zone=left_sidewalk_zone,
+        right_sidewalk_zone=right_sidewalk_zone,
         entrance_points=filtered_entrances,
         bus_stop_points=filtered_bus_stops,
         fire_points=filtered_fire_points,
         poi_points_by_type=filtered_poi_points_by_type,
         aoi_polygon=aoi_polygon,
         origin_offset=projected_features.origin_utm,
+        carriageway_polygon=carriageway,
+        road_reference=projected_features.roads[0] if projected_features.roads else None,
+        carriageway_width_m=float(cross_section.carriageway_width_m),
+        left_clear_path_width_m=float(cross_section.left_clear_path_width_m),
+        right_clear_path_width_m=float(cross_section.right_clear_path_width_m),
+        left_furnishing_width_m=float(cross_section.left_furnishing_width_m),
+        right_furnishing_width_m=float(cross_section.right_furnishing_width_m),
+        row_width_m=float(cross_section.row_width_m),
+        width_expanded=bool(cross_section.width_expanded),
+        width_reallocation_reason=str(cross_section.width_reallocation_reason),
+        poi_fit_feasible=bool(cross_section.poi_fit_feasible),
+        poi_fit_report=dict(cross_section.poi_fit_report),
+        required_left_width_m=float(cross_section.required_left_width_m),
+        required_right_width_m=float(cross_section.required_right_width_m),
     )
 
 

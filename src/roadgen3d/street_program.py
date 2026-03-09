@@ -97,6 +97,12 @@ def _profile_defaults(profile_name: str) -> Dict[str, object]:
     return dict(_PROFILE_DEFAULTS.get(profile_name, _PROFILE_DEFAULTS["balanced_complete_street_v1"]))
 
 
+def profile_defaults(profile_name: str) -> Dict[str, object]:
+    """Public access to cross-section defaults used by StreetProgram generation."""
+
+    return _profile_defaults(profile_name)
+
+
 def _infer_road_type(query: str, fallback: str) -> str:
     query_lc = query.strip().lower()
     for needle, road_type in _ROAD_TYPE_KEYWORDS:
@@ -199,14 +205,16 @@ def _apply_observed_poi_bindings(
 def _build_cross_section_bands(
     *,
     road_width_m: float,
-    sidewalk_width_m: float,
-    furnishing_width_m: float,
+    left_clear_path_width_m: float,
+    right_clear_path_width_m: float,
+    left_furnishing_width_m: float,
     right_edge_width_m: float,
     profile_name: str,
 ) -> Tuple[StreetBand, ...]:
-    left_edge = float(furnishing_width_m)
+    left_edge = float(left_furnishing_width_m)
     right_edge = float(right_edge_width_m)
-    clear_width = float(sidewalk_width_m)
+    left_clear_width = float(left_clear_path_width_m)
+    right_clear_width = float(right_clear_path_width_m)
     road_half = float(road_width_m) / 2.0
 
     left_edge_kind = "furnishing"
@@ -227,8 +235,8 @@ def _build_cross_section_bands(
             name="left_clear_path",
             kind="clear_path",
             side="left",
-            width_m=clear_width,
-            z_center_m=road_half + left_edge + clear_width / 2.0,
+            width_m=left_clear_width,
+            z_center_m=road_half + left_edge + left_clear_width / 2.0,
             allowed_categories=(),
         ),
         StreetBand(
@@ -243,8 +251,8 @@ def _build_cross_section_bands(
             name="right_clear_path",
             kind="clear_path",
             side="right",
-            width_m=clear_width,
-            z_center_m=-(road_half + right_edge + clear_width / 2.0),
+            width_m=right_clear_width,
+            z_center_m=-(road_half + right_edge + right_clear_width / 2.0),
             allowed_categories=(),
         ),
         StreetBand(
@@ -304,6 +312,7 @@ def infer_street_program(
     config: StreetComposeConfig,
     available_categories: Iterable[str],
     poi_context: object | None = None,
+    placement_context: object | None = None,
 ) -> StreetProgram:
     """Infer a structured StreetProgram from text and composition context."""
 
@@ -313,12 +322,29 @@ def infer_street_program(
     clear_width = max(float(config.sidewalk_width_m), float(defaults["min_clear_path_width_m"]))
     furnishing_width = float(defaults["furnishing_width_m"])
     right_edge_width = float(defaults.get("right_edge_width_m", furnishing_width))
+    carriageway_width = float(getattr(placement_context, "carriageway_width_m", config.road_width_m))
+    left_clear_width = float(getattr(placement_context, "left_clear_path_width_m", clear_width))
+    right_clear_width = float(getattr(placement_context, "right_clear_path_width_m", clear_width))
+    left_furnishing_width = float(getattr(placement_context, "left_furnishing_width_m", furnishing_width))
+    right_furnishing_width = float(getattr(placement_context, "right_furnishing_width_m", right_edge_width))
+    row_width = float(
+        getattr(
+            placement_context,
+            "row_width_m",
+            carriageway_width + left_clear_width + right_clear_width + left_furnishing_width + right_furnishing_width,
+        )
+    )
+    width_expanded = bool(getattr(placement_context, "width_expanded", False))
+    width_reallocation_reason = str(getattr(placement_context, "width_reallocation_reason", ""))
+    poi_fit_feasible = bool(getattr(placement_context, "poi_fit_feasible", True))
+    poi_fit_report = dict(getattr(placement_context, "poi_fit_report", {}) or {})
 
     bands = _build_cross_section_bands(
-        road_width_m=float(config.road_width_m),
-        sidewalk_width_m=clear_width,
-        furnishing_width_m=furnishing_width,
-        right_edge_width_m=right_edge_width,
+        road_width_m=carriageway_width,
+        left_clear_path_width_m=left_clear_width,
+        right_clear_path_width_m=right_clear_width,
+        left_furnishing_width_m=left_furnishing_width,
+        right_edge_width_m=right_furnishing_width,
         profile_name=profile_name,
     )
     requirements = _estimate_furniture_requirements(
@@ -354,9 +380,9 @@ def infer_street_program(
         target_standard=profile_name,
         lane_count=max(1, int(config.lane_count)),
         cross_section_type=str(defaults["cross_section_type"]),
-        road_width_m=float(config.road_width_m),
-        sidewalk_width_m=float(clear_width),
-        furnishing_width_m=float(max(furnishing_width, right_edge_width)),
+        road_width_m=float(carriageway_width),
+        sidewalk_width_m=float(max(left_clear_width, right_clear_width)),
+        furnishing_width_m=float(max(left_furnishing_width, right_furnishing_width)),
         bands=bands,
         furniture_requirements=requirements,
         control_points=tuple(control_points),
@@ -371,4 +397,13 @@ def infer_street_program(
         reserved_band_categories=reserved_band_categories,
         design_goal_weights=_goal_weights(merged_goals),
         notes=notes,
+        left_clear_path_width_m=float(left_clear_width),
+        right_clear_path_width_m=float(right_clear_width),
+        left_furnishing_width_m=float(left_furnishing_width),
+        right_furnishing_width_m=float(right_furnishing_width),
+        row_width_m=float(row_width),
+        width_expanded=bool(width_expanded),
+        width_reallocation_reason=width_reallocation_reason,
+        poi_fit_feasible=bool(poi_fit_feasible),
+        poi_fit_report=poi_fit_report,
     )

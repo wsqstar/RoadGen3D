@@ -550,20 +550,22 @@ def _discovered_cache_matches(
     )
 
 
-def _probe_discovered_road_effective_poi_counts(
+def _probe_discovered_road_context_metrics(
     row: Dict[str, Any],
     *,
     osm_cache_dir: Path,
+    road_width_m: float,
     sidewalk_width_m: float,
+    lane_count: int,
     road_selection: str,
-) -> Dict[str, int]:
+) -> Dict[str, Any]:
     candidate_bbox = tuple(float(value) for value in row["bbox"])
     probe_config = StreetComposeConfig(
         query="probe",
         length_m=80.0,
-        road_width_m=8.0,
+        road_width_m=float(road_width_m),
         sidewalk_width_m=float(sidewalk_width_m),
-        lane_count=2,
+        lane_count=int(lane_count),
         density=1.0,
         seed=0,
         topk_per_category=1,
@@ -578,8 +580,41 @@ def _probe_discovered_road_effective_poi_counts(
     raw = fetch_osm_data(bbox=candidate_bbox, cache_dir=Path(osm_cache_dir))
     features = parse_osm_features(raw)
     projected = project_to_local(features, candidate_bbox)
-    _filtered, _placement_ctx, poi_counts = evaluate_projected_road_context(projected, probe_config)
-    return poi_counts
+    _filtered, placement_ctx, poi_counts = evaluate_projected_road_context(projected, probe_config)
+    return {
+        "poi_counts": poi_counts,
+        "poi_fit_feasible": bool(getattr(placement_ctx, "poi_fit_feasible", True)),
+        "poi_fit_report": dict(getattr(placement_ctx, "poi_fit_report", {}) or {}),
+        "required_left_width_m": float(getattr(placement_ctx, "required_left_width_m", 0.0) or 0.0),
+        "required_right_width_m": float(getattr(placement_ctx, "required_right_width_m", 0.0) or 0.0),
+        "row_width_m": float(getattr(placement_ctx, "row_width_m", 0.0) or 0.0),
+    }
+
+
+def _probe_discovered_road_effective_poi_counts(
+    row: Dict[str, Any],
+    *,
+    osm_cache_dir: Path,
+    road_width_m: float,
+    sidewalk_width_m: float,
+    lane_count: int,
+    road_selection: str,
+) -> Dict[str, int]:
+    """Backward-compatible wrapper returning only effective POI counts."""
+
+    return dict(
+        _probe_discovered_road_context_metrics(
+            row,
+            osm_cache_dir=osm_cache_dir,
+            road_width_m=road_width_m,
+            sidewalk_width_m=sidewalk_width_m,
+            lane_count=lane_count,
+            road_selection=road_selection,
+        ).get("poi_counts", {})
+    )
+
+
+_DEFAULT_EFFECTIVE_POI_COUNTS_PROBE = _probe_discovered_road_effective_poi_counts
 
 
 def _select_auto_discovered_road(
@@ -588,9 +623,11 @@ def _select_auto_discovered_road(
     osm_cache_dir: Path,
     aoi_bbox: Tuple[float, float, float, float] | None,
     seed: int,
+    road_width_m: float,
     sidewalk_width_m: float,
+    lane_count: int,
     road_selection: str,
-) -> Tuple[Dict[str, Any], bool, Dict[str, int]]:
+) -> Tuple[Dict[str, Any], bool, Dict[str, Any]]:
     """Return one POI-rich road chosen deterministically from discovery results."""
     discovered_path = artifacts_dir.parent / "m5" / "discovered_poi_roads.jsonl"
     metadata_path = _discovered_metadata_path(discovered_path)
@@ -643,15 +680,36 @@ def _select_auto_discovered_road(
         effective_counts = _probe_discovered_road_effective_poi_counts(
             row,
             osm_cache_dir=osm_cache_dir,
+            road_width_m=float(road_width_m),
             sidewalk_width_m=float(sidewalk_width_m),
+            lane_count=int(lane_count),
             road_selection=str(road_selection),
         )
-        if qualifies_poi_counts(effective_counts):
-            return row, auto_discovered, effective_counts
+        if _probe_discovered_road_effective_poi_counts is _DEFAULT_EFFECTIVE_POI_COUNTS_PROBE:
+            probe_metrics = _probe_discovered_road_context_metrics(
+                row,
+                osm_cache_dir=osm_cache_dir,
+                road_width_m=float(road_width_m),
+                sidewalk_width_m=float(sidewalk_width_m),
+                lane_count=int(lane_count),
+                road_selection=str(road_selection),
+            )
+            probe_metrics["poi_counts"] = effective_counts
+        else:
+            probe_metrics = {
+                "poi_counts": effective_counts,
+                "poi_fit_feasible": True,
+                "poi_fit_report": {},
+                "required_left_width_m": 0.0,
+                "required_right_width_m": 0.0,
+                "row_width_m": 0.0,
+            }
+        if qualifies_poi_counts(effective_counts) and bool(probe_metrics.get("poi_fit_feasible", True)):
+            return row, auto_discovered, probe_metrics
 
     raise RuntimeError(
         "No discovered POI-rich roads remain valid after compose filtering "
-        "(requires weighted POI score >= 2.0 and at least 1 core POI on the selected road)."
+        "(requires weighted POI score >= 2.0, at least 1 core POI, and a feasible POI-driven cross-section)."
     )
 
 
@@ -846,6 +904,19 @@ def _extract_program_summary(layout_json_text: str) -> str:
         "selected_road_effective_poi_count": runtime_summary.get("selected_road_effective_poi_count", sum(poi_counts_all.values())),
         "selected_road_effective_poi_score": runtime_summary.get("selected_road_effective_poi_score", poi_weighted_score(poi_counts_all)),
         "selected_road_core_poi_count": runtime_summary.get("selected_road_core_poi_count", core_poi_count(poi_counts_all)),
+        "poi_fit_feasible": runtime_summary.get("poi_fit_feasible", program.get("poi_fit_feasible", True)),
+        "poi_fit_report": runtime_summary.get("poi_fit_report", program.get("poi_fit_report", {})),
+        "selected_road_required_left_width_m": runtime_summary.get("selected_road_required_left_width_m"),
+        "selected_road_required_right_width_m": runtime_summary.get("selected_road_required_right_width_m"),
+        "selected_road_final_row_width_m": runtime_summary.get("selected_road_final_row_width_m", program.get("row_width_m")),
+        "carriageway_width_m": runtime_summary.get("carriageway_width_m", program.get("road_width_m")),
+        "left_clear_path_width_m": runtime_summary.get("left_clear_path_width_m", program.get("left_clear_path_width_m")),
+        "right_clear_path_width_m": runtime_summary.get("right_clear_path_width_m", program.get("right_clear_path_width_m")),
+        "left_furnishing_width_m": runtime_summary.get("left_furnishing_width_m", program.get("left_furnishing_width_m")),
+        "right_furnishing_width_m": runtime_summary.get("right_furnishing_width_m", program.get("right_furnishing_width_m")),
+        "row_width_m": runtime_summary.get("row_width_m", program.get("row_width_m")),
+        "width_expanded": runtime_summary.get("width_expanded", program.get("width_expanded", False)),
+        "width_reallocation_reason": runtime_summary.get("width_reallocation_reason", program.get("width_reallocation_reason", "")),
         "poi_counts": poi_counts,
         "observed_poi_counts": observed_poi_counts,
         "total_poi_points": sum(poi_counts_all.values()),
@@ -1303,13 +1374,18 @@ def run_street_compose(
         selected_discovered_poi_score = 0.0
         selected_discovered_core_poi_count = 0
         road_source = ""
+        selected_required_left_width_m = 0.0
+        selected_required_right_width_m = 0.0
+        selected_final_row_width_m = 0.0
         if str(m5_layout_mode).strip() == "osm":
-            selected_road, auto_discovered, _effective_poi_counts = _select_auto_discovered_road(
+            selected_road, auto_discovered, probe_metrics = _select_auto_discovered_road(
                 artifacts_dir=artifacts_dir,
                 osm_cache_dir=osm_cache_dir,
                 aoi_bbox=requested_bbox,
                 seed=int(street_seed),
+                road_width_m=float(street_road_width_m),
                 sidewalk_width_m=float(street_sidewalk_width_m),
+                lane_count=int(street_lane_count),
                 road_selection=str(road_selection).strip(),
             )
             effective_bbox = tuple(float(v) for v in selected_road["bbox"])
@@ -1317,6 +1393,9 @@ def run_street_compose(
             selected_discovered_poi_count = int(selected_road.get("poi_count", 0))
             selected_discovered_poi_score = float(selected_road.get("poi_score", poi_weighted_score(selected_road.get("poi_types", {}))))
             selected_discovered_core_poi_count = int(selected_road.get("core_poi_count", core_poi_count(selected_road.get("poi_types", {}))))
+            selected_required_left_width_m = float(probe_metrics.get("required_left_width_m", 0.0) or 0.0)
+            selected_required_right_width_m = float(probe_metrics.get("required_right_width_m", 0.0) or 0.0)
+            selected_final_row_width_m = float(probe_metrics.get("row_width_m", 0.0) or 0.0)
             if auto_discovered:
                 road_source = "auto_discovered"
 
@@ -1410,6 +1489,22 @@ def run_street_compose(
             summary += (
                 f"\n- selected_road_core_poi_count: "
                 f"{int(layout_summary.get('selected_road_core_poi_count', 0) or 0)}"
+            )
+            summary += (
+                f"\n- selected_road_required_left_width_m: "
+                f"{float(layout_summary.get('selected_road_required_left_width_m', selected_required_left_width_m) or 0.0):.2f}"
+            )
+            summary += (
+                f"\n- selected_road_required_right_width_m: "
+                f"{float(layout_summary.get('selected_road_required_right_width_m', selected_required_right_width_m) or 0.0):.2f}"
+            )
+            summary += (
+                f"\n- selected_road_final_row_width_m: "
+                f"{float(layout_summary.get('selected_road_final_row_width_m', selected_final_row_width_m) or 0.0):.2f}"
+            )
+            summary += (
+                f"\n- poi_fit_feasible: "
+                f"{bool(layout_summary.get('poi_fit_feasible', True))}"
             )
         if effective_bbox is not None:
             summary += f"\n- road_bbox: ({effective_bbox[0]:.4f}, {effective_bbox[1]:.4f}, {effective_bbox[2]:.4f}, {effective_bbox[3]:.4f})"
@@ -2496,6 +2591,15 @@ def build_demo() -> gr.Blocks:
         with gr.Tabs():
             with gr.Tab("1) 准备"):
                 gr.Markdown("一键准备工作区：校验 manifest、补齐 latent、构建索引，并在需要时预热 OSM cache。")
+                gr.Markdown(
+                    "\n".join(
+                        [
+                            "- 输入：资产 manifest、mesh/latent 路径、CLIP/Shape-E 模型目录、AOI bbox / 城市。",
+                            "- 中间算法：readiness 检查、latent 编码、索引构建、OSM cache 预热、POI-rich roads discovery。",
+                            "- 输出：workspace readiness、prepare steps、自动候选道路列表。",
+                        ]
+                    )
+                )
                 with gr.Row():
                     dataset_profile = gr.Dropdown(label="数据源", choices=["real", "mock"], value="real")
                     model_name = gr.Textbox(label="CLIP Model", value="openai/clip-vit-base-patch32")
@@ -2566,6 +2670,15 @@ def build_demo() -> gr.Blocks:
 
             with gr.Tab("2) 生成街道"):
                 gr.Markdown("默认入口：先生成 `StreetProgram`，再做约束求解与资产实现。")
+                gr.Markdown(
+                    "\n".join(
+                        [
+                            "- 输入：文本 query、道路宽度/车道数/密度、OSM AOI、设计规则、program generator、solver。",
+                            "- 中间算法：自动选取 POI-rich road、POI-aware 横断面合成、StreetProgram 推理、约束求解、资产检索与摆放。",
+                            "- 输出：GLB/PLY 场景、StreetProgram Summary、Solver Summary、POI/空间分析结果。",
+                        ]
+                    )
+                )
                 query = gr.Textbox(label="Query", value="pedestrian-friendly boulevard with transit access")
                 with gr.Row():
                     m5_layout_mode = gr.Dropdown(label="Layout Mode", choices=["template", "osm"], value="osm")
@@ -2681,6 +2794,15 @@ def build_demo() -> gr.Blocks:
             with gr.Tab("3) 研究与训练"):
                 gr.Markdown("研究工具：用于改进 `learned_v1` / `learned policy`，不是默认运行入口。")
                 gr.Markdown("`Run Best Model` 使用当前“生成街道”页的查询与街道设置。")
+                gr.Markdown(
+                    "\n".join(
+                        [
+                            "- 输入：蒸馏查询集、训练超参数、policy/program checkpoint、生成页当前街道设置。",
+                            "- 中间算法：数据蒸馏、layout policy 训练、program generator 训练、离线评估与 best-model 回放。",
+                            "- 输出：训练日志、train/eval JSON、更新后的 checkpoint、best-model 生成结果。",
+                        ]
+                    )
+                )
                 with gr.Row():
                     train_btn = gr.Button("Train + Eval", variant="primary")
                     run_best_model_btn = gr.Button("Run Best Model")

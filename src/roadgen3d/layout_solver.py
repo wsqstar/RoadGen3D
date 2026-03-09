@@ -88,6 +88,20 @@ def _rebuild_program(
     rebuilt_bands = _recompute_bands(bands)
     clear_widths = [float(band.width_m) for band in rebuilt_bands if band.kind == "clear_path"]
     furnishing_widths = [float(band.width_m) for band in rebuilt_bands if band.kind in {"furnishing", "transit_edge"}]
+    left_clear_width = float(next((band.width_m for band in rebuilt_bands if band.name == "left_clear_path"), program.left_clear_path_width_m))
+    right_clear_width = float(next((band.width_m for band in rebuilt_bands if band.name == "right_clear_path"), program.right_clear_path_width_m))
+    left_furnishing_width = float(next((band.width_m for band in rebuilt_bands if band.name == "left_furnishing"), program.left_furnishing_width_m))
+    right_furnishing_width = float(
+        next(
+            (
+                band.width_m
+                for band in rebuilt_bands
+                if band.name in {"right_furnishing", "right_transit_edge"}
+            ),
+            program.right_furnishing_width_m,
+        )
+    )
+    carriageway_width = float(next((band.width_m for band in rebuilt_bands if band.kind == "carriageway"), program.road_width_m))
     return StreetProgram(
         query=program.query,
         road_type=program.road_type,
@@ -95,7 +109,7 @@ def _rebuild_program(
         target_standard=program.target_standard,
         lane_count=int(max(1, lane_count)),
         cross_section_type=program.cross_section_type,
-        road_width_m=float(next((band.width_m for band in rebuilt_bands if band.kind == "carriageway"), program.road_width_m)),
+        road_width_m=carriageway_width,
         sidewalk_width_m=float(max(clear_widths) if clear_widths else program.sidewalk_width_m),
         furnishing_width_m=float(max(furnishing_widths) if furnishing_widths else program.furnishing_width_m),
         bands=rebuilt_bands,
@@ -107,6 +121,15 @@ def _rebuild_program(
         reserved_band_categories=dict(program.reserved_band_categories),
         design_goal_weights=dict(program.design_goal_weights),
         notes=program.notes,
+        left_clear_path_width_m=left_clear_width,
+        right_clear_path_width_m=right_clear_width,
+        left_furnishing_width_m=left_furnishing_width,
+        right_furnishing_width_m=right_furnishing_width,
+        row_width_m=float(carriageway_width + sum(float(band.width_m) for band in rebuilt_bands if band.side in {"left", "right"})),
+        width_expanded=bool(program.width_expanded),
+        width_reallocation_reason=str(program.width_reallocation_reason),
+        poi_fit_feasible=bool(program.poi_fit_feasible),
+        poi_fit_report=dict(program.poi_fit_report),
     )
 
 

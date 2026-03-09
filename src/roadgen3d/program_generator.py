@@ -305,6 +305,24 @@ def _apply_prediction_to_program(base: StreetProgram, prediction: Dict[str, np.n
         reserved_band_categories=reserved_band_categories,
         design_goal_weights=normalized_goal_weights,
         notes=notes,
+        left_clear_path_width_m=float(next((band.width_m for band in updated_bands if band.name == "left_clear_path"), base.left_clear_path_width_m)),
+        right_clear_path_width_m=float(next((band.width_m for band in updated_bands if band.name == "right_clear_path"), base.right_clear_path_width_m)),
+        left_furnishing_width_m=float(next((band.width_m for band in updated_bands if band.name == "left_furnishing"), base.left_furnishing_width_m)),
+        right_furnishing_width_m=float(
+            next(
+                (
+                    band.width_m
+                    for band in updated_bands
+                    if band.name in {"right_furnishing", "right_transit_edge"}
+                ),
+                base.right_furnishing_width_m,
+            )
+        ),
+        row_width_m=float(carriageway_width + sum(float(band.width_m) for band in updated_bands if band.side in {"left", "right"})),
+        width_expanded=bool(base.width_expanded),
+        width_reallocation_reason=str(base.width_reallocation_reason),
+        poi_fit_feasible=bool(base.poi_fit_feasible),
+        poi_fit_report=dict(base.poi_fit_report),
     )
 
 
@@ -385,6 +403,7 @@ class ProgramGeneratorRuntime:
             data.compose_config,
             data.available_categories,
             poi_context=getattr(data, "poi_context", None),
+            placement_context=getattr(data, "placement_context", None),
         )
         requested = str(data.compose_config.program_generator).strip().lower()
         if self.backend != "learned_v1" or self.model is None:

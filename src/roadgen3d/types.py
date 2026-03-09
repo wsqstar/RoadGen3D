@@ -67,6 +67,10 @@ class StreetComposeConfig:
     selected_road_discovered_poi_count: Optional[int] = None
     selected_road_discovered_poi_score: Optional[float] = None
     selected_road_discovered_core_poi_count: Optional[int] = None
+    width_budget_mode: str = "expand_total_width"
+    sidewalk_distribution: str = "per_side"
+    poi_fit_mode: str = "hard_containment"
+    base_lane_width_m: Optional[float] = None
 
     # -- Neuralsymbolic v1 fields --
     program_generator: str = "heuristic_v1"
@@ -120,6 +124,15 @@ class StreetProgram:
     reserved_band_categories: Dict[str, str] = field(default_factory=dict)
     design_goal_weights: Dict[str, float] = field(default_factory=dict)
     notes: Tuple[str, ...] = ()
+    left_clear_path_width_m: float = 0.0
+    right_clear_path_width_m: float = 0.0
+    left_furnishing_width_m: float = 0.0
+    right_furnishing_width_m: float = 0.0
+    row_width_m: float = 0.0
+    width_expanded: bool = False
+    width_reallocation_reason: str = ""
+    poi_fit_feasible: bool = True
+    poi_fit_report: Dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         payload = asdict(self)

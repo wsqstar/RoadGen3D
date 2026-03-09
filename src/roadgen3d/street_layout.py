@@ -131,6 +131,15 @@ def _validate_config(config: StreetComposeConfig) -> None:
         raise ValueError("layout_solver must be 'banded' or 'milp_template_v1'")
     if float(getattr(config, "segment_length_m", 12.0)) <= 0.0:
         raise ValueError("segment_length_m must be > 0")
+    if str(getattr(config, "width_budget_mode", "expand_total_width")).strip().lower() != "expand_total_width":
+        raise ValueError("width_budget_mode must be 'expand_total_width'")
+    if str(getattr(config, "sidewalk_distribution", "per_side")).strip().lower() != "per_side":
+        raise ValueError("sidewalk_distribution must be 'per_side'")
+    if str(getattr(config, "poi_fit_mode", "hard_containment")).strip().lower() != "hard_containment":
+        raise ValueError("poi_fit_mode must be 'hard_containment'")
+    base_lane_width_m = getattr(config, "base_lane_width_m", None)
+    if base_lane_width_m is not None and float(base_lane_width_m) <= 0.0:
+        raise ValueError("base_lane_width_m must be > 0 when provided")
 
 
 def _validate_export_format(export_format: str) -> str:
@@ -492,7 +501,20 @@ def _sample_pose_osm(
     if anchor_position_xz is not None:
         point = (float(anchor_position_xz[0]), float(anchor_position_xz[1]))
     else:
-        point = sample_slot_on_sidewalk(placement_ctx.sidewalk_zone, rng)  # type: ignore[attr-defined]
+        side_pref = SIDE_PREF.get(category, "both")
+        overall_zone = placement_ctx.sidewalk_zone  # type: ignore[attr-defined]
+        if side_pref == "left":
+            preferred_zone = getattr(placement_ctx, "left_sidewalk_zone", None)
+        elif side_pref == "right":
+            preferred_zone = getattr(placement_ctx, "right_sidewalk_zone", None)
+        else:
+            preferred_zone = overall_zone
+        zone = preferred_zone
+        if zone is None or getattr(zone, "is_empty", False):
+            zone = overall_zone
+        point = sample_slot_on_sidewalk(zone, rng)
+        if point is None and zone is not overall_zone:
+            point = sample_slot_on_sidewalk(overall_zone, rng)
     if point is None:
         return None
     x, z = point
@@ -698,6 +720,12 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
         result["carriageway_rings"] = _extract_rings(carriageway)
     if not sidewalk.is_empty:
         result["sidewalk_rings"] = _extract_rings(sidewalk)
+    left_sidewalk = getattr(placement_ctx, "left_sidewalk_zone", None)
+    right_sidewalk = getattr(placement_ctx, "right_sidewalk_zone", None)
+    if left_sidewalk is not None and not left_sidewalk.is_empty:
+        result["left_sidewalk_rings"] = _extract_rings(left_sidewalk)
+    if right_sidewalk is not None and not right_sidewalk.is_empty:
+        result["right_sidewalk_rings"] = _extract_rings(right_sidewalk)
     aoi = getattr(placement_ctx, "aoi_polygon", None)
     if aoi is not None and not aoi.is_empty:
         b = aoi.bounds  # (minx, miny, maxx, maxy)
@@ -834,6 +862,11 @@ def compose_street_scene(
         features = parse_osm_features(raw)
         projected = project_to_local(features, config.aoi_bbox)
         projected, placement_ctx, effective_poi_counts = evaluate_projected_road_context(projected, config)
+        if not getattr(placement_ctx, "poi_fit_feasible", True):
+            raise RuntimeError(
+                "Selected road failed POI fit synthesis: "
+                f"{json.dumps(getattr(placement_ctx, 'poi_fit_report', {}), ensure_ascii=True)}"
+            )
         if not qualifies_poi_counts(effective_poi_counts):
             raise RuntimeError(
                 "Selected road does not retain enough effective POIs after compose filtering "
@@ -1244,6 +1277,19 @@ def compose_street_scene(
             "layout_solver_requested": str(config.layout_solver),
             "layout_solver_used": str(solver_result.backend_used),
             "cross_section_type": str(resolved_program.cross_section_type),
+            "road_width_m": float(resolved_program.road_width_m),
+            "sidewalk_width_m": float(resolved_program.sidewalk_width_m),
+            "length_m": float(config.length_m),
+            "carriageway_width_m": float(resolved_program.road_width_m),
+            "left_clear_path_width_m": float(resolved_program.left_clear_path_width_m),
+            "right_clear_path_width_m": float(resolved_program.right_clear_path_width_m),
+            "left_furnishing_width_m": float(resolved_program.left_furnishing_width_m),
+            "right_furnishing_width_m": float(resolved_program.right_furnishing_width_m),
+            "row_width_m": float(resolved_program.row_width_m),
+            "width_expanded": bool(resolved_program.width_expanded),
+            "width_reallocation_reason": str(resolved_program.width_reallocation_reason),
+            "poi_fit_feasible": bool(resolved_program.poi_fit_feasible),
+            "poi_fit_report": dict(resolved_program.poi_fit_report),
             "rule_satisfaction_rate": float(rule_satisfaction_rate),
             "topology_validity": float(topology_validity),
             "cross_section_feasibility": float(cross_section_feasibility),
@@ -1279,6 +1325,9 @@ def compose_street_scene(
             "selected_road_effective_poi_count": int(sum(int(value) for value in effective_poi_counts.values())),
             "selected_road_effective_poi_score": float(poi_weighted_score(effective_poi_counts)),
             "selected_road_core_poi_count": int(core_poi_count(effective_poi_counts)),
+            "selected_road_required_left_width_m": float(getattr(placement_ctx, "required_left_width_m", 0.0) or 0.0),
+            "selected_road_required_right_width_m": float(getattr(placement_ctx, "required_right_width_m", 0.0) or 0.0),
+            "selected_road_final_row_width_m": float(getattr(placement_ctx, "row_width_m", resolved_program.row_width_m) or 0.0),
             "observed_poi_counts": dict(resolved_program.observed_poi_counts),
             "spatial_context": {
                 "junction_points_xz": [list(p) for p in spatial_ctx.junction_points_xz],
@@ -1289,7 +1338,7 @@ def compose_street_scene(
                     poi_type: [list(point) for point in points]
                     for poi_type, points in nonempty_poi_points(spatial_ctx.poi_points_by_type_xz).items()
                 },
-                "road_half_width_m": float(spatial_ctx.road_half_width_m),
+                "road_half_width_m": float(resolved_program.road_width_m / 2.0),
                 "length_m": float(spatial_ctx.length_m),
             },
         },
