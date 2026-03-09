@@ -97,6 +97,54 @@ def _setup_fake_retrieval(monkeypatch, asset_ids: list[str]) -> None:
     monkeypatch.setattr(street_layout, "FaissIndexStore", FakeIndexStore)
 
 
+def _setup_fake_osm(monkeypatch) -> None:
+    import roadgen3d.osm_ingest as osm_ingest
+
+    projected = osm_ingest.ProjectedFeatures(
+        roads=[
+            osm_ingest.OsmRoad(osm_id=101, highway_type="primary", coords=[(-25.0, 10.0), (25.0, 10.0)], width_m=12.0),
+            osm_ingest.OsmRoad(osm_id=202, highway_type="service", coords=[(-25.0, -5.0), (25.0, -5.0)], width_m=6.0),
+        ],
+        entrances=[(0.0, -1.5), (8.0, -1.5)],
+        bus_stops=[(10.0, -1.0)],
+        fire_points=[(-10.0, -1.0)],
+        bbox_m=(-30.0, -12.0, 30.0, 15.0),
+        origin_utm=(0.0, 0.0),
+        utm_epsg=32649,
+    )
+
+    monkeypatch.setattr(osm_ingest, "fetch_osm_data", lambda **kwargs: {"elements": []})
+    monkeypatch.setattr(osm_ingest, "parse_osm_features", lambda raw: osm_ingest.OsmFeatures())
+    monkeypatch.setattr(osm_ingest, "project_to_local", lambda features, bbox: projected)
+
+
+def _setup_fake_osm_with_extended_pois(monkeypatch) -> None:
+    import roadgen3d.osm_ingest as osm_ingest
+
+    projected = osm_ingest.ProjectedFeatures(
+        roads=[
+            osm_ingest.OsmRoad(osm_id=303, highway_type="secondary", coords=[(-25.0, -4.0), (25.0, -4.0)], width_m=8.0),
+        ],
+        entrances=[(0.0, -1.5)],
+        bus_stops=[],
+        fire_points=[],
+        poi_points_by_type={
+            "entrance": [(0.0, -1.5)],
+            "crossing": [(-12.0, -1.0)],
+            "post_box": [(4.0, -1.2)],
+            "waste_basket": [(8.0, -1.0), (9.5, -1.0)],
+            "bollard": [(14.0, -0.8), (15.0, -0.8), (16.0, -0.8)],
+        },
+        bbox_m=(-30.0, -12.0, 30.0, 15.0),
+        origin_utm=(0.0, 0.0),
+        utm_epsg=32649,
+    )
+
+    monkeypatch.setattr(osm_ingest, "fetch_osm_data", lambda **kwargs: {"elements": []})
+    monkeypatch.setattr(osm_ingest, "parse_osm_features", lambda raw: osm_ingest.OsmFeatures())
+    monkeypatch.setattr(osm_ingest, "project_to_local", lambda features, bbox: projected)
+
+
 # ---------------------------------------------------------------------------
 # Template mode backward compatibility
 # ---------------------------------------------------------------------------
@@ -291,6 +339,245 @@ def test_constraint_off_default_values(tmp_path: Path, monkeypatch):
                 continue
             intersects = not (a[1] <= b[0] or b[1] <= a[0] or a[3] <= b[2] or b[3] <= a[2])
             assert not intersects, f"overlap between {i} and {j}"
+
+
+def test_osm_mode_preserves_poi_counts_when_constraint_off(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    pytest.importorskip("shapely")
+    pytest.importorskip("gradio")
+    import scripts.m1_gradio_app as app
+
+    rows = _build_real_rows(tmp_path / "data")
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+    _setup_fake_osm(monkeypatch)
+
+    config = StreetComposeConfig(
+        query="transit street with poi",
+        length_m=60.0,
+        road_width_m=8.0,
+        sidewalk_width_m=2.5,
+        lane_count=2,
+        density=1.0,
+        seed=42,
+        topk_per_category=20,
+        max_trials_per_slot=30,
+        layout_mode="osm",
+        constraint_mode="off",
+        aoi_bbox=(113.2660, 23.1280, 113.2710, 23.1325),
+        selected_road_osm_id=202,
+        road_selection="primary_road",
+        osm_cache_dir=str(tmp_path / "osm_cache"),
+    )
+    result = compose_street_scene(
+        config=config,
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        model_name="openai/clip-vit-base-patch32",
+        model_dir=None,
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+
+    layout_data = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    summary = layout_data["summary"]
+    spatial_ctx = summary["spatial_context"]
+    street_program = layout_data["street_program"]
+    solver = layout_data["solver"]
+    assert len(spatial_ctx["entrance_points_xz"]) == 2
+    assert len(spatial_ctx["bus_stop_points_xz"]) == 1
+    assert len(spatial_ctx["fire_points_xz"]) == 1
+    assert summary.get("poi_exclusion_zones", []) == []
+    assert summary["selected_road_effective_poi_count"] == 4
+    assert summary["selected_road_effective_poi_score"] == pytest.approx(4.8)
+    assert summary["selected_road_core_poi_count"] == 4
+    assert summary["observed_poi_counts"] == {"entrance": 2, "bus_stop": 1, "fire_hydrant": 1}
+    assert street_program["observed_poi_counts"] == {"entrance": 2, "bus_stop": 1, "fire_hydrant": 1}
+    assert street_program["furniture_requirements"]["bus_stop"] >= 1
+    assert street_program["furniture_requirements"]["hydrant"] >= 1
+    assert "transit_stop" in street_program["control_points"]
+    assert any(
+        slot["category"] == "bus_stop" and slot.get("anchor_poi_type") == "bus_stop"
+        for slot in solver["slot_plans"]
+    )
+    assert any(
+        slot["category"] == "hydrant" and slot.get("anchor_poi_type") == "fire_hydrant"
+        for slot in solver["slot_plans"]
+    )
+    assert any(placement["category"] == "bus_stop" for placement in layout_data["placements"])
+    assert any(placement["category"] == "hydrant" for placement in layout_data["placements"])
+
+    program_summary = json.loads(app._extract_program_summary(json.dumps(layout_data)))
+    assert program_summary["poi_counts"] == {"entrance": 2, "bus_stop": 1, "fire_hydrant": 1}
+    assert program_summary["observed_poi_counts"] == {"entrance": 2, "bus_stop": 1, "fire_hydrant": 1}
+    assert program_summary["total_poi_points"] == 4
+    assert program_summary["selected_road_effective_poi_count"] == 4
+    assert program_summary["selected_road_effective_poi_score"] == pytest.approx(4.8)
+    assert program_summary["exclusion_zone_count"] == 0
+
+
+def test_osm_mode_soft_constraint_adds_exclusion_zones_but_keeps_poi_counts(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    pytest.importorskip("shapely")
+    pytest.importorskip("gradio")
+    import scripts.m1_gradio_app as app
+
+    rows = _build_real_rows(tmp_path / "data")
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+    _setup_fake_osm(monkeypatch)
+
+    config = StreetComposeConfig(
+        query="transit street with poi",
+        length_m=60.0,
+        road_width_m=8.0,
+        sidewalk_width_m=2.5,
+        lane_count=2,
+        density=1.0,
+        seed=42,
+        topk_per_category=20,
+        max_trials_per_slot=30,
+        layout_mode="osm",
+        constraint_mode="soft",
+        aoi_bbox=(113.2660, 23.1280, 113.2710, 23.1325),
+        selected_road_osm_id=202,
+        road_selection="primary_road",
+        osm_cache_dir=str(tmp_path / "osm_cache"),
+    )
+    result = compose_street_scene(
+        config=config,
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        model_name="openai/clip-vit-base-patch32",
+        model_dir=None,
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+
+    layout_data = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    summary = layout_data["summary"]
+    spatial_ctx = summary["spatial_context"]
+    street_program = layout_data["street_program"]
+    assert len(spatial_ctx["entrance_points_xz"]) == 2
+    assert len(spatial_ctx["bus_stop_points_xz"]) == 1
+    assert len(spatial_ctx["fire_points_xz"]) == 1
+    assert len(summary.get("poi_exclusion_zones", [])) > 0
+    assert street_program["observed_poi_counts"] == {"entrance": 2, "bus_stop": 1, "fire_hydrant": 1}
+    assert street_program["furniture_requirements"]["bus_stop"] >= 1
+    assert street_program["furniture_requirements"]["hydrant"] >= 1
+
+    program_summary = json.loads(app._extract_program_summary(json.dumps(layout_data)))
+    assert program_summary["poi_counts"] == {"entrance": 2, "bus_stop": 1, "fire_hydrant": 1}
+    assert program_summary["observed_poi_counts"] == {"entrance": 2, "bus_stop": 1, "fire_hydrant": 1}
+    assert program_summary["total_poi_points"] == 4
+    assert program_summary["selected_road_effective_poi_count"] == 4
+    assert program_summary["selected_road_effective_poi_score"] == pytest.approx(4.8)
+    assert program_summary["exclusion_zone_count"] > 0
+
+
+def test_osm_mode_fails_when_poi_backed_category_missing_from_inventory(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    pytest.importorskip("shapely")
+
+    rows = [row for row in _build_real_rows(tmp_path / "data") if row["category"] != "bus_stop"]
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+    _setup_fake_osm(monkeypatch)
+
+    config = StreetComposeConfig(
+        query="transit street with poi",
+        length_m=60.0,
+        road_width_m=8.0,
+        sidewalk_width_m=2.5,
+        lane_count=2,
+        density=1.0,
+        seed=42,
+        topk_per_category=20,
+        max_trials_per_slot=30,
+        layout_mode="osm",
+        constraint_mode="off",
+        aoi_bbox=(113.2660, 23.1280, 113.2710, 23.1325),
+        selected_road_osm_id=202,
+        road_selection="primary_road",
+        osm_cache_dir=str(tmp_path / "osm_cache"),
+    )
+
+    with pytest.raises(RuntimeError, match="bus_stop POIs"):
+        compose_street_scene(
+            config=config,
+            manifest_path=manifest,
+            artifacts_dir=tmp_path / "artifacts",
+            model_name="openai/clip-vit-base-patch32",
+            model_dir=None,
+            local_files_only=True,
+            device="cpu",
+            export_format="glb",
+            out_dir=tmp_path / "artifacts",
+        )
+
+
+def test_extended_asset_backed_pois_bind_to_program_and_slots(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    pytest.importorskip("shapely")
+
+    rows = _build_real_rows(tmp_path / "data")
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+    _setup_fake_osm_with_extended_pois(monkeypatch)
+
+    config = StreetComposeConfig(
+        query="neighborhood street with access and street furniture",
+        length_m=60.0,
+        road_width_m=8.0,
+        sidewalk_width_m=2.5,
+        lane_count=2,
+        density=1.0,
+        seed=7,
+        topk_per_category=20,
+        max_trials_per_slot=30,
+        layout_mode="osm",
+        constraint_mode="soft",
+        aoi_bbox=(113.2660, 23.1280, 113.2710, 23.1325),
+        selected_road_osm_id=303,
+        road_selection="primary_road",
+        osm_cache_dir=str(tmp_path / "osm_cache"),
+    )
+    result = compose_street_scene(
+        config=config,
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        model_name="openai/clip-vit-base-patch32",
+        model_dir=None,
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+
+    layout_data = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    street_program = layout_data["street_program"]
+    solver = layout_data["solver"]
+
+    assert street_program["observed_poi_counts"]["post_box"] == 1
+    assert street_program["observed_poi_counts"]["waste_basket"] == 2
+    assert street_program["observed_poi_counts"]["bollard"] == 3
+    assert street_program["furniture_requirements"]["mailbox"] >= 1
+    assert street_program["furniture_requirements"]["trash"] >= 1
+    assert street_program["furniture_requirements"]["bollard"] >= 1
+    assert "crossing" in street_program["control_points"]
+
+    slot_plans = solver["slot_plans"]
+    assert any(slot["category"] == "mailbox" and slot.get("anchor_poi_type") == "post_box" for slot in slot_plans)
+    assert any(slot["category"] == "trash" and slot.get("anchor_poi_type") == "waste_basket" for slot in slot_plans)
+    assert any(slot["category"] == "bollard" and slot.get("anchor_poi_type") == "bollard" for slot in slot_plans)
 
 
 # ---------------------------------------------------------------------------

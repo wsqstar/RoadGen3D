@@ -6,6 +6,11 @@ from dataclasses import replace
 from typing import Dict, Iterable, List, Sequence, Set, Tuple
 
 from .milp_solver import solve_candidate_assignment
+from .poi_taxonomy import (
+    asset_backed_poi_types_for_category,
+    cluster_asset_backed_poi_points,
+    extract_poi_points_by_type,
+)
 from .street_priors import CATEGORY_SUBSTITUTIONS, SIDE_PREF
 from .types import (
     ConstraintSet,
@@ -98,6 +103,9 @@ def _rebuild_program(
         control_points=program.control_points,
         design_goals=program.design_goals,
         context_conditions=dict(program.context_conditions),
+        observed_poi_counts=dict(program.observed_poi_counts),
+        reserved_band_categories=dict(program.reserved_band_categories),
+        design_goal_weights=dict(program.design_goal_weights),
         notes=program.notes,
     )
 
@@ -310,6 +318,7 @@ def _resolve_allowed_bands(
     category: str,
     default_bands: Sequence[StreetBand],
     constraint_set: ConstraintSet,
+    program_reserved_band_categories: Dict[str, str],
     rule_effects: Dict[str, Dict[str, List[str]]],
     edits: List[LayoutEdit],
     conflicts: List[LayoutConflict],
@@ -323,6 +332,9 @@ def _resolve_allowed_bands(
         if specific_allowed is not None and band.kind not in specific_allowed:
             return False
         if all_allowed is not None and band.kind not in all_allowed:
+            return False
+        reserved_band_name = program_reserved_band_categories.get(band.name)
+        if reserved_band_name and reserved_band_name != category:
             return False
         reserved_category = reserved_bands.get(band.kind)
         if reserved_category and reserved_category != category:
@@ -381,6 +393,22 @@ def _build_slot_plans(
 ) -> Tuple[LayoutSlotPlan, ...]:
     slot_plans: List[LayoutSlotPlan] = []
     required_categories = _required_categories(solver_input.constraint_set)
+    placement_context = solver_input.placement_context
+
+    def _poi_anchor_data(category: str) -> List[Tuple[str, List[Tuple[float, float]]]]:
+        if placement_context is None:
+            return []
+        clustered_points = cluster_asset_backed_poi_points(extract_poi_points_by_type(placement_context))
+        results: List[Tuple[str, List[Tuple[float, float]]]] = []
+        for poi_type in asset_backed_poi_types_for_category(category):
+            results.append((
+                poi_type,
+                [
+                    (float(point[0]), float(point[1]))
+                    for point in clustered_points.get(poi_type, ())
+                ],
+            ))
+        return results
 
     for category, count in resolved_program.furniture_requirements.items():
         count = int(count)
@@ -401,15 +429,45 @@ def _build_slot_plans(
             category=category,
             default_bands=default_bands,
             constraint_set=solver_input.constraint_set,
+            program_reserved_band_categories=dict(resolved_program.reserved_band_categories),
             rule_effects=rule_effects,
             edits=edits,
             conflicts=conflicts,
         )
         if not allowed_bands:
             continue
+        anchor_entries = _poi_anchor_data(category)
+        anchor_slot_count = 0
+        for poi_type, anchor_points in anchor_entries:
+            for idx, point in enumerate(anchor_points):
+                band = min(
+                    allowed_bands,
+                    key=lambda item: abs(float(item.z_center_m) - float(point[1])),
+                )
+                anchor_x = float(point[0])
+                anchor_z = float(band.z_center_m)
+                slot_plans.append(
+                    LayoutSlotPlan(
+                        slot_id=f"{category}_{poi_type}_poi_{idx:03d}",
+                        category=category,
+                        band_name=band.name,
+                        x_center_m=anchor_x,
+                        z_center_m=anchor_z,
+                        spacing_m=float(max(solver_input.config.segment_length_m, 1.0)),
+                        side=str(band.side),
+                        priority=2.0,
+                        required=True,
+                        anchor_poi_type=poi_type,
+                        anchor_position_xz=(anchor_x, anchor_z),
+                    )
+                )
+                anchor_slot_count += 1
 
-        segment = float(solver_input.config.length_m) / float(max(count, 1))
-        for idx in range(count):
+        remaining_count = max(0, count - anchor_slot_count)
+        if remaining_count <= 0:
+            continue
+        segment = float(solver_input.config.length_m) / float(max(remaining_count, 1))
+        for idx in range(remaining_count):
             band = allowed_bands[idx % len(allowed_bands)]
             slot_plans.append(
                 LayoutSlotPlan(
@@ -627,6 +685,31 @@ class LayoutSolverRuntime:
             raise ValueError("layout solver backend must be 'banded' or 'milp_template_v1'")
 
         resolved_program, rule_effects, edits, conflicts = _compile_program(solver_input)
+        preview_slot_plans = _build_slot_plans(
+            solver_input=solver_input,
+            resolved_program=resolved_program,
+            rule_effects=rule_effects,
+            edits=edits,
+            conflicts=conflicts,
+        )
+        if any(slot.anchor_poi_type for slot in preview_slot_plans):
+            graph_summary = (
+                solver_input.road_segment_graph.summary()
+                if solver_input.road_segment_graph is not None and hasattr(solver_input.road_segment_graph, "summary")
+                else None
+            )
+            return _finalize_result(
+                solver_input=solver_input,
+                resolved_program=resolved_program,
+                slot_plans=preview_slot_plans,
+                rule_effects=rule_effects,
+                edits=edits,
+                conflicts=conflicts,
+                backend_requested=requested,
+                backend_used="banded",
+                fallback_reason="milp_template_v1 does not support POI-backed anchored slots; fallback to banded",
+                road_segment_graph_summary=graph_summary,
+            )
         slot_plans, milp_conflicts, meta = solve_candidate_assignment(
             program=resolved_program,
             length_m=float(solver_input.config.length_m),

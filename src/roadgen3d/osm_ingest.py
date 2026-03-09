@@ -10,6 +10,14 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
+from .poi_taxonomy import (
+    CANONICAL_FIRE_POI,
+    detect_poi_types_from_tags,
+    extract_poi_points_by_type,
+    normalize_poi_points_by_type,
+    overpass_poi_clauses,
+)
+
 logger = logging.getLogger(__name__)
 
 # Default road widths (metres) by highway type when OSM `width` tag is absent.
@@ -49,6 +57,7 @@ class OsmFeatures:
     entrances: List[Tuple[float, float]] = field(default_factory=list)  # (lon, lat)
     bus_stops: List[Tuple[float, float]] = field(default_factory=list)
     fire_points: List[Tuple[float, float]] = field(default_factory=list)
+    poi_points_by_type: Dict[str, List[Tuple[float, float]]] = field(default_factory=dict)
     bbox: Tuple[float, float, float, float] = (0.0, 0.0, 0.0, 0.0)
 
 
@@ -60,6 +69,7 @@ class ProjectedFeatures:
     entrances: List[Tuple[float, float]] = field(default_factory=list)  # (x, y) metres
     bus_stops: List[Tuple[float, float]] = field(default_factory=list)
     fire_points: List[Tuple[float, float]] = field(default_factory=list)
+    poi_points_by_type: Dict[str, List[Tuple[float, float]]] = field(default_factory=dict)
     bbox_m: Tuple[float, float, float, float] = (0.0, 0.0, 0.0, 0.0)  # in local metres
     origin_utm: Tuple[float, float] = (0.0, 0.0)  # UTM easting/northing of bbox centre
     utm_epsg: int = 0
@@ -88,14 +98,12 @@ def _build_overpass_query(bbox: Tuple[float, float, float, float]) -> str:
     """Build an Overpass QL query for roads and POI within *bbox*."""
     south, west, north, east = bbox[1], bbox[0], bbox[3], bbox[2]
     bb = f"{south},{west},{north},{east}"
+    poi_clauses = "\n".join(f"  {clause}" for clause in overpass_poi_clauses(bb))
     return (
         "[out:json][timeout:60];\n"
         "(\n"
         f'  way["highway"~"{_HIGHWAY_FILTER}"]({bb});\n'
-        f'  node["entrance"]({bb});\n'
-        f'  node["highway"="bus_stop"]({bb});\n'
-        f'  node["public_transport"="platform"]({bb});\n'
-        f'  node["emergency"="fire_hydrant"]({bb});\n'
+        f"{poi_clauses}\n"
         ");\n"
         "out body;\n"
         ">;\n"
@@ -162,9 +170,7 @@ def parse_osm_features(raw_data: Dict[str, Any]) -> OsmFeatures:
             node_coords[int(el["id"])] = (float(el["lon"]), float(el["lat"]))
 
     roads: List[OsmRoad] = []
-    entrances: List[Tuple[float, float]] = []
-    bus_stops: List[Tuple[float, float]] = []
-    fire_points: List[Tuple[float, float]] = []
+    poi_points_by_type: Dict[str, List[Tuple[float, float]]] = normalize_poi_points_by_type({})
 
     for el in elements:
         etype = el.get("type", "")
@@ -199,18 +205,29 @@ def parse_osm_features(raw_data: Dict[str, Any]) -> OsmFeatures:
             if lon_lat is None:
                 continue
 
-            if "entrance" in tags:
-                entrances.append(lon_lat)
-            if tags.get("highway") == "bus_stop" or tags.get("public_transport") == "platform":
-                bus_stops.append(lon_lat)
-            if tags.get("emergency") == "fire_hydrant":
-                fire_points.append(lon_lat)
+            for poi_type in detect_poi_types_from_tags(tags):
+                poi_points_by_type.setdefault(poi_type, []).append(lon_lat)
+
+    entrances = list(poi_points_by_type.get("entrance", []))
+    bus_stops = list(poi_points_by_type.get("bus_stop", []))
+    fire_points = list(poi_points_by_type.get(CANONICAL_FIRE_POI, []))
 
     logger.info(
-        "Parsed OSM: %d roads, %d entrances, %d bus_stops, %d fire_points",
-        len(roads), len(entrances), len(bus_stops), len(fire_points),
+        "Parsed OSM: %d roads, poi=%s",
+        len(roads),
+        {
+            poi_type: len(points)
+            for poi_type, points in poi_points_by_type.items()
+            if points
+        },
     )
-    return OsmFeatures(roads=roads, entrances=entrances, bus_stops=bus_stops, fire_points=fire_points)
+    return OsmFeatures(
+        roads=roads,
+        entrances=entrances,
+        bus_stops=bus_stops,
+        fire_points=fire_points,
+        poi_points_by_type=poi_points_by_type,
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -250,9 +267,13 @@ def project_to_local(
             width_m=road.width_m,
         ))
 
-    proj_entrances = [_to_local(lon, lat) for lon, lat in features.entrances]
-    proj_bus_stops = [_to_local(lon, lat) for lon, lat in features.bus_stops]
-    proj_fire_points = [_to_local(lon, lat) for lon, lat in features.fire_points]
+    proj_poi_points_by_type = {
+        poi_type: [_to_local(lon, lat) for lon, lat in points]
+        for poi_type, points in extract_poi_points_by_type(features).items()
+    }
+    proj_entrances = list(proj_poi_points_by_type.get("entrance", []))
+    proj_bus_stops = list(proj_poi_points_by_type.get("bus_stop", []))
+    proj_fire_points = list(proj_poi_points_by_type.get(CANONICAL_FIRE_POI, []))
 
     # Project bbox corners
     bl = _to_local(bbox[0], bbox[1])
@@ -264,6 +285,7 @@ def project_to_local(
         entrances=proj_entrances,
         bus_stops=proj_bus_stops,
         fire_points=proj_fire_points,
+        poi_points_by_type=proj_poi_points_by_type,
         bbox_m=bbox_m,
         origin_utm=(origin_e, origin_n),
         utm_epsg=utm_epsg,

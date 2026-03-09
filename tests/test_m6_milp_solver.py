@@ -3,6 +3,7 @@ from __future__ import annotations
 import sys
 from dataclasses import replace
 from pathlib import Path
+from types import SimpleNamespace
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
@@ -210,3 +211,37 @@ def test_milp_template_solver_returns_conflict_without_fallback_when_infeasible(
     assert result.backend_used == "milp_template_v1"
     assert not result.slot_plans
     assert result.conflicts
+
+
+def test_milp_template_solver_falls_back_to_banded_for_poi_anchored_slots():
+    config = _config(profile="transit_priority_v1", layout_mode="osm", allow_fallback=True)
+    available = ("bench", "lamp", "tree", "bus_stop", "hydrant")
+    poi_context = SimpleNamespace(
+        entrance_points_xz=((0.0, -1.5),),
+        bus_stop_points_xz=((10.0, -1.0),),
+        fire_points_xz=(),
+    )
+    placement_context = SimpleNamespace(
+        entrance_points=[(0.0, -1.5)],
+        bus_stop_points=[(10.0, -1.0)],
+        fire_points=[],
+    )
+    program = infer_street_program(config, available, poi_context=poi_context)
+    runtime = LayoutSolverRuntime(backend="milp_template_v1")
+
+    result = runtime.solve(
+        LayoutSolverInput(
+            program=program,
+            config=config,
+            available_categories=available,
+            constraint_set=load_constraint_set("transit_priority_v1"),
+            inventory_summary=_inventory(*available),
+            placement_context=placement_context,
+            road_segment_graph=_graph(allow_bus_stop=True),
+        )
+    )
+
+    assert result.backend_requested == "milp_template_v1"
+    assert result.backend_used == "banded"
+    assert "poi-backed anchored slots" in result.fallback_reason.lower()
+    assert any(slot.anchor_poi_type == "bus_stop" for slot in result.slot_plans)

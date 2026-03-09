@@ -39,6 +39,7 @@ from .osm_segment_graph import build_segment_graph
 from .pipeline import M1Pipeline
 from .placement_zones import PlacementContext, build_placement_context
 from .poi_rules import ConstraintResult, load_rule_set, score_placement
+from .road_discovery import DiscoveredRoad, discover_poi_roads, write_discovered_roads_jsonl
 from .program_generator import (
     ProgramGeneratorRuntime,
     ProgramTrainConfig,
@@ -89,6 +90,7 @@ __all__ = [
     "ConstraintSet",
     "ConstraintResult",
     "DesignRuleSpec",
+    "DiscoveredRoad",
     "EntranceAssessment",
     "FaissIndexStore",
     "LayoutPolicyMLP",
@@ -149,6 +151,7 @@ __all__ = [
     "compute_rule_satisfaction_rate",
     "compute_topology_validity",
     "compose_street_scene",
+    "discover_poi_roads",
     "evaluate_all_entrances",
     "extend_constraint_set",
     "evaluate_compliance_batch",
@@ -170,4 +173,5 @@ __all__ = [
     "split_program_samples_by_scene",
     "train_program_generator",
     "vectorize_program_input",
+    "write_discovered_roads_jsonl",
 ]

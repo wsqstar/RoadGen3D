@@ -47,11 +47,13 @@ def _make_ctx(
 
 def test_rule_set_loads():
     rs = load_rule_set("entrance_fire_bus_stop_v1")
-    assert len(rs.rules) == 3
+    assert len(rs.rules) >= 9
     names = {r.name for r in rs.rules}
     assert "entrance_clearance" in names
     assert "fire_access" in names
     assert "bus_stop_clearance" in names
+    assert "crossing_keep_clear" in names
+    assert "subway_entrance_clearance" in names
 
 
 def test_rule_set_unknown_raises():
@@ -121,6 +123,32 @@ def test_hydrant_no_fire_penalty():
     # entrance_clearance w_cat for hydrant = 0.2 (but no entrance POI)
     # bus_stop_clearance w_cat for hydrant = 0.2 (but no bus_stop POI)
     assert result.penalty < 0.01
+
+
+def test_crossing_keep_clear_penalizes_bollard():
+    rs = load_rule_set()
+    ctx = PoiContext(
+        entrance_points_xz=(),
+        bus_stop_points_xz=(),
+        fire_points_xz=(),
+        poi_points_by_type_xz={"crossing": ((0.0, 0.0),)},
+    )
+    result = score_placement((0.0, 0.0), "bollard", rs, ctx)
+    assert result.penalty > 0.8
+    assert "crossing_keep_clear" in result.violated_rules
+
+
+def test_subway_entrance_penalizes_bus_stop_overlap():
+    rs = load_rule_set()
+    ctx = PoiContext(
+        entrance_points_xz=(),
+        bus_stop_points_xz=(),
+        fire_points_xz=(),
+        poi_points_by_type_xz={"subway_entrance": ((0.0, 0.0),)},
+    )
+    result = score_placement((0.0, 0.0), "bus_stop", rs, ctx)
+    assert result.penalty > 0.8
+    assert "subway_entrance_clearance" in result.violated_rules
 
 
 def test_bus_stop_near_bus_stop_poi():

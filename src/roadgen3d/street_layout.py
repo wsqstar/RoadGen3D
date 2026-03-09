@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import math
 import random
 import time
@@ -11,6 +12,8 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 import numpy as np
+
+logger = logging.getLogger(__name__)
 
 from .design_rules import load_constraint_set
 from .embedder import ClipTextEmbedder
@@ -38,7 +41,21 @@ from .index_store import FaissIndexStore
 from .layout_features import CandidateDescriptor, PolicyFeatureContext, vectorize_slot_candidates
 from .layout_policy import LayoutPolicyRuntime
 from .layout_solver import LayoutSolverRuntime, solve_layout
+from .spatial_features import build_spatial_context, compute_slot_distances
 from .osm_segment_graph import build_segment_graph
+from .poi_taxonomy import (
+    CANONICAL_FIRE_POI,
+    canonicalize_poi_type,
+    asset_backed_poi_anchor_counts,
+    asset_category_for_poi,
+    core_poi_count,
+    extract_poi_points_by_type,
+    nonempty_poi_points,
+    normalize_poi_counts,
+    poi_plot_config,
+    poi_weighted_score,
+    qualifies_poi_counts,
+)
 from .program_generator import ProgramGeneratorRuntime
 from .street_priors import DEFAULT_CATEGORIES, DEFAULT_SPACING_M, SIDE_PREF
 from .street_program import infer_street_program
@@ -467,11 +484,15 @@ def _sample_pose_osm(
     category: str,
     placement_ctx: object,
     rng: random.Random,
+    anchor_position_xz: Optional[Tuple[float, float]] = None,
 ) -> Optional[Tuple[float, float, float]]:
     """Sample a (x, z, yaw_deg) pose inside the sidewalk zone of *placement_ctx*."""
     from .placement_zones import compute_facing_angle, sample_slot_on_sidewalk
 
-    point = sample_slot_on_sidewalk(placement_ctx.sidewalk_zone, rng)  # type: ignore[attr-defined]
+    if anchor_position_xz is not None:
+        point = (float(anchor_position_xz[0]), float(anchor_position_xz[1]))
+    else:
+        point = sample_slot_on_sidewalk(placement_ctx.sidewalk_zone, rng)  # type: ignore[attr-defined]
     if point is None:
         return None
     x, z = point
@@ -482,13 +503,21 @@ def _sample_pose_osm(
 def _build_osm_base_scene(placement_ctx: object):
     """Build a trimesh Scene with carriageway + sidewalk extruded slabs from OSM geometry."""
     trimesh = _require_trimesh()
+    import numpy as _np
     scene = trimesh.Scene()
 
     carriageway = placement_ctx.carriageway  # type: ignore[attr-defined]
     sidewalk_zone = placement_ctx.sidewalk_zone  # type: ignore[attr-defined]
 
     def _extrude_polygon(geom, height: float, color, name_prefix: str) -> None:
-        """Extrude a shapely geometry into a thin 3D slab and add to scene."""
+        """Extrude a shapely geometry into a thin 3D slab and add to scene.
+
+        ``extrude_polygon`` maps the 2-D polygon (x_east, y_north) to mesh
+        (X, Y) and extrudes along Z (0 … height).  The scene convention is
+        **Y-up** (XZ = ground), so we swap Y↔Z after extrusion:
+            X_3d = x_east,  Y_3d = z_extrude − height,  Z_3d = y_north
+        This puts the top surface at Y = 0 with the road lying flat on XZ.
+        """
         from shapely.geometry import MultiPolygon, Polygon as ShapelyPolygon
         polygons = []
         if isinstance(geom, ShapelyPolygon):
@@ -500,12 +529,19 @@ def _build_osm_base_scene(placement_ctx: object):
                 continue
             try:
                 mesh = trimesh.creation.extrude_polygon(poly, height)
+                # Swap Y↔Z so road lies flat on XZ ground plane (Y-up)
+                verts = mesh.vertices.copy()
+                old_y = verts[:, 1].copy()   # was northing
+                old_z = verts[:, 2].copy()   # was extrusion 0..height
+                verts[:, 1] = old_z - height  # Y = extrusion shifted → top at Y=0
+                verts[:, 2] = old_y           # Z = northing
+                mesh.vertices = verts
+                mesh.fix_normals()
                 mesh.visual.face_colors = color
-                # Shift down so top surface is at y=0
-                mesh.apply_translation([0.0, -height, 0.0])
                 scene.add_geometry(mesh, node_name=f"{name_prefix}_{idx}")
-            except Exception:
-                continue  # skip degenerate polygons
+            except (ValueError, RuntimeError, IndexError):
+                logger.debug("Skipping degenerate %s polygon %d", name_prefix, idx)
+                continue
 
     if not carriageway.is_empty:
         _extrude_polygon(carriageway, 0.06, [65, 68, 72, 255], "carriageway")
@@ -513,6 +549,172 @@ def _build_osm_base_scene(placement_ctx: object):
         _extrude_polygon(sidewalk_zone, 0.08, [165, 168, 172, 255], "sidewalk")
 
     return scene
+
+
+def _add_poi_markers_and_zones(scene, poi_points_by_type_or_exclusion_zones, exclusion_zones=None) -> None:
+    """Add POI marker spheres and exclusion-zone rings to a trimesh Scene.
+
+    Coordinate convention (Y-up): X_3d = x_east, Y_3d = height, Z_3d = y_north.
+    """
+    if exclusion_zones is None:
+        poi_points_by_type = {}
+        exclusion_zones = poi_points_by_type_or_exclusion_zones
+    else:
+        poi_points_by_type = poi_points_by_type_or_exclusion_zones
+    normalized_points = nonempty_poi_points(poi_points_by_type)
+    if not exclusion_zones and not normalized_points:
+        return
+    trimesh = _require_trimesh()
+    from shapely.geometry import Point as ShapelyPoint
+
+    _BASE_COLOR = [25, 25, 30, 255]
+    _RING_COLOR = [255, 70, 70, 48]  # lighter translucent red
+
+    seen_positions: dict = {}  # (poi_type, x, y) -> idx to avoid duplicate markers
+
+    def _build_marker_mesh(poi_type: str):
+        poi_type = canonicalize_poi_type(poi_type)
+        if poi_type == "entrance":
+            mesh = trimesh.creation.cone(radius=0.55, height=1.8, sections=24)
+            mesh.apply_translation([0.0, 0.9, 0.0])
+            return mesh
+        if poi_type == CANONICAL_FIRE_POI:
+            mesh = trimesh.creation.cylinder(radius=0.42, height=1.6, sections=24)
+            mesh.apply_translation([0.0, 0.8, 0.0])
+            return mesh
+        if poi_type == "bus_stop":
+            mesh = trimesh.creation.box(extents=(0.95, 2.2, 0.38))
+            mesh.apply_translation([0.0, 1.1, 0.0])
+            return mesh
+        if poi_type in {"crossing", "traffic_signals"}:
+            mesh = trimesh.creation.box(extents=(0.8, 1.6, 0.18))
+            mesh.apply_translation([0.0, 0.8, 0.0])
+            return mesh
+        if poi_type in {"parking_entrance", "subway_entrance"}:
+            mesh = trimesh.creation.cone(radius=0.42, height=1.5, sections=18)
+            mesh.apply_translation([0.0, 0.75, 0.0])
+            return mesh
+        if poi_type == "post_box":
+            mesh = trimesh.creation.box(extents=(0.52, 1.2, 0.52))
+            mesh.apply_translation([0.0, 0.6, 0.0])
+            return mesh
+        if poi_type == "waste_basket":
+            mesh = trimesh.creation.cylinder(radius=0.35, height=0.9, sections=20)
+            mesh.apply_translation([0.0, 0.45, 0.0])
+            return mesh
+        if poi_type == "bollard":
+            mesh = trimesh.creation.cylinder(radius=0.18, height=1.0, sections=16)
+            mesh.apply_translation([0.0, 0.5, 0.0])
+            return mesh
+        mesh = trimesh.creation.icosphere(subdivisions=2, radius=0.5)
+        mesh.apply_translation([0.0, 0.5, 0.0])
+        return mesh
+
+    def _add_marker(poi_type: str, point: Tuple[float, float]) -> None:
+        key = (poi_type, point[0], point[1])
+        if key in seen_positions:
+            return
+        idx = len(seen_positions)
+        seen_positions[key] = idx
+        x_east, y_north = point
+        marker = _build_marker_mesh(poi_type)
+        color_hex = str(poi_plot_config(poi_type)["color"]).lstrip("#")
+        marker.visual.face_colors = [
+            int(color_hex[0:2], 16),
+            int(color_hex[2:4], 16),
+            int(color_hex[4:6], 16),
+            255,
+        ]
+        marker.apply_translation([x_east, 0.0, y_north])
+        scene.add_geometry(marker, node_name=f"poi_{poi_type}_{idx}")
+
+        base = trimesh.creation.cylinder(radius=0.72, height=0.08, sections=24)
+        base.visual.face_colors = _BASE_COLOR
+        base.apply_translation([x_east, 0.04, y_north])
+        scene.add_geometry(base, node_name=f"poi_base_{poi_type}_{idx}")
+
+    for poi_type, points in normalized_points.items():
+        for point in points:
+            _add_marker(poi_type, point)
+
+    for zone in exclusion_zones:
+        key = (zone.poi_type, zone.position_xz[0], zone.position_xz[1])
+        _add_marker(zone.poi_type, zone.position_xz)
+        idx = seen_positions[key]
+        # Exclusion zone ring (annulus via Shapely buffer difference)
+        r = zone.radius_m
+        if r < 0.15:
+            continue
+        inner_r = max(r - 0.08, 0.0)
+        x_east, y_north = zone.position_xz
+        ring_poly = ShapelyPoint(x_east, y_north).buffer(r).difference(
+            ShapelyPoint(x_east, y_north).buffer(inner_r)
+        )
+        if ring_poly.is_empty:
+            continue
+        try:
+            ring_mesh = trimesh.creation.extrude_polygon(ring_poly, 0.02)
+            # Apply same Y↔Z swap as _extrude_polygon
+            verts = ring_mesh.vertices.copy()
+            old_y = verts[:, 1].copy()
+            old_z = verts[:, 2].copy()
+            verts[:, 1] = old_z + 0.01
+            verts[:, 2] = old_y
+            ring_mesh.vertices = verts
+            ring_mesh.fix_normals()
+            ring_mesh.visual.face_colors = _RING_COLOR
+            scene.add_geometry(ring_mesh, node_name=f"exclusion_{zone.poi_type}_{idx}")
+        except (ValueError, RuntimeError, IndexError):
+            logger.debug("Skipping degenerate exclusion ring for %s", zone.rule_name)
+            continue
+
+
+def _serialize_osm_geometry(placement_ctx: object) -> dict:
+    """Extract simplified polygon exterior rings for 2D visualization in layout JSON."""
+    from shapely.geometry import MultiPolygon, Polygon as ShapelyPolygon
+
+    def _extract_rings(geom, tolerance: float = 0.5, max_points: int = 200):
+        polys: list = []
+        if isinstance(geom, ShapelyPolygon):
+            polys = [geom]
+        elif isinstance(geom, MultiPolygon):
+            polys = list(geom.geoms)
+        rings: list = []
+        for poly in polys:
+            if poly.is_empty:
+                continue
+            simplified = poly.simplify(tolerance)
+            coords = list(simplified.exterior.coords)
+            if len(coords) > max_points:
+                simplified = poly.simplify(tolerance * 2)
+                coords = list(simplified.exterior.coords)
+            rings.append([[round(c[0], 2), round(c[1], 2)] for c in coords])
+        return rings
+
+    result: dict = {}
+    carriageway = placement_ctx.carriageway  # type: ignore[attr-defined]
+    sidewalk = placement_ctx.sidewalk_zone  # type: ignore[attr-defined]
+    if not carriageway.is_empty:
+        result["carriageway_rings"] = _extract_rings(carriageway)
+    if not sidewalk.is_empty:
+        result["sidewalk_rings"] = _extract_rings(sidewalk)
+    aoi = getattr(placement_ctx, "aoi_polygon", None)
+    if aoi is not None and not aoi.is_empty:
+        b = aoi.bounds  # (minx, miny, maxx, maxy)
+        result["aoi_bbox_m"] = [round(v, 2) for v in b]
+    return result
+
+
+def _slot_spatial_kwargs(slot, spatial_ctx) -> dict:
+    """Compute spatial distance fields for a PolicyFeatureContext."""
+    if spatial_ctx is None:
+        return {}
+    sd = compute_slot_distances((float(slot.x_center_m), float(slot.z_center_m)), spatial_ctx)
+    return {
+        "dist_to_road_edge_m": sd.dist_to_road_edge_m,
+        "dist_to_nearest_junction_m": sd.dist_to_nearest_junction_m,
+        "dist_to_nearest_entrance_m": sd.dist_to_nearest_entrance_m,
+    }
 
 
 def compose_street_scene(
@@ -623,26 +825,34 @@ def compose_street_scene(
 
     placement_ctx = None
     projected = None
+    effective_poi_counts: Dict[str, int] = normalize_poi_counts({})
     if config.layout_mode == "osm":
         from .osm_ingest import fetch_osm_data, parse_osm_features, project_to_local
-        from .placement_zones import build_placement_context
+        from .placement_zones import evaluate_projected_road_context
 
         raw = fetch_osm_data(bbox=config.aoi_bbox, cache_dir=Path(config.osm_cache_dir))
         features = parse_osm_features(raw)
         projected = project_to_local(features, config.aoi_bbox)
-        placement_ctx = build_placement_context(projected, config)
+        projected, placement_ctx, effective_poi_counts = evaluate_projected_road_context(projected, config)
+        if not qualifies_poi_counts(effective_poi_counts):
+            raise RuntimeError(
+                "Selected road does not retain enough effective POIs after compose filtering "
+                "(requires weighted POI score >= 2.0 and at least 1 core POI)."
+            )
 
     poi_ctx = None
     rule_set = None
+    from .poi_rules import PoiContext, build_poi_context
+    if placement_ctx is not None:
+        poi_ctx = build_poi_context(placement_ctx)
+    else:
+        poi_ctx = PoiContext((), (), ())
+
     if config.constraint_mode == "soft":
-        from .poi_rules import PoiContext, build_poi_context, load_rule_set
+        from .poi_rules import load_rule_set
         from .poi_rules import score_placement as _score_placement
 
         rule_set = load_rule_set(config.poi_rule_set)
-        if placement_ctx is not None:
-            poi_ctx = build_poi_context(placement_ctx)
-        else:
-            poi_ctx = PoiContext((), (), ())
 
     # --- Entrance analysis registry ---
     entrance_registry = PlacedAssetRegistry()
@@ -666,7 +876,22 @@ def compose_street_scene(
             if pool
         },
     )
+    if config.layout_mode == "osm":
+        for poi_type, required_count in asset_backed_poi_anchor_counts(
+            extract_poi_points_by_type(placement_ctx) if placement_ctx is not None else {}
+        ).items():
+            if int(required_count) <= 0:
+                continue
+            category = asset_category_for_poi(poi_type)
+            if category and category not in inventory_summary.category_counts:
+                raise RuntimeError(
+                    f"Selected road has {poi_type} POIs but the asset inventory has no {category} category."
+                )
     road_segment_graph = build_segment_graph(projected, config) if projected is not None else None
+
+    # --- Spatial context for distance features (M8) ---
+    spatial_ctx = build_spatial_context(config, road_segment_graph, poi_ctx)
+
     program_result = program_runtime.generate(
         ProgramGenerationInput(
             query=config.query,
@@ -676,6 +901,7 @@ def compose_street_scene(
             placement_context=placement_ctx,
             inventory_summary=inventory_summary,
             road_segment_graph=road_segment_graph,
+            poi_context=poi_ctx,
         )
     )
     if program_result.backend_used == "learned_v1":
@@ -698,6 +924,19 @@ def compose_street_scene(
     )
     resolved_program = solver_result.resolved_program
     slot_plans = list(solver_result.slot_plans)
+    for poi_type, required_count in asset_backed_poi_anchor_counts(
+        extract_poi_points_by_type(placement_ctx) if placement_ctx is not None else {}
+    ).items():
+        category = asset_category_for_poi(poi_type)
+        actual_count = sum(
+            1
+            for slot in slot_plans
+            if slot.category == category and slot.anchor_poi_type == poi_type
+        )
+        if int(required_count) > int(actual_count):
+            raise RuntimeError(
+                f"Layout solver did not preserve all required POI-backed {category} slots."
+            )
     if not slot_plans:
         raise RuntimeError(
             "Layout solver produced zero slots. "
@@ -742,6 +981,7 @@ def compose_street_scene(
                 else 0.0
             ),
             total_slots_in_scene=total_scene_slots,
+            **_slot_spatial_kwargs(slot, spatial_ctx),
         )
         row, score, source, decision_details = _pick_category_candidate(
             query=config.query,
@@ -775,9 +1015,10 @@ def compose_street_scene(
         entry = mesh_cache[row["asset_id"]]
         placed = False
         trial_candidates: List[Tuple[float, float, float, Tuple[float, float, float, float], float, float, Tuple[str, ...]]] = []
+        anchor_position = getattr(slot, "anchor_position_xz", None)
         for _trial_idx in range(int(config.max_trials_per_slot)):
             if config.layout_mode == "osm" and placement_ctx is not None:
-                pose = _sample_pose_osm(category, placement_ctx, rng)
+                pose = _sample_pose_osm(category, placement_ctx, rng, anchor_position_xz=anchor_position)
                 if pose is None:
                     continue
                 x, z, yaw_deg = pose
@@ -828,7 +1069,7 @@ def compose_street_scene(
                 c_violated = tuple(list(c_violated) + list(e_violated))
 
             trial_candidates.append((x, z, yaw_deg, bbox, c_penalty, c_feasibility, c_violated))
-            if config.constraint_mode != "soft":
+            if config.constraint_mode != "soft" or anchor_position is not None:
                 break
 
         if trial_candidates:
@@ -858,6 +1099,7 @@ def compose_street_scene(
                     constraint_penalty=float(bpenalty),
                     feasibility_score=float(bfeas),
                     violated_rules=bviolated,
+                    **_slot_spatial_kwargs(slot, spatial_ctx),
                 )
             )
             used_asset_ids_by_category.setdefault(category, set()).add(row["asset_id"])
@@ -870,6 +1112,8 @@ def compose_street_scene(
                 category=category,
                 bbox_xz=(float(bbbox[0]), float(bbbox[1]), float(bbbox[2]), float(bbbox[3])),
             )
+        elif anchor_position is not None:
+            raise RuntimeError(f"Unable to place required POI-backed asset for category '{category}'.")
 
         if not placed:
             dropped_slots += 1
@@ -893,6 +1137,16 @@ def compose_street_scene(
             right_side_width_m=float(right_side_width),
         )
     _add_instance_meshes(scene=scene, placements=placements, mesh_cache=mesh_cache)
+
+    # Compute exclusion zones early so we can add 3D markers before export
+    exclusion_zones: tuple = ()
+    if rule_set is not None and poi_ctx is not None:
+        from .poi_rules import build_exclusion_zones as _build_exclusion_zones
+        exclusion_zones = _build_exclusion_zones(poi_ctx, rule_set)
+        _add_poi_markers_and_zones(scene, extract_poi_points_by_type(poi_ctx, suffix="xz"), exclusion_zones)
+    elif poi_ctx is not None:
+        _add_poi_markers_and_zones(scene, extract_poi_points_by_type(poi_ctx, suffix="xz"), ())
+
     outputs = _export_scene(scene=scene, out_dir=out_dir, export_format=export_format)
 
     elapsed_ms_total = (time.perf_counter() - start_perf) * 1000.0
@@ -1006,10 +1260,69 @@ def compose_street_scene(
             "entrances_below_openness_threshold": int(entrance_report.entrances_below_openness_threshold),
             "min_entrance_openness": float(entrance_report.min_openness),
             "entrance_count": len(entrance_points_xz),
+            "selected_road_osm_id": int(config.selected_road_osm_id) if config.selected_road_osm_id is not None else None,
+            "selected_road_discovered_poi_count": (
+                int(config.selected_road_discovered_poi_count)
+                if config.selected_road_discovered_poi_count is not None
+                else None
+            ),
+            "selected_road_discovered_poi_score": (
+                float(config.selected_road_discovered_poi_score)
+                if config.selected_road_discovered_poi_score is not None
+                else None
+            ),
+            "selected_road_discovered_core_poi_count": (
+                int(config.selected_road_discovered_core_poi_count)
+                if config.selected_road_discovered_core_poi_count is not None
+                else None
+            ),
+            "selected_road_effective_poi_count": int(sum(int(value) for value in effective_poi_counts.values())),
+            "selected_road_effective_poi_score": float(poi_weighted_score(effective_poi_counts)),
+            "selected_road_core_poi_count": int(core_poi_count(effective_poi_counts)),
+            "observed_poi_counts": dict(resolved_program.observed_poi_counts),
+            "spatial_context": {
+                "junction_points_xz": [list(p) for p in spatial_ctx.junction_points_xz],
+                "entrance_points_xz": [list(p) for p in spatial_ctx.entrance_points_xz],
+                "bus_stop_points_xz": [list(p) for p in spatial_ctx.bus_stop_points_xz],
+                "fire_points_xz": [list(p) for p in spatial_ctx.fire_points_xz],
+                "poi_points_by_type_xz": {
+                    poi_type: [list(point) for point in points]
+                    for poi_type, points in nonempty_poi_points(spatial_ctx.poi_points_by_type_xz).items()
+                },
+                "road_half_width_m": float(spatial_ctx.road_half_width_m),
+                "length_m": float(spatial_ctx.length_m),
+            },
         },
         "placements": [placement.to_dict() for placement in placements],
         "outputs": outputs,
     }
+    # Attach OSM polygon geometry for 2D visualization
+    if config.layout_mode == "osm" and placement_ctx is not None:
+        layout_payload["summary"]["osm_geometry"] = _serialize_osm_geometry(placement_ctx)
+
+    # Attach POI exclusion zone data for visualization
+    if exclusion_zones:
+        layout_payload["summary"]["poi_exclusion_zones"] = [
+            {
+                "poi_type": z.poi_type,
+                "position_xz": [round(z.position_xz[0], 3), round(z.position_xz[1], 3)],
+                "radius_m": round(z.radius_m, 3),
+                "rule_name": z.rule_name,
+            }
+            for z in exclusion_zones
+        ]
+        layout_payload["summary"]["poi_conflict_assets"] = [
+            {
+                "instance_id": p.instance_id,
+                "category": p.category,
+                "position_xz": [round(float(p.position_xyz[0]), 3), round(float(p.position_xyz[2]), 3)],
+                "violated_rules": list(p.violated_rules),
+                "constraint_penalty": round(float(p.constraint_penalty), 4),
+            }
+            for p in placements
+            if p.violated_rules
+        ]
+
     layout_path.write_text(json.dumps(layout_payload, indent=2, ensure_ascii=True), encoding="utf-8")
 
     outputs["scene_layout"] = str(layout_path)

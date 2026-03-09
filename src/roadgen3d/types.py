@@ -62,6 +62,11 @@ class StreetComposeConfig:
     constraint_weight: float = 0.45
     constraint_veto_threshold: float = 0.95
     poi_rule_set: str = "entrance_fire_bus_stop_v1"
+    road_selection: str = "primary_road"  # "all" | "primary_road" | "longest"
+    selected_road_osm_id: Optional[int] = None
+    selected_road_discovered_poi_count: Optional[int] = None
+    selected_road_discovered_poi_score: Optional[float] = None
+    selected_road_discovered_core_poi_count: Optional[int] = None
 
     # -- Neuralsymbolic v1 fields --
     program_generator: str = "heuristic_v1"
@@ -111,6 +116,7 @@ class StreetProgram:
     control_points: Tuple[str, ...]
     design_goals: Tuple[str, ...]
     context_conditions: Dict[str, str]
+    observed_poi_counts: Dict[str, int] = field(default_factory=dict)
     reserved_band_categories: Dict[str, str] = field(default_factory=dict)
     design_goal_weights: Dict[str, float] = field(default_factory=dict)
     notes: Tuple[str, ...] = ()
@@ -188,6 +194,7 @@ class ProgramGenerationInput:
     placement_context: object | None = None
     inventory_summary: Optional[InventorySummary] = None
     road_segment_graph: object | None = None
+    poi_context: object | None = None
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -274,6 +281,8 @@ class LayoutSlotPlan:
     side: str
     priority: float
     required: bool = False
+    anchor_poi_type: str = ""
+    anchor_position_xz: Optional[Tuple[float, float]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -468,12 +477,14 @@ class PrepareWorkspaceResult:
     summary: str
     readiness: WorkspaceReadiness
     steps: Tuple[StepResult, ...]
+    discovered_roads_rows: Tuple[Tuple[str, ...], ...] = ()
 
     def to_dict(self) -> Dict[str, Any]:
         return {
             "summary": self.summary,
             "readiness": self.readiness.to_dict(),
             "steps": [step.to_dict() for step in self.steps],
+            "discovered_roads_rows": [list(row) for row in self.discovered_roads_rows],
         }
 
 
@@ -495,6 +506,11 @@ class StreetPlacement:
     constraint_penalty: float = 0.0
     feasibility_score: float = 1.0
     violated_rules: Tuple[str, ...] = ()
+
+    # -- M8 spatial distance fields --
+    dist_to_road_edge_m: float = -1.0
+    dist_to_nearest_junction_m: float = -1.0
+    dist_to_nearest_entrance_m: float = -1.0
 
     def to_dict(self) -> Dict[str, Any]:
         payload = asdict(self)

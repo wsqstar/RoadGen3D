@@ -77,8 +77,14 @@ def _candidate_utility(candidate: _Candidate, category: str, required: bool) -> 
     utility = float(candidate.priority)
     if category == "bus_stop" and "bus_stop" in candidate.poi_types:
         utility += 0.5
-    if category == "hydrant" and "fire" in candidate.poi_types:
+    if category == "hydrant" and "fire_hydrant" in candidate.poi_types:
         utility += 0.25
+    if category == "mailbox" and "post_box" in candidate.poi_types:
+        utility += 0.2
+    if category == "trash" and "waste_basket" in candidate.poi_types:
+        utility += 0.15
+    if category == "bollard" and ("bollard" in candidate.poi_types or "crossing" in candidate.poi_types):
+        utility += 0.15
     if category in {"bench", "trash"} and "entrance" in candidate.poi_types:
         utility -= 0.15
     if category == "tree" and "entrance" in candidate.poi_types:

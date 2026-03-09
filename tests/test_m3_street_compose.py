@@ -296,7 +296,7 @@ def test_street_compose_gradio_callback_returns_model_path(tmp_path: Path, monke
         street_sidewalk_width_m=2.5,
         street_lane_count=2,
         street_density=1.0,
-        street_seed=42,
+        street_seed=0,
         street_topk_per_category=20,
         street_max_trials_per_slot=30,
         export_format="both",
@@ -306,6 +306,502 @@ def test_street_compose_gradio_callback_returns_model_path(tmp_path: Path, monke
     assert rows and rows[0][0] == "inst_0001"
     assert layout_json
     assert any(str(path).endswith("scene_layout.json") for path in files)
+
+
+def test_run_street_compose_auto_selects_stable_poi_rich_road_by_seed(tmp_path: Path, monkeypatch):
+    pytest.importorskip("gradio")
+    import scripts.m1_gradio_app as app
+
+    monkeypatch.setattr(app, "ROOT", tmp_path)
+    artifacts_dir = tmp_path / "artifacts" / "real"
+    discovered_dir = tmp_path / "artifacts" / "m5"
+    discovered_dir.mkdir(parents=True, exist_ok=True)
+    records = [
+        {"osm_id": 999, "bbox": [120.0, 30.0, 120.1, 30.1], "highway_type": "primary", "road_length_m": 123.0, "poi_count": 1, "poi_types": {"entrance": 1, "bus_stop": 0, "fire_hydrant": 0}},
+        {"osm_id": 201, "bbox": [113.2000, 23.1000, 113.2100, 23.1100], "highway_type": "service", "road_length_m": 140.0, "poi_count": 2, "poi_types": {"entrance": 2, "bus_stop": 0, "fire_hydrant": 0}},
+        {"osm_id": 202, "bbox": [113.2660, 23.1280, 113.2710, 23.1325], "highway_type": "secondary", "road_length_m": 150.0, "poi_count": 3, "poi_types": {"entrance": 2, "bus_stop": 1, "fire_hydrant": 0}},
+        {"osm_id": 203, "bbox": [113.3000, 23.1400, 113.3100, 23.1500], "highway_type": "tertiary", "road_length_m": 160.0, "poi_count": 4, "poi_types": {"entrance": 2, "bus_stop": 1, "fire_hydrant": 1}},
+    ]
+    (discovered_dir / "discovered_poi_roads.jsonl").write_text(
+        "\n".join(json.dumps(record, ensure_ascii=True) for record in records) + "\n",
+        encoding="utf-8",
+    )
+    app._write_discovered_roads_metadata(
+        app._discovered_metadata_path(discovered_dir / "discovered_poi_roads.jsonl"),
+        (113.2660, 23.1280, 113.2710, 23.1325),
+    )
+
+    glb_path = (tmp_path / "scene.glb").resolve()
+    layout_path = (tmp_path / "scene_layout.json").resolve()
+    glb_path.write_bytes(b"glb")
+
+    captured: dict[str, object] = {}
+    effective_counts_by_osm = {
+        201: {"entrance": 2, "bus_stop": 0, "fire": 0},
+        202: {"entrance": 2, "bus_stop": 1, "fire": 0},
+        203: {"entrance": 2, "bus_stop": 1, "fire": 1},
+    }
+
+    def fake_compose(**kwargs):
+        config = kwargs["config"]
+        captured["selected_road_osm_id"] = config.selected_road_osm_id
+        captured["aoi_bbox"] = config.aoi_bbox
+        effective_counts = effective_counts_by_osm[int(config.selected_road_osm_id)]
+        layout_path.write_text(
+            json.dumps(
+                {
+                    "summary": {
+                        "instance_count": 0,
+                        "dropped_slots": 0,
+                        "selected_road_effective_poi_count": sum(effective_counts.values()),
+                        "spatial_context": {
+                            "entrance_points_xz": [[0.0, 0.0]] * effective_counts["entrance"],
+                            "bus_stop_points_xz": [[1.0, 0.0]] * effective_counts["bus_stop"],
+                            "fire_points_xz": [[2.0, 0.0]] * effective_counts["fire"],
+                        },
+                    },
+                    "placements": [],
+                },
+                ensure_ascii=True,
+            ),
+            encoding="utf-8",
+        )
+        return StreetComposeResult(
+            query="urban street",
+            instance_count=0,
+            dropped_slots=0,
+            placements=[],
+            outputs={
+                "scene_glb": str(glb_path),
+                "scene_ply": "",
+                "scene_layout": str(layout_path),
+            },
+        )
+
+    monkeypatch.setattr(app, "compose_street_scene", fake_compose)
+    monkeypatch.setattr(app, "_probe_discovered_road_effective_poi_counts", lambda row, **kwargs: effective_counts_by_osm[int(row["osm_id"])])
+    summary, _rows, _layout_json, _model_path, _files = app.run_street_compose(
+        dataset_profile="real",
+        query="urban street",
+        real_manifest_text=str(tmp_path / "real_assets_manifest.jsonl"),
+        artifacts_dir_text=str(artifacts_dir),
+        model_name="openai/clip-vit-base-patch32",
+        model_dir_text="",
+        local_files_only=True,
+        device="cpu",
+        street_length_m=80.0,
+        street_road_width_m=8.0,
+        street_sidewalk_width_m=2.5,
+        street_lane_count=2,
+        street_density=1.0,
+        street_seed=0,
+        street_topk_per_category=20,
+        street_max_trials_per_slot=30,
+        export_format="glb",
+        m5_layout_mode="osm",
+        m5_constraint_mode="off",
+        m5_bbox_min_lon=113.2660,
+        m5_bbox_min_lat=23.1280,
+        m5_bbox_max_lon=113.2710,
+        m5_bbox_max_lat=23.1325,
+        road_selection="primary_road",
+    )
+
+    assert captured["selected_road_osm_id"] == 201
+    assert captured["aoi_bbox"] == (113.2000, 23.1000, 113.2100, 23.1100)
+    assert "selected_road_osm_id: 201" in summary
+    assert "selected_road_discovered_poi_count: 2" in summary
+    assert "selected_road_effective_poi_count: 2" in summary
+
+    summary_seed_0_again, *_ = app.run_street_compose(
+        dataset_profile="real",
+        query="urban street",
+        real_manifest_text=str(tmp_path / "real_assets_manifest.jsonl"),
+        artifacts_dir_text=str(artifacts_dir),
+        model_name="openai/clip-vit-base-patch32",
+        model_dir_text="",
+        local_files_only=True,
+        device="cpu",
+        street_length_m=80.0,
+        street_road_width_m=8.0,
+        street_sidewalk_width_m=2.5,
+        street_lane_count=2,
+        street_density=1.0,
+        street_seed=0,
+        street_topk_per_category=20,
+        street_max_trials_per_slot=30,
+        export_format="glb",
+        m5_layout_mode="osm",
+        m5_constraint_mode="off",
+        m5_bbox_min_lon=113.2660,
+        m5_bbox_min_lat=23.1280,
+        m5_bbox_max_lon=113.2710,
+        m5_bbox_max_lat=23.1325,
+        road_selection="primary_road",
+    )
+    assert "selected_road_osm_id: 201" in summary_seed_0_again
+
+    summary_seed_1, *_ = app.run_street_compose(
+        dataset_profile="real",
+        query="urban street",
+        real_manifest_text=str(tmp_path / "real_assets_manifest.jsonl"),
+        artifacts_dir_text=str(artifacts_dir),
+        model_name="openai/clip-vit-base-patch32",
+        model_dir_text="",
+        local_files_only=True,
+        device="cpu",
+        street_length_m=80.0,
+        street_road_width_m=8.0,
+        street_sidewalk_width_m=2.5,
+        street_lane_count=2,
+        street_density=1.0,
+        street_seed=1,
+        street_topk_per_category=20,
+        street_max_trials_per_slot=30,
+        export_format="glb",
+        m5_layout_mode="osm",
+        m5_constraint_mode="off",
+        m5_bbox_min_lon=113.2660,
+        m5_bbox_min_lat=23.1280,
+        m5_bbox_max_lon=113.2710,
+        m5_bbox_max_lat=23.1325,
+        road_selection="primary_road",
+    )
+    assert "selected_road_osm_id: 202" in summary_seed_1
+    assert "selected_road_osm_id: 999" not in summary_seed_1
+
+
+def test_run_street_compose_skips_discovered_road_that_loses_poi_after_compose_filter(tmp_path: Path, monkeypatch):
+    pytest.importorskip("gradio")
+    import scripts.m1_gradio_app as app
+
+    monkeypatch.setattr(app, "ROOT", tmp_path)
+    artifacts_dir = tmp_path / "artifacts" / "real"
+    discovered_dir = tmp_path / "artifacts" / "m5"
+    discovered_dir.mkdir(parents=True, exist_ok=True)
+    records = [
+        {"osm_id": 201, "bbox": [113.2000, 23.1000, 113.2100, 23.1100], "highway_type": "service", "road_length_m": 140.0, "poi_count": 2, "poi_types": {"entrance": 2, "bus_stop": 0, "fire_hydrant": 0}},
+        {"osm_id": 202, "bbox": [113.2660, 23.1280, 113.2710, 23.1325], "highway_type": "secondary", "road_length_m": 150.0, "poi_count": 3, "poi_types": {"entrance": 2, "bus_stop": 1, "fire_hydrant": 0}},
+    ]
+    discovered_path = discovered_dir / "discovered_poi_roads.jsonl"
+    discovered_path.write_text(
+        "\n".join(json.dumps(record, ensure_ascii=True) for record in records) + "\n",
+        encoding="utf-8",
+    )
+    app._write_discovered_roads_metadata(
+        app._discovered_metadata_path(discovered_path),
+        (113.2660, 23.1280, 113.2710, 23.1325),
+    )
+
+    glb_path = (tmp_path / "scene.glb").resolve()
+    layout_path = (tmp_path / "scene_layout.json").resolve()
+    glb_path.write_bytes(b"glb")
+    captured: dict[str, object] = {}
+
+    def fake_compose(**kwargs):
+        config = kwargs["config"]
+        captured["selected_road_osm_id"] = config.selected_road_osm_id
+        layout_path.write_text(
+            json.dumps(
+                {
+                    "summary": {
+                        "instance_count": 0,
+                        "dropped_slots": 0,
+                        "selected_road_effective_poi_count": 3,
+                        "spatial_context": {
+                            "entrance_points_xz": [[0.0, 0.0], [1.0, 0.0]],
+                            "bus_stop_points_xz": [[2.0, 0.0]],
+                            "fire_points_xz": [],
+                        },
+                    },
+                    "placements": [],
+                },
+                ensure_ascii=True,
+            ),
+            encoding="utf-8",
+        )
+        return StreetComposeResult(
+            query="urban street",
+            instance_count=0,
+            dropped_slots=0,
+            placements=[],
+            outputs={"scene_glb": str(glb_path), "scene_ply": "", "scene_layout": str(layout_path)},
+        )
+
+    monkeypatch.setattr(app, "compose_street_scene", fake_compose)
+    monkeypatch.setattr(
+        app,
+        "_probe_discovered_road_effective_poi_counts",
+        lambda row, **kwargs: (
+            {"entrance": 0, "bus_stop": 0, "fire": 0}
+            if int(row["osm_id"]) == 201
+            else {"entrance": 2, "bus_stop": 1, "fire": 0}
+        ),
+    )
+
+    summary, *_ = app.run_street_compose(
+        dataset_profile="real",
+        query="urban street",
+        real_manifest_text=str(tmp_path / "real_assets_manifest.jsonl"),
+        artifacts_dir_text=str(artifacts_dir),
+        model_name="openai/clip-vit-base-patch32",
+        model_dir_text="",
+        local_files_only=True,
+        device="cpu",
+        street_length_m=80.0,
+        street_road_width_m=8.0,
+        street_sidewalk_width_m=2.5,
+        street_lane_count=2,
+        street_density=1.0,
+        street_seed=1,
+        street_topk_per_category=20,
+        street_max_trials_per_slot=30,
+        export_format="glb",
+        m5_layout_mode="osm",
+        m5_constraint_mode="off",
+        m5_bbox_min_lon=113.2660,
+        m5_bbox_min_lat=23.1280,
+        m5_bbox_max_lon=113.2710,
+        m5_bbox_max_lat=23.1325,
+        road_selection="primary_road",
+    )
+
+    assert captured["selected_road_osm_id"] == 202
+    assert "selected_road_osm_id: 202" in summary
+
+
+def test_run_street_compose_auto_discovers_when_cached_roads_missing(tmp_path: Path, monkeypatch):
+    pytest.importorskip("gradio")
+    import scripts.m1_gradio_app as app
+    from roadgen3d.road_discovery import DiscoveredRoad
+
+    monkeypatch.setattr(app, "ROOT", tmp_path)
+    artifacts_dir = tmp_path / "artifacts" / "real"
+    glb_path = (tmp_path / "scene.glb").resolve()
+    layout_path = (tmp_path / "scene_layout.json").resolve()
+    glb_path.write_bytes(b"glb")
+
+    captured: dict[str, object] = {}
+    effective_counts_by_osm = {
+        501: {"entrance": 2, "bus_stop": 0, "fire": 0},
+        502: {"entrance": 2, "bus_stop": 1, "fire": 0},
+    }
+
+    def fake_compose(**kwargs):
+        config = kwargs["config"]
+        captured["selected_road_osm_id"] = config.selected_road_osm_id
+        captured["aoi_bbox"] = config.aoi_bbox
+        effective_counts = effective_counts_by_osm[int(config.selected_road_osm_id)]
+        layout_path.write_text(
+            json.dumps(
+                {
+                    "summary": {
+                        "instance_count": 0,
+                        "dropped_slots": 0,
+                        "selected_road_effective_poi_count": sum(effective_counts.values()),
+                        "spatial_context": {
+                            "entrance_points_xz": [[0.0, 0.0]] * effective_counts["entrance"],
+                            "bus_stop_points_xz": [[2.0, 0.0]] * effective_counts["bus_stop"],
+                            "fire_points_xz": [[3.0, 0.0]] * effective_counts["fire"],
+                        },
+                    },
+                    "placements": [],
+                },
+                ensure_ascii=True,
+            ),
+            encoding="utf-8",
+        )
+        return StreetComposeResult(
+            query="urban street",
+            instance_count=0,
+            dropped_slots=0,
+            placements=[],
+            outputs={"scene_glb": str(glb_path), "scene_ply": "", "scene_layout": str(layout_path)},
+        )
+
+    monkeypatch.setattr(app, "compose_street_scene", fake_compose)
+    monkeypatch.setattr(
+        app,
+        "discover_poi_roads",
+        lambda city, cache_dir: [
+            DiscoveredRoad(city_name_en="adhoc", osm_id=501, highway_type="service", road_length_m=120.0, poi_count=2, poi_types={"entrance": 2}, bbox=(113.20, 23.10, 113.21, 23.11)),
+            DiscoveredRoad(city_name_en="adhoc", osm_id=502, highway_type="secondary", road_length_m=150.0, poi_count=3, poi_types={"entrance": 2, "bus_stop": 1}, bbox=(113.26, 23.12, 113.27, 23.13)),
+        ],
+    )
+    monkeypatch.setattr(
+        app,
+        "_probe_discovered_road_effective_poi_counts",
+        lambda row, **kwargs: effective_counts_by_osm[int(row["osm_id"])],
+    )
+
+    summary, *_ = app.run_street_compose(
+        dataset_profile="real",
+        query="urban street",
+        real_manifest_text=str(tmp_path / "real_assets_manifest.jsonl"),
+        artifacts_dir_text=str(artifacts_dir),
+        model_name="openai/clip-vit-base-patch32",
+        model_dir_text="",
+        local_files_only=True,
+        device="cpu",
+        street_length_m=80.0,
+        street_road_width_m=8.0,
+        street_sidewalk_width_m=2.5,
+        street_lane_count=2,
+        street_density=1.0,
+        street_seed=0,
+        street_topk_per_category=20,
+        street_max_trials_per_slot=30,
+        export_format="glb",
+        m5_layout_mode="osm",
+        m5_constraint_mode="off",
+        m5_bbox_min_lon=113.2660,
+        m5_bbox_min_lat=23.1280,
+        m5_bbox_max_lon=113.2710,
+        m5_bbox_max_lat=23.1325,
+        road_selection="primary_road",
+    )
+
+    assert captured["selected_road_osm_id"] == 501
+    assert captured["aoi_bbox"] == (113.20, 23.10, 113.21, 23.11)
+    assert "road_source: auto_discovered" in summary
+    assert "selected_road_discovered_poi_count: 2" in summary
+    assert "selected_road_effective_poi_count: 2" in summary
+
+
+def test_run_street_compose_rediscover_when_cached_metadata_mismatches(tmp_path: Path, monkeypatch):
+    pytest.importorskip("gradio")
+    import scripts.m1_gradio_app as app
+    from roadgen3d.road_discovery import DiscoveredRoad
+
+    monkeypatch.setattr(app, "ROOT", tmp_path)
+    artifacts_dir = tmp_path / "artifacts" / "real"
+    discovered_dir = tmp_path / "artifacts" / "m5"
+    discovered_dir.mkdir(parents=True, exist_ok=True)
+    discovered_path = discovered_dir / "discovered_poi_roads.jsonl"
+    discovered_path.write_text(
+        json.dumps(
+            {"osm_id": 101, "bbox": [120.0, 30.0, 120.1, 30.1], "highway_type": "service", "road_length_m": 120.0, "poi_count": 2, "poi_types": {"entrance": 2}},
+            ensure_ascii=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    app._write_discovered_roads_metadata(
+        app._discovered_metadata_path(discovered_path),
+        (120.0, 30.0, 120.1, 30.1),
+    )
+
+    glb_path = (tmp_path / "scene.glb").resolve()
+    layout_path = (tmp_path / "scene_layout.json").resolve()
+    glb_path.write_bytes(b"glb")
+    calls = {"discover": 0}
+
+    def fake_compose(**kwargs):
+        config = kwargs["config"]
+        layout_path.write_text(
+            json.dumps(
+                {
+                    "summary": {
+                        "instance_count": 0,
+                        "dropped_slots": 0,
+                        "selected_road_effective_poi_count": 2,
+                        "spatial_context": {
+                            "entrance_points_xz": [[0.0, 0.0], [1.0, 0.0]],
+                            "bus_stop_points_xz": [],
+                            "fire_points_xz": [],
+                        },
+                    },
+                    "placements": [],
+                },
+                ensure_ascii=True,
+            ),
+            encoding="utf-8",
+        )
+        return StreetComposeResult(
+            query="urban street",
+            instance_count=0,
+            dropped_slots=0,
+            placements=[],
+            outputs={"scene_glb": str(glb_path), "scene_ply": "", "scene_layout": str(layout_path)},
+        )
+
+    def fake_discover(city, cache_dir):
+        calls["discover"] += 1
+        return [
+            DiscoveredRoad(city_name_en="adhoc", osm_id=502, highway_type="secondary", road_length_m=150.0, poi_count=2, poi_types={"entrance": 2}, bbox=(113.26, 23.12, 113.27, 23.13)),
+        ]
+
+    monkeypatch.setattr(app, "compose_street_scene", fake_compose)
+    monkeypatch.setattr(app, "discover_poi_roads", fake_discover)
+    monkeypatch.setattr(app, "_probe_discovered_road_effective_poi_counts", lambda row, **kwargs: {"entrance": 2, "bus_stop": 0, "fire": 0})
+
+    summary, *_ = app.run_street_compose(
+        dataset_profile="real",
+        query="urban street",
+        real_manifest_text=str(tmp_path / "real_assets_manifest.jsonl"),
+        artifacts_dir_text=str(artifacts_dir),
+        model_name="openai/clip-vit-base-patch32",
+        model_dir_text="",
+        local_files_only=True,
+        device="cpu",
+        street_length_m=80.0,
+        street_road_width_m=8.0,
+        street_sidewalk_width_m=2.5,
+        street_lane_count=2,
+        street_density=1.0,
+        street_seed=0,
+        street_topk_per_category=20,
+        street_max_trials_per_slot=30,
+        export_format="glb",
+        m5_layout_mode="osm",
+        m5_constraint_mode="off",
+        m5_bbox_min_lon=113.2660,
+        m5_bbox_min_lat=23.1280,
+        m5_bbox_max_lon=113.2710,
+        m5_bbox_max_lat=23.1325,
+        road_selection="primary_road",
+    )
+
+    assert calls["discover"] == 1
+    assert "selected_road_osm_id: 502" in summary
+
+
+def test_run_street_compose_errors_when_auto_discovery_finds_no_poi_rich_roads(tmp_path: Path, monkeypatch):
+    pytest.importorskip("gradio")
+    import scripts.m1_gradio_app as app
+
+    monkeypatch.setattr(app, "ROOT", tmp_path)
+    artifacts_dir = tmp_path / "artifacts" / "real"
+    monkeypatch.setattr(app, "discover_poi_roads", lambda city, cache_dir: [])
+
+    summary, *_ = app.run_street_compose(
+        dataset_profile="real",
+        query="urban street",
+        real_manifest_text=str(tmp_path / "real_assets_manifest.jsonl"),
+        artifacts_dir_text=str(artifacts_dir),
+        model_name="openai/clip-vit-base-patch32",
+        model_dir_text="",
+        local_files_only=True,
+        device="cpu",
+        street_length_m=80.0,
+        street_road_width_m=8.0,
+        street_sidewalk_width_m=2.5,
+        street_lane_count=2,
+        street_density=1.0,
+        street_seed=0,
+        street_topk_per_category=20,
+        street_max_trials_per_slot=30,
+        export_format="glb",
+        m5_layout_mode="osm",
+        m5_constraint_mode="off",
+        m5_bbox_min_lon=113.2660,
+        m5_bbox_min_lat=23.1280,
+        m5_bbox_max_lon=113.2710,
+        m5_bbox_max_lat=23.1325,
+        road_selection="primary_road",
+    )
+
+    assert "No POI-rich roads found" in summary
 
 
 def test_street_compose_empty_category_pool_fails_cleanly(tmp_path: Path):

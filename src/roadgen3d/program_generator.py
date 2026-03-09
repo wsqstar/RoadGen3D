@@ -11,8 +11,15 @@ from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
 import numpy as np
 
+from .poi_taxonomy import asset_category_for_poi
 from .street_priors import DEFAULT_CATEGORIES
 from .street_program import infer_street_program
+from .spatial_features import (
+    build_spatial_context,
+    compute_scene_distance_stats,
+    vectorize_scene_stats,
+    SCENE_STATS_DIM,
+)
 from .types import ProgramGenerationInput, ProgramGenerationResult, StreetBand, StreetProgram
 
 ROAD_TYPE_VOCAB: Tuple[str, ...] = (
@@ -40,7 +47,7 @@ GOAL_VOCAB: Tuple[str, ...] = (
     "throughput",
 )
 RESERVED_RIGHT_VOCAB: Tuple[str, ...] = ("none",) + DEFAULT_CATEGORIES
-PROGRAM_FEATURE_DIM = 45
+PROGRAM_FEATURE_DIM = 54
 
 try:
     import torch
@@ -83,7 +90,7 @@ def vectorize_program_input(data: ProgramGenerationInput) -> np.ndarray:
     features.extend(_hashed_features(str(data.query), 8))
     features.extend(_hashed_features(str(cfg.city_context), 4))
     features.extend(_hashed_features(str(cfg.target_street_type), 3))
-    features.extend(_one_hot(str(data.constraint_profile), ("balanced_complete_street_v1", "pedestrian_priority_v1", "transit_priority_v1")))
+    features.extend(_one_hot(str(data.constraint_profile), ("balanced_complete_street_v1", "pedestrian_priority_v1", "transit_priority_v1", "noise_aware_v1")))
     available = set(data.available_categories)
     features.extend([1.0 if category in available else 0.0 for category in DEFAULT_CATEGORIES])
     inventory = data.inventory_summary.category_counts if data.inventory_summary is not None else {}
@@ -101,6 +108,14 @@ def vectorize_program_input(data: ProgramGenerationInput) -> np.ndarray:
         )
     else:
         features.extend([0.0, 0.0, 0.0, 0.0])
+    # --- spatial distance statistics (M8) ---
+    spatial_ctx = build_spatial_context(
+        cfg,
+        road_segment_graph=data.road_segment_graph,
+        poi_context=getattr(data, "poi_context", None),
+    )
+    scene_stats = compute_scene_distance_stats(spatial_ctx)
+    features.extend(vectorize_scene_stats(scene_stats).tolist())
     arr = np.asarray(features, dtype=np.float32)
     if arr.shape[0] != PROGRAM_FEATURE_DIM:
         raise RuntimeError(f"program feature dim mismatch: got {arr.shape[0]}, expected {PROGRAM_FEATURE_DIM}")
@@ -249,6 +264,28 @@ def _apply_prediction_to_program(base: StreetProgram, prediction: Dict[str, np.n
     clear_widths = [float(band.width_m) for band in updated_bands if band.kind == "clear_path"]
     furnishing_widths = [float(band.width_m) for band in updated_bands if band.kind in {"furnishing", "transit_edge"}]
     notes = tuple(dict.fromkeys(base.notes + ("learned_program_generator_v1",)))
+    observed_poi_counts = dict(base.observed_poi_counts)
+    for poi_type, count in observed_poi_counts.items():
+        category = asset_category_for_poi(poi_type)
+        if category is None:
+            continue
+        predicted_counts[category] = max(int(predicted_counts.get(category, 0)), int(count))
+    control_points = list(base.control_points)
+    if (
+        int(observed_poi_counts.get("bus_stop", 0)) > 0
+        or int(observed_poi_counts.get("subway_entrance", 0)) > 0
+    ) and "transit_stop" not in control_points:
+        control_points.append("transit_stop")
+    if int(observed_poi_counts.get("crossing", 0)) > 0 and "crossing" not in control_points:
+        control_points.append("crossing")
+    if int(observed_poi_counts.get("parking_entrance", 0)) > 0 and "access" not in control_points:
+        control_points.append("access")
+    if (
+        int(observed_poi_counts.get("bus_stop", 0)) > 0
+        or int(observed_poi_counts.get("subway_entrance", 0)) > 0
+    ) and "transit_access" not in ordered_goals:
+        ordered_goals = tuple(list(ordered_goals) + ["transit_access"])
+
     return StreetProgram(
         query=base.query,
         road_type=ROAD_TYPE_VOCAB[max(0, min(road_type_idx, len(ROAD_TYPE_VOCAB) - 1))],
@@ -261,9 +298,10 @@ def _apply_prediction_to_program(base: StreetProgram, prediction: Dict[str, np.n
         furnishing_width_m=max(furnishing_widths) if furnishing_widths else base.furnishing_width_m,
         bands=tuple(updated_bands),
         furniture_requirements=predicted_counts,
-        control_points=base.control_points,
+        control_points=tuple(control_points),
         design_goals=ordered_goals,
         context_conditions=dict(base.context_conditions),
+        observed_poi_counts=observed_poi_counts,
         reserved_band_categories=reserved_band_categories,
         design_goal_weights=normalized_goal_weights,
         notes=notes,
@@ -272,11 +310,11 @@ def _apply_prediction_to_program(base: StreetProgram, prediction: Dict[str, np.n
 
 @dataclass(frozen=True)
 class ProgramTrainConfig:
-    epochs: int = 20
-    batch_size: int = 128
-    lr: float = 1e-3
+    epochs: int = 60
+    batch_size: int = 32
+    lr: float = 5e-4
     weight_decay: float = 1e-4
-    patience: int = 3
+    patience: int = 5
     device: str = "cpu"
 
 
@@ -343,7 +381,11 @@ class ProgramGeneratorRuntime:
         return cls(backend="learned_v1", model=model, device=device)
 
     def generate(self, data: ProgramGenerationInput) -> ProgramGenerationResult:
-        base_program = infer_street_program(data.compose_config, data.available_categories)
+        base_program = infer_street_program(
+            data.compose_config,
+            data.available_categories,
+            poi_context=getattr(data, "poi_context", None),
+        )
         requested = str(data.compose_config.program_generator).strip().lower()
         if self.backend != "learned_v1" or self.model is None:
             return ProgramGenerationResult(
@@ -361,6 +403,21 @@ class ProgramGeneratorRuntime:
             )
 
         vec = vectorize_program_input(data)
+        # Dimension compatibility: old checkpoint may expect different input_dim
+        model_input_dim = self.model.backbone[0].in_features
+        if vec.shape[0] != model_input_dim:
+            import warnings
+            warnings.warn(
+                f"Program generator feature dim mismatch: model expects {model_input_dim}, "
+                f"got {vec.shape[0]}. Falling back to heuristic_v1.",
+                stacklevel=2,
+            )
+            return ProgramGenerationResult(
+                program=base_program,
+                backend_requested=requested,
+                backend_used="heuristic_v1",
+                fallback_reason=f"feature dim mismatch ({vec.shape[0]} vs {model_input_dim}); fallback to heuristic_v1",
+            )
         with torch.no_grad():
             tensor = torch.as_tensor(vec[None, :], dtype=torch.float32, device=torch.device(self.device))
             outputs = self.model(tensor)
@@ -454,7 +511,23 @@ def train_program_generator(
                 payload = torch.load(ckpt, map_location="cpu", weights_only=False)
             except TypeError:
                 payload = torch.load(ckpt, map_location="cpu")
-            model.load_state_dict(payload.get("state_dict", payload), strict=False)
+            state = payload.get("state_dict", payload)
+            # Filter out tensors whose shape doesn't match the current model
+            # (e.g. old 45-dim checkpoint vs new 54-dim model).
+            cur_state = model.state_dict()
+            compat_state = {
+                k: v for k, v in state.items()
+                if k in cur_state and cur_state[k].shape == v.shape
+            }
+            skipped = set(state.keys()) - set(compat_state.keys())
+            if skipped:
+                import warnings
+                warnings.warn(
+                    f"Skipped {len(skipped)} checkpoint key(s) due to shape mismatch: "
+                    f"{sorted(skipped)[:5]}{'...' if len(skipped) > 5 else ''}",
+                    stacklevel=2,
+                )
+            model.load_state_dict(compat_state, strict=False)
             resumed_from = str(ckpt)
     optimizer = torch.optim.AdamW(model.parameters(), lr=float(config.lr), weight_decay=float(config.weight_decay))
     train_list = list(train_samples)

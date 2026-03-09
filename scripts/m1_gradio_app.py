@@ -8,6 +8,7 @@ import hashlib
 import json
 import os
 import queue
+import random
 import sys
 import threading
 import time
@@ -45,10 +46,26 @@ from roadgen3d.embedder import ClipTextEmbedder, ModelLoadError
 from roadgen3d.index_store import FaissIndexStore
 from roadgen3d.layout_policy import PolicyTrainConfig
 from roadgen3d.latent_store import LatentStore, load_asset_records
-from roadgen3d.osm_ingest import fetch_osm_data
+from roadgen3d.china_cities import get_city_by_name, get_city_choices
+from roadgen3d.osm_ingest import fetch_osm_data, parse_osm_features, project_to_local
+from roadgen3d.placement_zones import (
+    EFFECTIVE_POI_EVALUATOR_VERSION,
+    evaluate_projected_road_context,
+)
+from roadgen3d.poi_taxonomy import (
+    core_poi_count,
+    nonempty_poi_points,
+    normalize_poi_counts,
+    poi_breakdown_string,
+    poi_weighted_score,
+    qualifies_poi_counts,
+)
+from roadgen3d.road_discovery import discover_poi_roads, write_discovered_roads_jsonl
 from roadgen3d.pipeline import M1Pipeline
 from roadgen3d.program_generator import ProgramTrainConfig
 from roadgen3d.street_layout import compose_street_scene
+from roadgen3d.spatial_features import SpatialContext
+from roadgen3d.spatial_viz import plot_scene_with_markers, plot_distance_heatmap, plot_distance_histograms, plot_poi_exclusion_overview
 from roadgen3d.types import PrepareWorkspaceResult, StepResult, StreetComposeConfig, WorkspaceReadiness
 from scripts.m1_01_seed_assets import seed_assets
 from scripts.m2_11_encode_shapee_latents import encode_latents as encode_shapee_latents
@@ -61,6 +78,32 @@ from scripts.m6_02_train_program_generator import train_from_jsonl as train_prog
 
 def _to_path(path_text: str) -> Path:
     return Path(path_text.strip()).expanduser().resolve()
+
+
+def _spatial_context_poi_points(spatial_ctx: Dict[str, Any]) -> Dict[str, Tuple[Tuple[float, float], ...]]:
+    mapping = spatial_ctx.get("poi_points_by_type_xz", {}) or {}
+    normalized = {
+        poi_type: tuple((float(point[0]), float(point[1])) for point in points)
+        for poi_type, points in nonempty_poi_points(mapping).items()
+    }
+    if not normalized:
+        normalized = {
+            poi_type: tuple((float(point[0]), float(point[1])) for point in points)
+            for poi_type, points in {
+                "entrance": spatial_ctx.get("entrance_points_xz", []) or [],
+                "bus_stop": spatial_ctx.get("bus_stop_points_xz", []) or [],
+                "fire_hydrant": spatial_ctx.get("fire_points_xz", []) or [],
+            }.items()
+            if points
+        }
+    return normalized
+
+
+def _spatial_context_poi_counts(spatial_ctx: Dict[str, Any]) -> Dict[str, int]:
+    return normalize_poi_counts({
+        poi_type: len(points)
+        for poi_type, points in _spatial_context_poi_points(spatial_ctx).items()
+    })
 
 
 def _load_real_manifest_rows(manifest_path: Path) -> List[Dict[str, str]]:
@@ -392,6 +435,226 @@ def prepare_osm_cache_if_needed(
     )
 
 
+def discover_poi_roads_if_needed(
+    layout_mode: str,
+    artifacts_dir_text: str,
+    osm_cache_dir_text: str,
+    aoi_bbox: Tuple[float, float, float, float] | None,
+    force_rediscover: bool = False,
+) -> StepResult:
+    """Step 5: discover POI-rich roads around the selected city."""
+    if str(layout_mode).strip().lower() != "osm":
+        return StepResult(step="discover_poi_roads", status="skipped", message="Template mode — road discovery not needed.")
+    if aoi_bbox is None:
+        return StepResult(step="discover_poi_roads", status="skipped", message="No AOI bbox provided.")
+
+    artifacts_dir = _to_path(artifacts_dir_text)
+    cache_dir = _to_path(osm_cache_dir_text) if str(osm_cache_dir_text).strip() else (artifacts_dir / "osm_cache").resolve()
+    discovered_path = artifacts_dir.parent / "m5" / "discovered_poi_roads.jsonl"
+    metadata_path = _discovered_metadata_path(discovered_path)
+
+    if discovered_path.exists() and not force_rediscover and _discovered_cache_matches(discovered_path, aoi_bbox):
+        import json as _json
+        n_roads = sum(1 for line in discovered_path.read_text(encoding="utf-8").splitlines() if line.strip())
+        return StepResult(
+            step="discover_poi_roads",
+            status="completed",
+            message=f"Using cached discovery: {n_roads} POI-rich roads in {discovered_path.name}.",
+            outputs={"discovered_roads_path": str(discovered_path), "road_count": n_roads},
+        )
+
+    # Build a minimal CityRecord-like object from the bbox
+    class _AdhocCity:
+        def __init__(self, bbox):
+            self.name_en = "adhoc"
+            self.name_zh = "adhoc"
+            self.province = ""
+            self.bbox = bbox
+
+    city = _AdhocCity(aoi_bbox)
+    roads = discover_poi_roads(city, cache_dir)
+    write_discovered_roads_jsonl(roads, discovered_path)
+    _write_discovered_roads_metadata(metadata_path, aoi_bbox)
+    return StepResult(
+        step="discover_poi_roads",
+        status="completed",
+        message=f"Discovered {len(roads)} POI-rich roads (>= 100m, poi_score >= 2.0, core_poi_count >= 1).",
+        outputs={"discovered_roads_path": str(discovered_path), "road_count": len(roads)},
+    )
+
+
+def _load_discovered_road_records(discovered_path: Path) -> List[Dict[str, Any]]:
+    if not discovered_path.exists():
+        return []
+    rows: List[Dict[str, Any]] = []
+    for line in discovered_path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        rows.append(json.loads(line))
+    return rows
+
+
+def _discovered_metadata_path(discovered_path: Path) -> Path:
+    return discovered_path.with_suffix(".meta.json")
+
+
+def _write_discovered_roads_metadata(
+    metadata_path: Path,
+    aoi_bbox: Tuple[float, float, float, float],
+    *,
+    min_poi_count: int = 2,
+    min_road_length_m: float = 100.0,
+    min_poi_score: float = 2.0,
+    min_core_poi_count: int = 1,
+) -> None:
+    metadata = {
+        "aoi_bbox": [float(value) for value in aoi_bbox],
+        "min_poi_count": int(min_poi_count),
+        "min_road_length_m": float(min_road_length_m),
+        "min_poi_score": float(min_poi_score),
+        "min_core_poi_count": int(min_core_poi_count),
+        "poi_evaluator_version": EFFECTIVE_POI_EVALUATOR_VERSION,
+    }
+    metadata_path.parent.mkdir(parents=True, exist_ok=True)
+    metadata_path.write_text(json.dumps(metadata, indent=2, ensure_ascii=True), encoding="utf-8")
+
+
+def _load_discovered_roads_metadata(metadata_path: Path) -> Dict[str, Any]:
+    if not metadata_path.exists():
+        return {}
+    return json.loads(metadata_path.read_text(encoding="utf-8"))
+
+
+def _discovered_cache_matches(
+    discovered_path: Path,
+    aoi_bbox: Tuple[float, float, float, float] | None,
+    *,
+    min_poi_count: int = 2,
+    min_road_length_m: float = 100.0,
+    min_poi_score: float = 2.0,
+    min_core_poi_count: int = 1,
+) -> bool:
+    if aoi_bbox is None or not discovered_path.exists():
+        return False
+    metadata = _load_discovered_roads_metadata(_discovered_metadata_path(discovered_path))
+    if not metadata:
+        return False
+    return (
+        tuple(float(value) for value in metadata.get("aoi_bbox", ())) == tuple(float(value) for value in aoi_bbox)
+        and int(metadata.get("min_poi_count", -1)) == int(min_poi_count)
+        and float(metadata.get("min_road_length_m", -1.0)) == float(min_road_length_m)
+        and float(metadata.get("min_poi_score", -1.0)) == float(min_poi_score)
+        and int(metadata.get("min_core_poi_count", -1)) == int(min_core_poi_count)
+        and str(metadata.get("poi_evaluator_version", "")) == EFFECTIVE_POI_EVALUATOR_VERSION
+    )
+
+
+def _probe_discovered_road_effective_poi_counts(
+    row: Dict[str, Any],
+    *,
+    osm_cache_dir: Path,
+    sidewalk_width_m: float,
+    road_selection: str,
+) -> Dict[str, int]:
+    candidate_bbox = tuple(float(value) for value in row["bbox"])
+    probe_config = StreetComposeConfig(
+        query="probe",
+        length_m=80.0,
+        road_width_m=8.0,
+        sidewalk_width_m=float(sidewalk_width_m),
+        lane_count=2,
+        density=1.0,
+        seed=0,
+        topk_per_category=1,
+        max_trials_per_slot=1,
+        layout_mode="osm",
+        constraint_mode="off",
+        aoi_bbox=candidate_bbox,
+        osm_cache_dir=str(osm_cache_dir),
+        road_selection=str(road_selection),
+        selected_road_osm_id=int(row["osm_id"]),
+    )
+    raw = fetch_osm_data(bbox=candidate_bbox, cache_dir=Path(osm_cache_dir))
+    features = parse_osm_features(raw)
+    projected = project_to_local(features, candidate_bbox)
+    _filtered, _placement_ctx, poi_counts = evaluate_projected_road_context(projected, probe_config)
+    return poi_counts
+
+
+def _select_auto_discovered_road(
+    *,
+    artifacts_dir: Path,
+    osm_cache_dir: Path,
+    aoi_bbox: Tuple[float, float, float, float] | None,
+    seed: int,
+    sidewalk_width_m: float,
+    road_selection: str,
+) -> Tuple[Dict[str, Any], bool, Dict[str, int]]:
+    """Return one POI-rich road chosen deterministically from discovery results."""
+    discovered_path = artifacts_dir.parent / "m5" / "discovered_poi_roads.jsonl"
+    metadata_path = _discovered_metadata_path(discovered_path)
+    if not _discovered_cache_matches(discovered_path, aoi_bbox):
+        cached_rows = []
+    else:
+        cached_rows = [
+            row for row in _load_discovered_road_records(discovered_path)
+            if qualifies_poi_counts(row.get("poi_types", {}))
+        ]
+    auto_discovered = False
+
+    if not cached_rows:
+        if aoi_bbox is None:
+            raise RuntimeError("OSM mode requires an AOI bbox to auto-discover POI-rich roads.")
+
+        class _AdhocCity:
+            def __init__(self, bbox):
+                self.name_en = "adhoc"
+                self.name_zh = "adhoc"
+                self.province = ""
+                self.bbox = bbox
+
+        roads = discover_poi_roads(_AdhocCity(aoi_bbox), osm_cache_dir)
+        auto_discovered = True
+        write_discovered_roads_jsonl(roads, discovered_path)
+        _write_discovered_roads_metadata(metadata_path, aoi_bbox)
+        cached_rows = [
+            row for row in _load_discovered_road_records(discovered_path)
+            if qualifies_poi_counts(row.get("poi_types", {}))
+        ]
+
+    if not cached_rows:
+        raise RuntimeError(
+            "No POI-rich roads found for the current area "
+            "(requires weighted POI score >= 2.0 and at least 1 core POI)."
+        )
+
+    ordered_rows = sorted(
+        cached_rows,
+        key=lambda row: (
+            int(row.get("osm_id", 0)),
+            float(row.get("road_length_m", 0.0)),
+            tuple(float(v) for v in row.get("bbox", ())),
+        ),
+    )
+    rng = random.Random(int(seed))
+    rng.shuffle(ordered_rows)
+    for row in ordered_rows:
+        effective_counts = _probe_discovered_road_effective_poi_counts(
+            row,
+            osm_cache_dir=osm_cache_dir,
+            sidewalk_width_m=float(sidewalk_width_m),
+            road_selection=str(road_selection),
+        )
+        if qualifies_poi_counts(effective_counts):
+            return row, auto_discovered, effective_counts
+
+    raise RuntimeError(
+        "No discovered POI-rich roads remain valid after compose filtering "
+        "(requires weighted POI score >= 2.0 and at least 1 core POI on the selected road)."
+    )
+
+
 def prepare_workspace(
     dataset_profile: str,
     data_dir_text: str,
@@ -483,6 +746,34 @@ def prepare_workspace(
         aoi_bbox=aoi_bbox,
     )
     steps.append(osm_step)
+    discovery_step = discover_poi_roads_if_needed(
+        layout_mode=layout_mode,
+        artifacts_dir_text=artifacts_dir_text,
+        osm_cache_dir_text=osm_cache_dir_text,
+        aoi_bbox=aoi_bbox,
+    )
+    steps.append(discovery_step)
+    discovered_rows: List[Tuple[str, ...]] = []
+    if discovery_step.outputs:
+        _discovered_path = discovery_step.outputs.get("discovered_roads_path")
+        if _discovered_path and Path(_discovered_path).exists():
+            import json as _json
+            for line in Path(_discovered_path).read_text(encoding="utf-8").splitlines():
+                line = line.strip()
+                if not line:
+                    continue
+                rec = _json.loads(line)
+                discovered_rows.append((
+                    str(rec.get("osm_id", "")),
+                    str(rec.get("highway_type", "")),
+                    f"{rec.get('road_length_m', 0):.0f}",
+                    str(rec.get("poi_count", 0)),
+                    f"{float(rec.get('poi_score', poi_weighted_score(rec.get('poi_types', {})))):.1f}",
+                    str(int(rec.get("core_poi_count", core_poi_count(rec.get("poi_types", {}))))),
+                    str(rec.get("poi_breakdown", poi_breakdown_string(rec.get("poi_types", {})))),
+                    f"({rec['bbox'][0]:.4f}, {rec['bbox'][1]:.4f}, {rec['bbox'][2]:.4f}, {rec['bbox'][3]:.4f})",
+                ))
+    discovery_count = len(discovered_rows)
     final_readiness = inspect_workspace_readiness(
         dataset_profile=dataset_profile,
         data_dir_text=data_dir_text,
@@ -501,10 +792,16 @@ def prepare_workspace(
             f"- latents_ok: {final_readiness.latents_ok}",
             f"- index_ok: {final_readiness.index_ok}",
             f"- osm_cache_ok: {final_readiness.osm_cache_ok}",
+            f"- discovered_roads: {discovery_count}",
             f"- recommended_next_action: {final_readiness.recommended_next_action}",
         ]
     )
-    return PrepareWorkspaceResult(summary=summary, readiness=final_readiness, steps=tuple(steps))
+    return PrepareWorkspaceResult(
+        summary=summary,
+        readiness=final_readiness,
+        steps=tuple(steps),
+        discovered_roads_rows=tuple(discovered_rows),
+    )
 
 
 def _readiness_cards(readiness: WorkspaceReadiness) -> List[List[str]]:
@@ -528,14 +825,31 @@ def _extract_program_summary(layout_json_text: str) -> str:
         return "{}"
     payload = json.loads(layout_json_text)
     program = payload.get("street_program", {}) or {}
+    runtime_summary = payload.get("summary", {}) or {}
+    spatial_ctx = runtime_summary.get("spatial_context", {}) or {}
     bands = program.get("bands", []) or []
+    poi_counts_all = _spatial_context_poi_counts(spatial_ctx)
+    poi_counts = {poi_type: count for poi_type, count in poi_counts_all.items() if int(count) > 0}
+    observed_poi_counts = program.get("observed_poi_counts") or runtime_summary.get("observed_poi_counts") or poi_counts
     summary = {
         "road_type": program.get("road_type", ""),
         "cross_section_type": program.get("cross_section_type", ""),
         "lane_count": program.get("lane_count", 0),
         "band_widths": {band.get("name", ""): band.get("width_m", 0.0) for band in bands},
         "furniture_requirements": program.get("furniture_requirements", {}),
+        "control_points": program.get("control_points", []),
         "design_goals": program.get("design_goals", []),
+        "selected_road_osm_id": runtime_summary.get("selected_road_osm_id"),
+        "selected_road_discovered_poi_count": runtime_summary.get("selected_road_discovered_poi_count"),
+        "selected_road_discovered_poi_score": runtime_summary.get("selected_road_discovered_poi_score"),
+        "selected_road_discovered_core_poi_count": runtime_summary.get("selected_road_discovered_core_poi_count"),
+        "selected_road_effective_poi_count": runtime_summary.get("selected_road_effective_poi_count", sum(poi_counts_all.values())),
+        "selected_road_effective_poi_score": runtime_summary.get("selected_road_effective_poi_score", poi_weighted_score(poi_counts_all)),
+        "selected_road_core_poi_count": runtime_summary.get("selected_road_core_poi_count", core_poi_count(poi_counts_all)),
+        "poi_counts": poi_counts,
+        "observed_poi_counts": observed_poi_counts,
+        "total_poi_points": sum(poi_counts_all.values()),
+        "exclusion_zone_count": len(runtime_summary.get("poi_exclusion_zones", []) or []),
     }
     return json.dumps(summary, indent=2, ensure_ascii=True)
 
@@ -587,7 +901,7 @@ def run_prepare_workspace(
     m5_bbox_min_lat: float,
     m5_bbox_max_lon: float,
     m5_bbox_max_lat: float,
-) -> Tuple[str, str, List[List[str]], List[List[str]]]:
+) -> Tuple[str, str, List[List[str]], List[List[str]], List[List[str]]]:
     try:
         bbox = None
         if str(layout_mode).strip().lower() == "osm":
@@ -627,10 +941,11 @@ def run_prepare_workspace(
             json.dumps(result.readiness.to_dict(), indent=2, ensure_ascii=True),
             _readiness_cards(result.readiness),
             _steps_table(result),
+            [list(row) for row in result.discovered_roads_rows],
         )
     except Exception as exc:
         detail = traceback.format_exc(limit=3)
-        return f"Prepare workspace failed: {exc}\n{detail}", "{}", [], []
+        return f"Prepare workspace failed: {exc}\n{detail}", "{}", [], [], []
 
 
 def prepare_assets_and_index(
@@ -960,6 +1275,7 @@ def run_street_compose(
     target_street_type: str = "mixed_use",
     allow_solver_fallback: bool = True,
     segment_length_m: float = 12.0,
+    road_selection: str = "primary_road",
 ) -> Tuple[str, List[List[str]], str, str | None, List[str]]:
     try:
         profile = dataset_profile.strip().lower()
@@ -974,6 +1290,36 @@ def run_street_compose(
         if model_dir is not None and not model_dir.exists():
             return f"Model directory does not exist: {model_dir}", [], "", None, []
 
+        requested_bbox = (
+            float(m5_bbox_min_lon),
+            float(m5_bbox_min_lat),
+            float(m5_bbox_max_lon),
+            float(m5_bbox_max_lat),
+        ) if str(m5_layout_mode).strip() == "osm" else None
+        osm_cache_dir = _to_path(osm_cache_dir_text) if str(osm_cache_dir_text).strip() else (ROOT / "artifacts" / "m5" / "osm_cache").resolve()
+        effective_bbox = requested_bbox
+        effective_osm_id = None
+        selected_discovered_poi_count = 0
+        selected_discovered_poi_score = 0.0
+        selected_discovered_core_poi_count = 0
+        road_source = ""
+        if str(m5_layout_mode).strip() == "osm":
+            selected_road, auto_discovered, _effective_poi_counts = _select_auto_discovered_road(
+                artifacts_dir=artifacts_dir,
+                osm_cache_dir=osm_cache_dir,
+                aoi_bbox=requested_bbox,
+                seed=int(street_seed),
+                sidewalk_width_m=float(street_sidewalk_width_m),
+                road_selection=str(road_selection).strip(),
+            )
+            effective_bbox = tuple(float(v) for v in selected_road["bbox"])
+            effective_osm_id = int(selected_road["osm_id"])
+            selected_discovered_poi_count = int(selected_road.get("poi_count", 0))
+            selected_discovered_poi_score = float(selected_road.get("poi_score", poi_weighted_score(selected_road.get("poi_types", {}))))
+            selected_discovered_core_poi_count = int(selected_road.get("core_poi_count", core_poi_count(selected_road.get("poi_types", {}))))
+            if auto_discovered:
+                road_source = "auto_discovered"
+
         config = StreetComposeConfig(
             query=query,
             length_m=float(street_length_m),
@@ -986,8 +1332,8 @@ def run_street_compose(
             max_trials_per_slot=int(street_max_trials_per_slot),
             layout_mode=str(m5_layout_mode).strip(),
             constraint_mode=str(m5_constraint_mode).strip(),
-            aoi_bbox=(float(m5_bbox_min_lon), float(m5_bbox_min_lat), float(m5_bbox_max_lon), float(m5_bbox_max_lat)) if str(m5_layout_mode).strip() == "osm" else None,
-            osm_cache_dir=str(osm_cache_dir_text).strip() or "artifacts/m5/osm_cache",
+            aoi_bbox=effective_bbox,
+            osm_cache_dir=str(osm_cache_dir),
             constraint_weight=float(m5_constraint_weight),
             constraint_veto_threshold=float(m5_constraint_veto),
             design_rule_profile=str(design_rule_profile).strip(),
@@ -997,6 +1343,11 @@ def run_street_compose(
             layout_solver=str(layout_solver).strip(),
             allow_solver_fallback=bool(allow_solver_fallback),
             segment_length_m=float(segment_length_m),
+            road_selection=str(road_selection).strip(),
+            selected_road_osm_id=effective_osm_id,
+            selected_road_discovered_poi_count=selected_discovered_poi_count or None,
+            selected_road_discovered_poi_score=selected_discovered_poi_score or None,
+            selected_road_discovered_core_poi_count=selected_discovered_core_poi_count or None,
         )
         result = compose_street_scene(
             config=config,
@@ -1042,6 +1393,38 @@ def run_street_compose(
             f"- cross_section_type: {layout_summary.get('cross_section_type', '')}\n"
             f"- scene_layout: {result.outputs.get('scene_layout', '')}"
         )
+        # Show selected road and POI info
+        if effective_osm_id is not None:
+            summary += f"\n- selected_road_osm_id: {effective_osm_id}"
+            summary += f"\n- selected_road_discovered_poi_count: {selected_discovered_poi_count}"
+            summary += f"\n- selected_road_discovered_poi_score: {selected_discovered_poi_score:.1f}"
+            summary += f"\n- selected_road_discovered_core_poi_count: {selected_discovered_core_poi_count}"
+            summary += (
+                f"\n- selected_road_effective_poi_count: "
+                f"{int(layout_summary.get('selected_road_effective_poi_count', 0) or 0)}"
+            )
+            summary += (
+                f"\n- selected_road_effective_poi_score: "
+                f"{float(layout_summary.get('selected_road_effective_poi_score', 0.0) or 0.0):.1f}"
+            )
+            summary += (
+                f"\n- selected_road_core_poi_count: "
+                f"{int(layout_summary.get('selected_road_core_poi_count', 0) or 0)}"
+            )
+        if effective_bbox is not None:
+            summary += f"\n- road_bbox: ({effective_bbox[0]:.4f}, {effective_bbox[1]:.4f}, {effective_bbox[2]:.4f}, {effective_bbox[3]:.4f})"
+        if road_source:
+            summary += f"\n- road_source: {road_source}"
+        poi_zones = layout_summary.get("poi_exclusion_zones", [])
+        spatial_ctx = layout_summary.get("spatial_context", {})
+        poi_counts = _spatial_context_poi_counts(spatial_ctx)
+        n_poi_total = sum(poi_counts.values())
+        if n_poi_total > 0:
+            summary += f"\n- poi_count: {n_poi_total} ({poi_breakdown_string(poi_counts)})"
+            summary += f"\n- exclusion_zones: {len(poi_zones)}"
+        poi_conflicts = layout_summary.get("poi_conflict_assets", [])
+        if poi_conflicts:
+            summary += f"\n- poi_conflicts: {len(poi_conflicts)}"
         if result.outputs.get("policy_fallback_reason"):
             summary += f"\n- policy_fallback_reason: {result.outputs['policy_fallback_reason']}"
         if result.outputs.get("program_fallback_reason"):
@@ -1062,6 +1445,227 @@ def run_street_compose(
     except Exception as exc:
         detail = traceback.format_exc(limit=3)
         return f"Street compose failed: {exc}\n{detail}", [], "", None, []
+
+
+def _render_spatial_overview(layout_json_text: str) -> Any:
+    """Render scene spatial overview from the layout JSON output."""
+    try:
+        if not layout_json_text or not layout_json_text.strip():
+            return None
+        payload = json.loads(layout_json_text)
+        summary = payload.get("summary", {})
+        placements_raw = payload.get("placements", [])
+        length_m = float(summary.get("length_m", 80.0))
+        road_width_m = float(summary.get("road_width_m", 8.0))
+        sidewalk_width_m = float(summary.get("sidewalk_width_m", 2.5))
+
+        # Build a minimal config-like object for visualization
+        class _Cfg:
+            pass
+        cfg = _Cfg()
+        cfg.road_width_m = road_width_m
+        cfg.length_m = length_m
+        cfg.sidewalk_width_m = sidewalk_width_m
+
+        sc_raw = summary.get("spatial_context", {})
+        spatial_ctx = SpatialContext(
+            junction_points_xz=tuple(tuple(p) for p in sc_raw.get("junction_points_xz", [])),
+            entrance_points_xz=tuple(tuple(p) for p in sc_raw.get("entrance_points_xz", [])),
+            road_half_width_m=float(sc_raw.get("road_half_width_m", road_width_m / 2)),
+            length_m=float(sc_raw.get("length_m", length_m)),
+            bus_stop_points_xz=tuple(tuple(p) for p in sc_raw.get("bus_stop_points_xz", [])),
+            fire_points_xz=tuple(tuple(p) for p in sc_raw.get("fire_points_xz", [])),
+            poi_points_by_type_xz={
+                poi_type: tuple(tuple(p) for p in points)
+                for poi_type, points in (sc_raw.get("poi_points_by_type_xz", {}) or {}).items()
+            },
+        )
+
+        # Build lightweight placement objects
+        class _P:
+            def __init__(self, pos, cat):
+                self.position_xyz = pos
+                self.category = cat
+        placements = [
+            _P(p.get("position_xyz", [0, 0, 0]), p.get("category", ""))
+            for p in placements_raw
+        ]
+        return plot_scene_with_markers(
+            spatial_ctx, placements, cfg,
+            osm_geometry=summary.get("osm_geometry"),
+            poi_exclusion_zones=summary.get("poi_exclusion_zones"),
+            poi_conflicts=summary.get("poi_conflict_assets"),
+        )
+    except Exception:
+        return None
+
+
+def _render_distance_heatmap(layout_json_text: str, heatmap_type: str) -> Any:
+    """Render a distance heatmap from the layout JSON output."""
+    try:
+        if not layout_json_text or not layout_json_text.strip():
+            return None, None
+        payload = json.loads(layout_json_text)
+        summary = payload.get("summary", {})
+        placements_raw = payload.get("placements", [])
+        length_m = float(summary.get("length_m", 80.0))
+        road_width_m = float(summary.get("road_width_m", 8.0))
+        sidewalk_width_m = float(summary.get("sidewalk_width_m", 2.5))
+
+        class _Cfg:
+            pass
+        cfg = _Cfg()
+        cfg.road_width_m = road_width_m
+        cfg.length_m = length_m
+        cfg.sidewalk_width_m = sidewalk_width_m
+
+        sc_raw = summary.get("spatial_context", {})
+        spatial_ctx = SpatialContext(
+            junction_points_xz=tuple(tuple(p) for p in sc_raw.get("junction_points_xz", [])),
+            entrance_points_xz=tuple(tuple(p) for p in sc_raw.get("entrance_points_xz", [])),
+            road_half_width_m=float(sc_raw.get("road_half_width_m", road_width_m / 2)),
+            length_m=float(sc_raw.get("length_m", length_m)),
+        )
+
+        class _P:
+            def __init__(self, pos, cat):
+                self.position_xyz = pos
+                self.category = cat
+        placements = [
+            _P(p.get("position_xyz", [0, 0, 0]), p.get("category", ""))
+            for p in placements_raw
+        ]
+        hmap = plot_distance_heatmap(spatial_ctx, placements, str(heatmap_type), cfg)
+        hist = plot_distance_histograms(placements, spatial_ctx)
+        return hmap, hist
+    except Exception:
+        return None, None
+
+
+def _extract_poi_summary(layout_json_text: str):
+    """Extract POI exclusion zone and conflict tables from layout JSON."""
+    try:
+        if not layout_json_text or not layout_json_text.strip():
+            return [], [], "{}"
+        payload = json.loads(layout_json_text)
+        summary = payload.get("summary", {})
+
+        # POI summary table: [Type, X, Z, Radius(m), Rule]
+        zones = summary.get("poi_exclusion_zones", [])
+        spatial_ctx = summary.get("spatial_context", {})
+        seen: set = set()
+        poi_rows: list = []
+        for z in zones:
+            key = (z["poi_type"], round(z["position_xz"][0], 3), round(z["position_xz"][1], 3))
+            if key in seen:
+                continue
+            seen.add(key)
+            poi_rows.append([
+                z["poi_type"],
+                f'{z["position_xz"][0]:.2f}',
+                f'{z["position_xz"][1]:.2f}',
+                f'{z["radius_m"]:.2f}',
+                z["rule_name"],
+            ])
+        if not poi_rows:
+            fallback_sources = _spatial_context_poi_points(spatial_ctx)
+            for poi_type, points in fallback_sources.items():
+                for pt in points:
+                    if len(pt) < 2:
+                        continue
+                    poi_rows.append([
+                        poi_type,
+                        f"{float(pt[0]):.2f}",
+                        f"{float(pt[1]):.2f}",
+                        "",
+                        "poi_point",
+                    ])
+
+        # Conflict table: [Instance, Category, X, Z, Violated Rules, Penalty]
+        conflicts = summary.get("poi_conflict_assets", [])
+        conflict_rows = [
+            [
+                c.get("instance_id", ""),
+                c.get("category", ""),
+                f'{c["position_xz"][0]:.2f}',
+                f'{c["position_xz"][1]:.2f}',
+                ", ".join(c.get("violated_rules", [])),
+                f'{c.get("constraint_penalty", 0.0):.4f}',
+            ]
+            for c in conflicts
+        ]
+
+        # Stats JSON
+        type_counts: dict = {}
+        for row in poi_rows:
+            type_counts[row[0]] = type_counts.get(row[0], 0) + 1
+        instance_count = summary.get("instance_count", 0)
+        stats = {
+            "poi_counts": type_counts,
+            "total_poi_points": len(poi_rows),
+            "conflict_count": len(conflict_rows),
+            "compliance_rate": round(1.0 - len(conflict_rows) / max(instance_count, 1), 4),
+        }
+        return poi_rows, conflict_rows, json.dumps(stats, indent=2)
+    except Exception:
+        return [], [], "{}"
+
+
+def _render_poi_overview(layout_json_text: str):
+    """Render dedicated POI exclusion zone overview plot."""
+    try:
+        if not layout_json_text or not layout_json_text.strip():
+            return None
+        payload = json.loads(layout_json_text)
+        summary = payload.get("summary", {})
+        placements_raw = payload.get("placements", [])
+        length_m = float(summary.get("length_m", 80.0))
+        road_width_m = float(summary.get("road_width_m", 8.0))
+        sidewalk_width_m = float(summary.get("sidewalk_width_m", 2.5))
+
+        class _Cfg:
+            pass
+        cfg = _Cfg()
+        cfg.road_width_m = road_width_m
+        cfg.length_m = length_m
+        cfg.sidewalk_width_m = sidewalk_width_m
+
+        sc_raw = summary.get("spatial_context", {})
+        spatial_ctx = SpatialContext(
+            junction_points_xz=tuple(tuple(p) for p in sc_raw.get("junction_points_xz", [])),
+            entrance_points_xz=tuple(tuple(p) for p in sc_raw.get("entrance_points_xz", [])),
+            road_half_width_m=float(sc_raw.get("road_half_width_m", road_width_m / 2)),
+            length_m=float(sc_raw.get("length_m", length_m)),
+            bus_stop_points_xz=tuple(tuple(p) for p in sc_raw.get("bus_stop_points_xz", [])),
+            fire_points_xz=tuple(tuple(p) for p in sc_raw.get("fire_points_xz", [])),
+            poi_points_by_type_xz={
+                poi_type: tuple(tuple(p) for p in points)
+                for poi_type, points in (sc_raw.get("poi_points_by_type_xz", {}) or {}).items()
+            },
+        )
+
+        class _P:
+            def __init__(self, pos, cat):
+                self.position_xyz = pos
+                self.category = cat
+        placements = [
+            _P(p.get("position_xyz", [0, 0, 0]), p.get("category", ""))
+            for p in placements_raw
+        ]
+
+        zones = summary.get("poi_exclusion_zones", [])
+        conflicts = summary.get("poi_conflict_assets", [])
+        has_poi_points = bool(spatial_ctx.poi_points_by_type_xz)
+        if not zones and not has_poi_points:
+            return None
+        return plot_poi_exclusion_overview(
+            spatial_ctx, placements, cfg,
+            poi_exclusion_zones=zones,
+            poi_conflicts=conflicts,
+            osm_geometry=summary.get("osm_geometry"),
+        )
+    except Exception:
+        return None
 
 
 def run_best_model_street(
@@ -1102,6 +1706,7 @@ def run_best_model_street(
     allow_solver_fallback: bool = True,
     segment_length_m: float = 12.0,
     research_target: str = "layout_policy",
+    road_selection: str = "primary_road",
 ) -> Tuple[str, List[List[str]], str, str | None, List[str], str, str, str | None, List[str]]:
     if str(research_target).strip().lower() == "program_generator":
         program_generator = "learned_v1"
@@ -1143,6 +1748,7 @@ def run_best_model_street(
         target_street_type=target_street_type,
         allow_solver_fallback=allow_solver_fallback,
         segment_length_m=segment_length_m,
+        road_selection=road_selection,
     )
     best_log = (
         "Best model run done.\n"
@@ -1593,9 +2199,10 @@ def run_m6_train_program(
                     "balanced_complete_street_v1",
                     "pedestrian_priority_v1",
                     "transit_priority_v1",
+                    "noise_aware_v1",
                 ],
                 seed_start=0,
-                seed_end=19,
+                seed_end=29,
                 length_m=float(street_length_m),
                 road_width_m=float(street_road_width_m),
                 sidewalk_width_m=float(street_sidewalk_width_m),
@@ -1851,8 +2458,19 @@ def run_research_train(
         yield log_text, train_json, eval_json, policy_ckpt_value, program_ckpt_text, progress, plot
 
 
-def _toggle_osm_visibility(layout_mode: str) -> Dict[str, Any]:
-    return gr.update(visible=str(layout_mode).strip().lower() == "osm")
+def _toggle_osm_visibility(layout_mode: str):
+    vis = str(layout_mode).strip().lower() == "osm"
+    return gr.update(visible=vis), gr.update(visible=vis)
+
+
+def _on_city_selected(city_name_en: str):
+    """Fill bbox fields from the selected city."""
+    if not city_name_en:
+        return gr.update(), gr.update(), gr.update(), gr.update()
+    city = get_city_by_name(city_name_en)
+    if city is None:
+        return gr.update(), gr.update(), gr.update(), gr.update()
+    return city.bbox[0], city.bbox[1], city.bbox[2], city.bbox[3]
 
 
 def build_demo() -> gr.Blocks:
@@ -1906,6 +2524,14 @@ def build_demo() -> gr.Blocks:
                         col_count=(3, "fixed"),
                         label="Prepare Steps",
                     )
+                prepare_discover_table = gr.Dataframe(
+                    headers=["OSM ID", "Highway", "Length(m)", "POIs", "POI Score", "Core POIs", "POI Breakdown", "BBox"],
+                    datatype=["str", "str", "str", "str", "str", "str", "str", "str"],
+                    row_count=(0, "dynamic"),
+                    col_count=(8, "fixed"),
+                    label="自动候选 POI-rich Roads（仅展示）",
+                    interactive=False,
+                )
                 with gr.Accordion("Advanced", open=False):
                     with gr.Row():
                         data_dir = gr.Textbox(label="Mock Data Dir", value=default_data)
@@ -1921,25 +2547,31 @@ def build_demo() -> gr.Blocks:
                         real_latents_dir = gr.Textbox(label="Real Latents Dir", value=default_real_latents_dir)
                         render_cache_dir = gr.Textbox(label="Render Cache Dir", value=default_render_cache_dir)
                     with gr.Row():
-                        prepare_layout_mode = gr.Dropdown(label="Prepare Layout Mode", choices=["template", "osm"], value="template")
+                        prepare_layout_mode = gr.Dropdown(label="Prepare Layout Mode", choices=["template", "osm"], value="osm")
                         osm_cache_dir = gr.Textbox(label="OSM Cache Dir", value=default_osm_cache_dir)
                         force_reindex = gr.Checkbox(label="Force Reindex", value=False)
                         force_reencode = gr.Checkbox(label="Force Reencode", value=False)
                         force_osm_refresh = gr.Checkbox(label="Force OSM Refresh", value=False)
-                    with gr.Row(visible=False) as prepare_bbox_row:
-                        prepare_bbox_min_lon = gr.Number(label="AOI Min Lon", value=0.0)
-                        prepare_bbox_min_lat = gr.Number(label="AOI Min Lat", value=0.0)
-                        prepare_bbox_max_lon = gr.Number(label="AOI Max Lon", value=0.0)
-                        prepare_bbox_max_lat = gr.Number(label="AOI Max Lat", value=0.0)
+                    with gr.Row(visible=True) as prepare_city_row:
+                        prepare_city_selector = gr.Dropdown(
+                            label="中国城市 (City)",
+                            choices=[("手动输入 Manual", "")] + get_city_choices(),
+                            value="guangzhou",
+                        )
+                    with gr.Row(visible=True) as prepare_bbox_row:
+                        prepare_bbox_min_lon = gr.Number(label="AOI Min Lon", value=113.2660)
+                        prepare_bbox_min_lat = gr.Number(label="AOI Min Lat", value=23.1280)
+                        prepare_bbox_max_lon = gr.Number(label="AOI Max Lon", value=113.2710)
+                        prepare_bbox_max_lat = gr.Number(label="AOI Max Lat", value=23.1325)
 
             with gr.Tab("2) 生成街道"):
                 gr.Markdown("默认入口：先生成 `StreetProgram`，再做约束求解与资产实现。")
                 query = gr.Textbox(label="Query", value="pedestrian-friendly boulevard with transit access")
                 with gr.Row():
-                    m5_layout_mode = gr.Dropdown(label="Layout Mode", choices=["template", "osm"], value="template")
+                    m5_layout_mode = gr.Dropdown(label="Layout Mode", choices=["template", "osm"], value="osm")
                     design_rule_profile = gr.Dropdown(
                         label="Design Rule Profile",
-                        choices=["balanced_complete_street_v1", "pedestrian_priority_v1", "transit_priority_v1"],
+                        choices=["balanced_complete_street_v1", "pedestrian_priority_v1", "transit_priority_v1", "noise_aware_v1"],
                         value="balanced_complete_street_v1",
                     )
                     program_generator = gr.Dropdown(
@@ -1957,11 +2589,22 @@ def build_demo() -> gr.Blocks:
                         choices=["rule", "learned"],
                         value="learned",
                     )
-                with gr.Row(visible=False) as street_bbox_row:
-                    m5_bbox_min_lon = gr.Number(label="AOI Min Lon", value=0.0)
-                    m5_bbox_min_lat = gr.Number(label="AOI Min Lat", value=0.0)
-                    m5_bbox_max_lon = gr.Number(label="AOI Max Lon", value=0.0)
-                    m5_bbox_max_lat = gr.Number(label="AOI Max Lat", value=0.0)
+                with gr.Row(visible=True) as street_city_row:
+                    street_city_selector = gr.Dropdown(
+                        label="中国城市 (City)",
+                        choices=[("手动输入 Manual", "")] + get_city_choices(),
+                        value="guangzhou",
+                    )
+                with gr.Row(visible=True) as street_bbox_row:
+                    m5_bbox_min_lon = gr.Number(label="AOI Min Lon", value=113.2660)
+                    m5_bbox_min_lat = gr.Number(label="AOI Min Lat", value=23.1280)
+                    m5_bbox_max_lon = gr.Number(label="AOI Max Lon", value=113.2710)
+                    m5_bbox_max_lat = gr.Number(label="AOI Max Lat", value=23.1325)
+                    road_selection = gr.Dropdown(
+                        label="道路筛选 (Road Selection)",
+                        choices=["primary_road", "longest", "all"],
+                        value="primary_road",
+                    )
                 street_btn = gr.Button("Run Street", variant="primary")
                 with gr.Row():
                     street_model_view = gr.Model3D(label="Street Preview (GLB)")
@@ -2005,6 +2648,35 @@ def build_demo() -> gr.Blocks:
                     )
                     street_layout_json = gr.Code(label="Street Layout JSON", language="json")
                     street_files = gr.Files(label="Scene Downloads")
+                with gr.Accordion("Spatial Distance Analysis", open=False):
+                    scene_overview_plot = gr.Plot(label="Scene Overview (Junctions + Entrances)")
+                    with gr.Row():
+                        heatmap_type = gr.Dropdown(
+                            choices=["road_edge", "junction", "entrance"],
+                            value="road_edge",
+                            label="Heatmap Type",
+                        )
+                        render_heatmap_btn = gr.Button("Render Heatmap")
+                    distance_heatmap_plot = gr.Plot(label="Distance Heatmap")
+                    distance_histogram_plot = gr.Plot(label="Distance Distribution")
+                with gr.Accordion("POI Analysis", open=True):
+                    poi_overview_plot = gr.Plot(label="POI Positions & Exclusion Zones")
+                    with gr.Row():
+                        poi_summary_table = gr.Dataframe(
+                            headers=["Type", "X", "Z", "Radius(m)", "Rule"],
+                            datatype=["str", "str", "str", "str", "str"],
+                            row_count=(0, "dynamic"),
+                            col_count=(5, "fixed"),
+                            label="POI Points & Exclusion Radii",
+                        )
+                        poi_conflict_table = gr.Dataframe(
+                            headers=["Instance", "Category", "X", "Z", "Violated Rules", "Penalty"],
+                            datatype=["str", "str", "str", "str", "str", "str"],
+                            row_count=(0, "dynamic"),
+                            col_count=(6, "fixed"),
+                            label="Assets in Violation Zones",
+                        )
+                    poi_stats_json = gr.Code(label="POI Statistics", language="json")
 
             with gr.Tab("3) 研究与训练"):
                 gr.Markdown("研究工具：用于改进 `learned_v1` / `learned policy`，不是默认运行入口。")
@@ -2036,11 +2708,11 @@ def build_demo() -> gr.Blocks:
                         m4_train_entropy_weight = gr.Number(label="Policy Entropy Weight", value=0.01)
                         m4_train_patience = gr.Number(label="Policy Patience", value=3, precision=0)
                     with gr.Row():
-                        program_train_epochs = gr.Number(label="Program Epochs", value=20, precision=0)
-                        program_train_batch_size = gr.Number(label="Program Batch Size", value=128, precision=0)
-                        program_train_lr = gr.Number(label="Program LR", value=1e-3)
+                        program_train_epochs = gr.Number(label="Program Epochs", value=60, precision=0)
+                        program_train_batch_size = gr.Number(label="Program Batch Size", value=32, precision=0)
+                        program_train_lr = gr.Number(label="Program LR", value=5e-4)
                         program_train_weight_decay = gr.Number(label="Program Weight Decay", value=1e-4)
-                        program_train_patience = gr.Number(label="Program Patience", value=3, precision=0)
+                        program_train_patience = gr.Number(label="Program Patience", value=5, precision=0)
                 with gr.Accordion("Evaluation", open=False):
                     with gr.Row():
                         m4_run_eval_after_train = gr.Checkbox(label="Run Eval After Train", value=True)
@@ -2071,12 +2743,22 @@ def build_demo() -> gr.Blocks:
         prepare_layout_mode.change(
             fn=_toggle_osm_visibility,
             inputs=[prepare_layout_mode],
-            outputs=[prepare_bbox_row],
+            outputs=[prepare_city_row, prepare_bbox_row],
         )
         m5_layout_mode.change(
             fn=_toggle_osm_visibility,
             inputs=[m5_layout_mode],
-            outputs=[street_bbox_row],
+            outputs=[street_city_row, street_bbox_row],
+        )
+        prepare_city_selector.change(
+            fn=_on_city_selected,
+            inputs=[prepare_city_selector],
+            outputs=[prepare_bbox_min_lon, prepare_bbox_min_lat, prepare_bbox_max_lon, prepare_bbox_max_lat],
+        )
+        street_city_selector.change(
+            fn=_on_city_selected,
+            inputs=[street_city_selector],
+            outputs=[m5_bbox_min_lon, m5_bbox_min_lat, m5_bbox_max_lon, m5_bbox_max_lat],
         )
         prepare_workspace_btn.click(
             fn=run_prepare_workspace,
@@ -2108,7 +2790,7 @@ def build_demo() -> gr.Blocks:
                 prepare_bbox_max_lon,
                 prepare_bbox_max_lat,
             ],
-            outputs=[prepare_summary, readiness_json, readiness_cards, prepare_steps],
+            outputs=[prepare_summary, readiness_json, readiness_cards, prepare_steps, prepare_discover_table],
         )
         street_btn.click(
             fn=run_street_compose,
@@ -2150,6 +2832,7 @@ def build_demo() -> gr.Blocks:
                 target_street_type,
                 allow_solver_fallback,
                 segment_length_m,
+                road_selection,
             ],
             outputs=[
                 street_summary,
@@ -2166,6 +2849,23 @@ def build_demo() -> gr.Blocks:
             fn=_extract_solver_summary,
             inputs=[street_layout_json],
             outputs=[street_solver_summary],
+        ).then(
+            fn=_render_spatial_overview,
+            inputs=[street_layout_json],
+            outputs=[scene_overview_plot],
+        ).then(
+            fn=_extract_poi_summary,
+            inputs=[street_layout_json],
+            outputs=[poi_summary_table, poi_conflict_table, poi_stats_json],
+        ).then(
+            fn=_render_poi_overview,
+            inputs=[street_layout_json],
+            outputs=[poi_overview_plot],
+        )
+        render_heatmap_btn.click(
+            fn=_render_distance_heatmap,
+            inputs=[street_layout_json, heatmap_type],
+            outputs=[distance_heatmap_plot, distance_histogram_plot],
         )
         train_btn.click(
             fn=run_research_train,
@@ -2267,6 +2967,7 @@ def build_demo() -> gr.Blocks:
                 allow_solver_fallback,
                 segment_length_m,
                 research_target,
+                road_selection,
             ],
             outputs=[
                 street_summary,

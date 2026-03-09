@@ -134,6 +134,7 @@ def test_prepare_workspace_prefetches_osm_cache_for_bbox(tmp_path: Path, monkeyp
         return {"elements": []}
 
     monkeypatch.setattr(app, "fetch_osm_data", _fake_fetch)
+    monkeypatch.setattr(app, "discover_poi_roads", lambda city, cache_dir: [])
 
     result = app.prepare_workspace(
         dataset_profile="real",
@@ -170,3 +171,32 @@ def test_build_demo_uses_three_top_level_tabs():
     labels = [component["props"]["label"] for component in config["components"] if component.get("type") == "tabitem"]
 
     assert labels == ["1) 准备", "2) 生成街道", "3) 研究与训练"]
+
+
+def test_extract_program_summary_includes_poi_counts():
+    layout_payload = {
+        "street_program": {
+            "road_type": "transit_corridor",
+            "cross_section_type": "balanced_complete_street",
+            "lane_count": 2,
+            "bands": [{"name": "carriageway", "width_m": 8.0}],
+            "furniture_requirements": {"bench": 3},
+            "control_points": ["entry", "transit_stop", "exit"],
+            "design_goals": ["transit_access"],
+        },
+        "summary": {
+            "spatial_context": {
+                "entrance_points_xz": [[1.0, 2.0], [3.0, 4.0]],
+                "bus_stop_points_xz": [[5.0, 6.0]],
+                "fire_points_xz": [],
+            },
+            "poi_exclusion_zones": [{"poi_type": "entrance"}],
+        },
+    }
+
+    result = json.loads(app._extract_program_summary(json.dumps(layout_payload)))
+
+    assert result["control_points"] == ["entry", "transit_stop", "exit"]
+    assert result["poi_counts"] == {"entrance": 2, "bus_stop": 1}
+    assert result["total_poi_points"] == 3
+    assert result["exclusion_zone_count"] == 1

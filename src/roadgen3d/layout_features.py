@@ -8,7 +8,7 @@ from typing import Iterable, List, Sequence, Set
 
 import numpy as np
 
-DEFAULT_POLICY_INPUT_DIM = 32
+DEFAULT_POLICY_INPUT_DIM = 35
 _POLICY_CATEGORIES: Sequence[str] = (
     "bench",
     "lamp",
@@ -44,6 +44,10 @@ class PolicyFeatureContext:
     category_pool_size: int = 15
     mean_score_placed: float = 0.0
     total_slots_in_scene: int = 1
+    # --- spatial distance fields (M8) ---
+    dist_to_road_edge_m: float = -1.0
+    dist_to_nearest_junction_m: float = -1.0
+    dist_to_nearest_entrance_m: float = -1.0
 
 
 @dataclass(frozen=True)
@@ -61,14 +65,15 @@ def build_candidate_feature(
     candidate_rank: int,
     candidate_count: int,
 ) -> np.ndarray:
-    """Build fixed-size 32-d feature vector for one candidate option.
+    """Build fixed-size 35-d feature vector for one candidate option.
 
-    Layout (32 dims total):
+    Layout (35 dims total):
       [0..7]   numeric_block   – slot position, road geometry, density
       [8..13]  candidate_block – score, rank, used_flag, category_match + context
       [14..17] periodic        – sin/cos positional encoding
       [18..23] context_block   – placement progress, diversity, scarcity
-      [24..31] category_onehot – 8 categories
+      [24..26] spatial_block   – distances to road edge, junction, entrance
+      [27..34] category_onehot – 8 categories
     """
     lane_norm = min(max(float(context.lane_count), 1.0), 8.0) / 8.0
     density_norm = min(max(float(context.density), 0.1), 3.0) / 3.0
@@ -130,13 +135,26 @@ def build_candidate_feature(
         slot_progress,
     ]
 
+    # --- spatial distance block (M8) ---
+    def _norm_dist(d: float, scale: float) -> float:
+        v = float(d)
+        if v < 0.0:
+            return 0.5  # unknown → neutral midpoint
+        return min(v / scale, 1.0)
+
+    spatial_block = [
+        _norm_dist(context.dist_to_road_edge_m, 15.0),
+        _norm_dist(context.dist_to_nearest_junction_m, 100.0),
+        _norm_dist(context.dist_to_nearest_entrance_m, 30.0),
+    ]
+
     category_one_hot = [0.0] * len(_POLICY_CATEGORIES)
     cat_idx = _POLICY_CATEGORY_TO_INDEX.get(context.category, None)
     if cat_idx is not None:
         category_one_hot[cat_idx] = 1.0
 
     feature = np.asarray(
-        numeric_block + candidate_block + periodic + context_block + category_one_hot,
+        numeric_block + candidate_block + periodic + context_block + spatial_block + category_one_hot,
         dtype=np.float32,
     )
     if feature.shape[0] != DEFAULT_POLICY_INPUT_DIM:

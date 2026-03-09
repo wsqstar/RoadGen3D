@@ -64,15 +64,15 @@ def test_feature_vector_shape_and_determinism():
     vec_a = build_candidate_feature(context, candidate, candidate_rank=1, candidate_count=4)
     vec_b = build_candidate_feature(context, candidate, candidate_rank=1, candidate_count=4)
 
-    assert vec_a.shape == (32,)
+    assert vec_a.shape == (35,)
     assert vec_a.dtype == np.float32
     assert np.array_equal(vec_a, vec_b)
 
 
 def test_policy_forward_shape():
     torch = pytest.importorskip("torch")
-    model = LayoutPolicyMLP(input_dim=32, hidden_dim=64, hidden_dim2=32, dropout=0.1)
-    x = torch.randn(5, 32)
+    model = LayoutPolicyMLP(input_dim=35, hidden_dim=64, hidden_dim2=32, dropout=0.1)
+    x = torch.randn(5, 35)
     y = model(x)
     assert tuple(y.shape) == (5, 1)
 
@@ -173,7 +173,7 @@ def test_train_smoke_reduces_val_loss(tmp_path: Path):
     rng = np.random.default_rng(2026)
     samples = []
     for i in range(300):
-        features = rng.normal(0.0, 0.05, size=(3, 32)).astype(np.float32)
+        features = rng.normal(0.0, 0.05, size=(3, 35)).astype(np.float32)
         features[:, 0] += np.array([1.2, 0.2, -0.2], dtype=np.float32)
         chosen_index = int(np.argmax(features[:, 0]))
         samples.append(

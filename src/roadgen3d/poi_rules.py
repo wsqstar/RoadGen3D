@@ -3,8 +3,14 @@
 from __future__ import annotations
 
 import math
-from dataclasses import dataclass
-from typing import Dict, Tuple
+from dataclasses import dataclass, field
+from typing import Dict, List, Tuple
+
+from .poi_taxonomy import (
+    CANONICAL_FIRE_POI,
+    extract_poi_points_by_type,
+    normalize_poi_points_by_type,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -35,6 +41,24 @@ class PoiContext:
     entrance_points_xz: Tuple[Tuple[float, float], ...]
     bus_stop_points_xz: Tuple[Tuple[float, float], ...]
     fire_points_xz: Tuple[Tuple[float, float], ...]
+    poi_points_by_type_xz: Dict[str, Tuple[Tuple[float, float], ...]] = field(default_factory=dict)
+
+    def __post_init__(self) -> None:
+        mapping = normalize_poi_points_by_type(self.poi_points_by_type_xz or {})
+        if not mapping.get("entrance"):
+            mapping["entrance"] = list(self.entrance_points_xz)
+        if not mapping.get("bus_stop"):
+            mapping["bus_stop"] = list(self.bus_stop_points_xz)
+        if not mapping.get(CANONICAL_FIRE_POI):
+            mapping[CANONICAL_FIRE_POI] = list(self.fire_points_xz)
+        object.__setattr__(
+            self,
+            "poi_points_by_type_xz",
+            {
+                poi_type: tuple(points)
+                for poi_type, points in mapping.items()
+            },
+        )
 
 
 @dataclass(frozen=True)
@@ -50,7 +74,7 @@ class ConstraintResult:
 # Rule set definitions
 # ---------------------------------------------------------------------------
 
-_ENTRANCE_FIRE_BUS_STOP_V1 = PoiRuleSet(
+_MULTITYPE_STREET_POI_V2 = PoiRuleSet(
     rules=(
         PoiRule(
             name="entrance_clearance",
@@ -69,7 +93,7 @@ _ENTRANCE_FIRE_BUS_STOP_V1 = PoiRuleSet(
         ),
         PoiRule(
             name="fire_access",
-            poi_type="fire",
+            poi_type=CANONICAL_FIRE_POI,
             clearance_sigma_m=3.0,
             affected_categories={
                 "tree": 1.0,
@@ -97,11 +121,85 @@ _ENTRANCE_FIRE_BUS_STOP_V1 = PoiRuleSet(
                 "bus_stop": 0.0,  # bus_stop near bus_stop POI is expected
             },
         ),
+        PoiRule(
+            name="crossing_keep_clear",
+            poi_type="crossing",
+            clearance_sigma_m=3.0,
+            affected_categories={
+                "tree": 1.0,
+                "bench": 1.0,
+                "trash": 1.0,
+                "mailbox": 1.0,
+                "bus_stop": 1.0,
+                "hydrant": 1.0,
+                "bollard": 1.0,
+            },
+        ),
+        PoiRule(
+            name="traffic_signal_visibility",
+            poi_type="traffic_signals",
+            clearance_sigma_m=3.0,
+            affected_categories={
+                "tree": 1.0,
+                "bus_stop": 0.9,
+                "mailbox": 0.8,
+                "lamp": 0.2,
+            },
+        ),
+        PoiRule(
+            name="parking_entrance_clearance",
+            poi_type="parking_entrance",
+            clearance_sigma_m=3.5,
+            affected_categories={
+                "tree": 1.0,
+                "lamp": 0.8,
+                "bench": 0.7,
+                "trash": 0.7,
+                "bollard": 0.9,
+                "mailbox": 0.6,
+                "bus_stop": 1.0,
+                "hydrant": 0.2,
+            },
+        ),
+        PoiRule(
+            name="subway_entrance_clearance",
+            poi_type="subway_entrance",
+            clearance_sigma_m=3.0,
+            affected_categories={
+                "tree": 1.0,
+                "lamp": 0.8,
+                "bench": 0.8,
+                "trash": 0.7,
+                "bollard": 0.9,
+                "mailbox": 0.6,
+                "bus_stop": 1.0,
+                "hydrant": 0.2,
+            },
+        ),
+        PoiRule(
+            name="post_box_access",
+            poi_type="post_box",
+            clearance_sigma_m=2.0,
+            affected_categories={
+                "tree": 0.8,
+                "bus_stop": 1.0,
+            },
+        ),
+        PoiRule(
+            name="waste_basket_clearance",
+            poi_type="waste_basket",
+            clearance_sigma_m=2.0,
+            affected_categories={
+                "bus_stop": 0.8,
+                "tree": 0.5,
+            },
+        ),
     )
 )
 
 _RULE_SETS: Dict[str, PoiRuleSet] = {
-    "entrance_fire_bus_stop_v1": _ENTRANCE_FIRE_BUS_STOP_V1,
+    "entrance_fire_bus_stop_v1": _MULTITYPE_STREET_POI_V2,
+    "multitype_street_poi_v2": _MULTITYPE_STREET_POI_V2,
 }
 
 # Threshold for considering a single rule "violated" (per-rule penalty_r).
@@ -132,13 +230,8 @@ def _min_distance(pos: Tuple[float, float], points: Tuple[Tuple[float, float], .
 
 
 def _get_poi_points(poi_type: str, ctx: PoiContext) -> Tuple[Tuple[float, float], ...]:
-    if poi_type == "entrance":
-        return ctx.entrance_points_xz
-    elif poi_type == "fire":
-        return ctx.fire_points_xz
-    elif poi_type == "bus_stop":
-        return ctx.bus_stop_points_xz
-    return ()
+    mapping = normalize_poi_points_by_type(getattr(ctx, "poi_points_by_type_xz", {}) or {})
+    return tuple(mapping.get(poi_type, ()))
 
 
 def score_placement(
@@ -189,6 +282,75 @@ def score_placement(
     )
 
 
+# ---------------------------------------------------------------------------
+# Exclusion zone computation (for visualization)
+# ---------------------------------------------------------------------------
+
+@dataclass(frozen=True)
+class PoiExclusionInfo:
+    """One POI point with its computed exclusion-zone radius."""
+
+    poi_type: str  # "entrance" | "fire" | "bus_stop"
+    position_xz: Tuple[float, float]
+    radius_m: float  # red-line boundary radius
+    rule_name: str
+
+
+def compute_exclusion_radii(
+    rule_set: PoiRuleSet,
+    threshold: float = _VIOLATION_THRESHOLD,
+) -> Dict[str, float]:
+    """Compute the red-line exclusion radius per POI type.
+
+    The radius is the distance *d* at which the worst-case single-rule
+    penalty equals *threshold*::
+
+        w_max * exp(-d / sigma) = threshold
+        d = sigma * ln(w_max / threshold)
+
+    where ``sigma = clearance_sigma_m / 2``.
+    """
+    radii: Dict[str, float] = {}
+    for rule in rule_set.rules:
+        if not rule.affected_categories:
+            continue
+        w_max = max(rule.affected_categories.values())
+        if w_max <= threshold or w_max <= 0.0:
+            radii[rule.poi_type] = 0.0
+            if rule.poi_type == CANONICAL_FIRE_POI:
+                radii["fire"] = 0.0
+            continue
+        sigma = max(rule.clearance_sigma_m / 2.0, 1e-6)
+        radii[rule.poi_type] = sigma * math.log(w_max / threshold)
+        if rule.poi_type == CANONICAL_FIRE_POI:
+            radii["fire"] = radii[rule.poi_type]
+    return radii
+
+
+def build_exclusion_zones(
+    poi_context: PoiContext,
+    rule_set: PoiRuleSet,
+) -> Tuple[PoiExclusionInfo, ...]:
+    """Build a flat list of exclusion zones for every POI point.
+
+    Each POI point gets one ``PoiExclusionInfo`` per applicable rule.
+    """
+    radii = compute_exclusion_radii(rule_set)
+    zones: List[PoiExclusionInfo] = []
+    for rule in rule_set.rules:
+        r = radii.get(rule.poi_type, 0.0)
+        if r <= 0.0:
+            continue
+        for pt in _get_poi_points(rule.poi_type, poi_context):
+            zones.append(PoiExclusionInfo(
+                poi_type=rule.poi_type,
+                position_xz=pt,
+                radius_m=r,
+                rule_name=rule.name,
+            ))
+    return tuple(zones)
+
+
 def build_poi_context(placement_context: object) -> PoiContext:
     """Build a lightweight PoiContext from a PlacementContext.
 
@@ -196,8 +358,13 @@ def build_poi_context(placement_context: object) -> PoiContext:
     plain tuples for fast scoring.
     """
     ctx = placement_context  # type: ignore[assignment]
+    poi_points = {
+        poi_type: tuple(points)
+        for poi_type, points in extract_poi_points_by_type(ctx).items()
+    }
     return PoiContext(
         entrance_points_xz=tuple(ctx.entrance_points),
         bus_stop_points_xz=tuple(ctx.bus_stop_points),
         fire_points_xz=tuple(ctx.fire_points),
+        poi_points_by_type_xz=poi_points,
     )

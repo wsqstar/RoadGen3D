@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import math
-from typing import Iterable, List, Sequence, Tuple
+from typing import Iterable, List, Mapping, Sequence, Tuple
 
+from .poi_taxonomy import extract_poi_points_by_type
 from .street_priors import DEFAULT_CATEGORIES
 from .types import RoadSegmentBand, RoadSegmentEdge, RoadSegmentGraph, RoadSegmentNode, StreetComposeConfig
 
@@ -24,18 +25,13 @@ def _interpolate(a: Tuple[float, float], b: Tuple[float, float], ratio: float) -
 def _nearest_poi_types(
     point: Tuple[float, float],
     *,
-    entrances: Sequence[Tuple[float, float]],
-    bus_stops: Sequence[Tuple[float, float]],
-    fire_points: Sequence[Tuple[float, float]],
+    poi_points_by_type: Mapping[str, Sequence[Tuple[float, float]]],
     threshold_m: float = 18.0,
 ) -> Tuple[str, ...]:
     poi_types: List[str] = []
-    if entrances and min(_distance(point, item) for item in entrances) <= threshold_m:
-        poi_types.append("entrance")
-    if bus_stops and min(_distance(point, item) for item in bus_stops) <= threshold_m:
-        poi_types.append("bus_stop")
-    if fire_points and min(_distance(point, item) for item in fire_points) <= threshold_m:
-        poi_types.append("fire")
+    for poi_type, points in poi_points_by_type.items():
+        if points and min(_distance(point, item) for item in points) <= threshold_m:
+            poi_types.append(str(poi_type))
     return tuple(sorted(set(poi_types)))
 
 
@@ -76,9 +72,10 @@ def build_segment_graph(
     """Convert projected OSM roads into a segment graph for discrete layout solving."""
 
     roads = list(getattr(projected_features, "roads", []))
-    entrances = tuple(getattr(projected_features, "entrances", []))
-    bus_stops = tuple(getattr(projected_features, "bus_stops", []))
-    fire_points = tuple(getattr(projected_features, "fire_points", []))
+    poi_points_by_type = {
+        poi_type: tuple(points)
+        for poi_type, points in extract_poi_points_by_type(projected_features).items()
+    }
     segment_length = max(float(getattr(config, "segment_length_m", 12.0)), 4.0)
 
     nodes: List[RoadSegmentNode] = []
@@ -105,9 +102,7 @@ def build_segment_graph(
                 center = ((float(a[0]) + float(b[0])) / 2.0, (float(a[1]) + float(b[1])) / 2.0)
                 poi_types = _nearest_poi_types(
                     center,
-                    entrances=entrances,
-                    bus_stops=bus_stops,
-                    fire_points=fire_points,
+                    poi_points_by_type=poi_points_by_type,
                 )
                 segment_id = f"seg_{segment_counter:04d}"
                 segment_counter += 1

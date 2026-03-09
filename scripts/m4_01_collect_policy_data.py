@@ -19,6 +19,7 @@ from roadgen3d.embedder import ClipTextEmbedder, ModelLoadError  # noqa: E402
 from roadgen3d.index_store import FaissIndexStore  # noqa: E402
 from roadgen3d.layout_features import PolicyFeatureContext  # noqa: E402
 from roadgen3d.layout_reward import compute_optimal_index  # noqa: E402
+from roadgen3d.spatial_features import SpatialContext, compute_slot_distances  # noqa: E402
 from roadgen3d.street_layout import (  # noqa: E402
     DEFAULT_CATEGORIES,
     DEFAULT_SPACING_M,
@@ -166,6 +167,14 @@ def collect_policy_data(
             placed_score_sums: Dict[str, float] = {category: 0.0 for category in DEFAULT_CATEGORIES}
             placed_counts: Dict[str, int] = {category: 0 for category in DEFAULT_CATEGORIES}
 
+            # Spatial context for distance features (template mode: no junctions/entrances)
+            _spatial_ctx = SpatialContext(
+                junction_points_xz=(),
+                entrance_points_xz=(),
+                road_half_width_m=float(road_width_m) / 2.0,
+                length_m=float(length_m),
+            )
+
             for category in DEFAULT_CATEGORIES:
                 pool = category_to_rows.get(category, [])
                 if not pool:
@@ -181,6 +190,7 @@ def collect_policy_data(
                     slot_z_center = side * (float(road_width_m) / 2.0 + float(sidewalk_width_m) * 0.5)
 
                     used_before = sorted(used_asset_ids_by_category.setdefault(category, set()))
+                    _slot_dists = compute_slot_distances((float(x_center), float(slot_z_center)), _spatial_ctx)
                     feature_ctx = PolicyFeatureContext(
                         query=query,
                         category=category,
@@ -203,6 +213,9 @@ def collect_policy_data(
                             else 0.0
                         ),
                         total_slots_in_scene=max(slot_total_per_scene, 1),
+                        dist_to_road_edge_m=_slot_dists.dist_to_road_edge_m,
+                        dist_to_nearest_junction_m=_slot_dists.dist_to_nearest_junction_m,
+                        dist_to_nearest_entrance_m=_slot_dists.dist_to_nearest_entrance_m,
                     )
 
                     row, score, source, details = _pick_category_candidate(

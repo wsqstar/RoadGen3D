@@ -111,6 +111,36 @@ def test_parse_osm_features_poi_counts():
     assert len(features.fire_points) == 1
 
 
+def test_parse_osm_features_extended_poi_taxonomy():
+    data = {
+        "elements": [
+            {"type": "node", "id": 1, "lon": 116.3900, "lat": 39.9000},
+            {"type": "node", "id": 2, "lon": 116.3910, "lat": 39.9000},
+            {
+                "type": "way",
+                "id": 100,
+                "nodes": [1, 2],
+                "tags": {"highway": "residential"},
+            },
+            {"type": "node", "id": 10, "lon": 116.3901, "lat": 39.9001, "tags": {"highway": "crossing"}},
+            {"type": "node", "id": 11, "lon": 116.3902, "lat": 39.9001, "tags": {"highway": "traffic_signals"}},
+            {"type": "node", "id": 12, "lon": 116.3903, "lat": 39.9001, "tags": {"amenity": "parking_entrance"}},
+            {"type": "node", "id": 13, "lon": 116.3904, "lat": 39.9001, "tags": {"railway": "subway_entrance"}},
+            {"type": "node", "id": 14, "lon": 116.3905, "lat": 39.9001, "tags": {"amenity": "post_box"}},
+            {"type": "node", "id": 15, "lon": 116.3906, "lat": 39.9001, "tags": {"amenity": "waste_basket"}},
+            {"type": "node", "id": 16, "lon": 116.3907, "lat": 39.9001, "tags": {"barrier": "bollard"}},
+        ]
+    }
+    features = parse_osm_features(data)
+    assert len(features.poi_points_by_type["crossing"]) == 1
+    assert len(features.poi_points_by_type["traffic_signals"]) == 1
+    assert len(features.poi_points_by_type["parking_entrance"]) == 1
+    assert len(features.poi_points_by_type["subway_entrance"]) == 1
+    assert len(features.poi_points_by_type["post_box"]) == 1
+    assert len(features.poi_points_by_type["waste_basket"]) == 1
+    assert len(features.poi_points_by_type["bollard"]) == 1
+
+
 def test_parse_osm_features_road_default_width():
     features = parse_osm_features(_MINIMAL_OVERPASS_RESPONSE)
     assert features.roads[0].width_m == 6.0  # residential default

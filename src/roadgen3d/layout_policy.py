@@ -101,6 +101,22 @@ class LayoutPolicyRuntime:
             raise RuntimeError("torch is required for learned layout policy runtime")
         if features.size == 0:
             return np.zeros((0,), dtype=np.float32)
+        # Dimension compatibility: pad or truncate if checkpoint expects different dim
+        model_input_dim = self.model.net[0].in_features
+        feat_dim = features.shape[1] if features.ndim == 2 else features.shape[0]
+        if feat_dim != model_input_dim:
+            import warnings
+            warnings.warn(
+                f"Layout policy feature dim mismatch: model expects {model_input_dim}, "
+                f"got {feat_dim}. Padding/truncating features.",
+                stacklevel=2,
+            )
+            if features.ndim == 2:
+                if feat_dim < model_input_dim:
+                    pad = np.full((features.shape[0], model_input_dim - feat_dim), 0.5, dtype=np.float32)
+                    features = np.hstack([features, pad])
+                else:
+                    features = features[:, :model_input_dim]
         with torch.no_grad():
             x = torch.as_tensor(features, dtype=torch.float32, device=torch.device(self.device))
             logits = self.model(x).squeeze(-1)

@@ -5,6 +5,12 @@ from __future__ import annotations
 import math
 from typing import Dict, Iterable, List, Sequence, Tuple
 
+from .poi_taxonomy import (
+    CANONICAL_FIRE_POI,
+    asset_backed_category_counts,
+    extract_poi_points_by_type,
+    normalize_poi_counts,
+)
 from .street_priors import DEFAULT_CATEGORIES, DEFAULT_SPACING_M
 from .types import StreetBand, StreetComposeConfig, StreetProgram
 
@@ -126,6 +132,70 @@ def _goal_weights(goals: Sequence[str]) -> Dict[str, float]:
     return {str(goal): float(1.0 / total) for goal in goals}
 
 
+def _observed_poi_counts(poi_context: object | None) -> Dict[str, int]:
+    if poi_context is None:
+        return {}
+    counts = normalize_poi_counts({
+        poi_type: len(points)
+        for poi_type, points in extract_poi_points_by_type(poi_context, suffix="xz").items()
+    })
+    return {
+        poi_type: int(count)
+        for poi_type, count in counts.items()
+        if int(count) > 0
+    }
+
+
+def _apply_observed_poi_bindings(
+    requirements: Dict[str, int],
+    observed_poi_counts: Dict[str, int],
+    poi_context: object | None,
+    control_points: List[str],
+    merged_goals: Tuple[str, ...],
+    bands: Sequence[StreetBand],
+    profile_name: str,
+) -> Tuple[Dict[str, str], Tuple[str, ...]]:
+    asset_counts = asset_backed_category_counts(
+        extract_poi_points_by_type(poi_context, suffix="xz") if poi_context is not None else {}
+    )
+    for category, count in asset_counts.items():
+        requirements[category] = max(int(requirements.get(category, 0)), int(count))
+
+    if int(observed_poi_counts.get("bus_stop", 0)) > 0 or int(observed_poi_counts.get("subway_entrance", 0)) > 0:
+        if "transit_stop" not in control_points:
+            control_points.append("transit_stop")
+    if int(observed_poi_counts.get("crossing", 0)) > 0 and "crossing" not in control_points:
+        control_points.append("crossing")
+    if int(observed_poi_counts.get("parking_entrance", 0)) > 0 and "access" not in control_points:
+        control_points.append("access")
+
+    goal_list = list(merged_goals)
+    if (
+        int(observed_poi_counts.get("bus_stop", 0)) > 0
+        or int(observed_poi_counts.get("subway_entrance", 0)) > 0
+    ) and "transit_access" not in goal_list:
+        goal_list.append("transit_access")
+    merged_goals = tuple(goal_list)
+
+    reserved_band_categories: Dict[str, str] = {}
+    if int(observed_poi_counts.get("bus_stop", 0)) > 0:
+        right_bus_band = next(
+            (
+                band.name
+                for band in bands
+                if band.side == "right"
+                and band.kind in {"furnishing", "transit_edge"}
+                and "bus_stop" in band.allowed_categories
+            ),
+            "",
+        )
+        if right_bus_band:
+            reserved_band_categories[right_bus_band] = "bus_stop"
+    elif profile_name == "transit_priority_v1":
+        reserved_band_categories["right_transit_edge"] = "bus_stop"
+    return reserved_band_categories, merged_goals
+
+
 def _build_cross_section_bands(
     *,
     road_width_m: float,
@@ -233,6 +303,7 @@ def _estimate_furniture_requirements(
 def infer_street_program(
     config: StreetComposeConfig,
     available_categories: Iterable[str],
+    poi_context: object | None = None,
 ) -> StreetProgram:
     """Infer a structured StreetProgram from text and composition context."""
 
@@ -258,17 +329,23 @@ def infer_street_program(
         profile_scales=dict(defaults["density_scales"]),
         required_categories=tuple(defaults["required_categories"]),
     )
+    observed_poi_counts = _observed_poi_counts(poi_context)
     control_points: List[str] = ["entry", "midblock", "exit"]
-    if requirements.get("bus_stop", 0) > 0:
-        control_points.append("transit_stop")
     merged_goals = _merge_goals(str(config.query), tuple(defaults["design_goals"]))
-    reserved_band_categories: Dict[str, str] = {}
-    if profile_name == "transit_priority_v1":
-        reserved_band_categories["right_transit_edge"] = "bus_stop"
+    reserved_band_categories, merged_goals = _apply_observed_poi_bindings(
+        requirements=requirements,
+        observed_poi_counts=observed_poi_counts,
+        poi_context=poi_context,
+        control_points=control_points,
+        merged_goals=merged_goals,
+        bands=bands,
+        profile_name=profile_name,
+    )
 
     notes = (
         "heuristic_program_generator_v1",
         f"profile={profile_name}",
+        "observed_poi_binding_v1",
     )
     return StreetProgram(
         query=str(config.query),
@@ -290,6 +367,7 @@ def infer_street_program(
             "target_street_type": str(config.target_street_type),
             "program_generator": str(config.program_generator),
         },
+        observed_poi_counts=observed_poi_counts,
         reserved_band_categories=reserved_band_categories,
         design_goal_weights=_goal_weights(merged_goals),
         notes=notes,
