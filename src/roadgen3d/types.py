@@ -514,6 +514,7 @@ class StreetPlacement:
     scale: float
     bbox_xz: List[float]  # [xmin, xmax, zmin, zmax]
     selection_source: str  # faiss_softmax | faiss_relaxed_repeat | policy_* | fallback_pool
+    slot_id: str = ""
 
     # -- M5 constraint fields --
     constraint_penalty: float = 0.0

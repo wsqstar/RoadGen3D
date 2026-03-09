@@ -57,6 +57,7 @@ from .poi_taxonomy import (
     qualifies_poi_counts,
 )
 from .program_generator import ProgramGeneratorRuntime
+from .scene_graph_viz import build_scene_graph
 from .street_priors import DEFAULT_CATEGORIES, DEFAULT_SPACING_M, SIDE_PREF
 from .street_program import infer_street_program
 from .types import (
@@ -1129,6 +1130,7 @@ def compose_street_scene(
                     scale=float(scale),
                     bbox_xz=[float(bbbox[0]), float(bbbox[1]), float(bbbox[2]), float(bbbox[3])],
                     selection_source=source,
+                    slot_id=str(slot.slot_id),
                     constraint_penalty=float(bpenalty),
                     feasibility_score=float(bfeas),
                     violated_rules=bviolated,
@@ -1240,6 +1242,126 @@ def compose_street_scene(
         rule_evaluation_counts[evaluation.status] = rule_evaluation_counts.get(evaluation.status, 0) + 1
 
     layout_path = (out_dir / "scene_layout.json").resolve()
+    summary_payload = {
+        "instance_count": len(placements),
+        "dropped_slots": int(dropped_slots),
+        "dropped_slot_rate": float(dropped_slot_rate),
+        "unique_asset_count": int(unique_asset_count),
+        "diversity_ratio": float(diversity_ratio),
+        "overlap_rate": float(overlap_rate),
+        "retrieval_top3_category_hit": float(retrieval_top3_category_hit),
+        "policy_used": policy_used,
+        "latency_ms_total": float(elapsed_ms_total),
+        "latency_ms_per_instance": float(latency_ms_per_instance),
+        "per_category_unique": per_category_unique,
+        "selection_source_counts": selection_source_counts,
+        "layout_mode": config.layout_mode,
+        "constraint_mode": config.constraint_mode,
+        "aoi_bbox": list(config.aoi_bbox) if config.aoi_bbox else None,
+        "compliance_rate_total": float(compliance_rate_total),
+        "violations_total": int(violations_total),
+        "rule_violation_counts": rule_violation_counts,
+        "avg_constraint_penalty": float(avg_constraint_penalty),
+        "avg_feasibility_score": float(avg_feasibility_score),
+        "spacing_uniformity": float(spacing_uniformity),
+        "style_consistency": float(style_consistency),
+        "balance_score": float(balance_score),
+        "design_rule_profile": str(config.design_rule_profile),
+        "program_generator_requested": str(config.program_generator),
+        "program_generator_used": str(program_result.backend_used),
+        "layout_solver_requested": str(config.layout_solver),
+        "layout_solver_used": str(solver_result.backend_used),
+        "cross_section_type": str(resolved_program.cross_section_type),
+        "road_width_m": float(resolved_program.road_width_m),
+        "sidewalk_width_m": float(resolved_program.sidewalk_width_m),
+        "length_m": float(config.length_m),
+        "carriageway_width_m": float(resolved_program.road_width_m),
+        "left_clear_path_width_m": float(resolved_program.left_clear_path_width_m),
+        "right_clear_path_width_m": float(resolved_program.right_clear_path_width_m),
+        "left_furnishing_width_m": float(resolved_program.left_furnishing_width_m),
+        "right_furnishing_width_m": float(resolved_program.right_furnishing_width_m),
+        "row_width_m": float(resolved_program.row_width_m),
+        "width_expanded": bool(resolved_program.width_expanded),
+        "width_reallocation_reason": str(resolved_program.width_reallocation_reason),
+        "poi_fit_feasible": bool(resolved_program.poi_fit_feasible),
+        "poi_fit_report": dict(resolved_program.poi_fit_report),
+        "rule_satisfaction_rate": float(rule_satisfaction_rate),
+        "topology_validity": float(topology_validity),
+        "cross_section_feasibility": float(cross_section_feasibility),
+        "editability": float(editability),
+        "conflict_explainability": float(conflict_explainability),
+        "solver_edit_count": int(len(solver_result.edits)),
+        "solver_conflict_count": int(len(solver_result.conflicts)),
+        "rule_evaluation_counts": rule_evaluation_counts,
+        "program_fallback_reason": program_fallback_reason,
+        "solver_fallback_reason": str(solver_result.fallback_reason),
+        "road_segment_graph_summary": solver_result.road_segment_graph_summary,
+        "mean_entrance_openness": float(mean_entrance_openness),
+        "mean_noise_shielding": float(mean_noise_shielding),
+        "entrances_below_openness_threshold": int(entrance_report.entrances_below_openness_threshold),
+        "min_entrance_openness": float(entrance_report.min_openness),
+        "entrance_count": len(entrance_points_xz),
+        "selected_road_osm_id": int(config.selected_road_osm_id) if config.selected_road_osm_id is not None else None,
+        "selected_road_discovered_poi_count": (
+            int(config.selected_road_discovered_poi_count)
+            if config.selected_road_discovered_poi_count is not None
+            else None
+        ),
+        "selected_road_discovered_poi_score": (
+            float(config.selected_road_discovered_poi_score)
+            if config.selected_road_discovered_poi_score is not None
+            else None
+        ),
+        "selected_road_discovered_core_poi_count": (
+            int(config.selected_road_discovered_core_poi_count)
+            if config.selected_road_discovered_core_poi_count is not None
+            else None
+        ),
+        "selected_road_effective_poi_count": int(sum(int(value) for value in effective_poi_counts.values())),
+        "selected_road_effective_poi_score": float(poi_weighted_score(effective_poi_counts)),
+        "selected_road_core_poi_count": int(core_poi_count(effective_poi_counts)),
+        "selected_road_required_left_width_m": float(getattr(placement_ctx, "required_left_width_m", 0.0) or 0.0),
+        "selected_road_required_right_width_m": float(getattr(placement_ctx, "required_right_width_m", 0.0) or 0.0),
+        "selected_road_final_row_width_m": float(getattr(placement_ctx, "row_width_m", resolved_program.row_width_m) or 0.0),
+        "observed_poi_counts": dict(resolved_program.observed_poi_counts),
+        "spatial_context": {
+            "junction_points_xz": [list(p) for p in spatial_ctx.junction_points_xz],
+            "entrance_points_xz": [list(p) for p in spatial_ctx.entrance_points_xz],
+            "bus_stop_points_xz": [list(p) for p in spatial_ctx.bus_stop_points_xz],
+            "fire_points_xz": [list(p) for p in spatial_ctx.fire_points_xz],
+            "poi_points_by_type_xz": {
+                poi_type: [list(point) for point in points]
+                for poi_type, points in nonempty_poi_points(spatial_ctx.poi_points_by_type_xz).items()
+            },
+            "road_half_width_m": float(resolved_program.road_width_m / 2.0),
+            "length_m": float(spatial_ctx.length_m),
+        },
+    }
+    if config.layout_mode == "osm" and placement_ctx is not None:
+        summary_payload["osm_geometry"] = _serialize_osm_geometry(placement_ctx)
+
+    summary_payload["poi_exclusion_zones"] = [
+        {
+            "poi_type": z.poi_type,
+            "position_xz": [round(z.position_xz[0], 3), round(z.position_xz[1], 3)],
+            "radius_m": round(z.radius_m, 3),
+            "rule_name": z.rule_name,
+        }
+        for z in exclusion_zones
+    ]
+    summary_payload["poi_conflict_assets"] = [
+        {
+            "instance_id": p.instance_id,
+            "slot_id": p.slot_id,
+            "category": p.category,
+            "position_xz": [round(float(p.position_xyz[0]), 3), round(float(p.position_xyz[2]), 3)],
+            "violated_rules": list(p.violated_rules),
+            "constraint_penalty": round(float(p.constraint_penalty), 4),
+        }
+        for p in placements
+        if p.violated_rules
+    ]
+
     layout_payload = {
         "query": config.query,
         "config": config.to_dict(),
@@ -1247,130 +1369,17 @@ def compose_street_scene(
         "street_program": resolved_program.to_dict(),
         "constraint_set": constraint_set.to_dict(),
         "solver": solver_result.to_dict(),
-        "summary": {
-            "instance_count": len(placements),
-            "dropped_slots": int(dropped_slots),
-            "dropped_slot_rate": float(dropped_slot_rate),
-            "unique_asset_count": int(unique_asset_count),
-            "diversity_ratio": float(diversity_ratio),
-            "overlap_rate": float(overlap_rate),
-            "retrieval_top3_category_hit": float(retrieval_top3_category_hit),
-            "policy_used": policy_used,
-            "latency_ms_total": float(elapsed_ms_total),
-            "latency_ms_per_instance": float(latency_ms_per_instance),
-            "per_category_unique": per_category_unique,
-            "selection_source_counts": selection_source_counts,
-            "layout_mode": config.layout_mode,
-            "constraint_mode": config.constraint_mode,
-            "aoi_bbox": list(config.aoi_bbox) if config.aoi_bbox else None,
-            "compliance_rate_total": float(compliance_rate_total),
-            "violations_total": int(violations_total),
-            "rule_violation_counts": rule_violation_counts,
-            "avg_constraint_penalty": float(avg_constraint_penalty),
-            "avg_feasibility_score": float(avg_feasibility_score),
-            "spacing_uniformity": float(spacing_uniformity),
-            "style_consistency": float(style_consistency),
-            "balance_score": float(balance_score),
-            "design_rule_profile": str(config.design_rule_profile),
-            "program_generator_requested": str(config.program_generator),
-            "program_generator_used": str(program_result.backend_used),
-            "layout_solver_requested": str(config.layout_solver),
-            "layout_solver_used": str(solver_result.backend_used),
-            "cross_section_type": str(resolved_program.cross_section_type),
-            "road_width_m": float(resolved_program.road_width_m),
-            "sidewalk_width_m": float(resolved_program.sidewalk_width_m),
-            "length_m": float(config.length_m),
-            "carriageway_width_m": float(resolved_program.road_width_m),
-            "left_clear_path_width_m": float(resolved_program.left_clear_path_width_m),
-            "right_clear_path_width_m": float(resolved_program.right_clear_path_width_m),
-            "left_furnishing_width_m": float(resolved_program.left_furnishing_width_m),
-            "right_furnishing_width_m": float(resolved_program.right_furnishing_width_m),
-            "row_width_m": float(resolved_program.row_width_m),
-            "width_expanded": bool(resolved_program.width_expanded),
-            "width_reallocation_reason": str(resolved_program.width_reallocation_reason),
-            "poi_fit_feasible": bool(resolved_program.poi_fit_feasible),
-            "poi_fit_report": dict(resolved_program.poi_fit_report),
-            "rule_satisfaction_rate": float(rule_satisfaction_rate),
-            "topology_validity": float(topology_validity),
-            "cross_section_feasibility": float(cross_section_feasibility),
-            "editability": float(editability),
-            "conflict_explainability": float(conflict_explainability),
-            "solver_edit_count": int(len(solver_result.edits)),
-            "solver_conflict_count": int(len(solver_result.conflicts)),
-            "rule_evaluation_counts": rule_evaluation_counts,
-            "program_fallback_reason": program_fallback_reason,
-            "solver_fallback_reason": str(solver_result.fallback_reason),
-            "road_segment_graph_summary": solver_result.road_segment_graph_summary,
-            "mean_entrance_openness": float(mean_entrance_openness),
-            "mean_noise_shielding": float(mean_noise_shielding),
-            "entrances_below_openness_threshold": int(entrance_report.entrances_below_openness_threshold),
-            "min_entrance_openness": float(entrance_report.min_openness),
-            "entrance_count": len(entrance_points_xz),
-            "selected_road_osm_id": int(config.selected_road_osm_id) if config.selected_road_osm_id is not None else None,
-            "selected_road_discovered_poi_count": (
-                int(config.selected_road_discovered_poi_count)
-                if config.selected_road_discovered_poi_count is not None
-                else None
-            ),
-            "selected_road_discovered_poi_score": (
-                float(config.selected_road_discovered_poi_score)
-                if config.selected_road_discovered_poi_score is not None
-                else None
-            ),
-            "selected_road_discovered_core_poi_count": (
-                int(config.selected_road_discovered_core_poi_count)
-                if config.selected_road_discovered_core_poi_count is not None
-                else None
-            ),
-            "selected_road_effective_poi_count": int(sum(int(value) for value in effective_poi_counts.values())),
-            "selected_road_effective_poi_score": float(poi_weighted_score(effective_poi_counts)),
-            "selected_road_core_poi_count": int(core_poi_count(effective_poi_counts)),
-            "selected_road_required_left_width_m": float(getattr(placement_ctx, "required_left_width_m", 0.0) or 0.0),
-            "selected_road_required_right_width_m": float(getattr(placement_ctx, "required_right_width_m", 0.0) or 0.0),
-            "selected_road_final_row_width_m": float(getattr(placement_ctx, "row_width_m", resolved_program.row_width_m) or 0.0),
-            "observed_poi_counts": dict(resolved_program.observed_poi_counts),
-            "spatial_context": {
-                "junction_points_xz": [list(p) for p in spatial_ctx.junction_points_xz],
-                "entrance_points_xz": [list(p) for p in spatial_ctx.entrance_points_xz],
-                "bus_stop_points_xz": [list(p) for p in spatial_ctx.bus_stop_points_xz],
-                "fire_points_xz": [list(p) for p in spatial_ctx.fire_points_xz],
-                "poi_points_by_type_xz": {
-                    poi_type: [list(point) for point in points]
-                    for poi_type, points in nonempty_poi_points(spatial_ctx.poi_points_by_type_xz).items()
-                },
-                "road_half_width_m": float(resolved_program.road_width_m / 2.0),
-                "length_m": float(spatial_ctx.length_m),
-            },
-        },
+        "summary": summary_payload,
         "placements": [placement.to_dict() for placement in placements],
         "outputs": outputs,
     }
-    # Attach OSM polygon geometry for 2D visualization
-    if config.layout_mode == "osm" and placement_ctx is not None:
-        layout_payload["summary"]["osm_geometry"] = _serialize_osm_geometry(placement_ctx)
-
-    # Attach POI exclusion zone data for visualization
-    if exclusion_zones:
-        layout_payload["summary"]["poi_exclusion_zones"] = [
-            {
-                "poi_type": z.poi_type,
-                "position_xz": [round(z.position_xz[0], 3), round(z.position_xz[1], 3)],
-                "radius_m": round(z.radius_m, 3),
-                "rule_name": z.rule_name,
-            }
-            for z in exclusion_zones
-        ]
-        layout_payload["summary"]["poi_conflict_assets"] = [
-            {
-                "instance_id": p.instance_id,
-                "category": p.category,
-                "position_xz": [round(float(p.position_xyz[0]), 3), round(float(p.position_xyz[2]), 3)],
-                "violated_rules": list(p.violated_rules),
-                "constraint_penalty": round(float(p.constraint_penalty), 4),
-            }
-            for p in placements
-            if p.violated_rules
-        ]
+    scene_graph = build_scene_graph(layout_payload, road_segment_graph=road_segment_graph)
+    layout_payload["scene_graph"] = scene_graph
+    layout_payload["summary"]["scene_graph_node_count"] = int(len(scene_graph.get("nodes", []) or []))
+    layout_payload["summary"]["scene_graph_edge_count"] = int(len(scene_graph.get("edges", []) or []))
+    layout_payload["summary"]["scene_graph_available_categories"] = list(
+        scene_graph.get("filters", {}).get("categories", []) or []
+    )
 
     layout_path.write_text(json.dumps(layout_payload, indent=2, ensure_ascii=True), encoding="utf-8")
 

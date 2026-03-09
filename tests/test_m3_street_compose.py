@@ -160,6 +160,11 @@ def test_street_compose_outputs_created(tmp_path: Path, monkeypatch):
     assert "diversity_ratio" in summary
     assert "per_category_unique" in summary
     assert "selection_source_counts" in summary
+    assert "scene_graph" in layout_payload
+    assert summary["scene_graph_node_count"] == len(layout_payload["scene_graph"]["nodes"])
+    assert summary["scene_graph_edge_count"] == len(layout_payload["scene_graph"]["edges"])
+    assert summary["scene_graph_available_categories"]
+    assert all("slot_id" in placement for placement in layout_payload.get("placements", []))
 
 
 def test_street_compose_no_overlap_aabb(tmp_path: Path, monkeypatch):

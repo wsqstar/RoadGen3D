@@ -63,6 +63,11 @@ from roadgen3d.poi_taxonomy import (
 from roadgen3d.road_discovery import discover_poi_roads, write_discovered_roads_jsonl
 from roadgen3d.pipeline import M1Pipeline
 from roadgen3d.program_generator import ProgramTrainConfig
+from roadgen3d.scene_graph_viz import (
+    SCENE_GRAPH_NODE_TYPES,
+    plot_scene_graph,
+    scene_graph_control_state,
+)
 from roadgen3d.street_layout import compose_street_scene
 from roadgen3d.spatial_features import SpatialContext
 from roadgen3d.spatial_viz import plot_scene_with_markers, plot_distance_heatmap, plot_distance_histograms, plot_poi_exclusion_overview
@@ -1763,6 +1768,97 @@ def _render_poi_overview(layout_json_text: str):
         return None
 
 
+def _init_scene_graph_controls(layout_json_text: str):
+    """Initialize Scene Graph controls and render the default Plotly view."""
+    empty_poi = gr.update(choices=[], value=[])
+    empty_categories = gr.update(choices=[], value=[])
+    empty_edges = gr.update(choices=[], value=[])
+    empty_heatmap_category = gr.update(choices=[], value=None)
+    if not layout_json_text or not layout_json_text.strip():
+        return (
+            None,
+            gr.update(choices=list(SCENE_GRAPH_NODE_TYPES), value=list(SCENE_GRAPH_NODE_TYPES)),
+            empty_poi,
+            empty_categories,
+            empty_edges,
+            empty_heatmap_category,
+            gr.update(choices=["combined", "attraction", "repulsion"], value="combined"),
+            gr.update(value=True),
+            gr.update(value=0.55),
+        )
+    try:
+        payload = json.loads(layout_json_text)
+        state = scene_graph_control_state(payload)
+        figure = plot_scene_graph(
+            payload,
+            node_layers=state["node_layers"],
+            poi_types=state["poi_types"],
+            categories=state["categories"],
+            edge_types=state["edge_types"],
+            heatmap_category=state["heatmap_category"],
+            heatmap_layer=state["heatmap_layer"],
+            show_heatmap=bool(state["show_heatmap"]),
+            heatmap_opacity=float(state["heatmap_opacity"]),
+        )
+        return (
+            figure,
+            gr.update(choices=list(state["available_node_layers"]), value=list(state["node_layers"])),
+            gr.update(choices=list(state["available_poi_types"]), value=list(state["poi_types"])),
+            gr.update(choices=list(state["available_categories"]), value=list(state["categories"])),
+            gr.update(choices=list(state["available_edge_types"]), value=list(state["edge_types"])),
+            gr.update(
+                choices=list(state["available_categories"]),
+                value=state["heatmap_category"] if state["heatmap_category"] else None,
+            ),
+            gr.update(choices=["combined", "attraction", "repulsion"], value=state["heatmap_layer"]),
+            gr.update(value=bool(state["show_heatmap"])),
+            gr.update(value=float(state["heatmap_opacity"])),
+        )
+    except Exception:
+        return (
+            None,
+            gr.update(choices=list(SCENE_GRAPH_NODE_TYPES), value=list(SCENE_GRAPH_NODE_TYPES)),
+            empty_poi,
+            empty_categories,
+            empty_edges,
+            empty_heatmap_category,
+            gr.update(choices=["combined", "attraction", "repulsion"], value="combined"),
+            gr.update(value=True),
+            gr.update(value=0.55),
+        )
+
+
+def _render_scene_graph_from_controls(
+    layout_json_text: str,
+    graph_node_layers: List[str],
+    graph_poi_types: List[str],
+    graph_categories: List[str],
+    graph_edge_types: List[str],
+    heatmap_category: str,
+    heatmap_layer: str,
+    show_heatmap: bool,
+    heatmap_opacity: float,
+):
+    """Render the Scene Graph Plotly figure from the active filter controls."""
+    try:
+        if not layout_json_text or not layout_json_text.strip():
+            return None
+        payload = json.loads(layout_json_text)
+        return plot_scene_graph(
+            payload,
+            node_layers=list(graph_node_layers or []),
+            poi_types=list(graph_poi_types or []),
+            categories=list(graph_categories or []),
+            edge_types=list(graph_edge_types or []),
+            heatmap_category=str(heatmap_category or ""),
+            heatmap_layer=str(heatmap_layer or "combined"),
+            show_heatmap=bool(show_heatmap),
+            heatmap_opacity=float(heatmap_opacity),
+        )
+    except Exception:
+        return None
+
+
 def run_best_model_street(
     dataset_profile: str,
     query: str,
@@ -2584,8 +2680,8 @@ def build_demo() -> gr.Blocks:
     default_program_ckpt = str((ROOT / "artifacts/m6/program_generator.pt").resolve())
     default_osm_cache_dir = str((ROOT / "artifacts/m5/osm_cache").resolve())
 
-    with gr.Blocks(title="RoadGen3D StreetGen") as demo:
-        gr.Markdown("# RoadGen3D 神经符号街道生成")
+    with gr.Blocks(title="RoadGen3D POI-Driven Street Workbench") as demo:
+        gr.Markdown("# RoadGen3D POI驱动街道生成工作台")
         gr.Markdown("默认工作流：`准备 -> 生成 -> 研究`")
 
         with gr.Tabs():
@@ -2761,6 +2857,49 @@ def build_demo() -> gr.Blocks:
                     )
                     street_layout_json = gr.Code(label="Street Layout JSON", language="json")
                     street_files = gr.Files(label="Scene Downloads")
+                with gr.Accordion("Scene Graph", open=True):
+                    scene_graph_plot = gr.Plot(label="Scene Graph")
+                    with gr.Row():
+                        graph_node_layers = gr.CheckboxGroup(
+                            label="Node Layers",
+                            choices=list(SCENE_GRAPH_NODE_TYPES),
+                            value=list(SCENE_GRAPH_NODE_TYPES),
+                        )
+                        graph_poi_types = gr.CheckboxGroup(
+                            label="POI Types",
+                            choices=[],
+                            value=[],
+                        )
+                    with gr.Row():
+                        graph_categories = gr.CheckboxGroup(
+                            label="Furniture Categories",
+                            choices=[],
+                            value=[],
+                        )
+                        graph_edge_types = gr.CheckboxGroup(
+                            label="Edge Types",
+                            choices=[],
+                            value=[],
+                        )
+                    with gr.Row():
+                        heatmap_category = gr.Dropdown(
+                            label="Heatmap Category",
+                            choices=[],
+                            value=None,
+                        )
+                        heatmap_layer = gr.Dropdown(
+                            label="Heatmap Layer",
+                            choices=["combined", "attraction", "repulsion"],
+                            value="combined",
+                        )
+                        show_scene_heatmap = gr.Checkbox(label="Show Heatmap", value=True)
+                        scene_heatmap_opacity = gr.Slider(
+                            label="Heatmap Opacity",
+                            minimum=0.0,
+                            maximum=1.0,
+                            step=0.05,
+                            value=0.55,
+                        )
                 with gr.Accordion("Spatial Distance Analysis", open=False):
                     scene_overview_plot = gr.Plot(label="Scene Overview (Junctions + Entrances)")
                     with gr.Row():
@@ -2983,12 +3122,51 @@ def build_demo() -> gr.Blocks:
             fn=_render_poi_overview,
             inputs=[street_layout_json],
             outputs=[poi_overview_plot],
+        ).then(
+            fn=_init_scene_graph_controls,
+            inputs=[street_layout_json],
+            outputs=[
+                scene_graph_plot,
+                graph_node_layers,
+                graph_poi_types,
+                graph_categories,
+                graph_edge_types,
+                heatmap_category,
+                heatmap_layer,
+                show_scene_heatmap,
+                scene_heatmap_opacity,
+            ],
         )
         render_heatmap_btn.click(
             fn=_render_distance_heatmap,
             inputs=[street_layout_json, heatmap_type],
             outputs=[distance_heatmap_plot, distance_histogram_plot],
         )
+        for control in (
+            graph_node_layers,
+            graph_poi_types,
+            graph_categories,
+            graph_edge_types,
+            heatmap_category,
+            heatmap_layer,
+            show_scene_heatmap,
+            scene_heatmap_opacity,
+        ):
+            control.change(
+                fn=_render_scene_graph_from_controls,
+                inputs=[
+                    street_layout_json,
+                    graph_node_layers,
+                    graph_poi_types,
+                    graph_categories,
+                    graph_edge_types,
+                    heatmap_category,
+                    heatmap_layer,
+                    show_scene_heatmap,
+                    scene_heatmap_opacity,
+                ],
+                outputs=[scene_graph_plot],
+            )
         train_btn.click(
             fn=run_research_train,
             inputs=[

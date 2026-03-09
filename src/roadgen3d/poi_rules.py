@@ -234,6 +234,70 @@ def _get_poi_points(poi_type: str, ctx: PoiContext) -> Tuple[Tuple[float, float]
     return tuple(mapping.get(poi_type, ()))
 
 
+def rule_decay_sigma_m(rule: PoiRule) -> float:
+    """Return the effective decay sigma used by both scoring and heatmaps."""
+    return max(float(rule.clearance_sigma_m) / 2.0, 1e-6)
+
+
+def evaluate_rule_field_contribution(
+    position_xz: Tuple[float, float],
+    category: str,
+    rule: PoiRule,
+    poi_context: PoiContext,
+    *,
+    aggregate: str = "nearest",
+) -> float:
+    """Return one rule's scalar penalty-field contribution at a location.
+
+    ``aggregate="nearest"`` matches the historical placement scorer.
+    ``aggregate="sum"`` is used by the scene-graph heatmap to show the
+    accumulated effect of multiple nearby POIs of the same type.
+    """
+    w_cat = float(rule.affected_categories.get(category, 0.0) or 0.0)
+    if w_cat <= 0.0:
+        return 0.0
+
+    poi_pts = _get_poi_points(rule.poi_type, poi_context)
+    if not poi_pts:
+        return 0.0
+
+    sigma = rule_decay_sigma_m(rule)
+    px, pz = float(position_xz[0]), float(position_xz[1])
+    if str(aggregate).strip().lower() == "sum":
+        return float(
+            sum(
+                w_cat * math.exp(-math.hypot(px - qx, pz - qz) / sigma)
+                for qx, qz in poi_pts
+            )
+        )
+
+    d = _min_distance((px, pz), poi_pts)
+    return float(w_cat * math.exp(-d / sigma))
+
+
+def evaluate_repulsion_field(
+    position_xz: Tuple[float, float],
+    category: str,
+    rule_set: PoiRuleSet,
+    poi_context: PoiContext,
+    *,
+    aggregate: str = "nearest",
+) -> float:
+    """Evaluate the full POI repulsion field for one category."""
+    return float(
+        sum(
+            evaluate_rule_field_contribution(
+                position_xz,
+                category,
+                rule,
+                poi_context,
+                aggregate=aggregate,
+            )
+            for rule in rule_set.rules
+        )
+    )
+
+
 def score_placement(
     position_xz: Tuple[float, float],
     category: str,
@@ -258,17 +322,15 @@ def score_placement(
     violated: list[str] = []
 
     for rule in rule_set.rules:
-        w_cat = rule.affected_categories.get(category)
-        if w_cat is None or w_cat <= 0.0:
-            continue  # category not affected by this rule
-
-        poi_pts = _get_poi_points(rule.poi_type, poi_context)
-        if not poi_pts:
-            continue  # no POI of this type → no penalty
-
-        d = _min_distance(position_xz, poi_pts)
-        sigma = max(rule.clearance_sigma_m / 2.0, 1e-6)  # sigma_r = radius / 2
-        penalty_r = w_cat * math.exp(-d / sigma)
+        penalty_r = evaluate_rule_field_contribution(
+            position_xz,
+            category,
+            rule,
+            poi_context,
+            aggregate="nearest",
+        )
+        if penalty_r <= 0.0:
+            continue
         total_penalty += penalty_r
 
         if penalty_r > _VIOLATION_THRESHOLD:

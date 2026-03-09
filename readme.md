@@ -214,6 +214,9 @@ cd /Users/shiqi/Coding/github/GIStudio/RoadGen3D
 ## 7. 参考文档
 
 - 详细运行手册见：`README_M1.md`
+- 当前系统总览见：`docs/current_system_review.md`
+- 架构决策记录见：`docs/architecture_decisions.md`
+- 开发路线图见：`docs/roadmap.md`
 - 手动模型下载见：`docs/manual_download.md`
 - Shape-E 环境说明见：`docs/shapee_setup.md`
 
