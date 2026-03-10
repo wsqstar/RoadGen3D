@@ -607,6 +607,11 @@ class StreetPlacement:
     slot_id: str = ""
     placement_group: str = "street_furniture"
     theme_id: str = ""
+    anchor_poi_type: str = ""
+    anchor_target_xz: Optional[Tuple[float, float]] = None
+    anchor_distance_m: float = -1.0
+    placement_energy: float = 0.0
+    placement_status: str = ""
     anchor_geom_id: str = ""
     scale_xyz: List[float] = field(default_factory=list)
 
@@ -623,6 +628,8 @@ class StreetPlacement:
     def to_dict(self) -> Dict[str, Any]:
         payload = asdict(self)
         payload["violated_rules"] = list(self.violated_rules)
+        if self.anchor_target_xz is not None:
+            payload["anchor_target_xz"] = list(self.anchor_target_xz)
         return payload
 
 

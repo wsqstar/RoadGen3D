@@ -7,6 +7,7 @@ from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
 
 import numpy as np
 
+from .placement_field import poi_attraction_score
 from .poi_rules import PoiContext, evaluate_repulsion_field, load_rule_set
 from .poi_taxonomy import (
     CANONICAL_FIRE_POI,
@@ -66,25 +67,6 @@ _PLOTLY_POI_SYMBOLS: Dict[str, str] = {
     "waste_basket": "star",
     "bollard": "octagon",
 }
-_ATTRACTION_WEIGHTS: Dict[str, Dict[str, float]] = {
-    "bench": {"bus_stop": 0.9, "subway_entrance": 0.8, "entrance": 0.3, "crossing": 0.2},
-    "lamp": {
-        "traffic_signals": 1.0,
-        "crossing": 0.8,
-        "subway_entrance": 0.7,
-        "parking_entrance": 0.6,
-        "entrance": 0.5,
-        "bus_stop": 0.5,
-    },
-    "trash": {"waste_basket": 1.0, "bus_stop": 0.7, "subway_entrance": 0.6, "entrance": 0.4, "crossing": 0.3},
-    "tree": {"subway_entrance": 0.3, "bus_stop": 0.3, "entrance": 0.2, "parking_entrance": 0.2},
-    "bus_stop": {"bus_stop": 1.0, "subway_entrance": 0.7},
-    "mailbox": {"post_box": 1.0, "entrance": 0.5, "subway_entrance": 0.2},
-    "hydrant": {CANONICAL_FIRE_POI: 1.0},
-    "bollard": {"bollard": 1.0, "crossing": 0.9, "parking_entrance": 0.8, "traffic_signals": 0.5, "bus_stop": 0.3},
-}
-_STRONG_BINDING_POIS = {CANONICAL_FIRE_POI, "post_box", "waste_basket", "bollard"}
-_TRANSIT_ACCESS_POIS = {"bus_stop", "subway_entrance", "entrance", "parking_entrance", "crossing", "traffic_signals"}
 
 
 def _require_plotly() -> Any:
@@ -687,30 +669,18 @@ def _mask_contains(mask: Any, x: float, z: float) -> bool:
     return bool(mask.contains(shapely_mod["Point"](float(x), float(z))))
 
 
-def _attraction_sigma_m(poi_type: str) -> float:
-    canonical = canonicalize_poi_type(poi_type)
-    if canonical in _STRONG_BINDING_POIS:
-        return 4.0
-    if canonical in _TRANSIT_ACCESS_POIS:
-        return 6.0
-    return 5.0
-
-
 def _attraction_field(
     position_xz: Tuple[float, float],
     category: str,
     poi_points_by_type: Mapping[str, Sequence[Tuple[float, float]]],
 ) -> float:
-    px, pz = float(position_xz[0]), float(position_xz[1])
-    weights = _ATTRACTION_WEIGHTS.get(str(category), {})
-    total = 0.0
-    for poi_type, weight in weights.items():
-        points = poi_points_by_type.get(canonicalize_poi_type(poi_type), ()) or ()
-        sigma = _attraction_sigma_m(poi_type)
-        for qx, qz in points:
-            d_sq = (px - float(qx)) ** 2 + (pz - float(qz)) ** 2
-            total += float(weight) * math.exp(-d_sq / (2.0 * sigma * sigma))
-    return float(total)
+    return float(
+        poi_attraction_score(
+            str(category),
+            position_xz,
+            poi_points_by_type,
+        )
+    )
 
 
 def compute_scene_graph_heatmap(

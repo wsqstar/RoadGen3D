@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
 
 from .eval_metrics import compute_balance_score, compute_spacing_uniformity, compute_style_consistency
+from .placement_field import pair_interaction_scores, poi_attraction_score
 from .poi_taxonomy import asset_category_for_poi, canonicalize_poi_type, nonempty_poi_points, poi_plot_config
 from .street_priors import DEFAULT_CATEGORIES, DEFAULT_SPACING_M
 from .types import LayoutSlotPlan, StreetComposeConfig, StreetPlacement, StreetProgram
@@ -171,21 +172,6 @@ _PRESENTATION_HEIGHTS: Dict[str, float] = {
     "mailbox": 1.3,
     "hydrant": 0.9,
     "bollard": 1.1,
-}
-_PAIRING_BONUSES: Tuple[Tuple[str, str, float, float], ...] = (
-    ("bench", "trash", 4.5, 0.25),
-    ("bus_stop", "lamp", 6.0, 0.35),
-    ("entrance", "bollard", 4.0, 0.2),
-)
-_ATTRACTION_WEIGHTS: Dict[str, Dict[str, float]] = {
-    "bench": {"bus_stop": 0.9, "subway_entrance": 0.8, "entrance": 0.3, "crossing": 0.2},
-    "lamp": {"traffic_signals": 1.0, "crossing": 0.8, "subway_entrance": 0.7, "parking_entrance": 0.6, "entrance": 0.5, "bus_stop": 0.5},
-    "trash": {"waste_basket": 1.0, "bus_stop": 0.7, "subway_entrance": 0.6, "entrance": 0.4, "crossing": 0.3},
-    "tree": {"subway_entrance": 0.3, "bus_stop": 0.3, "entrance": 0.2, "parking_entrance": 0.2},
-    "bus_stop": {"bus_stop": 1.0, "subway_entrance": 0.7},
-    "mailbox": {"post_box": 1.0, "entrance": 0.5, "subway_entrance": 0.2},
-    "hydrant": {"fire_hydrant": 1.0},
-    "bollard": {"bollard": 1.0, "crossing": 0.9, "parking_entrance": 0.8, "traffic_signals": 0.5, "bus_stop": 0.3},
 }
 
 
@@ -378,26 +364,14 @@ def _poi_points(poi_context: object | None) -> Dict[str, Tuple[Tuple[float, floa
     return nonempty_poi_points(raw)
 
 
-def _attraction_sigma_m(poi_type: str) -> float:
-    canonical = canonicalize_poi_type(poi_type)
-    if canonical in {"fire_hydrant", "post_box", "waste_basket", "bollard"}:
-        return 4.0
-    if canonical in {"bus_stop", "subway_entrance", "entrance", "parking_entrance", "crossing", "traffic_signals"}:
-        return 6.0
-    return 5.0
-
-
 def _attraction_field(category: str, position_xz: Tuple[float, float], poi_context: object | None) -> float:
-    poi_points = _poi_points(poi_context)
-    weights = _ATTRACTION_WEIGHTS.get(str(category), {})
-    px, pz = float(position_xz[0]), float(position_xz[1])
-    total = 0.0
-    for poi_type, weight in weights.items():
-        for qx, qz in poi_points.get(canonicalize_poi_type(poi_type), ()):
-            sigma = _attraction_sigma_m(poi_type)
-            d_sq = (px - float(qx)) ** 2 + (pz - float(qz)) ** 2
-            total += float(weight) * math.exp(-d_sq / (2.0 * sigma * sigma))
-    return float(total)
+    return float(
+        poi_attraction_score(
+            str(category),
+            position_xz,
+            _poi_points(poi_context),
+        )
+    )
 
 
 def _slot_priority(category: str, preset: StylePresetSpec) -> float:
@@ -491,9 +465,13 @@ def score_pose_composition(
             rhythm_bonus += max(0.0, 1.0 - abs(dist - target_spacing) / max(target_spacing, 1.0)) * 0.25
             if dist < target_spacing * 0.35:
                 clutter_penalty += 1.4
-        for left_cat, right_cat, radius_m, bonus in _PAIRING_BONUSES:
-            if (category, placement.category) in {(left_cat, right_cat), (right_cat, left_cat)} and dist <= radius_m:
-                pairing_bonus += bonus
+        pair_attraction, _pair_repulsion = pair_interaction_scores(
+            str(category),
+            (px, pz),
+            str(placement.category),
+            (qx, qz),
+        )
+        pairing_bonus += min(float(pair_attraction), 0.4)
     hero_bonus = 0.25 if category in preset.hero_categories else 0.0
     return float(attraction + rhythm_bonus + pairing_bonus + hero_bonus - clutter_penalty)
 

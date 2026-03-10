@@ -9,7 +9,7 @@ import random
 import time
 from dataclasses import dataclass, replace
 from pathlib import Path
-from typing import Dict, List, Optional, Sequence, Tuple
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
 
 import numpy as np
 
@@ -20,7 +20,6 @@ from .beauty import (
     compute_presentation_report,
     curate_candidates,
     render_presentation_views,
-    score_pose_composition,
     shape_program_for_style,
     style_palette,
 )
@@ -50,6 +49,16 @@ from .index_store import FaissIndexStore
 from .layout_features import CandidateDescriptor, PolicyFeatureContext, vectorize_slot_candidates
 from .layout_policy import LayoutPolicyRuntime
 from .layout_solver import LayoutSolverRuntime, solve_layout
+from .placement_field import (
+    UniformSpatialHash,
+    compose_candidate_energy,
+    load_placement_field_config,
+    pair_cutoff_radius_m,
+    pair_interaction_scores,
+    placement_field_path,
+    placement_priority_rank,
+    poi_attraction_score,
+)
 from .spatial_features import build_spatial_context, compute_slot_distances
 from .osm_segment_graph import build_segment_graph
 from .poi_taxonomy import (
@@ -66,10 +75,12 @@ from .poi_taxonomy import (
     qualifies_poi_counts,
 )
 from .program_generator import ProgramGeneratorRuntime
+from .poi_rules import load_rule_set
 from .scene_graph_viz import build_scene_graph
 from .street_priors import DEFAULT_CATEGORIES, DEFAULT_SPACING_M, SIDE_PREF
 from .street_program import infer_street_program
 from .theme_buildings import (
+    assign_theme_id_for_point,
     building_query,
     collect_building_footprints,
     infer_theme_segments,
@@ -1208,6 +1219,526 @@ def _slot_spatial_kwargs(slot, spatial_ctx) -> dict:
     }
 
 
+def _slot_placement_sort_key(slot: object) -> Tuple[int, int, str, float, float, str]:
+    anchor_type = str(getattr(slot, "anchor_poi_type", "") or "").strip()
+    if anchor_type:
+        bucket = 0
+        anchor_rank = placement_priority_rank(anchor_type)
+    elif bool(getattr(slot, "required", False)):
+        bucket = 1
+        anchor_rank = 999
+    else:
+        bucket = 2
+        anchor_rank = 999
+    return (
+        int(bucket),
+        int(anchor_rank),
+        str(getattr(slot, "theme_id", "") or ""),
+        -float(getattr(slot, "priority", 0.0) or 0.0),
+        float(getattr(slot, "x_center_m", 0.0) or 0.0),
+        str(getattr(slot, "slot_id", "") or ""),
+    )
+
+
+def _placement_status(anchor_distance_m: Optional[float], *, required: bool, placed: bool) -> str:
+    if not placed:
+        return "unplaced_required" if required else "unplaced_optional"
+    if anchor_distance_m is not None and anchor_distance_m >= 0.0:
+        if anchor_distance_m <= 0.75:
+            return "anchored_exact"
+        return "anchored_relaxed"
+    return "placed"
+
+
+def _point_in_zone(zone: object | None, point_xz: Tuple[float, float], *, tolerance_m: float = 0.05) -> bool:
+    if zone is None or getattr(zone, "is_empty", False):
+        return False
+    try:
+        from shapely.geometry import Point as ShapelyPoint
+    except Exception:
+        return True
+    point = ShapelyPoint(float(point_xz[0]), float(point_xz[1]))
+    return bool(zone.buffer(float(tolerance_m)).contains(point))
+
+
+def _point_side_matches_slot(
+    point_xz: Tuple[float, float],
+    *,
+    slot_side: str,
+    placement_ctx: object | None,
+) -> Tuple[bool, bool]:
+    if placement_ctx is None:
+        return True, True
+    overall_zone = getattr(placement_ctx, "sidewalk_zone", None)
+    in_overall = _point_in_zone(overall_zone, point_xz)
+    side_name = str(slot_side or "").strip().lower()
+    if side_name == "left":
+        side_zone = getattr(placement_ctx, "left_sidewalk_zone", None)
+    elif side_name == "right":
+        side_zone = getattr(placement_ctx, "right_sidewalk_zone", None)
+    else:
+        return True, in_overall
+    if side_zone is None or getattr(side_zone, "is_empty", False):
+        return True, in_overall
+    return _point_in_zone(side_zone, point_xz), in_overall
+
+
+def _segment_tangent_normal(segment_node: object | None) -> Optional[Tuple[Tuple[float, float], Tuple[float, float], float]]:
+    if segment_node is None:
+        return None
+    start_xy = tuple(float(v) for v in getattr(segment_node, "start_xy", (0.0, 0.0)))
+    end_xy = tuple(float(v) for v in getattr(segment_node, "end_xy", (0.0, 0.0)))
+    dx = end_xy[0] - start_xy[0]
+    dz = end_xy[1] - start_xy[1]
+    length = math.hypot(dx, dz)
+    if length <= 1e-6:
+        return None
+    tangent = (dx / length, dz / length)
+    left_normal = (-tangent[1], tangent[0])
+    return tangent, left_normal, float(length)
+
+
+def _theme_nodes_for_segment(theme_segment: ThemeSegment, road_segment_graph: object | None) -> Tuple[object, ...]:
+    nodes_by_id = _segment_node_lookup(road_segment_graph)
+    nodes = [
+        nodes_by_id[segment_id]
+        for segment_id in theme_segment.segment_ids
+        if segment_id in nodes_by_id
+    ]
+    return tuple(sorted(nodes, key=lambda node: float(getattr(node, "station_center_m", 0.0) or 0.0)))
+
+
+def _point_within_theme_segment(
+    point_xz: Tuple[float, float],
+    *,
+    theme_segment: ThemeSegment | None,
+    road_segment_graph: object | None,
+) -> bool:
+    if theme_segment is None:
+        return True
+    if road_segment_graph is not None and getattr(road_segment_graph, "nodes", None):
+        nodes = list(getattr(road_segment_graph, "nodes", ()) or ())
+        if not nodes:
+            return True
+        nearest = min(
+            nodes,
+            key=lambda node: math.hypot(
+                float(getattr(node, "center_xy", (0.0, 0.0))[0]) - float(point_xz[0]),
+                float(getattr(node, "center_xy", (0.0, 0.0))[1]) - float(point_xz[1]),
+            ),
+        )
+        return str(getattr(nearest, "segment_id", "")) in set(theme_segment.segment_ids)
+    return bool(
+        float(theme_segment.x_start_m) - 1e-6
+        <= float(point_xz[0])
+        <= float(theme_segment.x_end_m) + 1e-6
+    )
+
+
+def _theme_poi_points(
+    *,
+    theme_segment: ThemeSegment | None,
+    theme_segments: Sequence[ThemeSegment],
+    poi_ctx: object | None,
+    road_segment_graph: object | None,
+) -> Dict[str, Tuple[Tuple[float, float], ...]]:
+    if poi_ctx is None:
+        return {}
+    points_by_type = nonempty_poi_points(getattr(poi_ctx, "poi_points_by_type_xz", {}) or {})
+    if theme_segment is None:
+        return {
+            poi_type: tuple((float(point[0]), float(point[1])) for point in points)
+            for poi_type, points in points_by_type.items()
+        }
+    filtered: Dict[str, List[Tuple[float, float]]] = {}
+    for poi_type, points in points_by_type.items():
+        for point in points:
+            point_xz = (float(point[0]), float(point[1]))
+            if assign_theme_id_for_point(point_xz, theme_segments, road_segment_graph) != theme_segment.theme_id:
+                continue
+            filtered.setdefault(str(poi_type), []).append(point_xz)
+    return {
+        poi_type: tuple(points)
+        for poi_type, points in filtered.items()
+        if points
+    }
+
+
+def _max_pair_cutoff(category: str, existing_categories: Iterable[str]) -> float:
+    cutoffs = [8.0]
+    for other_category in existing_categories:
+        cutoffs.append(pair_cutoff_radius_m(category, str(other_category)))
+    return float(max(cutoffs))
+
+
+def _pair_scores_for_neighbors(
+    *,
+    category: str,
+    point_xz: Tuple[float, float],
+    neighbor_indices: Sequence[int],
+    placements: Sequence[StreetPlacement],
+) -> Tuple[float, float]:
+    pair_attraction = 0.0
+    pair_repulsion = 0.0
+    for idx in neighbor_indices:
+        placement = placements[int(idx)]
+        attraction, repulsion = pair_interaction_scores(
+            str(category),
+            point_xz,
+            str(placement.category),
+            (float(placement.position_xyz[0]), float(placement.position_xyz[2])),
+        )
+        pair_attraction += float(attraction)
+        pair_repulsion += float(repulsion)
+    return float(pair_attraction), float(pair_repulsion)
+
+
+def _band_deviation_penalty(
+    *,
+    point_xz: Tuple[float, float],
+    slot: object,
+    band_width_m: float,
+) -> float:
+    target_x = float(getattr(slot, "x_center_m", 0.0) or 0.0)
+    target_z = float(getattr(slot, "z_center_m", 0.0) or 0.0)
+    return float(
+        math.hypot(float(point_xz[0]) - target_x, float(point_xz[1]) - target_z)
+        / max(float(band_width_m), 1.0)
+    )
+
+
+def _search_tier_exact_candidates(
+    *,
+    anchor_target_xz: Tuple[float, float],
+    placement_ctx: object,
+) -> Tuple[Dict[str, object], ...]:
+    from .placement_zones import compute_facing_angle
+
+    yaw = compute_facing_angle(anchor_target_xz, placement_ctx.carriageway)  # type: ignore[attr-defined]
+    return (
+        {
+            "tier": "tier_1_exact",
+            "point_xz": (float(anchor_target_xz[0]), float(anchor_target_xz[1])),
+            "yaw_deg": float(yaw),
+            "anchor_distance_m": 0.0,
+        },
+    )
+
+
+def _search_tier_ring_candidates(
+    *,
+    anchor_target_xz: Tuple[float, float],
+    placement_ctx: object,
+) -> Tuple[Dict[str, object], ...]:
+    from .placement_zones import compute_facing_angle
+
+    candidates: List[Dict[str, object]] = []
+    anchor_x, anchor_z = float(anchor_target_xz[0]), float(anchor_target_xz[1])
+    for radius_m in (0.6, 1.2, 2.0, 3.0):
+        for step_idx in range(8):
+            angle = (2.0 * math.pi * float(step_idx)) / 8.0
+            point = (
+                anchor_x + math.cos(angle) * float(radius_m),
+                anchor_z + math.sin(angle) * float(radius_m),
+            )
+            yaw = compute_facing_angle(point, placement_ctx.carriageway)  # type: ignore[attr-defined]
+            candidates.append(
+                {
+                    "tier": "tier_2_ring",
+                    "point_xz": point,
+                    "yaw_deg": float(yaw),
+                    "anchor_distance_m": float(radius_m),
+                }
+            )
+    return tuple(candidates)
+
+
+def _search_tier_segment_candidates(
+    *,
+    anchor_target_xz: Tuple[float, float],
+    segment_node: object | None,
+    placement_ctx: object,
+    config: StreetComposeConfig,
+) -> Tuple[Dict[str, object], ...]:
+    from .placement_zones import compute_facing_angle
+
+    tangent_payload = _segment_tangent_normal(segment_node)
+    if tangent_payload is None:
+        return tuple()
+    tangent, _left_normal, segment_length_m = tangent_payload
+    search_extent = max(float(segment_length_m), 6.0, float(getattr(config, "segment_length_m", 6.0)))
+    candidates: List[Dict[str, object]] = []
+    for offset_m in np.arange(-search_extent, search_extent + 1e-6, 1.0):
+        if abs(float(offset_m)) < 1e-6:
+            continue
+        point = (
+            float(anchor_target_xz[0]) + tangent[0] * float(offset_m),
+            float(anchor_target_xz[1]) + tangent[1] * float(offset_m),
+        )
+        anchor_distance_m = float(math.hypot(point[0] - anchor_target_xz[0], point[1] - anchor_target_xz[1]))
+        if anchor_distance_m > 8.0 + 1e-6:
+            continue
+        yaw = compute_facing_angle(point, placement_ctx.carriageway)  # type: ignore[attr-defined]
+        candidates.append(
+            {
+                "tier": "tier_3_segment",
+                "point_xz": point,
+                "yaw_deg": float(yaw),
+                "anchor_distance_m": anchor_distance_m,
+            }
+        )
+    return tuple(candidates)
+
+
+def _search_tier_theme_side_candidates(
+    *,
+    anchor_target_xz: Tuple[float, float],
+    placement_ctx: object,
+    theme_segment: ThemeSegment | None,
+    road_segment_graph: object | None,
+    slot_side: str,
+    band_width_m: float,
+) -> Tuple[Dict[str, object], ...]:
+    from .placement_zones import compute_facing_angle
+
+    if theme_segment is None:
+        return tuple()
+    candidates: List[Dict[str, object]] = []
+    theme_nodes = _theme_nodes_for_segment(theme_segment, road_segment_graph)
+    carriageway_half = float(getattr(placement_ctx, "carriageway_width_m", 8.0) or 8.0) / 2.0
+    lateral = carriageway_half + max(float(band_width_m) * 0.45, 0.8)
+    side_name = str(slot_side or "").strip().lower()
+    sign = 1.0 if side_name == "left" else -1.0
+    for node in theme_nodes:
+        tangent_payload = _segment_tangent_normal(node)
+        if tangent_payload is None:
+            continue
+        tangent, left_normal, _segment_length_m = tangent_payload
+        normal = left_normal if sign > 0 else (-left_normal[0], -left_normal[1])
+        center_x, center_z = tuple(float(v) for v in getattr(node, "center_xy", (0.0, 0.0)))
+        for along_offset_m in (-2.0, 0.0, 2.0):
+            point = (
+                center_x + tangent[0] * float(along_offset_m) + normal[0] * lateral,
+                center_z + tangent[1] * float(along_offset_m) + normal[1] * lateral,
+            )
+            anchor_distance_m = float(math.hypot(point[0] - anchor_target_xz[0], point[1] - anchor_target_xz[1]))
+            if anchor_distance_m > 8.0 + 1e-6:
+                continue
+            yaw = compute_facing_angle(point, placement_ctx.carriageway)  # type: ignore[attr-defined]
+            candidates.append(
+                {
+                    "tier": "tier_4_theme_side",
+                    "point_xz": point,
+                    "yaw_deg": float(yaw),
+                    "anchor_distance_m": anchor_distance_m,
+                }
+            )
+    return tuple(candidates)
+
+
+def _iter_slot_candidate_groups(
+    *,
+    slot: object,
+    category: str,
+    config: StreetComposeConfig,
+    placement_ctx: object | None,
+    segment_node: object | None,
+    theme_segment: ThemeSegment | None,
+    road_segment_graph: object | None,
+    band_width_m: float,
+    rng: random.Random,
+) -> Tuple[Tuple[Dict[str, object], ...], ...]:
+    anchor_target_xz = getattr(slot, "anchor_position_xz", None)
+    if anchor_target_xz is not None and placement_ctx is not None and config.layout_mode == "osm":
+        target_point = (float(anchor_target_xz[0]), float(anchor_target_xz[1]))
+        return (
+            _search_tier_exact_candidates(anchor_target_xz=target_point, placement_ctx=placement_ctx),
+            _search_tier_ring_candidates(anchor_target_xz=target_point, placement_ctx=placement_ctx),
+            _search_tier_segment_candidates(
+                anchor_target_xz=target_point,
+                segment_node=segment_node,
+                placement_ctx=placement_ctx,
+                config=config,
+            ),
+            _search_tier_theme_side_candidates(
+                anchor_target_xz=target_point,
+                placement_ctx=placement_ctx,
+                theme_segment=theme_segment,
+                road_segment_graph=road_segment_graph,
+                slot_side=str(getattr(slot, "side", "") or ""),
+                band_width_m=float(band_width_m),
+            ),
+        )
+    candidates: List[Dict[str, object]] = []
+    for _trial_idx in range(int(config.max_trials_per_slot)):
+        if config.layout_mode == "osm" and placement_ctx is not None:
+            pose = _sample_pose_osm_for_segment(
+                category,
+                placement_ctx,
+                rng,
+                segment_node=segment_node,
+                slot_side=str(getattr(slot, "side", "") or ""),
+                band_width_m=float(band_width_m),
+                anchor_position_xz=None,
+            )
+        else:
+            pose = _sample_pose_for_slot(
+                slot_x_center=float(getattr(slot, "x_center_m", 0.0) or 0.0),
+                slot_z_center=float(getattr(slot, "z_center_m", 0.0) or 0.0),
+                slot_side=str(getattr(slot, "side", "") or ""),
+                slot_spacing_m=float(getattr(slot, "spacing_m", 1.0) or 1.0),
+                band_width_m=float(band_width_m),
+                length_m=float(config.length_m),
+                rng=rng,
+            )
+        if pose is None:
+            continue
+        x, z, yaw_deg = pose
+        candidates.append(
+            {
+                "tier": "tier_optional_sampling",
+                "point_xz": (float(x), float(z)),
+                "yaw_deg": float(yaw_deg),
+                "anchor_distance_m": None,
+            }
+        )
+    return (tuple(candidates),)
+
+
+def _evaluate_slot_candidate(
+    *,
+    candidate: Mapping[str, object],
+    slot: object,
+    category: str,
+    band_width_m: float,
+    entry: _MeshCacheEntry,
+    placements: Sequence[StreetPlacement],
+    spatial_hash: UniformSpatialHash,
+    existing_bboxes: Sequence[Tuple[float, float, float, float]],
+    placement_ctx: object | None,
+    theme_segment: ThemeSegment | None,
+    road_segment_graph: object | None,
+    theme_poi_points: Mapping[str, Sequence[Tuple[float, float]]],
+    poi_ctx: object | None,
+    rule_set: object | None,
+    config: StreetComposeConfig,
+    entrance_registry: PlacedAssetRegistry,
+    carriageway_boundary: Optional[CarriagewayBoundary],
+    entrance_points_xz: Sequence[Tuple[float, float]],
+) -> Tuple[Optional[Dict[str, object]], Optional[str]]:
+    point_xz = (
+        float(candidate["point_xz"][0]),
+        float(candidate["point_xz"][1]),
+    )
+    side_matches, in_overall = _point_side_matches_slot(
+        point_xz,
+        slot_side=str(getattr(slot, "side", "") or ""),
+        placement_ctx=placement_ctx,
+    )
+    if not in_overall:
+        return None, "out_of_sidewalk"
+    if not side_matches:
+        return None, "side_mismatch"
+    if not _point_within_theme_segment(point_xz, theme_segment=theme_segment, road_segment_graph=road_segment_graph):
+        return None, "out_of_theme_range"
+
+    bbox = _compute_bbox(
+        x=float(point_xz[0]),
+        z=float(point_xz[1]),
+        yaw_deg=float(candidate["yaw_deg"]),
+        half_x=entry.half_x,
+        half_z=entry.half_z,
+        scale=1.0,
+        clearance=0.2,
+    )
+    neighbor_bbox_indices = spatial_hash.query_bbox(bbox)
+    if any(_bbox_intersects(bbox, existing_bboxes[int(idx)]) for idx in neighbor_bbox_indices):
+        return None, "overlap_blocked"
+
+    poi_repulsion = 0.0
+    constraint_penalty = 0.0
+    feasibility_score = 1.0
+    violated_rules: Tuple[str, ...] = ()
+    if rule_set is not None and poi_ctx is not None:
+        from .poi_rules import evaluate_repulsion_field, score_placement as _score_placement
+
+        poi_repulsion = float(evaluate_repulsion_field(point_xz, category, rule_set, poi_ctx, aggregate="nearest"))
+        if config.constraint_mode == "soft":
+            constraint_result = _score_placement(point_xz, category, rule_set, poi_ctx)
+            if float(constraint_result.penalty) > float(config.constraint_veto_threshold):
+                return None, "constraint_vetoed"
+            constraint_penalty = float(constraint_result.penalty)
+            feasibility_score = float(constraint_result.feasibility_score)
+            violated_rules = tuple(constraint_result.violated_rules)
+
+    if entrance_points_xz and carriageway_boundary is not None:
+        entrance_penalty, entrance_bonus, entrance_violated = score_entrance_impact(
+            candidate_xz=point_xz,
+            candidate_category=category,
+            candidate_bbox_xz=(float(bbox[0]), float(bbox[1]), float(bbox[2]), float(bbox[3])),
+            entrance_points_xz=tuple((float(point[0]), float(point[1])) for point in entrance_points_xz),
+            registry=entrance_registry,
+            carriageway_boundary=carriageway_boundary,
+        )
+        poi_repulsion += max(0.0, float(entrance_penalty) - float(entrance_bonus))
+        if config.constraint_mode == "soft":
+            constraint_penalty += max(0.0, float(entrance_penalty) - float(entrance_bonus))
+            feasibility_score *= math.exp(-max(0.0, float(entrance_penalty)))
+            violated_rules = tuple(list(violated_rules) + list(entrance_violated))
+
+    neighbor_pair_radius = _max_pair_cutoff(category, (placement.category for placement in placements))
+    neighbor_indices = spatial_hash.query_radius(point_xz, neighbor_pair_radius)
+    pair_attraction, pair_repulsion = _pair_scores_for_neighbors(
+        category=category,
+        point_xz=point_xz,
+        neighbor_indices=neighbor_indices,
+        placements=placements,
+    )
+    poi_cutoff_m = max(7.5, float(band_width_m) + 6.0)
+    poi_attraction = float(
+        poi_attraction_score(
+            category,
+            point_xz,
+            theme_poi_points,
+            cutoff_m=poi_cutoff_m,
+        )
+    )
+    energy = compose_candidate_energy(
+        anchor_distance_m=(
+            float(candidate["anchor_distance_m"])
+            if candidate.get("anchor_distance_m") is not None
+            else None
+        ),
+        poi_attraction=poi_attraction,
+        poi_repulsion=poi_repulsion,
+        pair_attraction=pair_attraction,
+        pair_repulsion=pair_repulsion,
+        band_deviation_penalty=_band_deviation_penalty(
+            point_xz=point_xz,
+            slot=slot,
+            band_width_m=float(band_width_m),
+        ),
+    )
+    return (
+        {
+            "x": float(point_xz[0]),
+            "z": float(point_xz[1]),
+            "yaw_deg": float(candidate["yaw_deg"]),
+            "bbox": bbox,
+            "constraint_penalty": float(constraint_penalty),
+            "feasibility_score": float(feasibility_score),
+            "violated_rules": tuple(violated_rules),
+            "placement_energy": float(energy.total_energy),
+            "anchor_distance_m": (
+                float(candidate["anchor_distance_m"])
+                if candidate.get("anchor_distance_m") is not None
+                else None
+            ),
+            "candidate_tier": str(candidate["tier"]),
+        },
+        None,
+    )
+
 def _pick_building_candidate(
     *,
     query: str,
@@ -1549,11 +2080,7 @@ def compose_street_scene(
         poi_ctx = build_poi_context(placement_ctx)
     else:
         poi_ctx = PoiContext((), (), ())
-
-    if config.constraint_mode == "soft":
-        from .poi_rules import load_rule_set
-        from .poi_rules import score_placement as _score_placement
-
+    if poi_ctx is not None:
         rule_set = load_rule_set(config.poi_rule_set)
 
     entrance_registry = PlacedAssetRegistry()
@@ -1767,19 +2294,56 @@ def compose_street_scene(
         "theme_segment_count": int(len(theme_segments)),
     }
 
+    placement_field_config = load_placement_field_config()
+    spatial_hash = UniformSpatialHash(cell_size_m=float(placement_field_config["cell_size_m"]))
+    ordered_slot_plans = sorted(slot_plans, key=_slot_placement_sort_key)
+    theme_poi_cache: Dict[str, Dict[str, Tuple[Tuple[float, float], ...]]] = {
+        segment.theme_id: _theme_poi_points(
+            theme_segment=segment,
+            theme_segments=theme_segments,
+            poi_ctx=poi_ctx,
+            road_segment_graph=road_segment_graph,
+        )
+        for segment in theme_segments
+    }
     category_slot_counts: Dict[str, int] = {}
-    for slot in slot_plans:
+    for slot in ordered_slot_plans:
         category_slot_counts[slot.category] = category_slot_counts.get(slot.category, 0) + 1
-    total_scene_slots = max(len(slot_plans), 1)
+    total_scene_slots = max(len(ordered_slot_plans), 1)
     placed_score_sums: Dict[str, float] = {category: 0.0 for category in DEFAULT_CATEGORIES}
     placed_counts: Dict[str, int] = {category: 0 for category in DEFAULT_CATEGORIES}
     slot_index_by_category: Dict[str, int] = {category: 0 for category in DEFAULT_CATEGORIES}
+    total_required_slots = sum(
+        1 for slot in ordered_slot_plans if bool(getattr(slot, "required", False)) or str(getattr(slot, "anchor_poi_type", "") or "").strip()
+    )
+    realized_required_slots = 0
+    anchor_resolution_summary = {
+        "total_anchor_slots": int(sum(1 for slot in ordered_slot_plans if str(getattr(slot, "anchor_poi_type", "") or "").strip())),
+        "anchored_exact": 0,
+        "anchored_relaxed": 0,
+        "unplaced_required": 0,
+    }
+    unplaced_slot_diagnostics: List[Dict[str, object]] = []
 
-    for slot in slot_plans:
+    for slot in ordered_slot_plans:
         category = slot.category
         pool = category_to_rows.get(category, [])
         if not pool:
             dropped_slots += 1
+            if bool(getattr(slot, "required", False)) or str(getattr(slot, "anchor_poi_type", "") or "").strip():
+                anchor_resolution_summary["unplaced_required"] += 1
+                unplaced_slot_diagnostics.append(
+                    {
+                        "slot_id": str(getattr(slot, "slot_id", "")),
+                        "category": str(category),
+                        "theme_id": str(getattr(slot, "theme_id", "") or ""),
+                        "anchor_poi_type": str(getattr(slot, "anchor_poi_type", "") or ""),
+                        "search_tier_reached": "tier_optional_sampling",
+                        "best_anchor_distance_m": -1.0,
+                        "failure_reason": "no_candidate_after_search",
+                        "blocked_reason_counts": {},
+                    }
+                )
             continue
         theme_segment = theme_by_id.get(str(getattr(slot, "theme_id", "")))
         slot_query = (
@@ -1839,110 +2403,114 @@ def compose_street_scene(
         band = slot_band_lookup.get(str(slot.slot_id))
         if band is None:
             dropped_slots += 1
+            if bool(getattr(slot, "required", False)) or str(getattr(slot, "anchor_poi_type", "") or "").strip():
+                anchor_resolution_summary["unplaced_required"] += 1
+                unplaced_slot_diagnostics.append(
+                    {
+                        "slot_id": str(getattr(slot, "slot_id", "")),
+                        "category": str(category),
+                        "theme_id": str(getattr(slot, "theme_id", "") or ""),
+                        "anchor_poi_type": str(getattr(slot, "anchor_poi_type", "") or ""),
+                        "search_tier_reached": "tier_optional_sampling",
+                        "best_anchor_distance_m": -1.0,
+                        "failure_reason": "no_candidate_after_search",
+                        "blocked_reason_counts": {},
+                    }
+                )
             slot_index_by_category[category] = slot_index_by_category.get(category, 0) + 1
             continue
 
         entry = mesh_cache[row["asset_id"]]
-        placed = False
-        trial_candidates: List[
-            Tuple[float, float, float, Tuple[float, float, float, float], float, float, Tuple[str, ...], float]
-        ] = []
-        anchor_position = getattr(slot, "anchor_position_xz", None)
         segment_node = slot_segment_lookup.get(str(slot.slot_id))
-        for _trial_idx in range(int(config.max_trials_per_slot)):
-            if config.layout_mode == "osm" and placement_ctx is not None:
-                pose = _sample_pose_osm_for_segment(
-                    category,
-                    placement_ctx,
-                    rng,
-                    segment_node=segment_node,
-                    slot_side=str(slot.side),
-                    band_width_m=float(getattr(band, "width_m", 1.0)),
-                    anchor_position_xz=anchor_position,
-                )
-                if pose is None:
-                    continue
-                x, z, yaw_deg = pose
-            else:
-                x, z, yaw_deg = _sample_pose_for_slot(
-                    slot_x_center=float(slot.x_center_m),
-                    slot_z_center=float(slot.z_center_m),
-                    slot_side=str(slot.side),
-                    slot_spacing_m=float(slot.spacing_m),
-                    band_width_m=float(getattr(band, "width_m", 1.0)),
-                    length_m=float(config.length_m),
-                    rng=rng,
-                )
-            scale = 1.0
-            bbox = _compute_bbox(
-                x=x,
-                z=z,
-                yaw_deg=yaw_deg,
-                half_x=entry.half_x,
-                half_z=entry.half_z,
-                scale=scale,
-                clearance=clearance,
-            )
-            if any(_bbox_intersects(bbox, existing) for existing in existing_bboxes):
+        candidate_groups = _iter_slot_candidate_groups(
+            slot=slot,
+            category=category,
+            config=config,
+            placement_ctx=placement_ctx,
+            segment_node=segment_node,
+            theme_segment=theme_segment,
+            road_segment_graph=road_segment_graph,
+            band_width_m=float(getattr(band, "width_m", 1.0)),
+            rng=rng,
+        )
+        blocked_reason_counts = {
+            "overlap_blocked": 0,
+            "constraint_vetoed": 0,
+            "out_of_sidewalk": 0,
+            "out_of_theme_range": 0,
+            "side_mismatch": 0,
+            "no_candidate_after_search": 0,
+        }
+        chosen_candidate: Optional[Dict[str, object]] = None
+        best_anchor_distance_m = float("inf")
+        search_tier_reached = ""
+        for candidate_group in candidate_groups:
+            if not candidate_group:
                 continue
-
-            c_penalty, c_feasibility, c_violated = 0.0, 1.0, ()
-            if config.constraint_mode == "soft" and rule_set is not None and poi_ctx is not None:
-                cr = _score_placement((x, z), category, rule_set, poi_ctx)
-                if cr.penalty > config.constraint_veto_threshold:
-                    continue
-                c_penalty = cr.penalty
-                c_feasibility = cr.feasibility_score
-                c_violated = cr.violated_rules
-
-            if entrance_points_xz and carriageway_boundary is not None:
-                e_penalty, e_bonus, e_violated = score_entrance_impact(
-                    candidate_xz=(x, z),
-                    candidate_category=category,
-                    candidate_bbox_xz=(bbox[0], bbox[1], bbox[2], bbox[3]),
-                    entrance_points_xz=entrance_points_xz,
-                    registry=entrance_registry,
+            search_tier_reached = str(candidate_group[0]["tier"])
+            feasible_candidates: List[Dict[str, object]] = []
+            for candidate in candidate_group:
+                if candidate.get("anchor_distance_m") is not None:
+                    best_anchor_distance_m = min(best_anchor_distance_m, float(candidate["anchor_distance_m"]))
+                resolved_candidate, blocked_reason = _evaluate_slot_candidate(
+                    candidate=candidate,
+                    slot=slot,
+                    category=category,
+                    band_width_m=float(getattr(band, "width_m", 1.0)),
+                    entry=entry,
+                    placements=placements,
+                    spatial_hash=spatial_hash,
+                    existing_bboxes=existing_bboxes,
+                    placement_ctx=placement_ctx,
+                    theme_segment=theme_segment,
+                    road_segment_graph=road_segment_graph,
+                    theme_poi_points=theme_poi_cache.get(str(getattr(slot, "theme_id", "") or ""), {}),
+                    poi_ctx=poi_ctx,
+                    rule_set=rule_set,
+                    config=config,
+                    entrance_registry=entrance_registry,
                     carriageway_boundary=carriageway_boundary,
+                    entrance_points_xz=entrance_points_xz,
                 )
-                c_penalty += e_penalty - e_bonus
-                c_feasibility *= math.exp(-e_penalty)
-                c_violated = tuple(list(c_violated) + list(e_violated))
-
-            beauty_score = score_pose_composition(
-                category=category,
-                position_xz=(x, z),
-                existing_placements=placements,
-                poi_context=poi_ctx,
-                config=config,
-            )
-            trial_candidates.append((x, z, yaw_deg, bbox, c_penalty, c_feasibility, c_violated, beauty_score))
-            if config.constraint_mode != "soft" or anchor_position is not None:
+                if blocked_reason is not None:
+                    blocked_reason_counts[blocked_reason] = blocked_reason_counts.get(blocked_reason, 0) + 1
+                    continue
+                assert resolved_candidate is not None
+                feasible_candidates.append(resolved_candidate)
+            if feasible_candidates:
+                chosen_candidate = max(
+                    feasible_candidates,
+                    key=lambda item: (
+                        float(item["placement_energy"]),
+                        -float(item["anchor_distance_m"]) if item.get("anchor_distance_m") is not None else 0.0,
+                        -abs(float(item["x"]) - float(getattr(slot, "x_center_m", 0.0) or 0.0)),
+                        -abs(float(item["z"]) - float(getattr(slot, "z_center_m", 0.0) or 0.0)),
+                    ),
+                )
                 break
 
-        if trial_candidates:
-            if len(trial_candidates) > 1:
-                score_norm = min(1.0, max(0.0, float(score)))
-                if config.constraint_mode == "soft":
-                    best = max(
-                        trial_candidates,
-                        key=lambda candidate: (
-                            (1.0 - config.constraint_weight) * score_norm
-                            + config.constraint_weight * candidate[5]
-                            + 0.18 * candidate[7]
-                            - 0.08 * candidate[4]
-                        ),
-                    )
-                else:
-                    best = max(
-                        trial_candidates,
-                        key=lambda candidate: score_norm + 0.3 * candidate[7],
-                    )
-            else:
-                best = trial_candidates[0]
-
-            bx, bz, byaw, bbbox, bpenalty, bfeas, bviolated, _beauty_score = best
+        placed = False
+        if chosen_candidate is not None:
+            bx = float(chosen_candidate["x"])
+            bz = float(chosen_candidate["z"])
+            byaw = float(chosen_candidate["yaw_deg"])
+            bbbox = tuple(float(value) for value in chosen_candidate["bbox"])
+            bpenalty = float(chosen_candidate["constraint_penalty"])
+            bfeas = float(chosen_candidate["feasibility_score"])
+            bviolated = tuple(chosen_candidate["violated_rules"])
+            anchor_distance_m = (
+                float(chosen_candidate["anchor_distance_m"])
+                if chosen_candidate.get("anchor_distance_m") is not None
+                else None
+            )
             existing_bboxes.append(bbbox)
+            spatial_hash.insert(bbbox, len(existing_bboxes) - 1)
             y = -entry.min_y
+            placement_status = _placement_status(
+                anchor_distance_m,
+                required=bool(getattr(slot, "required", False)) or str(getattr(slot, "anchor_poi_type", "") or "").strip() != "",
+                placed=True,
+            )
             placements.append(
                 StreetPlacement(
                     instance_id=f"inst_{instance_counter:04d}",
@@ -1956,6 +2524,15 @@ def compose_street_scene(
                     selection_source=source,
                     slot_id=str(slot.slot_id),
                     theme_id=str(getattr(slot, "theme_id", "")),
+                    anchor_poi_type=str(getattr(slot, "anchor_poi_type", "") or ""),
+                    anchor_target_xz=(
+                        tuple(float(v) for v in getattr(slot, "anchor_position_xz"))
+                        if getattr(slot, "anchor_position_xz", None) is not None
+                        else None
+                    ),
+                    anchor_distance_m=float(anchor_distance_m) if anchor_distance_m is not None else -1.0,
+                    placement_energy=float(chosen_candidate["placement_energy"]),
+                    placement_status=placement_status,
                     constraint_penalty=float(bpenalty),
                     feasibility_score=float(bfeas),
                     violated_rules=bviolated,
@@ -1972,11 +2549,42 @@ def compose_street_scene(
                 category=category,
                 bbox_xz=(float(bbbox[0]), float(bbbox[1]), float(bbbox[2]), float(bbbox[3])),
             )
-        elif anchor_position is not None:
-            raise RuntimeError(f"Unable to place required POI-backed asset for category '{category}'.")
+            if bool(getattr(slot, "required", False)) or str(getattr(slot, "anchor_poi_type", "") or "").strip():
+                realized_required_slots += 1
+            if placement_status == "anchored_exact":
+                anchor_resolution_summary["anchored_exact"] += 1
+            elif placement_status == "anchored_relaxed":
+                anchor_resolution_summary["anchored_relaxed"] += 1
 
         if not placed:
             dropped_slots += 1
+            if bool(getattr(slot, "required", False)) or str(getattr(slot, "anchor_poi_type", "") or "").strip():
+                blocked_nonzero = {
+                    key: int(value)
+                    for key, value in blocked_reason_counts.items()
+                    if int(value) > 0
+                }
+                failure_reason = (
+                    sorted(
+                        blocked_nonzero.items(),
+                        key=lambda item: (-int(item[1]), item[0]),
+                    )[0][0]
+                    if blocked_nonzero
+                    else "no_candidate_after_search"
+                )
+                anchor_resolution_summary["unplaced_required"] += 1
+                unplaced_slot_diagnostics.append(
+                    {
+                        "slot_id": str(getattr(slot, "slot_id", "")),
+                        "category": str(category),
+                        "theme_id": str(getattr(slot, "theme_id", "") or ""),
+                        "anchor_poi_type": str(getattr(slot, "anchor_poi_type", "") or ""),
+                        "search_tier_reached": search_tier_reached or "tier_optional_sampling",
+                        "best_anchor_distance_m": float(best_anchor_distance_m) if math.isfinite(best_anchor_distance_m) else -1.0,
+                        "failure_reason": failure_reason,
+                        "blocked_reason_counts": blocked_nonzero,
+                    }
+                )
         slot_index_by_category[category] = slot_index_by_category.get(category, 0) + 1
 
     if not placements:
@@ -2210,6 +2818,23 @@ def compose_street_scene(
             "theme_vocab_name": str(getattr(config, "theme_vocab_name", "fixed_v1")),
             "zone_programs": theme_zone_programs,
         },
+        "placement_force_model": {
+            "version": str(placement_field_config.get("version", "placement_field_v1")),
+            "config_path": str(placement_field_path()),
+            "cell_size_m": float(placement_field_config.get("cell_size_m", 4.0)),
+            "constraint_mode": str(config.constraint_mode),
+        },
+        "anchor_resolution_summary": {
+            **dict(anchor_resolution_summary),
+            "total_required_slots": int(total_required_slots),
+            "realized_required_slots": int(realized_required_slots),
+        },
+        "required_slot_realization_rate": (
+            float(realized_required_slots / total_required_slots)
+            if total_required_slots > 0
+            else 1.0
+        ),
+        "unplaced_required_slot_count": int(anchor_resolution_summary["unplaced_required"]),
         "building_summary": dict(building_summary),
         "building_retrieval_coverage": {
             "footprint_count": int(building_summary.get("footprint_count", 0)),
@@ -2273,6 +2898,7 @@ def compose_street_scene(
         "building_footprints": [footprint.to_dict() for footprint in building_footprints],
         "building_placements": [plan.to_dict() for plan in building_plans],
         "building_retrieval_predictions": building_retrieval_predictions,
+        "unplaced_slot_diagnostics": list(unplaced_slot_diagnostics),
         "outputs": outputs,
     }
     layout_payload["summary"].update(presentation_report)

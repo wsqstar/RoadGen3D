@@ -128,7 +128,13 @@ def _build_config(seed: int = 42) -> StreetComposeConfig:
     )
 
 
-def _build_osm_response(*, include_building: bool = True) -> dict[str, object]:
+def _build_osm_response(
+    *,
+    include_building: bool = True,
+    include_bus_stop: bool = False,
+    include_fire_hydrant: bool = False,
+    overlap_anchor_points: bool = False,
+) -> dict[str, object]:
     elements: list[dict[str, object]] = [
         {"type": "node", "id": 1, "lon": 116.3900, "lat": 39.9000},
         {"type": "node", "id": 2, "lon": 116.3904, "lat": 39.9000},
@@ -155,6 +161,28 @@ def _build_osm_response(*, include_building: bool = True) -> dict[str, object]:
             "tags": {"railway": "subway_entrance"},
         },
     ]
+    if include_bus_stop:
+        elements.append(
+            {
+                "type": "node",
+                "id": 22,
+                "lon": 116.39055,
+                "lat": 39.90002,
+                "tags": {"highway": "bus_stop"},
+            }
+        )
+    if include_fire_hydrant:
+        fire_lon = 116.39055 if overlap_anchor_points else 116.39058
+        fire_lat = 39.90002 if overlap_anchor_points else 39.900025
+        elements.append(
+            {
+                "type": "node",
+                "id": 23,
+                "lon": fire_lon,
+                "lat": fire_lat,
+                "tags": {"emergency": "fire_hydrant"},
+            }
+        )
     if include_building:
         elements.extend(
             [
@@ -1168,3 +1196,152 @@ def test_osm_compose_building_fallback_survives_missing_assets_and_footprints(tm
     assert summary["building_summary"]["fallback_count"] > 0
     assert summary["building_summary"]["sources"]["fallback"] > 0
     assert any(plan["selection_source"] == "procedural_fallback" for plan in building_plans)
+
+
+def test_osm_bus_stop_anchor_relaxes_when_exact_anchor_is_blocked(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    pytest.importorskip("pyproj")
+    pytest.importorskip("shapely")
+
+    rows = _build_real_rows(tmp_path / "data", include_buildings=False)
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+
+    import roadgen3d.osm_ingest as osm_ingest
+
+    monkeypatch.setattr(
+        osm_ingest,
+        "fetch_osm_data",
+        lambda **kwargs: _build_osm_response(
+            include_building=False,
+            include_bus_stop=True,
+            include_fire_hydrant=False,
+        ),
+    )
+    monkeypatch.setattr(street_layout, "render_presentation_views", lambda *args, **kwargs: [])
+    original_iter = street_layout._iter_slot_candidate_groups
+
+    def fake_iter_slot_candidate_groups(**kwargs):
+        slot = kwargs["slot"]
+        if (
+            kwargs["category"] == "bus_stop"
+            and str(getattr(slot, "anchor_poi_type", "") or "") == "bus_stop"
+        ):
+            sampled_pose = street_layout._sample_pose_osm_for_segment(
+                kwargs["category"],
+                kwargs["placement_ctx"],
+                kwargs["rng"],
+                segment_node=kwargs["segment_node"],
+                slot_side=str(getattr(slot, "side", "") or ""),
+                band_width_m=float(kwargs["band_width_m"]),
+                anchor_position_xz=None,
+            )
+            assert sampled_pose is not None
+            sample_x, sample_z, sample_yaw = sampled_pose
+            return (
+                (
+                    {
+                        "tier": "tier_1_exact",
+                        "point_xz": (float(getattr(slot, "x_center_m")), 999.0),
+                        "yaw_deg": 0.0,
+                        "anchor_distance_m": 0.0,
+                    },
+                ),
+                (
+                    {
+                        "tier": "tier_2_ring",
+                        "point_xz": (float(sample_x), float(sample_z)),
+                        "yaw_deg": float(sample_yaw),
+                        "anchor_distance_m": 1.2,
+                    },
+                ),
+            )
+        return original_iter(**kwargs)
+
+    monkeypatch.setattr(street_layout, "_iter_slot_candidate_groups", fake_iter_slot_candidate_groups)
+
+    result = compose_street_scene(
+        config=_build_osm_config(tmp_path, seed=31),
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+
+    payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    summary = payload["summary"]
+    anchor_bus_stops = [
+        placement
+        for placement in result.placements
+        if placement.category == "bus_stop" and placement.anchor_poi_type == "bus_stop"
+    ]
+
+    assert anchor_bus_stops
+    assert all(placement.placement_status == "anchored_relaxed" for placement in anchor_bus_stops)
+    assert all(0.75 < float(placement.anchor_distance_m) <= 8.0 for placement in anchor_bus_stops)
+    assert summary["anchor_resolution_summary"]["anchored_relaxed"] >= 1
+    assert summary["required_slot_realization_rate"] > 0.0
+    assert payload["unplaced_slot_diagnostics"] == []
+
+
+def test_osm_required_anchor_failure_degrades_to_diagnostics(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    pytest.importorskip("pyproj")
+    pytest.importorskip("shapely")
+
+    rows = _build_real_rows(tmp_path / "data", include_buildings=False)
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+
+    import roadgen3d.osm_ingest as osm_ingest
+
+    monkeypatch.setattr(
+        osm_ingest,
+        "fetch_osm_data",
+        lambda **kwargs: _build_osm_response(
+            include_building=False,
+            include_bus_stop=True,
+            include_fire_hydrant=False,
+        ),
+    )
+    monkeypatch.setattr(street_layout, "render_presentation_views", lambda *args, **kwargs: [])
+
+    original_evaluate = street_layout._evaluate_slot_candidate
+
+    def fake_evaluate_slot_candidate(**kwargs):
+        slot = kwargs["slot"]
+        if (
+            kwargs["category"] == "bus_stop"
+            and str(getattr(slot, "anchor_poi_type", "") or "") == "bus_stop"
+        ):
+            return None, "overlap_blocked"
+        return original_evaluate(**kwargs)
+
+    monkeypatch.setattr(street_layout, "_evaluate_slot_candidate", fake_evaluate_slot_candidate)
+
+    result = compose_street_scene(
+        config=_build_osm_config(tmp_path, seed=37),
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+
+    payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    summary = payload["summary"]
+
+    assert result.placements
+    assert summary["unplaced_required_slot_count"] >= 1
+    assert 0.0 <= float(summary["required_slot_realization_rate"]) < 1.0
+    assert summary["placement_force_model"]["version"] == "placement_field_v1"
+    assert payload["unplaced_slot_diagnostics"]
+    assert any(
+        diag["category"] == "bus_stop" and diag["failure_reason"] == "overlap_blocked"
+        for diag in payload["unplaced_slot_diagnostics"]
+    )
