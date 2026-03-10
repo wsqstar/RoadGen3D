@@ -37,7 +37,7 @@ def _write_manifest(path: Path, rows: list[dict[str, object]]) -> None:
             handle.write(json.dumps(row, ensure_ascii=True) + "\n")
 
 
-def _build_real_rows(base_dir: Path) -> list[dict[str, object]]:
+def _build_real_rows(base_dir: Path, *, include_buildings: bool = False) -> list[dict[str, object]]:
     categories = [
         ("bench_01", "bench"),
         ("lamp_01", "lamp"),
@@ -64,6 +64,27 @@ def _build_real_rows(base_dir: Path) -> list[dict[str, object]]:
                 "split": "train",
             }
         )
+    if include_buildings:
+        for idx, asset_id in enumerate(("building_01", "building_02"), start=len(rows)):
+            mesh_path = base_dir / "meshes" / f"{asset_id}.glb"
+            _make_mesh(mesh_path, kind="box")
+            rows.append(
+                {
+                    "asset_id": asset_id,
+                    "category": "building",
+                    "asset_role": "building",
+                    "theme_tags": ["commercial", "transit", "medium"],
+                    "frontage_width_m": 14.0 + idx,
+                    "depth_m": 10.0,
+                    "height_class": "midrise" if asset_id.endswith("01") else "highrise",
+                    "text_desc": "a contemporary street-side building",
+                    "mesh_path": str(mesh_path),
+                    "latent_path": str(base_dir / "latents" / f"{asset_id}.pt"),
+                    "license": "cc-by",
+                    "source": "test",
+                    "split": "train",
+                }
+            )
     return rows
 
 
@@ -104,6 +125,74 @@ def _build_config(seed: int = 42) -> StreetComposeConfig:
         seed=seed,
         topk_per_category=20,
         max_trials_per_slot=30,
+    )
+
+
+def _build_osm_response(*, include_building: bool = True) -> dict[str, object]:
+    elements: list[dict[str, object]] = [
+        {"type": "node", "id": 1, "lon": 116.3900, "lat": 39.9000},
+        {"type": "node", "id": 2, "lon": 116.3904, "lat": 39.9000},
+        {"type": "node", "id": 3, "lon": 116.3908, "lat": 39.9000},
+        {"type": "node", "id": 4, "lon": 116.3912, "lat": 39.9000},
+        {
+            "type": "way",
+            "id": 100,
+            "nodes": [1, 2, 3, 4],
+            "tags": {"highway": "tertiary"},
+        },
+        {
+            "type": "node",
+            "id": 20,
+            "lon": 116.39015,
+            "lat": 39.90002,
+            "tags": {"entrance": "yes"},
+        },
+        {
+            "type": "node",
+            "id": 21,
+            "lon": 116.39082,
+            "lat": 39.90002,
+            "tags": {"railway": "subway_entrance"},
+        },
+    ]
+    if include_building:
+        elements.extend(
+            [
+                {"type": "node", "id": 30, "lon": 116.39045, "lat": 39.90015},
+                {"type": "node", "id": 31, "lon": 116.39065, "lat": 39.90015},
+                {"type": "node", "id": 32, "lon": 116.39065, "lat": 39.90030},
+                {"type": "node", "id": 33, "lon": 116.39045, "lat": 39.90030},
+                {
+                    "type": "way",
+                    "id": 200,
+                    "nodes": [30, 31, 32, 33],
+                    "tags": {"building": "yes", "name": "Test Block"},
+                },
+            ]
+        )
+    return {"elements": elements}
+
+
+def _build_osm_config(tmp_path: Path, *, seed: int = 42) -> StreetComposeConfig:
+    return StreetComposeConfig(
+        query="urban street",
+        length_m=80.0,
+        road_width_m=8.0,
+        sidewalk_width_m=2.5,
+        lane_count=2,
+        density=1.0,
+        seed=seed,
+        topk_per_category=20,
+        max_trials_per_slot=20,
+        layout_mode="osm",
+        constraint_mode="off",
+        aoi_bbox=(116.3898, 39.8998, 116.3914, 39.9005),
+        osm_cache_dir=str(tmp_path / "osm_cache"),
+        selected_road_osm_id=100,
+        road_selection="primary_road",
+        segment_length_m=18.0,
+        enable_surrounding_buildings=True,
+        building_search_topk=3,
     )
 
 
@@ -998,3 +1087,84 @@ def test_scene_layout_contains_presentation_views_and_metrics(tmp_path: Path, mo
     assert len(render_views) == 4
     for view in render_views:
         assert Path(view["path"]).exists()
+
+
+def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    pytest.importorskip("pyproj")
+    pytest.importorskip("shapely")
+
+    rows = _build_real_rows(tmp_path / "data", include_buildings=True)
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+
+    import roadgen3d.osm_ingest as osm_ingest
+
+    monkeypatch.setattr(osm_ingest, "fetch_osm_data", lambda **kwargs: _build_osm_response(include_building=True))
+    monkeypatch.setattr(street_layout, "render_presentation_views", lambda *args, **kwargs: [])
+
+    result = compose_street_scene(
+        config=_build_osm_config(tmp_path, seed=19),
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+
+    payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    summary = payload["summary"]
+    building_group = [placement for placement in result.placements if placement.placement_group == "building"]
+    furniture_group = [placement for placement in result.placements if placement.placement_group == "street_furniture"]
+
+    assert len(summary["theme_segments"]) >= 2
+    assert {segment["theme_name"] for segment in summary["theme_segments"]} >= {"commercial", "transit"}
+    assert payload["building_footprints"]
+    assert payload["building_placements"]
+    assert furniture_group
+    assert building_group
+    assert all(placement.asset_id in {"building_01", "building_02"} for placement in building_group)
+    assert all(placement.selection_source == "building_asset" for placement in building_group)
+    assert summary["building_retrieval_coverage"]["footprint_count"] == len(payload["building_footprints"])
+    assert summary["building_retrieval_coverage"]["placed_count"] == len(payload["building_placements"])
+
+
+def test_osm_compose_building_fallback_survives_missing_assets_and_footprints(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    pytest.importorskip("pyproj")
+    pytest.importorskip("shapely")
+
+    rows = _build_real_rows(tmp_path / "data", include_buildings=False)
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+
+    import roadgen3d.osm_ingest as osm_ingest
+
+    monkeypatch.setattr(osm_ingest, "fetch_osm_data", lambda **kwargs: _build_osm_response(include_building=False))
+    monkeypatch.setattr(street_layout, "render_presentation_views", lambda *args, **kwargs: [])
+
+    result = compose_street_scene(
+        config=_build_osm_config(tmp_path, seed=23),
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+
+    payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    summary = payload["summary"]
+    building_group = [placement for placement in result.placements if placement.placement_group == "building"]
+    building_plans = payload["building_placements"]
+
+    assert building_group
+    assert building_plans
+    assert all(placement.asset_id.startswith("building_fallback_") for placement in building_group)
+    assert all(placement.selection_source == "procedural_fallback" for placement in building_group)
+    assert summary["building_summary"]["fallback_count"] > 0
+    assert summary["building_summary"]["sources"]["fallback"] > 0
+    assert any(plan["selection_source"] == "procedural_fallback" for plan in building_plans)

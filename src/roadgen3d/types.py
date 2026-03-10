@@ -84,6 +84,10 @@ class StreetComposeConfig:
     layout_solver: str = "banded"
     allow_solver_fallback: bool = True
     segment_length_m: float = 12.0
+    enable_surrounding_buildings: bool = True
+    building_search_topk: int = 5
+    theme_inference_mode: str = "deterministic_auto"
+    theme_vocab_name: str = "fixed_v1"
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -137,6 +141,8 @@ class StreetProgram:
     width_reallocation_reason: str = ""
     poi_fit_feasible: bool = True
     poi_fit_report: Dict[str, Any] = field(default_factory=dict)
+    theme_segments: Tuple["ThemeSegment", ...] = ()
+    building_strategy_summary: Dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         payload = asdict(self)
@@ -144,6 +150,7 @@ class StreetProgram:
         payload["control_points"] = list(self.control_points)
         payload["design_goals"] = list(self.design_goals)
         payload["notes"] = list(self.notes)
+        payload["theme_segments"] = [segment.to_dict() for segment in self.theme_segments]
         return payload
 
 
@@ -300,6 +307,7 @@ class LayoutSlotPlan:
     required: bool = False
     anchor_poi_type: str = ""
     anchor_position_xz: Optional[Tuple[float, float]] = None
+    theme_id: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -396,8 +404,12 @@ class RoadSegmentNode:
     length_m: float
     is_junction: bool = False
     is_accessible: bool = True
+    highway_type: str = ""
     poi_types: Tuple[str, ...] = ()
     bands: Tuple[RoadSegmentBand, ...] = ()
+    station_start_m: float = 0.0
+    station_end_m: float = 0.0
+    station_center_m: float = 0.0
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -409,8 +421,12 @@ class RoadSegmentNode:
             "length_m": float(self.length_m),
             "is_junction": bool(self.is_junction),
             "is_accessible": bool(self.is_accessible),
+            "highway_type": self.highway_type,
             "poi_types": list(self.poi_types),
             "bands": [band.to_dict() for band in self.bands],
+            "station_start_m": float(self.station_start_m),
+            "station_end_m": float(self.station_end_m),
+            "station_center_m": float(self.station_center_m),
         }
 
 
@@ -454,6 +470,76 @@ class RoadSegmentGraph:
                 else 0.0
             ),
         }
+
+
+@dataclass(frozen=True)
+class ThemeSegment:
+    """One contiguous themed portion of a selected road."""
+
+    theme_id: str
+    theme_name: str
+    x_start_m: float
+    x_end_m: float
+    center_x_m: float
+    length_m: float
+    segment_ids: Tuple[str, ...] = ()
+    dominant_poi_types: Tuple[str, ...] = ()
+    design_rule_profile: str = ""
+    style_preset: str = ""
+    notes: Tuple[str, ...] = ()
+
+    def to_dict(self) -> Dict[str, Any]:
+        payload = asdict(self)
+        payload["segment_ids"] = list(self.segment_ids)
+        payload["dominant_poi_types"] = list(self.dominant_poi_types)
+        payload["notes"] = list(self.notes)
+        return payload
+
+
+@dataclass(frozen=True)
+class BuildingFootprint:
+    """One surrounding-building footprint aligned to a road theme zone."""
+
+    footprint_id: str
+    source: str
+    polygon_xz: Tuple[Tuple[float, float], ...]
+    centroid_xz: Tuple[float, float]
+    frontage_width_m: float
+    depth_m: float
+    yaw_deg: float
+    theme_id: str
+    height_class: str = "midrise"
+    anchor_geom_id: str = ""
+    size_class: str = "medium"
+
+    def to_dict(self) -> Dict[str, Any]:
+        payload = asdict(self)
+        payload["polygon_xz"] = [list(point) for point in self.polygon_xz]
+        payload["centroid_xz"] = list(self.centroid_xz)
+        return payload
+
+
+@dataclass(frozen=True)
+class BuildingPlacementPlan:
+    """Resolved building placement derived from a footprint and retrieval result."""
+
+    footprint_id: str
+    theme_id: str
+    asset_id: str
+    selection_source: str
+    position_xyz: List[float]
+    yaw_deg: float
+    scale: float
+    scale_xyz: List[float]
+    bbox_xz: List[float]
+    frontage_width_m: float
+    depth_m: float
+    anchor_geom_id: str = ""
+    retrieval_score: float = 0.0
+    fallback_reason: str = ""
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
 
 
 @dataclass(frozen=True)
@@ -519,6 +605,10 @@ class StreetPlacement:
     bbox_xz: List[float]  # [xmin, xmax, zmin, zmax]
     selection_source: str  # faiss_softmax | faiss_relaxed_repeat | policy_* | fallback_pool
     slot_id: str = ""
+    placement_group: str = "street_furniture"
+    theme_id: str = ""
+    anchor_geom_id: str = ""
+    scale_xyz: List[float] = field(default_factory=list)
 
     # -- M5 constraint fields --
     constraint_penalty: float = 0.0

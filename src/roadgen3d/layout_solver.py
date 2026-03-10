@@ -130,6 +130,8 @@ def _rebuild_program(
         width_reallocation_reason=str(program.width_reallocation_reason),
         poi_fit_feasible=bool(program.poi_fit_feasible),
         poi_fit_report=dict(program.poi_fit_report),
+        theme_segments=tuple(program.theme_segments),
+        building_strategy_summary=dict(program.building_strategy_summary),
     )
 
 

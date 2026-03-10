@@ -138,8 +138,99 @@ def _load_real_manifest_rows(manifest_path: Path) -> List[Dict[str, str]]:
     if not rows:
         raise ValueError(
             "Real manifest is empty. Add at least one JSONL row, then rebuild the real index."
+    )
+    return rows
+
+
+def _normalize_tag_values(value: object) -> Tuple[str, ...]:
+    if value is None:
+        return ()
+    if isinstance(value, str):
+        raw = [item.strip().lower() for item in value.split(",")]
+    else:
+        raw = [str(item).strip().lower() for item in value]
+    return tuple(sorted({item for item in raw if item}))
+
+
+def _load_asset_library_rows(manifest_path: Path) -> List[Dict[str, object]]:
+    if not manifest_path.exists():
+        raise FileNotFoundError(f"Real manifest not found: {manifest_path}")
+    rows: List[Dict[str, object]] = []
+    for idx, line in enumerate(manifest_path.read_text(encoding="utf-8").splitlines(), start=1):
+        if not line.strip():
+            continue
+        payload = json.loads(line)
+        asset_id = str(payload.get("asset_id", "")).strip()
+        text_desc = str(payload.get("text_desc", "")).strip()
+        if not asset_id or not text_desc:
+            raise ValueError(f"Invalid asset row in manifest line {idx}: {manifest_path}")
+        category = str(payload.get("category", "")).strip().lower()
+        asset_role = str(payload.get("asset_role", "building" if category == "building" else "street_furniture")).strip().lower()
+        theme_tags = _normalize_tag_values(payload.get("theme_tags"))
+        rows.append(
+            {
+                "asset_id": asset_id,
+                "category": category,
+                "asset_role": asset_role,
+                "text_desc": text_desc,
+                "theme_tags": theme_tags,
+                "frontage_width_m": float(payload.get("frontage_width_m", 0.0) or 0.0),
+                "depth_m": float(payload.get("depth_m", 0.0) or 0.0),
+                "height_class": str(payload.get("height_class", "")).strip().lower(),
+                "source": str(payload.get("source", "")).strip(),
+            }
         )
     return rows
+
+
+def browse_asset_library(
+    real_manifest_text: str,
+    search_text: str = "",
+) -> Tuple[List[List[str]], str]:
+    try:
+        manifest_path = _to_path(real_manifest_text)
+        rows = _load_asset_library_rows(manifest_path)
+        query = str(search_text).strip().lower()
+        if query:
+            rows = [
+                row
+                for row in rows
+                if query in str(row.get("asset_id", "")).lower()
+                or query in str(row.get("category", "")).lower()
+                or query in str(row.get("asset_role", "")).lower()
+                or query in str(row.get("text_desc", "")).lower()
+                or query in ",".join(row.get("theme_tags", ()) or ()).lower()
+            ]
+        role_counts: Dict[str, int] = {}
+        theme_counts: Dict[str, int] = {}
+        for row in rows:
+            role = str(row.get("asset_role", "")).strip().lower()
+            role_counts[role] = role_counts.get(role, 0) + 1
+            for tag in row.get("theme_tags", ()) or ():
+                theme_counts[str(tag)] = theme_counts.get(str(tag), 0) + 1
+        table = [
+            [
+                str(row.get("asset_id", "")),
+                str(row.get("category", "")),
+                str(row.get("asset_role", "")),
+                ",".join(row.get("theme_tags", ()) or ()),
+                f"{float(row.get('frontage_width_m', 0.0) or 0.0):.1f}" if float(row.get("frontage_width_m", 0.0) or 0.0) > 0.0 else "",
+                f"{float(row.get('depth_m', 0.0) or 0.0):.1f}" if float(row.get("depth_m", 0.0) or 0.0) > 0.0 else "",
+                str(row.get("height_class", "")),
+                str(row.get("source", "")),
+                str(row.get("text_desc", "")),
+            ]
+            for row in rows
+        ]
+        stats = {
+            "asset_count": len(rows),
+            "role_counts": role_counts,
+            "theme_counts": dict(sorted(theme_counts.items())),
+            "building_asset_count": int(role_counts.get("building", 0)),
+        }
+        return table, json.dumps(stats, indent=2, ensure_ascii=True)
+    except Exception as exc:
+        return [], json.dumps({"error": str(exc)}, indent=2, ensure_ascii=True)
 
 
 def _write_assets_jsonl(rows: List[Dict[str, str]], out_path: Path) -> Path:
@@ -235,8 +326,19 @@ def inspect_workspace_readiness(
         if manifest_ok:
             try:
                 rows = _load_real_manifest_rows(manifest_path)
+                asset_library_rows = _load_asset_library_rows(manifest_path)
                 latents_ok = all(Path(row["latent_path"]).exists() for row in rows)
                 details["manifest_asset_count"] = len(rows)
+                role_counts: Dict[str, int] = {}
+                theme_counts: Dict[str, int] = {}
+                for row in asset_library_rows:
+                    role = str(row.get("asset_role", "")).strip().lower()
+                    role_counts[role] = role_counts.get(role, 0) + 1
+                    for theme_tag in row.get("theme_tags", ()) or ():
+                        theme_counts[str(theme_tag)] = theme_counts.get(str(theme_tag), 0) + 1
+                details["asset_role_counts"] = role_counts
+                details["theme_tag_counts"] = dict(sorted(theme_counts.items()))
+                details["building_asset_count"] = int(role_counts.get("building", 0))
                 if not latents_ok:
                     missing.append("latents")
             except Exception as exc:
@@ -855,6 +957,7 @@ def prepare_workspace(
             f"- latents_ok: {final_readiness.latents_ok}",
             f"- index_ok: {final_readiness.index_ok}",
             f"- osm_cache_ok: {final_readiness.osm_cache_ok}",
+            f"- building_asset_count: {int(final_readiness.details.get('building_asset_count', 0) or 0)}",
             f"- discovered_roads: {discovery_count}",
             f"- recommended_next_action: {final_readiness.recommended_next_action}",
         ]
@@ -929,12 +1032,43 @@ def _extract_program_summary(layout_json_text: str) -> str:
         "visual_clutter": runtime_summary.get("visual_clutter"),
         "spacing_rhythm": runtime_summary.get("spacing_rhythm"),
         "focal_readability": runtime_summary.get("focal_readability"),
+        "theme_segments": runtime_summary.get("theme_segments", program.get("theme_segments", [])),
+        "building_strategy_summary": program.get("building_strategy_summary", runtime_summary.get("building_summary", {})),
         "poi_counts": poi_counts,
         "observed_poi_counts": observed_poi_counts,
         "total_poi_points": sum(poi_counts_all.values()),
         "exclusion_zone_count": len(runtime_summary.get("poi_exclusion_zones", []) or []),
     }
     return json.dumps(summary, indent=2, ensure_ascii=True)
+
+
+def _extract_theme_summary(layout_json_text: str) -> str:
+    if not layout_json_text.strip():
+        return "{}"
+    payload = json.loads(layout_json_text)
+    summary = payload.get("summary", {}) or {}
+    diagnostics = summary.get("theme_diagnostics", {}) or {}
+    result = {
+        "theme_segments": summary.get("theme_segments", []),
+        "theme_inference_mode": diagnostics.get("theme_inference_mode", ""),
+        "theme_vocab_name": diagnostics.get("theme_vocab_name", ""),
+        "zone_programs": diagnostics.get("zone_programs", []),
+    }
+    return json.dumps(result, indent=2, ensure_ascii=True)
+
+
+def _extract_building_summary(layout_json_text: str) -> str:
+    if not layout_json_text.strip():
+        return "{}"
+    payload = json.loads(layout_json_text)
+    summary = payload.get("summary", {}) or {}
+    result = {
+        "building_summary": summary.get("building_summary", {}),
+        "building_retrieval_coverage": summary.get("building_retrieval_coverage", {}),
+        "building_footprint_count": len(payload.get("building_footprints", []) or []),
+        "building_placement_count": len(payload.get("building_placements", []) or []),
+    }
+    return json.dumps(result, indent=2, ensure_ascii=True)
 
 
 def _extract_solver_summary(layout_json_text: str) -> str:
@@ -1401,6 +1535,10 @@ def run_street_compose(
     beauty_mode: str = "presentation_v1",
     render_preset: str = "jury_default_v1",
     asset_curation_mode: str = "curated_first",
+    enable_surrounding_buildings: bool = True,
+    building_search_topk: int = 5,
+    theme_inference_mode: str = "deterministic_auto",
+    theme_vocab_name: str = "fixed_v1",
 ) -> Tuple[str, List[List[str]], str, str | None, List[str]]:
     try:
         profile = dataset_profile.strip().lower()
@@ -1485,6 +1623,10 @@ def run_street_compose(
             beauty_mode=str(beauty_mode).strip(),
             render_preset=str(render_preset).strip(),
             asset_curation_mode=str(asset_curation_mode).strip(),
+            enable_surrounding_buildings=bool(enable_surrounding_buildings),
+            building_search_topk=int(building_search_topk),
+            theme_inference_mode=str(theme_inference_mode).strip(),
+            theme_vocab_name=str(theme_vocab_name).strip(),
         )
         result = compose_street_scene(
             config=config,
@@ -1586,6 +1728,16 @@ def run_street_compose(
             summary += f"\n- program_fallback_reason: {result.outputs['program_fallback_reason']}"
         if result.outputs.get("solver_fallback_reason"):
             summary += f"\n- solver_fallback_reason: {result.outputs['solver_fallback_reason']}"
+        summary += f"\n- theme_segment_count: {len(layout_summary.get('theme_segments', []) or [])}"
+        summary += f"\n- surrounding_buildings_enabled: {bool(enable_surrounding_buildings)}"
+        summary += (
+            f"\n- building_footprint_count: "
+            f"{int((layout_summary.get('building_retrieval_coverage', {}) or {}).get('footprint_count', 0) or 0)}"
+        )
+        summary += (
+            f"\n- building_placed_count: "
+            f"{int((layout_summary.get('building_retrieval_coverage', {}) or {}).get('placed_count', 0) or 0)}"
+        )
         model_path = result.outputs.get("scene_glb") or None
         files: List[str] = []
         if result.outputs.get("scene_glb"):
@@ -1961,6 +2113,10 @@ def run_best_model_street(
     beauty_mode: str = "presentation_v1",
     render_preset: str = "jury_default_v1",
     asset_curation_mode: str = "curated_first",
+    enable_surrounding_buildings: bool = True,
+    building_search_topk: int = 5,
+    theme_inference_mode: str = "deterministic_auto",
+    theme_vocab_name: str = "fixed_v1",
 ) -> Tuple[str, List[List[str]], str, str | None, List[str], str, str, str | None, List[str]]:
     if str(research_target).strip().lower() == "program_generator":
         program_generator = "learned_v1"
@@ -2007,6 +2163,10 @@ def run_best_model_street(
         beauty_mode=beauty_mode,
         render_preset=render_preset,
         asset_curation_mode=asset_curation_mode,
+        enable_surrounding_buildings=enable_surrounding_buildings,
+        building_search_topk=building_search_topk,
+        theme_inference_mode=theme_inference_mode,
+        theme_vocab_name=theme_vocab_name,
     )
     best_log = (
         "Best model run done.\n"
@@ -2799,6 +2959,19 @@ def build_demo() -> gr.Blocks:
                     label="自动候选 POI-rich Roads（仅展示）",
                     interactive=False,
                 )
+                with gr.Accordion("Asset Library", open=False):
+                    with gr.Row():
+                        asset_library_search = gr.Textbox(label="Asset Search", value="")
+                        asset_library_refresh_btn = gr.Button("Browse Assets")
+                    with gr.Row():
+                        asset_library_stats = gr.Code(label="Asset Library Stats", language="json")
+                    asset_library_table = gr.Dataframe(
+                        headers=["asset_id", "category", "asset_role", "theme_tags", "frontage_m", "depth_m", "height_class", "source", "text_desc"],
+                        datatype=["str", "str", "str", "str", "str", "str", "str", "str", "str"],
+                        row_count=(0, "dynamic"),
+                        col_count=(9, "fixed"),
+                        label="Asset Library Browser",
+                    )
                 with gr.Accordion("Advanced", open=False):
                     with gr.Row():
                         data_dir = gr.Textbox(label="Mock Data Dir", value=default_data)
@@ -2893,6 +3066,9 @@ def build_demo() -> gr.Blocks:
                 with gr.Row():
                     street_program_summary = gr.Code(label="StreetProgram Summary", language="json")
                     street_solver_summary = gr.Code(label="Solver Edits / Conflicts", language="json")
+                with gr.Row():
+                    theme_segments_preview = gr.Code(label="Theme Segments Preview", language="json")
+                    building_summary_json = gr.Code(label="Building Summary", language="json")
                 with gr.Accordion("Advanced", open=False):
                     with gr.Row():
                         street_length_m = gr.Number(label="Street Length (m)", value=80.0)
@@ -2934,6 +3110,19 @@ def build_demo() -> gr.Blocks:
                             label="Asset Curation",
                             choices=["curated_first", "legacy"],
                             value="curated_first",
+                        )
+                    with gr.Row():
+                        enable_surrounding_buildings = gr.Checkbox(label="Enable Surrounding Buildings", value=True)
+                        building_search_topk = gr.Slider(label="Building Search TopK", minimum=1, maximum=20, step=1, value=5)
+                        theme_inference_mode = gr.Dropdown(
+                            label="Theme Inference",
+                            choices=["deterministic_auto"],
+                            value="deterministic_auto",
+                        )
+                        theme_vocab_name = gr.Dropdown(
+                            label="Theme Vocab",
+                            choices=["fixed_v1"],
+                            value="fixed_v1",
                         )
                 with gr.Accordion("Scene Details", open=False):
                     street_instances = gr.Dataframe(
@@ -3088,6 +3277,9 @@ def build_demo() -> gr.Blocks:
                     with gr.Row():
                         run_best_program_summary = gr.Code(label="Best StreetProgram Summary", language="json")
                         run_best_solver_summary = gr.Code(label="Best Solver Summary", language="json")
+                    with gr.Row():
+                        run_best_theme_summary = gr.Code(label="Best Theme Segments", language="json")
+                        run_best_building_summary = gr.Code(label="Best Building Summary", language="json")
                     run_best_layout_json = gr.Code(label="Run Best Layout JSON", language="json")
                     run_best_model_view = gr.Model3D(label="Run Best Street Preview (GLB)")
                     run_best_files = gr.Files(label="Run Best Downloads")
@@ -3143,6 +3335,15 @@ def build_demo() -> gr.Blocks:
                 prepare_bbox_max_lat,
             ],
             outputs=[prepare_summary, readiness_json, readiness_cards, prepare_steps, prepare_discover_table],
+        ).then(
+            fn=browse_asset_library,
+            inputs=[real_manifest, asset_library_search],
+            outputs=[asset_library_table, asset_library_stats],
+        )
+        asset_library_refresh_btn.click(
+            fn=browse_asset_library,
+            inputs=[real_manifest, asset_library_search],
+            outputs=[asset_library_table, asset_library_stats],
         )
         street_btn.click(
             fn=run_street_compose,
@@ -3189,6 +3390,10 @@ def build_demo() -> gr.Blocks:
                 beauty_mode,
                 render_preset,
                 asset_curation_mode,
+                enable_surrounding_buildings,
+                building_search_topk,
+                theme_inference_mode,
+                theme_vocab_name,
             ],
             outputs=[
                 street_summary,
@@ -3205,6 +3410,14 @@ def build_demo() -> gr.Blocks:
             fn=_extract_solver_summary,
             inputs=[street_layout_json],
             outputs=[street_solver_summary],
+        ).then(
+            fn=_extract_theme_summary,
+            inputs=[street_layout_json],
+            outputs=[theme_segments_preview],
+        ).then(
+            fn=_extract_building_summary,
+            inputs=[street_layout_json],
+            outputs=[building_summary_json],
         ).then(
             fn=_render_spatial_overview,
             inputs=[street_layout_json],
@@ -3371,6 +3584,10 @@ def build_demo() -> gr.Blocks:
                 beauty_mode,
                 render_preset,
                 asset_curation_mode,
+                enable_surrounding_buildings,
+                building_search_topk,
+                theme_inference_mode,
+                theme_vocab_name,
             ],
             outputs=[
                 street_summary,
@@ -3395,6 +3612,14 @@ def build_demo() -> gr.Blocks:
             fn=_extract_solver_summary,
             inputs=[run_best_layout_json],
             outputs=[run_best_solver_summary],
+        ).then(
+            fn=_extract_theme_summary,
+            inputs=[run_best_layout_json],
+            outputs=[run_best_theme_summary],
+        ).then(
+            fn=_extract_building_summary,
+            inputs=[run_best_layout_json],
+            outputs=[run_best_building_summary],
         )
     return demo
 

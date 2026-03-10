@@ -49,8 +49,11 @@ from .program_generator import (
 )
 from .street_layout import compose_street_scene
 from .street_program import infer_street_program
+from .theme_buildings import infer_theme_segments
 from .types import (
     AssetRecord,
+    BuildingFootprint,
+    BuildingPlacementPlan,
     ConstraintSet,
     DesignRuleSpec,
     EntranceAssessment,
@@ -78,12 +81,15 @@ from .types import (
     StreetComposeResult,
     StreetPlacement,
     StreetProgram,
+    ThemeSegment,
     WorkspaceReadiness,
 )
 from .voxel_export import export_voxel_meshes
 
 __all__ = [
     "AssetRecord",
+    "BuildingFootprint",
+    "BuildingPlacementPlan",
     "CandidateDescriptor",
     "CarriagewayBoundary",
     "ClipTextEmbedder",
@@ -131,6 +137,7 @@ __all__ = [
     "StreetComposeResult",
     "StreetPlacement",
     "StreetProgram",
+    "ThemeSegment",
     "WorkspaceReadiness",
     "aggregate_scene_rows",
     "build_candidate_feature",
@@ -158,6 +165,7 @@ __all__ = [
     "evaluate_topk_category_hits",
     "export_voxel_meshes",
     "fetch_osm_data",
+    "infer_theme_segments",
     "infer_street_program",
     "InventorySummary",
     "list_constraint_profiles",

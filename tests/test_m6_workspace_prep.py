@@ -17,18 +17,32 @@ pytest.importorskip("gradio")
 import scripts.m1_gradio_app as app
 
 
-def _write_real_manifest(path: Path, latent_path: Path) -> None:
+def _write_real_manifest(path: Path, latent_path: Path, *, include_building: bool = False) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(
-        json.dumps(
+    rows = [
+        {
+            "asset_id": "bench_01",
+            "text_desc": "a street bench",
+            "latent_path": str(latent_path),
+        }
+    ]
+    if include_building:
+        rows.append(
             {
-                "asset_id": "bench_01",
-                "text_desc": "a street bench",
+                "asset_id": "building_01",
+                "category": "building",
+                "asset_role": "building",
+                "theme_tags": ["commercial", "transit"],
+                "frontage_width_m": 16.0,
+                "depth_m": 12.0,
+                "height_class": "midrise",
+                "text_desc": "a mixed-use building",
                 "latent_path": str(latent_path),
-            },
-            ensure_ascii=True,
+                "source": "test",
+            }
         )
-        + "\n",
+    path.write_text(
+        "\n".join(json.dumps(row, ensure_ascii=True) for row in rows) + "\n",
         encoding="utf-8",
     )
 
@@ -67,6 +81,25 @@ def test_inspect_workspace_readiness_reports_ready_when_manifest_index_and_cache
     assert readiness.index_ok is True
     assert readiness.osm_cache_ok is True
     assert readiness.missing_items == ()
+
+
+def test_browse_asset_library_reports_building_roles_and_theme_counts(tmp_path: Path):
+    manifest = tmp_path / "real_assets_manifest.jsonl"
+    latent_path = tmp_path / "latents" / "bench_01.pt"
+    latent_path.parent.mkdir(parents=True, exist_ok=True)
+    latent_path.write_bytes(b"latent")
+    _write_real_manifest(manifest, latent_path, include_building=True)
+
+    table, stats_json = app.browse_asset_library(str(manifest), "building")
+    stats = json.loads(stats_json)
+
+    assert len(table) == 1
+    assert table[0][0] == "building_01"
+    assert table[0][2] == "building"
+    assert stats["building_asset_count"] == 1
+    assert stats["role_counts"]["building"] == 1
+    assert stats["theme_counts"]["commercial"] == 1
+    assert stats["theme_counts"]["transit"] == 1
 
 
 def test_prepare_workspace_skips_existing_latents_and_index(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):

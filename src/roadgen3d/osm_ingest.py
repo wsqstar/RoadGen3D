@@ -50,10 +50,20 @@ class OsmRoad:
 
 
 @dataclass
+class OsmBuilding:
+    """One parsed OSM building footprint."""
+
+    osm_id: int
+    coords: List[Tuple[float, float]]
+    tags: Dict[str, str] = field(default_factory=dict)
+
+
+@dataclass
 class OsmFeatures:
     """All parsed features from an Overpass response (WGS-84)."""
 
     roads: List[OsmRoad] = field(default_factory=list)
+    buildings: List[OsmBuilding] = field(default_factory=list)
     entrances: List[Tuple[float, float]] = field(default_factory=list)  # (lon, lat)
     bus_stops: List[Tuple[float, float]] = field(default_factory=list)
     fire_points: List[Tuple[float, float]] = field(default_factory=list)
@@ -66,6 +76,7 @@ class ProjectedFeatures:
     """Same as OsmFeatures but in local UTM metres, origin at bbox centre."""
 
     roads: List[OsmRoad] = field(default_factory=list)
+    buildings: List[OsmBuilding] = field(default_factory=list)
     entrances: List[Tuple[float, float]] = field(default_factory=list)  # (x, y) metres
     bus_stops: List[Tuple[float, float]] = field(default_factory=list)
     fire_points: List[Tuple[float, float]] = field(default_factory=list)
@@ -103,6 +114,7 @@ def _build_overpass_query(bbox: Tuple[float, float, float, float]) -> str:
         "[out:json][timeout:60];\n"
         "(\n"
         f'  way["highway"~"{_HIGHWAY_FILTER}"]({bb});\n'
+        f'  way["building"]({bb});\n'
         f"{poi_clauses}\n"
         ");\n"
         "out body;\n"
@@ -170,6 +182,7 @@ def parse_osm_features(raw_data: Dict[str, Any]) -> OsmFeatures:
             node_coords[int(el["id"])] = (float(el["lon"]), float(el["lat"]))
 
     roads: List[OsmRoad] = []
+    buildings: List[OsmBuilding] = []
     poi_points_by_type: Dict[str, List[Tuple[float, float]]] = normalize_poi_points_by_type({})
 
     for el in elements:
@@ -195,6 +208,20 @@ def parse_osm_features(raw_data: Dict[str, Any]) -> OsmFeatures:
             else:
                 width_m = _DEFAULT_WIDTH_M[hw_type]
             roads.append(OsmRoad(osm_id=int(el["id"]), highway_type=hw_type, coords=coords, width_m=width_m))
+        elif etype == "way" and "building" in tags:
+            nds = el.get("nodes", [])
+            coords = [node_coords[nid] for nid in nds if nid in node_coords]
+            if len(coords) < 3:
+                continue
+            if coords[0] != coords[-1]:
+                coords = coords + [coords[0]]
+            buildings.append(
+                OsmBuilding(
+                    osm_id=int(el["id"]),
+                    coords=coords,
+                    tags={str(key): str(value) for key, value in tags.items()},
+                )
+            )
 
         elif etype == "node":
             lon_lat: Optional[Tuple[float, float]] = None
@@ -223,6 +250,7 @@ def parse_osm_features(raw_data: Dict[str, Any]) -> OsmFeatures:
     )
     return OsmFeatures(
         roads=roads,
+        buildings=buildings,
         entrances=entrances,
         bus_stops=bus_stops,
         fire_points=fire_points,
@@ -266,6 +294,15 @@ def project_to_local(
             coords=proj_coords,
             width_m=road.width_m,
         ))
+    proj_buildings: List[OsmBuilding] = []
+    for building in features.buildings:
+        proj_buildings.append(
+            OsmBuilding(
+                osm_id=building.osm_id,
+                coords=[_to_local(lon, lat) for lon, lat in building.coords],
+                tags=dict(building.tags),
+            )
+        )
 
     proj_poi_points_by_type = {
         poi_type: [_to_local(lon, lat) for lon, lat in points]
@@ -282,6 +319,7 @@ def project_to_local(
 
     return ProjectedFeatures(
         roads=proj_roads,
+        buildings=proj_buildings,
         entrances=proj_entrances,
         bus_stops=proj_bus_stops,
         fire_points=proj_fire_points,

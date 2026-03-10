@@ -69,10 +69,20 @@ from .program_generator import ProgramGeneratorRuntime
 from .scene_graph_viz import build_scene_graph
 from .street_priors import DEFAULT_CATEGORIES, DEFAULT_SPACING_M, SIDE_PREF
 from .street_program import infer_street_program
+from .theme_buildings import (
+    building_query,
+    collect_building_footprints,
+    infer_theme_segments,
+    rerank_building_candidates,
+    theme_profile_style,
+)
 from .types import (
+    BuildingPlacementPlan,
     InventorySummary,
     LayoutSolverInput,
+    LayoutSolverResult,
     ProgramGenerationInput,
+    ThemeSegment,
     StreetComposeConfig,
     StreetComposeResult,
     StreetPlacement,
@@ -156,6 +166,12 @@ def _validate_config(config: StreetComposeConfig) -> None:
         raise ValueError("render_preset must be 'jury_default_v1'")
     if str(getattr(config, "asset_curation_mode", "curated_first")).strip().lower() not in {"curated_first", "legacy"}:
         raise ValueError("asset_curation_mode must be 'curated_first' or 'legacy'")
+    if int(getattr(config, "building_search_topk", 1)) <= 0:
+        raise ValueError("building_search_topk must be >= 1")
+    if str(getattr(config, "theme_inference_mode", "deterministic_auto")).strip().lower() not in {"deterministic_auto"}:
+        raise ValueError("theme_inference_mode must be 'deterministic_auto'")
+    if str(getattr(config, "theme_vocab_name", "fixed_v1")).strip().lower() not in {"fixed_v1"}:
+        raise ValueError("theme_vocab_name must be 'fixed_v1'")
 
 
 def _validate_export_format(export_format: str) -> str:
@@ -187,9 +203,22 @@ def _load_real_manifest(manifest_path: Path) -> List[Dict[str, object]]:
             "mesh_path": _resolve_path(payload["mesh_path"], base_dir),
             "latent_path": _resolve_path(payload["latent_path"], base_dir),
         }
-        for optional_key in ("style_tags", "quality_tier", "material_family", "hero_asset", "avoid_with_presets"):
+        for optional_key in (
+            "style_tags",
+            "quality_tier",
+            "material_family",
+            "hero_asset",
+            "avoid_with_presets",
+            "asset_role",
+            "theme_tags",
+            "frontage_width_m",
+            "depth_m",
+            "height_class",
+        ):
             if optional_key in payload:
                 row[optional_key] = payload[optional_key]
+        if "asset_role" not in row:
+            row["asset_role"] = "building" if row["category"] == "building" else "street_furniture"
         rows.append(row)
     if not rows:
         raise ValueError(f"real manifest is empty: {manifest_path}")
@@ -234,14 +263,20 @@ def _compute_bbox(
     yaw_deg: float,
     half_x: float,
     half_z: float,
-    scale: float,
+    scale: float | Sequence[float],
     clearance: float,
 ) -> Tuple[float, float, float, float]:
+    if isinstance(scale, (list, tuple)):
+        scale_x = float(scale[0]) if len(scale) >= 1 else 1.0
+        scale_z = float(scale[2]) if len(scale) >= 3 else float(scale[-1]) if len(scale) >= 1 else 1.0
+    else:
+        scale_x = float(scale)
+        scale_z = float(scale)
     yaw_rad = math.radians(yaw_deg)
     cos_y = abs(math.cos(yaw_rad))
     sin_y = abs(math.sin(yaw_rad))
-    aabb_half_x = (cos_y * half_x + sin_y * half_z) * scale + clearance
-    aabb_half_z = (sin_y * half_x + cos_y * half_z) * scale + clearance
+    aabb_half_x = cos_y * half_x * scale_x + sin_y * half_z * scale_z + clearance
+    aabb_half_z = sin_y * half_x * scale_x + cos_y * half_z * scale_z + clearance
     return (x - aabb_half_x, x + aabb_half_x, z - aabb_half_z, z + aabb_half_z)
 
 
@@ -306,6 +341,211 @@ def _sample_pose_for_slot(
     return x, z, yaw_deg
 
 
+def _softmax_weights(scores: Sequence[float], temperature: float) -> List[float]:
+    if not scores:
+        return []
+    temp = max(float(temperature), 1e-6)
+    arr = np.asarray([float(score) for score in scores], dtype=np.float64)
+    shifted = (arr - float(arr.max())) / temp
+    weights = np.exp(shifted)
+    total = float(weights.sum())
+    if not np.isfinite(total) or total <= 0.0:
+        return [1.0 / len(scores)] * len(scores)
+    return (weights / total).tolist()
+
+
+def _segment_node_lookup(road_segment_graph: object | None) -> Dict[str, object]:
+    return {
+        str(getattr(node, "segment_id", "")): node
+        for node in getattr(road_segment_graph, "nodes", ()) or ()
+    }
+
+
+def _aggregate_solver_results(
+    *,
+    resolved_program,
+    solver_results: Sequence[LayoutSolverResult],
+    slot_plans: Sequence[object],
+    road_segment_graph_summary: Dict[str, object] | None = None,
+) -> LayoutSolverResult:
+    if not solver_results:
+        raise RuntimeError("solver_results cannot be empty")
+    backend_requested = str(solver_results[0].backend_requested)
+    backend_used_values = tuple(dict.fromkeys(str(result.backend_used) for result in solver_results))
+    fallback_values = [str(result.fallback_reason).strip() for result in solver_results if str(result.fallback_reason).strip()]
+    return LayoutSolverResult(
+        resolved_program=resolved_program,
+        slot_plans=tuple(slot_plans),
+        rule_evaluations=tuple(
+            evaluation
+            for result in solver_results
+            for evaluation in result.rule_evaluations
+        ),
+        edits=tuple(edit for result in solver_results for edit in result.edits),
+        conflicts=tuple(conflict for result in solver_results for conflict in result.conflicts),
+        topology_validity=float(sum(float(result.topology_validity) for result in solver_results) / len(solver_results)),
+        cross_section_feasibility=float(sum(float(result.cross_section_feasibility) for result in solver_results) / len(solver_results)),
+        rule_satisfaction_rate=float(sum(float(result.rule_satisfaction_rate) for result in solver_results) / len(solver_results)),
+        editability=float(sum(float(result.editability) for result in solver_results) / len(solver_results)),
+        conflict_explainability=float(sum(float(result.conflict_explainability) for result in solver_results) / len(solver_results)),
+        backend_requested=backend_requested,
+        backend_used=backend_used_values[0] if len(backend_used_values) == 1 else "mixed",
+        fallback_reason=" | ".join(dict.fromkeys(fallback_values)),
+        road_segment_graph_summary=road_segment_graph_summary,
+    )
+
+
+def _globalize_theme_slot_plans(
+    slot_plans: Sequence[object],
+    *,
+    theme_segment: ThemeSegment,
+    road_segment_graph: object | None,
+) -> Tuple[Tuple[object, ...], Dict[str, object]]:
+    nodes_by_id = _segment_node_lookup(road_segment_graph)
+    theme_nodes = [
+        nodes_by_id[segment_id]
+        for segment_id in theme_segment.segment_ids
+        if segment_id in nodes_by_id
+    ]
+    theme_nodes = sorted(theme_nodes, key=lambda node: float(getattr(node, "station_center_m", 0.0)))
+    ordered_slots = sorted(slot_plans, key=lambda slot: float(getattr(slot, "x_center_m", 0.0)))
+    slot_to_segment: Dict[str, object] = {}
+    updated_slots: List[object] = []
+    for idx, slot in enumerate(ordered_slots):
+        slot_id = f"{theme_segment.theme_id}_{getattr(slot, 'slot_id', f'slot_{idx:03d}')}"
+        node = None
+        if getattr(slot, "anchor_position_xz", None) is not None and theme_nodes:
+            anchor_x, anchor_z = getattr(slot, "anchor_position_xz")
+            node = min(
+                theme_nodes,
+                key=lambda item: math.hypot(
+                    float(getattr(item, "center_xy", (0.0, 0.0))[0]) - float(anchor_x),
+                    float(getattr(item, "center_xy", (0.0, 0.0))[1]) - float(anchor_z),
+                ),
+            )
+            slot_x = float(anchor_x)
+            slot_z = float(anchor_z)
+        elif theme_nodes:
+            node_idx = min(int(math.floor(idx * len(theme_nodes) / max(len(ordered_slots), 1))), len(theme_nodes) - 1)
+            node = theme_nodes[node_idx]
+            slot_x = float(getattr(node, "center_xy", (0.0, 0.0))[0])
+            slot_z = float(getattr(node, "center_xy", (0.0, 0.0))[1])
+        else:
+            slot_x = float(getattr(slot, "x_center_m", 0.0)) + float(theme_segment.center_x_m)
+            slot_z = float(getattr(slot, "z_center_m", 0.0))
+        updated = replace(
+            slot,
+            slot_id=slot_id,
+            x_center_m=float(slot_x),
+            z_center_m=float(slot_z),
+            theme_id=theme_segment.theme_id,
+        )
+        updated_slots.append(updated)
+        if node is not None:
+            slot_to_segment[slot_id] = node
+    return tuple(updated_slots), slot_to_segment
+
+
+def _sample_pose_osm_for_segment(
+    category: str,
+    placement_ctx: object,
+    rng: random.Random,
+    *,
+    segment_node: object | None = None,
+    slot_side: str = "",
+    band_width_m: float = 1.0,
+    anchor_position_xz: Optional[Tuple[float, float]] = None,
+) -> Optional[Tuple[float, float, float]]:
+    from .placement_zones import compute_facing_angle, sample_slot_on_sidewalk
+
+    if anchor_position_xz is not None:
+        point = (float(anchor_position_xz[0]), float(anchor_position_xz[1]))
+        yaw = compute_facing_angle(point, placement_ctx.carriageway)  # type: ignore[attr-defined]
+        return point[0], point[1], yaw
+
+    if segment_node is not None:
+        try:
+            from shapely.geometry import Point as ShapelyPoint
+        except Exception:
+            segment_node = None
+        else:
+            start_xy = tuple(float(v) for v in getattr(segment_node, "start_xy", (0.0, 0.0)))
+            end_xy = tuple(float(v) for v in getattr(segment_node, "end_xy", (0.0, 0.0)))
+            center_xy = tuple(float(v) for v in getattr(segment_node, "center_xy", (0.0, 0.0)))
+            dx = end_xy[0] - start_xy[0]
+            dz = end_xy[1] - start_xy[1]
+            length = math.hypot(dx, dz)
+            if length > 1e-6:
+                tangent = (dx / length, dz / length)
+                left_normal = (-tangent[1], tangent[0])
+                side_pref = slot_side or SIDE_PREF.get(category, "both")
+                sign = 1.0 if side_pref == "left" else -1.0 if side_pref == "right" else (1.0 if rng.random() >= 0.5 else -1.0)
+                normal = left_normal if sign > 0 else (-left_normal[0], -left_normal[1])
+                carriageway_half = float(getattr(placement_ctx, "carriageway_width_m", 8.0) or 8.0) / 2.0
+                lateral = carriageway_half + max(float(band_width_m) * 0.45, 0.8)
+                along = rng.uniform(-max(length * 0.25, 0.5), max(length * 0.25, 0.5))
+                point = (
+                    center_xy[0] + tangent[0] * along + normal[0] * lateral,
+                    center_xy[1] + tangent[1] * along + normal[1] * lateral,
+                )
+                preferred_zone = getattr(placement_ctx, "left_sidewalk_zone", None) if sign > 0 else getattr(placement_ctx, "right_sidewalk_zone", None)
+                candidate_zone = preferred_zone if preferred_zone is not None and not getattr(preferred_zone, "is_empty", False) else placement_ctx.sidewalk_zone
+                if candidate_zone is not None and not getattr(candidate_zone, "is_empty", False) and candidate_zone.buffer(0.05).contains(ShapelyPoint(point)):
+                    yaw = compute_facing_angle(point, placement_ctx.carriageway)  # type: ignore[attr-defined]
+                    return point[0], point[1], yaw
+
+    side_pref = SIDE_PREF.get(category, "both")
+    overall_zone = placement_ctx.sidewalk_zone  # type: ignore[attr-defined]
+    if side_pref == "left":
+        preferred_zone = getattr(placement_ctx, "left_sidewalk_zone", None)
+    elif side_pref == "right":
+        preferred_zone = getattr(placement_ctx, "right_sidewalk_zone", None)
+    else:
+        preferred_zone = overall_zone
+    zone = preferred_zone
+    if zone is None or getattr(zone, "is_empty", False):
+        zone = overall_zone
+    point = sample_slot_on_sidewalk(zone, rng)
+    if point is None and zone is not overall_zone:
+        point = sample_slot_on_sidewalk(overall_zone, rng)
+    if point is None:
+        return None
+    yaw = compute_facing_angle(point, placement_ctx.carriageway)  # type: ignore[attr-defined]
+    return point[0], point[1], yaw
+
+
+def _placeholder_building_entry(
+    *,
+    asset_id: str,
+    frontage_width_m: float,
+    depth_m: float,
+    height_class: str,
+    theme_name: str,
+) -> _MeshCacheEntry:
+    trimesh = _require_trimesh()
+    height_m = {
+        "lowrise": max(float(frontage_width_m) * 0.8, 8.0),
+        "midrise": max(float(frontage_width_m) * 1.4, 14.0),
+        "highrise": max(float(frontage_width_m) * 2.0, 22.0),
+    }.get(str(height_class), max(float(frontage_width_m) * 1.2, 12.0))
+    mesh = trimesh.creation.box(extents=(float(frontage_width_m), float(height_m), float(depth_m)))
+    face_color = {
+        "residential": (188, 174, 153, 255),
+        "commercial": (176, 184, 192, 255),
+        "transit": (151, 165, 182, 255),
+        "green": (166, 171, 148, 255),
+    }.get(str(theme_name), (178, 180, 178, 255))
+    mesh.visual.face_colors = list(face_color)
+    bounds = mesh.bounds
+    span = bounds[1] - bounds[0]
+    return _MeshCacheEntry(
+        mesh=mesh,
+        half_x=float(max(span[0] / 2.0, 1e-3)),
+        half_z=float(max(span[2] / 2.0, 1e-3)),
+        min_y=float(bounds[0][1]),
+    )
+
+
 def _pick_category_candidate(
     query: str,
     category: str,
@@ -323,18 +563,6 @@ def _pick_category_candidate(
     feature_context: Optional[PolicyFeatureContext] = None,
     return_details: bool = False,
 ) -> Tuple[Dict[str, object], float, str] | Tuple[Dict[str, object], float, str, Dict[str, object]]:
-    def _softmax_weights(scores: List[float], temperature: float) -> List[float]:
-        if not scores:
-            return []
-        temp = max(float(temperature), 1e-6)
-        arr = np.asarray(scores, dtype=np.float64)
-        shifted = (arr - float(arr.max())) / temp
-        weights = np.exp(shifted)
-        total = float(weights.sum())
-        if not np.isfinite(total) or total <= 0.0:
-            return [1.0 / len(scores)] * len(scores)
-        return (weights / total).tolist()
-
     def _pick_weighted(
         candidates: List[Tuple[Dict[str, object], float]],
         temperature: float,
@@ -679,7 +907,10 @@ def _add_instance_meshes(
     trimesh = _require_trimesh()
     for placement in placements:
         mesh = mesh_cache[placement.asset_id].mesh.copy()
-        mesh.apply_scale(float(placement.scale))
+        if placement.scale_xyz:
+            mesh.apply_scale([float(value) for value in placement.scale_xyz])
+        else:
+            mesh.apply_scale(float(placement.scale))
         rotation = trimesh.transformations.rotation_matrix(
             math.radians(float(placement.yaw_deg)),
             [0.0, 1.0, 0.0],
@@ -977,6 +1208,212 @@ def _slot_spatial_kwargs(slot, spatial_ctx) -> dict:
     }
 
 
+def _pick_building_candidate(
+    *,
+    query: str,
+    theme_name: str,
+    frontage_width_m: float,
+    depth_m: float,
+    road_type: str,
+    embedder: ClipTextEmbedder,
+    index_store: FaissIndexStore,
+    asset_by_id: Dict[str, Dict[str, object]],
+    search_topk: int,
+    rng: random.Random,
+) -> Tuple[Optional[Dict[str, object]], float, str, Dict[str, object]]:
+    query_text = building_query(
+        query,
+        theme_name=theme_name,
+        frontage_width_m=float(frontage_width_m),
+        depth_m=float(depth_m),
+        road_type=road_type,
+    )
+    query_embedding = embedder.encode_texts([query_text])
+    hits = index_store.search(query_embedding, topk=max(50, int(search_topk), 1))[0]
+    reranked = rerank_building_candidates(
+        hits=hits,
+        asset_by_id=asset_by_id,
+        theme_name=theme_name,
+        frontage_width_m=float(frontage_width_m),
+        depth_m=float(depth_m),
+        limit=max(int(search_topk), 1),
+    )
+    payload = {
+        "query": query_text,
+        "hit_count": len(hits),
+        "candidate_count": len(reranked),
+        "candidates": [
+            {
+                "asset_id": row["asset_id"],
+                "category": row["category"],
+                "score": float(score),
+            }
+            for row, score in reranked
+        ],
+    }
+    if not reranked:
+        return None, 0.0, "procedural_fallback", payload
+    weights = _softmax_weights([float(score) for _row, score in reranked], SOFTMAX_TEMPERATURE)
+    pick_idx = int(rng.choices(range(len(reranked)), weights=weights, k=1)[0])
+    row, score = reranked[pick_idx]
+    payload["chosen_index"] = pick_idx
+    return row, float(score), "building_asset", payload
+
+
+def _place_surrounding_buildings(
+    *,
+    config: StreetComposeConfig,
+    projected_features: object | None,
+    placement_ctx: object | None,
+    road_segment_graph: object | None,
+    theme_segments: Sequence[ThemeSegment],
+    resolved_program,
+    embedder: ClipTextEmbedder,
+    index_store: FaissIndexStore,
+    asset_by_id: Dict[str, Dict[str, object]],
+    mesh_cache: Dict[str, _MeshCacheEntry],
+    rng: random.Random,
+    start_instance_index: int,
+) -> Tuple[Tuple[object, ...], List[StreetPlacement], List[BuildingPlacementPlan], List[Dict[str, object]], Dict[str, object], int]:
+    if not bool(getattr(config, "enable_surrounding_buildings", True)) or config.layout_mode != "osm":
+        return tuple(), [], [], [], {"enabled": False, "footprint_count": 0, "placed_count": 0, "fallback_count": 0}, start_instance_index
+
+    theme_by_id = {segment.theme_id: segment for segment in theme_segments}
+    footprints = list(
+        collect_building_footprints(
+            projected_features,
+            placement_context=placement_ctx,
+            theme_segments=theme_segments,
+            road_segment_graph=road_segment_graph,
+            road_buffer_m=35.0,
+        )
+    )
+    placements: List[StreetPlacement] = []
+    plans: List[BuildingPlacementPlan] = []
+    retrieval_predictions: List[Dict[str, object]] = []
+    fallback_count = 0
+    asset_count = 0
+    instance_index = int(start_instance_index)
+    for footprint_idx, footprint in enumerate(footprints):
+        theme_segment = theme_by_id.get(footprint.theme_id, theme_segments[0] if theme_segments else None)
+        theme_name = theme_segment.theme_name if theme_segment is not None else "commercial"
+        row, score, source, retrieval_payload = _pick_building_candidate(
+            query=config.query,
+            theme_name=theme_name,
+            frontage_width_m=float(footprint.frontage_width_m),
+            depth_m=float(footprint.depth_m),
+            road_type=str(resolved_program.road_type),
+            embedder=embedder,
+            index_store=index_store,
+            asset_by_id=asset_by_id,
+            search_topk=int(getattr(config, "building_search_topk", 5)),
+            rng=rng,
+        )
+        retrieval_payload.update(
+            {
+                "footprint_id": footprint.footprint_id,
+                "theme_id": footprint.theme_id,
+                "source": footprint.source,
+            }
+        )
+        retrieval_predictions.append(retrieval_payload)
+
+        if row is not None:
+            entry = mesh_cache[row["asset_id"]]
+            scale_x = max(float(footprint.frontage_width_m) / max(entry.half_x * 2.0, 1e-3), 0.1)
+            scale_z = max(float(footprint.depth_m) / max(entry.half_z * 2.0, 1e-3), 0.1)
+            height_multiplier = {"lowrise": 1.0, "midrise": 1.4, "highrise": 1.8}.get(
+                str(row.get("height_class", footprint.height_class)),
+                {"lowrise": 1.0, "midrise": 1.4, "highrise": 1.8}.get(str(footprint.height_class), 1.2),
+            )
+            scale_y = max(scale_x, scale_z) * float(height_multiplier)
+            scale_xyz = [float(scale_x), float(scale_y), float(scale_z)]
+            asset_id = str(row["asset_id"])
+            asset_count += 1
+            fallback_reason = ""
+        else:
+            asset_id = f"building_fallback_{footprint_idx:03d}"
+            mesh_cache[asset_id] = _placeholder_building_entry(
+                asset_id=asset_id,
+                frontage_width_m=float(footprint.frontage_width_m),
+                depth_m=float(footprint.depth_m),
+                height_class=str(footprint.height_class),
+                theme_name=theme_name,
+            )
+            asset_by_id[asset_id] = {
+                "asset_id": asset_id,
+                "category": "building",
+                "text_desc": f"{theme_name} {footprint.height_class} procedural building",
+                "asset_role": "building",
+                "theme_tags": [theme_name, footprint.size_class],
+                "height_class": footprint.height_class,
+            }
+            entry = mesh_cache[asset_id]
+            scale_xyz = [1.0, 1.0, 1.0]
+            fallback_count += 1
+            fallback_reason = "no_building_asset_match"
+
+        bbox = _compute_bbox(
+            x=float(footprint.centroid_xz[0]),
+            z=float(footprint.centroid_xz[1]),
+            yaw_deg=float(footprint.yaw_deg),
+            half_x=entry.half_x,
+            half_z=entry.half_z,
+            scale=scale_xyz,
+            clearance=0.15,
+        )
+        y = -entry.min_y * float(scale_xyz[1])
+        plans.append(
+            BuildingPlacementPlan(
+                footprint_id=footprint.footprint_id,
+                theme_id=footprint.theme_id,
+                asset_id=asset_id,
+                selection_source=source,
+                position_xyz=[float(footprint.centroid_xz[0]), float(y), float(footprint.centroid_xz[1])],
+                yaw_deg=float(footprint.yaw_deg),
+                scale=1.0,
+                scale_xyz=[float(value) for value in scale_xyz],
+                bbox_xz=[float(value) for value in bbox],
+                frontage_width_m=float(footprint.frontage_width_m),
+                depth_m=float(footprint.depth_m),
+                anchor_geom_id=str(footprint.anchor_geom_id),
+                retrieval_score=float(score),
+                fallback_reason=fallback_reason,
+            )
+        )
+        placements.append(
+            StreetPlacement(
+                instance_id=f"inst_{instance_index:04d}",
+                asset_id=asset_id,
+                category="building",
+                score=float(score),
+                position_xyz=[float(footprint.centroid_xz[0]), float(y), float(footprint.centroid_xz[1])],
+                yaw_deg=float(footprint.yaw_deg),
+                scale=1.0,
+                bbox_xz=[float(value) for value in bbox],
+                selection_source=source,
+                placement_group="building",
+                theme_id=footprint.theme_id,
+                anchor_geom_id=str(footprint.anchor_geom_id),
+                scale_xyz=[float(value) for value in scale_xyz],
+            )
+        )
+        instance_index += 1
+
+    summary = {
+        "enabled": True,
+        "footprint_count": len(footprints),
+        "placed_count": len(placements),
+        "asset_count": int(asset_count),
+        "fallback_count": int(fallback_count),
+        "sources": {
+            "osm": sum(1 for footprint in footprints if footprint.source == "osm"),
+            "fallback": sum(1 for footprint in footprints if footprint.source != "osm"),
+        },
+    }
+    return tuple(footprints), placements, plans, retrieval_predictions, summary, instance_index
+
+
 def compose_street_scene(
     config: StreetComposeConfig,
     manifest_path: Path,
@@ -1024,7 +1461,7 @@ def compose_street_scene(
             f"Expected at least one of {DEFAULT_CATEGORIES}."
         )
 
-    mesh_cache = _load_mesh_cache([row for row in rows if row["category"] in category_to_rows])
+    mesh_cache = _load_mesh_cache(rows)
 
     embedder = ClipTextEmbedder(
         model_name=model_name,
@@ -1057,11 +1494,11 @@ def compose_street_scene(
 
     program_runtime = ProgramGeneratorRuntime(backend="heuristic_v1")
     program_used = "heuristic_v1"
-    program_fallback_reason = ""
+    program_fallback_reasons: List[str] = []
     if str(config.program_generator).strip().lower() == "learned_v1":
         ckpt_path = Path(program_ckpt).expanduser().resolve() if program_ckpt else None
         if ckpt_path is None or not ckpt_path.exists():
-            program_fallback_reason = (
+            program_fallback_reasons.append(
                 "Program generator checkpoint missing; fallback to heuristic_v1."
                 if ckpt_path is None
                 else f"Program generator checkpoint not found: {ckpt_path}. Fallback to heuristic_v1."
@@ -1071,7 +1508,7 @@ def compose_street_scene(
                 program_runtime = ProgramGeneratorRuntime.from_checkpoint(ckpt_path, device=device)
                 program_used = "learned_v1"
             except Exception as exc:
-                program_fallback_reason = f"Program generator load failed ({exc}); fallback to heuristic_v1."
+                program_fallback_reasons.append(f"Program generator load failed ({exc}); fallback to heuristic_v1.")
 
     rng = random.Random(int(config.seed))
     placements: List[StreetPlacement] = []
@@ -1119,7 +1556,6 @@ def compose_street_scene(
 
         rule_set = load_rule_set(config.poi_rule_set)
 
-    # --- Entrance analysis registry ---
     entrance_registry = PlacedAssetRegistry()
     entrance_points_xz: Tuple[Tuple[float, float], ...] = ()
     carriageway_boundary: Optional[CarriagewayBoundary] = None
@@ -1153,9 +1589,14 @@ def compose_street_scene(
                     f"Selected road has {poi_type} POIs but the asset inventory has no {category} category."
                 )
     road_segment_graph = build_segment_graph(projected, config) if projected is not None else None
-
-    # --- Spatial context for distance features (M8) ---
     spatial_ctx = build_spatial_context(config, road_segment_graph, poi_ctx)
+    theme_segments = infer_theme_segments(
+        road_segment_graph,
+        query=config.query,
+        target_street_type=config.target_street_type,
+        fallback_length_m=float(config.length_m),
+    )
+    theme_by_id = {segment.theme_id: segment for segment in theme_segments}
 
     program_result = program_runtime.generate(
         ProgramGenerationInput(
@@ -1171,30 +1612,139 @@ def compose_street_scene(
     )
     if program_result.backend_used == "learned_v1":
         program_used = "learned_v1"
-    if program_result.fallback_reason and not program_fallback_reason:
-        program_fallback_reason = program_result.fallback_reason
-    street_program = shape_program_for_style(program_result.program, config)
-    constraint_set = load_constraint_set(config.design_rule_profile)
+    if program_result.fallback_reason:
+        program_fallback_reasons.append(program_result.fallback_reason)
+    base_program = shape_program_for_style(program_result.program, config)
+    base_constraint_set = load_constraint_set(config.design_rule_profile)
     solver_runtime = LayoutSolverRuntime(backend=str(config.layout_solver))
-    solver_result = solver_runtime.solve(
-        LayoutSolverInput(
-            program=street_program,
-            config=config,
-            available_categories=tuple(available_categories),
-            constraint_set=constraint_set,
-            placement_context=placement_ctx,
-            inventory_summary=inventory_summary,
+
+    zone_solver_results: List[LayoutSolverResult] = []
+    slot_plans: List[object] = []
+    slot_segment_lookup: Dict[str, object] = {}
+    slot_band_lookup: Dict[str, object] = {}
+    theme_zone_programs: List[Dict[str, object]] = []
+    composition_pass_reports: List[Dict[str, object]] = []
+
+    for theme_segment in theme_segments:
+        theme_spec = theme_profile_style(theme_segment.theme_name)
+        zone_query = f"{config.query}, {theme_segment.theme_name} streetscape"
+        zone_design_rule_profile = (
+            str(theme_spec["design_rule_profile"])
+            if config.layout_mode == "osm"
+            else str(config.design_rule_profile)
+        )
+        zone_style_preset = (
+            str(theme_spec["style_preset"])
+            if config.layout_mode == "osm"
+            else str(config.style_preset)
+        )
+        zone_config = replace(
+            config,
+            query=zone_query,
+            length_m=float(max(theme_segment.length_m, min(float(config.segment_length_m), float(config.length_m)))),
+            design_rule_profile=zone_design_rule_profile,
+            style_preset=zone_style_preset,
+            target_street_type=str(theme_segment.theme_name) if config.layout_mode == "osm" else str(config.target_street_type),
+        )
+        zone_program_result = program_runtime.generate(
+            ProgramGenerationInput(
+                query=zone_query,
+                compose_config=zone_config,
+                available_categories=tuple(available_categories),
+                constraint_profile=str(zone_config.design_rule_profile),
+                placement_context=placement_ctx,
+                inventory_summary=inventory_summary,
+                road_segment_graph=road_segment_graph,
+                poi_context=poi_ctx,
+            )
+        )
+        if zone_program_result.backend_used == "learned_v1":
+            program_used = "learned_v1"
+        if zone_program_result.fallback_reason:
+            program_fallback_reasons.append(zone_program_result.fallback_reason)
+        zone_program = shape_program_for_style(zone_program_result.program, zone_config)
+        zone_constraint_set = load_constraint_set(zone_config.design_rule_profile)
+        zone_solver_result = solver_runtime.solve(
+            LayoutSolverInput(
+                program=zone_program,
+                config=zone_config,
+                available_categories=tuple(available_categories),
+                constraint_set=zone_constraint_set,
+                placement_context=placement_ctx,
+                inventory_summary=inventory_summary,
+                road_segment_graph=road_segment_graph,
+            )
+        )
+        zone_slots = list(zone_solver_result.slot_plans)
+        zone_slots, zone_composition = apply_composition_pass(
+            zone_slots,
+            config=zone_config,
+            poi_context=poi_ctx,
+        )
+        zone_slots, zone_slot_segments = _globalize_theme_slot_plans(
+            zone_slots,
+            theme_segment=theme_segment,
             road_segment_graph=road_segment_graph,
         )
+        zone_solver_result = replace(zone_solver_result, slot_plans=tuple(zone_slots))
+        zone_solver_results.append(zone_solver_result)
+        slot_plans.extend(zone_slots)
+        slot_segment_lookup.update(zone_slot_segments)
+        zone_band_by_name = {band.name: band for band in zone_solver_result.resolved_program.bands}
+        for slot in zone_slots:
+            slot_band_lookup[str(slot.slot_id)] = zone_band_by_name.get(str(slot.band_name))
+        composition_pass_reports.append(dict(zone_composition))
+        theme_zone_programs.append(
+            {
+                "theme_id": theme_segment.theme_id,
+                "theme_name": theme_segment.theme_name,
+                "query": zone_query,
+                "cross_section_type": zone_solver_result.resolved_program.cross_section_type,
+                "design_rule_profile": zone_config.design_rule_profile,
+                "style_preset": zone_config.style_preset,
+                "slot_count": len(zone_slots),
+                "backend_used": zone_program_result.backend_used,
+                "solver_backend_used": zone_solver_result.backend_used,
+            }
+        )
+
+    if not slot_plans:
+        raise RuntimeError(
+            "Layout solver produced zero slots. "
+            "Check the design rule profile, theme inference, asset coverage, or scene length."
+        )
+
+    building_strategy_summary = {
+        "theme_segment_count": int(len(theme_segments)),
+        "theme_names": [segment.theme_name for segment in theme_segments],
+        "theme_inference_mode": str(getattr(config, "theme_inference_mode", "deterministic_auto")),
+        "theme_vocab_name": str(getattr(config, "theme_vocab_name", "fixed_v1")),
+    }
+    resolved_program = replace(
+        base_program,
+        theme_segments=tuple(theme_segments),
+        building_strategy_summary=dict(building_strategy_summary),
+        notes=tuple(dict.fromkeys(list(base_program.notes) + ["multitheme_street_v1"])),
     )
-    resolved_program = solver_result.resolved_program
-    slot_plans = list(solver_result.slot_plans)
-    slot_plans, composition_pass_report = apply_composition_pass(
-        slot_plans,
-        config=config,
-        poi_context=poi_ctx,
+    graph_summary = (
+        road_segment_graph.summary()
+        if road_segment_graph is not None and hasattr(road_segment_graph, "summary")
+        else None
     )
-    solver_result = replace(solver_result, slot_plans=tuple(slot_plans))
+    if graph_summary is not None:
+        graph_summary = {
+            **dict(graph_summary),
+            "theme_segment_count": int(len(theme_segments)),
+            "theme_names": [segment.theme_name for segment in theme_segments],
+            "theme_vocab_name": str(getattr(config, "theme_vocab_name", "fixed_v1")),
+        }
+    solver_result = _aggregate_solver_results(
+        resolved_program=resolved_program,
+        solver_results=zone_solver_results,
+        slot_plans=slot_plans,
+        road_segment_graph_summary=graph_summary,
+    )
+
     for poi_type, required_count in asset_backed_poi_anchor_counts(
         extract_poi_points_by_type(placement_ctx) if placement_ctx is not None else {}
     ).items():
@@ -1208,13 +1758,15 @@ def compose_street_scene(
             raise RuntimeError(
                 f"Layout solver did not preserve all required POI-backed {category} slots."
             )
-    if not slot_plans:
-        raise RuntimeError(
-            "Layout solver produced zero slots. "
-            "Check the design rule profile, asset coverage, or scene length."
-        )
 
-    band_by_name = {band.name: band for band in resolved_program.bands}
+    composition_pass_report = {
+        "trimmed_optional_slots": int(sum(int(report.get("trimmed_optional_slots", 0)) for report in composition_pass_reports)),
+        "required_slots_preserved": int(sum(int(report.get("required_slots_preserved", 0)) for report in composition_pass_reports)),
+        "composition_slot_count": int(sum(int(report.get("composition_slot_count", 0)) for report in composition_pass_reports)),
+        "composition_optional_count": int(sum(int(report.get("composition_optional_count", 0)) for report in composition_pass_reports)),
+        "theme_segment_count": int(len(theme_segments)),
+    }
+
     category_slot_counts: Dict[str, int] = {}
     for slot in slot_plans:
         category_slot_counts[slot.category] = category_slot_counts.get(slot.category, 0) + 1
@@ -1229,9 +1781,14 @@ def compose_street_scene(
         if not pool:
             dropped_slots += 1
             continue
-
+        theme_segment = theme_by_id.get(str(getattr(slot, "theme_id", "")))
+        slot_query = (
+            f"{config.query}, {theme_segment.theme_name} streetscape"
+            if theme_segment is not None
+            else config.query
+        )
         feature_ctx = PolicyFeatureContext(
-            query=config.query,
+            query=slot_query,
             category=category,
             slot_idx=int(slot_index_by_category.get(category, 0)),
             slot_x=float(slot.x_center_m),
@@ -1255,7 +1812,7 @@ def compose_street_scene(
             **_slot_spatial_kwargs(slot, spatial_ctx),
         )
         row, score, source, decision_details = _pick_category_candidate(
-            query=config.query,
+            query=slot_query,
             category=category,
             topk=config.topk_per_category,
             embedder=embedder,
@@ -1274,11 +1831,12 @@ def compose_street_scene(
         retrieval_predictions.append(
             {
                 "target_category": category,
+                "theme_id": getattr(slot, "theme_id", ""),
                 "hits": decision_details.get("candidates", []),
             }
         )
 
-        band = band_by_name.get(slot.band_name)
+        band = slot_band_lookup.get(str(slot.slot_id))
         if band is None:
             dropped_slots += 1
             slot_index_by_category[category] = slot_index_by_category.get(category, 0) + 1
@@ -1290,9 +1848,18 @@ def compose_street_scene(
             Tuple[float, float, float, Tuple[float, float, float, float], float, float, Tuple[str, ...], float]
         ] = []
         anchor_position = getattr(slot, "anchor_position_xz", None)
+        segment_node = slot_segment_lookup.get(str(slot.slot_id))
         for _trial_idx in range(int(config.max_trials_per_slot)):
             if config.layout_mode == "osm" and placement_ctx is not None:
-                pose = _sample_pose_osm(category, placement_ctx, rng, anchor_position_xz=anchor_position)
+                pose = _sample_pose_osm_for_segment(
+                    category,
+                    placement_ctx,
+                    rng,
+                    segment_node=segment_node,
+                    slot_side=str(slot.side),
+                    band_width_m=float(getattr(band, "width_m", 1.0)),
+                    anchor_position_xz=anchor_position,
+                )
                 if pose is None:
                     continue
                 x, z, yaw_deg = pose
@@ -1302,7 +1869,7 @@ def compose_street_scene(
                     slot_z_center=float(slot.z_center_m),
                     slot_side=str(slot.side),
                     slot_spacing_m=float(slot.spacing_m),
-                    band_width_m=float(band.width_m),
+                    band_width_m=float(getattr(band, "width_m", 1.0)),
                     length_m=float(config.length_m),
                     rng=rng,
                 )
@@ -1328,7 +1895,6 @@ def compose_street_scene(
                 c_feasibility = cr.feasibility_score
                 c_violated = cr.violated_rules
 
-            # Entrance openness / noise-shielding impact
             if entrance_points_xz and carriageway_boundary is not None:
                 e_penalty, e_bonus, e_violated = score_entrance_impact(
                     candidate_xz=(x, z),
@@ -1376,7 +1942,7 @@ def compose_street_scene(
 
             bx, bz, byaw, bbbox, bpenalty, bfeas, bviolated, _beauty_score = best
             existing_bboxes.append(bbbox)
-            y = -entry.min_y * scale
+            y = -entry.min_y
             placements.append(
                 StreetPlacement(
                     instance_id=f"inst_{instance_counter:04d}",
@@ -1385,10 +1951,11 @@ def compose_street_scene(
                     score=float(score),
                     position_xyz=[float(bx), float(y), float(bz)],
                     yaw_deg=float(byaw),
-                    scale=float(scale),
+                    scale=1.0,
                     bbox_xz=[float(bbbox[0]), float(bbbox[1]), float(bbbox[2]), float(bbbox[3])],
                     selection_source=source,
                     slot_id=str(slot.slot_id),
+                    theme_id=str(getattr(slot, "theme_id", "")),
                     constraint_penalty=float(bpenalty),
                     feasibility_score=float(bfeas),
                     violated_rules=bviolated,
@@ -1414,11 +1981,40 @@ def compose_street_scene(
 
     if not placements:
         raise RuntimeError(
-            "Street composition produced zero placements. "
+            "Street composition produced zero furniture placements. "
             "Try a different design-rule profile, larger length/density, or check category coverage in manifest."
         )
 
-    palette = style_palette(getattr(config, "style_preset", None))
+    building_footprints, building_placements, building_plans, building_retrieval_predictions, building_summary, instance_counter = _place_surrounding_buildings(
+        config=config,
+        projected_features=projected,
+        placement_ctx=placement_ctx,
+        road_segment_graph=road_segment_graph,
+        theme_segments=theme_segments,
+        resolved_program=resolved_program,
+        embedder=embedder,
+        index_store=index_store,
+        asset_by_id=asset_by_id,
+        mesh_cache=mesh_cache,
+        rng=rng,
+        start_instance_index=instance_counter,
+    )
+    placements.extend(building_placements)
+    resolved_program = replace(
+        resolved_program,
+        building_strategy_summary={
+            **dict(building_strategy_summary),
+            **dict(building_summary),
+        },
+    )
+    solver_result = replace(solver_result, resolved_program=resolved_program)
+
+    dominant_palette_style = (
+        theme_segments[0].style_preset
+        if theme_segments and config.layout_mode == "osm"
+        else getattr(config, "style_preset", None)
+    )
+    palette = style_palette(dominant_palette_style)
     if config.layout_mode == "osm" and placement_ctx is not None:
         scene = _build_osm_base_scene(placement_ctx, palette=palette)
     else:
@@ -1442,10 +2038,10 @@ def compose_street_scene(
     )
     _add_instance_meshes(scene=scene, placements=placements, mesh_cache=mesh_cache)
 
-    # Compute exclusion zones early so we can add 3D markers before export
     exclusion_zones: tuple = ()
     if rule_set is not None and poi_ctx is not None:
         from .poi_rules import build_exclusion_zones as _build_exclusion_zones
+
         exclusion_zones = _build_exclusion_zones(poi_ctx, rule_set)
         _add_poi_markers_and_zones(scene, extract_poi_points_by_type(poi_ctx, suffix="xz"), exclusion_zones)
     elif poi_ctx is not None:
@@ -1464,37 +2060,38 @@ def compose_street_scene(
         instance_count=len(placements),
     )
 
-    placement_dicts = [placement.to_dict() for placement in placements]
-    spacing_uniformity = compute_spacing_uniformity(placement_dicts)
-    style_consistency = compute_style_consistency(placement_dicts)
-    balance_score = compute_balance_score(placement_dicts)
+    furniture_placements = [placement for placement in placements if placement.placement_group == "street_furniture"]
+    furniture_dicts = [placement.to_dict() for placement in furniture_placements]
+    spacing_uniformity = compute_spacing_uniformity(furniture_dicts)
+    style_consistency = compute_style_consistency(furniture_dicts)
+    balance_score = compute_balance_score(furniture_dicts)
     per_category_unique = {
         category: len({placement.asset_id for placement in placements if placement.category == category})
-        for category in DEFAULT_CATEGORIES
+        for category in sorted({placement.category for placement in placements})
         if any(placement.category == category for placement in placements)
     }
     selection_source_counts: Dict[str, int] = {}
     for placement in placements:
-        selection_source_counts[placement.selection_source] = (
-            selection_source_counts.get(placement.selection_source, 0) + 1
-        )
+        selection_source_counts[placement.selection_source] = selection_source_counts.get(placement.selection_source, 0) + 1
 
-    violations_total = sum(1 for placement in placements if placement.violated_rules)
-    compliance_rate_total = 1.0 - (violations_total / len(placements)) if placements else 0.0
+    violations_total = sum(1 for placement in furniture_placements if placement.violated_rules)
+    compliance_rate_total = 1.0 - (violations_total / len(furniture_placements)) if furniture_placements else 1.0
     avg_constraint_penalty = (
-        sum(placement.constraint_penalty for placement in placements) / len(placements) if placements else 0.0
+        sum(placement.constraint_penalty for placement in furniture_placements) / len(furniture_placements)
+        if furniture_placements
+        else 0.0
     )
     avg_feasibility_score = (
-        sum(placement.feasibility_score for placement in placements) / len(placements) if placements else 1.0
+        sum(placement.feasibility_score for placement in furniture_placements) / len(furniture_placements)
+        if furniture_placements
+        else 1.0
     )
     rule_violation_counts: Dict[str, int] = {}
-    for placement in placements:
+    for placement in furniture_placements:
         for rule_name in placement.violated_rules:
             rule_violation_counts[rule_name] = rule_violation_counts.get(rule_name, 0) + 1
 
     rule_satisfaction_rate = compute_rule_satisfaction_rate(solver_result.rule_evaluations)
-
-    # --- Entrance analysis (post-placement) ---
     entrance_report = evaluate_all_entrances(
         entrance_points_xz=entrance_points_xz,
         registry=entrance_registry,
@@ -1517,6 +2114,7 @@ def compose_street_scene(
     for evaluation in solver_result.rule_evaluations:
         rule_evaluation_counts[evaluation.status] = rule_evaluation_counts.get(evaluation.status, 0) + 1
 
+    program_fallback_reason = " | ".join(dict.fromkeys(reason for reason in program_fallback_reasons if reason))
     layout_path = (out_dir / "scene_layout.json").resolve()
     summary_payload = {
         "instance_count": len(placements),
@@ -1544,7 +2142,7 @@ def compose_street_scene(
         "balance_score": float(balance_score),
         "design_rule_profile": str(config.design_rule_profile),
         "program_generator_requested": str(config.program_generator),
-        "program_generator_used": str(program_result.backend_used),
+        "program_generator_used": str(program_used),
         "layout_solver_requested": str(config.layout_solver),
         "layout_solver_used": str(solver_result.backend_used),
         "cross_section_type": str(resolved_program.cross_section_type),
@@ -1606,6 +2204,19 @@ def compose_street_scene(
         "beauty_mode": str(getattr(config, "beauty_mode", "presentation_v1")),
         "render_preset": str(getattr(config, "render_preset", "jury_default_v1")),
         "asset_curation_mode": str(getattr(config, "asset_curation_mode", "curated_first")),
+        "theme_segments": [segment.to_dict() for segment in theme_segments],
+        "theme_diagnostics": {
+            "theme_inference_mode": str(getattr(config, "theme_inference_mode", "deterministic_auto")),
+            "theme_vocab_name": str(getattr(config, "theme_vocab_name", "fixed_v1")),
+            "zone_programs": theme_zone_programs,
+        },
+        "building_summary": dict(building_summary),
+        "building_retrieval_coverage": {
+            "footprint_count": int(building_summary.get("footprint_count", 0)),
+            "placed_count": int(building_summary.get("placed_count", 0)),
+            "asset_count": int(building_summary.get("asset_count", 0)),
+            "fallback_count": int(building_summary.get("fallback_count", 0)),
+        },
         "composition_report": {
             **dict(composition_pass_report),
             **dict(presentation_report),
@@ -1648,15 +2259,20 @@ def compose_street_scene(
         if p.violated_rules
     ]
 
+    program_generation_payload = program_result.to_dict()
+    program_generation_payload["theme_zone_programs"] = list(theme_zone_programs)
     layout_payload = {
         "query": config.query,
         "config": config.to_dict(),
-        "program_generation": program_result.to_dict(),
+        "program_generation": program_generation_payload,
         "street_program": resolved_program.to_dict(),
-        "constraint_set": constraint_set.to_dict(),
+        "constraint_set": base_constraint_set.to_dict(),
         "solver": solver_result.to_dict(),
         "summary": summary_payload,
         "placements": [placement.to_dict() for placement in placements],
+        "building_footprints": [footprint.to_dict() for footprint in building_footprints],
+        "building_placements": [plan.to_dict() for plan in building_plans],
+        "building_retrieval_predictions": building_retrieval_predictions,
         "outputs": outputs,
     }
     layout_payload["summary"].update(presentation_report)
@@ -1680,7 +2296,7 @@ def compose_street_scene(
     outputs["design_rule_profile"] = str(config.design_rule_profile)
     outputs["program_cross_section_type"] = str(resolved_program.cross_section_type)
     outputs["program_generator_requested"] = str(config.program_generator)
-    outputs["program_generator_used"] = str(program_result.backend_used)
+    outputs["program_generator_used"] = str(program_used)
     outputs["layout_solver_requested"] = str(config.layout_solver)
     outputs["layout_solver_used"] = str(solver_result.backend_used)
     if solver_result.fallback_reason:

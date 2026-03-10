@@ -323,6 +323,8 @@ def _apply_prediction_to_program(base: StreetProgram, prediction: Dict[str, np.n
         width_reallocation_reason=str(base.width_reallocation_reason),
         poi_fit_feasible=bool(base.poi_fit_feasible),
         poi_fit_report=dict(base.poi_fit_report),
+        theme_segments=tuple(base.theme_segments),
+        building_strategy_summary=dict(base.building_strategy_summary),
     )
 
 

@@ -78,9 +78,10 @@ def build_segment_graph(
     }
     segment_length = max(float(getattr(config, "segment_length_m", 12.0)), 4.0)
 
-    nodes: List[RoadSegmentNode] = []
+    node_specs: List[dict] = []
     edges: List[RoadSegmentEdge] = []
     last_segment_by_road: dict[int, str] = {}
+    cumulative_station_m = 0.0
     segment_counter = 0
     edge_counter = 0
 
@@ -106,19 +107,28 @@ def build_segment_graph(
                 )
                 segment_id = f"seg_{segment_counter:04d}"
                 segment_counter += 1
-                node = RoadSegmentNode(
-                    segment_id=segment_id,
-                    road_id=road_id,
-                    start_xy=(float(a[0]), float(a[1])),
-                    end_xy=(float(b[0]), float(b[1])),
-                    center_xy=center,
-                    length_m=float(_distance(a, b)),
-                    is_junction=(coord_idx == 0 or coord_idx == len(coords) - 2 or part_idx == 0 or part_idx == subdivisions - 1),
-                    is_accessible=True,
-                    poi_types=poi_types,
-                    bands=_segment_bands(segment_id=segment_id, config=config, poi_types=poi_types),
+                segment_length_m = float(_distance(a, b))
+                station_start_m = float(cumulative_station_m)
+                station_end_m = float(cumulative_station_m + segment_length_m)
+                node_specs.append(
+                    {
+                        "segment_id": segment_id,
+                        "road_id": road_id,
+                        "start_xy": (float(a[0]), float(a[1])),
+                        "end_xy": (float(b[0]), float(b[1])),
+                        "center_xy": center,
+                        "length_m": segment_length_m,
+                        "is_junction": (coord_idx == 0 or coord_idx == len(coords) - 2 or part_idx == 0 or part_idx == subdivisions - 1),
+                        "is_accessible": True,
+                        "highway_type": str(getattr(road, "highway_type", "")),
+                        "poi_types": poi_types,
+                        "bands": _segment_bands(segment_id=segment_id, config=config, poi_types=poi_types),
+                        "station_start_m": station_start_m,
+                        "station_end_m": station_end_m,
+                        "station_center_m": (station_start_m + station_end_m) / 2.0,
+                    }
                 )
-                nodes.append(node)
+                cumulative_station_m += segment_length_m
                 previous_segment = last_segment_by_road.get(road_id)
                 if previous_segment is not None:
                     edges.append(
@@ -132,4 +142,24 @@ def build_segment_graph(
                     edge_counter += 1
                 last_segment_by_road[road_id] = segment_id
 
+    half_length = float(cumulative_station_m) / 2.0
+    nodes: List[RoadSegmentNode] = [
+        RoadSegmentNode(
+            segment_id=str(spec["segment_id"]),
+            road_id=int(spec["road_id"]),
+            start_xy=tuple(spec["start_xy"]),
+            end_xy=tuple(spec["end_xy"]),
+            center_xy=tuple(spec["center_xy"]),
+            length_m=float(spec["length_m"]),
+            is_junction=bool(spec["is_junction"]),
+            is_accessible=bool(spec["is_accessible"]),
+            highway_type=str(spec["highway_type"]),
+            poi_types=tuple(spec["poi_types"]),
+            bands=tuple(spec["bands"]),
+            station_start_m=float(spec["station_start_m"]) - half_length,
+            station_end_m=float(spec["station_end_m"]) - half_length,
+            station_center_m=float(spec["station_center_m"]) - half_length,
+        )
+        for spec in node_specs
+    ]
     return RoadSegmentGraph(nodes=tuple(nodes), edges=tuple(edges), mode="osm")

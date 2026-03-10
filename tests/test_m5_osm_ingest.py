@@ -169,6 +169,24 @@ def test_parse_osm_features_empty():
     assert len(features.entrances) == 0
 
 
+def test_parse_osm_features_extracts_building_footprints():
+    data = {
+        "elements": [
+            {"type": "node", "id": 1, "lon": 116.3900, "lat": 39.9000},
+            {"type": "node", "id": 2, "lon": 116.3910, "lat": 39.9000},
+            {"type": "node", "id": 10, "lon": 116.3902, "lat": 39.9002},
+            {"type": "node", "id": 11, "lon": 116.3904, "lat": 39.9002},
+            {"type": "node", "id": 12, "lon": 116.3904, "lat": 39.9004},
+            {"type": "node", "id": 13, "lon": 116.3902, "lat": 39.9004},
+            {"type": "way", "id": 100, "nodes": [1, 2], "tags": {"highway": "residential"}},
+            {"type": "way", "id": 200, "nodes": [10, 11, 12, 13], "tags": {"building": "yes"}},
+        ]
+    }
+    features = parse_osm_features(data)
+    assert len(features.buildings) == 1
+    assert features.buildings[0].coords[0] == features.buildings[0].coords[-1]
+
+
 # ---------------------------------------------------------------------------
 # Projection
 # ---------------------------------------------------------------------------
@@ -202,6 +220,26 @@ def test_project_preserves_relative_distances():
     dist = math.hypot(p1[0] - p2[0], p1[1] - p2[1])
     # 0.001 degree of longitude at lat=39.9 ≈ 85m
     assert 60.0 < dist < 120.0, f"Projected distance {dist:.1f}m seems wrong"
+
+
+def test_project_to_local_projects_buildings():
+    pytest.importorskip("pyproj")
+    data = {
+        "elements": [
+            {"type": "node", "id": 1, "lon": 116.3900, "lat": 39.9000},
+            {"type": "node", "id": 2, "lon": 116.3910, "lat": 39.9000},
+            {"type": "node", "id": 10, "lon": 116.3902, "lat": 39.9002},
+            {"type": "node", "id": 11, "lon": 116.3904, "lat": 39.9002},
+            {"type": "node", "id": 12, "lon": 116.3904, "lat": 39.9004},
+            {"type": "node", "id": 13, "lon": 116.3902, "lat": 39.9004},
+            {"type": "way", "id": 100, "nodes": [1, 2], "tags": {"highway": "residential"}},
+            {"type": "way", "id": 200, "nodes": [10, 11, 12, 13], "tags": {"building": "yes"}},
+        ]
+    }
+    features = parse_osm_features(data)
+    projected = project_to_local(features, (116.389, 39.899, 116.392, 39.901))
+    assert len(projected.buildings) == 1
+    assert len(projected.buildings[0].coords) >= 4
 
 
 # ---------------------------------------------------------------------------

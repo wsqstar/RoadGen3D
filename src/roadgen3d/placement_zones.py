@@ -321,6 +321,7 @@ def apply_road_selection(projected_features: Any, config: Any) -> Any:
     )
     return ProjectedFeatures(
         roads=filtered,
+        buildings=projected_features.buildings,
         entrances=projected_features.entrances,
         bus_stops=projected_features.bus_stops,
         fire_points=projected_features.fire_points,
