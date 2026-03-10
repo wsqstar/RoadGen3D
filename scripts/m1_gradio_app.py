@@ -922,6 +922,13 @@ def _extract_program_summary(layout_json_text: str) -> str:
         "row_width_m": runtime_summary.get("row_width_m", program.get("row_width_m")),
         "width_expanded": runtime_summary.get("width_expanded", program.get("width_expanded", False)),
         "width_reallocation_reason": runtime_summary.get("width_reallocation_reason", program.get("width_reallocation_reason", "")),
+        "style_preset": runtime_summary.get("style_preset", program.get("context_conditions", {}).get("style_preset")),
+        "beauty_mode": runtime_summary.get("beauty_mode", "presentation_v1"),
+        "presentation_score": runtime_summary.get("presentation_score"),
+        "style_coherence": runtime_summary.get("style_coherence"),
+        "visual_clutter": runtime_summary.get("visual_clutter"),
+        "spacing_rhythm": runtime_summary.get("spacing_rhythm"),
+        "focal_readability": runtime_summary.get("focal_readability"),
         "poi_counts": poi_counts,
         "observed_poi_counts": observed_poi_counts,
         "total_poi_points": sum(poi_counts_all.values()),
@@ -948,6 +955,44 @@ def _extract_solver_summary(layout_json_text: str) -> str:
         "conflicts": solver.get("conflicts", []),
     }
     return json.dumps(result, indent=2, ensure_ascii=True)
+
+
+def _extract_presentation_views(layout_json_text: str):
+    if not layout_json_text.strip():
+        return [], "{}"
+    try:
+        payload = json.loads(layout_json_text)
+        summary = payload.get("summary", {}) or {}
+        render_views = summary.get("render_views", []) or []
+        gallery_items = []
+        for item in render_views:
+            path = str(item.get("path", "")).strip()
+            if not path:
+                continue
+            title = str(item.get("title", "")).strip() or str(item.get("name", "view")).strip() or "view"
+            gallery_items.append((path, title))
+        report = {
+            "style_preset": summary.get("style_preset", ""),
+            "beauty_mode": summary.get("beauty_mode", ""),
+            "render_preset": summary.get("render_preset", ""),
+            "presentation_score": summary.get("presentation_score", 0.0),
+            "style_coherence": summary.get("style_coherence", 0.0),
+            "visual_clutter": summary.get("visual_clutter", 0.0),
+            "spacing_rhythm": summary.get("spacing_rhythm", 0.0),
+            "focal_readability": summary.get("focal_readability", 0.0),
+            "composition_report": summary.get("composition_report", {}),
+            "render_views": [
+                {
+                    "name": item.get("name", ""),
+                    "title": item.get("title", ""),
+                    "path": item.get("path", ""),
+                }
+                for item in render_views
+            ],
+        }
+        return gallery_items, json.dumps(report, indent=2, ensure_ascii=True)
+    except Exception:
+        return [], "{}"
 
 
 def run_prepare_workspace(
@@ -1352,6 +1397,10 @@ def run_street_compose(
     allow_solver_fallback: bool = True,
     segment_length_m: float = 12.0,
     road_selection: str = "primary_road",
+    style_preset: str = "civic_clean_v1",
+    beauty_mode: str = "presentation_v1",
+    render_preset: str = "jury_default_v1",
+    asset_curation_mode: str = "curated_first",
 ) -> Tuple[str, List[List[str]], str, str | None, List[str]]:
     try:
         profile = dataset_profile.strip().lower()
@@ -1432,6 +1481,10 @@ def run_street_compose(
             selected_road_discovered_poi_count=selected_discovered_poi_count or None,
             selected_road_discovered_poi_score=selected_discovered_poi_score or None,
             selected_road_discovered_core_poi_count=selected_discovered_core_poi_count or None,
+            style_preset=str(style_preset).strip(),
+            beauty_mode=str(beauty_mode).strip(),
+            render_preset=str(render_preset).strip(),
+            asset_curation_mode=str(asset_curation_mode).strip(),
         )
         result = compose_street_scene(
             config=config,
@@ -1475,6 +1528,8 @@ def run_street_compose(
             f"- program_generator_used: {result.outputs.get('program_generator_used', program_generator)}\n"
             f"- layout_solver_used: {result.outputs.get('layout_solver_used', layout_solver)}\n"
             f"- cross_section_type: {layout_summary.get('cross_section_type', '')}\n"
+            f"- style_preset: {layout_summary.get('style_preset', style_preset)}\n"
+            f"- presentation_score: {float(layout_summary.get('presentation_score', 0.0) or 0.0):.3f}\n"
             f"- scene_layout: {result.outputs.get('scene_layout', '')}"
         )
         # Show selected road and POI info
@@ -1539,6 +1594,10 @@ def run_street_compose(
             files.append(result.outputs["scene_ply"])
         if result.outputs.get("scene_layout"):
             files.append(result.outputs["scene_layout"])
+        for item in layout_summary.get("render_views", []) or []:
+            path = str(item.get("path", "")).strip()
+            if path:
+                files.append(path)
         return summary, instance_rows, layout_json_text, model_path, files
     except ModelLoadError as exc:
         return f"Model load error: {exc}", [], "", None, []
@@ -1898,6 +1957,10 @@ def run_best_model_street(
     segment_length_m: float = 12.0,
     research_target: str = "layout_policy",
     road_selection: str = "primary_road",
+    style_preset: str = "civic_clean_v1",
+    beauty_mode: str = "presentation_v1",
+    render_preset: str = "jury_default_v1",
+    asset_curation_mode: str = "curated_first",
 ) -> Tuple[str, List[List[str]], str, str | None, List[str], str, str, str | None, List[str]]:
     if str(research_target).strip().lower() == "program_generator":
         program_generator = "learned_v1"
@@ -1940,6 +2003,10 @@ def run_best_model_street(
         allow_solver_fallback=allow_solver_fallback,
         segment_length_m=segment_length_m,
         road_selection=road_selection,
+        style_preset=style_preset,
+        beauty_mode=beauty_mode,
+        render_preset=render_preset,
+        asset_curation_mode=asset_curation_mode,
     )
     best_log = (
         "Best model run done.\n"
@@ -2798,6 +2865,11 @@ def build_demo() -> gr.Blocks:
                         choices=["rule", "learned"],
                         value="learned",
                     )
+                    style_preset = gr.Dropdown(
+                        label="Style Preset",
+                        choices=["civic_clean_v1", "transit_modern_v1", "lush_walkable_v1"],
+                        value="civic_clean_v1",
+                    )
                 with gr.Row(visible=True) as street_city_row:
                     street_city_selector = gr.Dropdown(
                         label="中国城市 (City)",
@@ -2847,6 +2919,22 @@ def build_demo() -> gr.Blocks:
                     with gr.Row():
                         city_context = gr.Textbox(label="City Context", value="generic_city")
                         target_street_type = gr.Textbox(label="Target Street Type", value="mixed_use")
+                    with gr.Row():
+                        beauty_mode = gr.Dropdown(
+                            label="Beauty Mode",
+                            choices=["presentation_v1"],
+                            value="presentation_v1",
+                        )
+                        render_preset = gr.Dropdown(
+                            label="Render Preset",
+                            choices=["jury_default_v1"],
+                            value="jury_default_v1",
+                        )
+                        asset_curation_mode = gr.Dropdown(
+                            label="Asset Curation",
+                            choices=["curated_first", "legacy"],
+                            value="curated_first",
+                        )
                 with gr.Accordion("Scene Details", open=False):
                     street_instances = gr.Dataframe(
                         headers=["instance_id", "asset_id", "category", "score", "x", "z", "yaw_deg", "source"],
@@ -2857,6 +2945,9 @@ def build_demo() -> gr.Blocks:
                     )
                     street_layout_json = gr.Code(label="Street Layout JSON", language="json")
                     street_files = gr.Files(label="Scene Downloads")
+                with gr.Accordion("Presentation Views", open=True):
+                    presentation_gallery = gr.Gallery(label="Presentation Views", columns=2, rows=2, height="auto")
+                    presentation_report = gr.Code(label="Presentation Metrics", language="json")
                 with gr.Accordion("Scene Graph", open=True):
                     scene_graph_plot = gr.Plot(label="Scene Graph")
                     with gr.Row():
@@ -3094,6 +3185,10 @@ def build_demo() -> gr.Blocks:
                 allow_solver_fallback,
                 segment_length_m,
                 road_selection,
+                style_preset,
+                beauty_mode,
+                render_preset,
+                asset_curation_mode,
             ],
             outputs=[
                 street_summary,
@@ -3122,6 +3217,10 @@ def build_demo() -> gr.Blocks:
             fn=_render_poi_overview,
             inputs=[street_layout_json],
             outputs=[poi_overview_plot],
+        ).then(
+            fn=_extract_presentation_views,
+            inputs=[street_layout_json],
+            outputs=[presentation_gallery, presentation_report],
         ).then(
             fn=_init_scene_graph_controls,
             inputs=[street_layout_json],
@@ -3268,6 +3367,10 @@ def build_demo() -> gr.Blocks:
                 segment_length_m,
                 research_target,
                 road_selection,
+                style_preset,
+                beauty_mode,
+                render_preset,
+                asset_curation_mode,
             ],
             outputs=[
                 street_summary,
@@ -3280,6 +3383,10 @@ def build_demo() -> gr.Blocks:
                 run_best_model_view,
                 run_best_files,
             ],
+        ).then(
+            fn=_extract_presentation_views,
+            inputs=[street_layout_json],
+            outputs=[presentation_gallery, presentation_report],
         ).then(
             fn=_extract_program_summary,
             inputs=[run_best_layout_json],

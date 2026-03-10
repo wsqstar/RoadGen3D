@@ -948,3 +948,53 @@ def test_scene_layout_contains_diversity_metrics(tmp_path: Path, monkeypatch):
     assert 0.0 <= summary["diversity_ratio"] <= 1.0
     assert isinstance(summary["per_category_unique"], dict)
     assert isinstance(summary["selection_source_counts"], dict)
+
+
+def test_scene_layout_contains_presentation_views_and_metrics(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    pytest.importorskip("matplotlib")
+    rows = _build_real_rows(tmp_path / "data")
+    rows[0]["style_tags"] = ["civic", "clean", "formal"]
+    rows[0]["quality_tier"] = 3
+    rows[0]["hero_asset"] = True
+    rows[1]["style_tags"] = ["modern", "metal", "clean"]
+    rows[1]["quality_tier"] = 3
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+
+    result = compose_street_scene(
+        config=StreetComposeConfig(
+            query="civic clean boulevard",
+            length_m=60.0,
+            road_width_m=8.0,
+            sidewalk_width_m=2.5,
+            lane_count=2,
+            density=1.0,
+            seed=42,
+            topk_per_category=20,
+            max_trials_per_slot=20,
+            style_preset="civic_clean_v1",
+            beauty_mode="presentation_v1",
+            render_preset="jury_default_v1",
+            asset_curation_mode="curated_first",
+        ),
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+
+    payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    summary = payload["summary"]
+    assert summary["style_preset"] == "civic_clean_v1"
+    assert summary["beauty_mode"] == "presentation_v1"
+    assert 0.0 <= float(summary["presentation_score"]) <= 1.0
+    assert 0.0 <= float(summary["style_coherence"]) <= 1.0
+    assert "composition_report" in summary
+    render_views = summary.get("render_views", [])
+    assert len(render_views) == 4
+    for view in render_views:
+        assert Path(view["path"]).exists()

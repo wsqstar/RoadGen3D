@@ -7,14 +7,23 @@ import logging
 import math
 import random
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Sequence, Tuple
 
 import numpy as np
 
 logger = logging.getLogger(__name__)
 
+from .beauty import (
+    apply_composition_pass,
+    compute_presentation_report,
+    curate_candidates,
+    render_presentation_views,
+    score_pose_composition,
+    shape_program_for_style,
+    style_palette,
+)
 from .design_rules import load_constraint_set
 from .embedder import ClipTextEmbedder
 from .entrance_analysis import (
@@ -141,6 +150,12 @@ def _validate_config(config: StreetComposeConfig) -> None:
     base_lane_width_m = getattr(config, "base_lane_width_m", None)
     if base_lane_width_m is not None and float(base_lane_width_m) <= 0.0:
         raise ValueError("base_lane_width_m must be > 0 when provided")
+    if str(getattr(config, "beauty_mode", "presentation_v1")).strip().lower() not in {"presentation_v1"}:
+        raise ValueError("beauty_mode must be 'presentation_v1'")
+    if str(getattr(config, "render_preset", "jury_default_v1")).strip().lower() not in {"jury_default_v1"}:
+        raise ValueError("render_preset must be 'jury_default_v1'")
+    if str(getattr(config, "asset_curation_mode", "curated_first")).strip().lower() not in {"curated_first", "legacy"}:
+        raise ValueError("asset_curation_mode must be 'curated_first' or 'legacy'")
 
 
 def _validate_export_format(export_format: str) -> str:
@@ -150,11 +165,11 @@ def _validate_export_format(export_format: str) -> str:
     return value
 
 
-def _load_real_manifest(manifest_path: Path) -> List[Dict[str, str]]:
+def _load_real_manifest(manifest_path: Path) -> List[Dict[str, object]]:
     if not manifest_path.exists():
         raise FileNotFoundError(f"real manifest not found: {manifest_path}")
     required = ("asset_id", "category", "text_desc", "mesh_path", "latent_path")
-    rows: List[Dict[str, str]] = []
+    rows: List[Dict[str, object]] = []
     base_dir = manifest_path.parent.resolve()
     for line_no, line in enumerate(manifest_path.read_text(encoding="utf-8").splitlines(), start=1):
         if not line.strip():
@@ -172,6 +187,9 @@ def _load_real_manifest(manifest_path: Path) -> List[Dict[str, str]]:
             "mesh_path": _resolve_path(payload["mesh_path"], base_dir),
             "latent_path": _resolve_path(payload["latent_path"], base_dir),
         }
+        for optional_key in ("style_tags", "quality_tier", "material_family", "hero_asset", "avoid_with_presets"):
+            if optional_key in payload:
+                row[optional_key] = payload[optional_key]
         rows.append(row)
     if not rows:
         raise ValueError(f"real manifest is empty: {manifest_path}")
@@ -294,16 +312,17 @@ def _pick_category_candidate(
     topk: int,
     embedder: ClipTextEmbedder,
     index_store: FaissIndexStore,
-    asset_by_id: Dict[str, Dict[str, str]],
-    category_pool: List[Dict[str, str]],
+    asset_by_id: Dict[str, Dict[str, object]],
+    category_pool: List[Dict[str, object]],
     used_asset_ids: set[str],
     rng: random.Random,
+    config: Optional[StreetComposeConfig] = None,
     placement_policy: str = "rule",
     policy_runtime: Optional[LayoutPolicyRuntime] = None,
     policy_temperature: float = SOFTMAX_TEMPERATURE,
     feature_context: Optional[PolicyFeatureContext] = None,
     return_details: bool = False,
-) -> Tuple[Dict[str, str], float, str] | Tuple[Dict[str, str], float, str, Dict[str, object]]:
+) -> Tuple[Dict[str, object], float, str] | Tuple[Dict[str, object], float, str, Dict[str, object]]:
     def _softmax_weights(scores: List[float], temperature: float) -> List[float]:
         if not scores:
             return []
@@ -317,16 +336,16 @@ def _pick_category_candidate(
         return (weights / total).tolist()
 
     def _pick_weighted(
-        candidates: List[Tuple[Dict[str, str], float]],
+        candidates: List[Tuple[Dict[str, object], float]],
         temperature: float,
-    ) -> Tuple[Dict[str, str], float, int]:
+    ) -> Tuple[Dict[str, object], float, int]:
         scores = [float(score) for _, score in candidates]
         weights = _softmax_weights(scores, temperature)
         pick_idx = rng.choices(range(len(candidates)), weights=weights, k=1)[0]
         row, score = candidates[pick_idx]
         return row, float(score), int(pick_idx)
 
-    def _pick_with_policy(candidates: List[Tuple[Dict[str, str], float]]) -> Tuple[Dict[str, str], float, int]:
+    def _pick_with_policy(candidates: List[Tuple[Dict[str, object], float]]) -> Tuple[Dict[str, object], float, int]:
         if not candidates:
             raise RuntimeError("Policy candidate set cannot be empty.")
         if policy_runtime is None or feature_context is None:
@@ -347,7 +366,7 @@ def _pick_category_candidate(
     slot_query = f"{query}, {category} street asset"
     query_embedding = embedder.encode_texts([slot_query])
     hits = index_store.search(query_embedding, topk=max(1, int(topk)))[0]
-    matching_hits: List[Tuple[Dict[str, str], float]] = []
+    matching_hits: List[Tuple[Dict[str, object], float]] = []
     all_hits: List[Dict[str, object]] = []
     for hit in hits:
         row = asset_by_id.get(hit.asset_id)
@@ -371,7 +390,11 @@ def _pick_category_candidate(
     }
 
     if matching_hits:
-        available_hits = [candidate for candidate in matching_hits if candidate[0]["asset_id"] not in used_asset_ids]
+        ranked_hits = list(matching_hits)
+        if config is not None:
+            ranked_hits, curation_info = curate_candidates(ranked_hits, category=category, config=config)
+            decision_payload.update(curation_info)
+        available_hits = [candidate for candidate in ranked_hits if candidate[0]["asset_id"] not in used_asset_ids]
         if CATEGORY_NO_REPEAT_FIRST and available_hits:
             if placement_policy == "learned":
                 row, score, local_idx = _pick_with_policy(available_hits)
@@ -385,10 +408,10 @@ def _pick_category_candidate(
             return row, score, source
         if FILL_PRIORITY:
             if placement_policy == "learned":
-                row, score, local_idx = _pick_with_policy(matching_hits)
+                row, score, local_idx = _pick_with_policy(ranked_hits)
                 source = "policy_relaxed_repeat"
             else:
-                row, score, local_idx = _pick_weighted(matching_hits, policy_temperature)
+                row, score, local_idx = _pick_weighted(ranked_hits, policy_temperature)
                 source = "faiss_relaxed_repeat"
             decision_payload["chosen_index"] = int(local_idx)
             if return_details:
@@ -398,7 +421,18 @@ def _pick_category_candidate(
     if not category_pool:
         raise RuntimeError(f"empty category pool: {category}")
 
-    available_pool = [row for row in category_pool if row["asset_id"] not in used_asset_ids]
+    pool_for_pick = list(category_pool)
+    if config is not None:
+        curated_pool, curation_info = curate_candidates(
+            [(row, 0.0) for row in category_pool],
+            category=category,
+            config=config,
+        )
+        pool_for_pick = [row for row, _score in curated_pool]
+        decision_payload["fallback_curated_used"] = bool(curation_info.get("curated_used", False))
+        decision_payload["fallback_curated_candidate_count"] = int(curation_info.get("curated_candidate_count", 0))
+
+    available_pool = [row for row in pool_for_pick if row["asset_id"] not in used_asset_ids]
     if CATEGORY_NO_REPEAT_FIRST and available_pool:
         row = rng.choice(available_pool)
         if return_details:
@@ -406,7 +440,7 @@ def _pick_category_candidate(
             return row, 0.0, "fallback_pool", decision_payload
         return row, 0.0, "fallback_pool"
     if FILL_PRIORITY:
-        row = rng.choice(category_pool)
+        row = rng.choice(pool_for_pick)
         if return_details:
             decision_payload["chosen_index"] = 0
             return row, 0.0, "fallback_pool", decision_payload
@@ -422,27 +456,219 @@ def _build_base_scene(
     road_width_m: float,
     left_side_width_m: float,
     right_side_width_m: float,
+    *,
+    street_program: object | None = None,
+    palette: Optional[Dict[str, Tuple[int, int, int, int]]] = None,
 ):
     trimesh = _require_trimesh()
     scene = trimesh.Scene()
     road = trimesh.creation.box(extents=(length_m, 0.06, road_width_m))
-    road.visual.face_colors = [65, 68, 72, 255]
+    colors = palette or {}
+    road.visual.face_colors = list(colors.get("carriageway", (65, 68, 72, 255)))
     road.apply_translation([0.0, -0.03, 0.0])
     scene.add_geometry(road, node_name="road_slab")
 
-    sidewalk_color = [165, 168, 172, 255]
-    if left_side_width_m > 0.0:
-        sidewalk_left = trimesh.creation.box(extents=(length_m, 0.08, left_side_width_m))
-        sidewalk_left.visual.face_colors = sidewalk_color
-        sidewalk_left.apply_translation([0.0, -0.04, road_width_m / 2.0 + left_side_width_m / 2.0])
-        scene.add_geometry(sidewalk_left, node_name="sidewalk_left")
+    sidewalk_color = list(colors.get("sidewalk", (165, 168, 172, 255)))
+    furnishing_color = list(colors.get("furnishing", tuple(sidewalk_color)))
+    clear_color = list(colors.get("clear_path", tuple(sidewalk_color)))
+    if street_program is not None and getattr(street_program, "bands", None):
+        left_offset = road_width_m / 2.0
+        right_offset = road_width_m / 2.0
+        for band in getattr(street_program, "bands", ()) or ():
+            if getattr(band, "kind", "") == "carriageway":
+                continue
+            width_m = float(getattr(band, "width_m", 0.0) or 0.0)
+            if width_m <= 0.0:
+                continue
+            color = clear_color if getattr(band, "kind", "") == "clear_path" else furnishing_color
+            slab = trimesh.creation.box(extents=(length_m, 0.08, width_m))
+            slab.visual.face_colors = color
+            if getattr(band, "side", "") == "left":
+                slab.apply_translation([0.0, -0.04, left_offset + width_m / 2.0])
+                left_offset += width_m
+            elif getattr(band, "side", "") == "right":
+                slab.apply_translation([0.0, -0.04, -right_offset - width_m / 2.0])
+                right_offset += width_m
+            else:
+                continue
+            scene.add_geometry(slab, node_name=f"sidewalk_{getattr(band, 'name', 'band')}")
+    else:
+        if left_side_width_m > 0.0:
+            sidewalk_left = trimesh.creation.box(extents=(length_m, 0.08, left_side_width_m))
+            sidewalk_left.visual.face_colors = sidewalk_color
+            sidewalk_left.apply_translation([0.0, -0.04, road_width_m / 2.0 + left_side_width_m / 2.0])
+            scene.add_geometry(sidewalk_left, node_name="sidewalk_left")
 
-    if right_side_width_m > 0.0:
-        sidewalk_right = trimesh.creation.box(extents=(length_m, 0.08, right_side_width_m))
-        sidewalk_right.visual.face_colors = sidewalk_color
-        sidewalk_right.apply_translation([0.0, -0.04, -road_width_m / 2.0 - right_side_width_m / 2.0])
-        scene.add_geometry(sidewalk_right, node_name="sidewalk_right")
+        if right_side_width_m > 0.0:
+            sidewalk_right = trimesh.creation.box(extents=(length_m, 0.08, right_side_width_m))
+            sidewalk_right.visual.face_colors = sidewalk_color
+            sidewalk_right.apply_translation([0.0, -0.04, -road_width_m / 2.0 - right_side_width_m / 2.0])
+            scene.add_geometry(sidewalk_right, node_name="sidewalk_right")
     return scene
+
+
+def _apply_ground_pose(mesh, *, x_m: float, z_m: float, yaw_deg: float) -> None:
+    trimesh = _require_trimesh()
+    rotation = trimesh.transformations.rotation_matrix(
+        math.radians(float(yaw_deg)),
+        [0.0, 1.0, 0.0],
+        [0.0, 0.0, 0.0],
+    )
+    mesh.apply_transform(rotation)
+    mesh.apply_translation([float(x_m), 0.0, float(z_m)])
+
+
+def _road_pose_from_context(placement_ctx: object | None, fallback_length_m: float) -> Tuple[float, float, float, float]:
+    road_reference = getattr(placement_ctx, "road_reference", None)
+    coords = list(getattr(road_reference, "coords", []) or [])
+    if len(coords) >= 2:
+        start_x, start_z = float(coords[0][0]), float(coords[0][1])
+        end_x, end_z = float(coords[-1][0]), float(coords[-1][1])
+        dx = end_x - start_x
+        dz = end_z - start_z
+        seg_length = math.hypot(dx, dz)
+        if seg_length > 1e-6:
+            return (
+                (start_x + end_x) / 2.0,
+                (start_z + end_z) / 2.0,
+                math.degrees(math.atan2(dz, dx)),
+                max(float(fallback_length_m), float(seg_length)),
+            )
+    return (0.0, 0.0, 0.0, float(fallback_length_m))
+
+
+def _add_road_box(
+    scene,
+    *,
+    length_m: float,
+    width_m: float,
+    height_m: float,
+    local_x_m: float,
+    local_z_m: float,
+    road_center_x_m: float,
+    road_center_z_m: float,
+    road_yaw_deg: float,
+    y_min_m: float,
+    color: Sequence[int],
+    node_name: str,
+) -> None:
+    trimesh = _require_trimesh()
+    mesh = trimesh.creation.box(extents=(float(length_m), float(height_m), float(width_m)))
+    mesh.visual.face_colors = list(color)
+    mesh.apply_translation([float(local_x_m), float(y_min_m) + float(height_m) / 2.0, float(local_z_m)])
+    _apply_ground_pose(mesh, x_m=road_center_x_m, z_m=road_center_z_m, yaw_deg=road_yaw_deg)
+    scene.add_geometry(mesh, node_name=node_name)
+
+
+def _add_beauty_scene_proxies(
+    scene,
+    *,
+    config: StreetComposeConfig,
+    street_program: object,
+    placement_ctx: object | None,
+    poi_ctx: object | None,
+    placements: List[StreetPlacement],
+) -> None:
+    colors = style_palette(getattr(config, "style_preset", None))
+    road_center_x_m, road_center_z_m, road_yaw_deg, road_length_m = _road_pose_from_context(
+        placement_ctx,
+        float(config.length_m),
+    )
+    road_width_m = float(getattr(street_program, "road_width_m", config.road_width_m))
+    lane_count = max(1, int(getattr(street_program, "lane_count", config.lane_count)))
+    if lane_count > 1:
+        lane_width_m = road_width_m / float(lane_count)
+        dash_length_m = 2.2
+        dash_gap_m = 3.8
+        dash_x = -road_length_m / 2.0 + 2.5
+        dash_idx = 0
+        while dash_x < road_length_m / 2.0 - 1.5:
+            for lane_idx in range(1, lane_count):
+                lane_z = -road_width_m / 2.0 + lane_width_m * float(lane_idx)
+                _add_road_box(
+                    scene,
+                    length_m=dash_length_m,
+                    width_m=0.14,
+                    height_m=0.01,
+                    local_x_m=dash_x,
+                    local_z_m=lane_z,
+                    road_center_x_m=road_center_x_m,
+                    road_center_z_m=road_center_z_m,
+                    road_yaw_deg=road_yaw_deg,
+                    y_min_m=0.004,
+                    color=colors.get("lane_mark", (238, 232, 208, 255)),
+                    node_name=f"lane_mark_{lane_idx}_{dash_idx}",
+                )
+            dash_idx += 1
+            dash_x += dash_length_m + dash_gap_m
+
+    curb_half_width = road_width_m / 2.0
+    for side_name, local_z in (("left", curb_half_width), ("right", -curb_half_width)):
+        _add_road_box(
+            scene,
+            length_m=road_length_m,
+            width_m=0.14,
+            height_m=0.11,
+            local_x_m=0.0,
+            local_z_m=local_z,
+            road_center_x_m=road_center_x_m,
+            road_center_z_m=road_center_z_m,
+            road_yaw_deg=road_yaw_deg,
+            y_min_m=0.0,
+            color=colors.get("curb", (145, 145, 145, 255)),
+            node_name=f"curb_{side_name}",
+        )
+
+    crossing_points = nonempty_poi_points(getattr(poi_ctx, "poi_points_by_type_xz", {}) or {}).get("crossing", ())
+    for idx, point in enumerate(crossing_points):
+        _add_road_box(
+            scene,
+            length_m=1.8,
+            width_m=max(road_width_m + 0.35, 4.0),
+            height_m=0.012,
+            local_x_m=0.0,
+            local_z_m=0.0,
+            road_center_x_m=float(point[0]),
+            road_center_z_m=float(point[1]),
+            road_yaw_deg=road_yaw_deg,
+            y_min_m=0.004,
+            color=colors.get("crossing", (236, 228, 208, 255)),
+            node_name=f"crossing_patch_{idx}",
+        )
+
+    for idx, placement in enumerate(placements):
+        x_m = float(placement.position_xyz[0])
+        z_m = float(placement.position_xyz[2])
+        if placement.category == "tree":
+            _add_road_box(
+                scene,
+                length_m=1.2,
+                width_m=1.2,
+                height_m=0.03,
+                local_x_m=0.0,
+                local_z_m=0.0,
+                road_center_x_m=x_m,
+                road_center_z_m=z_m,
+                road_yaw_deg=0.0,
+                y_min_m=0.001,
+                color=colors.get("tree_pit", (98, 93, 76, 255)),
+                node_name=f"tree_pit_{idx}",
+            )
+        elif placement.category == "bus_stop":
+            _add_road_box(
+                scene,
+                length_m=4.5,
+                width_m=1.6,
+                height_m=0.018,
+                local_x_m=0.0,
+                local_z_m=0.0,
+                road_center_x_m=x_m,
+                road_center_z_m=z_m,
+                road_yaw_deg=road_yaw_deg,
+                y_min_m=0.004,
+                color=colors.get("transit_pad", (118, 129, 145, 255)),
+                node_name=f"transit_pad_{idx}",
+            )
 
 
 def _add_instance_meshes(
@@ -523,7 +749,11 @@ def _sample_pose_osm(
     return x, z, yaw
 
 
-def _build_osm_base_scene(placement_ctx: object):
+def _build_osm_base_scene(
+    placement_ctx: object,
+    *,
+    palette: Optional[Dict[str, Tuple[int, int, int, int]]] = None,
+):
     """Build a trimesh Scene with carriageway + sidewalk extruded slabs from OSM geometry."""
     trimesh = _require_trimesh()
     import numpy as _np
@@ -531,6 +761,7 @@ def _build_osm_base_scene(placement_ctx: object):
 
     carriageway = placement_ctx.carriageway  # type: ignore[attr-defined]
     sidewalk_zone = placement_ctx.sidewalk_zone  # type: ignore[attr-defined]
+    colors = palette or {}
 
     def _extrude_polygon(geom, height: float, color, name_prefix: str) -> None:
         """Extrude a shapely geometry into a thin 3D slab and add to scene.
@@ -567,9 +798,9 @@ def _build_osm_base_scene(placement_ctx: object):
                 continue
 
     if not carriageway.is_empty:
-        _extrude_polygon(carriageway, 0.06, [65, 68, 72, 255], "carriageway")
+        _extrude_polygon(carriageway, 0.06, list(colors.get("carriageway", (65, 68, 72, 255))), "carriageway")
     if not sidewalk_zone.is_empty:
-        _extrude_polygon(sidewalk_zone, 0.08, [165, 168, 172, 255], "sidewalk")
+        _extrude_polygon(sidewalk_zone, 0.08, list(colors.get("sidewalk", (165, 168, 172, 255))), "sidewalk")
 
     return scene
 
@@ -942,7 +1173,7 @@ def compose_street_scene(
         program_used = "learned_v1"
     if program_result.fallback_reason and not program_fallback_reason:
         program_fallback_reason = program_result.fallback_reason
-    street_program = program_result.program
+    street_program = shape_program_for_style(program_result.program, config)
     constraint_set = load_constraint_set(config.design_rule_profile)
     solver_runtime = LayoutSolverRuntime(backend=str(config.layout_solver))
     solver_result = solver_runtime.solve(
@@ -958,6 +1189,12 @@ def compose_street_scene(
     )
     resolved_program = solver_result.resolved_program
     slot_plans = list(solver_result.slot_plans)
+    slot_plans, composition_pass_report = apply_composition_pass(
+        slot_plans,
+        config=config,
+        poi_context=poi_ctx,
+    )
+    solver_result = replace(solver_result, slot_plans=tuple(slot_plans))
     for poi_type, required_count in asset_backed_poi_anchor_counts(
         extract_poi_points_by_type(placement_ctx) if placement_ctx is not None else {}
     ).items():
@@ -1027,6 +1264,7 @@ def compose_street_scene(
             category_pool=pool,
             used_asset_ids=used_asset_ids_by_category.setdefault(category, set()),
             rng=rng,
+            config=config,
             placement_policy=policy_used,
             policy_runtime=policy_runtime,
             policy_temperature=policy_temperature,
@@ -1048,7 +1286,9 @@ def compose_street_scene(
 
         entry = mesh_cache[row["asset_id"]]
         placed = False
-        trial_candidates: List[Tuple[float, float, float, Tuple[float, float, float, float], float, float, Tuple[str, ...]]] = []
+        trial_candidates: List[
+            Tuple[float, float, float, Tuple[float, float, float, float], float, float, Tuple[str, ...], float]
+        ] = []
         anchor_position = getattr(slot, "anchor_position_xz", None)
         for _trial_idx in range(int(config.max_trials_per_slot)):
             if config.layout_mode == "osm" and placement_ctx is not None:
@@ -1102,21 +1342,39 @@ def compose_street_scene(
                 c_feasibility *= math.exp(-e_penalty)
                 c_violated = tuple(list(c_violated) + list(e_violated))
 
-            trial_candidates.append((x, z, yaw_deg, bbox, c_penalty, c_feasibility, c_violated))
+            beauty_score = score_pose_composition(
+                category=category,
+                position_xz=(x, z),
+                existing_placements=placements,
+                poi_context=poi_ctx,
+                config=config,
+            )
+            trial_candidates.append((x, z, yaw_deg, bbox, c_penalty, c_feasibility, c_violated, beauty_score))
             if config.constraint_mode != "soft" or anchor_position is not None:
                 break
 
         if trial_candidates:
-            if config.constraint_mode == "soft" and len(trial_candidates) > 1:
+            if len(trial_candidates) > 1:
                 score_norm = min(1.0, max(0.0, float(score)))
-                best = max(
-                    trial_candidates,
-                    key=lambda candidate: (1.0 - config.constraint_weight) * score_norm + config.constraint_weight * candidate[5],
-                )
+                if config.constraint_mode == "soft":
+                    best = max(
+                        trial_candidates,
+                        key=lambda candidate: (
+                            (1.0 - config.constraint_weight) * score_norm
+                            + config.constraint_weight * candidate[5]
+                            + 0.18 * candidate[7]
+                            - 0.08 * candidate[4]
+                        ),
+                    )
+                else:
+                    best = max(
+                        trial_candidates,
+                        key=lambda candidate: score_norm + 0.3 * candidate[7],
+                    )
             else:
                 best = trial_candidates[0]
 
-            bx, bz, byaw, bbbox, bpenalty, bfeas, bviolated = best
+            bx, bz, byaw, bbbox, bpenalty, bfeas, bviolated, _beauty_score = best
             existing_bboxes.append(bbbox)
             y = -entry.min_y * scale
             placements.append(
@@ -1160,8 +1418,9 @@ def compose_street_scene(
             "Try a different design-rule profile, larger length/density, or check category coverage in manifest."
         )
 
+    palette = style_palette(getattr(config, "style_preset", None))
     if config.layout_mode == "osm" and placement_ctx is not None:
-        scene = _build_osm_base_scene(placement_ctx)
+        scene = _build_osm_base_scene(placement_ctx, palette=palette)
     else:
         left_side_width = sum(float(band.width_m) for band in resolved_program.bands if band.side == "left")
         right_side_width = sum(float(band.width_m) for band in resolved_program.bands if band.side == "right")
@@ -1170,7 +1429,17 @@ def compose_street_scene(
             road_width_m=float(resolved_program.road_width_m),
             left_side_width_m=float(left_side_width),
             right_side_width_m=float(right_side_width),
+            street_program=resolved_program,
+            palette=palette,
         )
+    _add_beauty_scene_proxies(
+        scene,
+        config=config,
+        street_program=resolved_program,
+        placement_ctx=placement_ctx,
+        poi_ctx=poi_ctx,
+        placements=placements,
+    )
     _add_instance_meshes(scene=scene, placements=placements, mesh_cache=mesh_cache)
 
     # Compute exclusion zones early so we can add 3D markers before export
@@ -1230,6 +1499,13 @@ def compose_street_scene(
         entrance_points_xz=entrance_points_xz,
         registry=entrance_registry,
         carriageway_boundary=carriageway_boundary,
+    )
+    presentation_report = compute_presentation_report(
+        placements,
+        asset_by_id=asset_by_id,
+        config=config,
+        poi_context=poi_ctx,
+        composition_report=composition_pass_report,
     )
     mean_entrance_openness = float(entrance_report.mean_openness)
     mean_noise_shielding = float(entrance_report.mean_shielding)
@@ -1324,6 +1600,16 @@ def compose_street_scene(
         "selected_road_required_right_width_m": float(getattr(placement_ctx, "required_right_width_m", 0.0) or 0.0),
         "selected_road_final_row_width_m": float(getattr(placement_ctx, "row_width_m", resolved_program.row_width_m) or 0.0),
         "observed_poi_counts": dict(resolved_program.observed_poi_counts),
+        "style_preset": str(
+            resolved_program.context_conditions.get("style_preset", getattr(config, "style_preset", "civic_clean_v1"))
+        ),
+        "beauty_mode": str(getattr(config, "beauty_mode", "presentation_v1")),
+        "render_preset": str(getattr(config, "render_preset", "jury_default_v1")),
+        "asset_curation_mode": str(getattr(config, "asset_curation_mode", "curated_first")),
+        "composition_report": {
+            **dict(composition_pass_report),
+            **dict(presentation_report),
+        },
         "spatial_context": {
             "junction_points_xz": [list(p) for p in spatial_ctx.junction_points_xz],
             "entrance_points_xz": [list(p) for p in spatial_ctx.entrance_points_xz],
@@ -1373,6 +1659,7 @@ def compose_street_scene(
         "placements": [placement.to_dict() for placement in placements],
         "outputs": outputs,
     }
+    layout_payload["summary"].update(presentation_report)
     scene_graph = build_scene_graph(layout_payload, road_segment_graph=road_segment_graph)
     layout_payload["scene_graph"] = scene_graph
     layout_payload["summary"]["scene_graph_node_count"] = int(len(scene_graph.get("nodes", []) or []))
@@ -1380,6 +1667,11 @@ def compose_street_scene(
     layout_payload["summary"]["scene_graph_available_categories"] = list(
         scene_graph.get("filters", {}).get("categories", []) or []
     )
+    render_views = render_presentation_views(layout_payload, out_dir=out_dir, config=config)
+    layout_payload["summary"]["render_views"] = render_views
+    for view in render_views:
+        if str(view.get("path", "")).strip():
+            outputs[f"presentation_{view.get('name', 'view')}"] = str(view["path"])
 
     layout_path.write_text(json.dumps(layout_payload, indent=2, ensure_ascii=True), encoding="utf-8")
 

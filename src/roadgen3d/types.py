@@ -71,6 +71,10 @@ class StreetComposeConfig:
     sidewalk_distribution: str = "per_side"
     poi_fit_mode: str = "hard_containment"
     base_lane_width_m: Optional[float] = None
+    beauty_mode: str = "presentation_v1"
+    style_preset: str = "civic_clean_v1"
+    render_preset: str = "jury_default_v1"
+    asset_curation_mode: str = "curated_first"
 
     # -- Neuralsymbolic v1 fields --
     program_generator: str = "heuristic_v1"

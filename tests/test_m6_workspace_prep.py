@@ -216,3 +216,35 @@ def test_extract_program_summary_includes_poi_counts():
     assert result["selected_road_required_left_width_m"] == 4.2
     assert result["row_width_m"] == 15.6
     assert result["width_expanded"] is True
+
+
+def test_extract_presentation_views_returns_gallery_and_report(tmp_path: Path):
+    overview_path = (tmp_path / "overview_top.png").resolve()
+    overview_path.write_bytes(b"png")
+    layout_payload = {
+        "summary": {
+            "style_preset": "civic_clean_v1",
+            "beauty_mode": "presentation_v1",
+            "render_preset": "jury_default_v1",
+            "presentation_score": 0.82,
+            "style_coherence": 0.78,
+            "visual_clutter": 0.16,
+            "spacing_rhythm": 0.71,
+            "focal_readability": 0.84,
+            "composition_report": {"trimmed_optional_slots": 3},
+            "render_views": [
+                {
+                    "name": "overview_top",
+                    "title": "Overview Top",
+                    "path": str(overview_path),
+                }
+            ],
+        }
+    }
+
+    gallery, report_json = app._extract_presentation_views(json.dumps(layout_payload))
+
+    assert gallery == [(str(overview_path), "Overview Top")]
+    report = json.loads(report_json)
+    assert report["style_preset"] == "civic_clean_v1"
+    assert report["presentation_score"] == 0.82

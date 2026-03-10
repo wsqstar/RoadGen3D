@@ -249,6 +249,18 @@ def aggregate_scene_rows(rows: Sequence[Dict[str, object]]) -> Dict[str, float]:
         if any(key in item for item in rows):
             result[key] = _mean(key)
 
+    # Presentation-first metrics (optional – backward safe)
+    _beauty_keys = (
+        "style_coherence",
+        "visual_clutter",
+        "spacing_rhythm",
+        "focal_readability",
+        "presentation_score",
+    )
+    for key in _beauty_keys:
+        if any(key in item for item in rows):
+            result[key] = _mean(key)
+
     return result
 
 
@@ -276,6 +288,10 @@ def compare_mode_reports(rule_summary: Dict[str, float], learned_summary: Dict[s
             keys.add(k)
     # M7 entrance keys (optional)
     for k in ("mean_entrance_openness", "mean_noise_shielding"):
+        if k in rule_summary or k in learned_summary:
+            keys.add(k)
+    # Presentation-first keys (optional)
+    for k in ("style_coherence", "visual_clutter", "spacing_rhythm", "focal_readability", "presentation_score"):
         if k in rule_summary or k in learned_summary:
             keys.add(k)
     delta: Dict[str, float] = {}
