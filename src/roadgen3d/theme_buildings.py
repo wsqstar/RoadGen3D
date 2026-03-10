@@ -5,7 +5,7 @@ from __future__ import annotations
 import math
 from typing import Any, Dict, Iterable, List, Mapping, Sequence, Tuple
 
-from .types import BuildingFootprint, ThemeSegment
+from .types import BuildingFootprint, StreetComposeConfig, ThemeSegment
 
 THEME_VOCAB: Tuple[str, ...] = ("residential", "commercial", "transit", "green")
 THEME_PROFILE_STYLE_MAP: Dict[str, Dict[str, str]] = {
@@ -456,6 +456,350 @@ def _fallback_building_footprints(
                 )
             )
     return footprints
+
+
+def _segment_tangent_normal(
+    start_xy: Tuple[float, float],
+    end_xy: Tuple[float, float],
+) -> Tuple[Tuple[float, float], Tuple[float, float], float] | None:
+    dx = float(end_xy[0]) - float(start_xy[0])
+    dz = float(end_xy[1]) - float(start_xy[1])
+    length = math.hypot(dx, dz)
+    if length <= 1e-6:
+        return None
+    tangent = (dx / length, dz / length)
+    left_normal = (-tangent[1], tangent[0])
+    return tangent, left_normal, float(length)
+
+
+def _band_polygon_from_segment(
+    start_xy: Tuple[float, float],
+    end_xy: Tuple[float, float],
+    *,
+    inner_offset_m: float,
+    outer_offset_m: float,
+) -> Tuple[Tuple[float, float], ...]:
+    tangent_payload = _segment_tangent_normal(start_xy, end_xy)
+    if tangent_payload is None:
+        return tuple()
+    _tangent, left_normal, _length = tangent_payload
+    inner = float(inner_offset_m)
+    outer = float(outer_offset_m)
+
+    def _offset(point: Tuple[float, float], distance_m: float) -> Tuple[float, float]:
+        return (
+            float(point[0]) + left_normal[0] * float(distance_m),
+            float(point[1]) + left_normal[1] * float(distance_m),
+        )
+
+    polygon = (
+        _offset(start_xy, inner),
+        _offset(end_xy, inner),
+        _offset(end_xy, outer),
+        _offset(start_xy, outer),
+        _offset(start_xy, inner),
+    )
+    return tuple((float(x), float(z)) for x, z in polygon)
+
+
+def _theme_segment_for_station(
+    station_m: float,
+    theme_segments: Sequence[ThemeSegment],
+) -> ThemeSegment | None:
+    if not theme_segments:
+        return None
+    for theme_segment in theme_segments:
+        if float(theme_segment.x_start_m) - 1e-6 <= float(station_m) <= float(theme_segment.x_end_m) + 1e-6:
+            return theme_segment
+    return min(theme_segments, key=lambda item: abs(float(item.center_x_m) - float(station_m)))
+
+
+def _theme_segment_for_node(
+    node: object,
+    theme_segments: Sequence[ThemeSegment],
+    theme_by_segment_id: Mapping[str, ThemeSegment],
+) -> ThemeSegment | None:
+    segment_id = str(getattr(node, "segment_id", ""))
+    if segment_id in theme_by_segment_id:
+        return theme_by_segment_id[segment_id]
+    return _theme_segment_for_station(float(getattr(node, "station_center_m", 0.0) or 0.0), theme_segments)
+
+
+def _polygon_center(polygon_xz: Sequence[Tuple[float, float]]) -> Tuple[float, float]:
+    points = list(polygon_xz[:-1] if len(polygon_xz) >= 2 and polygon_xz[0] == polygon_xz[-1] else polygon_xz)
+    if not points:
+        return (0.0, 0.0)
+    return (
+        float(sum(float(point[0]) for point in points) / len(points)),
+        float(sum(float(point[1]) for point in points) / len(points)),
+    )
+
+
+def _polygon_bbox(polygon_xz: Sequence[Tuple[float, float]]) -> Tuple[float, float, float, float]:
+    xs = [float(point[0]) for point in polygon_xz]
+    zs = [float(point[1]) for point in polygon_xz]
+    return (min(xs), max(xs), min(zs), max(zs))
+
+
+def _bbox_intersects(
+    left: Tuple[float, float, float, float],
+    right: Tuple[float, float, float, float],
+) -> bool:
+    return not (
+        float(left[1]) <= float(right[0])
+        or float(right[1]) <= float(left[0])
+        or float(left[3]) <= float(right[2])
+        or float(right[3]) <= float(left[2])
+    )
+
+
+def _estimate_building_buffer_widths(
+    *,
+    building_footprints: Sequence[BuildingFootprint],
+    road_segment_graph: object | None,
+    carriageway_width_m: float,
+    left_sidewalk_width_m: float,
+    right_sidewalk_width_m: float,
+    road_buffer_m: float,
+) -> Tuple[float, float]:
+    default_width = min(float(road_buffer_m), max(float(left_sidewalk_width_m), float(right_sidewalk_width_m), 10.0))
+    nodes = list(getattr(road_segment_graph, "nodes", ()) or ())
+    if not nodes or not building_footprints:
+        return float(default_width), float(default_width)
+
+    carriageway_half = float(carriageway_width_m) / 2.0
+    left_buffer = float(default_width)
+    right_buffer = float(default_width)
+    for footprint in building_footprints:
+        centroid = (float(footprint.centroid_xz[0]), float(footprint.centroid_xz[1]))
+        nearest = min(
+            nodes,
+            key=lambda node: math.hypot(
+                float(getattr(node, "center_xy", (0.0, 0.0))[0]) - centroid[0],
+                float(getattr(node, "center_xy", (0.0, 0.0))[1]) - centroid[1],
+            ),
+        )
+        tangent_payload = _segment_tangent_normal(
+            tuple(float(v) for v in getattr(nearest, "start_xy", (0.0, 0.0))),
+            tuple(float(v) for v in getattr(nearest, "end_xy", (0.0, 0.0))),
+        )
+        if tangent_payload is None:
+            continue
+        _tangent, left_normal, _segment_length = tangent_payload
+        dx = centroid[0] - float(getattr(nearest, "center_xy", (0.0, 0.0))[0])
+        dz = centroid[1] - float(getattr(nearest, "center_xy", (0.0, 0.0))[1])
+        lateral = dx * left_normal[0] + dz * left_normal[1]
+        sidewalk_width_m = float(left_sidewalk_width_m) if lateral >= 0.0 else float(right_sidewalk_width_m)
+        extent = max(float(footprint.depth_m) * 0.65, 4.0)
+        needed = max(abs(lateral) - carriageway_half - sidewalk_width_m + extent, default_width)
+        if lateral >= 0.0:
+            left_buffer = max(left_buffer, min(float(road_buffer_m), float(needed)))
+        else:
+            right_buffer = max(right_buffer, min(float(road_buffer_m), float(needed)))
+    return float(left_buffer), float(right_buffer)
+
+
+def _fallback_zoning_segments(
+    *,
+    theme_segments: Sequence[ThemeSegment],
+    config: StreetComposeConfig,
+) -> List[Dict[str, Any]]:
+    segments: List[Dict[str, Any]] = []
+    segment_counter = 0
+    for theme_segment in theme_segments:
+        span = max(float(theme_segment.length_m), 1.0)
+        subdivisions = max(1, int(math.ceil(span / max(float(config.segment_length_m), 1.0))))
+        start_m = float(theme_segment.x_start_m)
+        end_m = float(theme_segment.x_end_m)
+        step = (end_m - start_m) / float(subdivisions)
+        for idx in range(subdivisions):
+            seg_start = start_m + float(idx) * step
+            seg_end = start_m + float(idx + 1) * step
+            segment_id = f"zoning_seg_{segment_counter:04d}"
+            segment_counter += 1
+            segments.append(
+                {
+                    "segment_id": segment_id,
+                    "start_xy": (float(seg_start), 0.0),
+                    "end_xy": (float(seg_end), 0.0),
+                    "center_xy": (float((seg_start + seg_end) / 2.0), 0.0),
+                    "station_start_m": float(seg_start),
+                    "station_end_m": float(seg_end),
+                    "station_center_m": float((seg_start + seg_end) / 2.0),
+                    "theme_segment": theme_segment,
+                }
+            )
+    return segments
+
+
+def build_zoning_grid_preview(
+    *,
+    config: StreetComposeConfig,
+    placement_context: object | None,
+    road_segment_graph: object | None,
+    theme_segments: Sequence[ThemeSegment],
+    building_footprints: Sequence[BuildingFootprint],
+    road_buffer_m: float = 35.0,
+) -> Tuple[Tuple[Dict[str, Any], ...], Dict[str, Any]]:
+    theme_by_segment_id = {
+        segment_id: theme_segment
+        for theme_segment in theme_segments
+        for segment_id in theme_segment.segment_ids
+    }
+    carriageway_width_m = float(
+        getattr(placement_context, "carriageway_width_m", 0.0)
+        or float(config.road_width_m)
+    )
+    left_sidewalk_width_m = float(
+        (getattr(placement_context, "left_clear_path_width_m", 0.0) or 0.0)
+        + (getattr(placement_context, "left_furnishing_width_m", 0.0) or 0.0)
+        or float(config.sidewalk_width_m)
+    )
+    right_sidewalk_width_m = float(
+        (getattr(placement_context, "right_clear_path_width_m", 0.0) or 0.0)
+        + (getattr(placement_context, "right_furnishing_width_m", 0.0) or 0.0)
+        or float(config.sidewalk_width_m)
+    )
+    left_building_buffer_m, right_building_buffer_m = _estimate_building_buffer_widths(
+        building_footprints=building_footprints,
+        road_segment_graph=road_segment_graph,
+        carriageway_width_m=carriageway_width_m,
+        left_sidewalk_width_m=left_sidewalk_width_m,
+        right_sidewalk_width_m=right_sidewalk_width_m,
+        road_buffer_m=float(road_buffer_m),
+    )
+
+    raw_segments: List[Dict[str, Any]] = []
+    if road_segment_graph is not None and getattr(road_segment_graph, "nodes", None):
+        nodes = sorted(
+            list(getattr(road_segment_graph, "nodes", ()) or ()),
+            key=lambda node: float(getattr(node, "station_center_m", 0.0) or 0.0),
+        )
+        for node in nodes:
+            raw_segments.append(
+                {
+                    "segment_id": str(getattr(node, "segment_id", "")),
+                    "start_xy": tuple(float(v) for v in getattr(node, "start_xy", (0.0, 0.0))),
+                    "end_xy": tuple(float(v) for v in getattr(node, "end_xy", (0.0, 0.0))),
+                    "center_xy": tuple(float(v) for v in getattr(node, "center_xy", (0.0, 0.0))),
+                    "station_start_m": float(getattr(node, "station_start_m", 0.0) or 0.0),
+                    "station_end_m": float(getattr(node, "station_end_m", 0.0) or 0.0),
+                    "station_center_m": float(getattr(node, "station_center_m", 0.0) or 0.0),
+                    "theme_segment": _theme_segment_for_node(node, theme_segments, theme_by_segment_id),
+                }
+            )
+    else:
+        raw_segments = _fallback_zoning_segments(theme_segments=theme_segments, config=config)
+
+    if not raw_segments:
+        return tuple(), {
+            "enabled": False,
+            "cell_count": 0,
+            "theme_cell_counts": {},
+            "building_cell_counts": {},
+            "occupied_building_cells": 0,
+        }
+
+    try:
+        from shapely.geometry import Polygon as ShapelyPolygon
+    except Exception:
+        ShapelyPolygon = None  # type: ignore[assignment]
+
+    footprint_records: List[Dict[str, Any]] = []
+    for footprint in building_footprints:
+        polygon_xz = tuple((float(x), float(z)) for x, z in footprint.polygon_xz)
+        footprint_records.append(
+            {
+                "footprint_id": str(footprint.footprint_id),
+                "theme_id": str(footprint.theme_id),
+                "source": str(footprint.source),
+                "polygon_xz": polygon_xz,
+                "bbox": _polygon_bbox(polygon_xz),
+                "geom": ShapelyPolygon(polygon_xz) if ShapelyPolygon is not None and len(polygon_xz) >= 4 else None,
+            }
+        )
+
+    carriageway_half = float(carriageway_width_m) / 2.0
+    lane_specs = (
+        ("left_building_buffer", float(carriageway_half + left_sidewalk_width_m), float(carriageway_half + left_sidewalk_width_m + left_building_buffer_m)),
+        ("left_sidewalk", float(carriageway_half), float(carriageway_half + left_sidewalk_width_m)),
+        ("carriageway", -float(carriageway_half), float(carriageway_half)),
+        ("right_sidewalk", -float(carriageway_half + right_sidewalk_width_m), -float(carriageway_half)),
+        ("right_building_buffer", -float(carriageway_half + right_sidewalk_width_m + right_building_buffer_m), -float(carriageway_half + right_sidewalk_width_m)),
+    )
+    building_roles = {"left_building_buffer", "right_building_buffer"}
+
+    cells: List[Dict[str, Any]] = []
+    theme_cell_counts: Dict[str, int] = {}
+    building_cell_counts: Dict[str, int] = {}
+    occupied_building_cells = 0
+    for segment_idx, segment in enumerate(raw_segments):
+        theme_segment = segment.get("theme_segment")
+        theme_id = str(getattr(theme_segment, "theme_id", "") or "")
+        theme_name = str(getattr(theme_segment, "theme_name", "") or "commercial")
+        segment_ids = [str(segment["segment_id"])]
+        for lane_role, inner_offset_m, outer_offset_m in lane_specs:
+            polygon_xz = _band_polygon_from_segment(
+                tuple(segment["start_xy"]),
+                tuple(segment["end_xy"]),
+                inner_offset_m=float(inner_offset_m),
+                outer_offset_m=float(outer_offset_m),
+            )
+            if not polygon_xz:
+                continue
+            cell_geom = ShapelyPolygon(polygon_xz) if ShapelyPolygon is not None else None
+            cell_bbox = _polygon_bbox(polygon_xz)
+            footprint_ids: List[str] = []
+            footprint_source_counts: Dict[str, int] = {}
+            if lane_role in building_roles:
+                for footprint in footprint_records:
+                    intersects = False
+                    if cell_geom is not None and footprint["geom"] is not None:
+                        intersects = bool(footprint["geom"].intersects(cell_geom))
+                    else:
+                        intersects = _bbox_intersects(cell_bbox, footprint["bbox"])
+                    if not intersects:
+                        continue
+                    footprint_ids.append(str(footprint["footprint_id"]))
+                    source_name = str(footprint["source"])
+                    footprint_source_counts[source_name] = footprint_source_counts.get(source_name, 0) + 1
+                building_cell_counts[lane_role] = building_cell_counts.get(lane_role, 0) + 1
+                if footprint_ids:
+                    occupied_building_cells += 1
+            cell_center = _polygon_center(polygon_xz)
+            cells.append(
+                {
+                    "cell_id": f"zone_{segment_idx:03d}_{lane_role}",
+                    "polygon_xz": [[float(x), float(z)] for x, z in polygon_xz],
+                    "center_xz": [float(cell_center[0]), float(cell_center[1])],
+                    "lane_role": lane_role,
+                    "theme_id": theme_id,
+                    "theme_name": theme_name,
+                    "segment_ids": segment_ids,
+                    "footprint_ids": footprint_ids,
+                    "footprint_count": int(len(footprint_ids)),
+                    "has_fallback_footprints": bool(footprint_source_counts.get("fallback", 0)),
+                    "footprint_source_counts": footprint_source_counts,
+                    "station_range_m": [
+                        float(segment.get("station_start_m", 0.0) or 0.0),
+                        float(segment.get("station_end_m", 0.0) or 0.0),
+                    ],
+                }
+            )
+            theme_cell_counts[theme_name] = theme_cell_counts.get(theme_name, 0) + 1
+
+    summary = {
+        "enabled": True,
+        "cell_count": int(len(cells)),
+        "theme_cell_counts": theme_cell_counts,
+        "building_cell_counts": building_cell_counts,
+        "occupied_building_cells": int(occupied_building_cells),
+        "building_buffer_width_m": {
+            "left": float(left_building_buffer_m),
+            "right": float(right_building_buffer_m),
+        },
+    }
+    return tuple(cells), summary
 
 
 def _normalize_tags(value: Any) -> Tuple[str, ...]:

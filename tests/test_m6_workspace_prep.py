@@ -206,6 +206,66 @@ def test_build_demo_uses_three_top_level_tabs():
     assert labels == ["1) 准备", "2) 生成街道", "3) 研究与训练"]
 
 
+def test_build_demo_exposes_zoning_preview_plot():
+    pytest.importorskip("gradio")
+
+    demo = app.build_demo()
+    config = demo.get_config_file()
+    labels = [
+        component.get("props", {}).get("label")
+        for component in config["components"]
+        if component.get("props", {}).get("label")
+    ]
+
+    assert "Theme / Building Zoning Preview" in labels
+
+
+def test_render_zoning_preview_returns_figure():
+    pytest.importorskip("matplotlib")
+
+    layout_payload = {
+        "summary": {
+            "osm_geometry": {
+                "carriageway_rings": [[[-4.0, -1.0], [4.0, -1.0], [4.0, 1.0], [-4.0, 1.0], [-4.0, -1.0]]],
+            }
+        },
+        "zoning_grid": [
+            {
+                "cell_id": "zone_000_left_building_buffer",
+                "polygon_xz": [[-4.0, 3.0], [4.0, 3.0], [4.0, 7.0], [-4.0, 7.0], [-4.0, 3.0]],
+                "center_xz": [0.0, 5.0],
+                "lane_role": "left_building_buffer",
+                "theme_id": "theme_000",
+                "theme_name": "commercial",
+                "segment_ids": ["seg_0000"],
+                "footprint_ids": ["building_000"],
+            },
+            {
+                "cell_id": "zone_000_carriageway",
+                "polygon_xz": [[-4.0, -1.0], [4.0, -1.0], [4.0, 1.0], [-4.0, 1.0], [-4.0, -1.0]],
+                "center_xz": [0.0, 0.0],
+                "lane_role": "carriageway",
+                "theme_id": "theme_000",
+                "theme_name": "commercial",
+                "segment_ids": ["seg_0000"],
+                "footprint_ids": [],
+            },
+        ],
+        "building_footprints": [
+            {
+                "footprint_id": "building_000",
+                "source": "osm",
+                "polygon_xz": [[-2.0, 4.0], [2.0, 4.0], [2.0, 6.0], [-2.0, 6.0], [-2.0, 4.0]],
+            }
+        ],
+    }
+
+    fig = app._render_zoning_preview(json.dumps(layout_payload))
+
+    assert fig is not None
+    assert fig.axes[0].get_title() == "Theme / Building Zoning Preview"
+
+
 def test_extract_program_summary_includes_poi_counts():
     layout_payload = {
         "street_program": {

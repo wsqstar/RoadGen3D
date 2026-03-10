@@ -38,6 +38,19 @@ _CATEGORY_COLORS: Dict[str, str] = {
     "bollard": "#f032e6",
 }
 _DEFAULT_COLOR = "#aaaaaa"
+_THEME_COLORS: Dict[str, str] = {
+    "residential": "#7fb069",
+    "commercial": "#e07a5f",
+    "transit": "#4d96ff",
+    "green": "#2a9d8f",
+}
+_ROLE_ALPHA: Dict[str, float] = {
+    "left_building_buffer": 0.16,
+    "left_sidewalk": 0.24,
+    "carriageway": 0.34,
+    "right_sidewalk": 0.24,
+    "right_building_buffer": 0.16,
+}
 
 
 def _require_matplotlib() -> None:
@@ -190,6 +203,132 @@ def plot_scene_with_markers(
     ax.set_title("Scene Spatial Overview")
     ax.set_aspect("equal")
     ax.legend(loc="upper right", fontsize=7, ncol=2)
+    fig.tight_layout()
+    return fig
+
+
+def plot_zoning_grid_preview(
+    zoning_grid: Sequence[Dict[str, Any]],
+    *,
+    building_footprints: Optional[Sequence[Dict[str, Any]]] = None,
+    osm_geometry: Optional[Dict[str, Any]] = None,
+    figsize: Tuple[float, float] = (10, 4.4),
+) -> Any:
+    """Render a bird's-eye zoning grid with theme coloring and footprint overlays."""
+    _require_matplotlib()
+    from matplotlib.patches import Patch as MplPatch
+    from matplotlib.patches import Polygon as MplPolygon
+    from matplotlib.collections import PatchCollection
+
+    cells = [dict(cell) for cell in zoning_grid or [] if (cell.get("polygon_xz") or [])]
+    if not cells:
+        return None
+
+    fig, ax = plt.subplots(1, 1, figsize=figsize)
+    cell_xs: List[float] = []
+    cell_zs: List[float] = []
+    theme_label_points: Dict[str, List[Tuple[float, float]]] = {}
+    legend_theme_names: List[str] = []
+
+    for cell in cells:
+        polygon = [(float(point[0]), float(point[1])) for point in cell.get("polygon_xz", []) if len(point) >= 2]
+        if len(polygon) < 4:
+            continue
+        theme_name = str(cell.get("theme_name", "") or "commercial")
+        lane_role = str(cell.get("lane_role", "") or "")
+        face_color = _THEME_COLORS.get(theme_name, "#999999")
+        alpha = float(_ROLE_ALPHA.get(lane_role, 0.2))
+        patch = MplPolygon(polygon, closed=True)
+        patch.set_facecolor(face_color)
+        patch.set_edgecolor("#22303a")
+        patch.set_linewidth(0.75)
+        patch.set_alpha(alpha)
+        ax.add_patch(patch)
+        cell_xs.extend(float(point[0]) for point in polygon)
+        cell_zs.extend(float(point[1]) for point in polygon)
+        if theme_name not in legend_theme_names:
+            legend_theme_names.append(theme_name)
+        if lane_role == "carriageway":
+            center = cell.get("center_xz", []) or []
+            if len(center) >= 2:
+                theme_label_points.setdefault(str(cell.get("theme_id", "") or theme_name), []).append(
+                    (float(center[0]), float(center[1]))
+                )
+
+    if osm_geometry and "carriageway_rings" in osm_geometry:
+        road_patches = [MplPolygon(ring, closed=True) for ring in osm_geometry.get("carriageway_rings", []) or []]
+        if road_patches:
+            overlay = PatchCollection(
+                road_patches,
+                facecolor="none",
+                edgecolor="#56636a",
+                linewidth=1.0,
+                alpha=0.45,
+                zorder=5,
+            )
+            ax.add_collection(overlay)
+
+    footprint_list = [dict(item) for item in building_footprints or []]
+    for footprint in footprint_list:
+        polygon = [(float(point[0]), float(point[1])) for point in footprint.get("polygon_xz", []) if len(point) >= 2]
+        if len(polygon) < 4:
+            continue
+        source = str(footprint.get("source", "") or "osm")
+        patch = MplPolygon(polygon, closed=True)
+        patch.set_facecolor("#111111")
+        patch.set_alpha(0.10 if source == "osm" else 0.04)
+        patch.set_edgecolor("#111111")
+        patch.set_linewidth(1.0 if source == "osm" else 1.2)
+        patch.set_linestyle("--" if source != "osm" else "-")
+        ax.add_patch(patch)
+        cell_xs.extend(float(point[0]) for point in polygon)
+        cell_zs.extend(float(point[1]) for point in polygon)
+
+    for theme_id, points in theme_label_points.items():
+        if not points:
+            continue
+        cx = sum(float(point[0]) for point in points) / len(points)
+        cz = sum(float(point[1]) for point in points) / len(points)
+        label_theme = next(
+            (
+                str(cell.get("theme_name", "") or "")
+                for cell in cells
+                if str(cell.get("theme_id", "") or "") == theme_id
+            ),
+            "",
+        )
+        if label_theme:
+            ax.text(
+                float(cx),
+                float(cz),
+                label_theme,
+                fontsize=8,
+                fontweight="bold",
+                color="#14213d",
+                ha="center",
+                va="center",
+                bbox={"boxstyle": "round,pad=0.22", "facecolor": "white", "alpha": 0.55, "edgecolor": "none"},
+                zorder=8,
+            )
+
+    legend_items = [
+        MplPatch(facecolor=_THEME_COLORS.get(theme_name, "#999999"), edgecolor="#22303a", alpha=0.30, label=theme_name)
+        for theme_name in legend_theme_names
+    ]
+    if legend_items:
+        legend_items.append(MplPatch(facecolor="#111111", edgecolor="#111111", alpha=0.10, label="building footprint"))
+        ax.legend(handles=legend_items, loc="upper right", fontsize=7, ncol=min(3, max(len(legend_items), 1)))
+
+    if cell_xs and cell_zs:
+        pad_x = max((max(cell_xs) - min(cell_xs)) * 0.04, 4.0)
+        pad_z = max((max(cell_zs) - min(cell_zs)) * 0.04, 4.0)
+        ax.set_xlim(min(cell_xs) - pad_x, max(cell_xs) + pad_x)
+        ax.set_ylim(min(cell_zs) - pad_z, max(cell_zs) + pad_z)
+    ax.set_xlabel("X (m)")
+    ax.set_ylabel("Z (m)")
+    ax.set_title("Theme / Building Zoning Preview")
+    ax.set_aspect("equal")
+    ax.grid(alpha=0.16, linewidth=0.5)
     fig.tight_layout()
     return fig
 

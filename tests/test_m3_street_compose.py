@@ -1151,12 +1151,19 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
     assert {segment["theme_name"] for segment in summary["theme_segments"]} >= {"commercial", "transit"}
     assert payload["building_footprints"]
     assert payload["building_placements"]
+    assert payload["zoning_grid"]
     assert furniture_group
     assert building_group
     assert all(placement.asset_id in {"building_01", "building_02"} for placement in building_group)
     assert all(placement.selection_source == "building_asset" for placement in building_group)
     assert summary["building_retrieval_coverage"]["footprint_count"] == len(payload["building_footprints"])
     assert summary["building_retrieval_coverage"]["placed_count"] == len(payload["building_placements"])
+    assert summary["zoning_preview_summary"]["cell_count"] == len(payload["zoning_grid"])
+    assert {"left_building_buffer", "left_sidewalk", "carriageway", "right_sidewalk", "right_building_buffer"} <= {
+        cell["lane_role"] for cell in payload["zoning_grid"]
+    }
+    assert {cell["theme_name"] for cell in payload["zoning_grid"]} >= {"commercial", "transit"}
+    assert any(cell["footprint_ids"] for cell in payload["zoning_grid"] if "building_buffer" in cell["lane_role"])
 
 
 def test_osm_compose_building_fallback_survives_missing_assets_and_footprints(tmp_path: Path, monkeypatch):
@@ -1196,6 +1203,13 @@ def test_osm_compose_building_fallback_survives_missing_assets_and_footprints(tm
     assert summary["building_summary"]["fallback_count"] > 0
     assert summary["building_summary"]["sources"]["fallback"] > 0
     assert any(plan["selection_source"] == "procedural_fallback" for plan in building_plans)
+    assert payload["zoning_grid"]
+    assert summary["zoning_preview_summary"]["occupied_building_cells"] > 0
+    assert any(
+        cell["has_fallback_footprints"]
+        for cell in payload["zoning_grid"]
+        if "building_buffer" in cell["lane_role"]
+    )
 
 
 def test_osm_bus_stop_anchor_relaxes_when_exact_anchor_is_blocked(tmp_path: Path, monkeypatch):

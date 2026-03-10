@@ -81,6 +81,7 @@ from .street_priors import DEFAULT_CATEGORIES, DEFAULT_SPACING_M, SIDE_PREF
 from .street_program import infer_street_program
 from .theme_buildings import (
     assign_theme_id_for_point,
+    build_zoning_grid_preview,
     building_query,
     collect_building_footprints,
     infer_theme_segments,
@@ -2608,6 +2609,14 @@ def compose_street_scene(
         start_instance_index=instance_counter,
     )
     placements.extend(building_placements)
+    zoning_grid, zoning_preview_summary = build_zoning_grid_preview(
+        config=config,
+        placement_context=placement_ctx,
+        road_segment_graph=road_segment_graph,
+        theme_segments=theme_segments,
+        building_footprints=building_footprints,
+        road_buffer_m=35.0,
+    )
     resolved_program = replace(
         resolved_program,
         building_strategy_summary={
@@ -2842,6 +2851,7 @@ def compose_street_scene(
             "asset_count": int(building_summary.get("asset_count", 0)),
             "fallback_count": int(building_summary.get("fallback_count", 0)),
         },
+        "zoning_preview_summary": dict(zoning_preview_summary),
         "composition_report": {
             **dict(composition_pass_report),
             **dict(presentation_report),
@@ -2898,6 +2908,7 @@ def compose_street_scene(
         "building_footprints": [footprint.to_dict() for footprint in building_footprints],
         "building_placements": [plan.to_dict() for plan in building_plans],
         "building_retrieval_predictions": building_retrieval_predictions,
+        "zoning_grid": list(zoning_grid),
         "unplaced_slot_diagnostics": list(unplaced_slot_diagnostics),
         "outputs": outputs,
     }

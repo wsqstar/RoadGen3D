@@ -70,7 +70,13 @@ from roadgen3d.scene_graph_viz import (
 )
 from roadgen3d.street_layout import compose_street_scene
 from roadgen3d.spatial_features import SpatialContext
-from roadgen3d.spatial_viz import plot_scene_with_markers, plot_distance_heatmap, plot_distance_histograms, plot_poi_exclusion_overview
+from roadgen3d.spatial_viz import (
+    plot_distance_heatmap,
+    plot_distance_histograms,
+    plot_poi_exclusion_overview,
+    plot_scene_with_markers,
+    plot_zoning_grid_preview,
+)
 from roadgen3d.types import PrepareWorkspaceResult, StepResult, StreetComposeConfig, WorkspaceReadiness
 from scripts.m1_01_seed_assets import seed_assets
 from scripts.m2_11_encode_shapee_latents import encode_latents as encode_shapee_latents
@@ -1738,6 +1744,10 @@ def run_street_compose(
             f"\n- building_placed_count: "
             f"{int((layout_summary.get('building_retrieval_coverage', {}) or {}).get('placed_count', 0) or 0)}"
         )
+        summary += (
+            f"\n- zoning_cell_count: "
+            f"{int((layout_summary.get('zoning_preview_summary', {}) or {}).get('cell_count', 0) or 0)}"
+        )
         model_path = result.outputs.get("scene_glb") or None
         files: List[str] = []
         if result.outputs.get("scene_glb"):
@@ -1806,6 +1816,22 @@ def _render_spatial_overview(layout_json_text: str) -> Any:
             osm_geometry=summary.get("osm_geometry"),
             poi_exclusion_zones=summary.get("poi_exclusion_zones"),
             poi_conflicts=summary.get("poi_conflict_assets"),
+        )
+    except Exception:
+        return None
+
+
+def _render_zoning_preview(layout_json_text: str) -> Any:
+    """Render theme/building zoning grid from the layout JSON output."""
+    try:
+        if not layout_json_text or not layout_json_text.strip():
+            return None
+        payload = json.loads(layout_json_text)
+        summary = payload.get("summary", {}) or {}
+        return plot_zoning_grid_preview(
+            payload.get("zoning_grid", []) or [],
+            building_footprints=payload.get("building_footprints", []) or [],
+            osm_geometry=summary.get("osm_geometry"),
         )
     except Exception:
         return None
@@ -3069,6 +3095,7 @@ def build_demo() -> gr.Blocks:
                 with gr.Row():
                     theme_segments_preview = gr.Code(label="Theme Segments Preview", language="json")
                     building_summary_json = gr.Code(label="Building Summary", language="json")
+                zoning_preview_plot = gr.Plot(label="Theme / Building Zoning Preview")
                 with gr.Accordion("Advanced", open=False):
                     with gr.Row():
                         street_length_m = gr.Number(label="Street Length (m)", value=80.0)
@@ -3418,6 +3445,10 @@ def build_demo() -> gr.Blocks:
             fn=_extract_building_summary,
             inputs=[street_layout_json],
             outputs=[building_summary_json],
+        ).then(
+            fn=_render_zoning_preview,
+            inputs=[street_layout_json],
+            outputs=[zoning_preview_plot],
         ).then(
             fn=_render_spatial_overview,
             inputs=[street_layout_json],
