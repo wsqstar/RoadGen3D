@@ -211,10 +211,12 @@ def plot_zoning_grid_preview(
     zoning_grid: Sequence[Dict[str, Any]],
     *,
     building_footprints: Optional[Sequence[Dict[str, Any]]] = None,
+    generated_lots: Optional[Sequence[Dict[str, Any]]] = None,
+    building_placements: Optional[Sequence[Dict[str, Any]]] = None,
     osm_geometry: Optional[Dict[str, Any]] = None,
     figsize: Tuple[float, float] = (10, 4.4),
 ) -> Any:
-    """Render a bird's-eye zoning grid with theme coloring and footprint overlays."""
+    """Render a bird's-eye zoning grid with land-use coloring, lots, and footprint overlays."""
     _require_matplotlib()
     from matplotlib.patches import Patch as MplPatch
     from matplotlib.patches import Polygon as MplPolygon
@@ -229,6 +231,8 @@ def plot_zoning_grid_preview(
     cell_zs: List[float] = []
     theme_label_points: Dict[str, List[Tuple[float, float]]] = {}
     legend_theme_names: List[str] = []
+    buildable_cells_seen = False
+    non_buildable_cells_seen = False
 
     for cell in cells:
         polygon = [(float(point[0]), float(point[1])) for point in cell.get("polygon_xz", []) if len(point) >= 2]
@@ -236,13 +240,28 @@ def plot_zoning_grid_preview(
             continue
         theme_name = str(cell.get("theme_name", "") or "commercial")
         lane_role = str(cell.get("lane_role", "") or "")
-        face_color = _THEME_COLORS.get(theme_name, "#999999")
+        land_use_type = str(cell.get("land_use_type", "") or "")
+        buildable = bool(cell.get("buildable", False))
+        if land_use_type:
+            face_color = _THEME_COLORS.get(land_use_type, _THEME_COLORS.get(theme_name, "#999999"))
+        else:
+            face_color = _THEME_COLORS.get(theme_name, "#999999")
         alpha = float(_ROLE_ALPHA.get(lane_role, 0.2))
+        if "building_buffer" in lane_role:
+            if buildable:
+                alpha = max(alpha, 0.26)
+                buildable_cells_seen = True
+            else:
+                face_color = "#d5dadd"
+                alpha = 0.10
+                non_buildable_cells_seen = True
         patch = MplPolygon(polygon, closed=True)
         patch.set_facecolor(face_color)
-        patch.set_edgecolor("#22303a")
+        patch.set_edgecolor("#22303a" if buildable or "building_buffer" not in lane_role else "#7f8b92")
         patch.set_linewidth(0.75)
         patch.set_alpha(alpha)
+        if "building_buffer" in lane_role and not buildable:
+            patch.set_linestyle("--")
         ax.add_patch(patch)
         cell_xs.extend(float(point[0]) for point in polygon)
         cell_zs.extend(float(point[1]) for point in polygon)
@@ -284,6 +303,29 @@ def plot_zoning_grid_preview(
         cell_xs.extend(float(point[0]) for point in polygon)
         cell_zs.extend(float(point[1]) for point in polygon)
 
+    placed_anchor_ids = {
+        str(item.get("anchor_geom_id", "") or "")
+        for item in building_placements or []
+        if str(item.get("anchor_geom_id", "") or "")
+    }
+    lot_list = [dict(item) for item in generated_lots or []]
+    for lot in lot_list:
+        polygon = [(float(point[0]), float(point[1])) for point in lot.get("polygon_xz", []) if len(point) >= 2]
+        if len(polygon) < 4:
+            continue
+        lot_id = str(lot.get("lot_id", "") or "")
+        land_use_type = str(lot.get("land_use_type", "") or "commercial")
+        placed = lot_id in placed_anchor_ids
+        patch = MplPolygon(polygon, closed=True)
+        patch.set_facecolor(_THEME_COLORS.get(land_use_type, "#999999"))
+        patch.set_alpha(0.12 if placed else 0.04)
+        patch.set_edgecolor(_THEME_COLORS.get(land_use_type, "#22303a"))
+        patch.set_linewidth(1.4 if placed else 1.0)
+        patch.set_linestyle("-" if placed else "--")
+        ax.add_patch(patch)
+        cell_xs.extend(float(point[0]) for point in polygon)
+        cell_zs.extend(float(point[1]) for point in polygon)
+
     for theme_id, points in theme_label_points.items():
         if not points:
             continue
@@ -316,7 +358,14 @@ def plot_zoning_grid_preview(
         for theme_name in legend_theme_names
     ]
     if legend_items:
-        legend_items.append(MplPatch(facecolor="#111111", edgecolor="#111111", alpha=0.10, label="building footprint"))
+        if buildable_cells_seen:
+            legend_items.append(MplPatch(facecolor="#6c8e5e", edgecolor="#22303a", alpha=0.25, label="buildable cell"))
+        if non_buildable_cells_seen:
+            legend_items.append(MplPatch(facecolor="#d5dadd", edgecolor="#7f8b92", alpha=0.18, label="non-buildable cell"))
+        if lot_list:
+            legend_items.append(MplPatch(facecolor="#111111", edgecolor="#111111", alpha=0.06, label="generated lot"))
+        if footprint_list:
+            legend_items.append(MplPatch(facecolor="#111111", edgecolor="#111111", alpha=0.10, label="building footprint"))
         ax.legend(handles=legend_items, loc="upper right", fontsize=7, ncol=min(3, max(len(legend_items), 1)))
 
     if cell_xs and cell_zs:

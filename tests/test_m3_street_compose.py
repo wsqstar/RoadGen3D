@@ -201,7 +201,12 @@ def _build_osm_response(
     return {"elements": elements}
 
 
-def _build_osm_config(tmp_path: Path, *, seed: int = 42) -> StreetComposeConfig:
+def _build_osm_config(
+    tmp_path: Path,
+    *,
+    seed: int = 42,
+    surrounding_building_mode: str = "footprint_based",
+) -> StreetComposeConfig:
     return StreetComposeConfig(
         query="urban street",
         length_m=80.0,
@@ -220,6 +225,7 @@ def _build_osm_config(tmp_path: Path, *, seed: int = 42) -> StreetComposeConfig:
         road_selection="primary_road",
         segment_length_m=18.0,
         enable_surrounding_buildings=True,
+        surrounding_building_mode=surrounding_building_mode,
         building_search_topk=3,
     )
 
@@ -1151,11 +1157,13 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
     assert {segment["theme_name"] for segment in summary["theme_segments"]} >= {"commercial", "transit"}
     assert payload["building_footprints"]
     assert payload["building_placements"]
+    assert payload["generated_lots"] == []
     assert payload["zoning_grid"]
     assert furniture_group
     assert building_group
     assert all(placement.asset_id in {"building_01", "building_02"} for placement in building_group)
     assert all(placement.selection_source == "building_asset" for placement in building_group)
+    assert summary["building_generation_mode"] == "footprint_based"
     assert summary["building_retrieval_coverage"]["footprint_count"] == len(payload["building_footprints"])
     assert summary["building_retrieval_coverage"]["placed_count"] == len(payload["building_placements"])
     assert summary["zoning_preview_summary"]["cell_count"] == len(payload["zoning_grid"])
@@ -1163,6 +1171,7 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
         cell["lane_role"] for cell in payload["zoning_grid"]
     }
     assert {cell["theme_name"] for cell in payload["zoning_grid"]} >= {"commercial", "transit"}
+    assert all("land_use_type" in cell and "buildable" in cell and "lot_id" in cell for cell in payload["zoning_grid"])
     assert any(cell["footprint_ids"] for cell in payload["zoning_grid"] if "building_buffer" in cell["lane_role"])
 
 
@@ -1201,15 +1210,95 @@ def test_osm_compose_building_fallback_survives_missing_assets_and_footprints(tm
     assert all(placement.asset_id.startswith("building_fallback_") for placement in building_group)
     assert all(placement.selection_source == "procedural_fallback" for placement in building_group)
     assert summary["building_summary"]["fallback_count"] > 0
+    assert summary["building_generation_mode"] == "footprint_based"
     assert summary["building_summary"]["sources"]["fallback"] > 0
     assert any(plan["selection_source"] == "procedural_fallback" for plan in building_plans)
     assert payload["zoning_grid"]
+    assert payload["generated_lots"] == []
     assert summary["zoning_preview_summary"]["occupied_building_cells"] > 0
     assert any(
         cell["has_fallback_footprints"]
         for cell in payload["zoning_grid"]
         if "building_buffer" in cell["lane_role"]
     )
+
+
+def test_osm_compose_grid_growth_generates_lots_and_lot_based_buildings(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    pytest.importorskip("pyproj")
+    pytest.importorskip("shapely")
+
+    rows = _build_real_rows(tmp_path / "data", include_buildings=True)
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+
+    import roadgen3d.osm_ingest as osm_ingest
+
+    monkeypatch.setattr(osm_ingest, "fetch_osm_data", lambda **kwargs: _build_osm_response(include_building=True))
+    monkeypatch.setattr(street_layout, "render_presentation_views", lambda *args, **kwargs: [])
+
+    result = compose_street_scene(
+        config=_build_osm_config(tmp_path, seed=29, surrounding_building_mode="grid_growth"),
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+
+    payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    summary = payload["summary"]
+    lot_ids = {lot["lot_id"] for lot in payload["generated_lots"]}
+
+    assert summary["building_generation_mode"] == "grid_growth"
+    assert payload["building_footprints"] == []
+    assert payload["generated_lots"]
+    assert summary["lot_generation_summary"]["lot_count"] == len(payload["generated_lots"])
+    assert summary["land_use_summary"]["buildable_cell_count"] > 0
+    assert summary["building_retrieval_coverage"]["lot_count"] == len(payload["generated_lots"])
+    assert all(plan["anchor_geom_id"] in lot_ids for plan in payload["building_placements"])
+    assert all(placement.anchor_geom_id in lot_ids for placement in result.placements if placement.placement_group == "building")
+    assert any(str(cell.get("lot_id", "") or "") for cell in payload["zoning_grid"] if bool(cell.get("buildable", False)))
+    assert all("building_buffer" in cell["lane_role"] for cell in payload["zoning_grid"] if str(cell.get("lot_id", "") or ""))
+
+
+def test_osm_compose_grid_growth_falls_back_without_building_assets(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    pytest.importorskip("pyproj")
+    pytest.importorskip("shapely")
+
+    rows = _build_real_rows(tmp_path / "data", include_buildings=False)
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+
+    import roadgen3d.osm_ingest as osm_ingest
+
+    monkeypatch.setattr(osm_ingest, "fetch_osm_data", lambda **kwargs: _build_osm_response(include_building=True))
+    monkeypatch.setattr(street_layout, "render_presentation_views", lambda *args, **kwargs: [])
+
+    result = compose_street_scene(
+        config=_build_osm_config(tmp_path, seed=37, surrounding_building_mode="grid_growth"),
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+
+    payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    summary = payload["summary"]
+    building_group = [placement for placement in result.placements if placement.placement_group == "building"]
+
+    assert payload["generated_lots"]
+    assert building_group
+    assert all(placement.asset_id.startswith("building_fallback_lot_") for placement in building_group)
+    assert all(plan["selection_source"] == "procedural_fallback" for plan in payload["building_placements"])
+    assert summary["building_summary"]["fallback_count"] == len(payload["building_placements"])
+    assert summary["building_generation_mode"] == "grid_growth"
 
 
 def test_osm_bus_stop_anchor_relaxes_when_exact_anchor_is_blocked(tmp_path: Path, monkeypatch):

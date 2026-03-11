@@ -84,12 +84,16 @@ from .theme_buildings import (
     build_zoning_grid_preview,
     building_query,
     collect_building_footprints,
+    generate_grid_growth_lots,
     infer_theme_segments,
     rerank_building_candidates,
+    summarize_land_use_grid,
     theme_profile_style,
 )
 from .types import (
+    BuildingFootprint,
     BuildingPlacementPlan,
+    GeneratedLot,
     InventorySummary,
     LayoutSolverInput,
     LayoutSolverResult,
@@ -111,6 +115,21 @@ class _MeshCacheEntry:
     half_x: float
     half_z: float
     min_y: float
+
+
+@dataclass(frozen=True)
+class _SurroundingBuildingResult:
+    building_footprints: Tuple[BuildingFootprint, ...]
+    generated_lots: Tuple[GeneratedLot, ...]
+    placements: Tuple[StreetPlacement, ...]
+    plans: Tuple[BuildingPlacementPlan, ...]
+    retrieval_predictions: Tuple[Dict[str, object], ...]
+    building_summary: Dict[str, object]
+    land_use_summary: Dict[str, object]
+    lot_generation_summary: Dict[str, object]
+    zoning_grid: Tuple[Dict[str, object], ...]
+    zoning_preview_summary: Dict[str, object]
+    instance_index: int
 
 
 def _require_trimesh():
@@ -180,6 +199,8 @@ def _validate_config(config: StreetComposeConfig) -> None:
         raise ValueError("asset_curation_mode must be 'curated_first' or 'legacy'")
     if int(getattr(config, "building_search_topk", 1)) <= 0:
         raise ValueError("building_search_topk must be >= 1")
+    if str(getattr(config, "surrounding_building_mode", "footprint_based")).strip().lower() not in {"footprint_based", "grid_growth"}:
+        raise ValueError("surrounding_building_mode must be 'footprint_based' or 'grid_growth'")
     if str(getattr(config, "theme_inference_mode", "deterministic_auto")).strip().lower() not in {"deterministic_auto"}:
         raise ValueError("theme_inference_mode must be 'deterministic_auto'")
     if str(getattr(config, "theme_vocab_name", "fixed_v1")).strip().lower() not in {"fixed_v1"}:
@@ -1747,6 +1768,7 @@ def _pick_building_candidate(
     frontage_width_m: float,
     depth_m: float,
     road_type: str,
+    height_class: str,
     embedder: ClipTextEmbedder,
     index_store: FaissIndexStore,
     asset_by_id: Dict[str, Dict[str, object]],
@@ -1759,6 +1781,7 @@ def _pick_building_candidate(
         frontage_width_m=float(frontage_width_m),
         depth_m=float(depth_m),
         road_type=road_type,
+        height_class=height_class,
     )
     query_embedding = embedder.encode_texts([query_text])
     hits = index_store.search(query_embedding, topk=max(50, int(search_topk), 1))[0]
@@ -1768,6 +1791,7 @@ def _pick_building_candidate(
         theme_name=theme_name,
         frontage_width_m=float(frontage_width_m),
         depth_m=float(depth_m),
+        height_class=height_class,
         limit=max(int(search_topk), 1),
     )
     payload = {
@@ -1792,6 +1816,224 @@ def _pick_building_candidate(
     return row, float(score), "building_asset", payload
 
 
+def _dominant_building_road_type(
+    road_segment_graph: object | None,
+    resolved_program: object,
+) -> str:
+    highway_counts: Dict[str, int] = {}
+    for node in getattr(road_segment_graph, "nodes", ()) or ():
+        highway_type = str(getattr(node, "highway_type", "") or "").strip().lower()
+        if highway_type:
+            highway_counts[highway_type] = highway_counts.get(highway_type, 0) + 1
+    if highway_counts:
+        return max(sorted(highway_counts), key=lambda key: highway_counts[key])
+    return str(getattr(resolved_program, "road_type", "") or "").strip().lower()
+
+
+def _building_size_class(frontage_width_m: float, depth_m: float) -> str:
+    major = max(float(frontage_width_m), float(depth_m))
+    if major >= 24.0:
+        return "large"
+    if major >= 14.0:
+        return "medium"
+    return "small"
+
+
+def _footprint_target_records(footprints: Sequence[BuildingFootprint]) -> List[Dict[str, object]]:
+    return [
+        {
+            "target_id": str(footprint.footprint_id),
+            "target_kind": "footprint",
+            "source": str(footprint.source),
+            "polygon_xz": tuple((float(x), float(z)) for x, z in footprint.polygon_xz),
+            "center_xz": (float(footprint.centroid_xz[0]), float(footprint.centroid_xz[1])),
+            "frontage_width_m": float(footprint.frontage_width_m),
+            "depth_m": float(footprint.depth_m),
+            "yaw_deg": float(footprint.yaw_deg),
+            "theme_id": str(footprint.theme_id),
+            "height_class": str(footprint.height_class),
+            "anchor_geom_id": str(footprint.anchor_geom_id),
+            "size_class": str(footprint.size_class),
+        }
+        for footprint in footprints
+    ]
+
+
+def _lot_target_records(lots: Sequence[GeneratedLot]) -> List[Dict[str, object]]:
+    return [
+        {
+            "target_id": str(lot.lot_id),
+            "target_kind": "lot",
+            "source": str(lot.source),
+            "polygon_xz": tuple((float(x), float(z)) for x, z in lot.polygon_xz),
+            "center_xz": (float(lot.center_xz[0]), float(lot.center_xz[1])),
+            "frontage_width_m": float(lot.frontage_width_m),
+            "depth_m": float(lot.depth_m),
+            "yaw_deg": float(lot.yaw_deg),
+            "theme_id": str(lot.theme_id),
+            "height_class": str(lot.height_class),
+            "anchor_geom_id": str(lot.lot_id),
+            "size_class": str(_building_size_class(lot.frontage_width_m, lot.depth_m)),
+            "land_use_type": str(lot.land_use_type),
+        }
+        for lot in lots
+    ]
+
+
+def _place_building_targets(
+    *,
+    targets: Sequence[Mapping[str, object]],
+    config: StreetComposeConfig,
+    theme_segments: Sequence[ThemeSegment],
+    resolved_program: object,
+    embedder: ClipTextEmbedder,
+    index_store: FaissIndexStore,
+    asset_by_id: Dict[str, Dict[str, object]],
+    mesh_cache: Dict[str, _MeshCacheEntry],
+    rng: random.Random,
+    start_instance_index: int,
+    road_type: str,
+) -> Tuple[Tuple[StreetPlacement, ...], Tuple[BuildingPlacementPlan, ...], Tuple[Dict[str, object], ...], Dict[str, object], int]:
+    theme_by_id = {segment.theme_id: segment for segment in theme_segments}
+    placements: List[StreetPlacement] = []
+    plans: List[BuildingPlacementPlan] = []
+    retrieval_predictions: List[Dict[str, object]] = []
+    fallback_count = 0
+    asset_count = 0
+    instance_index = int(start_instance_index)
+    source_counts: Dict[str, int] = {}
+
+    for target_idx, target in enumerate(targets):
+        theme_id = str(target.get("theme_id", "") or "")
+        theme_segment = theme_by_id.get(theme_id, theme_segments[0] if theme_segments else None)
+        theme_name = (
+            str(target.get("land_use_type", "") or "")
+            or (theme_segment.theme_name if theme_segment is not None else "commercial")
+        )
+        row, score, source, retrieval_payload = _pick_building_candidate(
+            query=config.query,
+            theme_name=theme_name,
+            frontage_width_m=float(target.get("frontage_width_m", 12.0) or 12.0),
+            depth_m=float(target.get("depth_m", 10.0) or 10.0),
+            road_type=str(road_type),
+            height_class=str(target.get("height_class", "") or ""),
+            embedder=embedder,
+            index_store=index_store,
+            asset_by_id=asset_by_id,
+            search_topk=int(getattr(config, "building_search_topk", 5)),
+            rng=rng,
+        )
+        retrieval_payload.update(
+            {
+                f"{str(target.get('target_kind', 'footprint'))}_id": str(target.get("target_id", "") or ""),
+                "theme_id": theme_id,
+                "source": str(target.get("source", "") or ""),
+                "height_class": str(target.get("height_class", "") or ""),
+            }
+        )
+        retrieval_predictions.append(retrieval_payload)
+
+        frontage_width_m = float(target.get("frontage_width_m", 12.0) or 12.0)
+        depth_m = float(target.get("depth_m", 10.0) or 10.0)
+        if row is not None:
+            entry = mesh_cache[row["asset_id"]]
+            scale_x = max(frontage_width_m / max(entry.half_x * 2.0, 1e-3), 0.1)
+            scale_z = max(depth_m / max(entry.half_z * 2.0, 1e-3), 0.1)
+            height_multiplier = {"lowrise": 1.0, "midrise": 1.4, "highrise": 1.8}.get(
+                str(row.get("height_class", target.get("height_class", "midrise"))),
+                {"lowrise": 1.0, "midrise": 1.4, "highrise": 1.8}.get(str(target.get("height_class", "midrise")), 1.2),
+            )
+            scale_y = max(scale_x, scale_z) * float(height_multiplier)
+            scale_xyz = [float(scale_x), float(scale_y), float(scale_z)]
+            asset_id = str(row["asset_id"])
+            asset_count += 1
+            fallback_reason = ""
+        else:
+            asset_id = f"building_fallback_{str(target.get('target_kind', 'footprint'))}_{target_idx:03d}"
+            mesh_cache[asset_id] = _placeholder_building_entry(
+                asset_id=asset_id,
+                frontage_width_m=frontage_width_m,
+                depth_m=depth_m,
+                height_class=str(target.get("height_class", "midrise") or "midrise"),
+                theme_name=theme_name,
+            )
+            asset_by_id[asset_id] = {
+                "asset_id": asset_id,
+                "category": "building",
+                "text_desc": f"{theme_name} {target.get('height_class', 'midrise')} procedural building",
+                "asset_role": "building",
+                "theme_tags": [theme_name, str(target.get("size_class", ""))],
+                "height_class": str(target.get("height_class", "midrise") or "midrise"),
+            }
+            entry = mesh_cache[asset_id]
+            scale_xyz = [1.0, 1.0, 1.0]
+            fallback_count += 1
+            fallback_reason = "no_building_asset_match"
+
+        center_xz = (
+            float(target.get("center_xz", (0.0, 0.0))[0]),
+            float(target.get("center_xz", (0.0, 0.0))[1]),
+        )
+        bbox = _compute_bbox(
+            x=float(center_xz[0]),
+            z=float(center_xz[1]),
+            yaw_deg=float(target.get("yaw_deg", 0.0) or 0.0),
+            half_x=entry.half_x,
+            half_z=entry.half_z,
+            scale=scale_xyz,
+            clearance=0.15,
+        )
+        y = -entry.min_y * float(scale_xyz[1])
+        plans.append(
+            BuildingPlacementPlan(
+                footprint_id=str(target.get("target_id", "") or ""),
+                theme_id=theme_id,
+                asset_id=asset_id,
+                selection_source=source,
+                position_xyz=[float(center_xz[0]), float(y), float(center_xz[1])],
+                yaw_deg=float(target.get("yaw_deg", 0.0) or 0.0),
+                scale=1.0,
+                scale_xyz=[float(value) for value in scale_xyz],
+                bbox_xz=[float(value) for value in bbox],
+                frontage_width_m=frontage_width_m,
+                depth_m=depth_m,
+                anchor_geom_id=str(target.get("anchor_geom_id", "") or ""),
+                retrieval_score=float(score),
+                fallback_reason=fallback_reason,
+            )
+        )
+        placements.append(
+            StreetPlacement(
+                instance_id=f"inst_{instance_index:04d}",
+                asset_id=asset_id,
+                category="building",
+                score=float(score),
+                position_xyz=[float(center_xz[0]), float(y), float(center_xz[1])],
+                yaw_deg=float(target.get("yaw_deg", 0.0) or 0.0),
+                scale=1.0,
+                bbox_xz=[float(value) for value in bbox],
+                selection_source=source,
+                placement_group="building",
+                theme_id=theme_id,
+                anchor_geom_id=str(target.get("anchor_geom_id", "") or ""),
+                scale_xyz=[float(value) for value in scale_xyz],
+            )
+        )
+        source_name = str(target.get("source", "") or "")
+        source_counts[source_name] = source_counts.get(source_name, 0) + 1
+        instance_index += 1
+
+    summary = {
+        "enabled": True,
+        "target_count": int(len(targets)),
+        "placed_count": int(len(placements)),
+        "asset_count": int(asset_count),
+        "fallback_count": int(fallback_count),
+        "sources": source_counts,
+    }
+    return tuple(placements), tuple(plans), tuple(retrieval_predictions), summary, instance_index
+
+
 def _place_surrounding_buildings(
     *,
     config: StreetComposeConfig,
@@ -1806,144 +2048,108 @@ def _place_surrounding_buildings(
     mesh_cache: Dict[str, _MeshCacheEntry],
     rng: random.Random,
     start_instance_index: int,
-) -> Tuple[Tuple[object, ...], List[StreetPlacement], List[BuildingPlacementPlan], List[Dict[str, object]], Dict[str, object], int]:
+) -> _SurroundingBuildingResult:
     if not bool(getattr(config, "enable_surrounding_buildings", True)) or config.layout_mode != "osm":
-        return tuple(), [], [], [], {"enabled": False, "footprint_count": 0, "placed_count": 0, "fallback_count": 0}, start_instance_index
+        return _SurroundingBuildingResult(
+            building_footprints=tuple(),
+            generated_lots=tuple(),
+            placements=tuple(),
+            plans=tuple(),
+            retrieval_predictions=tuple(),
+            building_summary={"enabled": False, "footprint_count": 0, "lot_count": 0, "placed_count": 0, "fallback_count": 0},
+            land_use_summary={},
+            lot_generation_summary={"lot_count": 0},
+            zoning_grid=tuple(),
+            zoning_preview_summary={"enabled": False, "cell_count": 0},
+            instance_index=int(start_instance_index),
+        )
 
-    theme_by_id = {segment.theme_id: segment for segment in theme_segments}
-    footprints = list(
-        collect_building_footprints(
-            projected_features,
-            placement_context=placement_ctx,
-            theme_segments=theme_segments,
-            road_segment_graph=road_segment_graph,
-            road_buffer_m=35.0,
+    mode = str(getattr(config, "surrounding_building_mode", "footprint_based") or "footprint_based").strip().lower()
+    road_type = _dominant_building_road_type(road_segment_graph, resolved_program)
+    building_footprints: Tuple[BuildingFootprint, ...] = tuple()
+    generated_lots: Tuple[GeneratedLot, ...] = tuple()
+
+    if mode == "footprint_based":
+        building_footprints = tuple(
+            collect_building_footprints(
+                projected_features,
+                placement_context=placement_ctx,
+                theme_segments=theme_segments,
+                road_segment_graph=road_segment_graph,
+                road_buffer_m=35.0,
+            )
+        )
+
+    zoning_grid_base, zoning_preview_summary = build_zoning_grid_preview(
+        config=config,
+        placement_context=placement_ctx,
+        road_segment_graph=road_segment_graph,
+        theme_segments=theme_segments,
+        building_footprints=building_footprints,
+        road_buffer_m=35.0,
+    )
+    zoning_grid = zoning_grid_base
+    lot_generation_summary: Dict[str, object] = {"lot_count": 0}
+    if mode == "grid_growth":
+        zoning_grid, generated_lots, lot_generation_summary = generate_grid_growth_lots(
+            zoning_grid_base,
+            road_type=road_type,
+        )
+    land_use_summary = summarize_land_use_grid(zoning_grid)
+
+    if mode == "grid_growth":
+        target_records = _lot_target_records(generated_lots)
+    else:
+        target_records = _footprint_target_records(building_footprints)
+    building_placements, building_plans, building_retrieval_predictions, placement_summary, instance_index = _place_building_targets(
+        targets=target_records,
+        config=config,
+        theme_segments=theme_segments,
+        resolved_program=resolved_program,
+        embedder=embedder,
+        index_store=index_store,
+        asset_by_id=asset_by_id,
+        mesh_cache=mesh_cache,
+        rng=rng,
+        start_instance_index=start_instance_index,
+        road_type=road_type,
+    )
+
+    occupied_building_cells = sum(
+        1
+        for cell in zoning_grid
+        if "building_buffer" in str(cell.get("lane_role", "") or "")
+        and (
+            (cell.get("footprint_ids", []) or [])
+            or str(cell.get("lot_id", "") or "")
         )
     )
-    placements: List[StreetPlacement] = []
-    plans: List[BuildingPlacementPlan] = []
-    retrieval_predictions: List[Dict[str, object]] = []
-    fallback_count = 0
-    asset_count = 0
-    instance_index = int(start_instance_index)
-    for footprint_idx, footprint in enumerate(footprints):
-        theme_segment = theme_by_id.get(footprint.theme_id, theme_segments[0] if theme_segments else None)
-        theme_name = theme_segment.theme_name if theme_segment is not None else "commercial"
-        row, score, source, retrieval_payload = _pick_building_candidate(
-            query=config.query,
-            theme_name=theme_name,
-            frontage_width_m=float(footprint.frontage_width_m),
-            depth_m=float(footprint.depth_m),
-            road_type=str(resolved_program.road_type),
-            embedder=embedder,
-            index_store=index_store,
-            asset_by_id=asset_by_id,
-            search_topk=int(getattr(config, "building_search_topk", 5)),
-            rng=rng,
-        )
-        retrieval_payload.update(
-            {
-                "footprint_id": footprint.footprint_id,
-                "theme_id": footprint.theme_id,
-                "source": footprint.source,
-            }
-        )
-        retrieval_predictions.append(retrieval_payload)
-
-        if row is not None:
-            entry = mesh_cache[row["asset_id"]]
-            scale_x = max(float(footprint.frontage_width_m) / max(entry.half_x * 2.0, 1e-3), 0.1)
-            scale_z = max(float(footprint.depth_m) / max(entry.half_z * 2.0, 1e-3), 0.1)
-            height_multiplier = {"lowrise": 1.0, "midrise": 1.4, "highrise": 1.8}.get(
-                str(row.get("height_class", footprint.height_class)),
-                {"lowrise": 1.0, "midrise": 1.4, "highrise": 1.8}.get(str(footprint.height_class), 1.2),
-            )
-            scale_y = max(scale_x, scale_z) * float(height_multiplier)
-            scale_xyz = [float(scale_x), float(scale_y), float(scale_z)]
-            asset_id = str(row["asset_id"])
-            asset_count += 1
-            fallback_reason = ""
-        else:
-            asset_id = f"building_fallback_{footprint_idx:03d}"
-            mesh_cache[asset_id] = _placeholder_building_entry(
-                asset_id=asset_id,
-                frontage_width_m=float(footprint.frontage_width_m),
-                depth_m=float(footprint.depth_m),
-                height_class=str(footprint.height_class),
-                theme_name=theme_name,
-            )
-            asset_by_id[asset_id] = {
-                "asset_id": asset_id,
-                "category": "building",
-                "text_desc": f"{theme_name} {footprint.height_class} procedural building",
-                "asset_role": "building",
-                "theme_tags": [theme_name, footprint.size_class],
-                "height_class": footprint.height_class,
-            }
-            entry = mesh_cache[asset_id]
-            scale_xyz = [1.0, 1.0, 1.0]
-            fallback_count += 1
-            fallback_reason = "no_building_asset_match"
-
-        bbox = _compute_bbox(
-            x=float(footprint.centroid_xz[0]),
-            z=float(footprint.centroid_xz[1]),
-            yaw_deg=float(footprint.yaw_deg),
-            half_x=entry.half_x,
-            half_z=entry.half_z,
-            scale=scale_xyz,
-            clearance=0.15,
-        )
-        y = -entry.min_y * float(scale_xyz[1])
-        plans.append(
-            BuildingPlacementPlan(
-                footprint_id=footprint.footprint_id,
-                theme_id=footprint.theme_id,
-                asset_id=asset_id,
-                selection_source=source,
-                position_xyz=[float(footprint.centroid_xz[0]), float(y), float(footprint.centroid_xz[1])],
-                yaw_deg=float(footprint.yaw_deg),
-                scale=1.0,
-                scale_xyz=[float(value) for value in scale_xyz],
-                bbox_xz=[float(value) for value in bbox],
-                frontage_width_m=float(footprint.frontage_width_m),
-                depth_m=float(footprint.depth_m),
-                anchor_geom_id=str(footprint.anchor_geom_id),
-                retrieval_score=float(score),
-                fallback_reason=fallback_reason,
-            )
-        )
-        placements.append(
-            StreetPlacement(
-                instance_id=f"inst_{instance_index:04d}",
-                asset_id=asset_id,
-                category="building",
-                score=float(score),
-                position_xyz=[float(footprint.centroid_xz[0]), float(y), float(footprint.centroid_xz[1])],
-                yaw_deg=float(footprint.yaw_deg),
-                scale=1.0,
-                bbox_xz=[float(value) for value in bbox],
-                selection_source=source,
-                placement_group="building",
-                theme_id=footprint.theme_id,
-                anchor_geom_id=str(footprint.anchor_geom_id),
-                scale_xyz=[float(value) for value in scale_xyz],
-            )
-        )
-        instance_index += 1
-
-    summary = {
-        "enabled": True,
-        "footprint_count": len(footprints),
-        "placed_count": len(placements),
-        "asset_count": int(asset_count),
-        "fallback_count": int(fallback_count),
-        "sources": {
-            "osm": sum(1 for footprint in footprints if footprint.source == "osm"),
-            "fallback": sum(1 for footprint in footprints if footprint.source != "osm"),
-        },
+    zoning_preview_summary = {
+        **dict(zoning_preview_summary),
+        "occupied_building_cells": int(occupied_building_cells),
+        "generated_lot_count": int(len(generated_lots)),
     }
-    return tuple(footprints), placements, plans, retrieval_predictions, summary, instance_index
+    building_summary = {
+        **dict(placement_summary),
+        "enabled": True,
+        "generation_mode": mode,
+        "footprint_count": int(len(building_footprints)),
+        "lot_count": int(len(generated_lots)),
+        "target_type": "lot" if mode == "grid_growth" else "footprint",
+    }
+    return _SurroundingBuildingResult(
+        building_footprints=tuple(building_footprints),
+        generated_lots=tuple(generated_lots),
+        placements=tuple(building_placements),
+        plans=tuple(building_plans),
+        retrieval_predictions=tuple(building_retrieval_predictions),
+        building_summary=building_summary,
+        land_use_summary=land_use_summary,
+        lot_generation_summary=lot_generation_summary,
+        zoning_grid=tuple(zoning_grid),
+        zoning_preview_summary=zoning_preview_summary,
+        instance_index=int(instance_index),
+    )
 
 
 def compose_street_scene(
@@ -2594,7 +2800,7 @@ def compose_street_scene(
             "Try a different design-rule profile, larger length/density, or check category coverage in manifest."
         )
 
-    building_footprints, building_placements, building_plans, building_retrieval_predictions, building_summary, instance_counter = _place_surrounding_buildings(
+    surrounding_buildings = _place_surrounding_buildings(
         config=config,
         projected_features=projected,
         placement_ctx=placement_ctx,
@@ -2608,20 +2814,24 @@ def compose_street_scene(
         rng=rng,
         start_instance_index=instance_counter,
     )
-    placements.extend(building_placements)
-    zoning_grid, zoning_preview_summary = build_zoning_grid_preview(
-        config=config,
-        placement_context=placement_ctx,
-        road_segment_graph=road_segment_graph,
-        theme_segments=theme_segments,
-        building_footprints=building_footprints,
-        road_buffer_m=35.0,
-    )
+    building_footprints = surrounding_buildings.building_footprints
+    generated_lots = surrounding_buildings.generated_lots
+    building_plans = list(surrounding_buildings.plans)
+    building_retrieval_predictions = list(surrounding_buildings.retrieval_predictions)
+    building_summary = dict(surrounding_buildings.building_summary)
+    land_use_summary = dict(surrounding_buildings.land_use_summary)
+    lot_generation_summary = dict(surrounding_buildings.lot_generation_summary)
+    zoning_grid = surrounding_buildings.zoning_grid
+    zoning_preview_summary = dict(surrounding_buildings.zoning_preview_summary)
+    instance_counter = int(surrounding_buildings.instance_index)
+    placements.extend(list(surrounding_buildings.placements))
     resolved_program = replace(
         resolved_program,
         building_strategy_summary={
             **dict(building_strategy_summary),
             **dict(building_summary),
+            "land_use_summary": dict(land_use_summary),
+            "lot_generation_summary": dict(lot_generation_summary),
         },
     )
     solver_result = replace(solver_result, resolved_program=resolved_program)
@@ -2844,9 +3054,15 @@ def compose_street_scene(
             else 1.0
         ),
         "unplaced_required_slot_count": int(anchor_resolution_summary["unplaced_required"]),
+        "building_generation_mode": str(getattr(config, "surrounding_building_mode", "footprint_based")),
         "building_summary": dict(building_summary),
+        "land_use_summary": dict(land_use_summary),
+        "lot_generation_summary": dict(lot_generation_summary),
         "building_retrieval_coverage": {
             "footprint_count": int(building_summary.get("footprint_count", 0)),
+            "lot_count": int(building_summary.get("lot_count", 0)),
+            "target_count": int(building_summary.get("target_count", 0)),
+            "target_type": str(building_summary.get("target_type", "")),
             "placed_count": int(building_summary.get("placed_count", 0)),
             "asset_count": int(building_summary.get("asset_count", 0)),
             "fallback_count": int(building_summary.get("fallback_count", 0)),
@@ -2906,6 +3122,7 @@ def compose_street_scene(
         "summary": summary_payload,
         "placements": [placement.to_dict() for placement in placements],
         "building_footprints": [footprint.to_dict() for footprint in building_footprints],
+        "generated_lots": [lot.to_dict() for lot in generated_lots],
         "building_placements": [plan.to_dict() for plan in building_plans],
         "building_retrieval_predictions": building_retrieval_predictions,
         "zoning_grid": list(zoning_grid),

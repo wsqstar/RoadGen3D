@@ -220,6 +220,20 @@ def test_build_demo_exposes_zoning_preview_plot():
     assert "Theme / Building Zoning Preview" in labels
 
 
+def test_build_demo_exposes_surrounding_building_mode_control():
+    pytest.importorskip("gradio")
+
+    demo = app.build_demo()
+    config = demo.get_config_file()
+    labels = [
+        component.get("props", {}).get("label")
+        for component in config["components"]
+        if component.get("props", {}).get("label")
+    ]
+
+    assert "Surrounding Building Mode" in labels
+
+
 def test_render_zoning_preview_returns_figure():
     pytest.importorskip("matplotlib")
 
@@ -235,6 +249,9 @@ def test_render_zoning_preview_returns_figure():
                 "polygon_xz": [[-4.0, 3.0], [4.0, 3.0], [4.0, 7.0], [-4.0, 7.0], [-4.0, 3.0]],
                 "center_xz": [0.0, 5.0],
                 "lane_role": "left_building_buffer",
+                "land_use_type": "commercial",
+                "buildable": True,
+                "lot_id": "lot_000",
                 "theme_id": "theme_000",
                 "theme_name": "commercial",
                 "segment_ids": ["seg_0000"],
@@ -245,11 +262,33 @@ def test_render_zoning_preview_returns_figure():
                 "polygon_xz": [[-4.0, -1.0], [4.0, -1.0], [4.0, 1.0], [-4.0, 1.0], [-4.0, -1.0]],
                 "center_xz": [0.0, 0.0],
                 "lane_role": "carriageway",
+                "land_use_type": "",
+                "buildable": False,
+                "lot_id": "",
                 "theme_id": "theme_000",
                 "theme_name": "commercial",
                 "segment_ids": ["seg_0000"],
                 "footprint_ids": [],
             },
+        ],
+        "generated_lots": [
+            {
+                "lot_id": "lot_000",
+                "polygon_xz": [[-4.0, 3.0], [4.0, 3.0], [4.0, 7.0], [-4.0, 7.0], [-4.0, 3.0]],
+                "center_xz": [0.0, 5.0],
+                "side": "left",
+                "land_use_type": "commercial",
+                "theme_id": "theme_000",
+                "frontage_width_m": 8.0,
+                "depth_m": 4.0,
+                "height_class": "midrise",
+                "source": "grid_growth",
+            }
+        ],
+        "building_placements": [
+            {
+                "anchor_geom_id": "lot_000",
+            }
         ],
         "building_footprints": [
             {

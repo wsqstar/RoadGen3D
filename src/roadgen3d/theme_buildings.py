@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 import math
+from collections import Counter
 from typing import Any, Dict, Iterable, List, Mapping, Sequence, Tuple
 
-from .types import BuildingFootprint, StreetComposeConfig, ThemeSegment
+from .types import BuildingFootprint, GeneratedLot, StreetComposeConfig, ThemeSegment
 
 THEME_VOCAB: Tuple[str, ...] = ("residential", "commercial", "transit", "green")
 THEME_PROFILE_STYLE_MAP: Dict[str, Dict[str, str]] = {
@@ -54,6 +55,20 @@ _THEME_POI_BONUSES: Dict[str, Dict[str, float]] = {
     "green": {
         "bollard": 0.4,
         "crossing": 0.3,
+    },
+}
+_GRID_LOT_RULES: Dict[str, Dict[str, float]] = {
+    "residential": {
+        "target_frontage_m": 12.0,
+        "min_frontage_m": 8.0,
+    },
+    "commercial": {
+        "target_frontage_m": 18.0,
+        "min_frontage_m": 12.0,
+    },
+    "transit": {
+        "target_frontage_m": 24.0,
+        "min_frontage_m": 16.0,
     },
 }
 
@@ -318,10 +333,12 @@ def building_query(
     frontage_width_m: float,
     depth_m: float,
     road_type: str = "",
+    height_class: str = "",
 ) -> str:
     size_class = _size_class(frontage_width_m, depth_m)
     road_part = f", {road_type}" if str(road_type).strip() else ""
-    return f"{base_query}, {theme_name} building facade, {size_class} frontage{road_part}"
+    height_part = f", {height_class}" if str(height_class).strip() else ""
+    return f"{base_query}, {theme_name} building facade, {size_class} frontage{road_part}{height_part}"
 
 
 def rerank_building_candidates(
@@ -331,6 +348,7 @@ def rerank_building_candidates(
     theme_name: str,
     frontage_width_m: float,
     depth_m: float,
+    height_class: str = "",
     limit: int,
 ) -> List[Tuple[Dict[str, Any], float]]:
     ranked: List[Tuple[Dict[str, Any], float]] = []
@@ -347,12 +365,15 @@ def rerank_building_candidates(
         style_tags = _normalize_tags(row.get("style_tags"))
         row_frontage = float(row.get("frontage_width_m", 0.0) or 0.0)
         row_depth = float(row.get("depth_m", 0.0) or 0.0)
+        row_height_class = str(row.get("height_class", "") or "").strip().lower()
         if theme_name in theme_tags:
             score += 0.45
         if target_size in theme_tags:
             score += 0.15
         if theme_name in style_tags:
             score += 0.1
+        if str(height_class).strip().lower() and row_height_class == str(height_class).strip().lower():
+            score += 0.2
         if row_frontage > 0.0:
             score += max(0.0, 0.25 - abs(row_frontage - frontage_width_m) / max(frontage_width_m, 1.0) * 0.25)
         if row_depth > 0.0:
@@ -403,6 +424,276 @@ def oriented_rectangle_points(
             )
         )
     return tuple(rotated)
+
+
+def land_use_for_theme(theme_name: str) -> str:
+    theme_value = str(theme_name).strip().lower()
+    return theme_value if theme_value in THEME_VOCAB else "commercial"
+
+
+def infer_grid_height_class(land_use_type: str, *, road_type: str = "") -> str:
+    road_type_lc = str(road_type).strip().lower()
+    major_road = road_type_lc in {"primary", "secondary"} or any(
+        keyword in road_type_lc for keyword in ("primary", "secondary")
+    )
+    land_use = land_use_for_theme(land_use_type)
+    if land_use == "residential":
+        return "midrise" if major_road else "lowrise"
+    if land_use == "commercial":
+        return "midrise"
+    if land_use == "transit":
+        return "highrise" if major_road else "midrise"
+    return ""
+
+
+def summarize_land_use_grid(zoning_grid: Sequence[Mapping[str, Any]]) -> Dict[str, Any]:
+    land_use_counts = Counter(
+        str(cell.get("land_use_type", "") or "")
+        for cell in zoning_grid
+        if str(cell.get("land_use_type", "") or "")
+    )
+    buildable_counts = Counter(
+        str(cell.get("land_use_type", "") or "")
+        for cell in zoning_grid
+        if bool(cell.get("buildable", False)) and str(cell.get("land_use_type", "") or "")
+    )
+    lane_role_counts = Counter(str(cell.get("lane_role", "") or "") for cell in zoning_grid)
+    buildable_cell_count = sum(1 for cell in zoning_grid if bool(cell.get("buildable", False)))
+    return {
+        "cell_counts": {key: int(value) for key, value in sorted(land_use_counts.items())},
+        "buildable_cell_counts": {key: int(value) for key, value in sorted(buildable_counts.items())},
+        "lane_role_counts": {key: int(value) for key, value in sorted(lane_role_counts.items()) if key},
+        "buildable_cell_count": int(buildable_cell_count),
+        "non_buildable_cell_count": int(len(zoning_grid) - buildable_cell_count),
+    }
+
+
+def _cell_side(cell: Mapping[str, Any]) -> str:
+    lane_role = str(cell.get("lane_role", "") or "")
+    if lane_role.startswith("left_"):
+        return "left"
+    if lane_role.startswith("right_"):
+        return "right"
+    return "center"
+
+
+def _cell_frontage_depth(cell: Mapping[str, Any]) -> Tuple[float, float]:
+    station_range = cell.get("station_range_m", ()) or ()
+    if len(station_range) >= 2:
+        frontage = abs(float(station_range[1]) - float(station_range[0]))
+    else:
+        frontage = 0.0
+    polygon = [
+        (float(point[0]), float(point[1]))
+        for point in cell.get("polygon_xz", []) or []
+        if len(point) >= 2
+    ]
+    depth = 0.0
+    if len(polygon) >= 4:
+        depth = math.hypot(float(polygon[3][0]) - float(polygon[0][0]), float(polygon[3][1]) - float(polygon[0][1]))
+        if frontage <= 1e-6:
+            frontage = math.hypot(float(polygon[1][0]) - float(polygon[0][0]), float(polygon[1][1]) - float(polygon[0][1]))
+    return float(max(frontage, 1.0)), float(max(depth, 4.0))
+
+
+def _cell_yaw_deg(cell: Mapping[str, Any]) -> float:
+    polygon = [
+        (float(point[0]), float(point[1]))
+        for point in cell.get("polygon_xz", []) or []
+        if len(point) >= 2
+    ]
+    if len(polygon) < 2:
+        return 0.0
+    dx = float(polygon[1][0]) - float(polygon[0][0])
+    dz = float(polygon[1][1]) - float(polygon[0][1])
+    if abs(dx) + abs(dz) <= 1e-6:
+        return 0.0
+    return float(math.degrees(math.atan2(dz, dx)))
+
+
+def _polygon_from_bbox(
+    bbox: Tuple[float, float, float, float],
+) -> Tuple[Tuple[float, float], ...]:
+    return (
+        (float(bbox[0]), float(bbox[2])),
+        (float(bbox[1]), float(bbox[2])),
+        (float(bbox[1]), float(bbox[3])),
+        (float(bbox[0]), float(bbox[3])),
+        (float(bbox[0]), float(bbox[2])),
+    )
+
+
+def _merge_polygons(
+    polygons: Sequence[Sequence[Tuple[float, float]]],
+) -> Tuple[Tuple[float, float], ...]:
+    polygon_list = [tuple((float(x), float(z)) for x, z in polygon) for polygon in polygons if len(polygon) >= 4]
+    if not polygon_list:
+        return tuple()
+    try:
+        from shapely.geometry import Polygon as ShapelyPolygon
+        from shapely.ops import unary_union
+    except Exception:
+        boxes = [_polygon_bbox(polygon) for polygon in polygon_list]
+        return _polygon_from_bbox(
+            (
+                min(box[0] for box in boxes),
+                max(box[1] for box in boxes),
+                min(box[2] for box in boxes),
+                max(box[3] for box in boxes),
+            )
+        )
+    merged = unary_union([ShapelyPolygon(polygon) for polygon in polygon_list])
+    if getattr(merged, "geom_type", "") == "MultiPolygon":
+        merged = max(getattr(merged, "geoms", []) or [], key=lambda geom: float(getattr(geom, "area", 0.0)), default=None)
+    if merged is None or getattr(merged, "is_empty", True):
+        boxes = [_polygon_bbox(polygon) for polygon in polygon_list]
+        return _polygon_from_bbox(
+            (
+                min(box[0] for box in boxes),
+                max(box[1] for box in boxes),
+                min(box[2] for box in boxes),
+                max(box[3] for box in boxes),
+            )
+        )
+    return tuple((float(x), float(y)) for x, y in tuple(merged.exterior.coords))
+
+
+def generate_grid_growth_lots(
+    zoning_grid: Sequence[Mapping[str, Any]],
+    *,
+    road_type: str = "",
+) -> Tuple[Tuple[Dict[str, Any], ...], Tuple[GeneratedLot, ...], Dict[str, Any]]:
+    annotated_cells: List[Dict[str, Any]] = []
+    for cell in zoning_grid:
+        payload = dict(cell)
+        payload.setdefault("land_use_type", "")
+        payload.setdefault("buildable", False)
+        payload.setdefault("lot_id", "")
+        annotated_cells.append(payload)
+
+    candidate_cells = sorted(
+        [
+            cell
+            for cell in annotated_cells
+            if "building_buffer" in str(cell.get("lane_role", "") or "")
+            and bool(cell.get("buildable", False))
+            and str(cell.get("land_use_type", "") or "") in {"residential", "commercial", "transit"}
+        ],
+        key=lambda cell: (
+            _cell_side(cell),
+            str(cell.get("theme_id", "") or ""),
+            str(cell.get("land_use_type", "") or ""),
+            float((cell.get("station_range_m", [0.0, 0.0]) or [0.0, 0.0])[0]),
+            str(cell.get("cell_id", "") or ""),
+        ),
+    )
+    strips: List[List[Dict[str, Any]]] = []
+    for cell in candidate_cells:
+        if not strips:
+            strips.append([cell])
+            continue
+        prev = strips[-1][-1]
+        prev_range = prev.get("station_range_m", [0.0, 0.0]) or [0.0, 0.0]
+        current_range = cell.get("station_range_m", [0.0, 0.0]) or [0.0, 0.0]
+        contiguous = abs(float(prev_range[1]) - float(current_range[0])) <= 1e-3
+        same_strip = (
+            _cell_side(prev) == _cell_side(cell)
+            and str(prev.get("theme_id", "") or "") == str(cell.get("theme_id", "") or "")
+            and str(prev.get("land_use_type", "") or "") == str(cell.get("land_use_type", "") or "")
+            and contiguous
+        )
+        if same_strip:
+            strips[-1].append(cell)
+        else:
+            strips.append([cell])
+
+    lots: List[GeneratedLot] = []
+    lot_by_cell_id: Dict[str, str] = {}
+    for strip in strips:
+        if not strip:
+            continue
+        land_use_type = str(strip[0].get("land_use_type", "") or "")
+        rule = _GRID_LOT_RULES.get(land_use_type, _GRID_LOT_RULES["commercial"])
+        frontage_lengths = [_cell_frontage_depth(cell)[0] for cell in strip]
+        avg_frontage = sum(frontage_lengths) / max(len(frontage_lengths), 1)
+        cells_per_lot = max(1, int(round(float(rule["target_frontage_m"]) / max(avg_frontage, 1.0))))
+        strip_frontage_total = sum(frontage_lengths)
+        cursor = 0
+        while cursor < len(strip):
+            next_cursor = min(len(strip), cursor + cells_per_lot)
+            remaining_frontage = sum(frontage_lengths[next_cursor:])
+            if next_cursor < len(strip) and remaining_frontage < float(rule["min_frontage_m"]):
+                next_cursor = len(strip)
+            lot_cells = strip[cursor:next_cursor]
+            if not lot_cells:
+                break
+            lot_polygons = [
+                [
+                    (float(point[0]), float(point[1]))
+                    for point in cell.get("polygon_xz", []) or []
+                    if len(point) >= 2
+                ]
+                for cell in lot_cells
+            ]
+            merged_polygon = _merge_polygons(lot_polygons)
+            center_xz = _polygon_center(merged_polygon)
+            frontage_width_m = sum(_cell_frontage_depth(cell)[0] for cell in lot_cells)
+            depth_m = max(_cell_frontage_depth(cell)[1] for cell in lot_cells)
+            lot_id = f"lot_{len(lots):03d}"
+            yaw_deg = _cell_yaw_deg(lot_cells[0])
+            height_class = infer_grid_height_class(land_use_type, road_type=road_type)
+            for cell in lot_cells:
+                cell["lot_id"] = lot_id
+                lot_by_cell_id[str(cell.get("cell_id", "") or "")] = lot_id
+            lots.append(
+                GeneratedLot(
+                    lot_id=lot_id,
+                    polygon_xz=merged_polygon,
+                    center_xz=(float(center_xz[0]), float(center_xz[1])),
+                    side=_cell_side(lot_cells[0]),
+                    land_use_type=land_use_type,
+                    theme_id=str(lot_cells[0].get("theme_id", "") or ""),
+                    frontage_width_m=float(max(frontage_width_m, 4.0)),
+                    depth_m=float(max(depth_m, 4.0)),
+                    height_class=str(height_class or "midrise"),
+                    yaw_deg=float(yaw_deg),
+                    source="grid_growth",
+                    cell_ids=tuple(str(cell.get("cell_id", "") or "") for cell in lot_cells),
+                    segment_ids=tuple(
+                        sorted(
+                            {
+                                str(segment_id)
+                                for cell in lot_cells
+                                for segment_id in (cell.get("segment_ids", []) or [])
+                                if str(segment_id)
+                            }
+                        )
+                    ),
+                )
+            )
+            cursor = next_cursor
+
+    for cell in annotated_cells:
+        cell_id = str(cell.get("cell_id", "") or "")
+        if cell_id and cell_id in lot_by_cell_id:
+            cell["lot_id"] = lot_by_cell_id[cell_id]
+
+    lot_counts = Counter(lot.land_use_type for lot in lots)
+    height_counts = Counter(lot.height_class for lot in lots)
+    summary = {
+        "lot_count": int(len(lots)),
+        "lot_counts": {key: int(value) for key, value in sorted(lot_counts.items())},
+        "height_class_counts": {key: int(value) for key, value in sorted(height_counts.items())},
+        "buildable_cell_count": int(sum(1 for cell in annotated_cells if bool(cell.get("buildable", False)))),
+        "occupied_lot_cells": int(
+            sum(
+                1
+                for cell in annotated_cells
+                if "building_buffer" in str(cell.get("lane_role", "") or "") and str(cell.get("lot_id", "") or "")
+            )
+        ),
+    }
+    return tuple(annotated_cells), tuple(lots), summary
 
 
 def _fallback_building_footprints(
@@ -698,6 +989,7 @@ def build_zoning_grid_preview(
             "theme_cell_counts": {},
             "building_cell_counts": {},
             "occupied_building_cells": 0,
+            "buildable_cell_count": 0,
         }
 
     try:
@@ -766,6 +1058,8 @@ def build_zoning_grid_preview(
                 building_cell_counts[lane_role] = building_cell_counts.get(lane_role, 0) + 1
                 if footprint_ids:
                     occupied_building_cells += 1
+            land_use_type = land_use_for_theme(theme_name) if lane_role in building_roles else ""
+            buildable = bool(lane_role in building_roles and land_use_type and land_use_type != "green")
             cell_center = _polygon_center(polygon_xz)
             cells.append(
                 {
@@ -773,8 +1067,12 @@ def build_zoning_grid_preview(
                     "polygon_xz": [[float(x), float(z)] for x, z in polygon_xz],
                     "center_xz": [float(cell_center[0]), float(cell_center[1])],
                     "lane_role": lane_role,
+                    "side": _cell_side({"lane_role": lane_role}),
                     "theme_id": theme_id,
                     "theme_name": theme_name,
+                    "land_use_type": land_use_type,
+                    "buildable": bool(buildable),
+                    "lot_id": "",
                     "segment_ids": segment_ids,
                     "footprint_ids": footprint_ids,
                     "footprint_count": int(len(footprint_ids)),
@@ -794,6 +1092,7 @@ def build_zoning_grid_preview(
         "theme_cell_counts": theme_cell_counts,
         "building_cell_counts": building_cell_counts,
         "occupied_building_cells": int(occupied_building_cells),
+        "buildable_cell_count": int(sum(1 for cell in cells if bool(cell.get("buildable", False)))),
         "building_buffer_width_m": {
             "left": float(left_building_buffer_m),
             "right": float(right_building_buffer_m),

@@ -85,6 +85,7 @@ class StreetComposeConfig:
     allow_solver_fallback: bool = True
     segment_length_m: float = 12.0
     enable_surrounding_buildings: bool = True
+    surrounding_building_mode: str = "footprint_based"
     building_search_topk: int = 5
     theme_inference_mode: str = "deterministic_auto"
     theme_vocab_name: str = "fixed_v1"
@@ -516,6 +517,33 @@ class BuildingFootprint:
         payload = asdict(self)
         payload["polygon_xz"] = [list(point) for point in self.polygon_xz]
         payload["centroid_xz"] = list(self.centroid_xz)
+        return payload
+
+
+@dataclass(frozen=True)
+class GeneratedLot:
+    """One generated lot derived from zoning-grid cells."""
+
+    lot_id: str
+    polygon_xz: Tuple[Tuple[float, float], ...]
+    center_xz: Tuple[float, float]
+    side: str
+    land_use_type: str
+    theme_id: str
+    frontage_width_m: float
+    depth_m: float
+    height_class: str = "midrise"
+    yaw_deg: float = 0.0
+    source: str = "grid_growth"
+    cell_ids: Tuple[str, ...] = ()
+    segment_ids: Tuple[str, ...] = ()
+
+    def to_dict(self) -> Dict[str, Any]:
+        payload = asdict(self)
+        payload["polygon_xz"] = [list(point) for point in self.polygon_xz]
+        payload["center_xz"] = list(self.center_xz)
+        payload["cell_ids"] = list(self.cell_ids)
+        payload["segment_ids"] = list(self.segment_ids)
         return payload
 
 

@@ -1069,9 +1069,13 @@ def _extract_building_summary(layout_json_text: str) -> str:
     payload = json.loads(layout_json_text)
     summary = payload.get("summary", {}) or {}
     result = {
+        "building_generation_mode": summary.get("building_generation_mode", "footprint_based"),
         "building_summary": summary.get("building_summary", {}),
+        "land_use_summary": summary.get("land_use_summary", {}),
+        "lot_generation_summary": summary.get("lot_generation_summary", {}),
         "building_retrieval_coverage": summary.get("building_retrieval_coverage", {}),
         "building_footprint_count": len(payload.get("building_footprints", []) or []),
+        "generated_lot_count": len(payload.get("generated_lots", []) or []),
         "building_placement_count": len(payload.get("building_placements", []) or []),
     }
     return json.dumps(result, indent=2, ensure_ascii=True)
@@ -1545,6 +1549,7 @@ def run_street_compose(
     building_search_topk: int = 5,
     theme_inference_mode: str = "deterministic_auto",
     theme_vocab_name: str = "fixed_v1",
+    surrounding_building_mode: str = "footprint_based",
 ) -> Tuple[str, List[List[str]], str, str | None, List[str]]:
     try:
         profile = dataset_profile.strip().lower()
@@ -1630,6 +1635,7 @@ def run_street_compose(
             render_preset=str(render_preset).strip(),
             asset_curation_mode=str(asset_curation_mode).strip(),
             enable_surrounding_buildings=bool(enable_surrounding_buildings),
+            surrounding_building_mode=str(surrounding_building_mode).strip(),
             building_search_topk=int(building_search_topk),
             theme_inference_mode=str(theme_inference_mode).strip(),
             theme_vocab_name=str(theme_vocab_name).strip(),
@@ -1736,9 +1742,14 @@ def run_street_compose(
             summary += f"\n- solver_fallback_reason: {result.outputs['solver_fallback_reason']}"
         summary += f"\n- theme_segment_count: {len(layout_summary.get('theme_segments', []) or [])}"
         summary += f"\n- surrounding_buildings_enabled: {bool(enable_surrounding_buildings)}"
+        summary += f"\n- building_generation_mode: {layout_summary.get('building_generation_mode', surrounding_building_mode)}"
         summary += (
             f"\n- building_footprint_count: "
             f"{int((layout_summary.get('building_retrieval_coverage', {}) or {}).get('footprint_count', 0) or 0)}"
+        )
+        summary += (
+            f"\n- generated_lot_count: "
+            f"{int((layout_summary.get('lot_generation_summary', {}) or {}).get('lot_count', 0) or 0)}"
         )
         summary += (
             f"\n- building_placed_count: "
@@ -1831,6 +1842,8 @@ def _render_zoning_preview(layout_json_text: str) -> Any:
         return plot_zoning_grid_preview(
             payload.get("zoning_grid", []) or [],
             building_footprints=payload.get("building_footprints", []) or [],
+            generated_lots=payload.get("generated_lots", []) or [],
+            building_placements=payload.get("building_placements", []) or [],
             osm_geometry=summary.get("osm_geometry"),
         )
     except Exception:
@@ -2143,6 +2156,7 @@ def run_best_model_street(
     building_search_topk: int = 5,
     theme_inference_mode: str = "deterministic_auto",
     theme_vocab_name: str = "fixed_v1",
+    surrounding_building_mode: str = "footprint_based",
 ) -> Tuple[str, List[List[str]], str, str | None, List[str], str, str, str | None, List[str]]:
     if str(research_target).strip().lower() == "program_generator":
         program_generator = "learned_v1"
@@ -2190,6 +2204,7 @@ def run_best_model_street(
         render_preset=render_preset,
         asset_curation_mode=asset_curation_mode,
         enable_surrounding_buildings=enable_surrounding_buildings,
+        surrounding_building_mode=surrounding_building_mode,
         building_search_topk=building_search_topk,
         theme_inference_mode=theme_inference_mode,
         theme_vocab_name=theme_vocab_name,
@@ -3140,6 +3155,11 @@ def build_demo() -> gr.Blocks:
                         )
                     with gr.Row():
                         enable_surrounding_buildings = gr.Checkbox(label="Enable Surrounding Buildings", value=True)
+                        surrounding_building_mode = gr.Dropdown(
+                            label="Surrounding Building Mode",
+                            choices=["footprint_based", "grid_growth"],
+                            value="footprint_based",
+                        )
                         building_search_topk = gr.Slider(label="Building Search TopK", minimum=1, maximum=20, step=1, value=5)
                         theme_inference_mode = gr.Dropdown(
                             label="Theme Inference",
@@ -3421,6 +3441,7 @@ def build_demo() -> gr.Blocks:
                 building_search_topk,
                 theme_inference_mode,
                 theme_vocab_name,
+                surrounding_building_mode,
             ],
             outputs=[
                 street_summary,
@@ -3619,6 +3640,7 @@ def build_demo() -> gr.Blocks:
                 building_search_topk,
                 theme_inference_mode,
                 theme_vocab_name,
+                surrounding_building_mode,
             ],
             outputs=[
                 street_summary,

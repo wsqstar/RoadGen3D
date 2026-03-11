@@ -12,7 +12,7 @@ if str(ROOT) not in sys.path:
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from roadgen3d.theme_buildings import infer_theme_segments
+from roadgen3d.theme_buildings import generate_grid_growth_lots, infer_theme_segments
 from roadgen3d.types import RoadSegmentGraph, RoadSegmentNode
 
 
@@ -118,3 +118,81 @@ def test_infer_theme_segments_merges_adjacent_equal_themes():
     assert len(segments) == 2
     assert segments[0].segment_ids == ("seg_0000", "seg_0001")
     assert segments[1].theme_name == "transit"
+
+
+def test_generate_grid_growth_lots_respects_land_use_side_and_height_rules():
+    zoning_grid = [
+        {
+            "cell_id": "zone_left_res_0",
+            "polygon_xz": [[0.0, 5.0], [8.0, 5.0], [8.0, 9.0], [0.0, 9.0], [0.0, 5.0]],
+            "center_xz": [4.0, 7.0],
+            "lane_role": "left_building_buffer",
+            "theme_id": "theme_res",
+            "theme_name": "residential",
+            "land_use_type": "residential",
+            "buildable": True,
+            "lot_id": "",
+            "segment_ids": ["seg_0000"],
+            "station_range_m": [0.0, 8.0],
+        },
+        {
+            "cell_id": "zone_left_res_1",
+            "polygon_xz": [[8.0, 5.0], [16.0, 5.0], [16.0, 9.0], [8.0, 9.0], [8.0, 5.0]],
+            "center_xz": [12.0, 7.0],
+            "lane_role": "left_building_buffer",
+            "theme_id": "theme_res",
+            "theme_name": "residential",
+            "land_use_type": "residential",
+            "buildable": True,
+            "lot_id": "",
+            "segment_ids": ["seg_0001"],
+            "station_range_m": [8.0, 16.0],
+        },
+        {
+            "cell_id": "zone_left_green",
+            "polygon_xz": [[16.0, 5.0], [24.0, 5.0], [24.0, 9.0], [16.0, 9.0], [16.0, 5.0]],
+            "center_xz": [20.0, 7.0],
+            "lane_role": "left_building_buffer",
+            "theme_id": "theme_green",
+            "theme_name": "green",
+            "land_use_type": "green",
+            "buildable": False,
+            "lot_id": "",
+            "segment_ids": ["seg_0002"],
+            "station_range_m": [16.0, 24.0],
+        },
+        {
+            "cell_id": "zone_right_transit",
+            "polygon_xz": [[0.0, -9.0], [8.0, -9.0], [8.0, -5.0], [0.0, -5.0], [0.0, -9.0]],
+            "center_xz": [4.0, -7.0],
+            "lane_role": "right_building_buffer",
+            "theme_id": "theme_transit",
+            "theme_name": "transit",
+            "land_use_type": "transit",
+            "buildable": True,
+            "lot_id": "",
+            "segment_ids": ["seg_1000"],
+            "station_range_m": [0.0, 8.0],
+        },
+    ]
+
+    annotated_cells, generated_lots, summary = generate_grid_growth_lots(zoning_grid, road_type="primary")
+
+    assert len(generated_lots) == 2
+    assert {lot.land_use_type for lot in generated_lots} == {"residential", "transit"}
+    assert {lot.side for lot in generated_lots} == {"left", "right"}
+    assert next(lot for lot in generated_lots if lot.land_use_type == "residential").height_class == "midrise"
+    assert next(lot for lot in generated_lots if lot.land_use_type == "transit").height_class == "highrise"
+    assert summary["lot_count"] == 2
+    assert summary["occupied_lot_cells"] == 3
+    lot_ids = {lot.lot_id for lot in generated_lots}
+    assert {
+        str(cell.get("lot_id", "") or "")
+        for cell in annotated_cells
+        if str(cell.get("land_use_type", "") or "") in {"residential", "transit"}
+    } <= lot_ids
+    assert all(
+        str(cell.get("lot_id", "") or "") == ""
+        for cell in annotated_cells
+        if str(cell.get("land_use_type", "") or "") == "green"
+    )
