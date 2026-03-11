@@ -1,0 +1,922 @@
+"""Deterministic parametric asset generation for near-term street furniture."""
+
+from __future__ import annotations
+
+import math
+from dataclasses import asdict, dataclass, field, is_dataclass
+from typing import Any, Dict, Literal, Mapping, Optional, Tuple
+
+import numpy as np
+
+from .runtime_device import resolve_device_backend
+
+_STYLE_TAGS = frozenset(
+    {
+        "modern",
+        "classic",
+        "industrial",
+        "minimalist",
+        "ornate",
+        "retro",
+        "modular",
+        "eco",
+        "brutalist",
+        "nordic",
+        "japan_scandi",
+        "victorian",
+        "contemporary",
+        "tactical",
+        "art_deco",
+    }
+)
+_BENCH_LEG_TYPES = frozenset({"dual_frame", "pedestal", "four_leg"})
+_BENCH_MATERIALS = frozenset({"metal", "wood", "metal_wood", "concrete"})
+_LAMP_MATERIALS = frozenset({"metal", "painted_steel", "cast_iron"})
+_LUMINAIRE_TYPES = frozenset({"flat_led", "globe", "box", "cone"})
+_LAMP_ARM_TYPES = frozenset({"single", "double"})
+_LIGHT_DIRECTIONS = frozenset({"roadside", "bidirectional", "downward"})
+_DEFAULT_PROFILE = "default_v1"
+_MIN_FACES = {"bench": 300, "lamp": 500}
+_POLY_BUDGET_K = {
+    "bench": {"preview": 8, "production": 15},
+    "lamp": {"preview": 10, "production": 20},
+}
+
+
+@dataclass(frozen=True)
+class GenerationRequest:
+    asset_kind: Literal["bench", "lamp"]
+    runtime_profile: Literal["preview", "production"] = "preview"
+    device_backend: Literal["auto", "mps", "cuda", "cpu"] = "auto"
+    seed: int = 42
+    quality_profile: str = _DEFAULT_PROFILE
+    physics_profile: str = _DEFAULT_PROFILE
+    design_profile: str = _DEFAULT_PROFILE
+    precision: Literal["fp32"] = "fp32"
+    allow_fallback: bool = True
+    params: Dict[str, object] = field(default_factory=dict)
+
+
+@dataclass(frozen=True)
+class BenchParams:
+    width_m: float = 1.80
+    depth_m: float = 0.55
+    seat_height_m: float = 0.45
+    backrest_height_m: float = 0.35
+    backrest_angle_deg: float = 12.0
+    leg_type: str = "dual_frame"
+    armrest_enabled: bool = False
+    slat_count: int = 5
+    material_family: str = "metal_wood"
+    style_tag: str = "modern"
+    detail_level: int = 2
+
+
+@dataclass(frozen=True)
+class LampParams:
+    pole_height_m: float = 5.00
+    pole_radius_m: float = 0.06
+    base_diameter_m: float = 0.35
+    arm_length_m: float = 0.80
+    luminaire_type: str = "flat_led"
+    single_or_double_arm: str = "single"
+    light_direction: str = "roadside"
+    material_family: str = "metal"
+    style_tag: str = "modern"
+    detail_level: int = 2
+
+
+@dataclass(frozen=True)
+class GenerationQualityMetrics:
+    face_count: int
+    poly_budget_k: int
+    dimension_error_ratio: float
+    ground_contact_ok: bool
+    support_count: Optional[int] = None
+    stability_check_ok: Optional[bool] = None
+    slenderness_ratio: Optional[float] = None
+    clearance_ok: Optional[bool] = None
+    meets_min_faces: bool = False
+    within_poly_budget: bool = True
+
+    def to_dict(self) -> Dict[str, object]:
+        payload: Dict[str, object] = {
+            "face_count": int(self.face_count),
+            "poly_budget_k": int(self.poly_budget_k),
+            "dimension_error_ratio": float(self.dimension_error_ratio),
+            "ground_contact_ok": bool(self.ground_contact_ok),
+            "meets_min_faces": bool(self.meets_min_faces),
+            "within_poly_budget": bool(self.within_poly_budget),
+        }
+        if self.support_count is not None:
+            payload["support_count"] = int(self.support_count)
+        if self.stability_check_ok is not None:
+            payload["stability_check_ok"] = bool(self.stability_check_ok)
+        if self.slenderness_ratio is not None:
+            payload["slenderness_ratio"] = float(self.slenderness_ratio)
+        if self.clearance_ok is not None:
+            payload["clearance_ok"] = bool(self.clearance_ok)
+        return payload
+
+
+@dataclass(frozen=True)
+class ParametricAssetResult:
+    asset_kind: str
+    runtime_profile: str
+    resolved_device_backend: str
+    mesh: Any
+    bbox_size_xyz: Tuple[float, float, float]
+    bbox_bounds: Tuple[Tuple[float, float, float], Tuple[float, float, float]]
+    parameter_snapshot: Dict[str, object]
+    quality_metrics: GenerationQualityMetrics
+    warnings: Tuple[str, ...] = ()
+    generator_type: str = "parametric_v1"
+    material_family: str = ""
+    style_tags: Tuple[str, ...] = ()
+
+    def to_metadata(self) -> Dict[str, object]:
+        return {
+            "asset_kind": self.asset_kind,
+            "runtime_profile": self.runtime_profile,
+            "resolved_device_backend": self.resolved_device_backend,
+            "generator_type": self.generator_type,
+            "material_family": self.material_family,
+            "style_tags": list(self.style_tags),
+            "bbox": {
+                "size_xyz": [float(v) for v in self.bbox_size_xyz],
+                "bounds": [
+                    [float(v) for v in self.bbox_bounds[0]],
+                    [float(v) for v in self.bbox_bounds[1]],
+                ],
+            },
+            "parameter_snapshot": dict(self.parameter_snapshot),
+            "quality_metrics": self.quality_metrics.to_dict(),
+            "warnings": list(self.warnings),
+        }
+
+
+@dataclass(frozen=True)
+class _BenchAudit:
+    expected_dims: Tuple[float, float, float]
+    support_count: int
+    support_bounds_xz: Tuple[float, float, float, float]
+
+
+@dataclass(frozen=True)
+class _LampAudit:
+    expected_dims: Tuple[float, float, float]
+    lowest_luminaire_y: float
+    slenderness_ratio: float
+
+
+def _require_trimesh():
+    try:
+        import trimesh
+    except ImportError as exc:
+        raise RuntimeError("trimesh is required for parametric asset generation") from exc
+    return trimesh
+
+
+def _rgba(values: Tuple[int, int, int]) -> Tuple[int, int, int, int]:
+    return values[0], values[1], values[2], 255
+
+
+_STYLE_ACCENTS = {
+    "modern": _rgba((70, 70, 70)),
+    "classic": _rgba((88, 55, 33)),
+    "industrial": _rgba((95, 95, 95)),
+    "minimalist": _rgba((210, 210, 210)),
+    "ornate": _rgba((182, 146, 45)),
+    "retro": _rgba((201, 84, 63)),
+    "modular": _rgba((65, 133, 184)),
+    "eco": _rgba((92, 126, 46)),
+    "brutalist": _rgba((90, 98, 107)),
+    "nordic": _rgba((201, 176, 138)),
+    "japan_scandi": _rgba((190, 154, 132)),
+    "victorian": _rgba((54, 54, 54)),
+    "contemporary": _rgba((168, 168, 168)),
+    "tactical": _rgba((103, 111, 58)),
+    "art_deco": _rgba((166, 141, 56)),
+}
+_MATERIAL_PRIMARY = {
+    "metal": _rgba((130, 136, 143)),
+    "wood": _rgba((139, 96, 64)),
+    "metal_wood": _rgba((158, 128, 98)),
+    "concrete": _rgba((148, 148, 148)),
+    "painted_steel": _rgba((104, 118, 132)),
+    "cast_iron": _rgba((76, 76, 76)),
+}
+
+
+def _rotation_x(theta_rad: float) -> np.ndarray:
+    c = math.cos(theta_rad)
+    s = math.sin(theta_rad)
+    return np.array(
+        [
+            [1.0, 0.0, 0.0, 0.0],
+            [0.0, c, -s, 0.0],
+            [0.0, s, c, 0.0],
+            [0.0, 0.0, 0.0, 1.0],
+        ],
+        dtype=np.float64,
+    )
+
+
+def _rotation_y(theta_rad: float) -> np.ndarray:
+    c = math.cos(theta_rad)
+    s = math.sin(theta_rad)
+    return np.array(
+        [
+            [c, 0.0, s, 0.0],
+            [0.0, 1.0, 0.0, 0.0],
+            [-s, 0.0, c, 0.0],
+            [0.0, 0.0, 0.0, 1.0],
+        ],
+        dtype=np.float64,
+    )
+
+
+def _translate(x: float, y: float, z: float) -> np.ndarray:
+    mat = np.eye(4, dtype=np.float64)
+    mat[0, 3] = float(x)
+    mat[1, 3] = float(y)
+    mat[2, 3] = float(z)
+    return mat
+
+
+def _color(mesh, rgba: Tuple[int, int, int, int]):
+    mesh.visual.face_colors = list(rgba)
+    return mesh
+
+
+def _concat(parts):
+    trimesh = _require_trimesh()
+    return trimesh.util.concatenate(parts)
+
+
+def _ground(mesh):
+    mesh.apply_translation([0.0, -float(mesh.bounds[0][1]), 0.0])
+    return mesh
+
+
+def _bbox_size(mesh) -> Tuple[float, float, float]:
+    span = mesh.bounds[1] - mesh.bounds[0]
+    return float(span[0]), float(span[1]), float(span[2])
+
+
+def _coerce_float(value: object, default: float, *, field_name: str) -> float:
+    if value is None:
+        return float(default)
+    try:
+        return float(value)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"{field_name} must be a number") from exc
+
+
+def _coerce_int(value: object, default: int, *, field_name: str) -> int:
+    if value is None:
+        return int(default)
+    try:
+        return int(value)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"{field_name} must be an integer") from exc
+
+
+def _coerce_bool(value: object, default: bool, *, field_name: str) -> bool:
+    if value is None:
+        return bool(default)
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        lowered = value.strip().lower()
+        if lowered in {"1", "true", "yes", "on"}:
+            return True
+        if lowered in {"0", "false", "no", "off"}:
+            return False
+    raise ValueError(f"{field_name} must be a boolean")
+
+
+def _clamp(value: float, minimum: float, maximum: float, *, field_name: str, warnings_list: list[str]) -> float:
+    bounded = min(max(float(value), float(minimum)), float(maximum))
+    if not math.isclose(bounded, float(value), rel_tol=0.0, abs_tol=1e-9):
+        warnings_list.append(f"{field_name} was clamped into [{minimum}, {maximum}]")
+    return bounded
+
+
+def _clamp_int(value: int, minimum: int, maximum: int, *, field_name: str, warnings_list: list[str]) -> int:
+    bounded = min(max(int(value), int(minimum)), int(maximum))
+    if bounded != int(value):
+        warnings_list.append(f"{field_name} was clamped into [{minimum}, {maximum}]")
+    return bounded
+
+
+def _validate_style_tag(value: object, *, warnings_list: list[str]) -> str:
+    style = str(value or "modern").strip().lower() or "modern"
+    if style not in _STYLE_TAGS:
+        warnings_list.append(f"Unknown style_tag '{style}' was replaced with 'modern'")
+        return "modern"
+    return style
+
+
+def _validate_profile(value: object, *, field_name: str, warnings_list: list[str]) -> str:
+    profile = str(value or _DEFAULT_PROFILE).strip() or _DEFAULT_PROFILE
+    if profile != _DEFAULT_PROFILE:
+        warnings_list.append(f"Unknown {field_name} '{profile}' was replaced with '{_DEFAULT_PROFILE}'")
+        return _DEFAULT_PROFILE
+    return profile
+
+
+def _material_palette(material_family: str, style_tag: str) -> Tuple[Tuple[int, int, int, int], Tuple[int, int, int, int]]:
+    primary = _MATERIAL_PRIMARY.get(material_family, _rgba((128, 128, 128)))
+    accent = _STYLE_ACCENTS.get(style_tag, _STYLE_ACCENTS["modern"])
+    return primary, accent
+
+
+def _effective_detail_level(runtime_profile: str, requested_level: int) -> int:
+    requested = max(0, min(int(requested_level), 3))
+    if runtime_profile == "preview":
+        return min(requested, 1)
+    return max(requested, 2)
+
+
+def _to_request(payload: GenerationRequest | Mapping[str, object]) -> GenerationRequest:
+    if isinstance(payload, GenerationRequest):
+        return payload
+    if not isinstance(payload, Mapping):
+        raise TypeError("Generation request must be a mapping or GenerationRequest")
+    raw_params = payload.get("params", {})
+    if raw_params is None:
+        params = {}
+    elif isinstance(raw_params, Mapping):
+        params = dict(raw_params)
+    elif is_dataclass(raw_params):
+        params = asdict(raw_params)
+    else:
+        raise TypeError("request.params must be a mapping")
+    return GenerationRequest(
+        asset_kind=str(payload.get("asset_kind", "")).strip().lower(),  # type: ignore[arg-type]
+        runtime_profile=str(payload.get("runtime_profile", "preview")).strip().lower(),  # type: ignore[arg-type]
+        device_backend=str(payload.get("device_backend", "auto")).strip().lower(),  # type: ignore[arg-type]
+        seed=_coerce_int(payload.get("seed", 42), 42, field_name="seed"),
+        quality_profile=str(payload.get("quality_profile", _DEFAULT_PROFILE)),
+        physics_profile=str(payload.get("physics_profile", _DEFAULT_PROFILE)),
+        design_profile=str(payload.get("design_profile", _DEFAULT_PROFILE)),
+        precision=str(payload.get("precision", "fp32")).strip().lower(),  # type: ignore[arg-type]
+        allow_fallback=_coerce_bool(payload.get("allow_fallback", True), True, field_name="allow_fallback"),
+        params=params,
+    )
+
+
+def _validate_request(request: GenerationRequest, warnings_list: list[str]) -> GenerationRequest:
+    asset_kind = str(request.asset_kind).strip().lower()
+    if asset_kind not in {"bench", "lamp"}:
+        raise ValueError("asset_kind must be 'bench' or 'lamp'")
+    runtime_profile = str(request.runtime_profile).strip().lower()
+    if runtime_profile not in {"preview", "production"}:
+        raise ValueError("runtime_profile must be 'preview' or 'production'")
+    device_backend = str(request.device_backend).strip().lower()
+    if device_backend not in {"auto", "cpu", "mps", "cuda"}:
+        raise ValueError("device_backend must be one of auto/cpu/mps/cuda")
+    precision = str(request.precision).strip().lower()
+    if precision != "fp32":
+        warnings_list.append(f"Unsupported precision '{precision}' was replaced with 'fp32'")
+        precision = "fp32"
+    return GenerationRequest(
+        asset_kind=asset_kind,  # type: ignore[arg-type]
+        runtime_profile=runtime_profile,  # type: ignore[arg-type]
+        device_backend=device_backend,  # type: ignore[arg-type]
+        seed=int(request.seed),
+        quality_profile=_validate_profile(request.quality_profile, field_name="quality_profile", warnings_list=warnings_list),
+        physics_profile=_validate_profile(request.physics_profile, field_name="physics_profile", warnings_list=warnings_list),
+        design_profile=_validate_profile(request.design_profile, field_name="design_profile", warnings_list=warnings_list),
+        precision=precision,  # type: ignore[arg-type]
+        allow_fallback=bool(request.allow_fallback),
+        params=dict(request.params),
+    )
+
+
+def _validate_bench_params(raw_params: Mapping[str, object], warnings_list: list[str]) -> BenchParams:
+    defaults = BenchParams()
+    leg_type = str(raw_params.get("leg_type", defaults.leg_type)).strip().lower() or defaults.leg_type
+    if leg_type not in _BENCH_LEG_TYPES:
+        raise ValueError(f"leg_type must be one of {sorted(_BENCH_LEG_TYPES)}")
+    material_family = str(raw_params.get("material_family", defaults.material_family)).strip().lower() or defaults.material_family
+    if material_family not in _BENCH_MATERIALS:
+        raise ValueError(f"material_family must be one of {sorted(_BENCH_MATERIALS)}")
+    return BenchParams(
+        width_m=_clamp(
+            _coerce_float(raw_params.get("width_m"), defaults.width_m, field_name="width_m"),
+            1.20,
+            2.40,
+            field_name="width_m",
+            warnings_list=warnings_list,
+        ),
+        depth_m=_clamp(
+            _coerce_float(raw_params.get("depth_m"), defaults.depth_m, field_name="depth_m"),
+            0.40,
+            0.75,
+            field_name="depth_m",
+            warnings_list=warnings_list,
+        ),
+        seat_height_m=_clamp(
+            _coerce_float(raw_params.get("seat_height_m"), defaults.seat_height_m, field_name="seat_height_m"),
+            0.38,
+            0.50,
+            field_name="seat_height_m",
+            warnings_list=warnings_list,
+        ),
+        backrest_height_m=_clamp(
+            _coerce_float(raw_params.get("backrest_height_m"), defaults.backrest_height_m, field_name="backrest_height_m"),
+            0.20,
+            0.55,
+            field_name="backrest_height_m",
+            warnings_list=warnings_list,
+        ),
+        backrest_angle_deg=_clamp(
+            _coerce_float(raw_params.get("backrest_angle_deg"), defaults.backrest_angle_deg, field_name="backrest_angle_deg"),
+            5.0,
+            20.0,
+            field_name="backrest_angle_deg",
+            warnings_list=warnings_list,
+        ),
+        leg_type=leg_type,
+        armrest_enabled=_coerce_bool(raw_params.get("armrest_enabled"), defaults.armrest_enabled, field_name="armrest_enabled"),
+        slat_count=_clamp_int(
+            _coerce_int(raw_params.get("slat_count"), defaults.slat_count, field_name="slat_count"),
+            3,
+            8,
+            field_name="slat_count",
+            warnings_list=warnings_list,
+        ),
+        material_family=material_family,
+        style_tag=_validate_style_tag(raw_params.get("style_tag", defaults.style_tag), warnings_list=warnings_list),
+        detail_level=_clamp_int(
+            _coerce_int(raw_params.get("detail_level"), defaults.detail_level, field_name="detail_level"),
+            0,
+            3,
+            field_name="detail_level",
+            warnings_list=warnings_list,
+        ),
+    )
+
+
+def _validate_lamp_params(raw_params: Mapping[str, object], warnings_list: list[str]) -> LampParams:
+    defaults = LampParams()
+    luminaire_type = str(raw_params.get("luminaire_type", defaults.luminaire_type)).strip().lower() or defaults.luminaire_type
+    if luminaire_type not in _LUMINAIRE_TYPES:
+        raise ValueError(f"luminaire_type must be one of {sorted(_LUMINAIRE_TYPES)}")
+    arm_mode = str(raw_params.get("single_or_double_arm", defaults.single_or_double_arm)).strip().lower() or defaults.single_or_double_arm
+    if arm_mode not in _LAMP_ARM_TYPES:
+        raise ValueError(f"single_or_double_arm must be one of {sorted(_LAMP_ARM_TYPES)}")
+    light_direction = str(raw_params.get("light_direction", defaults.light_direction)).strip().lower() or defaults.light_direction
+    if light_direction not in _LIGHT_DIRECTIONS:
+        raise ValueError(f"light_direction must be one of {sorted(_LIGHT_DIRECTIONS)}")
+    material_family = str(raw_params.get("material_family", defaults.material_family)).strip().lower() or defaults.material_family
+    if material_family not in _LAMP_MATERIALS:
+        raise ValueError(f"material_family must be one of {sorted(_LAMP_MATERIALS)}")
+    return LampParams(
+        pole_height_m=_clamp(
+            _coerce_float(raw_params.get("pole_height_m"), defaults.pole_height_m, field_name="pole_height_m"),
+            3.50,
+            8.00,
+            field_name="pole_height_m",
+            warnings_list=warnings_list,
+        ),
+        pole_radius_m=_clamp(
+            _coerce_float(raw_params.get("pole_radius_m"), defaults.pole_radius_m, field_name="pole_radius_m"),
+            0.04,
+            0.12,
+            field_name="pole_radius_m",
+            warnings_list=warnings_list,
+        ),
+        base_diameter_m=_clamp(
+            _coerce_float(raw_params.get("base_diameter_m"), defaults.base_diameter_m, field_name="base_diameter_m"),
+            0.25,
+            0.60,
+            field_name="base_diameter_m",
+            warnings_list=warnings_list,
+        ),
+        arm_length_m=_clamp(
+            _coerce_float(raw_params.get("arm_length_m"), defaults.arm_length_m, field_name="arm_length_m"),
+            0.40,
+            1.80,
+            field_name="arm_length_m",
+            warnings_list=warnings_list,
+        ),
+        luminaire_type=luminaire_type,
+        single_or_double_arm=arm_mode,
+        light_direction=light_direction,
+        material_family=material_family,
+        style_tag=_validate_style_tag(raw_params.get("style_tag", defaults.style_tag), warnings_list=warnings_list),
+        detail_level=_clamp_int(
+            _coerce_int(raw_params.get("detail_level"), defaults.detail_level, field_name="detail_level"),
+            0,
+            3,
+            field_name="detail_level",
+            warnings_list=warnings_list,
+        ),
+    )
+
+
+def _detail_sections(detail_level: int, *, base: int, step: int) -> int:
+    return int(base + step * int(detail_level))
+
+
+def _build_bench_mesh(params: BenchParams, *, detail_level: int):
+    trimesh = _require_trimesh()
+    primary, accent = _material_palette(params.material_family, params.style_tag)
+    parts = []
+    seat_top = float(params.seat_height_m)
+    seat_thickness = 0.035 + 0.006 * detail_level
+    seat_width = float(params.width_m)
+    seat_depth = float(params.depth_m)
+    slat_gap = max(0.008, min(0.022, seat_depth * 0.04))
+    slat_width = seat_width * (0.94 if params.armrest_enabled else 0.97)
+    slat_depth = max(0.03, (seat_depth - slat_gap * (params.slat_count + 1)) / params.slat_count)
+    slat_start = -seat_depth / 2.0 + slat_gap + slat_depth / 2.0
+    for index in range(params.slat_count):
+        slat = _color(trimesh.creation.box(extents=(slat_width, seat_thickness, slat_depth)), primary)
+        slat.apply_translation([0.0, seat_top - seat_thickness / 2.0, slat_start + index * (slat_depth + slat_gap)])
+        parts.append(slat)
+
+    rail_radius = 0.011 + 0.002 * detail_level
+    rail_sections = _detail_sections(detail_level, base=20, step=6)
+    for z in (-seat_depth * 0.36, seat_depth * 0.36):
+        rail = _color(trimesh.creation.cylinder(radius=rail_radius, height=seat_width * 0.9, sections=rail_sections), accent)
+        rail.apply_transform(_rotation_y(math.pi / 2.0))
+        rail.apply_translation([0.0, seat_top - seat_thickness * 0.9, z])
+        parts.append(rail)
+
+    back_width = slat_width
+    back_thickness = 0.026 + 0.003 * detail_level
+    back_angle = math.radians(float(params.backrest_angle_deg))
+    back_panel = _color(
+        trimesh.creation.box(extents=(back_width, params.backrest_height_m, back_thickness)),
+        accent,
+    )
+    back_panel.apply_transform(_rotation_x(-back_angle))
+    back_center_y = seat_top + params.backrest_height_m * 0.5 * math.cos(back_angle)
+    back_center_z = -seat_depth / 2.0 - params.backrest_height_m * 0.5 * math.sin(back_angle)
+    back_panel.apply_translation([0.0, back_center_y, back_center_z])
+    parts.append(back_panel)
+
+    contact_points: list[Tuple[float, float]] = []
+    support_height = max(0.18, seat_top - seat_thickness)
+    leg_sections = _detail_sections(detail_level, base=24, step=6)
+    leg_radius = 0.018 + 0.003 * detail_level
+    if params.leg_type == "dual_frame":
+        x_positions = (-seat_width * 0.38, seat_width * 0.38)
+        z_positions = (-seat_depth * 0.30, seat_depth * 0.30)
+        for x_pos in x_positions:
+            for z_pos in z_positions:
+                leg = _color(trimesh.creation.cylinder(radius=leg_radius, height=support_height, sections=leg_sections), accent)
+                leg.apply_transform(_rotation_x(math.pi / 2.0))
+                leg.apply_translation([x_pos, support_height / 2.0, z_pos])
+                parts.append(leg)
+                contact_points.append((x_pos, z_pos))
+            stretcher = _color(
+                trimesh.creation.cylinder(radius=rail_radius, height=seat_depth * 0.72, sections=leg_sections),
+                accent,
+            )
+            stretcher.apply_translation([x_pos, support_height * 0.5, 0.0])
+            parts.append(stretcher)
+        lower_rail = _color(
+            trimesh.creation.cylinder(radius=rail_radius, height=seat_width * 0.70, sections=leg_sections),
+            accent,
+        )
+        lower_rail.apply_transform(_rotation_y(math.pi / 2.0))
+        lower_rail.apply_translation([0.0, support_height * 0.35, -seat_depth * 0.18])
+        parts.append(lower_rail)
+    elif params.leg_type == "four_leg":
+        for x_pos in (-seat_width * 0.42, seat_width * 0.42):
+            for z_pos in (-seat_depth * 0.33, seat_depth * 0.33):
+                leg = _color(trimesh.creation.cylinder(radius=leg_radius, height=support_height, sections=leg_sections), accent)
+                leg.apply_transform(_rotation_x(math.pi / 2.0))
+                leg.apply_translation([x_pos, support_height / 2.0, z_pos])
+                parts.append(leg)
+                contact_points.append((x_pos, z_pos))
+        for z_pos in (-seat_depth * 0.28, seat_depth * 0.28):
+            rail = _color(
+                trimesh.creation.cylinder(radius=rail_radius, height=seat_width * 0.72, sections=leg_sections),
+                accent,
+            )
+            rail.apply_transform(_rotation_y(math.pi / 2.0))
+            rail.apply_translation([0.0, support_height * 0.28, z_pos])
+            parts.append(rail)
+    else:
+        post_radius = max(0.055, seat_width * 0.04)
+        post = _color(trimesh.creation.cylinder(radius=post_radius, height=support_height, sections=leg_sections), accent)
+        post.apply_transform(_rotation_x(math.pi / 2.0))
+        post.apply_translation([0.0, support_height / 2.0, 0.0])
+        parts.append(post)
+        base_height = 0.045 + 0.008 * detail_level
+        base_diameter = max(0.24, min(seat_width * 0.34, 0.48))
+        pedestal_base = _color(
+            trimesh.creation.cylinder(radius=base_diameter / 2.0, height=base_height, sections=leg_sections),
+            accent,
+        )
+        pedestal_base.apply_transform(_rotation_x(math.pi / 2.0))
+        pedestal_base.apply_translation([0.0, base_height / 2.0, 0.0])
+        parts.append(pedestal_base)
+        contact_points.append((0.0, 0.0))
+        for offset in (-0.08, 0.08):
+            ring = _color(
+                trimesh.creation.cylinder(radius=post_radius * 1.2, height=0.015, sections=leg_sections),
+                accent,
+            )
+            ring.apply_transform(_rotation_x(math.pi / 2.0))
+            ring.apply_translation([0.0, support_height * 0.35 + offset, 0.0])
+            parts.append(ring)
+
+    if params.armrest_enabled:
+        arm_height = seat_top + 0.18
+        upright_height = max(0.18, arm_height - seat_top + seat_thickness / 2.0)
+        arm_radius = rail_radius * 1.2
+        arm_length = seat_depth * 0.58
+        for x_pos in (-seat_width * 0.44, seat_width * 0.44):
+            upright = _color(
+                trimesh.creation.cylinder(radius=arm_radius, height=upright_height, sections=leg_sections),
+                accent,
+            )
+            upright.apply_transform(_rotation_x(math.pi / 2.0))
+            upright.apply_translation([x_pos, seat_top + upright_height / 2.0 - seat_thickness / 2.0, 0.0])
+            parts.append(upright)
+            arm = _color(
+                trimesh.creation.cylinder(radius=arm_radius, height=arm_length, sections=leg_sections),
+                accent,
+            )
+            arm.apply_transform(_rotation_x(math.pi / 2.0))
+            arm.apply_translation([x_pos, arm_height, -seat_depth * 0.02])
+            parts.append(arm)
+
+    mesh = _ground(_concat(parts))
+    total_height = max(
+        seat_top,
+        seat_top + params.backrest_height_m * math.cos(back_angle),
+        seat_top + (0.18 if params.armrest_enabled else 0.0),
+    )
+    total_depth = seat_depth + params.backrest_height_m * math.sin(back_angle)
+    if params.leg_type == "pedestal":
+        support_bounds = (-base_diameter / 2.0, base_diameter / 2.0, -base_diameter / 2.0, base_diameter / 2.0)
+    else:
+        xs = [point[0] for point in contact_points]
+        zs = [point[1] for point in contact_points]
+        support_bounds = (min(xs), max(xs), min(zs), max(zs))
+    return mesh, _BenchAudit(
+        expected_dims=(seat_width, total_height, total_depth),
+        support_count=len(contact_points),
+        support_bounds_xz=support_bounds,
+    )
+
+
+def _luminaire_dims(luminaire_type: str, detail_level: int) -> Tuple[float, float, float]:
+    if luminaire_type == "flat_led":
+        return 0.34 + detail_level * 0.02, 0.16 + detail_level * 0.01, 0.10 + detail_level * 0.01
+    if luminaire_type == "globe":
+        diameter = 0.20 + detail_level * 0.03
+        return diameter, diameter, diameter
+    if luminaire_type == "box":
+        return 0.28 + detail_level * 0.02, 0.22 + detail_level * 0.01, 0.16 + detail_level * 0.01
+    return 0.24 + detail_level * 0.02, 0.24 + detail_level * 0.02, 0.20 + detail_level * 0.02
+
+
+def _build_lamp_mesh(params: LampParams, *, detail_level: int):
+    trimesh = _require_trimesh()
+    primary, accent = _material_palette(params.material_family, params.style_tag)
+    parts = []
+    pole_sections = _detail_sections(detail_level, base=40, step=8)
+    base_sections = _detail_sections(detail_level, base=36, step=8)
+    arm_sections = _detail_sections(detail_level, base=32, step=8)
+    base_height = 0.12 + 0.02 * detail_level
+    pole = _color(
+        trimesh.creation.cylinder(radius=params.pole_radius_m, height=params.pole_height_m, sections=pole_sections),
+        primary,
+    )
+    pole.apply_transform(_rotation_x(math.pi / 2.0))
+    pole.apply_translation([0.0, params.pole_height_m / 2.0, 0.0])
+    parts.append(pole)
+
+    base = _color(
+        trimesh.creation.cylinder(radius=params.base_diameter_m / 2.0, height=base_height, sections=base_sections),
+        accent,
+    )
+    base.apply_transform(_rotation_x(math.pi / 2.0))
+    base.apply_translation([0.0, base_height / 2.0, 0.0])
+    parts.append(base)
+
+    collar = _color(
+        trimesh.creation.cylinder(radius=params.pole_radius_m * 1.55, height=0.05, sections=base_sections),
+        accent,
+    )
+    collar.apply_transform(_rotation_x(math.pi / 2.0))
+    collar.apply_translation([0.0, base_height + 0.06, 0.0])
+    parts.append(collar)
+
+    cap = _color(
+        trimesh.creation.cylinder(radius=params.pole_radius_m * 1.25, height=0.08, sections=base_sections),
+        accent,
+    )
+    cap.apply_transform(_rotation_x(math.pi / 2.0))
+    cap.apply_translation([0.0, params.pole_height_m - 0.18, 0.0])
+    parts.append(cap)
+
+    luminaire_width, luminaire_height, luminaire_depth = _luminaire_dims(params.luminaire_type, detail_level)
+    arm_height = params.pole_height_m - max(0.40, luminaire_height * 0.8)
+    arm_radius = max(0.02, params.pole_radius_m * 0.68)
+    luminaire_centers: list[Tuple[float, float, float]] = []
+    arm_directions = [1.0]
+    if params.single_or_double_arm == "double" or params.light_direction == "bidirectional":
+        arm_directions = [-1.0, 1.0]
+
+    for direction in arm_directions:
+        arm = _color(
+            trimesh.creation.cylinder(radius=arm_radius, height=params.arm_length_m, sections=arm_sections),
+            primary,
+        )
+        arm.apply_transform(_rotation_y(math.pi / 2.0))
+        arm.apply_translation([direction * params.arm_length_m / 2.0, arm_height, 0.0])
+        parts.append(arm)
+
+        lum_x = direction * (params.arm_length_m + luminaire_width * 0.35)
+        lum_y = arm_height - (luminaire_height * (0.42 if params.light_direction == "downward" else 0.18))
+        lum_z = 0.0
+        if params.luminaire_type == "flat_led":
+            luminaire = _color(
+                trimesh.creation.box(extents=(luminaire_width, luminaire_height, luminaire_depth)),
+                accent,
+            )
+            if params.light_direction == "downward":
+                luminaire.apply_transform(_rotation_x(math.radians(18.0)))
+        elif params.luminaire_type == "globe":
+            luminaire = _color(
+                trimesh.creation.icosphere(subdivisions=max(2, detail_level), radius=luminaire_width / 2.0),
+                accent,
+            )
+        elif params.luminaire_type == "box":
+            luminaire = _color(
+                trimesh.creation.box(extents=(luminaire_width, luminaire_height, luminaire_depth)),
+                accent,
+            )
+        else:
+            luminaire = _color(
+                trimesh.creation.cone(radius=luminaire_width / 2.0, height=luminaire_height, sections=arm_sections),
+                accent,
+            )
+            luminaire.apply_transform(_rotation_x(math.pi))
+        luminaire.apply_translation([lum_x, lum_y, lum_z])
+        parts.append(luminaire)
+        luminaire_centers.append((lum_x, lum_y, lum_z))
+
+    mesh = _ground(_concat(parts))
+    lowest_luminaire_y = min(center[1] - luminaire_height / 2.0 for center in luminaire_centers)
+    if len(arm_directions) == 2:
+        expected_width = max(params.base_diameter_m, params.arm_length_m * 2.0 + luminaire_width * 1.2)
+    else:
+        expected_width = max(params.base_diameter_m, params.arm_length_m + luminaire_width + params.pole_radius_m * 2.0)
+    expected_height = max(params.pole_height_m, arm_height + luminaire_height * 0.6)
+    expected_depth = max(params.base_diameter_m, luminaire_depth)
+    slenderness_ratio = params.pole_height_m / max(params.pole_radius_m * 2.0, 1e-6)
+    return mesh, _LampAudit(
+        expected_dims=(expected_width, expected_height, expected_depth),
+        lowest_luminaire_y=float(lowest_luminaire_y),
+        slenderness_ratio=float(slenderness_ratio),
+    )
+
+
+def _dimension_error_ratio(actual_dims: Tuple[float, float, float], expected_dims: Tuple[float, float, float]) -> float:
+    ratios = []
+    for actual, expected in zip(actual_dims, expected_dims):
+        denom = max(float(expected), 1e-6)
+        ratios.append(abs(float(actual) - float(expected)) / denom)
+    return float(max(ratios))
+
+
+def _bench_quality_metrics(mesh, params: BenchParams, runtime_profile: str, audit: _BenchAudit) -> GenerationQualityMetrics:
+    actual_dims = _bbox_size(mesh)
+    face_count = int(len(mesh.faces))
+    poly_budget_k = int(_POLY_BUDGET_K["bench"][runtime_profile])
+    com_x, _com_y, com_z = [float(value) for value in mesh.center_mass]
+    min_x, max_x, min_z, max_z = audit.support_bounds_xz
+    stable = (min_x - 0.03 <= com_x <= max_x + 0.03) and (min_z - 0.03 <= com_z <= max_z + 0.03)
+    if params.leg_type == "pedestal":
+        stable = stable and params.width_m <= max(params.depth_m * 4.5, 2.3)
+    ground_contact_ok = abs(float(mesh.bounds[0][1])) <= 1e-6
+    return GenerationQualityMetrics(
+        face_count=face_count,
+        poly_budget_k=poly_budget_k,
+        dimension_error_ratio=_dimension_error_ratio(actual_dims, audit.expected_dims),
+        ground_contact_ok=ground_contact_ok,
+        support_count=audit.support_count,
+        stability_check_ok=stable,
+        meets_min_faces=face_count >= _MIN_FACES["bench"],
+        within_poly_budget=face_count <= poly_budget_k * 1000,
+    )
+
+
+def _lamp_quality_metrics(mesh, params: LampParams, runtime_profile: str, audit: _LampAudit) -> GenerationQualityMetrics:
+    actual_dims = _bbox_size(mesh)
+    face_count = int(len(mesh.faces))
+    poly_budget_k = int(_POLY_BUDGET_K["lamp"][runtime_profile])
+    ground_contact_ok = abs(float(mesh.bounds[0][1])) <= 1e-6
+    minimum_base = max(0.25, min(0.60, params.pole_height_m * 0.055))
+    minimum_clearance = 3.0
+    clearance_ok = audit.lowest_luminaire_y >= minimum_clearance
+    slender_ok = 18.0 <= audit.slenderness_ratio <= 70.0
+    base_ok = params.base_diameter_m >= minimum_base
+    arm_ok = params.arm_length_m <= max(0.6, params.pole_height_m * 0.32)
+    return GenerationQualityMetrics(
+        face_count=face_count,
+        poly_budget_k=poly_budget_k,
+        dimension_error_ratio=_dimension_error_ratio(actual_dims, audit.expected_dims),
+        ground_contact_ok=ground_contact_ok,
+        slenderness_ratio=audit.slenderness_ratio,
+        clearance_ok=clearance_ok and base_ok and arm_ok and slender_ok,
+        meets_min_faces=face_count >= _MIN_FACES["lamp"],
+        within_poly_budget=face_count <= poly_budget_k * 1000,
+    )
+
+
+def _quality_gate(asset_kind: str, metrics: GenerationQualityMetrics) -> None:
+    if not metrics.ground_contact_ok:
+        raise RuntimeError(f"{asset_kind} generation failed ground contact check")
+    if not metrics.meets_min_faces:
+        raise RuntimeError(
+            f"{asset_kind} generation failed minimum face count: {metrics.face_count} < {_MIN_FACES[asset_kind]}"
+        )
+    if not metrics.within_poly_budget:
+        raise RuntimeError(
+            f"{asset_kind} generation exceeded poly budget: {metrics.face_count} > {metrics.poly_budget_k * 1000}"
+        )
+    if asset_kind == "bench" and metrics.stability_check_ok is False:
+        raise RuntimeError("bench generation failed stability check")
+    if asset_kind == "lamp" and metrics.clearance_ok is False:
+        raise RuntimeError("lamp generation failed clearance/stability checks")
+
+
+def generate_parametric_asset(request: GenerationRequest | Mapping[str, object]) -> ParametricAssetResult:
+    """Generate one deterministic bench or lamp mesh from explicit parameters."""
+    warnings_list: list[str] = []
+    normalized_request = _validate_request(_to_request(request), warnings_list)
+    resolved_device_backend = resolve_device_backend(
+        preferred=normalized_request.device_backend,
+        allow_fallback=normalized_request.allow_fallback,
+    )
+
+    if normalized_request.asset_kind == "bench":
+        params = _validate_bench_params(normalized_request.params, warnings_list)
+        effective_detail_level = _effective_detail_level(normalized_request.runtime_profile, params.detail_level)
+        mesh, audit = _build_bench_mesh(params, detail_level=effective_detail_level)
+        metrics = _bench_quality_metrics(mesh, params, normalized_request.runtime_profile, audit)
+        if normalized_request.runtime_profile == "production" and effective_detail_level < 3 and not metrics.meets_min_faces:
+            warnings_list.append("production bench detail preset was upshifted once to satisfy quality gates")
+            effective_detail_level = 3
+            mesh, audit = _build_bench_mesh(params, detail_level=effective_detail_level)
+            metrics = _bench_quality_metrics(mesh, params, normalized_request.runtime_profile, audit)
+        _quality_gate("bench", metrics)
+        snapshot = asdict(params)
+        snapshot["effective_detail_level"] = int(effective_detail_level)
+        return ParametricAssetResult(
+            asset_kind="bench",
+            runtime_profile=normalized_request.runtime_profile,
+            resolved_device_backend=resolved_device_backend,
+            mesh=mesh,
+            bbox_size_xyz=_bbox_size(mesh),
+            bbox_bounds=(
+                tuple(float(v) for v in mesh.bounds[0]),
+                tuple(float(v) for v in mesh.bounds[1]),
+            ),
+            parameter_snapshot=snapshot,
+            quality_metrics=metrics,
+            warnings=tuple(warnings_list),
+            material_family=params.material_family,
+            style_tags=(params.style_tag,),
+        )
+
+    params = _validate_lamp_params(normalized_request.params, warnings_list)
+    effective_detail_level = _effective_detail_level(normalized_request.runtime_profile, params.detail_level)
+    mesh, audit = _build_lamp_mesh(params, detail_level=effective_detail_level)
+    metrics = _lamp_quality_metrics(mesh, params, normalized_request.runtime_profile, audit)
+    if normalized_request.runtime_profile == "production" and effective_detail_level < 3 and not metrics.meets_min_faces:
+        warnings_list.append("production lamp detail preset was upshifted once to satisfy quality gates")
+        effective_detail_level = 3
+        mesh, audit = _build_lamp_mesh(params, detail_level=effective_detail_level)
+        metrics = _lamp_quality_metrics(mesh, params, normalized_request.runtime_profile, audit)
+    _quality_gate("lamp", metrics)
+    snapshot = asdict(params)
+    snapshot["effective_detail_level"] = int(effective_detail_level)
+    return ParametricAssetResult(
+        asset_kind="lamp",
+        runtime_profile=normalized_request.runtime_profile,
+        resolved_device_backend=resolved_device_backend,
+        mesh=mesh,
+        bbox_size_xyz=_bbox_size(mesh),
+        bbox_bounds=(
+            tuple(float(v) for v in mesh.bounds[0]),
+            tuple(float(v) for v in mesh.bounds[1]),
+        ),
+        parameter_snapshot=snapshot,
+        quality_metrics=metrics,
+        warnings=tuple(warnings_list),
+        material_family=params.material_family,
+        style_tags=(params.style_tag,),
+    )

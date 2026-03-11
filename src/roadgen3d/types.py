@@ -74,7 +74,7 @@ class StreetComposeConfig:
     beauty_mode: str = "presentation_v1"
     style_preset: str = "civic_clean_v1"
     render_preset: str = "jury_default_v1"
-    asset_curation_mode: str = "curated_first"
+    asset_curation_mode: str = "parametric_first"
 
     # -- Neuralsymbolic v1 fields --
     program_generator: str = "heuristic_v1"

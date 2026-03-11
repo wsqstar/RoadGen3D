@@ -17,6 +17,7 @@ logger = logging.getLogger(__name__)
 
 from .beauty import (
     apply_composition_pass,
+    asset_generator_type,
     compute_presentation_report,
     curate_candidates,
     render_presentation_views,
@@ -196,8 +197,8 @@ def _validate_config(config: StreetComposeConfig) -> None:
         raise ValueError("beauty_mode must be 'presentation_v1'")
     if str(getattr(config, "render_preset", "jury_default_v1")).strip().lower() not in {"jury_default_v1"}:
         raise ValueError("render_preset must be 'jury_default_v1'")
-    if str(getattr(config, "asset_curation_mode", "curated_first")).strip().lower() not in {"curated_first", "legacy"}:
-        raise ValueError("asset_curation_mode must be 'curated_first' or 'legacy'")
+    if str(getattr(config, "asset_curation_mode", "parametric_first")).strip().lower() not in {"parametric_first", "curated_first", "legacy"}:
+        raise ValueError("asset_curation_mode must be 'parametric_first', 'curated_first' or 'legacy'")
     if int(getattr(config, "building_search_topk", 1)) <= 0:
         raise ValueError("building_search_topk must be >= 1")
     if str(getattr(config, "surrounding_building_mode", "footprint_based")).strip().lower() not in {"footprint_based", "grid_growth"}:
@@ -248,6 +249,11 @@ def _load_real_manifest(manifest_path: Path) -> List[Dict[str, object]]:
             "frontage_width_m",
             "depth_m",
             "height_class",
+            "source",
+            "generator_type",
+            "runtime_profile",
+            "parameter_snapshot",
+            "quality_metrics",
         ):
             if optional_key in payload:
                 row[optional_key] = payload[optional_key]
@@ -2211,7 +2217,7 @@ def compose_street_scene(
     model_name: str = "openai/clip-vit-base-patch32",
     model_dir: Optional[Path] = None,
     local_files_only: bool = False,
-    device: str = "cpu",
+    device: str = "auto",
     export_format: str = "both",
     out_dir: Path = Path("artifacts/real"),
     placement_policy: str = "rule",
@@ -2282,7 +2288,7 @@ def compose_street_scene(
             except Exception as exc:
                 policy_fallback_reason = f"Policy runtime load failed ({exc}); fallback to rule policy."
 
-    program_runtime = ProgramGeneratorRuntime(backend="heuristic_v1")
+    program_runtime = ProgramGeneratorRuntime(backend="heuristic_v1", device=device)
     program_used = "heuristic_v1"
     program_fallback_reasons: List[str] = []
     if str(config.program_generator).strip().lower() == "learned_v1":
@@ -2953,8 +2959,18 @@ def compose_street_scene(
         if any(placement.category == category for placement in placements)
     }
     selection_source_counts: Dict[str, int] = {}
+    asset_generator_type_counts: Dict[str, int] = {}
+    parametric_instance_count = 0
     for placement in placements:
         selection_source_counts[placement.selection_source] = selection_source_counts.get(placement.selection_source, 0) + 1
+        generator_key = (
+            asset_generator_type(asset_by_id[placement.asset_id])
+            if placement.asset_id in asset_by_id
+            else "procedural_fallback" if placement.selection_source == "procedural_fallback" else "unknown"
+        )
+        asset_generator_type_counts[generator_key] = asset_generator_type_counts.get(generator_key, 0) + 1
+        if generator_key == "parametric":
+            parametric_instance_count += 1
     asset_library_scene_instances = sum(
         1
         for placement in placements
@@ -3016,6 +3032,8 @@ def compose_street_scene(
         "latency_ms_per_instance": float(latency_ms_per_instance),
         "per_category_unique": per_category_unique,
         "selection_source_counts": selection_source_counts,
+        "asset_generator_type_counts": asset_generator_type_counts,
+        "parametric_instance_count": int(parametric_instance_count),
         "asset_library_scene_instances": int(asset_library_scene_instances),
         "layout_mode": config.layout_mode,
         "constraint_mode": config.constraint_mode,
@@ -3091,7 +3109,7 @@ def compose_street_scene(
         ),
         "beauty_mode": str(getattr(config, "beauty_mode", "presentation_v1")),
         "render_preset": str(getattr(config, "render_preset", "jury_default_v1")),
-        "asset_curation_mode": str(getattr(config, "asset_curation_mode", "curated_first")),
+        "asset_curation_mode": str(getattr(config, "asset_curation_mode", "parametric_first")),
         "scene_debug_overlays_enabled": bool(debug_scene_overlays_enabled),
         "theme_segments": [segment.to_dict() for segment in theme_segments],
         "theme_diagnostics": {

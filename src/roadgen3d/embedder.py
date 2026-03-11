@@ -8,6 +8,8 @@ from typing import Optional, Sequence, Union
 
 import numpy as np
 
+from .runtime_device import resolve_device_backend, resolve_torch_device
+
 
 class ModelLoadError(RuntimeError):
     """Raised when the CLIP model cannot be loaded."""
@@ -25,7 +27,7 @@ class EmbedderConfig:
     model_name: str = "openai/clip-vit-base-patch32"
     model_dir: Optional[Path] = None
     local_files_only: bool = False
-    device: str = "cpu"
+    device: str = "auto"
 
 
 class ClipTextEmbedder:
@@ -36,7 +38,7 @@ class ClipTextEmbedder:
         model_name: str = "openai/clip-vit-base-patch32",
         model_dir: Optional[Union[str, Path]] = None,
         local_files_only: bool = False,
-        device: str = "cpu",
+        device: str = "auto",
     ) -> None:
         try:
             import torch
@@ -72,7 +74,8 @@ class ClipTextEmbedder:
             raise ModelLoadError(message) from exc
 
         self._torch = torch
-        self.device = torch.device(device)
+        self.device_backend = resolve_device_backend(device)
+        self.device = resolve_torch_device(device)
         self.model.to(self.device)
         self.model.eval()
         self.projection_dim = int(self.model.config.text_config.projection_dim)

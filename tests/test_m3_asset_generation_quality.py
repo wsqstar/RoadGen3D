@@ -39,9 +39,9 @@ def _spec(
         asset_id=asset_id,
         style_tag=style,
         text_desc=f"a {style} {category}",
-        target_h=2.0 if category in {"lamp", "tree", "bus_stop"} else 1.0,
-        target_w=1.5 if category in {"bus_stop", "bench"} else 0.8,
-        target_d=1.2 if category in {"bus_stop", "bench"} else 0.8,
+        target_h=5.0 if category == "lamp" else 2.0 if category in {"tree", "bus_stop"} else 1.0,
+        target_w=1.5 if category in {"bus_stop", "bench"} else 0.4 if category == "lamp" else 0.8,
+        target_d=1.2 if category in {"bus_stop", "bench"} else 0.4 if category == "lamp" else 0.8,
         poly_budget_k=budget_k if budget_k is not None else default_budget_k[category],
         license="cc-by",
         source="test",
@@ -132,3 +132,57 @@ def test_tree_and_lamp_not_lowpoly_baseline(tmp_path: Path):
 
     assert faces_by_cat["tree"] >= 1500
     assert faces_by_cat["lamp"] >= 500
+
+
+def test_bench_and_lamp_default_to_parametric_backend_in_batch_generation(tmp_path: Path):
+    trimesh = pytest.importorskip("trimesh")
+    specs = [
+        _spec("bench_param", "bench", style="classic"),
+        _spec("lamp_param", "lamp", style="ornate"),
+        _spec("trash_param", "trash"),
+    ]
+    mesh_out = tmp_path / "meshes"
+    manifest_out = tmp_path / "real_assets_manifest.jsonl"
+    m3_assets.generate_all(
+        specs=specs,
+        mesh_out_dir=mesh_out,
+        manifest_out=manifest_out,
+        project_root=tmp_path,
+        seed=9,
+    )
+
+    rows = {str(row["asset_id"]): row for row in _read_manifest_rows(manifest_out)}
+    assert rows["bench_param"]["source"] == "parametric_generated"
+    assert rows["bench_param"]["generator_type"] == "parametric_v1"
+    assert rows["bench_param"]["runtime_profile"] == "production"
+    assert rows["bench_param"]["asset_role"] == "street_furniture"
+    assert isinstance(rows["bench_param"]["parameter_snapshot"], dict)
+    assert isinstance(rows["bench_param"]["quality_metrics"], dict)
+    assert rows["lamp_param"]["source"] == "parametric_generated"
+    assert rows["trash_param"]["source"] == "procedural_generated"
+
+    for asset_id in ("bench_param", "lamp_param"):
+        mesh_or_scene = trimesh.load(Path(str(rows[asset_id]["mesh_path"])), force="scene")
+        mesh = trimesh.util.concatenate(tuple(mesh_or_scene.geometry.values())) if isinstance(mesh_or_scene, trimesh.Scene) else mesh_or_scene
+        assert len(mesh.faces) >= m3_assets.MIN_FACES_BY_CATEGORY[str(rows[asset_id]["category"])]
+
+
+def test_bench_and_lamp_can_fallback_to_legacy_backend(tmp_path: Path):
+    specs = [
+        _spec("bench_legacy", "bench", style="modern"),
+        _spec("lamp_legacy", "lamp", style="modern"),
+    ]
+    manifest_out = tmp_path / "real_assets_manifest.jsonl"
+    m3_assets.generate_all(
+        specs=specs,
+        mesh_out_dir=tmp_path / "meshes",
+        manifest_out=manifest_out,
+        project_root=tmp_path,
+        seed=5,
+        bench_lamp_backend="legacy",
+    )
+
+    rows = {str(row["asset_id"]): row for row in _read_manifest_rows(manifest_out)}
+    assert rows["bench_legacy"]["source"] == "procedural_generated"
+    assert "generator_type" not in rows["bench_legacy"]
+    assert rows["lamp_legacy"]["source"] == "procedural_generated"

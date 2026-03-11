@@ -36,6 +36,14 @@ from .layout_solver import LayoutSolverRuntime, solve_layout
 from .milp_solver import solve_candidate_assignment
 from .osm_ingest import fetch_osm_data, parse_osm_features, project_to_local
 from .osm_segment_graph import build_segment_graph
+from .parametric_assets import (
+    BenchParams,
+    GenerationQualityMetrics,
+    GenerationRequest,
+    LampParams,
+    ParametricAssetResult,
+    generate_parametric_asset,
+)
 from .pipeline import M1Pipeline
 from .placement_zones import PlacementContext, build_placement_context
 from .poi_rules import ConstraintResult, load_rule_set, score_placement
@@ -47,6 +55,7 @@ from .program_generator import (
     train_program_generator,
     vectorize_program_input,
 )
+from .runtime_device import resolve_device_backend, resolve_torch_device
 from .street_layout import compose_street_scene
 from .street_program import infer_street_program
 from .theme_buildings import infer_theme_segments
@@ -88,6 +97,7 @@ from .voxel_export import export_voxel_meshes
 
 __all__ = [
     "AssetRecord",
+    "BenchParams",
     "BuildingFootprint",
     "BuildingPlacementPlan",
     "CandidateDescriptor",
@@ -99,6 +109,8 @@ __all__ = [
     "DiscoveredRoad",
     "EntranceAssessment",
     "FaissIndexStore",
+    "GenerationQualityMetrics",
+    "GenerationRequest",
     "LayoutPolicyMLP",
     "LayoutPolicyRuntime",
     "LayoutSolverRuntime",
@@ -110,7 +122,9 @@ __all__ = [
     "LatentStore",
     "M1Pipeline",
     "ModelLoadError",
+    "LampParams",
     "PipelineResult",
+    "ParametricAssetResult",
     "PlacedAsset",
     "PlacedAssetRegistry",
     "PlacementContext",
@@ -165,6 +179,7 @@ __all__ = [
     "evaluate_topk_category_hits",
     "export_voxel_meshes",
     "fetch_osm_data",
+    "generate_parametric_asset",
     "infer_theme_segments",
     "infer_street_program",
     "InventorySummary",
@@ -174,6 +189,8 @@ __all__ = [
     "load_rule_set",
     "parse_osm_features",
     "project_to_local",
+    "resolve_device_backend",
+    "resolve_torch_device",
     "score_entrance_impact",
     "score_placement",
     "solve_candidate_assignment",

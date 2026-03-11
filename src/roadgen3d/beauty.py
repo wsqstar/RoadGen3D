@@ -166,6 +166,63 @@ STYLE_PRESETS: Dict[str, StylePresetSpec] = {
     ),
 }
 
+_PARAMETRIC_PRIORITY_CATEGORIES = {"bench", "lamp"}
+
+
+def asset_generator_type(row: Mapping[str, Any]) -> str:
+    """Collapse generator/source metadata into a small provenance vocabulary."""
+    generator = str(row.get("generator_type", "") or "").strip().lower()
+    source = str(row.get("source", "") or "").strip().lower()
+    if generator.startswith("parametric") or source == "parametric_generated":
+        return "parametric"
+    if source == "procedural_fallback":
+        return "procedural_fallback"
+    if generator:
+        return generator
+    if source == "procedural_generated":
+        return "legacy"
+    if source:
+        return source
+    return "legacy"
+
+
+def _filter_candidates_for_curation_mode(
+    scored: Sequence[Tuple[Dict[str, Any], float, float]],
+    *,
+    category: str,
+    config: StreetComposeConfig,
+) -> Tuple[List[Tuple[Dict[str, Any], float, float]], Dict[str, Any]]:
+    mode = str(getattr(config, "asset_curation_mode", "parametric_first")).strip().lower()
+    parametric_count = sum(1 for row, _score, _curation in scored if asset_generator_type(row) == "parametric")
+    legacy_count = int(len(scored) - parametric_count)
+    info = {
+        "asset_curation_mode": mode,
+        "parametric_candidate_count": int(parametric_count),
+        "legacy_candidate_count": int(legacy_count),
+        "provenance_filter": "all",
+        "provenance_fallback": False,
+    }
+    if category not in _PARAMETRIC_PRIORITY_CATEGORIES:
+        return list(scored), info
+
+    if mode == "parametric_first":
+        parametric_only = [item for item in scored if asset_generator_type(item[0]) == "parametric"]
+        if parametric_only:
+            info["provenance_filter"] = "parametric_only"
+            return parametric_only, info
+        info["provenance_fallback"] = True
+        return list(scored), info
+
+    if mode == "legacy":
+        legacy_only = [item for item in scored if asset_generator_type(item[0]) != "parametric"]
+        if legacy_only:
+            info["provenance_filter"] = "legacy_only"
+            return legacy_only, info
+        info["provenance_fallback"] = True
+        return list(scored), info
+
+    return list(scored), info
+
 _PRESENTATION_HEIGHTS: Dict[str, float] = {
     "bench": 0.8,
     "lamp": 3.2,
@@ -286,15 +343,23 @@ def curate_candidates(
         curation_score = _asset_curation_score(enriched, category, preset)
         adjusted = float(base_score) + 0.12 * float(curation_score)
         scored.append((enriched, adjusted, curation_score))
-    curated = [item for item in scored if item[2] >= 1.1]
-    use_curated = str(getattr(config, "asset_curation_mode", "curated_first")).strip().lower() == "curated_first" and bool(curated)
-    chosen = curated if use_curated else scored
+    filtered_scored, provenance_info = _filter_candidates_for_curation_mode(
+        scored,
+        category=category,
+        config=config,
+    )
+    curated = [item for item in filtered_scored if item[2] >= 1.1]
+    mode = str(getattr(config, "asset_curation_mode", "parametric_first")).strip().lower()
+    use_curated = mode in {"curated_first", "parametric_first"} and bool(curated)
+    chosen = curated if use_curated else filtered_scored
     chosen.sort(key=lambda item: (float(item[1]), float(item[2]), bool(item[0].get("hero_asset", False))), reverse=True)
     return [(row, float(score)) for row, score, _ in chosen], {
         "curated_used": bool(use_curated),
         "curated_candidate_count": int(len(curated)),
-        "candidate_count": int(len(scored)),
+        "candidate_count": int(len(filtered_scored)),
+        "candidate_count_raw": int(len(scored)),
         "top_curation_score": float(max(item[2] for item in chosen)),
+        **provenance_info,
     }
 
 

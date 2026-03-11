@@ -46,6 +46,7 @@ from roadgen3d.embedder import ClipTextEmbedder, ModelLoadError
 from roadgen3d.index_store import FaissIndexStore
 from roadgen3d.layout_policy import PolicyTrainConfig
 from roadgen3d.latent_store import LatentStore, load_asset_records
+from roadgen3d.parametric_assets import generate_parametric_asset
 from roadgen3d.china_cities import get_city_by_name, get_city_choices
 from roadgen3d.osm_ingest import fetch_osm_data, parse_osm_features, project_to_local
 from roadgen3d.placement_zones import (
@@ -85,6 +86,24 @@ from scripts.m4_02_train_layout_policy import train_from_jsonl
 from scripts.m4_10_eval_engineering import run_eval as run_m4_eval
 from scripts.m6_01_collect_program_data import collect_program_data
 from scripts.m6_02_train_program_generator import train_from_jsonl as train_program_from_jsonl
+
+_PARAMETRIC_STYLE_CHOICES = [
+    "modern",
+    "classic",
+    "industrial",
+    "minimalist",
+    "ornate",
+    "retro",
+    "modular",
+    "eco",
+    "brutalist",
+    "nordic",
+    "japan_scandi",
+    "victorian",
+    "contemporary",
+    "tactical",
+    "art_deco",
+]
 
 
 def _to_path(path_text: str) -> Path:
@@ -184,6 +203,7 @@ def _load_asset_library_rows(manifest_path: Path) -> List[Dict[str, object]]:
                 "depth_m": float(payload.get("depth_m", 0.0) or 0.0),
                 "height_class": str(payload.get("height_class", "")).strip().lower(),
                 "source": str(payload.get("source", "")).strip(),
+                "generator_type": str(payload.get("generator_type", "")).strip(),
             }
         )
     return rows
@@ -237,6 +257,247 @@ def browse_asset_library(
         return table, json.dumps(stats, indent=2, ensure_ascii=True)
     except Exception as exc:
         return [], json.dumps({"error": str(exc)}, indent=2, ensure_ascii=True)
+
+
+def _toggle_parametric_controls(asset_kind: str):
+    is_bench = str(asset_kind).strip().lower() == "bench"
+    return gr.update(visible=is_bench), gr.update(visible=not is_bench)
+
+
+def _write_preview_placeholder_latent(latent_path: Path, mesh_path: Path) -> str:
+    latent_path.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        import torch
+    except ImportError:
+        latent_path.write_text(json.dumps({"mesh_path": str(mesh_path)}, ensure_ascii=True), encoding="utf-8")
+        return "torch unavailable; wrote JSON placeholder latent"
+    torch.save({"mesh_path": str(mesh_path)}, latent_path)
+    return ""
+
+
+def _load_manifest_asset_ids(manifest_path: Path) -> set[str]:
+    if not manifest_path.exists():
+        return set()
+    asset_ids: set[str] = set()
+    for idx, line in enumerate(manifest_path.read_text(encoding="utf-8").splitlines(), start=1):
+        if not line.strip():
+            continue
+        payload = json.loads(line)
+        asset_id = str(payload.get("asset_id", "")).strip()
+        if not asset_id:
+            raise ValueError(f"Invalid asset row in manifest line {idx}: {manifest_path}")
+        asset_ids.add(asset_id)
+    return asset_ids
+
+
+def _parametric_identity(result_meta: Dict[str, Any], asset_id_text: str, text_desc_text: str) -> Tuple[str, str]:
+    style_tags = result_meta.get("style_tags", []) or []
+    style_tag = str(style_tags[0]).strip() if style_tags else "default"
+    asset_kind = str(result_meta.get("asset_kind", "")).strip()
+    runtime_profile = str(result_meta.get("runtime_profile", "")).strip()
+    material_family = str(result_meta.get("material_family", "")).strip()
+
+    def _slug(value: str) -> str:
+        cleaned = "".join(ch.lower() if ch.isalnum() else "_" for ch in str(value).strip())
+        compact = "_".join(part for part in cleaned.split("_") if part)
+        return compact or "default"
+
+    def _auto_asset_id() -> str:
+        signature_payload = {
+            "asset_kind": str(result_meta.get("asset_kind", "")).strip().lower(),
+            "runtime_profile": str(result_meta.get("runtime_profile", "")).strip().lower(),
+            "material_family": str(result_meta.get("material_family", "")).strip().lower(),
+            "style_tags": [str(tag).strip().lower() for tag in result_meta.get("style_tags", []) or []],
+            "parameter_snapshot": dict(result_meta.get("parameter_snapshot", {}) or {}),
+        }
+        signature = hashlib.sha1(
+            json.dumps(signature_payload, sort_keys=True, ensure_ascii=True, separators=(",", ":")).encode("utf-8")
+        ).hexdigest()[:8]
+        tokens = [
+            _slug(asset_kind),
+            _slug(style_tag),
+            _slug(material_family) if material_family else "",
+            _slug(runtime_profile),
+            signature,
+        ]
+        return "_".join(token for token in tokens if token)
+
+    asset_id = str(asset_id_text).strip() or _auto_asset_id()
+    text_desc = str(text_desc_text).strip() or f"parametric {style_tag} {material_family} {asset_kind}".strip()
+    return asset_id, text_desc
+
+
+def _parametric_manifest_row(
+    *,
+    asset_id: str,
+    text_desc: str,
+    mesh_path: Path,
+    latent_path: Path,
+    result_meta: Dict[str, Any],
+) -> Dict[str, Any]:
+    bbox = result_meta.get("bbox", {}).get("size_xyz", [0.0, 0.0, 0.0])
+    return {
+        "asset_id": asset_id,
+        "category": str(result_meta.get("asset_kind", "")).strip(),
+        "text_desc": text_desc,
+        "mesh_path": str(mesh_path),
+        "latent_path": str(latent_path),
+        "source": "parametric_generated",
+        "generator_type": str(result_meta.get("generator_type", "parametric_v1")).strip(),
+        "runtime_profile": str(result_meta.get("runtime_profile", "")).strip(),
+        "style_tags": list(result_meta.get("style_tags", []) or []),
+        "material_family": str(result_meta.get("material_family", "")).strip(),
+        "parameter_snapshot": dict(result_meta.get("parameter_snapshot", {}) or {}),
+        "quality_metrics": dict(result_meta.get("quality_metrics", {}) or {}),
+        "frontage_width_m": float(bbox[0]) if len(bbox) >= 1 else 0.0,
+        "depth_m": float(bbox[2]) if len(bbox) >= 3 else 0.0,
+        "asset_role": "street_furniture",
+    }
+
+
+def preview_parametric_asset(
+    asset_kind: str,
+    runtime_profile: str,
+    device_backend: str,
+    preview_out_dir_text: str,
+    asset_id_text: str,
+    text_desc_text: str,
+    bench_width_m: float,
+    bench_depth_m: float,
+    bench_seat_height_m: float,
+    bench_backrest_height_m: float,
+    bench_backrest_angle_deg: float,
+    bench_leg_type: str,
+    bench_armrest_enabled: bool,
+    bench_slat_count: int,
+    bench_material_family: str,
+    bench_style_tag: str,
+    bench_detail_level: int,
+    lamp_pole_height_m: float,
+    lamp_pole_radius_m: float,
+    lamp_base_diameter_m: float,
+    lamp_arm_length_m: float,
+    lamp_luminaire_type: str,
+    lamp_single_or_double_arm: str,
+    lamp_light_direction: str,
+    lamp_material_family: str,
+    lamp_style_tag: str,
+    lamp_detail_level: int,
+) -> Tuple[str, str, str | None, List[str], Dict[str, Any] | None]:
+    try:
+        preview_out_dir = _to_path(preview_out_dir_text)
+        preview_out_dir.mkdir(parents=True, exist_ok=True)
+        kind = str(asset_kind).strip().lower()
+        if kind == "bench":
+            params = {
+                "width_m": float(bench_width_m),
+                "depth_m": float(bench_depth_m),
+                "seat_height_m": float(bench_seat_height_m),
+                "backrest_height_m": float(bench_backrest_height_m),
+                "backrest_angle_deg": float(bench_backrest_angle_deg),
+                "leg_type": str(bench_leg_type).strip(),
+                "armrest_enabled": bool(bench_armrest_enabled),
+                "slat_count": int(bench_slat_count),
+                "material_family": str(bench_material_family).strip(),
+                "style_tag": str(bench_style_tag).strip(),
+                "detail_level": int(bench_detail_level),
+            }
+        else:
+            params = {
+                "pole_height_m": float(lamp_pole_height_m),
+                "pole_radius_m": float(lamp_pole_radius_m),
+                "base_diameter_m": float(lamp_base_diameter_m),
+                "arm_length_m": float(lamp_arm_length_m),
+                "luminaire_type": str(lamp_luminaire_type).strip(),
+                "single_or_double_arm": str(lamp_single_or_double_arm).strip(),
+                "light_direction": str(lamp_light_direction).strip(),
+                "material_family": str(lamp_material_family).strip(),
+                "style_tag": str(lamp_style_tag).strip(),
+                "detail_level": int(lamp_detail_level),
+            }
+        result = generate_parametric_asset(
+            {
+                "asset_kind": kind,
+                "runtime_profile": str(runtime_profile).strip().lower(),
+                "device_backend": str(device_backend).strip().lower() or "auto",
+                "params": params,
+            }
+        )
+        result_meta = result.to_metadata()
+        asset_id, text_desc = _parametric_identity(result_meta, asset_id_text, text_desc_text)
+        mesh_path = preview_out_dir / f"{asset_id}.glb"
+        result_json_path = preview_out_dir / f"{asset_id}.result.json"
+        latent_path = preview_out_dir / f"{asset_id}.pt"
+        result.mesh.export(str(mesh_path))
+        latent_warning = _write_preview_placeholder_latent(latent_path, mesh_path)
+        if latent_warning:
+            warnings_list = list(result_meta.get("warnings", []) or [])
+            warnings_list.append(latent_warning)
+            result_meta["warnings"] = warnings_list
+        result_meta["asset_id"] = asset_id
+        result_meta["text_desc"] = text_desc
+        result_meta["mesh_path"] = str(mesh_path)
+        result_meta["latent_path"] = str(latent_path)
+        result_json_path.write_text(json.dumps(result_meta, indent=2, ensure_ascii=True), encoding="utf-8")
+        manifest_row = _parametric_manifest_row(
+            asset_id=asset_id,
+            text_desc=text_desc,
+            mesh_path=mesh_path,
+            latent_path=latent_path,
+            result_meta=result_meta,
+        )
+        preview_state = {
+            "asset_id": asset_id,
+            "text_desc": text_desc,
+            "category": manifest_row["category"],
+            "mesh_path": str(mesh_path),
+            "result_json_path": str(result_json_path),
+            "latent_path": str(latent_path),
+            "manifest_row": manifest_row,
+        }
+        status = (
+            "Parametric preview ready.\n"
+            f"- asset_id: {asset_id}\n"
+            f"- category: {manifest_row['category']}\n"
+            f"- runtime_profile: {result.runtime_profile}\n"
+            f"- device_backend: {result.resolved_device_backend}\n"
+            f"- face_count: {result.quality_metrics.face_count}\n"
+            f"- result_json: {result_json_path}"
+        )
+        return status, json.dumps(result_meta, indent=2, ensure_ascii=True), str(mesh_path), [str(mesh_path), str(result_json_path), str(latent_path)], preview_state
+    except Exception as exc:
+        detail = traceback.format_exc(limit=3)
+        return f"Parametric preview failed: {exc}\n{detail}", json.dumps({"error": str(exc)}, indent=2, ensure_ascii=True), None, [], None
+
+
+def append_parametric_asset_to_manifest(
+    preview_state: Dict[str, Any] | None,
+    real_manifest_text: str,
+) -> Tuple[str, List[List[str]], str]:
+    try:
+        if not preview_state:
+            raise ValueError("No preview asset available. Generate Preview before appending to manifest.")
+        manifest_row = dict(preview_state.get("manifest_row", {}) or {})
+        asset_id = str(preview_state.get("asset_id", "")).strip()
+        if not asset_id or not manifest_row:
+            raise ValueError("Preview state is incomplete. Regenerate the preview before appending.")
+        manifest_path = _to_path(real_manifest_text)
+        manifest_path.parent.mkdir(parents=True, exist_ok=True)
+        existing_ids = _load_manifest_asset_ids(manifest_path)
+        if asset_id in existing_ids:
+            raise ValueError(f"Asset '{asset_id}' already exists in manifest: {manifest_path}")
+        with manifest_path.open("a", encoding="utf-8") as handle:
+            handle.write(json.dumps(manifest_row, ensure_ascii=True) + "\n")
+        table, stats_json = browse_asset_library(str(manifest_path), "")
+        status = (
+            "Parametric asset appended to manifest.\n"
+            f"- asset_id: {asset_id}\n"
+            f"- manifest: {manifest_path}"
+        )
+        return status, table, stats_json
+    except Exception as exc:
+        table, stats_json = browse_asset_library(real_manifest_text, "")
+        return f"Append to manifest failed: {exc}", table, stats_json
 
 
 def _write_assets_jsonl(rows: List[Dict[str, str]], out_path: Path) -> Path:
@@ -1503,23 +1764,23 @@ def run_query_pipeline(
 
 
 def run_street_compose(
-    dataset_profile: str,
-    query: str,
-    real_manifest_text: str,
-    artifacts_dir_text: str,
-    model_name: str,
-    model_dir_text: str,
-    local_files_only: bool,
-    device: str,
-    street_length_m: float,
-    street_road_width_m: float,
-    street_sidewalk_width_m: float,
-    street_lane_count: int,
-    street_density: float,
-    street_seed: int,
-    street_topk_per_category: int,
-    street_max_trials_per_slot: int,
-    export_format: str,
+    dataset_profile: str = "real",
+    query: str = "",
+    real_manifest_text: str = "",
+    artifacts_dir_text: str = "",
+    model_name: str = "openai/clip-vit-base-patch32",
+    model_dir_text: str = "",
+    local_files_only: bool = True,
+    device: str = "auto",
+    street_length_m: float = 80.0,
+    street_road_width_m: float = 8.0,
+    street_sidewalk_width_m: float = 2.5,
+    street_lane_count: int = 2,
+    street_density: float = 1.0,
+    street_seed: int = 42,
+    street_topk_per_category: int = 20,
+    street_max_trials_per_slot: int = 30,
+    export_format: str = "both",
     street_placement_policy: str = "rule",
     policy_ckpt_text: str = "",
     policy_temperature: float = 0.12,
@@ -1544,7 +1805,7 @@ def run_street_compose(
     style_preset: str = "civic_clean_v1",
     beauty_mode: str = "presentation_v1",
     render_preset: str = "jury_default_v1",
-    asset_curation_mode: str = "curated_first",
+    asset_curation_mode: str = "parametric_first",
     enable_surrounding_buildings: bool = True,
     building_search_topk: int = 5,
     theme_inference_mode: str = "deterministic_auto",
@@ -1660,6 +1921,15 @@ def run_street_compose(
         layout_json_text = layout_path.read_text(encoding="utf-8")
         layout_payload = json.loads(layout_json_text)
         layout_summary = layout_payload.get("summary", {})
+        manifest_generator_types: Dict[str, str] = {}
+        if manifest_path.exists():
+            try:
+                manifest_generator_types = {
+                    str(row.get("asset_id", "")): str(row.get("generator_type", ""))
+                    for row in _load_asset_library_rows(manifest_path)
+                }
+            except Exception:
+                manifest_generator_types = {}
         instance_rows = [
             [
                 placement.instance_id,
@@ -1670,6 +1940,10 @@ def run_street_compose(
                 f"{placement.position_xyz[2]:.3f}",
                 f"{placement.yaw_deg:.2f}",
                 placement.selection_source,
+                manifest_generator_types.get(
+                    placement.asset_id,
+                    "procedural_fallback" if placement.selection_source == "procedural_fallback" else "",
+                ),
             ]
             for placement in result.placements
         ]
@@ -1683,6 +1957,8 @@ def run_street_compose(
             f"- layout_solver_used: {result.outputs.get('layout_solver_used', layout_solver)}\n"
             f"- cross_section_type: {layout_summary.get('cross_section_type', '')}\n"
             f"- style_preset: {layout_summary.get('style_preset', style_preset)}\n"
+            f"- asset_curation_mode: {layout_summary.get('asset_curation_mode', asset_curation_mode)}\n"
+            f"- parametric_instance_count: {int(layout_summary.get('parametric_instance_count', 0) or 0)}\n"
             f"- presentation_score: {float(layout_summary.get('presentation_score', 0.0) or 0.0):.3f}\n"
             f"- scene_layout: {result.outputs.get('scene_layout', '')}"
         )
@@ -2114,25 +2390,25 @@ def _render_scene_graph_from_controls(
 
 
 def run_best_model_street(
-    dataset_profile: str,
-    query: str,
-    real_manifest_text: str,
-    artifacts_dir_text: str,
-    model_name: str,
-    model_dir_text: str,
-    local_files_only: bool,
-    device: str,
-    street_length_m: float,
-    street_road_width_m: float,
-    street_sidewalk_width_m: float,
-    street_lane_count: int,
-    street_density: float,
-    street_seed: int,
-    street_topk_per_category: int,
-    street_max_trials_per_slot: int,
-    export_format: str,
-    policy_ckpt_text: str,
-    policy_temperature: float,
+    dataset_profile: str = "real",
+    query: str = "",
+    real_manifest_text: str = "",
+    artifacts_dir_text: str = "",
+    model_name: str = "openai/clip-vit-base-patch32",
+    model_dir_text: str = "",
+    local_files_only: bool = True,
+    device: str = "auto",
+    street_length_m: float = 80.0,
+    street_road_width_m: float = 8.0,
+    street_sidewalk_width_m: float = 2.5,
+    street_lane_count: int = 2,
+    street_density: float = 1.0,
+    street_seed: int = 42,
+    street_topk_per_category: int = 20,
+    street_max_trials_per_slot: int = 30,
+    export_format: str = "both",
+    policy_ckpt_text: str = "",
+    policy_temperature: float = 0.12,
     m5_layout_mode: str = "template",
     m5_constraint_mode: str = "soft",
     m5_constraint_weight: float = 0.45,
@@ -2155,7 +2431,7 @@ def run_best_model_street(
     style_preset: str = "civic_clean_v1",
     beauty_mode: str = "presentation_v1",
     render_preset: str = "jury_default_v1",
-    asset_curation_mode: str = "curated_first",
+    asset_curation_mode: str = "parametric_first",
     enable_surrounding_buildings: bool = True,
     building_search_topk: int = 5,
     theme_inference_mode: str = "deterministic_auto",
@@ -2951,6 +3227,7 @@ def build_demo() -> gr.Blocks:
     default_policy_ckpt = str((ROOT / "artifacts/m4/layout_policy.pt").resolve())
     default_program_ckpt = str((ROOT / "artifacts/m6/program_generator.pt").resolve())
     default_osm_cache_dir = str((ROOT / "artifacts/m5/osm_cache").resolve())
+    default_parametric_preview_dir = str((ROOT / "artifacts/real/parametric_preview").resolve())
 
     with gr.Blocks(title="RoadGen3D POI-Driven Street Workbench") as demo:
         gr.Markdown("# RoadGen3D POI驱动街道生成工作台")
@@ -2972,7 +3249,7 @@ def build_demo() -> gr.Blocks:
                     dataset_profile = gr.Dropdown(label="数据源", choices=["real", "mock"], value="real")
                     model_name = gr.Textbox(label="CLIP Model", value="openai/clip-vit-base-patch32")
                     local_files_only = gr.Checkbox(label="Local Files Only", value=True)
-                    device = gr.Dropdown(label="Device", choices=["cpu", "mps", "cuda"], value="cpu")
+                    device = gr.Dropdown(label="Device", choices=["auto", "cpu", "mps", "cuda"], value="auto")
                 with gr.Row():
                     real_manifest = gr.Textbox(label="Manifest", value=default_real_manifest)
                     artifacts_dir = gr.Textbox(label="Artifacts Dir", value=default_artifacts)
@@ -3017,6 +3294,54 @@ def build_demo() -> gr.Blocks:
                         col_count=(9, "fixed"),
                         label="Asset Library Browser",
                     )
+                with gr.Accordion("Parametric Asset Preview", open=False):
+                    parametric_preview_state = gr.State(value=None)
+                    with gr.Row():
+                        parametric_asset_kind = gr.Dropdown(label="Asset Kind", choices=["bench", "lamp"], value="bench")
+                        parametric_runtime_profile = gr.Dropdown(label="Runtime Profile", choices=["preview", "production"], value="preview")
+                        parametric_device_backend = gr.Dropdown(label="Device Backend", choices=["auto", "cpu", "mps", "cuda"], value="auto")
+                    with gr.Row():
+                        parametric_preview_out_dir = gr.Textbox(label="Preview Out Dir", value=default_parametric_preview_dir)
+                        parametric_asset_id = gr.Textbox(label="Asset ID", value="")
+                        parametric_text_desc = gr.Textbox(label="Text Desc", value="")
+                    with gr.Group(visible=True) as parametric_bench_group:
+                        with gr.Row():
+                            bench_width_m = gr.Number(label="Bench Width (m)", value=1.80)
+                            bench_depth_m = gr.Number(label="Bench Depth (m)", value=0.55)
+                            bench_seat_height_m = gr.Number(label="Bench Seat Height (m)", value=0.45)
+                            bench_backrest_height_m = gr.Number(label="Bench Backrest Height (m)", value=0.35)
+                        with gr.Row():
+                            bench_backrest_angle_deg = gr.Number(label="Bench Backrest Angle (deg)", value=12.0)
+                            bench_leg_type = gr.Dropdown(label="Bench Leg Type", choices=["dual_frame", "pedestal", "four_leg"], value="dual_frame")
+                            bench_armrest_enabled = gr.Checkbox(label="Bench Armrest Enabled", value=False)
+                            bench_slat_count = gr.Slider(label="Bench Slat Count", minimum=3, maximum=8, step=1, value=5)
+                        with gr.Row():
+                            bench_material_family = gr.Dropdown(label="Bench Material Family", choices=["metal", "wood", "metal_wood", "concrete"], value="metal_wood")
+                            bench_style_tag = gr.Dropdown(label="Bench Style Tag", choices=_PARAMETRIC_STYLE_CHOICES, value="modern")
+                            bench_detail_level = gr.Slider(label="Bench Detail Level", minimum=0, maximum=3, step=1, value=2)
+                    with gr.Group(visible=False) as parametric_lamp_group:
+                        with gr.Row():
+                            lamp_pole_height_m = gr.Number(label="Lamp Pole Height (m)", value=5.00)
+                            lamp_pole_radius_m = gr.Number(label="Lamp Pole Radius (m)", value=0.06)
+                            lamp_base_diameter_m = gr.Number(label="Lamp Base Diameter (m)", value=0.35)
+                            lamp_arm_length_m = gr.Number(label="Lamp Arm Length (m)", value=0.80)
+                        with gr.Row():
+                            lamp_luminaire_type = gr.Dropdown(label="Lamp Luminaire Type", choices=["flat_led", "globe", "box", "cone"], value="flat_led")
+                            lamp_single_or_double_arm = gr.Dropdown(label="Lamp Single Or Double Arm", choices=["single", "double"], value="single")
+                            lamp_light_direction = gr.Dropdown(label="Lamp Light Direction", choices=["roadside", "bidirectional", "downward"], value="roadside")
+                        with gr.Row():
+                            lamp_material_family = gr.Dropdown(label="Lamp Material Family", choices=["metal", "painted_steel", "cast_iron"], value="metal")
+                            lamp_style_tag = gr.Dropdown(label="Lamp Style Tag", choices=_PARAMETRIC_STYLE_CHOICES, value="modern")
+                            lamp_detail_level = gr.Slider(label="Lamp Detail Level", minimum=0, maximum=3, step=1, value=2)
+                    with gr.Row():
+                        parametric_preview_btn = gr.Button("Generate Preview", variant="primary")
+                        parametric_append_btn = gr.Button("Append To Manifest")
+                    with gr.Row():
+                        parametric_model_view = gr.Model3D(label="Parametric Preview (GLB)")
+                        parametric_status = gr.Textbox(label="Parametric Status", lines=7)
+                    with gr.Row():
+                        parametric_result_json = gr.Code(label="Parametric Result JSON", language="json")
+                        parametric_downloads = gr.Files(label="Parametric Downloads")
                 with gr.Accordion("Advanced", open=False):
                     with gr.Row():
                         data_dir = gr.Textbox(label="Mock Data Dir", value=default_data)
@@ -3154,8 +3479,8 @@ def build_demo() -> gr.Blocks:
                         )
                         asset_curation_mode = gr.Dropdown(
                             label="Asset Curation",
-                            choices=["curated_first", "legacy"],
-                            value="curated_first",
+                            choices=["parametric_first", "curated_first", "legacy"],
+                            value="parametric_first",
                         )
                     with gr.Row():
                         enable_surrounding_buildings = gr.Checkbox(label="Enable Surrounding Buildings", value=True)
@@ -3177,10 +3502,10 @@ def build_demo() -> gr.Blocks:
                         )
                 with gr.Accordion("Scene Details", open=False):
                     street_instances = gr.Dataframe(
-                        headers=["instance_id", "asset_id", "category", "score", "x", "z", "yaw_deg", "source"],
-                        datatype=["str", "str", "str", "str", "str", "str", "str", "str"],
+                        headers=["instance_id", "asset_id", "category", "score", "x", "z", "yaw_deg", "source", "generator_type"],
+                        datatype=["str", "str", "str", "str", "str", "str", "str", "str", "str"],
                         row_count=(0, "dynamic"),
-                        col_count=(8, "fixed"),
+                        col_count=(9, "fixed"),
                         label="Street Instances",
                     )
                     street_layout_json = gr.Code(label="Street Layout JSON", language="json")
@@ -3395,6 +3720,55 @@ def build_demo() -> gr.Blocks:
             fn=browse_asset_library,
             inputs=[real_manifest, asset_library_search],
             outputs=[asset_library_table, asset_library_stats],
+        )
+        parametric_asset_kind.change(
+            fn=_toggle_parametric_controls,
+            inputs=[parametric_asset_kind],
+            outputs=[parametric_bench_group, parametric_lamp_group],
+        )
+        parametric_preview_btn.click(
+            fn=preview_parametric_asset,
+            inputs=[
+                parametric_asset_kind,
+                parametric_runtime_profile,
+                parametric_device_backend,
+                parametric_preview_out_dir,
+                parametric_asset_id,
+                parametric_text_desc,
+                bench_width_m,
+                bench_depth_m,
+                bench_seat_height_m,
+                bench_backrest_height_m,
+                bench_backrest_angle_deg,
+                bench_leg_type,
+                bench_armrest_enabled,
+                bench_slat_count,
+                bench_material_family,
+                bench_style_tag,
+                bench_detail_level,
+                lamp_pole_height_m,
+                lamp_pole_radius_m,
+                lamp_base_diameter_m,
+                lamp_arm_length_m,
+                lamp_luminaire_type,
+                lamp_single_or_double_arm,
+                lamp_light_direction,
+                lamp_material_family,
+                lamp_style_tag,
+                lamp_detail_level,
+            ],
+            outputs=[
+                parametric_status,
+                parametric_result_json,
+                parametric_model_view,
+                parametric_downloads,
+                parametric_preview_state,
+            ],
+        )
+        parametric_append_btn.click(
+            fn=append_parametric_asset_to_manifest,
+            inputs=[parametric_preview_state, real_manifest],
+            outputs=[parametric_status, asset_library_table, asset_library_stats],
         )
         street_btn.click(
             fn=run_street_compose,

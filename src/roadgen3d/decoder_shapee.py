@@ -9,6 +9,7 @@ import numpy as np
 import warnings
 
 from .decoder import PlaceholderVoxelDecoder
+from .runtime_device import resolve_device_backend, resolve_torch_device
 
 
 class ShapeEDecoderError(RuntimeError):
@@ -44,7 +45,7 @@ class ShapeEDecoder:
         self,
         resolution: int = 64,
         threshold: float = 0.5,
-        device: str = "cpu",
+        device: str = "auto",
         model_dir: Optional[Path] = None,
         strict: bool = False,
         fallback_decoder: Optional[PlaceholderVoxelDecoder] = None,
@@ -55,7 +56,7 @@ class ShapeEDecoder:
             raise ValueError("threshold must be in (0, 1)")
         self.resolution = int(resolution)
         self.threshold = float(threshold)
-        self.device = device
+        self.device = resolve_device_backend(device)
         self.model_dir = Path(model_dir).resolve() if model_dir else None
         self.strict = bool(strict)
         self.fallback_decoder = fallback_decoder
@@ -152,11 +153,11 @@ class ShapeEDecoder:
                     message=r"`torch\.cuda\.amp\.custom_(fwd|bwd)\(args\.\.\.\)` is deprecated\.",
                     category=FutureWarning,
                 )
-                xm = load_model("transmitter", device=torch.device(self.device), **load_kwargs)
+                xm = load_model("transmitter", device=resolve_torch_device(self.device), **load_kwargs)
             self._shapee_cache = {"xm": xm}
         xm = self._shapee_cache["xm"]
         try:
-            latent_tensor = torch.as_tensor(latent, dtype=torch.float32, device=torch.device(self.device))
+            latent_tensor = torch.as_tensor(latent, dtype=torch.float32, device=resolve_torch_device(self.device))
             # Accept [N], [1, N], or higher-rank latent tensors by flattening to vector.
             latent_vector = latent_tensor.reshape(-1)
             latent_ctx = int(getattr(xm.encoder, "latent_ctx", 0) or 0)

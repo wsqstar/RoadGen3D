@@ -252,6 +252,24 @@ def _assert_no_overlap(bboxes: list[list[float]]) -> None:
             assert not intersects, f"overlap found between {i} and {j}: {a} vs {b}"
 
 
+def _asset_row(
+    asset_id: str,
+    category: str,
+    *,
+    generator_type: str = "",
+    source: str = "procedural_generated",
+) -> dict[str, object]:
+    return {
+        "asset_id": asset_id,
+        "category": category,
+        "text_desc": f"{asset_id} desc",
+        "mesh_path": "",
+        "latent_path": "",
+        "generator_type": generator_type,
+        "source": source,
+    }
+
+
 def test_street_compose_outputs_created(tmp_path: Path, monkeypatch):
     pytest.importorskip("trimesh")
     rows = _build_real_rows(tmp_path / "data")
@@ -456,11 +474,28 @@ def test_street_compose_gradio_callback_returns_model_path(tmp_path: Path, monke
             },
         )
 
+    manifest_path = tmp_path / "real_assets_manifest.jsonl"
+    manifest_path.write_text(
+        json.dumps(
+            {
+                "asset_id": "bench_01",
+                "category": "bench",
+                "text_desc": "test bench",
+                "latent_path": str(tmp_path / "latents" / "bench_01.pt"),
+                "source": "parametric_generated",
+                "generator_type": "parametric_v1",
+            },
+            ensure_ascii=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
     monkeypatch.setattr(app, "compose_street_scene", fake_compose)
     summary, rows, layout_json, model_path, files = app.run_street_compose(
         dataset_profile="real",
         query="urban street",
-        real_manifest_text=str(tmp_path / "real_assets_manifest.jsonl"),
+        real_manifest_text=str(manifest_path),
         artifacts_dir_text=str(tmp_path),
         model_name="openai/clip-vit-base-patch32",
         model_dir_text="",
@@ -479,8 +514,163 @@ def test_street_compose_gradio_callback_returns_model_path(tmp_path: Path, monke
     assert "Street compose done" in summary
     assert model_path and model_path.endswith("scene.glb")
     assert rows and rows[0][0] == "inst_0001"
+    assert rows[0][-1] == "parametric_v1"
     assert layout_json
     assert any(str(path).endswith("scene_layout.json") for path in files)
+
+
+def test_pick_category_candidate_parametric_first_prefers_parametric_bench(monkeypatch):
+    asset_by_id = {
+        "bench_legacy": _asset_row("bench_legacy", "bench", source="procedural_generated"),
+        "bench_param": _asset_row("bench_param", "bench", generator_type="parametric_v1", source="parametric_generated"),
+    }
+    hits = [
+        RetrievalHit(asset_id="bench_legacy", score=0.95),
+        RetrievalHit(asset_id="bench_param", score=0.85),
+    ]
+    monkeypatch.setattr(street_layout, "_softmax_weights", lambda scores, temperature: [1.0] + [0.0] * (len(scores) - 1))
+
+    row, score, source = street_layout._pick_category_candidate(
+        query="street",
+        category="bench",
+        topk=2,
+        embedder=_UnitFakeEmbedder(),
+        index_store=_UnitFakeIndexStore(hits),
+        asset_by_id=asset_by_id,
+        category_pool=list(asset_by_id.values()),
+        used_asset_ids=set(),
+        rng=random.Random(0),
+        config=StreetComposeConfig(
+            query="street",
+            length_m=60.0,
+            road_width_m=8.0,
+            sidewalk_width_m=2.5,
+            lane_count=2,
+            density=1.0,
+            seed=0,
+            topk_per_category=2,
+            max_trials_per_slot=5,
+            asset_curation_mode="parametric_first",
+        ),
+    )
+
+    assert row["asset_id"] == "bench_param"
+    assert score > 0.85
+    assert source == "faiss_softmax"
+
+
+def test_pick_category_candidate_legacy_prefers_non_parametric_bench(monkeypatch):
+    asset_by_id = {
+        "bench_param": _asset_row("bench_param", "bench", generator_type="parametric_v1", source="parametric_generated"),
+        "bench_legacy": _asset_row("bench_legacy", "bench", source="procedural_generated"),
+    }
+    hits = [
+        RetrievalHit(asset_id="bench_param", score=0.95),
+        RetrievalHit(asset_id="bench_legacy", score=0.85),
+    ]
+    monkeypatch.setattr(street_layout, "_softmax_weights", lambda scores, temperature: [1.0] + [0.0] * (len(scores) - 1))
+
+    row, score, source = street_layout._pick_category_candidate(
+        query="street",
+        category="bench",
+        topk=2,
+        embedder=_UnitFakeEmbedder(),
+        index_store=_UnitFakeIndexStore(hits),
+        asset_by_id=asset_by_id,
+        category_pool=list(asset_by_id.values()),
+        used_asset_ids=set(),
+        rng=random.Random(0),
+        config=StreetComposeConfig(
+            query="street",
+            length_m=60.0,
+            road_width_m=8.0,
+            sidewalk_width_m=2.5,
+            lane_count=2,
+            density=1.0,
+            seed=0,
+            topk_per_category=2,
+            max_trials_per_slot=5,
+            asset_curation_mode="legacy",
+        ),
+    )
+
+    assert row["asset_id"] == "bench_legacy"
+    assert score > 0.85
+    assert source == "faiss_softmax"
+
+
+def test_pick_category_candidate_legacy_falls_back_when_only_parametric_exists(monkeypatch):
+    asset_by_id = {
+        "lamp_param": _asset_row("lamp_param", "lamp", generator_type="parametric_v1", source="parametric_generated"),
+    }
+    hits = [RetrievalHit(asset_id="lamp_param", score=0.91)]
+    monkeypatch.setattr(street_layout, "_softmax_weights", lambda scores, temperature: [1.0])
+
+    row, score, source = street_layout._pick_category_candidate(
+        query="street",
+        category="lamp",
+        topk=1,
+        embedder=_UnitFakeEmbedder(),
+        index_store=_UnitFakeIndexStore(hits),
+        asset_by_id=asset_by_id,
+        category_pool=list(asset_by_id.values()),
+        used_asset_ids=set(),
+        rng=random.Random(0),
+        config=StreetComposeConfig(
+            query="street",
+            length_m=60.0,
+            road_width_m=8.0,
+            sidewalk_width_m=2.5,
+            lane_count=2,
+            density=1.0,
+            seed=0,
+            topk_per_category=1,
+            max_trials_per_slot=5,
+            asset_curation_mode="legacy",
+        ),
+    )
+
+    assert row["asset_id"] == "lamp_param"
+    assert score > 0.91
+    assert source == "faiss_softmax"
+
+
+def test_pick_category_candidate_parametric_first_does_not_override_non_priority_categories(monkeypatch):
+    asset_by_id = {
+        "tree_legacy": _asset_row("tree_legacy", "tree", source="procedural_generated"),
+        "tree_param": _asset_row("tree_param", "tree", generator_type="parametric_v1", source="parametric_generated"),
+    }
+    hits = [
+        RetrievalHit(asset_id="tree_legacy", score=0.92),
+        RetrievalHit(asset_id="tree_param", score=0.88),
+    ]
+    monkeypatch.setattr(street_layout, "_softmax_weights", lambda scores, temperature: [1.0] + [0.0] * (len(scores) - 1))
+
+    row, _score, _source = street_layout._pick_category_candidate(
+        query="street",
+        category="tree",
+        topk=2,
+        embedder=_UnitFakeEmbedder(),
+        index_store=_UnitFakeIndexStore(hits),
+        asset_by_id=asset_by_id,
+        category_pool=list(asset_by_id.values()),
+        used_asset_ids=set(),
+        rng=random.Random(0),
+        config=StreetComposeConfig(
+            query="street",
+            length_m=60.0,
+            road_width_m=8.0,
+            sidewalk_width_m=2.5,
+            lane_count=2,
+            density=1.0,
+            seed=0,
+            topk_per_category=2,
+            max_trials_per_slot=5,
+            asset_curation_mode="parametric_first",
+        ),
+    )
+
+    assert row["asset_id"] == "tree_legacy"
 
 
 def test_run_street_compose_auto_selects_stable_poi_rich_road_by_seed(tmp_path: Path, monkeypatch):
@@ -1118,6 +1308,46 @@ def test_scene_layout_contains_diversity_metrics(tmp_path: Path, monkeypatch):
     assert 0.0 <= summary["diversity_ratio"] <= 1.0
     assert isinstance(summary["per_category_unique"], dict)
     assert isinstance(summary["selection_source_counts"], dict)
+
+
+def test_scene_layout_contains_parametric_provenance_counts(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    rows = _build_real_rows(tmp_path / "data")
+    rows[0]["generator_type"] = "parametric_v1"
+    rows[0]["source"] = "parametric_generated"
+    rows[1]["generator_type"] = "parametric_v1"
+    rows[1]["source"] = "parametric_generated"
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+
+    result = compose_street_scene(
+        config=StreetComposeConfig(
+            query="modern clean urban street",
+            length_m=60.0,
+            road_width_m=8.0,
+            sidewalk_width_m=2.5,
+            lane_count=2,
+            density=1.0,
+            seed=42,
+            topk_per_category=20,
+            max_trials_per_slot=30,
+            asset_curation_mode="parametric_first",
+        ),
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+    payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    summary = payload["summary"]
+
+    assert summary["asset_curation_mode"] == "parametric_first"
+    assert "asset_generator_type_counts" in summary
+    assert int(summary["parametric_instance_count"]) == int(summary["asset_generator_type_counts"].get("parametric", 0))
+    assert int(summary["parametric_instance_count"]) >= 1
 
 
 def test_scene_layout_contains_presentation_views_and_metrics(tmp_path: Path, monkeypatch):

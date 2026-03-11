@@ -11,6 +11,7 @@ from typing import Callable, Dict, List, Optional, Sequence, Tuple
 import numpy as np
 
 from .layout_features import DEFAULT_POLICY_INPUT_DIM
+from .runtime_device import resolve_device_backend, resolve_torch_device
 
 try:
     import torch
@@ -28,7 +29,7 @@ class PolicyTrainConfig:
     weight_decay: float = 1e-4
     entropy_weight: float = 0.01
     patience: int = 3
-    device: str = "cpu"
+    device: str = "auto"
     reward_weight: float = 0.0  # >0 enables reward-weighted CE
 
 
@@ -62,12 +63,12 @@ class LayoutPolicyMLP(nn.Module if nn is not None else object):
 class LayoutPolicyRuntime:
     """Runtime scorer for learned layout policy checkpoints."""
 
-    def __init__(self, model: LayoutPolicyMLP, device: str = "cpu") -> None:
+    def __init__(self, model: LayoutPolicyMLP, device: str = "auto") -> None:
         self.model = model
-        self.device = device
+        self.device = resolve_device_backend(device)
 
     @classmethod
-    def from_checkpoint(cls, ckpt_path: Path, device: str = "cpu") -> "LayoutPolicyRuntime":
+    def from_checkpoint(cls, ckpt_path: Path, device: str = "auto") -> "LayoutPolicyRuntime":
         if torch is None:
             raise RuntimeError("torch is required for learned layout policy runtime")
         ckpt_path = Path(ckpt_path).resolve()
@@ -92,7 +93,7 @@ class LayoutPolicyRuntime:
         state_dict = payload.get("state_dict", payload)
         model.load_state_dict(state_dict)
         model.eval()
-        model.to(torch.device(device))
+        model.to(resolve_torch_device(device))
         return cls(model=model, device=device)
 
     def score_candidates(self, features: np.ndarray) -> np.ndarray:
@@ -178,7 +179,7 @@ def train_layout_policy(
     out_dir = Path(out_dir).resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    device = torch.device(config.device)
+    device = resolve_torch_device(config.device)
     model = LayoutPolicyMLP(input_dim=DEFAULT_POLICY_INPUT_DIM).to(device)
     resumed_from = ""
     if resume_checkpoint is not None:

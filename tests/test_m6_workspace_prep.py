@@ -234,6 +234,191 @@ def test_build_demo_exposes_surrounding_building_mode_control():
     assert "Surrounding Building Mode" in labels
 
 
+def test_build_demo_exposes_parametric_asset_preview_controls():
+    pytest.importorskip("gradio")
+
+    demo = app.build_demo()
+    config = demo.get_config_file()
+    labels = [
+        component.get("props", {}).get("label")
+        for component in config["components"]
+        if component.get("props", {}).get("label")
+    ]
+
+    assert "Parametric Preview (GLB)" in labels
+    assert "Parametric Result JSON" in labels
+    assert "Bench Width (m)" in labels
+    assert "Lamp Pole Height (m)" in labels
+
+
+def test_build_demo_defaults_device_to_auto_and_street_curation_to_parametric_first():
+    pytest.importorskip("gradio")
+
+    demo = app.build_demo()
+    config = demo.get_config_file()
+    by_label = {
+        component.get("props", {}).get("label"): component.get("props", {})
+        for component in config["components"]
+        if component.get("props", {}).get("label")
+    }
+
+    assert by_label["Device"]["value"] == "auto"
+    assert ("auto", "auto") in by_label["Device"]["choices"]
+    assert by_label["Asset Curation"]["value"] == "parametric_first"
+    assert ("parametric_first", "parametric_first") in by_label["Asset Curation"]["choices"]
+    assert "generator_type" in by_label["Street Instances"]["headers"]
+
+
+def test_parametric_identity_uses_parameter_hash_for_auto_asset_id():
+    base_meta = {
+        "asset_kind": "lamp",
+        "runtime_profile": "preview",
+        "material_family": "metal",
+        "style_tags": ["modern"],
+        "parameter_snapshot": {
+            "pole_height_m": 5.0,
+            "arm_length_m": 0.8,
+            "detail_level": 1,
+        },
+    }
+
+    asset_id_a, _text_desc_a = app._parametric_identity(base_meta, "", "")
+    asset_id_b, _text_desc_b = app._parametric_identity(
+        {
+            **base_meta,
+            "parameter_snapshot": {
+                "pole_height_m": 5.0,
+                "arm_length_m": 1.2,
+                "detail_level": 1,
+            },
+        },
+        "",
+        "",
+    )
+    manual_asset_id, _manual_text_desc = app._parametric_identity(base_meta, "custom_lamp_asset", "")
+
+    assert asset_id_a.startswith("lamp_modern_metal_preview_")
+    assert len(asset_id_a.rsplit("_", 1)[-1]) == 8
+    assert asset_id_a != asset_id_b
+    assert manual_asset_id == "custom_lamp_asset"
+
+
+def test_preview_parametric_asset_generates_files_and_state(tmp_path: Path):
+    pytest.importorskip("trimesh")
+
+    status, result_json, model_path, files, preview_state = app.preview_parametric_asset(
+        asset_kind="bench",
+        runtime_profile="production",
+        device_backend="auto",
+        preview_out_dir_text=str(tmp_path / "preview"),
+        asset_id_text="bench_preview",
+        text_desc_text="preview bench",
+        bench_width_m=1.8,
+        bench_depth_m=0.55,
+        bench_seat_height_m=0.45,
+        bench_backrest_height_m=0.35,
+        bench_backrest_angle_deg=12.0,
+        bench_leg_type="dual_frame",
+        bench_armrest_enabled=False,
+        bench_slat_count=5,
+        bench_material_family="metal_wood",
+        bench_style_tag="modern",
+        bench_detail_level=2,
+        lamp_pole_height_m=5.0,
+        lamp_pole_radius_m=0.06,
+        lamp_base_diameter_m=0.35,
+        lamp_arm_length_m=0.8,
+        lamp_luminaire_type="flat_led",
+        lamp_single_or_double_arm="single",
+        lamp_light_direction="roadside",
+        lamp_material_family="metal",
+        lamp_style_tag="modern",
+        lamp_detail_level=2,
+    )
+
+    assert "Parametric preview ready" in status
+    payload = json.loads(result_json)
+    assert payload["asset_id"] == "bench_preview"
+    assert payload["quality_metrics"]["meets_min_faces"] is True
+    assert model_path and Path(model_path).exists()
+    assert len(files) == 3
+    assert preview_state is not None
+    assert preview_state["asset_id"] == "bench_preview"
+    assert Path(preview_state["result_json_path"]).exists()
+    assert Path(preview_state["latent_path"]).exists()
+
+
+def test_append_parametric_asset_to_manifest_refreshes_library(tmp_path: Path):
+    pytest.importorskip("trimesh")
+
+    manifest = tmp_path / "real_assets_manifest.jsonl"
+    latent_path = tmp_path / "latents" / "bench_01.pt"
+    latent_path.parent.mkdir(parents=True, exist_ok=True)
+    latent_path.write_bytes(b"latent")
+    _write_real_manifest(manifest, latent_path)
+
+    _status, _result_json, _model_path, _files, preview_state = app.preview_parametric_asset(
+        asset_kind="lamp",
+        runtime_profile="preview",
+        device_backend="auto",
+        preview_out_dir_text=str(tmp_path / "preview"),
+        asset_id_text="lamp_preview",
+        text_desc_text="",
+        bench_width_m=1.8,
+        bench_depth_m=0.55,
+        bench_seat_height_m=0.45,
+        bench_backrest_height_m=0.35,
+        bench_backrest_angle_deg=12.0,
+        bench_leg_type="dual_frame",
+        bench_armrest_enabled=False,
+        bench_slat_count=5,
+        bench_material_family="metal_wood",
+        bench_style_tag="modern",
+        bench_detail_level=2,
+        lamp_pole_height_m=5.0,
+        lamp_pole_radius_m=0.06,
+        lamp_base_diameter_m=0.35,
+        lamp_arm_length_m=0.8,
+        lamp_luminaire_type="flat_led",
+        lamp_single_or_double_arm="single",
+        lamp_light_direction="roadside",
+        lamp_material_family="metal",
+        lamp_style_tag="modern",
+        lamp_detail_level=1,
+    )
+
+    status, table, stats_json = app.append_parametric_asset_to_manifest(preview_state, str(manifest))
+    stats = json.loads(stats_json)
+
+    assert "Parametric asset appended to manifest" in status
+    assert any(row[0] == "lamp_preview" for row in table)
+    assert stats["asset_count"] == 2
+
+
+def test_append_parametric_asset_rejects_duplicate_asset_id(tmp_path: Path):
+    pytest.importorskip("trimesh")
+
+    manifest = tmp_path / "real_assets_manifest.jsonl"
+    latent_path = tmp_path / "latents" / "bench_01.pt"
+    latent_path.parent.mkdir(parents=True, exist_ok=True)
+    latent_path.write_bytes(b"latent")
+    _write_real_manifest(manifest, latent_path)
+
+    preview_state = {
+        "asset_id": "bench_01",
+        "manifest_row": {
+            "asset_id": "bench_01",
+            "category": "bench",
+            "text_desc": "duplicate bench",
+            "mesh_path": str(tmp_path / "bench_01.glb"),
+            "latent_path": str(tmp_path / "bench_01.pt"),
+        },
+    }
+
+    status, _table, _stats_json = app.append_parametric_asset_to_manifest(preview_state, str(manifest))
+    assert "already exists" in status
+
+
 def test_render_zoning_preview_returns_figure():
     pytest.importorskip("matplotlib")
 

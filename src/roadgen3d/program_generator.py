@@ -12,6 +12,7 @@ from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 import numpy as np
 
 from .poi_taxonomy import asset_category_for_poi
+from .runtime_device import resolve_device_backend, resolve_torch_device
 from .street_priors import DEFAULT_CATEGORIES
 from .street_program import infer_street_program
 from .spatial_features import (
@@ -335,7 +336,7 @@ class ProgramTrainConfig:
     lr: float = 5e-4
     weight_decay: float = 1e-4
     patience: int = 5
-    device: str = "cpu"
+    device: str = "auto"
 
 
 class ProgramGeneratorMLP(nn.Module if nn is not None else object):
@@ -377,13 +378,13 @@ class ProgramGeneratorMLP(nn.Module if nn is not None else object):
 class ProgramGeneratorRuntime:
     """Runtime dispatcher for heuristic and learned program generation backends."""
 
-    def __init__(self, backend: str = "heuristic_v1", model: Optional[ProgramGeneratorMLP] = None, device: str = "cpu") -> None:
+    def __init__(self, backend: str = "heuristic_v1", model: Optional[ProgramGeneratorMLP] = None, device: str = "auto") -> None:
         self.backend = str(backend)
         self.model = model
-        self.device = device
+        self.device = resolve_device_backend(device)
 
     @classmethod
-    def from_checkpoint(cls, ckpt_path: Path, device: str = "cpu") -> "ProgramGeneratorRuntime":
+    def from_checkpoint(cls, ckpt_path: Path, device: str = "auto") -> "ProgramGeneratorRuntime":
         if torch is None:
             raise RuntimeError("torch is required for learned_v1 program generation")
         ckpt = Path(ckpt_path).expanduser().resolve()
@@ -397,7 +398,7 @@ class ProgramGeneratorRuntime:
         state_dict = payload.get("state_dict", payload)
         model.load_state_dict(state_dict)
         model.eval()
-        model.to(torch.device(device))
+        model.to(resolve_torch_device(device))
         return cls(backend="learned_v1", model=model, device=device)
 
     def generate(self, data: ProgramGenerationInput) -> ProgramGenerationResult:
@@ -522,7 +523,7 @@ def train_program_generator(
         raise RuntimeError("torch is required for program generator training")
     out_dir = Path(out_dir).resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
-    device = torch.device(config.device)
+    device = resolve_torch_device(config.device)
     model = ProgramGeneratorMLP(input_dim=PROGRAM_FEATURE_DIM).to(device)
     resumed_from = ""
     if resume_checkpoint is not None:

@@ -22,14 +22,21 @@ import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Any, Dict, List, Tuple
 
 import numpy as np
+
+ROOT = Path(__file__).resolve().parents[1]
+SRC = ROOT / "src"
+if str(SRC) not in sys.path:
+    sys.path.insert(0, str(SRC))
 
 try:
     import trimesh
 except ImportError as exc:
     raise RuntimeError("trimesh is required. Install via: pip install -r requirements-m2.txt") from exc
+
+from roadgen3d.parametric_assets import GenerationRequest, ParametricAssetResult, generate_parametric_asset
 
 # ---------------------------------------------------------------------------
 # Data structures
@@ -125,6 +132,151 @@ def fit_to_target_box(
     mesh.apply_transform(np.diag([sx, sy, sz, 1.0]))
     mesh.apply_translation([0.0, -float(mesh.bounds[0][1]), 0.0])
     return mesh
+
+
+def _clamp(value: float, minimum: float, maximum: float) -> float:
+    return float(min(max(float(value), float(minimum)), float(maximum)))
+
+
+def _contains_any(text: str, keywords: Tuple[str, ...]) -> bool:
+    lowered = str(text).strip().lower()
+    return any(keyword in lowered for keyword in keywords)
+
+
+def _bench_style_defaults(style_tag: str, text_desc: str) -> Dict[str, object]:
+    style = str(style_tag).strip().lower()
+    text = str(text_desc).strip().lower()
+    params: Dict[str, object] = {"leg_type": "dual_frame", "armrest_enabled": False, "slat_count": 5, "material_family": "metal_wood"}
+    if style in {"minimalist", "brutalist"}:
+        params["leg_type"] = "pedestal"
+    elif style in {"classic", "victorian"}:
+        params["leg_type"] = "four_leg"
+
+    if style in {"classic", "ornate", "victorian", "retro"} or _contains_any(text, ("armrest", "curved arm")):
+        params["armrest_enabled"] = True
+
+    if style in {"minimalist", "brutalist"} or _contains_any(text, ("concrete", "slab")):
+        params["material_family"] = "concrete"
+    elif style in {"eco", "nordic", "japan_scandi"}:
+        params["material_family"] = "wood"
+    elif style in {"classic", "retro", "victorian", "ornate"}:
+        params["material_family"] = "metal_wood"
+    elif style in {"industrial", "modern", "modular"}:
+        params["material_family"] = "metal_wood"
+
+    if style in {"classic", "eco", "nordic", "japan_scandi"}:
+        params["slat_count"] = 6
+    elif style in {"brutalist", "minimalist"}:
+        params["slat_count"] = 3
+    return params
+
+
+def _lamp_style_defaults(style_tag: str, text_desc: str) -> Dict[str, object]:
+    style = str(style_tag).strip().lower()
+    text = str(text_desc).strip().lower()
+    params: Dict[str, object] = {
+        "luminaire_type": "flat_led",
+        "single_or_double_arm": "single",
+        "light_direction": "roadside",
+        "material_family": "metal",
+        "arm_length_m": 0.80,
+    }
+    if _contains_any(text, ("globe", "sphere", "lantern")):
+        params["luminaire_type"] = "globe"
+    elif _contains_any(text, ("box", "rectangular", "floodlight")):
+        params["luminaire_type"] = "box"
+    elif _contains_any(text, ("cone", "conical", "downlight", "bowl", "shade")):
+        params["luminaire_type"] = "cone"
+
+    if style in {"ornate", "victorian"} or _contains_any(text, ("multi-arm", "three curved branches", "four ornamental branches")):
+        params["single_or_double_arm"] = "double"
+
+    if _contains_any(text, ("downlight", "bowl", "cone")):
+        params["light_direction"] = "downward"
+    elif _contains_any(text, ("bidirectional", "double-sided")):
+        params["light_direction"] = "bidirectional"
+
+    if style == "brutalist":
+        params["material_family"] = "cast_iron"
+    elif style in {"classic", "victorian", "ornate"}:
+        params["material_family"] = "cast_iron"
+    elif style in {"industrial", "modern", "modular", "retro", "minimalist"}:
+        params["material_family"] = "painted_steel"
+
+    arm_lengths = {
+        "modern": 0.80,
+        "classic": 0.90,
+        "industrial": 0.95,
+        "minimalist": 0.55,
+        "ornate": 1.20,
+        "retro": 1.10,
+        "modular": 0.90,
+        "eco": 0.85,
+        "brutalist": 0.70,
+        "nordic": 0.70,
+        "japan_scandi": 0.70,
+        "victorian": 1.20,
+    }
+    params["arm_length_m"] = arm_lengths.get(style, 0.80)
+    if _contains_any(text, ("multi-arm", "three curved branches", "four ornamental branches")):
+        params["arm_length_m"] = 1.20
+    elif _contains_any(text, ("downlight", "bowl", "shade", "cone")):
+        params["arm_length_m"] = 0.75
+    elif _contains_any(text, ("floodlight", "rectangular")):
+        params["arm_length_m"] = 0.95
+    return params
+
+
+def _parametric_request_from_asset_spec(
+    spec: AssetSpec,
+    runtime_profile: str,
+    device: str,
+) -> GenerationRequest:
+    profile = str(runtime_profile).strip().lower()
+    if profile not in {"preview", "production"}:
+        raise ValueError("parametric_runtime_profile must be 'preview' or 'production'")
+    style_tag = str(spec.style_tag).strip().lower() or "modern"
+    detail_level = 3 if profile == "production" else 1
+
+    if spec.category == "bench":
+        params: Dict[str, object] = {
+            "width_m": float(spec.target_w),
+            "depth_m": _clamp(float(spec.target_d), 0.40, 0.75),
+            "seat_height_m": 0.45,
+            "backrest_height_m": _clamp(float(spec.target_h) - 0.45, 0.20, 0.55),
+            "backrest_angle_deg": 12.0,
+            "style_tag": style_tag,
+            "detail_level": detail_level,
+        }
+        params.update(_bench_style_defaults(style_tag, spec.text_desc))
+        return GenerationRequest(
+            asset_kind="bench",
+            runtime_profile=profile,
+            device_backend=str(device).strip().lower() or "auto",
+            seed=42,
+            params=params,
+        )
+
+    if spec.category == "lamp":
+        base_diameter = _clamp(max(float(spec.target_w), float(spec.target_d)), 0.25, 0.60)
+        params = {
+            "pole_height_m": float(spec.target_h),
+            "base_diameter_m": base_diameter,
+            "pole_radius_m": _clamp(base_diameter * 0.17, 0.04, 0.12),
+            "arm_length_m": 0.80,
+            "style_tag": style_tag,
+            "detail_level": detail_level,
+        }
+        params.update(_lamp_style_defaults(style_tag, spec.text_desc))
+        return GenerationRequest(
+            asset_kind="lamp",
+            runtime_profile=profile,
+            device_backend=str(device).strip().lower() or "auto",
+            seed=42,
+            params=params,
+        )
+
+    raise ValueError(f"Unsupported parametric category: {spec.category}")
 
 
 # ---------------------------------------------------------------------------
@@ -1561,6 +1713,9 @@ def generate_all(
     manifest_out: Path,
     project_root: Path,
     seed: int = 42,
+    bench_lamp_backend: str = "parametric",
+    parametric_runtime_profile: str = "production",
+    device: str = "auto",
 ) -> None:
     mesh_out_dir.mkdir(parents=True, exist_ok=True)
     manifest_out.parent.mkdir(parents=True, exist_ok=True)
@@ -1578,6 +1733,14 @@ def generate_all(
         "retry_count": 0,
         "below_min_count": 0,
     }
+    backend_mode = str(bench_lamp_backend).strip().lower()
+    if backend_mode not in {"parametric", "legacy"}:
+        raise ValueError("bench_lamp_backend must be 'parametric' or 'legacy'")
+    runtime_profile = str(parametric_runtime_profile).strip().lower()
+    if runtime_profile not in {"preview", "production"}:
+        raise ValueError("parametric_runtime_profile must be 'preview' or 'production'")
+    backend_counts: Dict[str, int] = {"parametric": 0, "legacy": 0}
+    parametric_categories: Dict[str, int] = {}
 
     for spec in specs:
         gen_fn = GENERATORS.get(spec.category)
@@ -1591,60 +1754,87 @@ def generate_all(
 
         mesh: trimesh.Trimesh | None = None
         n_faces = -1
-        for attempt in range(MAX_GENERATION_ATTEMPTS):
-            complexity_level = min(3, attempt // 2)
-            raw_mesh = gen_fn(
-                style_idx,
-                spec.style_tag,
-                primary,
-                accent,
-                complexity_level=complexity_level,
+        parametric_result: ParametricAssetResult | None = None
+        used_backend = "legacy"
+        if spec.category in {"bench", "lamp"} and backend_mode == "parametric":
+            request = _parametric_request_from_asset_spec(spec, runtime_profile=runtime_profile, device=device)
+            request = GenerationRequest(
+                asset_kind=request.asset_kind,
+                runtime_profile=request.runtime_profile,
+                device_backend=request.device_backend,
+                seed=int(seed),
+                quality_profile=request.quality_profile,
+                physics_profile=request.physics_profile,
+                design_profile=request.design_profile,
+                precision=request.precision,
+                allow_fallback=request.allow_fallback,
+                params=dict(request.params),
             )
-            candidate = fit_to_target_box(
-                raw_mesh,
-                spec.target_h,
-                spec.target_w,
-                spec.target_d,
-                label=f"{spec.asset_id}#a{attempt}",
-            )
-            face_count = int(len(candidate.faces))
-            if face_count < min_faces and complexity_level > 0:
-                refined_mesh = raw_mesh.copy()
-                for refine_idx in range(complexity_level):
-                    refined_mesh = refined_mesh.subdivide()
-                    refined_candidate = fit_to_target_box(
-                        refined_mesh.copy(),
-                        spec.target_h,
-                        spec.target_w,
-                        spec.target_d,
-                        label=f"{spec.asset_id}#a{attempt}.r{refine_idx + 1}",
+            parametric_result = generate_parametric_asset(request)
+            mesh = parametric_result.mesh.copy()
+            n_faces = int(len(mesh.faces))
+            if n_faces < min_faces or n_faces > budget:
+                raise RuntimeError(
+                    f"Failed to satisfy face constraints for {spec.asset_id}: "
+                    f"min_faces={min_faces}, budget={budget}. "
+                    f"Generated faces={n_faces}. Try using --bench-lamp-backend legacy or adjust budgets."
+                )
+            used_backend = "parametric"
+        else:
+            for attempt in range(MAX_GENERATION_ATTEMPTS):
+                complexity_level = min(3, attempt // 2)
+                raw_mesh = gen_fn(
+                    style_idx,
+                    spec.style_tag,
+                    primary,
+                    accent,
+                    complexity_level=complexity_level,
+                )
+                candidate = fit_to_target_box(
+                    raw_mesh,
+                    spec.target_h,
+                    spec.target_w,
+                    spec.target_d,
+                    label=f"{spec.asset_id}#a{attempt}",
+                )
+                face_count = int(len(candidate.faces))
+                if face_count < min_faces and complexity_level > 0:
+                    refined_mesh = raw_mesh.copy()
+                    for refine_idx in range(complexity_level):
+                        refined_mesh = refined_mesh.subdivide()
+                        refined_candidate = fit_to_target_box(
+                            refined_mesh.copy(),
+                            spec.target_h,
+                            spec.target_w,
+                            spec.target_d,
+                            label=f"{spec.asset_id}#a{attempt}.r{refine_idx + 1}",
+                        )
+                        refined_face_count = int(len(refined_candidate.faces))
+                        if refined_face_count > budget:
+                            break
+                        candidate = refined_candidate
+                        face_count = refined_face_count
+                        if face_count >= min_faces:
+                            break
+                if face_count < min_faces:
+                    quality_counts["below_min_attempts"] += 1
+                    quality_counts["retry_count"] += 1
+                    print(
+                        f"  RETRY: {spec.asset_id} faces={face_count:,} < min={min_faces:,} "
+                        f"(attempt {attempt + 1}/{MAX_GENERATION_ATTEMPTS}, complexity={complexity_level})"
                     )
-                    refined_face_count = int(len(refined_candidate.faces))
-                    if refined_face_count > budget:
-                        break
-                    candidate = refined_candidate
-                    face_count = refined_face_count
-                    if face_count >= min_faces:
-                        break
-            if face_count < min_faces:
-                quality_counts["below_min_attempts"] += 1
-                quality_counts["retry_count"] += 1
-                print(
-                    f"  RETRY: {spec.asset_id} faces={face_count:,} < min={min_faces:,} "
-                    f"(attempt {attempt + 1}/{MAX_GENERATION_ATTEMPTS}, complexity={complexity_level})"
-                )
-                continue
-            if face_count > budget:
-                quality_counts["over_budget_attempts"] += 1
-                quality_counts["retry_count"] += 1
-                print(
-                    f"  RETRY: {spec.asset_id} faces={face_count:,} > budget={budget:,} "
-                    f"(attempt {attempt + 1}/{MAX_GENERATION_ATTEMPTS}, complexity={complexity_level})"
-                )
-                continue
-            mesh = candidate
-            n_faces = face_count
-            break
+                    continue
+                if face_count > budget:
+                    quality_counts["over_budget_attempts"] += 1
+                    quality_counts["retry_count"] += 1
+                    print(
+                        f"  RETRY: {spec.asset_id} faces={face_count:,} > budget={budget:,} "
+                        f"(attempt {attempt + 1}/{MAX_GENERATION_ATTEMPTS}, complexity={complexity_level})"
+                    )
+                    continue
+                mesh = candidate
+                n_faces = face_count
+                break
 
         if mesh is None:
             raise RuntimeError(
@@ -1676,13 +1866,30 @@ def generate_all(
             "mesh_path": str(glb_path),
             "latent_path": str((latents_dir / f"{spec.asset_id}.pt").resolve()),
             "license": spec.license,
-            "source": "procedural_generated",
+            "source": "parametric_generated" if used_backend == "parametric" else "procedural_generated",
             "split": split,
         }
+        if used_backend == "parametric" and parametric_result is not None:
+            row.update(
+                {
+                    "generator_type": parametric_result.generator_type,
+                    "runtime_profile": runtime_profile,
+                    "style_tags": list(parametric_result.style_tags),
+                    "material_family": parametric_result.material_family,
+                    "parameter_snapshot": dict(parametric_result.parameter_snapshot),
+                    "quality_metrics": parametric_result.quality_metrics.to_dict(),
+                    "frontage_width_m": float(parametric_result.bbox_size_xyz[0]),
+                    "depth_m": float(parametric_result.bbox_size_xyz[2]),
+                    "asset_role": "street_furniture",
+                }
+            )
         rows.append(row)
 
         summary.setdefault(spec.category, []).append(n_faces)
-        print(f"  [{spec.asset_id}] faces={n_faces:,}  style={spec.style_tag}")
+        backend_counts[used_backend] = backend_counts.get(used_backend, 0) + 1
+        if used_backend == "parametric":
+            parametric_categories[spec.category] = parametric_categories.get(spec.category, 0) + 1
+        print(f"  [{spec.asset_id}] faces={n_faces:,}  style={spec.style_tag}  backend={used_backend}")
 
     if quality_counts["below_min_count"] > 0:
         raise RuntimeError(
@@ -1713,6 +1920,12 @@ def generate_all(
         f"over_budget_attempts={quality_counts['over_budget_attempts']}, "
         f"retry_count={quality_counts['retry_count']}"
     )
+    print(
+        "Backend usage: "
+        f"parametric={backend_counts.get('parametric', 0)}, "
+        f"legacy={backend_counts.get('legacy', 0)}"
+    )
+    print(f"Parametric categories: {json.dumps(parametric_categories, ensure_ascii=True, sort_keys=True)}")
     print(f"\nManifest: {manifest_out}")
     print(f"Meshes:   {mesh_out_dir}")
 
@@ -1728,6 +1941,9 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--manifest-out", type=Path, default=Path("data/real/real_assets_manifest.jsonl"), help="Output manifest")
     p.add_argument("--seed", type=int, default=42, help="Random seed for reproducibility")
     p.add_argument("--clean", action="store_true", help="Delete old meshes and latents before generating")
+    p.add_argument("--bench-lamp-backend", choices=["parametric", "legacy"], default="parametric")
+    p.add_argument("--parametric-runtime-profile", choices=["preview", "production"], default="production")
+    p.add_argument("--device", choices=["auto", "cpu", "mps", "cuda"], default="auto")
     return p.parse_args()
 
 
@@ -1770,6 +1986,9 @@ def main() -> int:
         manifest_out=manifest_out,
         project_root=project_root,
         seed=args.seed,
+        bench_lamp_backend=args.bench_lamp_backend,
+        parametric_runtime_profile=args.parametric_runtime_profile,
+        device=args.device,
     )
 
     return 0
