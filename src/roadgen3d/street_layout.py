@@ -115,6 +115,7 @@ class _MeshCacheEntry:
     half_x: float
     half_z: float
     min_y: float
+    is_scene: bool = False
 
 
 @dataclass(frozen=True)
@@ -270,18 +271,22 @@ def _load_mesh_cache(rows: List[Dict[str, str]]) -> Dict[str, _MeshCacheEntry]:
         if isinstance(mesh_or_scene, trimesh.Scene):
             if not mesh_or_scene.geometry:
                 raise ValueError(f"empty mesh scene for asset '{asset_id}': {mesh_path}")
-            mesh = trimesh.util.concatenate(tuple(mesh_or_scene.geometry.values()))
+            display_geom = mesh_or_scene
+            bounds = np.asarray(display_geom.bounds, dtype=np.float64)
+            is_scene = True
         else:
-            mesh = mesh_or_scene
-        if mesh.is_empty:
-            raise ValueError(f"empty mesh for asset '{asset_id}': {mesh_path}")
-        bounds = mesh.bounds
+            if mesh_or_scene.is_empty:
+                raise ValueError(f"empty mesh for asset '{asset_id}': {mesh_path}")
+            display_geom = mesh_or_scene
+            bounds = np.asarray(display_geom.bounds, dtype=np.float64)
+            is_scene = False
         span = bounds[1] - bounds[0]
         cache[asset_id] = _MeshCacheEntry(
-            mesh=mesh,
+            mesh=display_geom,
             half_x=float(max(span[0] / 2.0, 1e-3)),
             half_z=float(max(span[2] / 2.0, 1e-3)),
             min_y=float(bounds[0][1]),
+            is_scene=bool(is_scene),
         )
     return cache
 
@@ -723,6 +728,14 @@ def _build_base_scene(
 ):
     trimesh = _require_trimesh()
     scene = trimesh.Scene()
+    total_width_m = float(road_width_m + left_side_width_m + right_side_width_m)
+    context_ground = trimesh.creation.box(
+        extents=(float(length_m) + 24.0, 0.04, max(total_width_m + 28.0, 24.0))
+    )
+    context_ground.visual.face_colors = list((palette or {}).get("context_ground", (168, 163, 150, 255)))
+    context_ground.apply_translation([0.0, -0.10, 0.0])
+    scene.add_geometry(context_ground, node_name="context_ground")
+
     road = trimesh.creation.box(extents=(length_m, 0.06, road_width_m))
     colors = palette or {}
     road.visual.face_colors = list(colors.get("carriageway", (65, 68, 72, 255)))
@@ -939,24 +952,30 @@ def _add_instance_meshes(
 ) -> None:
     trimesh = _require_trimesh()
     for placement in placements:
-        mesh = mesh_cache[placement.asset_id].mesh.copy()
+        entry = mesh_cache[placement.asset_id]
+        mesh = entry.mesh.copy()
         if placement.scale_xyz:
-            mesh.apply_scale([float(value) for value in placement.scale_xyz])
+            scale = [float(value) for value in placement.scale_xyz]
         else:
-            mesh.apply_scale(float(placement.scale))
+            scale = float(placement.scale)
         rotation = trimesh.transformations.rotation_matrix(
             math.radians(float(placement.yaw_deg)),
             [0.0, 1.0, 0.0],
             [0.0, 0.0, 0.0],
         )
-        mesh.apply_transform(rotation)
-        mesh.apply_translation(
+        translation = trimesh.transformations.translation_matrix(
             [
                 float(placement.position_xyz[0]),
                 float(placement.position_xyz[1]),
                 float(placement.position_xyz[2]),
             ]
         )
+        if isinstance(scale, list):
+            mesh.apply_scale(scale)
+        else:
+            mesh.apply_scale(float(scale))
+        mesh.apply_transform(rotation)
+        mesh.apply_transform(translation)
         scene.add_geometry(mesh, node_name=placement.instance_id)
 
 
@@ -1026,6 +1045,34 @@ def _build_osm_base_scene(
     carriageway = placement_ctx.carriageway  # type: ignore[attr-defined]
     sidewalk_zone = placement_ctx.sidewalk_zone  # type: ignore[attr-defined]
     colors = palette or {}
+
+    scene_bounds: List[Tuple[float, float, float, float]] = []
+    for geom in (carriageway, sidewalk_zone):
+        if geom is None or getattr(geom, "is_empty", True):
+            continue
+        bounds = getattr(geom, "bounds", None)
+        if bounds is None or len(bounds) != 4:
+            continue
+        scene_bounds.append(tuple(float(value) for value in bounds))
+
+    if scene_bounds:
+        min_x = min(bounds[0] for bounds in scene_bounds)
+        min_z = min(bounds[1] for bounds in scene_bounds)
+        max_x = max(bounds[2] for bounds in scene_bounds)
+        max_z = max(bounds[3] for bounds in scene_bounds)
+        pad_m = 12.0
+        ground = trimesh.creation.box(
+            extents=(max(max_x - min_x + pad_m * 2.0, 20.0), 0.04, max(max_z - min_z + pad_m * 2.0, 20.0))
+        )
+        ground.visual.face_colors = list(colors.get("context_ground", (168, 163, 150, 255)))
+        ground.apply_translation(
+            [
+                float((min_x + max_x) / 2.0),
+                -0.10,
+                float((min_z + max_z) / 2.0),
+            ]
+        )
+        scene.add_geometry(ground, node_name="context_ground")
 
     def _extrude_polygon(geom, height: float, color, name_prefix: str) -> None:
         """Extrude a shapely geometry into a thin 3D slab and add to scene.
@@ -1185,6 +1232,11 @@ def _add_poi_markers_and_zones(scene, poi_points_by_type_or_exclusion_zones, exc
         except (ValueError, RuntimeError, IndexError):
             logger.debug("Skipping degenerate exclusion ring for %s", zone.rule_name)
             continue
+
+
+def _should_embed_debug_scene_overlays(config: StreetComposeConfig) -> bool:
+    # Keep exported GLB focused on presentation geometry; POI diagnostics remain in JSON and 2D plots.
+    return False
 
 
 def _serialize_osm_geometry(placement_ctx: object) -> dict:
@@ -2866,13 +2918,16 @@ def compose_street_scene(
     _add_instance_meshes(scene=scene, placements=placements, mesh_cache=mesh_cache)
 
     exclusion_zones: tuple = ()
+    debug_scene_overlays_enabled = _should_embed_debug_scene_overlays(config)
     if rule_set is not None and poi_ctx is not None:
         from .poi_rules import build_exclusion_zones as _build_exclusion_zones
 
         exclusion_zones = _build_exclusion_zones(poi_ctx, rule_set)
-        _add_poi_markers_and_zones(scene, extract_poi_points_by_type(poi_ctx, suffix="xz"), exclusion_zones)
+        if debug_scene_overlays_enabled:
+            _add_poi_markers_and_zones(scene, extract_poi_points_by_type(poi_ctx, suffix="xz"), exclusion_zones)
     elif poi_ctx is not None:
-        _add_poi_markers_and_zones(scene, extract_poi_points_by_type(poi_ctx, suffix="xz"), ())
+        if debug_scene_overlays_enabled:
+            _add_poi_markers_and_zones(scene, extract_poi_points_by_type(poi_ctx, suffix="xz"), ())
 
     outputs = _export_scene(scene=scene, out_dir=out_dir, export_format=export_format)
 
@@ -2900,6 +2955,11 @@ def compose_street_scene(
     selection_source_counts: Dict[str, int] = {}
     for placement in placements:
         selection_source_counts[placement.selection_source] = selection_source_counts.get(placement.selection_source, 0) + 1
+    asset_library_scene_instances = sum(
+        1
+        for placement in placements
+        if bool(mesh_cache.get(placement.asset_id)) and bool(mesh_cache[placement.asset_id].is_scene)
+    )
 
     violations_total = sum(1 for placement in furniture_placements if placement.violated_rules)
     compliance_rate_total = 1.0 - (violations_total / len(furniture_placements)) if furniture_placements else 1.0
@@ -2956,6 +3016,7 @@ def compose_street_scene(
         "latency_ms_per_instance": float(latency_ms_per_instance),
         "per_category_unique": per_category_unique,
         "selection_source_counts": selection_source_counts,
+        "asset_library_scene_instances": int(asset_library_scene_instances),
         "layout_mode": config.layout_mode,
         "constraint_mode": config.constraint_mode,
         "aoi_bbox": list(config.aoi_bbox) if config.aoi_bbox else None,
@@ -3031,6 +3092,7 @@ def compose_street_scene(
         "beauty_mode": str(getattr(config, "beauty_mode", "presentation_v1")),
         "render_preset": str(getattr(config, "render_preset", "jury_default_v1")),
         "asset_curation_mode": str(getattr(config, "asset_curation_mode", "curated_first")),
+        "scene_debug_overlays_enabled": bool(debug_scene_overlays_enabled),
         "theme_segments": [segment.to_dict() for segment in theme_segments],
         "theme_diagnostics": {
             "theme_inference_mode": str(getattr(config, "theme_inference_mode", "deterministic_auto")),

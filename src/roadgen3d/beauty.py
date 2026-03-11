@@ -64,6 +64,7 @@ STYLE_PRESETS: Dict[str, StylePresetSpec] = {
         },
         local_density_limit=3,
         scene_colors={
+            "context_ground": (174, 169, 156, 255),
             "carriageway": (71, 76, 84, 255),
             "sidewalk": (195, 194, 186, 255),
             "furnishing": (176, 174, 164, 255),
@@ -107,6 +108,7 @@ STYLE_PRESETS: Dict[str, StylePresetSpec] = {
         },
         local_density_limit=3,
         scene_colors={
+            "context_ground": (166, 171, 178, 255),
             "carriageway": (60, 65, 76, 255),
             "sidewalk": (201, 205, 210, 255),
             "furnishing": (169, 175, 182, 255),
@@ -150,6 +152,7 @@ STYLE_PRESETS: Dict[str, StylePresetSpec] = {
         },
         local_density_limit=4,
         scene_colors={
+            "context_ground": (160, 152, 126, 255),
             "carriageway": (73, 76, 70, 255),
             "sidewalk": (205, 198, 178, 255),
             "furnishing": (180, 166, 139, 255),

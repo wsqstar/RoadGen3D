@@ -290,6 +290,53 @@ def test_street_compose_outputs_created(tmp_path: Path, monkeypatch):
     assert all("slot_id" in placement for placement in layout_payload.get("placements", []))
 
 
+def test_load_mesh_cache_preserves_multi_geometry_scene_assets(tmp_path: Path):
+    trimesh = pytest.importorskip("trimesh")
+    scene_asset = trimesh.Scene()
+    scene_asset.add_geometry(trimesh.creation.box(extents=(1.0, 1.0, 1.0)), node_name="part_a")
+    part_b = trimesh.creation.box(extents=(1.0, 1.0, 1.0))
+    part_b.apply_translation([2.0, 0.0, 0.0])
+    scene_asset.add_geometry(part_b, node_name="part_b")
+    mesh_path = tmp_path / "multi_part.glb"
+    scene_asset.export(mesh_path)
+
+    cache = street_layout._load_mesh_cache(
+        [
+            {
+                "asset_id": "scene_asset",
+                "mesh_path": str(mesh_path),
+                "category": "bench",
+                "text_desc": "multi-part asset",
+                "latent_path": str(tmp_path / "latent.pt"),
+            }
+        ]
+    )
+    entry = cache["scene_asset"]
+
+    assert entry.is_scene is True
+    assert len(entry.mesh.geometry) == 2
+
+    parent_scene = trimesh.Scene()
+    street_layout._add_instance_meshes(
+        scene=parent_scene,
+        placements=[
+            StreetPlacement(
+                instance_id="inst_0001",
+                asset_id="scene_asset",
+                category="bench",
+                score=1.0,
+                position_xyz=[0.0, 0.5, 0.0],
+                yaw_deg=0.0,
+                scale=1.0,
+                bbox_xz=[-1.0, 1.0, -1.0, 1.0],
+                selection_source="test",
+            )
+        ],
+        mesh_cache=cache,
+    )
+    assert len(parent_scene.geometry) == 2
+
+
 def test_street_compose_no_overlap_aabb(tmp_path: Path, monkeypatch):
     pytest.importorskip("trimesh")
     rows = _build_real_rows(tmp_path / "data")

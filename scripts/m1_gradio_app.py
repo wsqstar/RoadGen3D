@@ -1759,6 +1759,10 @@ def run_street_compose(
             f"\n- zoning_cell_count: "
             f"{int((layout_summary.get('zoning_preview_summary', {}) or {}).get('cell_count', 0) or 0)}"
         )
+        summary += (
+            f"\n- asset_library_scene_instances: "
+            f"{int(layout_summary.get('asset_library_scene_instances', 0) or 0)}"
+        )
         model_path = result.outputs.get("scene_glb") or None
         files: List[str] = []
         if result.outputs.get("scene_glb"):
