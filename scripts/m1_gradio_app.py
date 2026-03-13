@@ -1400,6 +1400,90 @@ def _extract_presentation_views(layout_json_text: str):
         return [], "{}"
 
 
+def _format_production_step_summary(step: Dict[str, Any]) -> str:
+    counts = step.get("counts", {}) or {}
+    lines = [
+        f"{int(step.get('index', 0)) + 1}. {str(step.get('title', '')).strip() or str(step.get('step_id', 'step'))}",
+        f"- step_id: {str(step.get('step_id', '')).strip()}",
+        f"- visible_instances: {int(counts.get('visible_instance_count', 0) or 0)}",
+        f"- delta_instances: {len(step.get('delta_instance_ids', []) or [])}",
+        f"- buildings: {int(counts.get('building_count', 0) or 0)}",
+        f"- anchor_furniture: {int(counts.get('furniture_anchor_count', 0) or 0)}",
+        f"- required_furniture: {int(counts.get('furniture_required_count', 0) or 0)}",
+        f"- optional_furniture: {int(counts.get('furniture_optional_count', 0) or 0)}",
+        f"- poi_points: {int(counts.get('poi_point_count', 0) or 0)}",
+        f"- zoning_cells: {int(counts.get('zoning_cell_count', 0) or 0)}",
+    ]
+    companion_path = str(step.get("companion_path", "")).strip()
+    if companion_path:
+        lines.append(f"- companion: {companion_path}")
+    return "\n".join(lines)
+
+
+def _production_step_download_paths(step: Dict[str, Any]) -> List[str]:
+    files: List[str] = []
+    glb_path = str(step.get("glb_path", "")).strip()
+    companion_path = str(step.get("companion_path", "")).strip()
+    if glb_path:
+        files.append(glb_path)
+    if companion_path:
+        files.append(companion_path)
+    return files
+
+
+def _select_production_step(production_steps: List[Dict[str, Any]] | None, step_index: float | int):
+    steps = [dict(step) for step in list(production_steps or []) if isinstance(step, dict)]
+    if not steps:
+        return "No production steps available.", None, None, []
+    idx = max(0, min(int(step_index), len(steps) - 1))
+    step = steps[idx]
+    model_path = str(step.get("glb_path", "")).strip() or None
+    companion_path = str(step.get("companion_path", "")).strip() or None
+    return (
+        _format_production_step_summary(step),
+        model_path,
+        companion_path,
+        _production_step_download_paths(step),
+    )
+
+
+def _load_production_steps(layout_json_text: str):
+    if not layout_json_text or not layout_json_text.strip():
+        return [], gr.update(minimum=0, maximum=0, value=0, step=1, interactive=False), "No production steps available.", None, None, []
+    try:
+        payload = json.loads(layout_json_text)
+        steps = [dict(step) for step in payload.get("production_steps", []) or [] if isinstance(step, dict)]
+        if not steps:
+            outputs = payload.get("outputs", {}) or {}
+            scene_glb = str(outputs.get("scene_glb", "")).strip() or None
+            fallback_files = [path for path in (scene_glb, str(outputs.get("scene_layout", "")).strip()) if path]
+            return (
+                [],
+                gr.update(minimum=0, maximum=0, value=0, step=1, interactive=False),
+                "No production steps available.",
+                scene_glb,
+                None,
+                fallback_files,
+            )
+        summary, model_path, companion_path, files = _select_production_step(steps, 0)
+        return (
+            steps,
+            gr.update(
+                minimum=0,
+                maximum=max(len(steps) - 1, 0),
+                value=0,
+                step=1,
+                interactive=bool(len(steps) > 1),
+            ),
+            summary,
+            model_path,
+            companion_path,
+            files,
+        )
+    except Exception:
+        return [], gr.update(minimum=0, maximum=0, value=0, step=1, interactive=False), "No production steps available.", None, None, []
+
+
 def run_prepare_workspace(
     dataset_profile: str,
     data_dir_text: str,
@@ -1805,7 +1889,7 @@ def run_street_compose(
     style_preset: str = "civic_clean_v1",
     beauty_mode: str = "presentation_v1",
     render_preset: str = "jury_default_v1",
-    asset_curation_mode: str = "parametric_first",
+    asset_curation_mode: str = "scene_ready_first",
     enable_surrounding_buildings: bool = True,
     building_search_topk: int = 5,
     theme_inference_mode: str = "deterministic_auto",
@@ -1959,6 +2043,7 @@ def run_street_compose(
             f"- style_preset: {layout_summary.get('style_preset', style_preset)}\n"
             f"- asset_curation_mode: {layout_summary.get('asset_curation_mode', asset_curation_mode)}\n"
             f"- parametric_instance_count: {int(layout_summary.get('parametric_instance_count', 0) or 0)}\n"
+            f"- production_step_count: {int(layout_summary.get('production_step_count', 0) or 0)}\n"
             f"- presentation_score: {float(layout_summary.get('presentation_score', 0.0) or 0.0):.3f}\n"
             f"- scene_layout: {result.outputs.get('scene_layout', '')}"
         )
@@ -2431,7 +2516,7 @@ def run_best_model_street(
     style_preset: str = "civic_clean_v1",
     beauty_mode: str = "presentation_v1",
     render_preset: str = "jury_default_v1",
-    asset_curation_mode: str = "parametric_first",
+    asset_curation_mode: str = "scene_ready_first",
     enable_surrounding_buildings: bool = True,
     building_search_topk: int = 5,
     theme_inference_mode: str = "deterministic_auto",
@@ -3430,9 +3515,23 @@ def build_demo() -> gr.Blocks:
                         value="primary_road",
                     )
                 street_btn = gr.Button("Run Street", variant="primary")
-                with gr.Row():
-                    street_model_view = gr.Model3D(label="Street Preview (GLB)")
-                    street_summary = gr.Textbox(label="Scene Summary", lines=10)
+                production_steps_state = gr.State(value=[])
+                with gr.Accordion("Production Timeline", open=True):
+                    production_step_slider = gr.Slider(
+                        label="Production Step",
+                        minimum=0,
+                        maximum=0,
+                        step=1,
+                        value=0,
+                        interactive=False,
+                    )
+                    with gr.Row():
+                        street_model_view = gr.Model3D(label="Production Step Preview (GLB)")
+                        production_companion_view = gr.Image(label="Production Companion View", type="filepath")
+                    with gr.Row():
+                        production_step_summary = gr.Textbox(label="Production Step Summary", lines=10)
+                        street_summary = gr.Textbox(label="Scene Summary", lines=10)
+                    production_step_downloads = gr.Files(label="Production Step Downloads")
                 with gr.Row():
                     street_program_summary = gr.Code(label="StreetProgram Summary", language="json")
                     street_solver_summary = gr.Code(label="Solver Edits / Conflicts", language="json")
@@ -3479,8 +3578,8 @@ def build_demo() -> gr.Blocks:
                         )
                         asset_curation_mode = gr.Dropdown(
                             label="Asset Curation",
-                            choices=["parametric_first", "curated_first", "legacy"],
-                            value="parametric_first",
+                            choices=["scene_ready_first", "parametric_first", "curated_first", "legacy"],
+                            value="scene_ready_first",
                         )
                     with gr.Row():
                         enable_surrounding_buildings = gr.Checkbox(label="Enable Surrounding Buildings", value=True)
@@ -3829,6 +3928,17 @@ def build_demo() -> gr.Blocks:
                 street_files,
             ],
         ).then(
+            fn=_load_production_steps,
+            inputs=[street_layout_json],
+            outputs=[
+                production_steps_state,
+                production_step_slider,
+                production_step_summary,
+                street_model_view,
+                production_companion_view,
+                production_step_downloads,
+            ],
+        ).then(
             fn=_extract_program_summary,
             inputs=[street_layout_json],
             outputs=[street_program_summary],
@@ -3883,6 +3993,16 @@ def build_demo() -> gr.Blocks:
             fn=_render_distance_heatmap,
             inputs=[street_layout_json, heatmap_type],
             outputs=[distance_heatmap_plot, distance_histogram_plot],
+        )
+        production_step_slider.change(
+            fn=_select_production_step,
+            inputs=[production_steps_state, production_step_slider],
+            outputs=[
+                production_step_summary,
+                street_model_view,
+                production_companion_view,
+                production_step_downloads,
+            ],
         )
         for control in (
             graph_node_layers,
@@ -4030,6 +4150,17 @@ def build_demo() -> gr.Blocks:
                 run_best_layout_json,
                 run_best_model_view,
                 run_best_files,
+            ],
+        ).then(
+            fn=_load_production_steps,
+            inputs=[street_layout_json],
+            outputs=[
+                production_steps_state,
+                production_step_slider,
+                production_step_summary,
+                street_model_view,
+                production_companion_view,
+                production_step_downloads,
             ],
         ).then(
             fn=_extract_presentation_views,

@@ -251,7 +251,7 @@ def test_build_demo_exposes_parametric_asset_preview_controls():
     assert "Lamp Pole Height (m)" in labels
 
 
-def test_build_demo_defaults_device_to_auto_and_street_curation_to_parametric_first():
+def test_build_demo_defaults_device_to_auto_and_street_curation_to_scene_ready_first():
     pytest.importorskip("gradio")
 
     demo = app.build_demo()
@@ -264,9 +264,84 @@ def test_build_demo_defaults_device_to_auto_and_street_curation_to_parametric_fi
 
     assert by_label["Device"]["value"] == "auto"
     assert ("auto", "auto") in by_label["Device"]["choices"]
-    assert by_label["Asset Curation"]["value"] == "parametric_first"
-    assert ("parametric_first", "parametric_first") in by_label["Asset Curation"]["choices"]
+    assert by_label["Asset Curation"]["value"] == "scene_ready_first"
+    assert ("scene_ready_first", "scene_ready_first") in by_label["Asset Curation"]["choices"]
     assert "generator_type" in by_label["Street Instances"]["headers"]
+
+
+def test_build_demo_exposes_production_timeline_controls():
+    pytest.importorskip("gradio")
+
+    demo = app.build_demo()
+    config = demo.get_config_file()
+    labels = [
+        component.get("props", {}).get("label")
+        for component in config["components"]
+        if component.get("props", {}).get("label")
+    ]
+
+    assert "Production Step" in labels
+    assert "Production Step Preview (GLB)" in labels
+    assert "Production Companion View" in labels
+    assert "Production Step Downloads" in labels
+
+
+def test_production_step_helpers_select_stage_outputs(tmp_path: Path):
+    stage0_glb = tmp_path / "00_road_base.glb"
+    stage1_glb = tmp_path / "01_poi_context.glb"
+    companion_png = tmp_path / "01_poi_context.png"
+    layout_json = tmp_path / "scene_layout.json"
+    stage0_glb.write_bytes(b"glb")
+    stage1_glb.write_bytes(b"glb")
+    companion_png.write_bytes(b"png")
+    layout_json.write_text("{}", encoding="utf-8")
+
+    payload = {
+        "outputs": {
+            "scene_glb": str(stage1_glb),
+            "scene_layout": str(layout_json),
+        },
+        "production_steps": [
+            {
+                "step_id": "road_base",
+                "index": 0,
+                "title": "Road Base",
+                "glb_path": str(stage0_glb),
+                "companion_path": "",
+                "visible_instance_ids": [],
+                "delta_instance_ids": [],
+                "counts": {"visible_instance_count": 0, "street_furniture_count": 0},
+            },
+            {
+                "step_id": "poi_context",
+                "index": 1,
+                "title": "POI Context",
+                "glb_path": str(stage1_glb),
+                "companion_path": str(companion_png),
+                "visible_instance_ids": ["building_01"],
+                "delta_instance_ids": [],
+                "counts": {"visible_instance_count": 1, "poi_point_count": 2},
+            },
+        ],
+    }
+
+    steps, slider_update, summary, model_path, companion_path, files = app._load_production_steps(
+        json.dumps(payload, ensure_ascii=True)
+    )
+    assert len(steps) == 2
+    assert slider_update["maximum"] == 1
+    assert slider_update["value"] == 0
+    assert "Road Base" in summary
+    assert model_path == str(stage0_glb)
+    assert companion_path is None
+    assert str(stage0_glb) in files
+
+    selected_summary, selected_model, selected_companion, selected_files = app._select_production_step(steps, 1)
+    assert "POI Context" in selected_summary
+    assert selected_model == str(stage1_glb)
+    assert selected_companion == str(companion_png)
+    assert str(stage1_glb) in selected_files
+    assert str(companion_png) in selected_files
 
 
 def test_parametric_identity_uses_parameter_hash_for_auto_asset_id():

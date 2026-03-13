@@ -74,7 +74,7 @@ class StreetComposeConfig:
     beauty_mode: str = "presentation_v1"
     style_preset: str = "civic_clean_v1"
     render_preset: str = "jury_default_v1"
-    asset_curation_mode: str = "parametric_first"
+    asset_curation_mode: str = "scene_ready_first"
 
     # -- Neuralsymbolic v1 fields --
     program_generator: str = "heuristic_v1"
@@ -634,6 +634,7 @@ class StreetPlacement:
     selection_source: str  # faiss_softmax | faiss_relaxed_repeat | policy_* | fallback_pool
     slot_id: str = ""
     placement_group: str = "street_furniture"
+    required: bool = False
     theme_id: str = ""
     anchor_poi_type: str = ""
     anchor_target_xz: Optional[Tuple[float, float]] = None
@@ -658,6 +659,26 @@ class StreetPlacement:
         payload["violated_rules"] = list(self.violated_rules)
         if self.anchor_target_xz is not None:
             payload["anchor_target_xz"] = list(self.anchor_target_xz)
+        return payload
+
+
+@dataclass(frozen=True)
+class ProductionStepRecord:
+    """One cumulative production-step snapshot for street preview."""
+
+    step_id: str
+    index: int
+    title: str
+    glb_path: str
+    companion_path: str = ""
+    visible_instance_ids: Tuple[str, ...] = ()
+    delta_instance_ids: Tuple[str, ...] = ()
+    counts: Dict[str, int] = field(default_factory=dict)
+
+    def to_dict(self) -> Dict[str, Any]:
+        payload = asdict(self)
+        payload["visible_instance_ids"] = list(self.visible_instance_ids)
+        payload["delta_instance_ids"] = list(self.delta_instance_ids)
         return payload
 
 

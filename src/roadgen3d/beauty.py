@@ -186,42 +186,109 @@ def asset_generator_type(row: Mapping[str, Any]) -> str:
     return "legacy"
 
 
+def _coerce_bool(value: Any, default: bool = False) -> bool:
+    if isinstance(value, bool):
+        return value
+    if value is None:
+        return default
+    if isinstance(value, (int, float)):
+        return bool(value)
+    text = str(value).strip().lower()
+    if not text:
+        return default
+    if text in {"1", "true", "yes", "y", "on"}:
+        return True
+    if text in {"0", "false", "no", "n", "off"}:
+        return False
+    return default
+
+
+def _safe_int(value: Any, default: int = 0) -> int:
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return int(default)
+
+
+def _mesh_face_count(row: Mapping[str, Any]) -> int:
+    count = _safe_int(row.get("mesh_face_count"), -1)
+    if count >= 0:
+        return count
+    metrics = row.get("quality_metrics")
+    if isinstance(metrics, Mapping):
+        return max(0, _safe_int(metrics.get("face_count"), 0))
+    return 0
+
+
+def _scene_eligible(row: Mapping[str, Any]) -> bool:
+    if "scene_eligible" in row:
+        return _coerce_bool(row.get("scene_eligible"), default=True)
+    return _safe_int(row.get("quality_tier"), 0) >= 1
+
+
+def _is_preview_asset(row: Mapping[str, Any]) -> bool:
+    return str(row.get("runtime_profile", "") or "").strip().lower() == "preview"
+
+
+def _parametric_scene_ready(row: Mapping[str, Any]) -> bool:
+    return (
+        asset_generator_type(row) == "parametric"
+        and _scene_eligible(row)
+        and not _is_preview_asset(row)
+        and _safe_int(row.get("quality_tier"), 0) >= 2
+    )
+
+
 def _filter_candidates_for_curation_mode(
     scored: Sequence[Tuple[Dict[str, Any], float, float]],
     *,
     category: str,
     config: StreetComposeConfig,
 ) -> Tuple[List[Tuple[Dict[str, Any], float, float]], Dict[str, Any]]:
-    mode = str(getattr(config, "asset_curation_mode", "parametric_first")).strip().lower()
+    mode = str(getattr(config, "asset_curation_mode", "scene_ready_first")).strip().lower()
     parametric_count = sum(1 for row, _score, _curation in scored if asset_generator_type(row) == "parametric")
     legacy_count = int(len(scored) - parametric_count)
+    scene_eligible = [item for item in scored if _scene_eligible(item[0])]
     info = {
         "asset_curation_mode": mode,
         "parametric_candidate_count": int(parametric_count),
         "legacy_candidate_count": int(legacy_count),
+        "scene_eligible_candidate_count": int(len(scene_eligible)),
+        "scene_ineligible_candidate_count": int(len(scored) - len(scene_eligible)),
+        "scene_eligibility_filter": "all",
         "provenance_filter": "all",
         "provenance_fallback": False,
     }
+    filtered = list(scored)
+    if scene_eligible:
+        filtered = scene_eligible
+        info["scene_eligibility_filter"] = "scene_eligible_only"
+    else:
+        info["provenance_fallback"] = True
+
+    if mode == "scene_ready_first":
+        return filtered, info
+
     if category not in _PARAMETRIC_PRIORITY_CATEGORIES:
-        return list(scored), info
+        return filtered, info
 
     if mode == "parametric_first":
-        parametric_only = [item for item in scored if asset_generator_type(item[0]) == "parametric"]
+        parametric_only = [item for item in filtered if _parametric_scene_ready(item[0])]
         if parametric_only:
             info["provenance_filter"] = "parametric_only"
             return parametric_only, info
         info["provenance_fallback"] = True
-        return list(scored), info
+        return filtered, info
 
     if mode == "legacy":
-        legacy_only = [item for item in scored if asset_generator_type(item[0]) != "parametric"]
+        legacy_only = [item for item in filtered if asset_generator_type(item[0]) != "parametric"]
         if legacy_only:
             info["provenance_filter"] = "legacy_only"
             return legacy_only, info
         info["provenance_fallback"] = True
-        return list(scored), info
+        return filtered, info
 
-    return list(scored), info
+    return filtered, info
 
 _PRESENTATION_HEIGHTS: Dict[str, float] = {
     "bench": 0.8,
@@ -292,11 +359,25 @@ def _default_material_family(category: str) -> str:
     }.get(str(category), "generic")
 
 
+def _normalize_notes(value: Any) -> Tuple[str, ...]:
+    if value is None:
+        return ()
+    if isinstance(value, str):
+        text = value.strip()
+        return (text,) if text else ()
+    return tuple(str(item).strip() for item in value if str(item).strip())
+
+
 def enrich_asset_row(row: Mapping[str, Any]) -> Dict[str, Any]:
     category = str(row.get("category", "")).strip().lower()
     text_desc = str(row.get("text_desc", "")).strip()
     style_tags = _normalize_tags(row.get("style_tags")) or _default_style_tags(category, text_desc)
     quality_tier = int(row.get("quality_tier", 3 if bool(row.get("hero_asset", False)) else 2 if category in {"bench", "lamp", "tree", "bus_stop", "bollard"} else 1))
+    mesh_face_count = _mesh_face_count(row)
+    if "scene_eligible" in row:
+        scene_eligible = _coerce_bool(row.get("scene_eligible"), default=True)
+    else:
+        scene_eligible = bool(quality_tier >= 1)
     return {
         **dict(row),
         "style_tags": style_tags,
@@ -304,6 +385,9 @@ def enrich_asset_row(row: Mapping[str, Any]) -> Dict[str, Any]:
         "material_family": str(row.get("material_family", "")).strip().lower() or _default_material_family(category),
         "hero_asset": bool(row.get("hero_asset", False) or category in {"bus_stop"} and "modern" in style_tags),
         "avoid_with_presets": _normalize_tags(row.get("avoid_with_presets")),
+        "scene_eligible": bool(scene_eligible),
+        "mesh_face_count": mesh_face_count,
+        "quality_notes": _normalize_notes(row.get("quality_notes")),
     }
 
 
@@ -315,6 +399,8 @@ def _asset_curation_score(row: Mapping[str, Any], category: str, preset: StylePr
     material = str(row.get("material_family", "")).strip().lower()
     score = 0.0
     score += 0.35 * float(int(row.get("quality_tier", 1)))
+    score += 1.25 if _scene_eligible(row) else -2.75
+    score += min(float(_mesh_face_count(row)), 1800.0) / 1800.0
     if bool(row.get("hero_asset", False)) and category in preset.hero_categories:
         score += 0.6
     if style_tags & set(preset.global_tags):
@@ -325,6 +411,8 @@ def _asset_curation_score(row: Mapping[str, Any], category: str, preset: StylePr
         score += 0.6
     if material and material in set(preset.category_materials.get(category, ())):
         score += 0.8
+    if asset_generator_type(row) == "parametric" and category in _PARAMETRIC_PRIORITY_CATEGORIES:
+        score += 0.25 if _parametric_scene_ready(row) else -0.35 if _is_preview_asset(row) else 0.0
     return float(score)
 
 
@@ -349,8 +437,8 @@ def curate_candidates(
         config=config,
     )
     curated = [item for item in filtered_scored if item[2] >= 1.1]
-    mode = str(getattr(config, "asset_curation_mode", "parametric_first")).strip().lower()
-    use_curated = mode in {"curated_first", "parametric_first"} and bool(curated)
+    mode = str(getattr(config, "asset_curation_mode", "scene_ready_first")).strip().lower()
+    use_curated = mode in {"curated_first", "parametric_first", "scene_ready_first"} and bool(curated)
     chosen = curated if use_curated else filtered_scored
     chosen.sort(key=lambda item: (float(item[1]), float(item[2]), bool(item[0].get("hero_asset", False))), reverse=True)
     return [(row, float(score)) for row, score, _ in chosen], {

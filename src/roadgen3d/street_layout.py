@@ -78,6 +78,10 @@ from .poi_taxonomy import (
 from .program_generator import ProgramGeneratorRuntime
 from .poi_rules import load_rule_set
 from .scene_graph_viz import build_scene_graph
+from .spatial_viz import (
+    plot_poi_exclusion_overview,
+    plot_zoning_grid_preview as plot_zoning_grid_preview_2d,
+)
 from .street_priors import DEFAULT_CATEGORIES, DEFAULT_SPACING_M, SIDE_PREF
 from .street_program import infer_street_program
 from .theme_buildings import (
@@ -98,6 +102,7 @@ from .types import (
     InventorySummary,
     LayoutSolverInput,
     LayoutSolverResult,
+    ProductionStepRecord,
     ProgramGenerationInput,
     ThemeSegment,
     StreetComposeConfig,
@@ -197,8 +202,13 @@ def _validate_config(config: StreetComposeConfig) -> None:
         raise ValueError("beauty_mode must be 'presentation_v1'")
     if str(getattr(config, "render_preset", "jury_default_v1")).strip().lower() not in {"jury_default_v1"}:
         raise ValueError("render_preset must be 'jury_default_v1'")
-    if str(getattr(config, "asset_curation_mode", "parametric_first")).strip().lower() not in {"parametric_first", "curated_first", "legacy"}:
-        raise ValueError("asset_curation_mode must be 'parametric_first', 'curated_first' or 'legacy'")
+    if str(getattr(config, "asset_curation_mode", "scene_ready_first")).strip().lower() not in {
+        "scene_ready_first",
+        "parametric_first",
+        "curated_first",
+        "legacy",
+    }:
+        raise ValueError("asset_curation_mode must be 'scene_ready_first', 'parametric_first', 'curated_first' or 'legacy'")
     if int(getattr(config, "building_search_topk", 1)) <= 0:
         raise ValueError("building_search_topk must be >= 1")
     if str(getattr(config, "surrounding_building_mode", "footprint_based")).strip().lower() not in {"footprint_based", "grid_growth"}:
@@ -254,6 +264,9 @@ def _load_real_manifest(manifest_path: Path) -> List[Dict[str, object]]:
             "runtime_profile",
             "parameter_snapshot",
             "quality_metrics",
+            "scene_eligible",
+            "mesh_face_count",
+            "quality_notes",
         ):
             if optional_key in payload:
                 row[optional_key] = payload[optional_key]
@@ -999,6 +1012,410 @@ def _export_scene(scene, out_dir: Path, export_format: str) -> Dict[str, str]:
         scene_mesh.export(ply_path)
         outputs["scene_ply"] = str(ply_path)
     return outputs
+
+
+def _production_step_definitions(layout_mode: str) -> Tuple[Tuple[str, str], ...]:
+    if str(layout_mode).strip().lower() == "osm":
+        return (
+            ("road_base", "Road Base"),
+            ("land_use_zoning", "Land Use / Zoning"),
+            ("buildings", "Buildings"),
+            ("poi_context", "POI Context"),
+            ("furniture_anchor", "Furniture Anchor"),
+            ("furniture_required", "Furniture Required"),
+            ("furniture_optional", "Furniture Optional"),
+        )
+    return (
+        ("road_base", "Road Base"),
+        ("furniture_required", "Furniture Required"),
+        ("furniture_optional", "Furniture Optional"),
+    )
+
+
+def _split_furniture_layers(
+    placements: Sequence[StreetPlacement],
+) -> Tuple[List[StreetPlacement], List[StreetPlacement], List[StreetPlacement], List[StreetPlacement]]:
+    building = [placement for placement in placements if placement.placement_group == "building"]
+    anchor = [
+        placement
+        for placement in placements
+        if placement.placement_group == "street_furniture" and str(placement.anchor_poi_type or "").strip()
+    ]
+    required = [
+        placement
+        for placement in placements
+        if placement.placement_group == "street_furniture"
+        and bool(placement.required)
+        and not str(placement.anchor_poi_type or "").strip()
+    ]
+    optional = [
+        placement
+        for placement in placements
+        if placement.placement_group == "street_furniture"
+        and not bool(placement.required)
+        and not str(placement.anchor_poi_type or "").strip()
+    ]
+    return building, anchor, required, optional
+
+
+def _stage_counts(
+    *,
+    visible_instance_ids: Sequence[str],
+    visible_placements: Sequence[StreetPlacement],
+    zoning_grid: Sequence[Dict[str, object]],
+    building_plans: Sequence[BuildingPlacementPlan],
+    poi_points_by_type: Mapping[str, Sequence[Tuple[float, float]]],
+) -> Dict[str, int]:
+    building_count = sum(1 for placement in visible_placements if placement.placement_group == "building")
+    furniture_anchor_count = sum(
+        1
+        for placement in visible_placements
+        if placement.placement_group == "street_furniture" and str(placement.anchor_poi_type or "").strip()
+    )
+    furniture_required_count = sum(
+        1
+        for placement in visible_placements
+        if placement.placement_group == "street_furniture"
+        and bool(placement.required)
+        and not str(placement.anchor_poi_type or "").strip()
+    )
+    furniture_optional_count = sum(
+        1
+        for placement in visible_placements
+        if placement.placement_group == "street_furniture"
+        and not bool(placement.required)
+        and not str(placement.anchor_poi_type or "").strip()
+    )
+    poi_count = sum(len(points) for points in nonempty_poi_points(poi_points_by_type).values())
+    return {
+        "visible_instance_count": int(len(visible_instance_ids)),
+        "building_count": int(building_count),
+        "building_target_count": int(len(building_plans)),
+        "furniture_anchor_count": int(furniture_anchor_count),
+        "furniture_required_count": int(furniture_required_count),
+        "furniture_optional_count": int(furniture_optional_count),
+        "street_furniture_count": int(furniture_anchor_count + furniture_required_count + furniture_optional_count),
+        "zoning_cell_count": int(len(zoning_grid)),
+        "poi_point_count": int(poi_count),
+    }
+
+
+def _stage_summary_text(record: ProductionStepRecord) -> str:
+    counts = record.counts
+    return (
+        f"{record.index + 1}. {record.title}\n"
+        f"- step_id: {record.step_id}\n"
+        f"- visible_instances: {int(counts.get('visible_instance_count', 0))}\n"
+        f"- buildings: {int(counts.get('building_count', 0))}\n"
+        f"- anchor_furniture: {int(counts.get('furniture_anchor_count', 0))}\n"
+        f"- required_furniture: {int(counts.get('furniture_required_count', 0))}\n"
+        f"- optional_furniture: {int(counts.get('furniture_optional_count', 0))}\n"
+        f"- poi_points: {int(counts.get('poi_point_count', 0))}\n"
+        f"- zoning_cells: {int(counts.get('zoning_cell_count', 0))}"
+    )
+
+
+def _stage_scene_base(
+    *,
+    config: StreetComposeConfig,
+    resolved_program: object,
+    placement_ctx: object | None,
+    palette: Mapping[str, Tuple[int, int, int, int]],
+):
+    if config.layout_mode == "osm" and placement_ctx is not None:
+        return _build_osm_base_scene(placement_ctx, palette=palette)
+    left_side_width = sum(float(band.width_m) for band in resolved_program.bands if band.side == "left")
+    right_side_width = sum(float(band.width_m) for band in resolved_program.bands if band.side == "right")
+    return _build_base_scene(
+        length_m=float(config.length_m),
+        road_width_m=float(resolved_program.road_width_m),
+        left_side_width_m=float(left_side_width),
+        right_side_width_m=float(right_side_width),
+        street_program=resolved_program,
+        palette=palette,
+    )
+
+
+def _add_polygon_slab(
+    scene,
+    *,
+    polygon_xz: Sequence[Sequence[float]],
+    height_m: float,
+    y_min_m: float,
+    color: Sequence[int],
+    node_name: str,
+) -> None:
+    if len(polygon_xz) < 3:
+        return
+    trimesh = _require_trimesh()
+    try:
+        from shapely.geometry import Polygon as ShapelyPolygon
+    except Exception:
+        ShapelyPolygon = None  # type: ignore[assignment]
+
+    if ShapelyPolygon is not None:
+        try:
+            poly = ShapelyPolygon([(float(point[0]), float(point[1])) for point in polygon_xz])
+            mesh = trimesh.creation.extrude_polygon(poly, float(height_m))
+            verts = mesh.vertices.copy()
+            old_y = verts[:, 1].copy()
+            old_z = verts[:, 2].copy()
+            verts[:, 1] = old_z + float(y_min_m)
+            verts[:, 2] = old_y
+            mesh.vertices = verts
+            mesh.fix_normals()
+            mesh.visual.face_colors = list(color)
+            scene.add_geometry(mesh, node_name=node_name)
+            return
+        except Exception:
+            logger.debug("Falling back to bbox zoning slab for %s", node_name)
+
+    xs = [float(point[0]) for point in polygon_xz]
+    zs = [float(point[1]) for point in polygon_xz]
+    if not xs or not zs:
+        return
+    length_m = max(max(xs) - min(xs), 0.1)
+    width_m = max(max(zs) - min(zs), 0.1)
+    mesh = trimesh.creation.box(extents=(length_m, float(height_m), width_m))
+    mesh.visual.face_colors = list(color)
+    mesh.apply_translation(
+        [
+            float((min(xs) + max(xs)) / 2.0),
+            float(y_min_m) + float(height_m) / 2.0,
+            float((min(zs) + max(zs)) / 2.0),
+        ]
+    )
+    scene.add_geometry(mesh, node_name=node_name)
+
+
+def _zoning_proxy_color(cell: Mapping[str, object]) -> Tuple[int, int, int, int]:
+    lane_role = str(cell.get("lane_role", "") or "")
+    land_use_type = str(cell.get("land_use_type", "") or "")
+    if lane_role == "carriageway":
+        return (85, 90, 96, 220)
+    if "sidewalk" in lane_role:
+        return (196, 199, 204, 220)
+    if lane_role.startswith("left_building_buffer") or lane_role.startswith("right_building_buffer"):
+        return {
+            "commercial": (224, 122, 95, 220),
+            "transit": (77, 150, 255, 220),
+            "residential": (127, 176, 105, 220),
+            "green": (42, 157, 143, 220),
+        }.get(land_use_type, (168, 164, 158, 220))
+    return (170, 170, 170, 220)
+
+
+def _add_zoning_proxies(scene, zoning_grid: Sequence[Dict[str, object]]) -> None:
+    for idx, cell in enumerate(zoning_grid):
+        polygon_xz = cell.get("polygon_xz", []) or []
+        if not polygon_xz:
+            continue
+        _add_polygon_slab(
+            scene,
+            polygon_xz=polygon_xz,
+            height_m=0.04 if str(cell.get("lane_role", "") or "") == "carriageway" else 0.08,
+            y_min_m=0.01,
+            color=_zoning_proxy_color(cell),
+            node_name=f"zoning_proxy_{idx:03d}",
+        )
+
+
+def _save_stage_companion_figure(fig: object | None, out_path: Path) -> str:
+    if fig is None:
+        return ""
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        fig.savefig(out_path, dpi=180, bbox_inches="tight", facecolor="white")
+        try:
+            import matplotlib.pyplot as plt
+
+            plt.close(fig)
+        except Exception:
+            pass
+        return str(out_path)
+    except Exception:
+        try:
+            import matplotlib.pyplot as plt
+
+            plt.close(fig)
+        except Exception:
+            pass
+        logger.debug("Failed to save companion figure: %s", out_path)
+        return ""
+
+
+def _build_poi_companion_figure(
+    *,
+    spatial_ctx: object | None,
+    placements: Sequence[StreetPlacement],
+    config: StreetComposeConfig,
+    osm_geometry: Mapping[str, object] | None,
+    exclusion_zones: Sequence[object],
+):
+    if spatial_ctx is None:
+        return None
+    if not exclusion_zones and not nonempty_poi_points(getattr(spatial_ctx, "poi_points_by_type_xz", {}) or {}):
+        return None
+    zones = [
+        {
+            "poi_type": getattr(zone, "poi_type", ""),
+            "position_xz": [float(getattr(zone, "position_xz", (0.0, 0.0))[0]), float(getattr(zone, "position_xz", (0.0, 0.0))[1])],
+            "radius_m": float(getattr(zone, "radius_m", 0.0) or 0.0),
+            "rule_name": str(getattr(zone, "rule_name", "")),
+        }
+        for zone in exclusion_zones
+    ]
+    return plot_poi_exclusion_overview(
+        spatial_ctx,
+        placements,
+        config,
+        poi_exclusion_zones=zones,
+        poi_conflicts=[],
+        osm_geometry=osm_geometry,
+    )
+
+
+def _build_production_steps(
+    *,
+    out_dir: Path,
+    config: StreetComposeConfig,
+    resolved_program: object,
+    placement_ctx: object | None,
+    poi_ctx: object | None,
+    spatial_ctx: object | None,
+    placements: Sequence[StreetPlacement],
+    zoning_grid: Sequence[Dict[str, object]],
+    building_footprints: Sequence[BuildingFootprint],
+    generated_lots: Sequence[GeneratedLot],
+    building_plans: Sequence[BuildingPlacementPlan],
+    mesh_cache: Mapping[str, _MeshCacheEntry],
+    exclusion_zones: Sequence[object],
+    palette: Mapping[str, Tuple[int, int, int, int]],
+    osm_geometry: Mapping[str, object] | None,
+) -> Tuple[ProductionStepRecord, ...]:
+    step_dir = (out_dir / "production_steps").resolve()
+    step_dir.mkdir(parents=True, exist_ok=True)
+    building_placements, anchor_placements, required_placements, optional_placements = _split_furniture_layers(placements)
+    poi_points_by_type = extract_poi_points_by_type(poi_ctx, suffix="xz") if poi_ctx is not None else {}
+
+    stage_visibility: Dict[str, Tuple[bool, bool, Tuple[StreetPlacement, ...], Tuple[str, ...]]] = {}
+    if str(config.layout_mode).strip().lower() == "osm":
+        stage_visibility = {
+            "road_base": (False, False, tuple(), tuple()),
+            "land_use_zoning": (True, False, tuple(), tuple()),
+            "buildings": (True, False, tuple(building_placements), tuple(placement.instance_id for placement in building_placements)),
+            "poi_context": (True, True, tuple(building_placements), tuple()),
+            "furniture_anchor": (
+                True,
+                True,
+                tuple(list(building_placements) + list(anchor_placements)),
+                tuple(placement.instance_id for placement in anchor_placements),
+            ),
+            "furniture_required": (
+                True,
+                True,
+                tuple(list(building_placements) + list(anchor_placements) + list(required_placements)),
+                tuple(placement.instance_id for placement in required_placements),
+            ),
+            "furniture_optional": (
+                True,
+                True,
+                tuple(list(building_placements) + list(anchor_placements) + list(required_placements) + list(optional_placements)),
+                tuple(placement.instance_id for placement in optional_placements),
+            ),
+        }
+    else:
+        non_optional = list(anchor_placements) + list(required_placements)
+        stage_visibility = {
+            "road_base": (False, False, tuple(), tuple()),
+            "furniture_required": (
+                False,
+                False,
+                tuple(non_optional),
+                tuple(placement.instance_id for placement in non_optional),
+            ),
+            "furniture_optional": (
+                False,
+                False,
+                tuple(non_optional + list(optional_placements)),
+                tuple(placement.instance_id for placement in optional_placements),
+            ),
+        }
+
+    records: List[ProductionStepRecord] = []
+    for index, (step_id, title) in enumerate(_production_step_definitions(config.layout_mode)):
+        include_zoning, include_poi_overlays, visible_placements, delta_ids = stage_visibility[step_id]
+        scene = _stage_scene_base(
+            config=config,
+            resolved_program=resolved_program,
+            placement_ctx=placement_ctx,
+            palette=palette,
+        )
+        _add_beauty_scene_proxies(
+            scene,
+            config=config,
+            street_program=resolved_program,
+            placement_ctx=placement_ctx,
+            poi_ctx=poi_ctx,
+            placements=list(visible_placements),
+        )
+        if include_zoning:
+            _add_zoning_proxies(scene, zoning_grid)
+        if visible_placements:
+            _add_instance_meshes(scene=scene, placements=list(visible_placements), mesh_cache=dict(mesh_cache))
+        if include_poi_overlays:
+            _add_poi_markers_and_zones(scene, extract_poi_points_by_type(poi_ctx, suffix="xz") if poi_ctx is not None else {}, exclusion_zones)
+
+        glb_path = (step_dir / f"{index:02d}_{step_id}.glb").resolve()
+        scene.export(glb_path)
+
+        companion_path = ""
+        if step_id == "land_use_zoning":
+            companion = plot_zoning_grid_preview_2d(
+                zoning_grid,
+                building_footprints=[],
+                generated_lots=[],
+                building_placements=[],
+                osm_geometry=osm_geometry,
+            )
+            companion_path = _save_stage_companion_figure(companion, step_dir / f"{index:02d}_{step_id}.png")
+        elif step_id == "poi_context":
+            companion = _build_poi_companion_figure(
+                spatial_ctx=spatial_ctx,
+                placements=visible_placements,
+                config=config,
+                osm_geometry=osm_geometry,
+                exclusion_zones=exclusion_zones,
+            )
+            companion_path = _save_stage_companion_figure(companion, step_dir / f"{index:02d}_{step_id}.png")
+
+        visible_ids = tuple(placement.instance_id for placement in visible_placements)
+        counts = _stage_counts(
+            visible_instance_ids=visible_ids,
+            visible_placements=visible_placements,
+            zoning_grid=zoning_grid if include_zoning else tuple(),
+            building_plans=building_plans if step_id in {"buildings", "poi_context", "furniture_anchor", "furniture_required", "furniture_optional"} else tuple(),
+            poi_points_by_type=poi_points_by_type if include_poi_overlays else {},
+        )
+        records.append(
+            ProductionStepRecord(
+                step_id=step_id,
+                index=index,
+                title=title,
+                glb_path=str(glb_path),
+                companion_path=str(companion_path),
+                visible_instance_ids=visible_ids,
+                delta_instance_ids=tuple(delta_ids),
+                counts=counts,
+            )
+        )
+
+    manifest_path = (step_dir / "production_steps.json").resolve()
+    manifest_path.write_text(
+        json.dumps([record.to_dict() for record in records], indent=2, ensure_ascii=True),
+        encoding="utf-8",
+    )
+    return tuple(records)
 
 
 # ---------------------------------------------------------------------------
@@ -2788,6 +3205,7 @@ def compose_street_scene(
                     bbox_xz=[float(bbbox[0]), float(bbbox[1]), float(bbbox[2]), float(bbbox[3])],
                     selection_source=source,
                     slot_id=str(slot.slot_id),
+                    required=bool(getattr(slot, "required", False)),
                     theme_id=str(getattr(slot, "theme_id", "")),
                     anchor_poi_type=str(getattr(slot, "anchor_poi_type", "") or ""),
                     anchor_target_xz=(
@@ -2936,6 +3354,33 @@ def compose_street_scene(
             _add_poi_markers_and_zones(scene, extract_poi_points_by_type(poi_ctx, suffix="xz"), ())
 
     outputs = _export_scene(scene=scene, out_dir=out_dir, export_format=export_format)
+    serialized_osm_geometry = (
+        _serialize_osm_geometry(placement_ctx)
+        if config.layout_mode == "osm" and placement_ctx is not None
+        else None
+    )
+    production_steps = _build_production_steps(
+        out_dir=out_dir,
+        config=config,
+        resolved_program=resolved_program,
+        placement_ctx=placement_ctx,
+        poi_ctx=poi_ctx,
+        spatial_ctx=spatial_ctx,
+        placements=placements,
+        zoning_grid=zoning_grid,
+        building_footprints=building_footprints,
+        generated_lots=generated_lots,
+        building_plans=building_plans,
+        mesh_cache=mesh_cache,
+        exclusion_zones=exclusion_zones,
+        palette=palette,
+        osm_geometry=serialized_osm_geometry,
+    )
+    production_steps_dir = (out_dir / "production_steps").resolve()
+    production_steps_manifest = (production_steps_dir / "production_steps.json").resolve()
+    outputs["production_steps_dir"] = str(production_steps_dir)
+    if production_steps_manifest.exists():
+        outputs["production_steps_manifest"] = str(production_steps_manifest)
 
     elapsed_ms_total = (time.perf_counter() - start_perf) * 1000.0
     unique_asset_count = len({placement.asset_id for placement in placements})
@@ -3035,6 +3480,9 @@ def compose_street_scene(
         "asset_generator_type_counts": asset_generator_type_counts,
         "parametric_instance_count": int(parametric_instance_count),
         "asset_library_scene_instances": int(asset_library_scene_instances),
+        "production_step_count": int(len(production_steps)),
+        "production_step_ids": [record.step_id for record in production_steps],
+        "final_production_step_id": production_steps[-1].step_id if production_steps else "",
         "layout_mode": config.layout_mode,
         "constraint_mode": config.constraint_mode,
         "aoi_bbox": list(config.aoi_bbox) if config.aoi_bbox else None,
@@ -3109,7 +3557,7 @@ def compose_street_scene(
         ),
         "beauty_mode": str(getattr(config, "beauty_mode", "presentation_v1")),
         "render_preset": str(getattr(config, "render_preset", "jury_default_v1")),
-        "asset_curation_mode": str(getattr(config, "asset_curation_mode", "parametric_first")),
+        "asset_curation_mode": str(getattr(config, "asset_curation_mode", "scene_ready_first")),
         "scene_debug_overlays_enabled": bool(debug_scene_overlays_enabled),
         "theme_segments": [segment.to_dict() for segment in theme_segments],
         "theme_diagnostics": {
@@ -3165,8 +3613,8 @@ def compose_street_scene(
             "length_m": float(spatial_ctx.length_m),
         },
     }
-    if config.layout_mode == "osm" and placement_ctx is not None:
-        summary_payload["osm_geometry"] = _serialize_osm_geometry(placement_ctx)
+    if serialized_osm_geometry is not None:
+        summary_payload["osm_geometry"] = serialized_osm_geometry
 
     summary_payload["poi_exclusion_zones"] = [
         {
@@ -3206,6 +3654,7 @@ def compose_street_scene(
         "building_placements": [plan.to_dict() for plan in building_plans],
         "building_retrieval_predictions": building_retrieval_predictions,
         "zoning_grid": list(zoning_grid),
+        "production_steps": [record.to_dict() for record in production_steps],
         "unplaced_slot_diagnostics": list(unplaced_slot_diagnostics),
         "outputs": outputs,
     }

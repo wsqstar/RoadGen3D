@@ -258,8 +258,13 @@ def _asset_row(
     *,
     generator_type: str = "",
     source: str = "procedural_generated",
+    quality_tier: int | None = None,
+    scene_eligible: bool | None = None,
+    runtime_profile: str = "",
+    mesh_face_count: int | None = None,
+    quality_notes: list[str] | None = None,
 ) -> dict[str, object]:
-    return {
+    row: dict[str, object] = {
         "asset_id": asset_id,
         "category": category,
         "text_desc": f"{asset_id} desc",
@@ -268,6 +273,17 @@ def _asset_row(
         "generator_type": generator_type,
         "source": source,
     }
+    if quality_tier is not None:
+        row["quality_tier"] = quality_tier
+    if scene_eligible is not None:
+        row["scene_eligible"] = scene_eligible
+    if runtime_profile:
+        row["runtime_profile"] = runtime_profile
+    if mesh_face_count is not None:
+        row["mesh_face_count"] = mesh_face_count
+    if quality_notes is not None:
+        row["quality_notes"] = quality_notes
+    return row
 
 
 def test_street_compose_outputs_created(tmp_path: Path, monkeypatch):
@@ -355,6 +371,32 @@ def test_load_mesh_cache_preserves_multi_geometry_scene_assets(tmp_path: Path):
     assert len(parent_scene.geometry) == 2
 
 
+def test_load_real_manifest_preserves_scene_ready_fields(tmp_path: Path):
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(
+        manifest,
+        [
+            {
+                "asset_id": "lamp_scene_ready",
+                "category": "lamp",
+                "text_desc": "scene ready lamp",
+                "mesh_path": str(tmp_path / "meshes" / "lamp_scene_ready.glb"),
+                "latent_path": str(tmp_path / "latents" / "lamp_scene_ready.pt"),
+                "scene_eligible": True,
+                "mesh_face_count": 1234,
+                "quality_tier": 3,
+                "quality_notes": ["scene_ready", "high_face_count"],
+            }
+        ],
+    )
+
+    rows = street_layout._load_real_manifest(manifest)
+
+    assert rows[0]["scene_eligible"] is True
+    assert rows[0]["mesh_face_count"] == 1234
+    assert rows[0]["quality_notes"] == ["scene_ready", "high_face_count"]
+
+
 def test_street_compose_no_overlap_aabb(tmp_path: Path, monkeypatch):
     pytest.importorskip("trimesh")
     rows = _build_real_rows(tmp_path / "data")
@@ -372,6 +414,61 @@ def test_street_compose_no_overlap_aabb(tmp_path: Path, monkeypatch):
         out_dir=tmp_path / "artifacts",
     )
     _assert_no_overlap([placement.bbox_xz for placement in result.placements])
+
+
+def test_street_placement_to_dict_serializes_required_flag():
+    placement = StreetPlacement(
+        instance_id="inst_required",
+        asset_id="bench_01",
+        category="bench",
+        score=1.0,
+        position_xyz=[0.0, 0.0, 0.0],
+        yaw_deg=0.0,
+        scale=1.0,
+        bbox_xz=[-0.5, 0.5, -0.25, 0.25],
+        selection_source="test",
+        required=True,
+    )
+
+    payload = placement.to_dict()
+
+    assert payload["required"] is True
+
+
+def test_template_scene_layout_contains_simplified_production_steps(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    rows = _build_real_rows(tmp_path / "data")
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+    monkeypatch.setattr(street_layout, "render_presentation_views", lambda *args, **kwargs: [])
+
+    result = compose_street_scene(
+        config=_build_config(seed=17),
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+
+    payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    steps = payload["production_steps"]
+    summary = payload["summary"]
+
+    assert [step["step_id"] for step in steps] == [
+        "road_base",
+        "furniture_required",
+        "furniture_optional",
+    ]
+    assert int(summary["production_step_count"]) == 3
+    assert summary["final_production_step_id"] == "furniture_optional"
+    assert Path(payload["outputs"]["production_steps_dir"]).exists()
+    assert Path(payload["outputs"]["production_steps_manifest"]).exists()
+    assert all(Path(step["glb_path"]).exists() for step in steps)
+    assert steps[0]["counts"]["street_furniture_count"] == 0
+    assert steps[1]["counts"]["visible_instance_count"] <= steps[2]["counts"]["visible_instance_count"]
 
 
 def test_street_compose_seed_deterministic(tmp_path: Path, monkeypatch):
@@ -671,6 +768,105 @@ def test_pick_category_candidate_parametric_first_does_not_override_non_priority
     )
 
     assert row["asset_id"] == "tree_legacy"
+
+
+def test_pick_category_candidate_scene_ready_first_prefers_scene_ready_lamp(monkeypatch):
+    asset_by_id = {
+        "lamp_preview": _asset_row(
+            "lamp_preview",
+            "lamp",
+            generator_type="parametric_v1",
+            source="parametric_generated",
+            runtime_profile="preview",
+            quality_tier=1,
+            scene_eligible=False,
+            mesh_face_count=92,
+        ),
+        "lamp_curated": _asset_row(
+            "lamp_curated",
+            "lamp",
+            source="procedural_generated",
+            quality_tier=3,
+            scene_eligible=True,
+            mesh_face_count=1450,
+        ),
+    }
+    hits = [
+        RetrievalHit(asset_id="lamp_preview", score=0.97),
+        RetrievalHit(asset_id="lamp_curated", score=0.86),
+    ]
+    monkeypatch.setattr(street_layout, "_softmax_weights", lambda scores, temperature: [1.0] + [0.0] * (len(scores) - 1))
+
+    row, score, source = street_layout._pick_category_candidate(
+        query="street",
+        category="lamp",
+        topk=2,
+        embedder=_UnitFakeEmbedder(),
+        index_store=_UnitFakeIndexStore(hits),
+        asset_by_id=asset_by_id,
+        category_pool=list(asset_by_id.values()),
+        used_asset_ids=set(),
+        rng=random.Random(0),
+        config=StreetComposeConfig(
+            query="street",
+            length_m=60.0,
+            road_width_m=8.0,
+            sidewalk_width_m=2.5,
+            lane_count=2,
+            density=1.0,
+            seed=0,
+            topk_per_category=2,
+            max_trials_per_slot=5,
+            asset_curation_mode="scene_ready_first",
+        ),
+    )
+
+    assert row["asset_id"] == "lamp_curated"
+    assert score > 0.86
+    assert source == "faiss_softmax"
+
+
+def test_pick_category_candidate_scene_ready_first_falls_back_when_only_ineligible_assets_exist(monkeypatch):
+    asset_by_id = {
+        "tree_lowpoly": _asset_row(
+            "tree_lowpoly",
+            "tree",
+            source="procedural_generated",
+            quality_tier=0,
+            scene_eligible=False,
+            mesh_face_count=40,
+        ),
+    }
+    hits = [RetrievalHit(asset_id="tree_lowpoly", score=0.91)]
+    monkeypatch.setattr(street_layout, "_softmax_weights", lambda scores, temperature: [1.0])
+
+    row, score, source = street_layout._pick_category_candidate(
+        query="street",
+        category="tree",
+        topk=1,
+        embedder=_UnitFakeEmbedder(),
+        index_store=_UnitFakeIndexStore(hits),
+        asset_by_id=asset_by_id,
+        category_pool=list(asset_by_id.values()),
+        used_asset_ids=set(),
+        rng=random.Random(0),
+        config=StreetComposeConfig(
+            query="street",
+            length_m=60.0,
+            road_width_m=8.0,
+            sidewalk_width_m=2.5,
+            lane_count=2,
+            density=1.0,
+            seed=0,
+            topk_per_category=1,
+            max_trials_per_slot=5,
+            asset_curation_mode="scene_ready_first",
+        ),
+    )
+
+    assert row["asset_id"] == "tree_lowpoly"
+    assert score > 0.91
+    assert source == "faiss_softmax"
 
 
 def test_run_street_compose_auto_selects_stable_poi_rich_road_by_seed(tmp_path: Path, monkeypatch):
@@ -1450,6 +1646,76 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
     assert {cell["theme_name"] for cell in payload["zoning_grid"]} >= {"commercial", "transit"}
     assert all("land_use_type" in cell and "buildable" in cell and "lot_id" in cell for cell in payload["zoning_grid"])
     assert any(cell["footprint_ids"] for cell in payload["zoning_grid"] if "building_buffer" in cell["lane_role"])
+
+
+def test_osm_scene_layout_contains_cumulative_production_steps(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    pytest.importorskip("pyproj")
+    pytest.importorskip("shapely")
+    pytest.importorskip("matplotlib")
+
+    rows = _build_real_rows(tmp_path / "data", include_buildings=True)
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+
+    import roadgen3d.osm_ingest as osm_ingest
+
+    monkeypatch.setattr(
+        osm_ingest,
+        "fetch_osm_data",
+        lambda **kwargs: _build_osm_response(include_building=True, include_bus_stop=True, include_fire_hydrant=True),
+    )
+    monkeypatch.setattr(street_layout, "render_presentation_views", lambda *args, **kwargs: [])
+
+    result = compose_street_scene(
+        config=_build_osm_config(tmp_path, seed=19),
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+
+    payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    steps = payload["production_steps"]
+    summary = payload["summary"]
+    step_by_id = {step["step_id"]: step for step in steps}
+    building_ids = {
+        placement.instance_id
+        for placement in result.placements
+        if placement.placement_group == "building"
+    }
+
+    assert [step["step_id"] for step in steps] == [
+        "road_base",
+        "land_use_zoning",
+        "buildings",
+        "poi_context",
+        "furniture_anchor",
+        "furniture_required",
+        "furniture_optional",
+    ]
+    assert int(summary["production_step_count"]) == 7
+    assert summary["final_production_step_id"] == "furniture_optional"
+    assert summary["production_step_ids"] == [step["step_id"] for step in steps]
+    assert Path(payload["outputs"]["production_steps_dir"]).exists()
+    assert Path(payload["outputs"]["production_steps_manifest"]).exists()
+    assert all(Path(step["glb_path"]).exists() for step in steps)
+    assert step_by_id["road_base"]["counts"]["street_furniture_count"] == 0
+    assert step_by_id["buildings"]["counts"]["street_furniture_count"] == 0
+    assert set(step_by_id["buildings"]["visible_instance_ids"]) == building_ids
+    assert step_by_id["poi_context"]["companion_path"]
+    assert Path(step_by_id["poi_context"]["companion_path"]).exists()
+    assert step_by_id["land_use_zoning"]["companion_path"]
+    assert Path(step_by_id["land_use_zoning"]["companion_path"]).exists()
+    assert int(step_by_id["poi_context"]["counts"]["poi_point_count"]) > 0
+    assert (
+        int(step_by_id["furniture_anchor"]["counts"]["visible_instance_count"])
+        <= int(step_by_id["furniture_required"]["counts"]["visible_instance_count"])
+        <= int(step_by_id["furniture_optional"]["counts"]["visible_instance_count"])
+    )
 
 
 def test_osm_compose_building_fallback_survives_missing_assets_and_footprints(tmp_path: Path, monkeypatch):
