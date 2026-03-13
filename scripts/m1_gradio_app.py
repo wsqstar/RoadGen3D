@@ -87,6 +87,28 @@ from scripts.m4_10_eval_engineering import run_eval as run_m4_eval
 from scripts.m6_01_collect_program_data import collect_program_data
 from scripts.m6_02_train_program_generator import train_from_jsonl as train_program_from_jsonl
 
+TIMELINE_KEYBOARD_JS = """
+() => {
+    document.addEventListener('keydown', (e) => {
+        const tag = document.activeElement?.tagName;
+        if (['INPUT', 'TEXTAREA', 'SELECT'].includes(tag)) return;
+        if (document.activeElement?.type === 'range') return;
+        const timeline = document.getElementById('production-timeline');
+        if (!timeline) return;
+        if (document.activeElement !== document.body && !timeline.contains(document.activeElement)) return;
+        if (e.key === 'ArrowLeft') {
+            const btn = document.querySelector('#prev-step-btn button');
+            if (btn && !btn.disabled) { e.preventDefault(); btn.click(); }
+        } else if (e.key === 'ArrowRight') {
+            const btn = document.querySelector('#next-step-btn button');
+            if (btn && !btn.disabled) { e.preventDefault(); btn.click(); }
+        }
+    });
+    const tl = document.getElementById('production-timeline');
+    if (tl && !tl.hasAttribute('tabindex')) tl.setAttribute('tabindex', '0');
+}
+"""
+
 _PARAMETRIC_STYLE_CHOICES = [
     "modern",
     "classic",
@@ -1447,9 +1469,32 @@ def _select_production_step(production_steps: List[Dict[str, Any]] | None, step_
     )
 
 
+def _compute_nav_button_states(steps: list, idx: int):
+    if not steps:
+        return gr.update(interactive=False), gr.update(interactive=False)
+    return gr.update(interactive=idx > 0), gr.update(interactive=idx < len(steps) - 1)
+
+
+def _update_nav_button_states(production_steps: List[Dict[str, Any]] | None, step_index: float | int):
+    steps = [dict(s) for s in list(production_steps or []) if isinstance(s, dict)]
+    idx = max(0, min(int(step_index), len(steps) - 1)) if steps else 0
+    return _compute_nav_button_states(steps, idx)
+
+
+def _navigate_production_step(production_steps: List[Dict[str, Any]] | None, current_step: float | int, direction: int):
+    steps = [dict(s) for s in list(production_steps or []) if isinstance(s, dict)]
+    if not steps:
+        return (gr.update(), "No production steps available.", None, None, [],
+                gr.update(interactive=False), gr.update(interactive=False))
+    new_idx = max(0, min(int(current_step) + direction, len(steps) - 1))
+    summary, model, companion, files = _select_production_step(steps, new_idx)
+    prev_update, next_update = _compute_nav_button_states(steps, new_idx)
+    return gr.update(value=new_idx), summary, model, companion, files, prev_update, next_update
+
+
 def _load_production_steps(layout_json_text: str):
     if not layout_json_text or not layout_json_text.strip():
-        return [], gr.update(minimum=0, maximum=0, value=0, step=1, interactive=False), "No production steps available.", None, None, []
+        return [], gr.update(minimum=0, maximum=0, value=0, step=1, interactive=False), "No production steps available.", None, None, [], gr.update(interactive=False), gr.update(interactive=False)
     try:
         payload = json.loads(layout_json_text)
         steps = [dict(step) for step in payload.get("production_steps", []) or [] if isinstance(step, dict)]
@@ -1464,6 +1509,8 @@ def _load_production_steps(layout_json_text: str):
                 scene_glb,
                 None,
                 fallback_files,
+                gr.update(interactive=False),
+                gr.update(interactive=False),
             )
         summary, model_path, companion_path, files = _select_production_step(steps, 0)
         return (
@@ -1479,9 +1526,11 @@ def _load_production_steps(layout_json_text: str):
             model_path,
             companion_path,
             files,
+            gr.update(interactive=False),
+            gr.update(interactive=bool(len(steps) > 1)),
         )
     except Exception:
-        return [], gr.update(minimum=0, maximum=0, value=0, step=1, interactive=False), "No production steps available.", None, None, []
+        return [], gr.update(minimum=0, maximum=0, value=0, step=1, interactive=False), "No production steps available.", None, None, [], gr.update(interactive=False), gr.update(interactive=False)
 
 
 def run_prepare_workspace(
@@ -3314,7 +3363,7 @@ def build_demo() -> gr.Blocks:
     default_osm_cache_dir = str((ROOT / "artifacts/m5/osm_cache").resolve())
     default_parametric_preview_dir = str((ROOT / "artifacts/real/parametric_preview").resolve())
 
-    with gr.Blocks(title="RoadGen3D POI-Driven Street Workbench") as demo:
+    with gr.Blocks(title="RoadGen3D POI-Driven Street Workbench", js=TIMELINE_KEYBOARD_JS) as demo:
         gr.Markdown("# RoadGen3D POI驱动街道生成工作台")
         gr.Markdown("默认工作流：`准备 -> 生成 -> 研究`")
 
@@ -3516,15 +3565,22 @@ def build_demo() -> gr.Blocks:
                     )
                 street_btn = gr.Button("Run Street", variant="primary")
                 production_steps_state = gr.State(value=[])
-                with gr.Accordion("Production Timeline", open=True):
-                    production_step_slider = gr.Slider(
-                        label="Production Step",
-                        minimum=0,
-                        maximum=0,
-                        step=1,
-                        value=0,
-                        interactive=False,
-                    )
+                with gr.Accordion("Production Timeline", open=True, elem_id="production-timeline"):
+                    with gr.Row():
+                        prev_step_btn = gr.Button("◀ Prev", elem_id="prev-step-btn",
+                                                   scale=1, variant="secondary", interactive=False)
+                        production_step_slider = gr.Slider(
+                            label="Production Step",
+                            minimum=0,
+                            maximum=0,
+                            step=1,
+                            value=0,
+                            interactive=False,
+                            scale=6,
+                            elem_id="production-step-slider",
+                        )
+                        next_step_btn = gr.Button("Next ▶", elem_id="next-step-btn",
+                                                   scale=1, variant="secondary", interactive=False)
                     with gr.Row():
                         street_model_view = gr.Model3D(label="Production Step Preview (GLB)")
                         production_companion_view = gr.Image(label="Production Companion View", type="filepath")
@@ -3937,6 +3993,8 @@ def build_demo() -> gr.Blocks:
                 street_model_view,
                 production_companion_view,
                 production_step_downloads,
+                prev_step_btn,
+                next_step_btn,
             ],
         ).then(
             fn=_extract_program_summary,
@@ -4002,6 +4060,36 @@ def build_demo() -> gr.Blocks:
                 street_model_view,
                 production_companion_view,
                 production_step_downloads,
+            ],
+        ).then(
+            fn=_update_nav_button_states,
+            inputs=[production_steps_state, production_step_slider],
+            outputs=[prev_step_btn, next_step_btn],
+        )
+        prev_step_btn.click(
+            fn=lambda steps, idx: _navigate_production_step(steps, idx, -1),
+            inputs=[production_steps_state, production_step_slider],
+            outputs=[
+                production_step_slider,
+                production_step_summary,
+                street_model_view,
+                production_companion_view,
+                production_step_downloads,
+                prev_step_btn,
+                next_step_btn,
+            ],
+        )
+        next_step_btn.click(
+            fn=lambda steps, idx: _navigate_production_step(steps, idx, +1),
+            inputs=[production_steps_state, production_step_slider],
+            outputs=[
+                production_step_slider,
+                production_step_summary,
+                street_model_view,
+                production_companion_view,
+                production_step_downloads,
+                prev_step_btn,
+                next_step_btn,
             ],
         )
         for control in (
@@ -4161,6 +4249,8 @@ def build_demo() -> gr.Blocks:
                 street_model_view,
                 production_companion_view,
                 production_step_downloads,
+                prev_step_btn,
+                next_step_btn,
             ],
         ).then(
             fn=_extract_presentation_views,
