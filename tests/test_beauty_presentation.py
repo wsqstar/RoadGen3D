@@ -19,7 +19,8 @@ from roadgen3d.beauty import (
     render_presentation_views,
     shape_program_for_style,
 )
-from roadgen3d.topdown_render import _viewport_from_layout
+from roadgen3d.topdown_render import _viewport_from_layout, render_design_zoning_companion
+from roadgen3d.types import BuildingFootprint, GeneratedLot
 from roadgen3d.types import LayoutSlotPlan, StreetBand, StreetComposeConfig, StreetProgram
 
 
@@ -201,3 +202,75 @@ def test_topdown_viewport_mapping_is_stable():
     assert px_a == px_b
     assert 0.0 <= px_a[0] <= 2048.0
     assert 0.0 <= px_a[1] <= 2048.0
+
+
+def test_render_design_zoning_companion_outputs_png(tmp_path: Path):
+    pytest.importorskip("PIL")
+    output_path = tmp_path / "zoning.png"
+    config = _config(style_preset="civic_clean_v1")
+    palette = {
+        "context_ground": (174, 169, 156, 255),
+        "carriageway": (71, 76, 84, 255),
+        "sidewalk": (195, 194, 186, 255),
+        "furnishing": (176, 174, 164, 255),
+        "clear_path": (212, 210, 200, 255),
+    }
+    zoning_grid = [
+        {
+            "lane_role": "carriageway",
+            "theme_name": "commercial",
+            "center_xz": [0.0, 0.0],
+            "polygon_xz": [[-20.0, -4.0], [20.0, -4.0], [20.0, 4.0], [-20.0, 4.0]],
+        },
+        {
+            "lane_role": "left_sidewalk",
+            "theme_name": "commercial",
+            "land_use_type": "commercial",
+            "center_xz": [0.0, 5.5],
+            "polygon_xz": [[-20.0, 4.0], [20.0, 4.0], [20.0, 7.0], [-20.0, 7.0]],
+        },
+        {
+            "lane_role": "left_building_buffer",
+            "theme_name": "commercial",
+            "land_use_type": "green",
+            "center_xz": [0.0, 10.5],
+            "polygon_xz": [[-20.0, 7.0], [20.0, 7.0], [20.0, 14.0], [-20.0, 14.0]],
+        },
+    ]
+    footprints = (
+        BuildingFootprint(
+            footprint_id="fp_001",
+            source="osm",
+            polygon_xz=((-8.0, 7.8), (-1.0, 7.8), (-1.0, 12.0), (-8.0, 12.0)),
+            centroid_xz=(-4.5, 9.9),
+            frontage_width_m=7.0,
+            depth_m=4.2,
+            yaw_deg=0.0,
+            theme_id="theme_001",
+            height_class="midrise",
+        ),
+    )
+    lots = (
+        GeneratedLot(
+            lot_id="lot_001",
+            polygon_xz=((2.0, 7.8), (10.0, 7.8), (10.0, 12.8), (2.0, 12.8)),
+            center_xz=(6.0, 10.3),
+            side="left",
+            land_use_type="commercial",
+            theme_id="theme_001",
+            frontage_width_m=8.0,
+            depth_m=5.0,
+            height_class="midrise",
+        ),
+    )
+    companion_path = render_design_zoning_companion(
+        out_path=output_path,
+        config=config,
+        palette=palette,
+        zoning_grid=zoning_grid,
+        building_footprints=footprints,
+        generated_lots=lots,
+        osm_geometry=None,
+    )
+    assert companion_path == str(output_path.resolve())
+    assert output_path.exists()

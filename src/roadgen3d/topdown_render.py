@@ -9,7 +9,7 @@ from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 
 import numpy as np
 
-from .types import StreetComposeConfig
+from .types import BuildingFootprint, GeneratedLot, StreetComposeConfig
 
 _ASSET_ROOT = Path(__file__).resolve().parents[2] / "assets" / "topdown"
 _TILE_PATHS = {
@@ -567,4 +567,138 @@ def render_design_topdown(
     return {"name": "overview_top_design", "title": "Overview Top Design", "path": str(out_path)}
 
 
-__all__ = ["render_design_topdown", "_viewport_from_layout"]
+def render_design_zoning_companion(
+    *,
+    out_path: Path,
+    config: StreetComposeConfig,
+    palette: Mapping[str, Tuple[int, int, int, int]],
+    zoning_grid: Sequence[Mapping[str, Any]],
+    building_footprints: Sequence[BuildingFootprint],
+    generated_lots: Sequence[GeneratedLot],
+    osm_geometry: Mapping[str, object] | None,
+) -> Optional[str]:
+    """Render a textured zoning-stage companion image or return ``None``."""
+    pillow = _require_pillow()
+    if pillow is None or not _assets_available():
+        return None
+    Image, _, ImageDraw, ImageFilter = pillow
+
+    layout_payload: Dict[str, Any] = {
+        "summary": {
+            "road_width_m": float(getattr(config, "road_width_m", 8.0)),
+            "sidewalk_width_m": float(getattr(config, "sidewalk_width_m", 2.5)),
+            "length_m": float(getattr(config, "length_m", 80.0)),
+            "osm_geometry": dict(osm_geometry or {}),
+        },
+        "zoning_grid": [dict(cell) for cell in zoning_grid],
+        "building_footprints": [footprint.to_dict() for footprint in building_footprints],
+        "generated_lots": [lot.to_dict() for lot in generated_lots],
+        "placements": [],
+    }
+    canvas_px = int(max(512, getattr(config, "topdown_canvas_px", 2048)))
+    viewport = _viewport_from_layout(layout_payload, canvas_px=canvas_px)
+    background = Image.new("RGBA", (canvas_px, canvas_px), _coerce_rgba(palette.get("context_ground"), (227, 223, 214, 255)))
+    _blend_tiled_polygons(
+        background,
+        tile_name="context_ground",
+        polygons=[[(0, 0), (canvas_px, 0), (canvas_px, canvas_px), (0, canvas_px)]],
+        tint=(255, 255, 255, 255),
+        alpha=1.0,
+    )
+    road_polygons = _road_and_sidewalk_polygons(layout_payload, viewport)
+    zone_polygons = _zone_polygons(layout_payload, viewport)
+
+    _blend_tiled_polygons(
+        background,
+        tile_name="carriageway",
+        polygons=road_polygons["carriageway"],
+        tint=_coerce_rgba(palette.get("carriageway"), (79, 84, 93, 255)),
+        alpha=0.92,
+    )
+    _blend_tiled_polygons(
+        background,
+        tile_name="sidewalk",
+        polygons=road_polygons["sidewalk"],
+        tint=_coerce_rgba(palette.get("sidewalk"), (214, 210, 201, 255)),
+        alpha=0.96,
+    )
+    for lane_role, tile_name in _BAND_ROLE_TILES.items():
+        _blend_tiled_polygons(
+            background,
+            tile_name=tile_name,
+            polygons=zone_polygons.get(lane_role, []),
+            tint=_coerce_rgba(
+                palette.get("furnishing" if tile_name == "furnishing" else "clear_path"),
+                (209, 204, 195, 255),
+            ),
+            alpha=0.92 if tile_name == "clear_path" else 0.88,
+        )
+    _blend_tiled_polygons(
+        background,
+        tile_name="grass",
+        polygons=zone_polygons.get("green_land_use", []),
+        tint=(198, 213, 176, 255),
+        alpha=0.98,
+    )
+
+    lot_polygons = [
+        _polygon_to_pixels(viewport, lot.get("polygon_xz", []) or [])
+        for lot in layout_payload.get("generated_lots", []) or []
+    ]
+    lot_polygons = [polygon for polygon in lot_polygons if len(polygon) >= 3]
+    if lot_polygons:
+        _draw_soft_polygons(
+            background,
+            polygons=lot_polygons,
+            fill=(55, 109, 162, 28),
+        )
+        overlay = Image.new("RGBA", background.size, (0, 0, 0, 0))
+        draw = ImageDraw.Draw(overlay)
+        for polygon in lot_polygons:
+            draw.line(list(polygon) + [polygon[0]], fill=(55, 109, 162, 110), width=4)
+        background.alpha_composite(overlay)
+
+    building_polygons = _building_polygons(layout_payload, viewport)
+    _draw_soft_polygons(
+        background,
+        polygons=building_polygons,
+        fill=(35, 42, 51, 44),
+        blur_radius=5.0,
+        offset_px=(6, 6),
+    )
+    _draw_soft_polygons(
+        background,
+        polygons=building_polygons,
+        fill=(238, 235, 227, 172),
+    )
+
+    label_layer = Image.new("RGBA", background.size, (0, 0, 0, 0))
+    label_draw = ImageDraw.Draw(label_layer)
+    for cell in layout_payload.get("zoning_grid", []) or []:
+        if str(cell.get("lane_role", "") or "") != "carriageway":
+            continue
+        center = cell.get("center_xz", []) or []
+        if len(center) < 2:
+            continue
+        theme_name = str(cell.get("theme_name", "") or "").strip().lower()
+        if not theme_name:
+            continue
+        px, py = viewport.world_to_pixel(float(center[0]), float(center[1]))
+        label = theme_name[:1].upper()
+        label_draw.ellipse(
+            [px - 18, py - 18, px + 18, py + 18],
+            fill=(255, 255, 255, 170),
+            outline=(78, 88, 98, 90),
+            width=2,
+        )
+        label_draw.text((px - 5, py - 9), label, fill=(40, 49, 58, 220))
+    label_layer = label_layer.filter(ImageFilter.GaussianBlur(radius=0.2))
+    background.alpha_composite(label_layer)
+
+    out_path = Path(out_path).resolve()
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    background.save(out_path)
+    return str(out_path)
+
+
+__all__ = ["render_design_topdown", "render_design_zoning_companion", "_viewport_from_layout"]

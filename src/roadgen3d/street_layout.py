@@ -1648,14 +1648,32 @@ def _build_production_steps(
 
         companion_path = ""
         if step_id == "land_use_zoning":
-            companion = plot_zoning_grid_preview_2d(
-                zoning_grid,
-                building_footprints=[],
-                generated_lots=[],
-                building_placements=[],
-                osm_geometry=osm_geometry,
-            )
-            companion_path = _save_stage_companion_figure(companion, step_dir / f"{index:02d}_{step_id}.png")
+            try:
+                from .topdown_render import render_design_zoning_companion
+
+                companion_path = str(
+                    render_design_zoning_companion(
+                        out_path=step_dir / f"{index:02d}_{step_id}.png",
+                        config=config,
+                        palette=palette,
+                        zoning_grid=zoning_grid,
+                        building_footprints=building_footprints,
+                        generated_lots=generated_lots,
+                        osm_geometry=osm_geometry,
+                    )
+                    or ""
+                )
+            except Exception:
+                companion_path = ""
+            if not str(companion_path).strip():
+                companion = plot_zoning_grid_preview_2d(
+                    zoning_grid,
+                    building_footprints=[],
+                    generated_lots=[],
+                    building_placements=[],
+                    osm_geometry=osm_geometry,
+                )
+                companion_path = _save_stage_companion_figure(companion, step_dir / f"{index:02d}_{step_id}.png")
         elif step_id == "poi_context":
             companion = _build_poi_companion_figure(
                 spatial_ctx=spatial_ctx,
