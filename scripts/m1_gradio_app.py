@@ -3670,61 +3670,13 @@ def build_demo() -> gr.Blocks:
                         prepare_bbox_max_lat = gr.Number(label="AOI Max Lat", value=23.1325)
 
             with gr.Tab("2) 生成街道"):
-                gr.Markdown("默认入口：先生成 `StreetProgram`，再做约束求解与资产实现。")
-                gr.Markdown(
-                    "\n".join(
-                        [
-                            "- 输入：文本 query、道路宽度/车道数/密度、OSM AOI、设计规则、program generator、solver。",
-                            "- 中间算法：自动选取 POI-rich road、POI-aware 横断面合成、StreetProgram 推理、约束求解、资产检索与摆放。",
-                            "- 输出：GLB/PLY 场景、StreetProgram Summary、Solver Summary、POI/空间分析结果。",
-                        ]
-                    )
-                )
-                query = gr.Textbox(label="Query", value="pedestrian-friendly boulevard with stylized trees and transit access")
                 with gr.Row():
-                    m5_layout_mode = gr.Dropdown(label="Layout Mode", choices=["template", "osm"], value="osm")
-                    design_rule_profile = gr.Dropdown(
-                        label="Design Rule Profile",
-                        choices=["balanced_complete_street_v1", "pedestrian_priority_v1", "transit_priority_v1", "noise_aware_v1"],
-                        value="balanced_complete_street_v1",
+                    query = gr.Textbox(
+                        label="Query",
+                        value="pedestrian-friendly boulevard with stylized trees and transit access",
+                        scale=8,
                     )
-                    program_generator = gr.Dropdown(
-                        label="Program Generator",
-                        choices=["learned_v1", "heuristic_v1"],
-                        value="learned_v1",
-                    )
-                    layout_solver = gr.Dropdown(
-                        label="Layout Solver",
-                        choices=["milp_template_v1", "banded"],
-                        value="milp_template_v1",
-                    )
-                    street_placement_policy = gr.Dropdown(
-                        label="Policy",
-                        choices=["rule", "learned"],
-                        value="learned",
-                    )
-                    style_preset = gr.Dropdown(
-                        label="Style Preset",
-                        choices=["civic_clean_v1", "transit_modern_v1", "lush_walkable_v1"],
-                        value="civic_clean_v1",
-                    )
-                with gr.Row(visible=True) as street_city_row:
-                    street_city_selector = gr.Dropdown(
-                        label="中国城市 (City)",
-                        choices=[("手动输入 Manual", "")] + get_city_choices(),
-                        value="guangzhou",
-                    )
-                with gr.Row(visible=True) as street_bbox_row:
-                    m5_bbox_min_lon = gr.Number(label="AOI Min Lon", value=113.2660)
-                    m5_bbox_min_lat = gr.Number(label="AOI Min Lat", value=23.1280)
-                    m5_bbox_max_lon = gr.Number(label="AOI Max Lon", value=113.2710)
-                    m5_bbox_max_lat = gr.Number(label="AOI Max Lat", value=23.1325)
-                    road_selection = gr.Dropdown(
-                        label="道路筛选 (Road Selection)",
-                        choices=["primary_road", "longest", "all"],
-                        value="primary_road",
-                    )
-                street_btn = gr.Button("Run Street", variant="primary")
+                    street_btn = gr.Button("Run Street", variant="primary", scale=1)
                 production_steps_state = gr.State(value=[])
                 with gr.Accordion("Production Timeline", open=True, elem_id="production-timeline"):
                     with gr.Row():
@@ -3759,14 +3711,50 @@ def build_demo() -> gr.Blocks:
                         production_step_summary = gr.Textbox(label="Production Step Summary", lines=10)
                         street_summary = gr.Textbox(label="Scene Summary", lines=10)
                     production_step_downloads = gr.Files(label="Production Step Downloads")
-                with gr.Row():
-                    street_program_summary = gr.Code(label="StreetProgram Summary", language="json")
-                    street_solver_summary = gr.Code(label="Solver Edits / Conflicts", language="json")
-                with gr.Row():
-                    theme_segments_preview = gr.Code(label="Theme Segments Preview", language="json")
-                    building_summary_json = gr.Code(label="Building Summary", language="json")
-                zoning_preview_plot = gr.Plot(label="Theme / Building Zoning Preview")
-                with gr.Accordion("Advanced", open=False):
+                with gr.Accordion("高级设置", open=False):
+                    with gr.Row():
+                        m5_layout_mode = gr.Dropdown(label="Layout Mode", choices=["template", "osm"], value="osm")
+                        design_rule_profile = gr.Dropdown(
+                            label="Design Rule Profile",
+                            choices=["balanced_complete_street_v1", "pedestrian_priority_v1", "transit_priority_v1", "noise_aware_v1"],
+                            value="balanced_complete_street_v1",
+                        )
+                        program_generator = gr.Dropdown(
+                            label="Program Generator",
+                            choices=["learned_v1", "heuristic_v1"],
+                            value="learned_v1",
+                        )
+                        layout_solver = gr.Dropdown(
+                            label="Layout Solver",
+                            choices=["milp_template_v1", "banded"],
+                            value="milp_template_v1",
+                        )
+                        street_placement_policy = gr.Dropdown(
+                            label="Policy",
+                            choices=["rule", "learned"],
+                            value="learned",
+                        )
+                        style_preset = gr.Dropdown(
+                            label="Style Preset",
+                            choices=["civic_clean_v1", "transit_modern_v1", "lush_walkable_v1"],
+                            value="civic_clean_v1",
+                        )
+                    with gr.Row(visible=True) as street_city_row:
+                        street_city_selector = gr.Dropdown(
+                            label="中国城市 (City)",
+                            choices=[("手动输入 Manual", "")] + get_city_choices(),
+                            value="guangzhou",
+                        )
+                    with gr.Row(visible=True) as street_bbox_row:
+                        m5_bbox_min_lon = gr.Number(label="AOI Min Lon", value=113.2660)
+                        m5_bbox_min_lat = gr.Number(label="AOI Min Lat", value=23.1280)
+                        m5_bbox_max_lon = gr.Number(label="AOI Max Lon", value=113.2710)
+                        m5_bbox_max_lat = gr.Number(label="AOI Max Lat", value=23.1325)
+                        road_selection = gr.Dropdown(
+                            label="道路筛选 (Road Selection)",
+                            choices=["primary_road", "longest", "all"],
+                            value="primary_road",
+                        )
                     with gr.Row():
                         street_length_m = gr.Number(label="Street Length (m)", value=80.0)
                         street_road_width_m = gr.Number(label="Road Width (m)", value=8.0)
@@ -3850,91 +3838,102 @@ def build_demo() -> gr.Blocks:
                             choices=["fixed_v1"],
                             value="fixed_v1",
                         )
-                with gr.Accordion("Scene Details", open=False):
-                    street_instances = gr.Dataframe(
-                        headers=["instance_id", "asset_id", "category", "score", "x", "z", "yaw_deg", "source", "generator_type"],
-                        datatype=["str", "str", "str", "str", "str", "str", "str", "str", "str"],
-                        row_count=(0, "dynamic"),
-                        col_count=(9, "fixed"),
-                        label="Street Instances",
-                    )
-                    street_layout_json = gr.Code(label="Street Layout JSON", language="json")
-                    street_files = gr.Files(label="Scene Downloads")
-                with gr.Accordion("Presentation Views", open=True):
-                    presentation_gallery = gr.Gallery(label="Presentation Views", columns=2, rows=2, height="auto")
-                    presentation_report = gr.Code(label="Presentation Metrics", language="json")
-                with gr.Accordion("Scene Graph", open=True):
-                    scene_graph_plot = gr.Plot(label="Scene Graph")
-                    with gr.Row():
-                        graph_node_layers = gr.CheckboxGroup(
-                            label="Node Layers",
-                            choices=list(SCENE_GRAPH_NODE_TYPES),
-                            value=list(SCENE_GRAPH_NODE_TYPES),
-                        )
-                        graph_poi_types = gr.CheckboxGroup(
-                            label="POI Types",
-                            choices=[],
-                            value=[],
-                        )
-                    with gr.Row():
-                        graph_categories = gr.CheckboxGroup(
-                            label="Furniture Categories",
-                            choices=[],
-                            value=[],
-                        )
-                        graph_edge_types = gr.CheckboxGroup(
-                            label="Edge Types",
-                            choices=[],
-                            value=[],
-                        )
-                    with gr.Row():
-                        heatmap_category = gr.Dropdown(
-                            label="Heatmap Category",
-                            choices=[],
-                            value=None,
-                        )
-                        heatmap_layer = gr.Dropdown(
-                            label="Heatmap Layer",
-                            choices=["combined", "attraction", "repulsion"],
-                            value="combined",
-                        )
-                        show_scene_heatmap = gr.Checkbox(label="Show Heatmap", value=True)
-                        scene_heatmap_opacity = gr.Slider(
-                            label="Heatmap Opacity",
-                            minimum=0.0,
-                            maximum=1.0,
-                            step=0.05,
-                            value=0.55,
-                        )
-                with gr.Accordion("Spatial Distance Analysis", open=False):
-                    scene_overview_plot = gr.Plot(label="Scene Overview (Junctions + Entrances)")
-                    with gr.Row():
-                        heatmap_type = gr.Dropdown(
-                            choices=["road_edge", "junction", "entrance"],
-                            value="road_edge",
-                            label="Heatmap Type",
-                        )
-                        render_heatmap_btn = gr.Button("Render Heatmap")
-                    distance_heatmap_plot = gr.Plot(label="Distance Heatmap")
-                    distance_histogram_plot = gr.Plot(label="Distance Distribution")
-                with gr.Accordion("POI Analysis", open=True):
-                    poi_overview_plot = gr.Plot(label="POI Positions & Exclusion Zones")
-                    with gr.Row():
-                        poi_summary_table = gr.Dataframe(
-                            headers=["Type", "X", "Z", "Radius(m)", "Rule"],
-                            datatype=["str", "str", "str", "str", "str"],
+                with gr.Accordion("更多结果", open=False):
+                    with gr.Accordion("StreetProgram / Solver", open=False):
+                        with gr.Row():
+                            street_program_summary = gr.Code(label="StreetProgram Summary", language="json")
+                            street_solver_summary = gr.Code(label="Solver Edits / Conflicts", language="json")
+                    with gr.Accordion("Theme / Building Summary", open=False):
+                        with gr.Row():
+                            theme_segments_preview = gr.Code(label="Theme Segments Preview", language="json")
+                            building_summary_json = gr.Code(label="Building Summary", language="json")
+                    with gr.Accordion("Zoning Preview", open=False):
+                        zoning_preview_plot = gr.Plot(label="Theme / Building Zoning Preview")
+                    with gr.Accordion("Scene Details", open=False):
+                        street_instances = gr.Dataframe(
+                            headers=["instance_id", "asset_id", "category", "score", "x", "z", "yaw_deg", "source", "generator_type"],
+                            datatype=["str", "str", "str", "str", "str", "str", "str", "str", "str"],
                             row_count=(0, "dynamic"),
-                            col_count=(5, "fixed"),
-                            label="POI Points & Exclusion Radii",
+                            col_count=(9, "fixed"),
+                            label="Street Instances",
                         )
-                        poi_conflict_table = gr.Dataframe(
-                            headers=["Instance", "Category", "X", "Z", "Violated Rules", "Penalty"],
-                            datatype=["str", "str", "str", "str", "str", "str"],
-                            row_count=(0, "dynamic"),
-                            col_count=(6, "fixed"),
-                            label="Assets in Violation Zones",
-                        )
-                    poi_stats_json = gr.Code(label="POI Statistics", language="json")
+                        street_layout_json = gr.Code(label="Street Layout JSON", language="json")
+                        street_files = gr.Files(label="Scene Downloads")
+                    with gr.Accordion("Presentation Views", open=False):
+                        presentation_gallery = gr.Gallery(label="Presentation Views", columns=2, rows=2, height="auto")
+                        presentation_report = gr.Code(label="Presentation Metrics", language="json")
+                    with gr.Accordion("Scene Graph", open=False):
+                        scene_graph_plot = gr.Plot(label="Scene Graph")
+                        with gr.Row():
+                            graph_node_layers = gr.CheckboxGroup(
+                                label="Node Layers",
+                                choices=list(SCENE_GRAPH_NODE_TYPES),
+                                value=list(SCENE_GRAPH_NODE_TYPES),
+                            )
+                            graph_poi_types = gr.CheckboxGroup(
+                                label="POI Types",
+                                choices=[],
+                                value=[],
+                            )
+                        with gr.Row():
+                            graph_categories = gr.CheckboxGroup(
+                                label="Furniture Categories",
+                                choices=[],
+                                value=[],
+                            )
+                            graph_edge_types = gr.CheckboxGroup(
+                                label="Edge Types",
+                                choices=[],
+                                value=[],
+                            )
+                        with gr.Row():
+                            heatmap_category = gr.Dropdown(
+                                label="Heatmap Category",
+                                choices=[],
+                                value=None,
+                            )
+                            heatmap_layer = gr.Dropdown(
+                                label="Heatmap Layer",
+                                choices=["combined", "attraction", "repulsion"],
+                                value="combined",
+                            )
+                            show_scene_heatmap = gr.Checkbox(label="Show Heatmap", value=True)
+                            scene_heatmap_opacity = gr.Slider(
+                                label="Heatmap Opacity",
+                                minimum=0.0,
+                                maximum=1.0,
+                                step=0.05,
+                                value=0.55,
+                            )
+                    with gr.Accordion("Spatial Distance Analysis", open=False):
+                        scene_overview_plot = gr.Plot(label="Scene Overview (Junctions + Entrances)")
+                        with gr.Row():
+                            heatmap_type = gr.Dropdown(
+                                choices=["road_edge", "junction", "entrance"],
+                                value="road_edge",
+                                label="Heatmap Type",
+                            )
+                            render_heatmap_btn = gr.Button("Render Heatmap")
+                        distance_heatmap_plot = gr.Plot(label="Distance Heatmap")
+                        distance_histogram_plot = gr.Plot(label="Distance Distribution")
+                    with gr.Accordion("POI Analysis", open=False):
+                        poi_overview_plot = gr.Plot(label="POI Positions & Exclusion Zones")
+                        with gr.Row():
+                            poi_summary_table = gr.Dataframe(
+                                headers=["Type", "X", "Z", "Radius(m)", "Rule"],
+                                datatype=["str", "str", "str", "str", "str"],
+                                row_count=(0, "dynamic"),
+                                col_count=(5, "fixed"),
+                                label="POI Points & Exclusion Radii",
+                            )
+                            poi_conflict_table = gr.Dataframe(
+                                headers=["Instance", "Category", "X", "Z", "Violated Rules", "Penalty"],
+                                datatype=["str", "str", "str", "str", "str", "str"],
+                                row_count=(0, "dynamic"),
+                                col_count=(6, "fixed"),
+                                label="Assets in Violation Zones",
+                            )
+                        poi_stats_json = gr.Code(label="POI Statistics", language="json")
 
             with gr.Tab("3) 研究与训练"):
                 gr.Markdown("研究工具：用于改进 `learned_v1` / `learned policy`，不是默认运行入口。")

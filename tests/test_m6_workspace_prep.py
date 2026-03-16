@@ -17,6 +17,30 @@ pytest.importorskip("gradio")
 import scripts.m1_gradio_app as app
 
 
+def _labels_by_component_type(config: dict, component_type: str) -> list[str]:
+    return [
+        component.get("props", {}).get("label")
+        for component in config["components"]
+        if component.get("type") == component_type and component.get("props", {}).get("label")
+    ]
+
+
+def _props_by_label(config: dict) -> dict[str, dict]:
+    return {
+        component.get("props", {}).get("label"): component.get("props", {})
+        for component in config["components"]
+        if component.get("props", {}).get("label")
+    }
+
+
+def _typed_props_by_label(config: dict, component_type: str) -> dict[str, dict]:
+    return {
+        component.get("props", {}).get("label"): component.get("props", {})
+        for component in config["components"]
+        if component.get("type") == component_type and component.get("props", {}).get("label")
+    }
+
+
 def _write_real_manifest(path: Path, latent_path: Path, *, include_building: bool = False) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     rows = [
@@ -211,11 +235,7 @@ def test_build_demo_exposes_zoning_preview_plot():
 
     demo = app.build_demo()
     config = demo.get_config_file()
-    labels = [
-        component.get("props", {}).get("label")
-        for component in config["components"]
-        if component.get("props", {}).get("label")
-    ]
+    labels = _labels_by_component_type(config, "plot")
 
     assert "Theme / Building Zoning Preview" in labels
 
@@ -225,11 +245,7 @@ def test_build_demo_exposes_surrounding_building_mode_control():
 
     demo = app.build_demo()
     config = demo.get_config_file()
-    labels = [
-        component.get("props", {}).get("label")
-        for component in config["components"]
-        if component.get("props", {}).get("label")
-    ]
+    labels = _labels_by_component_type(config, "dropdown")
 
     assert "Surrounding Building Mode" in labels
 
@@ -256,11 +272,7 @@ def test_build_demo_defaults_device_to_auto_and_street_curation_to_scene_ready_f
 
     demo = app.build_demo()
     config = demo.get_config_file()
-    by_label = {
-        component.get("props", {}).get("label"): component.get("props", {})
-        for component in config["components"]
-        if component.get("props", {}).get("label")
-    }
+    by_label = _props_by_label(config)
 
     assert by_label["Device"]["value"] == "auto"
     assert ("auto", "auto") in by_label["Device"]["choices"]
@@ -274,16 +286,35 @@ def test_build_demo_exposes_production_timeline_controls():
 
     demo = app.build_demo()
     config = demo.get_config_file()
-    labels = [
-        component.get("props", {}).get("label")
-        for component in config["components"]
-        if component.get("props", {}).get("label")
-    ]
+    labels = _labels_by_component_type(config, "slider") + _labels_by_component_type(config, "model3d") + _labels_by_component_type(config, "image") + _labels_by_component_type(config, "file")
 
     assert "Production Step" in labels
     assert "Production Step Preview (GLB)" in labels
     assert "Production Companion View" in labels
     assert "Production Step Downloads" in labels
+
+
+def test_build_demo_street_tab_defaults_to_minimal_surface():
+    pytest.importorskip("gradio")
+
+    demo = app.build_demo()
+    config = demo.get_config_file()
+    accordion_props = _typed_props_by_label(config, "accordion")
+    textbox_labels = _labels_by_component_type(config, "textbox")
+    button_values = [
+        component.get("props", {}).get("value")
+        for component in config["components"]
+        if component.get("type") == "button"
+    ]
+
+    assert "Query" in textbox_labels
+    assert "Run Street" in button_values
+    assert accordion_props["Production Timeline"]["open"] is True
+    assert accordion_props["高级设置"]["open"] is False
+    assert accordion_props["更多结果"]["open"] is False
+    assert accordion_props["Presentation Views"]["open"] is False
+    assert accordion_props["Scene Graph"]["open"] is False
+    assert accordion_props["POI Analysis"]["open"] is False
 
 
 def test_production_step_helpers_select_stage_outputs(tmp_path: Path):
