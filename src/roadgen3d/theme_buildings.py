@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import math
+import hashlib
 from collections import Counter
 from typing import Any, Dict, Iterable, List, Mapping, Sequence, Tuple
 
@@ -262,6 +263,9 @@ def collect_building_footprints(
     theme_segments: Sequence[ThemeSegment],
     road_segment_graph: object | None,
     road_buffer_m: float = 35.0,
+    seed: int = 0,
+    height_mode: str = "theme_random",
+    height_profile: str = "urban_default_v1",
 ) -> Tuple[BuildingFootprint, ...]:
     """Collect nearby OSM building footprints or fallback proxy footprints."""
 
@@ -285,9 +289,25 @@ def collect_building_footprints(
             centroid = (float(polygon.centroid.x), float(polygon.centroid.y))
             theme_id = assign_theme_id_for_point(centroid, theme_segments, road_segment_graph)
             yaw_deg, frontage_width_m, depth_m = oriented_bounds_metrics(polygon)
+            fid = f"building_{len(footprints):03d}"
+            if height_mode == "theme_random":
+                _theme_key = _resolve_theme_key(theme_id, theme_segments)
+                _th = sample_building_target_height(
+                    seed=seed,
+                    target_id=fid,
+                    theme_name=_theme_key,
+                    frontage_width_m=float(frontage_width_m),
+                    depth_m=float(depth_m),
+                    source="osm",
+                    height_profile=height_profile,
+                )
+                _hc = height_class_from_height_m(_th)
+            else:
+                _th = 0.0
+                _hc = _height_class_from_area(float(polygon.area))
             footprints.append(
                 BuildingFootprint(
-                    footprint_id=f"building_{len(footprints):03d}",
+                    footprint_id=fid,
                     source="osm",
                     polygon_xz=tuple((float(x), float(y)) for x, y in tuple(polygon.exterior.coords)),
                     centroid_xz=centroid,
@@ -295,14 +315,18 @@ def collect_building_footprints(
                     depth_m=float(depth_m),
                     yaw_deg=float(yaw_deg),
                     theme_id=theme_id,
-                    height_class=_height_class_from_area(float(polygon.area)),
+                    height_class=_hc,
+                    target_height_m=_th,
                     anchor_geom_id=str(getattr(building, "osm_id", "")),
                     size_class=_size_class(frontage_width_m, depth_m),
                 )
             )
     if footprints:
         return tuple(footprints)
-    return tuple(_fallback_building_footprints(theme_segments, placement_context, road_segment_graph))
+    return tuple(_fallback_building_footprints(
+        theme_segments, placement_context, road_segment_graph,
+        seed=seed, height_mode=height_mode, height_profile=height_profile,
+    ))
 
 
 def assign_theme_id_for_point(
@@ -562,6 +586,9 @@ def generate_grid_growth_lots(
     zoning_grid: Sequence[Mapping[str, Any]],
     *,
     road_type: str = "",
+    seed: int = 0,
+    height_mode: str = "theme_random",
+    height_profile: str = "urban_default_v1",
 ) -> Tuple[Tuple[Dict[str, Any], ...], Tuple[GeneratedLot, ...], Dict[str, Any]]:
     annotated_cells: List[Dict[str, Any]] = []
     for cell in zoning_grid:
@@ -641,7 +668,22 @@ def generate_grid_growth_lots(
             depth_m = max(_cell_frontage_depth(cell)[1] for cell in lot_cells)
             lot_id = f"lot_{len(lots):03d}"
             yaw_deg = _cell_yaw_deg(lot_cells[0])
-            height_class = infer_grid_height_class(land_use_type, road_type=road_type)
+            _fw = float(max(frontage_width_m, 4.0))
+            _dp = float(max(depth_m, 4.0))
+            if height_mode == "theme_random":
+                _th = sample_building_target_height(
+                    seed=seed,
+                    target_id=lot_id,
+                    land_use_type=land_use_type,
+                    frontage_width_m=_fw,
+                    depth_m=_dp,
+                    source="grid_growth",
+                    height_profile=height_profile,
+                )
+                _hc = height_class_from_height_m(_th)
+            else:
+                _th = 0.0
+                _hc = str(infer_grid_height_class(land_use_type, road_type=road_type) or "midrise")
             for cell in lot_cells:
                 cell["lot_id"] = lot_id
                 lot_by_cell_id[str(cell.get("cell_id", "") or "")] = lot_id
@@ -653,9 +695,10 @@ def generate_grid_growth_lots(
                     side=_cell_side(lot_cells[0]),
                     land_use_type=land_use_type,
                     theme_id=str(lot_cells[0].get("theme_id", "") or ""),
-                    frontage_width_m=float(max(frontage_width_m, 4.0)),
-                    depth_m=float(max(depth_m, 4.0)),
-                    height_class=str(height_class or "midrise"),
+                    frontage_width_m=_fw,
+                    depth_m=_dp,
+                    height_class=_hc,
+                    target_height_m=_th,
                     yaw_deg=float(yaw_deg),
                     source="grid_growth",
                     cell_ids=tuple(str(cell.get("cell_id", "") or "") for cell in lot_cells),
@@ -693,6 +736,14 @@ def generate_grid_growth_lots(
             )
         ),
     }
+    # Add target height stats when in theme_random mode
+    _heights = [lot.target_height_m for lot in lots if lot.target_height_m > 0.0]
+    if _heights:
+        summary["target_height_stats"] = {
+            "min_m": round(min(_heights), 1),
+            "max_m": round(max(_heights), 1),
+            "mean_m": round(sum(_heights) / len(_heights), 1),
+        }
     return tuple(annotated_cells), tuple(lots), summary
 
 
@@ -700,6 +751,10 @@ def _fallback_building_footprints(
     theme_segments: Sequence[ThemeSegment],
     placement_context: object | None,
     road_segment_graph: object | None,
+    *,
+    seed: int = 0,
+    height_mode: str = "theme_random",
+    height_profile: str = "urban_default_v1",
 ) -> List[BuildingFootprint]:
     footprints: List[BuildingFootprint] = []
     row_half = float(getattr(placement_context, "row_width_m", 16.0) or 16.0) / 2.0
@@ -725,9 +780,24 @@ def _fallback_building_footprints(
         for side_name, sign in (("left", 1.0), ("right", -1.0)):
             offset_x = center_x + left_normal[0] * lateral_offset * sign
             offset_z = center_z + left_normal[1] * lateral_offset * sign
+            fid = f"{theme_segment.theme_id}_{side_name}"
+            if height_mode == "theme_random":
+                _th = sample_building_target_height(
+                    seed=seed,
+                    target_id=fid,
+                    theme_name=theme_segment.theme_name,
+                    frontage_width_m=float(length_m),
+                    depth_m=float(depth_m),
+                    source="fallback",
+                    height_profile=height_profile,
+                )
+                _hc = height_class_from_height_m(_th)
+            else:
+                _th = 0.0
+                _hc = "midrise"
             footprints.append(
                 BuildingFootprint(
-                    footprint_id=f"{theme_segment.theme_id}_{side_name}",
+                    footprint_id=fid,
                     source="fallback",
                     polygon_xz=oriented_rectangle_points(
                         center_x=float(offset_x),
@@ -741,7 +811,8 @@ def _fallback_building_footprints(
                     depth_m=float(depth_m),
                     yaw_deg=float(yaw_deg),
                     theme_id=theme_segment.theme_id,
-                    height_class="midrise",
+                    height_class=_hc,
+                    target_height_m=_th,
                     anchor_geom_id=f"{theme_segment.theme_id}:{side_name}",
                     size_class=_size_class(length_m, depth_m),
                 )
@@ -1117,6 +1188,105 @@ def _height_class_from_area(area_m2: float) -> str:
     if area_m2 >= 120.0:
         return "midrise"
     return "lowrise"
+
+
+# ---------------------------------------------------------------------------
+# Continuous building-height sampling (theme_random mode)
+# ---------------------------------------------------------------------------
+
+_HEIGHT_PROFILES: Dict[str, Dict[str, Tuple[float, float]]] = {
+    "urban_default_v1": {
+        "residential": (9.0, 22.0),
+        "commercial": (14.0, 38.0),
+        "transit": (18.0, 54.0),
+        "green": (8.0, 16.0),
+        "_fallback": (12.0, 28.0),
+    },
+}
+
+_AREA_HEIGHT_CAPS: Tuple[Tuple[float, float], ...] = (
+    (100.0, 18.0),
+    (220.0, 30.0),
+    (420.0, 45.0),
+)
+
+
+def height_class_from_height_m(height_m: float) -> str:
+    """Derive a discrete height class from a continuous meter height."""
+    if height_m < 12.0:
+        return "lowrise"
+    if height_m < 25.0:
+        return "midrise"
+    return "highrise"
+
+
+def _hash_to_unit(key: str) -> float:
+    """Deterministic hash → float in [0, 1)."""
+    digest = hashlib.md5(key.encode()).digest()
+    return (int.from_bytes(digest[:4], "little") & 0xFFFFFFFF) / 0x100000000
+
+
+def sample_building_target_height(
+    *,
+    seed: int,
+    target_id: str,
+    theme_name: str = "",
+    land_use_type: str = "",
+    frontage_width_m: float = 10.0,
+    depth_m: float = 10.0,
+    source: str = "",
+    height_profile: str = "urban_default_v1",
+) -> float:
+    """Sample a deterministic continuous building height in metres.
+
+    The result is reproducible for a given *seed* + *target_id* pair.
+    Heights are drawn from the theme range, capped by lot area, with
+    a two-level randomness model (segment baseline + per-building jitter)
+    so that adjacent buildings share a similar base height but are not
+    identical.
+    """
+    profile = _HEIGHT_PROFILES.get(height_profile, _HEIGHT_PROFILES["urban_default_v1"])
+
+    # Resolve theme key --------------------------------------------------
+    key = (theme_name or land_use_type or "").strip().lower()
+    min_h, max_h = profile.get(key, profile["_fallback"])
+
+    # Area cap -----------------------------------------------------------
+    area = max(float(frontage_width_m) * float(depth_m), 1.0)
+    cap = float("inf")
+    for threshold, limit in _AREA_HEIGHT_CAPS:
+        if area < threshold:
+            cap = limit
+            break
+    effective_max = min(max_h, cap)
+    if effective_max < min_h:
+        effective_max = min_h
+
+    # Segment baseline (40 %–60 % of range) ------------------------------
+    seg_u = _hash_to_unit(f"{seed}:seg:{key}")
+    baseline_pct = 0.4 + seg_u * 0.2  # [0.4, 0.6)
+    baseline = min_h + (effective_max - min_h) * baseline_pct
+
+    # Per-building jitter (±30 % of half-range) --------------------------
+    bld_u = _hash_to_unit(f"{seed}:bld:{target_id}")
+    jitter_range = (effective_max - min_h) * 0.3
+    jitter = (bld_u - 0.5) * 2.0 * jitter_range  # [-jitter_range, +jitter_range)
+    height = baseline + jitter
+
+    # Clamp to valid range and round to 0.1 m ----------------------------
+    height = max(min_h, min(effective_max, height))
+    return round(height, 1)
+
+
+def _resolve_theme_key(
+    theme_id: str,
+    theme_segments: Sequence[ThemeSegment],
+) -> str:
+    """Map a *theme_id* to its *theme_name* (land-use label) for height sampling."""
+    for seg in theme_segments:
+        if seg.theme_id == theme_id:
+            return seg.theme_name
+    return ""
 
 
 def _size_class(frontage_width_m: float, depth_m: float) -> str:

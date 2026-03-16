@@ -12,7 +12,12 @@ if str(ROOT) not in sys.path:
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from roadgen3d.theme_buildings import generate_grid_growth_lots, infer_theme_segments
+from roadgen3d.theme_buildings import (
+    generate_grid_growth_lots,
+    height_class_from_height_m,
+    infer_theme_segments,
+    sample_building_target_height,
+)
 from roadgen3d.types import RoadSegmentGraph, RoadSegmentNode
 
 
@@ -176,7 +181,7 @@ def test_generate_grid_growth_lots_respects_land_use_side_and_height_rules():
         },
     ]
 
-    annotated_cells, generated_lots, summary = generate_grid_growth_lots(zoning_grid, road_type="primary")
+    annotated_cells, generated_lots, summary = generate_grid_growth_lots(zoning_grid, road_type="primary", height_mode="class_only")
 
     assert len(generated_lots) == 2
     assert {lot.land_use_type for lot in generated_lots} == {"residential", "transit"}
@@ -196,3 +201,63 @@ def test_generate_grid_growth_lots_respects_land_use_side_and_height_rules():
         for cell in annotated_cells
         if str(cell.get("land_use_type", "") or "") == "green"
     )
+
+
+def test_height_class_from_height_m_thresholds():
+    assert height_class_from_height_m(0.0) == "lowrise"
+    assert height_class_from_height_m(11.9) == "lowrise"
+    assert height_class_from_height_m(12.0) == "midrise"
+    assert height_class_from_height_m(24.9) == "midrise"
+    assert height_class_from_height_m(25.0) == "highrise"
+    assert height_class_from_height_m(100.0) == "highrise"
+
+
+def test_sample_building_target_height_deterministic():
+    h1 = sample_building_target_height(seed=42, target_id="lot_001", theme_name="residential", frontage_width_m=12.0, depth_m=10.0)
+    h2 = sample_building_target_height(seed=42, target_id="lot_001", theme_name="residential", frontage_width_m=12.0, depth_m=10.0)
+    assert h1 == h2
+    assert h1 > 0.0
+
+
+def test_sample_building_target_height_variation_across_targets():
+    heights = {
+        sample_building_target_height(seed=42, target_id=f"lot_{i:03d}", theme_name="commercial", frontage_width_m=15.0, depth_m=12.0)
+        for i in range(10)
+    }
+    assert len(heights) > 1, "Expected different heights for different target_ids"
+
+
+def test_sample_building_target_height_area_cap():
+    # 8m * 8m = 64 m² < 100 → cap at 18m
+    h = sample_building_target_height(seed=99, target_id="small_lot", theme_name="transit", frontage_width_m=8.0, depth_m=8.0)
+    assert h <= 18.0
+
+
+def test_sample_building_target_height_within_theme_range():
+    for _ in range(50):
+        h = sample_building_target_height(seed=_, target_id=f"t_{_}", theme_name="residential", frontage_width_m=20.0, depth_m=15.0)
+        assert 9.0 <= h <= 22.0, f"residential height {h} out of range"
+
+
+def test_generate_grid_growth_lots_theme_random_produces_target_height():
+    zoning_grid = [
+        {
+            "cell_id": "c0",
+            "polygon_xz": [[0.0, 5.0], [12.0, 5.0], [12.0, 9.0], [0.0, 9.0], [0.0, 5.0]],
+            "center_xz": [6.0, 7.0],
+            "lane_role": "left_building_buffer",
+            "theme_id": "t_res",
+            "theme_name": "residential",
+            "land_use_type": "residential",
+            "buildable": True,
+            "lot_id": "",
+            "segment_ids": ["seg_0"],
+            "station_range_m": [0.0, 12.0],
+        },
+    ]
+    _, lots, summary = generate_grid_growth_lots(zoning_grid, road_type="primary", seed=42, height_mode="theme_random")
+    assert len(lots) >= 1
+    for lot in lots:
+        assert lot.target_height_m > 0.0
+        assert lot.height_class == height_class_from_height_m(lot.target_height_m)
+    assert "target_height_stats" in summary

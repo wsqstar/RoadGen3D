@@ -945,9 +945,6 @@ def render_presentation_views(
     out_dir: Path,
     config: StreetComposeConfig,
 ) -> List[Dict[str, str]]:
-    plt = _require_matplotlib()
-    if plt is None:
-        return []
     preset = load_style_preset(getattr(config, "style_preset", None))
     palette = preset.scene_colors
     out_dir = Path(out_dir).resolve()
@@ -964,12 +961,35 @@ def render_presentation_views(
     else:
         hero_anchor_x = 0.0
 
-    overview_path = view_dir / "overview_top.png"
-    fig, ax = plt.subplots(figsize=(7.2, 4.6))
-    _plot_top_view(fig, ax, layout_payload, palette, title=f"{preset.display_name} Overview")
-    fig.savefig(overview_path, dpi=180, bbox_inches="tight", facecolor="white")
-    plt.close(fig)
-    views.append({"name": "overview_top", "title": "Overview Top", "path": str(overview_path)})
+    topdown_mode = str(getattr(config, "topdown_render_mode", "design_tiles_v1")).strip().lower()
+    if topdown_mode == "design_tiles_v1":
+        try:
+            from .topdown_render import render_design_topdown
+
+            design_view = render_design_topdown(
+                layout_payload,
+                out_dir=out_dir,
+                config=config,
+                palette=palette,
+            )
+        except Exception:
+            design_view = None
+        if design_view is not None:
+            views.append(design_view)
+
+    plt = _require_matplotlib()
+    if topdown_mode == "legacy_vector" or not views:
+        if plt is None:
+            return views
+        overview_path = view_dir / "overview_top.png"
+        fig, ax = plt.subplots(figsize=(7.2, 4.6))
+        _plot_top_view(fig, ax, layout_payload, palette, title=f"{preset.display_name} Overview")
+        fig.savefig(overview_path, dpi=180, bbox_inches="tight", facecolor="white")
+        plt.close(fig)
+        views.append({"name": "overview_top", "title": "Overview Top", "path": str(overview_path)})
+
+    if plt is None:
+        return views
 
     hero_left_path = view_dir / "hero_left.png"
     fig, ax = plt.subplots(figsize=(7.2, 4.6))

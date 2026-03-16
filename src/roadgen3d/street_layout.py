@@ -123,6 +123,7 @@ class _MeshCacheEntry:
     half_z: float
     min_y: float
     is_scene: bool = False
+    native_height_y: float = 0.0
 
 
 @dataclass(frozen=True)
@@ -265,6 +266,13 @@ def _validate_config(config: StreetComposeConfig) -> None:
         raise ValueError("beauty_mode must be 'presentation_v1'")
     if str(getattr(config, "render_preset", "jury_default_v1")).strip().lower() not in {"jury_default_v1"}:
         raise ValueError("render_preset must be 'jury_default_v1'")
+    if str(getattr(config, "topdown_render_mode", "design_tiles_v1")).strip().lower() not in {
+        "legacy_vector",
+        "design_tiles_v1",
+    }:
+        raise ValueError("topdown_render_mode must be 'legacy_vector' or 'design_tiles_v1'")
+    if int(getattr(config, "topdown_canvas_px", 2048)) <= 0:
+        raise ValueError("topdown_canvas_px must be > 0")
     if str(getattr(config, "asset_curation_mode", "scene_ready_first")).strip().lower() not in {
         "scene_ready_first",
         "parametric_first",
@@ -369,6 +377,7 @@ def _load_mesh_cache(rows: List[Dict[str, str]]) -> Dict[str, _MeshCacheEntry]:
             half_z=float(max(span[2] / 2.0, 1e-3)),
             min_y=float(bounds[0][1]),
             is_scene=bool(is_scene),
+            native_height_y=float(max(span[1], 1e-3)),
         )
     return cache
 
@@ -650,30 +659,37 @@ def _placeholder_building_entry(
     depth_m: float,
     height_class: str,
     theme_name: str,
+    target_height_m: float = 0.0,
 ) -> _MeshCacheEntry:
     try:
         from .parametric_assets import generate_parametric_asset
 
+        params: Dict[str, object] = {
+            "frontage_width_m": float(frontage_width_m),
+            "depth_m": float(depth_m),
+            "height_class": str(height_class),
+            "theme_name": str(theme_name),
+        }
+        if target_height_m > 0.0:
+            params["height_m"] = float(target_height_m)
         result = generate_parametric_asset(
             {
                 "asset_kind": "building",
                 "runtime_profile": "preview",
-                "params": {
-                    "frontage_width_m": float(frontage_width_m),
-                    "depth_m": float(depth_m),
-                    "height_class": str(height_class),
-                    "theme_name": str(theme_name),
-                },
+                "params": params,
             }
         )
         mesh = result.mesh
     except Exception:
         trimesh = _require_trimesh()
-        height_m = {
-            "lowrise": max(float(frontage_width_m) * 0.8, 8.0),
-            "midrise": max(float(frontage_width_m) * 1.4, 14.0),
-            "highrise": max(float(frontage_width_m) * 2.0, 22.0),
-        }.get(str(height_class), max(float(frontage_width_m) * 1.2, 12.0))
+        if target_height_m > 0.0:
+            height_m = float(target_height_m)
+        else:
+            height_m = {
+                "lowrise": max(float(frontage_width_m) * 0.8, 8.0),
+                "midrise": max(float(frontage_width_m) * 1.4, 14.0),
+                "highrise": max(float(frontage_width_m) * 2.0, 22.0),
+            }.get(str(height_class), max(float(frontage_width_m) * 1.2, 12.0))
         mesh = trimesh.creation.box(extents=(float(frontage_width_m), float(height_m), float(depth_m)))
         face_color = {
             "residential": (188, 174, 153, 255),
@@ -689,6 +705,7 @@ def _placeholder_building_entry(
         half_x=float(max(span[0] / 2.0, 1e-3)),
         half_z=float(max(span[2] / 2.0, 1e-3)),
         min_y=float(bounds[0][1]),
+        native_height_y=float(max(span[1], 1e-3)),
     )
 
 
@@ -744,6 +761,7 @@ def _parametric_tree_entry(
         half_z=float(max(span[2] / 2.0, 1e-3)),
         min_y=float(bounds[0][1]),
         is_scene=is_scene,
+        native_height_y=float(max(span[1], 1e-3)),
     )
 
 
@@ -2632,6 +2650,7 @@ def _footprint_target_records(footprints: Sequence[BuildingFootprint]) -> List[D
             "yaw_deg": float(footprint.yaw_deg),
             "theme_id": str(footprint.theme_id),
             "height_class": str(footprint.height_class),
+            "target_height_m": float(footprint.target_height_m),
             "anchor_geom_id": str(footprint.anchor_geom_id),
             "size_class": str(footprint.size_class),
         }
@@ -2652,6 +2671,7 @@ def _lot_target_records(lots: Sequence[GeneratedLot]) -> List[Dict[str, object]]
             "yaw_deg": float(lot.yaw_deg),
             "theme_id": str(lot.theme_id),
             "height_class": str(lot.height_class),
+            "target_height_m": float(lot.target_height_m),
             "anchor_geom_id": str(lot.lot_id),
             "size_class": str(_building_size_class(lot.frontage_width_m, lot.depth_m)),
             "land_use_type": str(lot.land_use_type),
@@ -2709,21 +2729,26 @@ def _place_building_targets(
                 "theme_id": theme_id,
                 "source": str(target.get("source", "") or ""),
                 "height_class": str(target.get("height_class", "") or ""),
+                "target_height_m": float(target.get("target_height_m", 0.0) or 0.0),
             }
         )
         retrieval_predictions.append(retrieval_payload)
 
         frontage_width_m = float(target.get("frontage_width_m", 12.0) or 12.0)
         depth_m = float(target.get("depth_m", 10.0) or 10.0)
+        _target_height_m = float(target.get("target_height_m", 0.0) or 0.0)
         if row is not None:
             entry = mesh_cache[row["asset_id"]]
             scale_x = max(frontage_width_m / max(entry.half_x * 2.0, 1e-3), 0.1)
             scale_z = max(depth_m / max(entry.half_z * 2.0, 1e-3), 0.1)
-            height_multiplier = {"lowrise": 1.0, "midrise": 1.4, "highrise": 1.8}.get(
-                str(row.get("height_class", target.get("height_class", "midrise"))),
-                {"lowrise": 1.0, "midrise": 1.4, "highrise": 1.8}.get(str(target.get("height_class", "midrise")), 1.2),
-            )
-            scale_y = max(scale_x, scale_z) * float(height_multiplier)
+            if _target_height_m > 0.0 and entry.native_height_y > 0.01:
+                scale_y = max(0.75, min(3.0, _target_height_m / entry.native_height_y))
+            else:
+                height_multiplier = {"lowrise": 1.0, "midrise": 1.4, "highrise": 1.8}.get(
+                    str(row.get("height_class", target.get("height_class", "midrise"))),
+                    {"lowrise": 1.0, "midrise": 1.4, "highrise": 1.8}.get(str(target.get("height_class", "midrise")), 1.2),
+                )
+                scale_y = max(scale_x, scale_z) * float(height_multiplier)
             scale_xyz = [float(scale_x), float(scale_y), float(scale_z)]
             asset_id = str(row["asset_id"])
             asset_count += 1
@@ -2736,6 +2761,7 @@ def _place_building_targets(
                 depth_m=depth_m,
                 height_class=str(target.get("height_class", "midrise") or "midrise"),
                 theme_name=theme_name,
+                target_height_m=_target_height_m,
             )
             asset_by_id[asset_id] = {
                 "asset_id": asset_id,
@@ -2780,6 +2806,7 @@ def _place_building_targets(
                 anchor_geom_id=str(target.get("anchor_geom_id", "") or ""),
                 retrieval_score=float(score),
                 fallback_reason=fallback_reason,
+                target_height_m=_target_height_m,
             )
         )
         placements.append(
@@ -2857,6 +2884,9 @@ def _place_surrounding_buildings(
                 theme_segments=theme_segments,
                 road_segment_graph=road_segment_graph,
                 road_buffer_m=35.0,
+                seed=int(getattr(config, "seed", 0) or 0),
+                height_mode=str(getattr(config, "building_height_mode", "theme_random") or "theme_random"),
+                height_profile=str(getattr(config, "building_height_profile", "urban_default_v1") or "urban_default_v1"),
             )
         )
 
@@ -2874,6 +2904,9 @@ def _place_surrounding_buildings(
         zoning_grid, generated_lots, lot_generation_summary = generate_grid_growth_lots(
             zoning_grid_base,
             road_type=road_type,
+            seed=int(getattr(config, "seed", 0) or 0),
+            height_mode=str(getattr(config, "building_height_mode", "theme_random") or "theme_random"),
+            height_profile=str(getattr(config, "building_height_profile", "urban_default_v1") or "urban_default_v1"),
         )
     land_use_summary = summarize_land_use_grid(zoning_grid)
 
@@ -2917,6 +2950,20 @@ def _place_surrounding_buildings(
         "lot_count": int(len(generated_lots)),
         "target_type": "lot" if mode == "grid_growth" else "footprint",
     }
+    # Attach continuous height stats when available
+    _all_heights: list[float] = []
+    for fp in building_footprints:
+        if fp.target_height_m > 0.0:
+            _all_heights.append(fp.target_height_m)
+    for lot in generated_lots:
+        if lot.target_height_m > 0.0:
+            _all_heights.append(lot.target_height_m)
+    if _all_heights:
+        building_summary["height_stats"] = {
+            "min_m": round(min(_all_heights), 1),
+            "max_m": round(max(_all_heights), 1),
+            "mean_m": round(sum(_all_heights) / len(_all_heights), 1),
+        }
     return _SurroundingBuildingResult(
         building_footprints=tuple(building_footprints),
         generated_lots=tuple(generated_lots),

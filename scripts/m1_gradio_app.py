@@ -1496,6 +1496,10 @@ def _extract_building_summary(layout_json_text: str) -> str:
         "generated_lot_count": len(payload.get("generated_lots", []) or []),
         "building_placement_count": len(payload.get("building_placements", []) or []),
     }
+    # Include height_stats from building_summary when available
+    bld_summary = summary.get("building_summary", {}) or {}
+    if "height_stats" in bld_summary:
+        result["height_stats"] = bld_summary["height_stats"]
     return json.dumps(result, indent=2, ensure_ascii=True)
 
 
@@ -2079,12 +2083,16 @@ def run_street_compose(
     style_preset: str = "civic_clean_v1",
     beauty_mode: str = "presentation_v1",
     render_preset: str = "jury_default_v1",
+    topdown_render_mode: str = "design_tiles_v1",
+    topdown_canvas_px: int = 2048,
     asset_curation_mode: str = "scene_ready_first",
     enable_surrounding_buildings: bool = True,
     building_search_topk: int = 5,
     theme_inference_mode: str = "deterministic_auto",
     theme_vocab_name: str = "fixed_v1",
     surrounding_building_mode: str = "footprint_based",
+    building_height_mode: str = "theme_random",
+    building_height_profile: str = "urban_default_v1",
 ) -> Tuple[str, List[List[str]], str, str | None, List[str]]:
     try:
         profile = dataset_profile.strip().lower()
@@ -2168,12 +2176,16 @@ def run_street_compose(
             style_preset=str(style_preset).strip(),
             beauty_mode=str(beauty_mode).strip(),
             render_preset=str(render_preset).strip(),
+            topdown_render_mode=str(topdown_render_mode).strip(),
+            topdown_canvas_px=int(topdown_canvas_px),
             asset_curation_mode=str(asset_curation_mode).strip(),
             enable_surrounding_buildings=bool(enable_surrounding_buildings),
             surrounding_building_mode=str(surrounding_building_mode).strip(),
             building_search_topk=int(building_search_topk),
             theme_inference_mode=str(theme_inference_mode).strip(),
             theme_vocab_name=str(theme_vocab_name).strip(),
+            building_height_mode=str(building_height_mode).strip(),
+            building_height_profile=str(building_height_profile).strip(),
         )
         result = compose_street_scene(
             config=config,
@@ -2706,12 +2718,16 @@ def run_best_model_street(
     style_preset: str = "civic_clean_v1",
     beauty_mode: str = "presentation_v1",
     render_preset: str = "jury_default_v1",
+    topdown_render_mode: str = "design_tiles_v1",
+    topdown_canvas_px: int = 2048,
     asset_curation_mode: str = "scene_ready_first",
     enable_surrounding_buildings: bool = True,
     building_search_topk: int = 5,
     theme_inference_mode: str = "deterministic_auto",
     theme_vocab_name: str = "fixed_v1",
     surrounding_building_mode: str = "footprint_based",
+    building_height_mode: str = "theme_random",
+    building_height_profile: str = "urban_default_v1",
 ) -> Tuple[str, List[List[str]], str, str | None, List[str], str, str, str | None, List[str]]:
     if str(research_target).strip().lower() == "program_generator":
         program_generator = "learned_v1"
@@ -2757,12 +2773,16 @@ def run_best_model_street(
         style_preset=style_preset,
         beauty_mode=beauty_mode,
         render_preset=render_preset,
+        topdown_render_mode=topdown_render_mode,
+        topdown_canvas_px=topdown_canvas_px,
         asset_curation_mode=asset_curation_mode,
         enable_surrounding_buildings=enable_surrounding_buildings,
         surrounding_building_mode=surrounding_building_mode,
         building_search_topk=building_search_topk,
         theme_inference_mode=theme_inference_mode,
         theme_vocab_name=theme_vocab_name,
+        building_height_mode=building_height_mode,
+        building_height_profile=building_height_profile,
     )
     best_log = (
         "Best model run done.\n"
@@ -3783,6 +3803,19 @@ def build_demo() -> gr.Blocks:
                             choices=["jury_default_v1"],
                             value="jury_default_v1",
                         )
+                        topdown_render_mode = gr.Dropdown(
+                            label="Top-Down Render Mode",
+                            choices=["design_tiles_v1", "legacy_vector"],
+                            value="design_tiles_v1",
+                        )
+                        topdown_canvas_px = gr.Slider(
+                            label="Top-Down Canvas (px)",
+                            minimum=1024,
+                            maximum=3072,
+                            step=256,
+                            value=2048,
+                        )
+                    with gr.Row():
                         asset_curation_mode = gr.Dropdown(
                             label="Asset Curation",
                             choices=["scene_ready_first", "parametric_first", "curated_first", "legacy"],
@@ -3796,6 +3829,17 @@ def build_demo() -> gr.Blocks:
                             value="footprint_based",
                         )
                         building_search_topk = gr.Slider(label="Building Search TopK", minimum=1, maximum=20, step=1, value=5)
+                    with gr.Row():
+                        building_height_mode = gr.Dropdown(
+                            label="Building Height Mode",
+                            choices=["theme_random", "class_only"],
+                            value="theme_random",
+                        )
+                        building_height_profile = gr.Dropdown(
+                            label="Building Height Profile",
+                            choices=["urban_default_v1"],
+                            value="urban_default_v1",
+                        )
                         theme_inference_mode = gr.Dropdown(
                             label="Theme Inference",
                             choices=["deterministic_auto"],
@@ -4120,12 +4164,16 @@ def build_demo() -> gr.Blocks:
                 style_preset,
                 beauty_mode,
                 render_preset,
+                topdown_render_mode,
+                topdown_canvas_px,
                 asset_curation_mode,
                 enable_surrounding_buildings,
                 building_search_topk,
                 theme_inference_mode,
                 theme_vocab_name,
                 surrounding_building_mode,
+                building_height_mode,
+                building_height_profile,
             ],
             outputs=[
                 street_summary,
@@ -4373,12 +4421,16 @@ def build_demo() -> gr.Blocks:
                 style_preset,
                 beauty_mode,
                 render_preset,
+                topdown_render_mode,
+                topdown_canvas_px,
                 asset_curation_mode,
                 enable_surrounding_buildings,
                 building_search_topk,
                 theme_inference_mode,
                 theme_vocab_name,
                 surrounding_building_mode,
+                building_height_mode,
+                building_height_profile,
             ],
             outputs=[
                 street_summary,

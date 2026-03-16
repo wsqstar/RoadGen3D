@@ -74,6 +74,8 @@ class StreetComposeConfig:
     beauty_mode: str = "presentation_v1"
     style_preset: str = "civic_clean_v1"
     render_preset: str = "jury_default_v1"
+    topdown_render_mode: str = "design_tiles_v1"  # "legacy_vector" | "design_tiles_v1"
+    topdown_canvas_px: int = 2048
     asset_curation_mode: str = "scene_ready_first"
 
     # -- Neuralsymbolic v1 fields --
@@ -89,6 +91,8 @@ class StreetComposeConfig:
     building_search_topk: int = 5
     theme_inference_mode: str = "deterministic_auto"
     theme_vocab_name: str = "fixed_v1"
+    building_height_mode: str = "theme_random"  # "class_only" | "theme_random"
+    building_height_profile: str = "urban_default_v1"
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -510,6 +514,7 @@ class BuildingFootprint:
     yaw_deg: float
     theme_id: str
     height_class: str = "midrise"
+    target_height_m: float = 0.0
     anchor_geom_id: str = ""
     size_class: str = "medium"
 
@@ -533,6 +538,7 @@ class GeneratedLot:
     frontage_width_m: float
     depth_m: float
     height_class: str = "midrise"
+    target_height_m: float = 0.0
     yaw_deg: float = 0.0
     source: str = "grid_growth"
     cell_ids: Tuple[str, ...] = ()
@@ -565,6 +571,7 @@ class BuildingPlacementPlan:
     anchor_geom_id: str = ""
     retrieval_score: float = 0.0
     fallback_reason: str = ""
+    target_height_m: float = 0.0
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)

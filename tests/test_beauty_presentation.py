@@ -19,6 +19,7 @@ from roadgen3d.beauty import (
     render_presentation_views,
     shape_program_for_style,
 )
+from roadgen3d.topdown_render import _viewport_from_layout
 from roadgen3d.types import LayoutSlotPlan, StreetBand, StreetComposeConfig, StreetProgram
 
 
@@ -139,6 +140,7 @@ def test_apply_composition_pass_preserves_required_and_trims_optional():
 
 def test_render_presentation_views_outputs_expected_pngs(tmp_path: Path):
     pytest.importorskip("matplotlib")
+    pytest.importorskip("PIL")
     payload = {
         "summary": {
             "style_preset": "civic_clean_v1",
@@ -161,3 +163,41 @@ def test_render_presentation_views_outputs_expected_pngs(tmp_path: Path):
     for view in views:
         assert Path(view["path"]).exists()
         assert Path(view["path"]).suffix == ".png"
+    design_view = next(view for view in views if view["name"] == "overview_top_design")
+    from PIL import Image
+
+    image = Image.open(design_view["path"]).convert("RGBA")
+    assert image.size == (2048, 2048)
+    assert len(image.getcolors(maxcolors=1_000_000) or []) > 32
+
+
+def test_render_presentation_views_legacy_mode_falls_back_to_vector_overview(tmp_path: Path):
+    pytest.importorskip("matplotlib")
+    payload = {
+        "summary": {
+            "style_preset": "civic_clean_v1",
+            "road_width_m": 8.0,
+            "sidewalk_width_m": 2.5,
+        },
+        "placements": [],
+    }
+    views = render_presentation_views(
+        payload,
+        out_dir=tmp_path,
+        config=_config(style_preset="civic_clean_v1", topdown_render_mode="legacy_vector"),
+    )
+    assert any(view["name"] == "overview_top" for view in views)
+    assert not any(view["name"] == "overview_top_design" for view in views)
+
+
+def test_topdown_viewport_mapping_is_stable():
+    payload = {
+        "summary": {"road_width_m": 8.0, "sidewalk_width_m": 2.5, "length_m": 60.0},
+        "placements": [{"position_xyz": [0.0, 0.0, 0.0]}],
+    }
+    viewport = _viewport_from_layout(payload, canvas_px=2048)
+    px_a = viewport.world_to_pixel(5.0, 3.0)
+    px_b = viewport.world_to_pixel(5.0, 3.0)
+    assert px_a == px_b
+    assert 0.0 <= px_a[0] <= 2048.0
+    assert 0.0 <= px_a[1] <= 2048.0
