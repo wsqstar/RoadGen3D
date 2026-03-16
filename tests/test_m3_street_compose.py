@@ -19,6 +19,7 @@ if str(SRC) not in sys.path:
 from roadgen3d.types import RetrievalHit, StreetComposeConfig, StreetComposeResult, StreetPlacement
 from roadgen3d.street_layout import compose_street_scene
 import roadgen3d.street_layout as street_layout
+from roadgen3d.poi_rules import PoiContext
 
 
 def _make_mesh(path: Path, kind: str = "box") -> None:
@@ -954,6 +955,44 @@ def test_osm_mailbox_yaw_still_faces_carriageway():
 
     assert len(candidates) == 1
     assert abs(float(candidates[0]["yaw_deg"]) - 90.0) <= 1e-6
+
+
+def test_osm_beauty_scene_proxies_skip_linear_road_overlays():
+    trimesh = pytest.importorskip("trimesh")
+    scene = trimesh.Scene()
+    placement_ctx = SimpleNamespace(road_reference=None)
+    street_program = SimpleNamespace(road_width_m=8.0, lane_count=2)
+    poi_ctx = PoiContext(
+        entrance_points_xz=(),
+        bus_stop_points_xz=(),
+        fire_points_xz=(),
+        poi_points_by_type_xz={"crossing": ((0.0, 0.0),)},
+    )
+
+    street_layout._add_beauty_scene_proxies(
+        scene,
+        config=StreetComposeConfig(
+            query="street",
+            length_m=60.0,
+            road_width_m=8.0,
+            sidewalk_width_m=2.5,
+            lane_count=2,
+            density=1.0,
+            seed=0,
+            topk_per_category=1,
+            max_trials_per_slot=5,
+            layout_mode="osm",
+        ),
+        street_program=street_program,
+        placement_ctx=placement_ctx,
+        poi_ctx=poi_ctx,
+        placements=[],
+    )
+
+    node_names = set(scene.graph.nodes_geometry)
+    assert not any(name.startswith("lane_mark_") for name in node_names)
+    assert not any(name.startswith("curb_") for name in node_names)
+    assert not any(name.startswith("crossing_patch_") for name in node_names)
 
 
 def test_run_street_compose_auto_selects_stable_poi_rich_road_by_seed(tmp_path: Path, monkeypatch):

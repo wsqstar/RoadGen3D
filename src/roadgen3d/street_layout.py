@@ -957,65 +957,68 @@ def _add_beauty_scene_proxies(
     )
     road_width_m = float(getattr(street_program, "road_width_m", config.road_width_m))
     lane_count = max(1, int(getattr(street_program, "lane_count", config.lane_count)))
-    if lane_count > 1:
-        lane_width_m = road_width_m / float(lane_count)
-        dash_length_m = 2.2
-        dash_gap_m = 3.8
-        dash_x = -road_length_m / 2.0 + 2.5
-        dash_idx = 0
-        while dash_x < road_length_m / 2.0 - 1.5:
-            for lane_idx in range(1, lane_count):
-                lane_z = -road_width_m / 2.0 + lane_width_m * float(lane_idx)
-                _add_road_box(
-                    scene,
-                    length_m=dash_length_m,
-                    width_m=0.14,
-                    height_m=0.01,
-                    local_x_m=dash_x,
-                    local_z_m=lane_z,
-                    road_center_x_m=road_center_x_m,
-                    road_center_z_m=road_center_z_m,
-                    road_yaw_deg=road_yaw_deg,
-                    y_min_m=0.004,
-                    color=colors.get("lane_mark", (238, 232, 208, 255)),
-                    node_name=f"lane_mark_{lane_idx}_{dash_idx}",
-                )
-            dash_idx += 1
-            dash_x += dash_length_m + dash_gap_m
+    render_linear_road_overlays = str(getattr(config, "layout_mode", "template")).strip().lower() != "osm"
 
-    curb_half_width = road_width_m / 2.0
-    for side_name, local_z in (("left", curb_half_width), ("right", -curb_half_width)):
-        _add_road_box(
-            scene,
-            length_m=road_length_m,
-            width_m=0.14,
-            height_m=0.11,
-            local_x_m=0.0,
-            local_z_m=local_z,
-            road_center_x_m=road_center_x_m,
-            road_center_z_m=road_center_z_m,
-            road_yaw_deg=road_yaw_deg,
-            y_min_m=0.0,
-            color=colors.get("curb", (145, 145, 145, 255)),
-            node_name=f"curb_{side_name}",
-        )
+    if render_linear_road_overlays:
+        if lane_count > 1:
+            lane_width_m = road_width_m / float(lane_count)
+            dash_length_m = 2.2
+            dash_gap_m = 3.8
+            dash_x = -road_length_m / 2.0 + 2.5
+            dash_idx = 0
+            while dash_x < road_length_m / 2.0 - 1.5:
+                for lane_idx in range(1, lane_count):
+                    lane_z = -road_width_m / 2.0 + lane_width_m * float(lane_idx)
+                    _add_road_box(
+                        scene,
+                        length_m=dash_length_m,
+                        width_m=0.14,
+                        height_m=0.01,
+                        local_x_m=dash_x,
+                        local_z_m=lane_z,
+                        road_center_x_m=road_center_x_m,
+                        road_center_z_m=road_center_z_m,
+                        road_yaw_deg=road_yaw_deg,
+                        y_min_m=0.004,
+                        color=colors.get("lane_mark", (238, 232, 208, 255)),
+                        node_name=f"lane_mark_{lane_idx}_{dash_idx}",
+                    )
+                dash_idx += 1
+                dash_x += dash_length_m + dash_gap_m
 
-    crossing_points = nonempty_poi_points(getattr(poi_ctx, "poi_points_by_type_xz", {}) or {}).get("crossing", ())
-    for idx, point in enumerate(crossing_points):
-        _add_road_box(
-            scene,
-            length_m=1.8,
-            width_m=max(road_width_m + 0.35, 4.0),
-            height_m=0.012,
-            local_x_m=0.0,
-            local_z_m=0.0,
-            road_center_x_m=float(point[0]),
-            road_center_z_m=float(point[1]),
-            road_yaw_deg=road_yaw_deg,
-            y_min_m=0.004,
-            color=colors.get("crossing", (236, 228, 208, 255)),
-            node_name=f"crossing_patch_{idx}",
-        )
+        curb_half_width = road_width_m / 2.0
+        for side_name, local_z in (("left", curb_half_width), ("right", -curb_half_width)):
+            _add_road_box(
+                scene,
+                length_m=road_length_m,
+                width_m=0.14,
+                height_m=0.11,
+                local_x_m=0.0,
+                local_z_m=local_z,
+                road_center_x_m=road_center_x_m,
+                road_center_z_m=road_center_z_m,
+                road_yaw_deg=road_yaw_deg,
+                y_min_m=0.0,
+                color=colors.get("curb", (145, 145, 145, 255)),
+                node_name=f"curb_{side_name}",
+            )
+
+        crossing_points = nonempty_poi_points(getattr(poi_ctx, "poi_points_by_type_xz", {}) or {}).get("crossing", ())
+        for idx, point in enumerate(crossing_points):
+            _add_road_box(
+                scene,
+                length_m=1.8,
+                width_m=max(road_width_m + 0.35, 4.0),
+                height_m=0.012,
+                local_x_m=0.0,
+                local_z_m=0.0,
+                road_center_x_m=float(point[0]),
+                road_center_z_m=float(point[1]),
+                road_yaw_deg=road_yaw_deg,
+                y_min_m=0.004,
+                color=colors.get("crossing", (236, 228, 208, 255)),
+                node_name=f"crossing_patch_{idx}",
+            )
 
     for idx, placement in enumerate(placements):
         x_m = float(placement.position_xyz[0])

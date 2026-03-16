@@ -1591,12 +1591,14 @@ def _production_step_download_paths(step: Dict[str, Any]) -> List[str]:
 def _select_production_step(production_steps: List[Dict[str, Any]] | None, step_index: float | int):
     steps = [dict(step) for step in list(production_steps or []) if isinstance(step, dict)]
     if not steps:
-        return "No production steps available.", None, None, []
+        return gr.update(label="Production Step"), "No production steps available.", None, None, []
     idx = max(0, min(int(step_index), len(steps) - 1))
     step = steps[idx]
+    title = str(step.get("title", "")).strip() or str(step.get("step_id", "step"))
     model_path = str(step.get("glb_path", "")).strip() or None
     companion_path = str(step.get("companion_path", "")).strip() or None
     return (
+        gr.update(label=f"Production Step: {title}"),
         _format_production_step_summary(step),
         model_path,
         companion_path,
@@ -1619,17 +1621,18 @@ def _update_nav_button_states(production_steps: List[Dict[str, Any]] | None, ste
 def _navigate_production_step(production_steps: List[Dict[str, Any]] | None, current_step: float | int, direction: int):
     steps = [dict(s) for s in list(production_steps or []) if isinstance(s, dict)]
     if not steps:
-        return (gr.update(), "No production steps available.", None, None, [],
+        return (gr.update(label="Production Step"), "No production steps available.", None, None, [],
                 gr.update(interactive=False), gr.update(interactive=False))
     new_idx = max(0, min(int(current_step) + direction, len(steps) - 1))
-    summary, model, companion, files = _select_production_step(steps, new_idx)
+    _slider_label, summary, model, companion, files = _select_production_step(steps, new_idx)
+    title = str(steps[new_idx].get("title", "")).strip() or str(steps[new_idx].get("step_id", "step"))
     prev_update, next_update = _compute_nav_button_states(steps, new_idx)
-    return gr.update(value=new_idx), summary, model, companion, files, prev_update, next_update
+    return gr.update(value=new_idx, label=f"Production Step: {title}"), summary, model, companion, files, prev_update, next_update
 
 
 def _load_production_steps(layout_json_text: str):
     if not layout_json_text or not layout_json_text.strip():
-        return [], gr.update(minimum=0, maximum=0, value=0, step=1, interactive=False), "No production steps available.", None, None, [], gr.update(interactive=False), gr.update(interactive=False)
+        return [], gr.update(minimum=0, maximum=0, value=0, step=1, interactive=False, label="Production Step"), "No production steps available.", None, None, [], gr.update(interactive=False), gr.update(interactive=False)
     try:
         payload = json.loads(layout_json_text)
         steps = [dict(step) for step in payload.get("production_steps", []) or [] if isinstance(step, dict)]
@@ -1639,7 +1642,7 @@ def _load_production_steps(layout_json_text: str):
             fallback_files = [path for path in (scene_glb, str(outputs.get("scene_layout", "")).strip()) if path]
             return (
                 [],
-                gr.update(minimum=0, maximum=0, value=0, step=1, interactive=False),
+                gr.update(minimum=0, maximum=0, value=0, step=1, interactive=False, label="Production Step"),
                 "No production steps available.",
                 scene_glb,
                 None,
@@ -1647,7 +1650,8 @@ def _load_production_steps(layout_json_text: str):
                 gr.update(interactive=False),
                 gr.update(interactive=False),
             )
-        summary, model_path, companion_path, files = _select_production_step(steps, 0)
+        slider_label, summary, model_path, companion_path, files = _select_production_step(steps, 0)
+        first_title = str(steps[0].get("title", "")).strip() or str(steps[0].get("step_id", "step"))
         return (
             steps,
             gr.update(
@@ -1656,6 +1660,7 @@ def _load_production_steps(layout_json_text: str):
                 value=0,
                 step=1,
                 interactive=bool(len(steps) > 1),
+                label=f"Production Step: {first_title}",
             ),
             summary,
             model_path,
@@ -1665,7 +1670,7 @@ def _load_production_steps(layout_json_text: str):
             gr.update(interactive=bool(len(steps) > 1)),
         )
     except Exception:
-        return [], gr.update(minimum=0, maximum=0, value=0, step=1, interactive=False), "No production steps available.", None, None, [], gr.update(interactive=False), gr.update(interactive=False)
+        return [], gr.update(minimum=0, maximum=0, value=0, step=1, interactive=False, label="Production Step"), "No production steps available.", None, None, [], gr.update(interactive=False), gr.update(interactive=False)
 
 
 def run_prepare_workspace(
@@ -4202,6 +4207,7 @@ def build_demo() -> gr.Blocks:
             fn=_select_production_step,
             inputs=[production_steps_state, production_step_slider],
             outputs=[
+                production_step_slider,
                 production_step_summary,
                 street_model_view,
                 production_companion_view,
