@@ -80,6 +80,11 @@ def _is_preview(row: Mapping[str, Any]) -> bool:
     return str(row.get("runtime_profile", "") or "").strip().lower() == "preview"
 
 
+def _preview_should_be_demoted(row: Mapping[str, Any]) -> bool:
+    category = str(row.get("category", "") or "").strip().lower()
+    return category in {"bench", "lamp"} and _generator_type(row) == "parametric" and _is_preview(row)
+
+
 def _thresholds_for_category(category: str) -> Tuple[int, int, int]:
     thresholds = {
         "tree": (120, 350, 1000),
@@ -118,6 +123,8 @@ def _scene_eligible(row: Mapping[str, Any], face_count: int, quality_tier: int) 
     category = str(row.get("category", "") or "").strip().lower()
     if face_count <= 0:
         return False
+    if _preview_should_be_demoted(row):
+        return False
     if category in {"lamp", "tree"} and quality_tier <= 0:
         return False
     if category in {"lamp", "tree"} and _is_preview(row) and quality_tier < 2:
@@ -138,6 +145,8 @@ def _quality_notes(row: Mapping[str, Any], face_count: int, quality_tier: int, s
         notes.append("low_poly_visual_asset")
     if _is_preview(row):
         notes.append("preview_runtime")
+    if _preview_should_be_demoted(row):
+        notes.append("preview_demoted_after_production_seed")
     provenance = _generator_type(row)
     if provenance:
         notes.append(f"generator={provenance}")
@@ -154,6 +163,10 @@ def _clean_row(row: Mapping[str, Any], manifest_dir: Path) -> Dict[str, Any]:
     cleaned["scene_eligible"] = bool(scene_eligible)
     cleaned["quality_notes"] = _quality_notes(cleaned, face_count, quality_tier, scene_eligible)
     return cleaned
+
+
+def clean_manifest_rows(rows: Iterable[Mapping[str, Any]], manifest_dir: Path) -> List[Dict[str, Any]]:
+    return [_clean_row(row, manifest_dir) for row in rows]
 
 
 def _summarize(rows: Iterable[Mapping[str, Any]]) -> str:
@@ -186,6 +199,10 @@ def _summarize(rows: Iterable[Mapping[str, Any]]) -> str:
     return "\n".join(lines)
 
 
+def summarize_rows(rows: Iterable[Mapping[str, Any]]) -> str:
+    return _summarize(rows)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Annotate asset manifest rows with scene-readiness metadata.")
     parser.add_argument(
@@ -202,8 +219,8 @@ def main() -> int:
 
     manifest_path = Path(args.manifest).resolve()
     rows = _load_rows(manifest_path)
-    cleaned_rows = [_clean_row(row, manifest_path.parent.resolve()) for row in rows]
-    print(_summarize(cleaned_rows))
+    cleaned_rows = clean_manifest_rows(rows, manifest_path.parent.resolve())
+    print(summarize_rows(cleaned_rows))
     if args.write:
         _write_rows(manifest_path, cleaned_rows)
     return 0

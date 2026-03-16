@@ -89,23 +89,158 @@ from scripts.m6_02_train_program_generator import train_from_jsonl as train_prog
 
 TIMELINE_KEYBOARD_JS = """
 () => {
-    document.addEventListener('keydown', (e) => {
+    const TILT_STEP = 10;
+    const ORBIT_STEP = 15;
+    const ZOOM_RATIO = 0.85;
+    const MIN_PHI = 10;
+    const MAX_PHI = 170;
+    const DEG = Math.PI / 180;
+    let keydownHandler = null;
+
+    function getModelViewer() {
+        const el = document.getElementById('street-model-view');
+        if (!el) return null;
+        let mv = el.querySelector('model-viewer');
+        if (mv) return mv;
+        for (const child of el.querySelectorAll('*')) {
+            if (child.shadowRoot) {
+                mv = child.shadowRoot.querySelector('model-viewer');
+                if (mv) return mv;
+            }
+        }
+        return null;
+    }
+
+    function orbitCamera(dThetaDeg, dPhiDeg, zoomFactor) {
+        const mv = getModelViewer();
+        if (!mv) return;
+        try {
+            const orbit = mv.getCameraOrbit();
+            let theta = orbit.theta / DEG;
+            let phi   = orbit.phi   / DEG;
+            let r     = orbit.radius;
+            theta += dThetaDeg;
+            phi = Math.max(MIN_PHI, Math.min(MAX_PHI, phi + dPhiDeg));
+            if (zoomFactor !== 1) r = Math.max(0.05, r * zoomFactor);
+            mv.cameraOrbit = `${theta}deg ${phi}deg ${r}m`;
+        } catch (_) {}
+    }
+
+    function resetCamera() {
+        const mv = getModelViewer();
+        if (!mv) return;
+        mv.cameraOrbit = '0deg 75deg auto';
+        mv.cameraTarget = 'auto auto auto';
+        mv.fieldOfView = 'auto';
+    }
+
+    function triggerSlider(value) {
+        const container = document.getElementById('production-step-slider');
+        if (!container) return;
+        const input = container.querySelector('input[type="range"]');
+        if (!input) return;
+        const max = parseFloat(input.max);
+        if (max <= 0) return;
+        const v = Math.max(parseFloat(input.min), Math.min(max, value));
+        const nativeSetter = Object.getOwnPropertyDescriptor(
+            HTMLInputElement.prototype, 'value'
+        ).set;
+        nativeSetter.call(input, v);
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+
+    function handleKeydown(e) {
         const tag = document.activeElement?.tagName;
         if (['INPUT', 'TEXTAREA', 'SELECT'].includes(tag)) return;
         if (document.activeElement?.type === 'range') return;
         const timeline = document.getElementById('production-timeline');
         if (!timeline) return;
         if (document.activeElement !== document.body && !timeline.contains(document.activeElement)) return;
-        if (e.key === 'ArrowLeft') {
+
+        if (e.shiftKey && e.key === 'ArrowLeft') {
             const btn = document.querySelector('#prev-step-btn button');
             if (btn && !btn.disabled) { e.preventDefault(); btn.click(); }
-        } else if (e.key === 'ArrowRight') {
+            return;
+        }
+        if (e.shiftKey && e.key === 'ArrowRight') {
             const btn = document.querySelector('#next-step-btn button');
             if (btn && !btn.disabled) { e.preventDefault(); btn.click(); }
+            return;
+        }
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault(); orbitCamera(-ORBIT_STEP, 0, 1); return;
+        }
+        if (e.key === 'ArrowRight') {
+            e.preventDefault(); orbitCamera(ORBIT_STEP, 0, 1); return;
+        }
+        if (e.key === 'ArrowUp') {
+            e.preventDefault(); orbitCamera(0, -TILT_STEP, 1); return;
+        }
+        if (e.key === 'ArrowDown') {
+            e.preventDefault(); orbitCamera(0, TILT_STEP, 1); return;
+        }
+        if (e.key === '+' || e.key === '=') {
+            e.preventDefault(); orbitCamera(0, 0, ZOOM_RATIO); return;
+        }
+        if (e.key === '-' || e.key === 'x' || e.key === 'X') {
+            e.preventDefault(); orbitCamera(0, 0, 1 / ZOOM_RATIO); return;
+        }
+        if (e.key === 'r' || e.key === 'R') {
+            e.preventDefault(); resetCamera(); return;
+        }
+        if (e.key === 'Home') {
+            e.preventDefault(); triggerSlider(0); return;
+        }
+        if (e.key === 'End') {
+            e.preventDefault();
+            const container = document.getElementById('production-step-slider');
+            const input = container?.querySelector('input[type="range"]');
+            if (input) triggerSlider(parseFloat(input.max));
+            return;
+        }
+    }
+
+    function initKeyboardShortcuts() {
+        if (keydownHandler) {
+            document.removeEventListener('keydown', keydownHandler);
+        }
+        keydownHandler = handleKeydown;
+        document.addEventListener('keydown', keydownHandler);
+        
+        const tl = document.getElementById('production-timeline');
+        if (tl && !tl.hasAttribute('tabindex')) tl.setAttribute('tabindex', '0');
+    }
+
+    // Wait for Gradio DOM to be ready
+    function waitForGradio() {
+        const timeline = document.getElementById('production-timeline');
+        if (timeline) {
+            initKeyboardShortcuts();
+            console.log('[RoadGen3D] Keyboard shortcuts initialized');
+        } else {
+            setTimeout(waitForGradio, 200);
+        }
+    }
+
+    // Use MutationObserver to detect when Production Timeline appears
+    const observer = new MutationObserver((mutations, obs) => {
+        const timeline = document.getElementById('production-timeline');
+        if (timeline) {
+            initKeyboardShortcuts();
+            obs.disconnect();
+            console.log('[RoadGen3D] Keyboard shortcuts initialized via MutationObserver');
         }
     });
-    const tl = document.getElementById('production-timeline');
-    if (tl && !tl.hasAttribute('tabindex')) tl.setAttribute('tabindex', '0');
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Also try immediately in case DOM is already ready
+    if (document.readyState === 'complete') {
+        setTimeout(waitForGradio, 100);
+    } else {
+        document.addEventListener('load', () => setTimeout(waitForGradio, 100));
+    }
 }
 """
 
@@ -3581,8 +3716,18 @@ def build_demo() -> gr.Blocks:
                         )
                         next_step_btn = gr.Button("Next ▶", elem_id="next-step-btn",
                                                    scale=1, variant="secondary", interactive=False)
+                    gr.Markdown(
+                        "**Shortcuts**: "
+                        "← → Rotate Camera | "
+                        "↑ ↓ Tilt Camera | "
+                        "Shift+←/→ Switch Step | "
+                        "+/=/z Zoom In | "
+                        "-/x Zoom Out | "
+                        "R Reset | "
+                        "Home/End First/Last"
+                    )
                     with gr.Row():
-                        street_model_view = gr.Model3D(label="Production Step Preview (GLB)")
+                        street_model_view = gr.Model3D(label="Production Step Preview (GLB)", elem_id="street-model-view")
                         production_companion_view = gr.Image(label="Production Companion View", type="filepath")
                     with gr.Row():
                         production_step_summary = gr.Textbox(label="Production Step Summary", lines=10)
