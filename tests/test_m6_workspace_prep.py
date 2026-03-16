@@ -325,7 +325,7 @@ def test_production_step_helpers_select_stage_outputs(tmp_path: Path):
         ],
     }
 
-    steps, slider_update, summary, model_path, companion_path, files = app._load_production_steps(
+    steps, slider_update, summary, model_path, companion_path, files, prev_btn, next_btn = app._load_production_steps(
         json.dumps(payload, ensure_ascii=True)
     )
     assert len(steps) == 2
@@ -336,7 +336,7 @@ def test_production_step_helpers_select_stage_outputs(tmp_path: Path):
     assert companion_path is None
     assert str(stage0_glb) in files
 
-    selected_summary, selected_model, selected_companion, selected_files = app._select_production_step(steps, 1)
+    slider_label, selected_summary, selected_model, selected_companion, selected_files = app._select_production_step(steps, 1)
     assert "POI Context" in selected_summary
     assert selected_model == str(stage1_glb)
     assert selected_companion == str(companion_png)

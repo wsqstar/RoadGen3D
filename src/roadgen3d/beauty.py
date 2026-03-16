@@ -278,13 +278,22 @@ def _tree_upright_validated(row: Mapping[str, Any]) -> bool:
 
 
 def _is_external_tree_asset(row: Mapping[str, Any]) -> bool:
+    """Check if a tree asset is externally imported (not procedurally/parametrically generated).
+    
+    External trees have source='external_import' and pass upright validation.
+    Procedural/parametric trees are excluded to prefer real imported tree models.
+    """
     if str(row.get("category", "")).strip().lower() != "tree":
         return False
     provenance = asset_generator_type(row)
     if provenance in {"parametric", "legacy", "procedural_fallback"}:
         return False
     source = str(row.get("source", "") or "").strip().lower()
-    return source not in {"procedural_generated", "parametric_generated", "procedural_fallback", "external_import"} and _tree_upright_validated(row)
+    # external_import trees ARE external assets - only exclude procedural/parametric generated ones
+    is_external = source not in {"procedural_generated", "parametric_generated", "procedural_fallback"}
+    if is_external and _tree_upright_validated(row):
+        return True
+    return False
 
 
 def _filter_candidates_for_curation_mode(

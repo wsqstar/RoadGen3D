@@ -3664,7 +3664,7 @@ def compose_street_scene(
 
     exclusion_zones: tuple = ()
     debug_scene_overlays_enabled = _should_embed_debug_scene_overlays(config)
-    if rule_set is not None and poi_ctx is not None:
+    if rule_set is not None and poi_ctx is not None and config.constraint_mode != "off":
         from .poi_rules import build_exclusion_zones as _build_exclusion_zones
 
         exclusion_zones = _build_exclusion_zones(poi_ctx, rule_set)
