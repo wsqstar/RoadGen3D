@@ -1906,6 +1906,7 @@ def _build_decoder(
         model_dir=shapee_model_dir,
         strict=bool(shapee_strict),
         fallback_decoder=None if shapee_strict else placeholder,
+        skip_voxel=True,  # Skip voxel conversion, use mesh directly
     )
 
 

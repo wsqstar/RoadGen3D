@@ -39,6 +39,8 @@ class ShapeEDecoder:
     - If Shape-E runtime is not available or decoding fails, this decoder can
       fallback to `PlaceholderVoxelDecoder`.
     - If `strict=True`, failures raise `ShapeEDecoderError` instead.
+    - If `skip_voxel=True` (default), the decoder returns the mesh directly without
+      converting to voxel, avoiding unnecessary computation and precision loss.
     """
 
     def __init__(
@@ -49,6 +51,7 @@ class ShapeEDecoder:
         model_dir: Optional[Path] = None,
         strict: bool = False,
         fallback_decoder: Optional[PlaceholderVoxelDecoder] = None,
+        skip_voxel: bool = True,
     ) -> None:
         if resolution <= 1:
             raise ValueError("resolution must be > 1")
@@ -60,6 +63,7 @@ class ShapeEDecoder:
         self.model_dir = Path(model_dir).resolve() if model_dir else None
         self.strict = bool(strict)
         self.fallback_decoder = fallback_decoder
+        self.skip_voxel = bool(skip_voxel)
         self._shapee_cache = None
 
     def _decode_mesh_with_shapee(self, latent):
@@ -209,9 +213,22 @@ class ShapeEDecoder:
     def decode(self, latent):
         try:
             mesh = self._decode_mesh_with_shapee(latent)
+
+            # When skip_voxel is True, return mesh directly without voxel conversion.
+            # This avoids unnecessary computation and precision loss from mesh → voxel.
+            if self.skip_voxel:
+                meta: Dict[str, object] = {
+                    "decoder": "shapee",
+                    "skip_voxel": True,
+                    "mesh": mesh,
+                }
+                # Return minimal placeholder voxel for API compatibility
+                return np.zeros((1, 1, 1), dtype=np.float32), np.zeros((1, 1, 1), dtype=np.uint8), meta
+
             prob, voxel = self._mesh_to_voxel(mesh)
-            meta: Dict[str, object] = {
+            meta = {
                 "decoder": "shapee",
+                "skip_voxel": False,
                 "resolution": self.resolution,
                 "threshold": self.threshold,
                 "mesh": mesh,

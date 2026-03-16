@@ -53,6 +53,7 @@ def build_decoder(args: argparse.Namespace):
         model_dir=args.shapee_model_dir,
         strict=args.shapee_strict,
         fallback_decoder=None if args.shapee_strict else placeholder,
+        skip_voxel=True,  # Skip voxel conversion, use mesh directly
     )
 
 

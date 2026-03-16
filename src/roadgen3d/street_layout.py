@@ -154,6 +154,68 @@ def _resolve_path(path_text: object, base_dir: Path) -> str:
     return str(path)
 
 
+def _row_scene_eligible(row: Mapping[str, object]) -> bool:
+    value = row.get("scene_eligible")
+    if isinstance(value, bool):
+        return value
+    if value is None:
+        return True
+    if isinstance(value, (int, float)):
+        return bool(value)
+    text = str(value).strip().lower()
+    if not text:
+        return True
+    if text in {"0", "false", "no", "off"}:
+        return False
+    if text in {"1", "true", "yes", "on"}:
+        return True
+    return True
+
+
+_PARALLEL_TO_CARRIAGEWAY_CATEGORIES = {"bench", "bus_stop"}
+
+
+def _row_quality_notes(row: Mapping[str, object]) -> Tuple[str, ...]:
+    notes = row.get("quality_notes")
+    if notes is None:
+        return ()
+    if isinstance(notes, str):
+        text = notes.strip()
+        return (text,) if text else ()
+    return tuple(str(item).strip() for item in notes if str(item).strip())
+
+
+def _tree_upright_validated(row: Mapping[str, object]) -> bool:
+    if "tree_upright_validated" in _row_quality_notes(row):
+        return True
+    metrics = row.get("quality_metrics")
+    if isinstance(metrics, Mapping):
+        validation = metrics.get("tree_upright_validation")
+        if isinstance(validation, Mapping):
+            return not bool(str(validation.get("failure_reason", "")).strip())
+    return False
+
+
+def _is_external_tree_asset(row: Mapping[str, object]) -> bool:
+    if str(row.get("category", "")).strip().lower() != "tree":
+        return False
+    provenance = asset_generator_type(row)
+    if provenance in {"parametric", "legacy", "procedural_fallback"}:
+        return False
+    source = str(row.get("source", "") or "").strip().lower()
+    return source not in {"procedural_generated", "parametric_generated", "procedural_fallback", "external_import"} and _tree_upright_validated(row)
+
+
+def _yaw_for_asset_category(category: str, facing_yaw_deg: float) -> float:
+    yaw_deg = float(facing_yaw_deg)
+    if str(category).strip().lower() in _PARALLEL_TO_CARRIAGEWAY_CATEGORIES:
+        yaw_deg -= 90.0
+    yaw_deg = math.fmod(yaw_deg, 360.0)
+    if yaw_deg < 0.0:
+        yaw_deg += 360.0
+    return float(yaw_deg)
+
+
 def _validate_config(config: StreetComposeConfig) -> None:
     if not config.query.strip():
         raise ValueError("query cannot be empty")
@@ -517,7 +579,10 @@ def _sample_pose_osm_for_segment(
 
     if anchor_position_xz is not None:
         point = (float(anchor_position_xz[0]), float(anchor_position_xz[1]))
-        yaw = compute_facing_angle(point, placement_ctx.carriageway)  # type: ignore[attr-defined]
+        yaw = _yaw_for_asset_category(
+            category,
+            compute_facing_angle(point, placement_ctx.carriageway),  # type: ignore[attr-defined]
+        )
         return point[0], point[1], yaw
 
     if segment_node is not None:
@@ -548,7 +613,10 @@ def _sample_pose_osm_for_segment(
                 preferred_zone = getattr(placement_ctx, "left_sidewalk_zone", None) if sign > 0 else getattr(placement_ctx, "right_sidewalk_zone", None)
                 candidate_zone = preferred_zone if preferred_zone is not None and not getattr(preferred_zone, "is_empty", False) else placement_ctx.sidewalk_zone
                 if candidate_zone is not None and not getattr(candidate_zone, "is_empty", False) and candidate_zone.buffer(0.05).contains(ShapelyPoint(point)):
-                    yaw = compute_facing_angle(point, placement_ctx.carriageway)  # type: ignore[attr-defined]
+                    yaw = _yaw_for_asset_category(
+                        category,
+                        compute_facing_angle(point, placement_ctx.carriageway),  # type: ignore[attr-defined]
+                    )
                     return point[0], point[1], yaw
 
     side_pref = SIDE_PREF.get(category, "both")
@@ -567,7 +635,10 @@ def _sample_pose_osm_for_segment(
         point = sample_slot_on_sidewalk(overall_zone, rng)
     if point is None:
         return None
-    yaw = compute_facing_angle(point, placement_ctx.carriageway)  # type: ignore[attr-defined]
+    yaw = _yaw_for_asset_category(
+        category,
+        compute_facing_angle(point, placement_ctx.carriageway),  # type: ignore[attr-defined]
+    )
     return point[0], point[1], yaw
 
 
@@ -579,20 +650,37 @@ def _placeholder_building_entry(
     height_class: str,
     theme_name: str,
 ) -> _MeshCacheEntry:
-    trimesh = _require_trimesh()
-    height_m = {
-        "lowrise": max(float(frontage_width_m) * 0.8, 8.0),
-        "midrise": max(float(frontage_width_m) * 1.4, 14.0),
-        "highrise": max(float(frontage_width_m) * 2.0, 22.0),
-    }.get(str(height_class), max(float(frontage_width_m) * 1.2, 12.0))
-    mesh = trimesh.creation.box(extents=(float(frontage_width_m), float(height_m), float(depth_m)))
-    face_color = {
-        "residential": (188, 174, 153, 255),
-        "commercial": (176, 184, 192, 255),
-        "transit": (151, 165, 182, 255),
-        "green": (166, 171, 148, 255),
-    }.get(str(theme_name), (178, 180, 178, 255))
-    mesh.visual.face_colors = list(face_color)
+    try:
+        from .parametric_assets import generate_parametric_asset
+
+        result = generate_parametric_asset(
+            {
+                "asset_kind": "building",
+                "runtime_profile": "preview",
+                "params": {
+                    "frontage_width_m": float(frontage_width_m),
+                    "depth_m": float(depth_m),
+                    "height_class": str(height_class),
+                    "theme_name": str(theme_name),
+                },
+            }
+        )
+        mesh = result.mesh
+    except Exception:
+        trimesh = _require_trimesh()
+        height_m = {
+            "lowrise": max(float(frontage_width_m) * 0.8, 8.0),
+            "midrise": max(float(frontage_width_m) * 1.4, 14.0),
+            "highrise": max(float(frontage_width_m) * 2.0, 22.0),
+        }.get(str(height_class), max(float(frontage_width_m) * 1.2, 12.0))
+        mesh = trimesh.creation.box(extents=(float(frontage_width_m), float(height_m), float(depth_m)))
+        face_color = {
+            "residential": (188, 174, 153, 255),
+            "commercial": (176, 184, 192, 255),
+            "transit": (151, 165, 182, 255),
+            "green": (166, 171, 148, 255),
+        }.get(str(theme_name), (178, 180, 178, 255))
+        mesh.visual.face_colors = list(face_color)
     bounds = mesh.bounds
     span = bounds[1] - bounds[0]
     return _MeshCacheEntry(
@@ -1451,7 +1539,10 @@ def _sample_pose_osm(
     if point is None:
         return None
     x, z = point
-    yaw = compute_facing_angle(point, placement_ctx.carriageway)  # type: ignore[attr-defined]
+    yaw = _yaw_for_asset_category(
+        category,
+        compute_facing_angle(point, placement_ctx.carriageway),  # type: ignore[attr-defined]
+    )
     return x, z, yaw
 
 
@@ -1906,12 +1997,16 @@ def _band_deviation_penalty(
 
 def _search_tier_exact_candidates(
     *,
+    category: str,
     anchor_target_xz: Tuple[float, float],
     placement_ctx: object,
 ) -> Tuple[Dict[str, object], ...]:
     from .placement_zones import compute_facing_angle
 
-    yaw = compute_facing_angle(anchor_target_xz, placement_ctx.carriageway)  # type: ignore[attr-defined]
+    yaw = _yaw_for_asset_category(
+        category,
+        compute_facing_angle(anchor_target_xz, placement_ctx.carriageway),  # type: ignore[attr-defined]
+    )
     return (
         {
             "tier": "tier_1_exact",
@@ -1924,6 +2019,7 @@ def _search_tier_exact_candidates(
 
 def _search_tier_ring_candidates(
     *,
+    category: str,
     anchor_target_xz: Tuple[float, float],
     placement_ctx: object,
 ) -> Tuple[Dict[str, object], ...]:
@@ -1938,7 +2034,10 @@ def _search_tier_ring_candidates(
                 anchor_x + math.cos(angle) * float(radius_m),
                 anchor_z + math.sin(angle) * float(radius_m),
             )
-            yaw = compute_facing_angle(point, placement_ctx.carriageway)  # type: ignore[attr-defined]
+            yaw = _yaw_for_asset_category(
+                category,
+                compute_facing_angle(point, placement_ctx.carriageway),  # type: ignore[attr-defined]
+            )
             candidates.append(
                 {
                     "tier": "tier_2_ring",
@@ -1952,6 +2051,7 @@ def _search_tier_ring_candidates(
 
 def _search_tier_segment_candidates(
     *,
+    category: str,
     anchor_target_xz: Tuple[float, float],
     segment_node: object | None,
     placement_ctx: object,
@@ -1975,7 +2075,10 @@ def _search_tier_segment_candidates(
         anchor_distance_m = float(math.hypot(point[0] - anchor_target_xz[0], point[1] - anchor_target_xz[1]))
         if anchor_distance_m > 8.0 + 1e-6:
             continue
-        yaw = compute_facing_angle(point, placement_ctx.carriageway)  # type: ignore[attr-defined]
+        yaw = _yaw_for_asset_category(
+            category,
+            compute_facing_angle(point, placement_ctx.carriageway),  # type: ignore[attr-defined]
+        )
         candidates.append(
             {
                 "tier": "tier_3_segment",
@@ -1989,6 +2092,7 @@ def _search_tier_segment_candidates(
 
 def _search_tier_theme_side_candidates(
     *,
+    category: str,
     anchor_target_xz: Tuple[float, float],
     placement_ctx: object,
     theme_segment: ThemeSegment | None,
@@ -2021,7 +2125,10 @@ def _search_tier_theme_side_candidates(
             anchor_distance_m = float(math.hypot(point[0] - anchor_target_xz[0], point[1] - anchor_target_xz[1]))
             if anchor_distance_m > 8.0 + 1e-6:
                 continue
-            yaw = compute_facing_angle(point, placement_ctx.carriageway)  # type: ignore[attr-defined]
+            yaw = _yaw_for_asset_category(
+                category,
+                compute_facing_angle(point, placement_ctx.carriageway),  # type: ignore[attr-defined]
+            )
             candidates.append(
                 {
                     "tier": "tier_4_theme_side",
@@ -2049,15 +2156,17 @@ def _iter_slot_candidate_groups(
     if anchor_target_xz is not None and placement_ctx is not None and config.layout_mode == "osm":
         target_point = (float(anchor_target_xz[0]), float(anchor_target_xz[1]))
         return (
-            _search_tier_exact_candidates(anchor_target_xz=target_point, placement_ctx=placement_ctx),
-            _search_tier_ring_candidates(anchor_target_xz=target_point, placement_ctx=placement_ctx),
+            _search_tier_exact_candidates(category=category, anchor_target_xz=target_point, placement_ctx=placement_ctx),
+            _search_tier_ring_candidates(category=category, anchor_target_xz=target_point, placement_ctx=placement_ctx),
             _search_tier_segment_candidates(
+                category=category,
                 anchor_target_xz=target_point,
                 segment_node=segment_node,
                 placement_ctx=placement_ctx,
                 config=config,
             ),
             _search_tier_theme_side_candidates(
+                category=category,
                 anchor_target_xz=target_point,
                 placement_ctx=placement_ctx,
                 theme_segment=theme_segment,
@@ -2662,10 +2771,15 @@ def compose_street_scene(
     asset_by_id = {row["asset_id"]: row for row in rows}
 
     category_to_rows: Dict[str, List[Dict[str, str]]] = {category: [] for category in DEFAULT_CATEGORIES}
+    raw_tree_inventory_count = sum(1 for row in rows if str(row.get("category", "")).strip().lower() == "tree")
     for row in rows:
         category = row["category"]
         if category in category_to_rows:
+            if category == "tree":
+                if not _row_scene_eligible(row) or not _is_external_tree_asset(row):
+                    continue
             category_to_rows[category].append(row)
+    tree_assets_unavailable = raw_tree_inventory_count > 0 and not category_to_rows.get("tree")
 
     available_categories = [category for category, pool in category_to_rows.items() if pool]
     if not available_categories:
@@ -3558,6 +3672,9 @@ def compose_street_scene(
         "beauty_mode": str(getattr(config, "beauty_mode", "presentation_v1")),
         "render_preset": str(getattr(config, "render_preset", "jury_default_v1")),
         "asset_curation_mode": str(getattr(config, "asset_curation_mode", "scene_ready_first")),
+        "tree_assets_unavailable": bool(tree_assets_unavailable),
+        "tree_inventory_raw_count": int(raw_tree_inventory_count),
+        "tree_inventory_scene_ready_count": int(len(category_to_rows.get("tree", ()))),
         "scene_debug_overlays_enabled": bool(debug_scene_overlays_enabled),
         "theme_segments": [segment.to_dict() for segment in theme_segments],
         "theme_diagnostics": {

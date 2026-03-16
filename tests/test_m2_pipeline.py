@@ -173,7 +173,8 @@ def test_decoder_interface_placeholder_and_shapee():
     assert p_vox.shape == (64, 64, 64)
     assert p_meta["decoder"] == "placeholder"
 
-    shapee = ShapeEDecoder(fallback_decoder=placeholder, strict=False)
+    # Test ShapeEDecoder with voxel conversion enabled for backward compatibility
+    shapee = ShapeEDecoder(fallback_decoder=placeholder, strict=False, skip_voxel=False)
     s_prob, s_vox, s_meta = shapee.decode(latent)
     assert s_prob.shape == (64, 64, 64)
     assert s_vox.shape == (64, 64, 64)
@@ -190,6 +191,7 @@ def test_shapee_missing_model_fallback():
         strict=False,
         fallback_decoder=PlaceholderVoxelDecoder(),
         model_dir=Path("/tmp/nonexistent-shapee-model"),
+        skip_voxel=False,  # Test with voxel conversion for backward compatibility
     )
     _, _, meta = shapee.decode(latent)
     assert meta["decoder"] in {"shapee_fallback", "shapee"}

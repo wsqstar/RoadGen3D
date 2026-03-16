@@ -10,6 +10,8 @@ import sys
 from pathlib import Path
 from typing import Dict, List, Tuple
 
+import numpy as np
+
 REQUIRED_FIELDS = (
     "asset_id",
     "category",
@@ -81,6 +83,30 @@ def _load_mesh_as_single_mesh(mesh_path: Path):
     return mesh_or_scene
 
 
+def _apply_rotation_deg_xyz(mesh, rotation_deg_xyz):
+    if rotation_deg_xyz is None:
+        return mesh
+    angles = tuple(float(value) for value in rotation_deg_xyz)
+    if len(angles) != 3:
+        raise ValueError("rotation_deg_xyz must contain exactly 3 values")
+    try:
+        import trimesh
+    except ImportError as exc:
+        raise RuntimeError("`trimesh` is required for ingestion. Install requirements-m2.txt.") from exc
+
+    rotated = mesh.copy()
+    for axis, angle_deg in zip(([1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]), angles):
+        if abs(float(angle_deg)) <= 1e-9:
+            continue
+        transform = trimesh.transformations.rotation_matrix(
+            np.deg2rad(float(angle_deg)),
+            axis,
+            [0.0, 0.0, 0.0],
+        )
+        rotated.apply_transform(transform)
+    return rotated
+
+
 def _normalize_mesh(mesh):
     bbox = mesh.bounds
     center = bbox.mean(axis=0)
@@ -90,6 +116,86 @@ def _normalize_mesh(mesh):
     mesh.apply_translation(-center)
     mesh.apply_scale(1.0 / max_span)
     return mesh
+
+
+def _ground_mesh_to_y_zero(mesh):
+    grounded = mesh.copy()
+    min_y = float(grounded.bounds[0][1])
+    grounded.apply_translation([0.0, -min_y, 0.0])
+    return grounded
+
+
+def normalize_grounded_mesh(mesh, rotation_deg_xyz=None):
+    normalized = _apply_rotation_deg_xyz(mesh, rotation_deg_xyz)
+    normalized = _normalize_mesh(normalized)
+    normalized = _ground_mesh_to_y_zero(normalized)
+    return normalized
+
+
+def validate_tree_upright(
+    mesh,
+    *,
+    ground_tolerance: float = 1e-3,
+    trunk_slice_ratio: float = 0.35,
+    max_axis_angle_deg: float = 15.0,
+):
+    bounds = np.asarray(mesh.bounds, dtype=np.float64)
+    span = bounds[1] - bounds[0]
+    width = float(span[0])
+    height = float(span[1])
+    depth = float(span[2])
+    min_y = float(bounds[0][1])
+    diagnostics = {
+        "min_y": min_y,
+        "width": width,
+        "height": height,
+        "depth": depth,
+        "ground_tolerance": float(ground_tolerance),
+        "trunk_slice_ratio": float(trunk_slice_ratio),
+        "max_axis_angle_deg": float(max_axis_angle_deg),
+    }
+
+    if abs(min_y) > float(ground_tolerance):
+        diagnostics["failure_reason"] = "tree_not_grounded"
+        return False, diagnostics
+    if height <= max(width, depth):
+        diagnostics["failure_reason"] = "tree_not_taller_than_wide"
+        return False, diagnostics
+
+    vertices = np.asarray(mesh.vertices, dtype=np.float64)
+    if vertices.shape[0] < 3:
+        diagnostics["failure_reason"] = "tree_insufficient_vertices"
+        return False, diagnostics
+
+    lower_max_y = min_y + height * float(trunk_slice_ratio)
+    try:
+        sampled_points = np.asarray(mesh.sample(4096), dtype=np.float64)
+    except Exception:
+        sampled_points = vertices
+    trunk_points = sampled_points[sampled_points[:, 1] <= lower_max_y]
+    diagnostics["trunk_vertex_count"] = int(trunk_points.shape[0])
+    if trunk_points.shape[0] < 8:
+        trunk_points = vertices[vertices[:, 1] <= lower_max_y]
+        diagnostics["trunk_vertex_count"] = int(trunk_points.shape[0])
+    if trunk_points.shape[0] < 3:
+        diagnostics["failure_reason"] = "tree_insufficient_trunk_slice"
+        return False, diagnostics
+
+    centered = trunk_points - trunk_points.mean(axis=0, keepdims=True)
+    covariance = np.cov(centered, rowvar=False)
+    eigvals, eigvecs = np.linalg.eigh(covariance)
+    principal_axis = eigvecs[:, int(np.argmax(eigvals))]
+    principal_axis = principal_axis / max(np.linalg.norm(principal_axis), 1e-9)
+    world_up = np.array([0.0, 1.0, 0.0], dtype=np.float64)
+    dot = float(np.clip(abs(np.dot(principal_axis, world_up)), -1.0, 1.0))
+    angle_deg = float(np.degrees(np.arccos(dot)))
+    diagnostics["trunk_axis_angle_deg"] = angle_deg
+    if angle_deg > float(max_axis_angle_deg):
+        diagnostics["failure_reason"] = "tree_trunk_not_upright"
+        return False, diagnostics
+
+    diagnostics["failure_reason"] = ""
+    return True, diagnostics
 
 
 def ingest_assets(
@@ -112,7 +218,7 @@ def ingest_assets(
         target_mesh_path = (mesh_out_dir / f"{asset_id}.glb").resolve()
         if normalize_mesh:
             mesh = _load_mesh_as_single_mesh(mesh_path)
-            mesh = _normalize_mesh(mesh)
+            mesh = normalize_grounded_mesh(mesh)
             mesh.export(target_mesh_path)
         else:
             shutil.copy2(mesh_path, target_mesh_path)

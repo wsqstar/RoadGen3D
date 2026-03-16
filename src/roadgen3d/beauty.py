@@ -239,6 +239,34 @@ def _parametric_scene_ready(row: Mapping[str, Any]) -> bool:
     )
 
 
+def _tree_upright_validated(row: Mapping[str, Any]) -> bool:
+    notes = row.get("quality_notes")
+    if isinstance(notes, str):
+        note_values = (notes.strip(),)
+    elif notes is None:
+        note_values = ()
+    else:
+        note_values = tuple(str(item).strip() for item in notes if str(item).strip())
+    if "tree_upright_validated" in note_values:
+        return True
+    metrics = row.get("quality_metrics")
+    if isinstance(metrics, Mapping):
+        validation = metrics.get("tree_upright_validation")
+        if isinstance(validation, Mapping):
+            return not bool(str(validation.get("failure_reason", "")).strip())
+    return False
+
+
+def _is_external_tree_asset(row: Mapping[str, Any]) -> bool:
+    if str(row.get("category", "")).strip().lower() != "tree":
+        return False
+    provenance = asset_generator_type(row)
+    if provenance in {"parametric", "legacy", "procedural_fallback"}:
+        return False
+    source = str(row.get("source", "") or "").strip().lower()
+    return source not in {"procedural_generated", "parametric_generated", "procedural_fallback", "external_import"} and _tree_upright_validated(row)
+
+
 def _filter_candidates_for_curation_mode(
     scored: Sequence[Tuple[Dict[str, Any], float, float]],
     *,
@@ -265,6 +293,18 @@ def _filter_candidates_for_curation_mode(
         info["scene_eligibility_filter"] = "scene_eligible_only"
     else:
         info["provenance_fallback"] = True
+
+    if category == "tree":
+        external_tree_only = [item for item in filtered if _is_external_tree_asset(item[0])]
+        if external_tree_only:
+            info["provenance_filter"] = "external_tree_only"
+            return external_tree_only, info
+
+    if category == "bench" and mode in {"scene_ready_first", "curated_first", "parametric_first"}:
+        parametric_only = [item for item in filtered if _parametric_scene_ready(item[0])]
+        if parametric_only:
+            info["provenance_filter"] = "parametric_only"
+            return parametric_only, info
 
     if mode == "scene_ready_first":
         return filtered, info

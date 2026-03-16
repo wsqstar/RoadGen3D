@@ -4,6 +4,7 @@ import json
 import random
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 import numpy as np
 import pytest
@@ -656,6 +657,62 @@ def test_pick_category_candidate_parametric_first_prefers_parametric_bench(monke
     assert source == "faiss_softmax"
 
 
+def test_pick_category_candidate_scene_ready_first_prefers_production_bench(monkeypatch):
+    asset_by_id = {
+        "bench_legacy": _asset_row(
+            "bench_legacy",
+            "bench",
+            source="procedural_generated",
+            quality_tier=3,
+            scene_eligible=True,
+            mesh_face_count=900,
+        ),
+        "bench_param": _asset_row(
+            "bench_param",
+            "bench",
+            generator_type="parametric_v1",
+            source="parametric_generated",
+            runtime_profile="production",
+            quality_tier=3,
+            scene_eligible=True,
+            mesh_face_count=1552,
+        ),
+    }
+    hits = [
+        RetrievalHit(asset_id="bench_legacy", score=0.95),
+        RetrievalHit(asset_id="bench_param", score=0.84),
+    ]
+    monkeypatch.setattr(street_layout, "_softmax_weights", lambda scores, temperature: [1.0] + [0.0] * (len(scores) - 1))
+
+    row, score, source = street_layout._pick_category_candidate(
+        query="street",
+        category="bench",
+        topk=2,
+        embedder=_UnitFakeEmbedder(),
+        index_store=_UnitFakeIndexStore(hits),
+        asset_by_id=asset_by_id,
+        category_pool=list(asset_by_id.values()),
+        used_asset_ids=set(),
+        rng=random.Random(0),
+        config=StreetComposeConfig(
+            query="street",
+            length_m=60.0,
+            road_width_m=8.0,
+            sidewalk_width_m=2.5,
+            lane_count=2,
+            density=1.0,
+            seed=0,
+            topk_per_category=2,
+            max_trials_per_slot=5,
+            asset_curation_mode="scene_ready_first",
+        ),
+    )
+
+    assert row["asset_id"] == "bench_param"
+    assert score > 0.84
+    assert source == "faiss_softmax"
+
+
 def test_pick_category_candidate_legacy_prefers_non_parametric_bench(monkeypatch):
     asset_by_id = {
         "bench_param": _asset_row("bench_param", "bench", generator_type="parametric_v1", source="parametric_generated"),
@@ -867,6 +924,36 @@ def test_pick_category_candidate_scene_ready_first_falls_back_when_only_ineligib
     assert row["asset_id"] == "tree_lowpoly"
     assert score > 0.91
     assert source == "faiss_softmax"
+
+
+def test_osm_bench_yaw_aligns_parallel_to_carriageway():
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+    carriageway = shapely_geometry.box(-20.0, -4.0, 20.0, 4.0)
+    placement_ctx = SimpleNamespace(carriageway=carriageway)
+
+    candidates = street_layout._search_tier_exact_candidates(
+        category="bench",
+        anchor_target_xz=(0.0, -5.5),
+        placement_ctx=placement_ctx,
+    )
+
+    assert len(candidates) == 1
+    assert abs(float(candidates[0]["yaw_deg"])) <= 1e-6
+
+
+def test_osm_mailbox_yaw_still_faces_carriageway():
+    shapely_geometry = pytest.importorskip("shapely.geometry")
+    carriageway = shapely_geometry.box(-20.0, -4.0, 20.0, 4.0)
+    placement_ctx = SimpleNamespace(carriageway=carriageway)
+
+    candidates = street_layout._search_tier_exact_candidates(
+        category="mailbox",
+        anchor_target_xz=(0.0, -5.5),
+        placement_ctx=placement_ctx,
+    )
+
+    assert len(candidates) == 1
+    assert abs(float(candidates[0]["yaw_deg"]) - 90.0) <= 1e-6
 
 
 def test_run_street_compose_auto_selects_stable_poi_rich_road_by_seed(tmp_path: Path, monkeypatch):

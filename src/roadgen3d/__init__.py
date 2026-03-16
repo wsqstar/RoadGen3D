@@ -38,6 +38,7 @@ from .osm_ingest import fetch_osm_data, parse_osm_features, project_to_local
 from .osm_segment_graph import build_segment_graph
 from .parametric_assets import (
     BenchParams,
+    BuildingParams,
     GenerationQualityMetrics,
     GenerationRequest,
     LampParams,
@@ -100,6 +101,7 @@ __all__ = [
     "AssetRecord",
     "BenchParams",
     "BuildingFootprint",
+    "BuildingParams",
     "BuildingPlacementPlan",
     "CandidateDescriptor",
     "CarriagewayBoundary",

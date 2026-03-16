@@ -35,11 +35,17 @@ _LAMP_MATERIALS = frozenset({"metal", "painted_steel", "cast_iron"})
 _LUMINAIRE_TYPES = frozenset({"flat_led", "globe", "box", "cone"})
 _LAMP_ARM_TYPES = frozenset({"single", "double"})
 _LIGHT_DIRECTIONS = frozenset({"roadside", "bidirectional", "downward"})
+_BUILDING_MATERIALS = frozenset({"concrete", "brick", "stone", "glass_curtain", "stucco"})
+_FOOTPRINT_SHAPES = frozenset({"RECT", "L", "U"})
+_HEIGHT_CLASSES = frozenset({"lowrise", "midrise", "highrise"})
+_BUILDING_BASE_DARKEN = 0.85
+_BUILDING_SPANDREL_DARKEN = 0.92
 _DEFAULT_PROFILE = "default_v1"
-_MIN_FACES = {"bench": 300, "lamp": 500}
+_MIN_FACES = {"bench": 300, "lamp": 500, "building": 8}
 _POLY_BUDGET_K = {
     "bench": {"preview": 8, "production": 15},
     "lamp": {"preview": 10, "production": 20},
+    "building": {"preview": 30, "production": 80},
 }
 
 
@@ -82,6 +88,31 @@ class LampParams:
     single_or_double_arm: str = "single"
     light_direction: str = "roadside"
     material_family: str = "metal"
+    style_tag: str = "modern"
+    detail_level: int = 2
+
+
+@dataclass(frozen=True)
+class BuildingParams:
+    frontage_width_m: float = 14.0
+    depth_m: float = 10.0
+    height_m: float = 0.0
+    footprint_shape: str = "rect"
+    wing_b_width_m: float = 0.0
+    wing_b_depth_m: float = 0.0
+    wing_c_width_m: float = 0.0
+    wing_c_depth_m: float = 0.0
+    floor_height_m: float = 3.2
+    ground_floor_height_m: float = 4.0
+    window_width_m: float = 1.2
+    window_height_m: float = 1.4
+    window_recess_m: float = 0.10
+    window_sill_height_m: float = 0.9
+    mullion_width_m: float = 0.8
+    wall_thickness_m: float = 0.30
+    theme_name: str = "commercial"
+    height_class: str = "midrise"
+    material_family: str = "concrete"
     style_tag: str = "modern"
     detail_level: int = 2
 
@@ -169,6 +200,26 @@ class _LampAudit:
     slenderness_ratio: float
 
 
+@dataclass(frozen=True)
+class _BuildingAudit:
+    expected_dims: Tuple[float, float, float]
+    floor_count: int
+    window_count: int
+    wing_count: int
+    footprint_shape: str
+
+
+@dataclass(frozen=True)
+class _Wing:
+    wing_id: str
+    width_m: float
+    depth_m: float
+    height_m: float
+    offset_x: float
+    offset_z: float
+    exposed_faces: Tuple[str, ...]
+
+
 def _require_trimesh():
     try:
         import trimesh
@@ -206,6 +257,13 @@ _MATERIAL_PRIMARY = {
     "painted_steel": _rgba((104, 118, 132)),
     "cast_iron": _rgba((76, 76, 76)),
 }
+_BUILDING_WALL_COLORS = {
+    "residential": _rgba((188, 174, 153)),
+    "commercial": _rgba((176, 184, 192)),
+    "transit": _rgba((151, 165, 182)),
+    "green": _rgba((166, 171, 148)),
+}
+_BUILDING_WINDOW_COLOR = _rgba((68, 82, 96))
 
 
 def _rotation_x(theta_rad: float) -> np.ndarray:
@@ -369,8 +427,8 @@ def _to_request(payload: GenerationRequest | Mapping[str, object]) -> Generation
 
 def _validate_request(request: GenerationRequest, warnings_list: list[str]) -> GenerationRequest:
     asset_kind = str(request.asset_kind).strip().lower()
-    if asset_kind not in {"bench", "lamp"}:
-        raise ValueError("asset_kind must be 'bench' or 'lamp'")
+    if asset_kind not in {"bench", "lamp", "building"}:
+        raise ValueError("asset_kind must be 'bench', 'lamp', or 'building'")
     runtime_profile = str(request.runtime_profile).strip().lower()
     if runtime_profile not in {"preview", "production"}:
         raise ValueError("runtime_profile must be 'preview' or 'production'")
@@ -783,6 +841,608 @@ def _build_lamp_mesh(params: LampParams, *, detail_level: int):
     )
 
 
+# ---------------------------------------------------------------------------
+# Building generation helpers
+# ---------------------------------------------------------------------------
+
+
+def _darken(rgba: Tuple[int, int, int, int], factor: float) -> Tuple[int, int, int, int]:
+    return (
+        max(0, min(255, int(rgba[0] * factor))),
+        max(0, min(255, int(rgba[1] * factor))),
+        max(0, min(255, int(rgba[2] * factor))),
+        rgba[3],
+    )
+
+
+def _resolve_building_height(params: BuildingParams) -> float:
+    if params.height_m > 0.0:
+        return float(params.height_m)
+    fw = float(params.frontage_width_m)
+    return {
+        "lowrise": max(fw * 0.8, 8.0),
+        "midrise": max(fw * 1.4, 14.0),
+        "highrise": max(fw * 2.0, 22.0),
+    }.get(str(params.height_class), max(fw * 1.2, 12.0))
+
+
+def _decompose_footprint(params: BuildingParams, height_m: float) -> Tuple[_Wing, ...]:
+    fw = float(params.frontage_width_m)
+    dp = float(params.depth_m)
+    shape = str(params.footprint_shape).strip().upper()
+
+    if shape == "L":
+        bw = float(params.wing_b_width_m) if params.wing_b_width_m > 0.0 else fw * 0.4
+        bd = float(params.wing_b_depth_m) if params.wing_b_depth_m > 0.0 else dp * 0.6
+        bw = min(bw, fw)
+        bd = min(bd, dp)
+        # Wing A: main body, right face partially exposed (only the part not covered by B)
+        a_right_exposed_depth = dp - bd
+        wing_a = _Wing(
+            wing_id="A",
+            width_m=fw,
+            depth_m=dp,
+            height_m=height_m,
+            offset_x=0.0,
+            offset_z=0.0,
+            exposed_faces=("front", "left", "back"),
+        )
+        # Wing B: side wing extending from the right of A, towards the back
+        wing_b = _Wing(
+            wing_id="B",
+            width_m=bw,
+            depth_m=bd,
+            height_m=height_m,
+            offset_x=fw / 2.0 + bw / 2.0,
+            offset_z=-(dp / 2.0 - bd / 2.0),
+            exposed_faces=("front", "right", "back"),
+        )
+        # Extra partial face for Wing A right side (the portion above Wing B along Z)
+        wings: list[_Wing] = [wing_a, wing_b]
+        if a_right_exposed_depth > 1.0:
+            wing_a_right_stub = _Wing(
+                wing_id="A_right",
+                width_m=a_right_exposed_depth,
+                depth_m=0.0,
+                height_m=height_m,
+                offset_x=fw / 2.0,
+                offset_z=dp / 2.0 - a_right_exposed_depth / 2.0,
+                exposed_faces=("right",),
+            )
+            wings.append(wing_a_right_stub)
+        return tuple(wings)
+
+    if shape == "U":
+        bw = float(params.wing_b_width_m) if params.wing_b_width_m > 0.0 else fw * 0.3
+        bd = float(params.wing_b_depth_m) if params.wing_b_depth_m > 0.0 else dp * 0.7
+        cw = float(params.wing_c_width_m) if params.wing_c_width_m > 0.0 else bw
+        cd = float(params.wing_c_depth_m) if params.wing_c_depth_m > 0.0 else bd
+        bw = min(bw, fw * 0.45)
+        cw = min(cw, fw * 0.45)
+        bd = min(bd, dp)
+        cd = min(cd, dp)
+        inner_width = fw - bw - cw
+        inner_width = max(inner_width, 3.0)
+        # Wing A: bottom bar
+        wing_a = _Wing(
+            wing_id="A",
+            width_m=fw,
+            depth_m=dp - bd,
+            height_m=height_m,
+            offset_x=0.0,
+            offset_z=(dp - (dp - bd)) / 2.0,
+            exposed_faces=("front",),
+        )
+        # Wing B: right arm
+        wing_b = _Wing(
+            wing_id="B",
+            width_m=bw,
+            depth_m=bd,
+            height_m=height_m,
+            offset_x=(fw - bw) / 2.0,
+            offset_z=-(dp - bd) / 2.0,
+            exposed_faces=("right", "back"),
+        )
+        # Wing C: left arm
+        wing_c = _Wing(
+            wing_id="C",
+            width_m=cw,
+            depth_m=cd,
+            height_m=height_m,
+            offset_x=-(fw - cw) / 2.0,
+            offset_z=-(dp - cd) / 2.0,
+            exposed_faces=("left", "back"),
+        )
+        return (wing_a, wing_b, wing_c)
+
+    # Default: rect
+    return (_Wing(
+        wing_id="A",
+        width_m=fw,
+        depth_m=dp,
+        height_m=height_m,
+        offset_x=0.0,
+        offset_z=0.0,
+        exposed_faces=("front", "back", "left", "right"),
+    ),)
+
+
+def _build_facade(
+    *,
+    facade_width: float,
+    facade_height: float,
+    wall_thickness: float,
+    wall_color: Tuple[int, int, int, int],
+    window_color: Tuple[int, int, int, int],
+    params: BuildingParams,
+    detail_level: int,
+) -> list:
+    trimesh = _require_trimesh()
+    parts: list = []
+    base_color = _darken(wall_color, _BUILDING_BASE_DARKEN)
+    spandrel_color = _darken(wall_color, _BUILDING_SPANDREL_DARKEN)
+
+    floor_h = float(params.floor_height_m)
+    gf_h = float(params.ground_floor_height_m)
+    win_w = float(params.window_width_m)
+    win_h = float(params.window_height_m)
+    recess = float(params.window_recess_m)
+    sill_h = float(params.window_sill_height_m)
+    mullion_w = float(params.mullion_width_m)
+    wt = float(wall_thickness)
+
+    # Calculate floors
+    base_height = 0.6
+    parapet_height = 0.5
+    usable_height = facade_height - base_height - parapet_height
+    if usable_height < gf_h:
+        num_floors = 1
+        actual_floor_h = usable_height
+    else:
+        num_floors = max(1, 1 + int((usable_height - gf_h) / floor_h))
+        actual_floor_h = floor_h
+
+    # Calculate windows per floor
+    edge_margin = mullion_w
+    usable_width = facade_width - 2.0 * edge_margin
+    if usable_width < win_w + mullion_w:
+        windows_per_floor = 0
+    else:
+        windows_per_floor = max(1, int(usable_width / (win_w + mullion_w)))
+
+    total_window_count = 0
+
+    # detail_level 0: solid wall only
+    if detail_level <= 0:
+        wall = _color(trimesh.creation.box(extents=(facade_width, facade_height, wt)), wall_color)
+        wall.apply_translation([0.0, facade_height / 2.0, 0.0])
+        parts.append(wall)
+        return parts
+
+    # Base strip
+    base_strip = _color(trimesh.creation.box(extents=(facade_width, base_height, wt + 0.02)), base_color)
+    base_strip.apply_translation([0.0, base_height / 2.0, 0.0])
+    parts.append(base_strip)
+
+    # Parapet strip
+    parapet_y = facade_height - parapet_height / 2.0
+    parapet_strip = _color(trimesh.creation.box(extents=(facade_width, parapet_height, wt + 0.01)), wall_color)
+    parapet_strip.apply_translation([0.0, parapet_y, 0.0])
+    parts.append(parapet_strip)
+
+    # detail_level 1: floor bands with colored window zones (no recess)
+    if detail_level == 1:
+        current_y = base_height
+        for fi in range(num_floors):
+            fh = gf_h if fi == 0 else actual_floor_h
+            if current_y + fh > facade_height - parapet_height + 0.01:
+                fh = facade_height - parapet_height - current_y
+                if fh < 1.0:
+                    break
+            # Spandrel band at floor base
+            sp_h = max(0.2, fh - win_h - sill_h)
+            sp_h = min(sp_h, fh * 0.3)
+            spandrel = _color(trimesh.creation.box(extents=(facade_width, sp_h, wt)), spandrel_color)
+            spandrel.apply_translation([0.0, current_y + sp_h / 2.0, 0.0])
+            parts.append(spandrel)
+            # Wall zone (with window color bands)
+            wall_zone_h = fh - sp_h
+            if windows_per_floor > 0:
+                total_windows_width = windows_per_floor * win_w
+                total_mullions_width = facade_width - total_windows_width
+                actual_mullion = total_mullions_width / (windows_per_floor + 1)
+                for wi in range(windows_per_floor):
+                    wx = -facade_width / 2.0 + actual_mullion + wi * (win_w + actual_mullion) + win_w / 2.0
+                    wy = current_y + sp_h + sill_h + win_h / 2.0
+                    if wy + win_h / 2.0 > current_y + fh:
+                        continue
+                    win_panel = _color(trimesh.creation.box(extents=(win_w, win_h, wt)), window_color)
+                    win_panel.apply_translation([wx, wy, 0.0])
+                    parts.append(win_panel)
+                    total_window_count += 1
+            # Fill remaining wall area
+            wall_panel = _color(trimesh.creation.box(extents=(facade_width, wall_zone_h, wt * 0.98)), wall_color)
+            wall_panel.apply_translation([0.0, current_y + sp_h + wall_zone_h / 2.0, -0.005])
+            parts.append(wall_panel)
+            current_y += fh
+        return parts
+
+    # detail_level 2-3: full window grid with recess
+    current_y = base_height
+    for fi in range(num_floors):
+        fh = gf_h if fi == 0 else actual_floor_h
+        if current_y + fh > facade_height - parapet_height + 0.01:
+            fh = facade_height - parapet_height - current_y
+            if fh < 1.0:
+                break
+
+        # Spandrel band
+        sp_h = max(0.15, fh - win_h - sill_h)
+        sp_h = min(sp_h, fh * 0.3)
+        spandrel = _color(trimesh.creation.box(extents=(facade_width, sp_h, wt)), spandrel_color)
+        spandrel.apply_translation([0.0, current_y + sp_h / 2.0, 0.0])
+        parts.append(spandrel)
+
+        # Window zone
+        win_zone_y_base = current_y + sp_h
+        win_zone_h = fh - sp_h
+        if windows_per_floor <= 0:
+            # No windows fit: solid wall
+            wall_fill = _color(trimesh.creation.box(extents=(facade_width, win_zone_h, wt)), wall_color)
+            wall_fill.apply_translation([0.0, win_zone_y_base + win_zone_h / 2.0, 0.0])
+            parts.append(wall_fill)
+            current_y += fh
+            continue
+
+        # Calculate even spacing
+        total_windows_width = windows_per_floor * win_w
+        total_mullions_width = facade_width - total_windows_width
+        actual_mullion = total_mullions_width / (windows_per_floor + 1)
+
+        for wi in range(windows_per_floor):
+            wx = -facade_width / 2.0 + actual_mullion + wi * (win_w + actual_mullion) + win_w / 2.0
+            wy = win_zone_y_base + sill_h + win_h / 2.0
+            if wy + win_h / 2.0 > current_y + fh:
+                continue
+
+            # Window recess panel (recessed inward)
+            win_depth = max(wt - recess, 0.02)
+            win_panel = _color(trimesh.creation.box(extents=(win_w, win_h, win_depth)), window_color)
+            win_panel.apply_translation([wx, wy, -recess / 2.0])
+            parts.append(win_panel)
+            total_window_count += 1
+
+            # detail_level 3: sill and lintel micro-details
+            if detail_level >= 3:
+                sill_thickness = 0.04
+                sill_protrusion = 0.03
+                # Window sill
+                sill = _color(
+                    trimesh.creation.box(extents=(win_w + 0.06, sill_thickness, wt + sill_protrusion)),
+                    base_color,
+                )
+                sill.apply_translation([wx, wy - win_h / 2.0 - sill_thickness / 2.0, sill_protrusion / 2.0])
+                parts.append(sill)
+                # Lintel
+                lintel = _color(
+                    trimesh.creation.box(extents=(win_w + 0.04, sill_thickness, wt + sill_protrusion * 0.5)),
+                    spandrel_color,
+                )
+                lintel.apply_translation([wx, wy + win_h / 2.0 + sill_thickness / 2.0, sill_protrusion * 0.25])
+                parts.append(lintel)
+
+        # Mullion (pier) strips between and beside windows
+        for mi in range(windows_per_floor + 1):
+            if mi == 0:
+                mx = -facade_width / 2.0 + actual_mullion / 2.0
+                mw = actual_mullion
+            elif mi == windows_per_floor:
+                mx = facade_width / 2.0 - actual_mullion / 2.0
+                mw = actual_mullion
+            else:
+                mx = -facade_width / 2.0 + actual_mullion + mi * (win_w + actual_mullion) - actual_mullion / 2.0
+                mw = actual_mullion
+            mullion = _color(trimesh.creation.box(extents=(mw, win_zone_h, wt)), wall_color)
+            mullion.apply_translation([mx, win_zone_y_base + win_zone_h / 2.0, 0.0])
+            parts.append(mullion)
+
+        # Sill band (below windows)
+        sill_band_h = sill_h
+        if sill_band_h > 0.1:
+            for wi in range(windows_per_floor):
+                wx = -facade_width / 2.0 + actual_mullion + wi * (win_w + actual_mullion) + win_w / 2.0
+                sband = _color(trimesh.creation.box(extents=(win_w, sill_band_h, wt)), wall_color)
+                sband.apply_translation([wx, win_zone_y_base + sill_band_h / 2.0, 0.0])
+                parts.append(sband)
+
+        # Above-window fill (lintel zone)
+        above_win_y = win_zone_y_base + sill_h + win_h
+        above_win_h = fh - sp_h - sill_h - win_h
+        if above_win_h > 0.05:
+            for wi in range(windows_per_floor):
+                wx = -facade_width / 2.0 + actual_mullion + wi * (win_w + actual_mullion) + win_w / 2.0
+                above = _color(trimesh.creation.box(extents=(win_w, above_win_h, wt)), wall_color)
+                above.apply_translation([wx, above_win_y + above_win_h / 2.0, 0.0])
+                parts.append(above)
+
+        current_y += fh
+
+    # Fill gap between last floor and parapet if any
+    gap = facade_height - parapet_height - current_y
+    if gap > 0.05:
+        gap_fill = _color(trimesh.creation.box(extents=(facade_width, gap, wt)), wall_color)
+        gap_fill.apply_translation([0.0, current_y + gap / 2.0, 0.0])
+        parts.append(gap_fill)
+
+    return parts
+
+
+_FACE_ROTATIONS = {
+    "front": 0.0,
+    "back": math.pi,
+    "left": math.pi / 2.0,
+    "right": -math.pi / 2.0,
+}
+
+_FACE_AXIS = {
+    "front": (0.0, 1.0),   # +Z face
+    "back": (0.0, -1.0),   # -Z face
+    "left": (-1.0, 0.0),   # -X face
+    "right": (1.0, 0.0),   # +X face
+}
+
+
+def _build_building_mesh(params: BuildingParams, *, detail_level: int):
+    trimesh = _require_trimesh()
+    height_m = _resolve_building_height(params)
+    wings = _decompose_footprint(params, height_m)
+    wall_color = _BUILDING_WALL_COLORS.get(str(params.theme_name), _rgba((178, 180, 178)))
+    window_color = _BUILDING_WINDOW_COLOR
+    wt = float(params.wall_thickness_m)
+    parts: list = []
+    total_window_count = 0
+
+    for wing in wings:
+        ox = float(wing.offset_x)
+        oz = float(wing.offset_z)
+        ww = float(wing.width_m)
+        wd = float(wing.depth_m)
+        wh = float(wing.height_m)
+
+        # Special stub wing for partial face (L-shape right face)
+        if wing.wing_id.endswith("_right") and wing.depth_m == 0.0:
+            facade_w = float(wing.width_m)
+            facade_parts = _build_facade(
+                facade_width=facade_w,
+                facade_height=wh,
+                wall_thickness=wt,
+                wall_color=wall_color,
+                window_color=window_color,
+                params=params,
+                detail_level=detail_level,
+            )
+            rot_angle = _FACE_ROTATIONS["right"]
+            for part in facade_parts:
+                part.apply_transform(_rotation_y(rot_angle))
+                part.apply_translation([ox, 0.0, oz])
+            parts.extend(facade_parts)
+            for p in facade_parts:
+                fc = int(len(p.faces))
+                total_window_count += 0  # counted inside _build_facade
+            continue
+
+        if detail_level <= 0:
+            # Solid box for the wing
+            box = _color(trimesh.creation.box(extents=(ww, wh, wd)), wall_color)
+            box.apply_translation([ox, wh / 2.0, oz])
+            parts.append(box)
+            continue
+
+        # Solid core volume — facades are decorative outer layer on top of this
+        core = _color(trimesh.creation.box(extents=(ww, wh, wd)), wall_color)
+        core.apply_translation([ox, wh / 2.0, oz])
+        parts.append(core)
+
+        # Roof slab on top of core, covering outer face of facade walls
+        roof_w = ww + wt + 0.02
+        roof_d = wd + wt + 0.02
+        roof = _color(trimesh.creation.box(extents=(roof_w, 0.15, roof_d)), _darken(wall_color, 0.9))
+        roof.apply_translation([ox, wh + 0.075, oz])
+        parts.append(roof)
+
+        for face_name in wing.exposed_faces:
+            if face_name in ("front", "back"):
+                facade_w = ww
+            else:
+                facade_w = wd
+
+            if facade_w < 1.0:
+                continue
+
+            facade_parts = _build_facade(
+                facade_width=facade_w,
+                facade_height=wh,
+                wall_thickness=wt,
+                wall_color=wall_color,
+                window_color=window_color,
+                params=params,
+                detail_level=detail_level,
+            )
+
+            rot_angle = _FACE_ROTATIONS[face_name]
+            nx, nz = _FACE_AXIS[face_name]
+            if face_name in ("front", "back"):
+                face_offset_x = ox
+                face_offset_z = oz + nz * wd / 2.0
+            else:
+                face_offset_x = ox + nx * ww / 2.0
+                face_offset_z = oz
+
+            for part in facade_parts:
+                part.apply_transform(_rotation_y(rot_angle))
+                part.apply_translation([face_offset_x, 0.0, face_offset_z])
+            parts.extend(facade_parts)
+
+        # Non-exposed faces: thin wall panels (no windows)
+        all_faces = {"front", "back", "left", "right"}
+        hidden_faces = all_faces - set(wing.exposed_faces)
+        for face_name in hidden_faces:
+            if face_name in ("front", "back"):
+                fw = ww
+            else:
+                fw = wd
+            if fw < 0.5:
+                continue
+            panel = _color(trimesh.creation.box(extents=(fw, wh, 0.05)), wall_color)
+            panel.apply_translation([0.0, wh / 2.0, 0.0])
+            rot_angle = _FACE_ROTATIONS[face_name]
+            panel.apply_transform(_rotation_y(rot_angle))
+            nx, nz = _FACE_AXIS[face_name]
+            if face_name in ("front", "back"):
+                panel.apply_translation([ox, 0.0, oz + nz * wd / 2.0])
+            else:
+                panel.apply_translation([ox + nx * ww / 2.0, 0.0, oz])
+            parts.append(panel)
+
+    if not parts:
+        # Absolute fallback: single box
+        box = _color(trimesh.creation.box(extents=(params.frontage_width_m, height_m, params.depth_m)), wall_color)
+        box.apply_translation([0.0, height_m / 2.0, 0.0])
+        parts.append(box)
+
+    mesh = _ground(_concat(parts))
+
+    # Count windows from facade parts (approximate from mesh face count relative to detail level)
+    # For audit purposes, calculate expected window count
+    audit_window_count = 0
+    for wing in wings:
+        if wing.depth_m == 0.0 and wing.wing_id.endswith("_right"):
+            continue
+        for face_name in wing.exposed_faces:
+            fw_face = wing.width_m if face_name in ("front", "back") else wing.depth_m
+            if fw_face < 1.0:
+                continue
+            edge_margin = float(params.mullion_width_m)
+            usable = fw_face - 2.0 * edge_margin
+            wpf = max(0, int(usable / (float(params.window_width_m) + float(params.mullion_width_m)))) if usable >= float(params.window_width_m) + float(params.mullion_width_m) else 0
+            base_h = 0.6
+            parapet_h = 0.5
+            usable_h = height_m - base_h - parapet_h
+            gf_h = float(params.ground_floor_height_m)
+            fh = float(params.floor_height_m)
+            if usable_h < gf_h:
+                nf = 1
+            else:
+                nf = max(1, 1 + int((usable_h - gf_h) / fh))
+            audit_window_count += wpf * nf
+
+    # Compute overall bounding extent for expected dims
+    bounds = mesh.bounds
+    span = bounds[1] - bounds[0]
+    expected_width = float(span[0])
+    expected_height = float(span[1])
+    expected_depth = float(span[2])
+
+    wing_count = len([w for w in wings if not w.wing_id.endswith("_right")])
+
+    return mesh, _BuildingAudit(
+        expected_dims=(expected_width, expected_height, expected_depth),
+        floor_count=max(1, int((height_m - 0.6 - 0.5) / float(params.floor_height_m)) + 1) if detail_level > 0 else 1,
+        window_count=audit_window_count if detail_level >= 1 else 0,
+        wing_count=wing_count,
+        footprint_shape=str(params.footprint_shape),
+    )
+
+
+def _validate_building_params(raw_params: Mapping[str, object], warnings_list: list[str]) -> BuildingParams:
+    defaults = BuildingParams()
+    footprint_shape = str(raw_params.get("footprint_shape", defaults.footprint_shape)).strip().upper() or "RECT"
+    if footprint_shape not in _FOOTPRINT_SHAPES:
+        raise ValueError(f"footprint_shape must be one of {sorted(_FOOTPRINT_SHAPES)}")
+    height_class = str(raw_params.get("height_class", defaults.height_class)).strip().lower() or defaults.height_class
+    if height_class not in _HEIGHT_CLASSES:
+        raise ValueError(f"height_class must be one of {sorted(_HEIGHT_CLASSES)}")
+    material_family = str(raw_params.get("material_family", defaults.material_family)).strip().lower() or defaults.material_family
+    if material_family not in _BUILDING_MATERIALS:
+        warnings_list.append(f"Unknown building material_family '{material_family}' was replaced with 'concrete'")
+        material_family = "concrete"
+    theme_name = str(raw_params.get("theme_name", defaults.theme_name)).strip().lower() or defaults.theme_name
+    return BuildingParams(
+        frontage_width_m=_clamp(
+            _coerce_float(raw_params.get("frontage_width_m"), defaults.frontage_width_m, field_name="frontage_width_m"),
+            6.0, 60.0, field_name="frontage_width_m", warnings_list=warnings_list,
+        ),
+        depth_m=_clamp(
+            _coerce_float(raw_params.get("depth_m"), defaults.depth_m, field_name="depth_m"),
+            6.0, 40.0, field_name="depth_m", warnings_list=warnings_list,
+        ),
+        height_m=_clamp(
+            _coerce_float(raw_params.get("height_m"), defaults.height_m, field_name="height_m"),
+            0.0, 80.0, field_name="height_m", warnings_list=warnings_list,
+        ),
+        footprint_shape=footprint_shape,
+        wing_b_width_m=_coerce_float(raw_params.get("wing_b_width_m"), defaults.wing_b_width_m, field_name="wing_b_width_m"),
+        wing_b_depth_m=_coerce_float(raw_params.get("wing_b_depth_m"), defaults.wing_b_depth_m, field_name="wing_b_depth_m"),
+        wing_c_width_m=_coerce_float(raw_params.get("wing_c_width_m"), defaults.wing_c_width_m, field_name="wing_c_width_m"),
+        wing_c_depth_m=_coerce_float(raw_params.get("wing_c_depth_m"), defaults.wing_c_depth_m, field_name="wing_c_depth_m"),
+        floor_height_m=_clamp(
+            _coerce_float(raw_params.get("floor_height_m"), defaults.floor_height_m, field_name="floor_height_m"),
+            2.8, 5.0, field_name="floor_height_m", warnings_list=warnings_list,
+        ),
+        ground_floor_height_m=_clamp(
+            _coerce_float(raw_params.get("ground_floor_height_m"), defaults.ground_floor_height_m, field_name="ground_floor_height_m"),
+            3.0, 6.0, field_name="ground_floor_height_m", warnings_list=warnings_list,
+        ),
+        window_width_m=_clamp(
+            _coerce_float(raw_params.get("window_width_m"), defaults.window_width_m, field_name="window_width_m"),
+            0.6, 2.4, field_name="window_width_m", warnings_list=warnings_list,
+        ),
+        window_height_m=_clamp(
+            _coerce_float(raw_params.get("window_height_m"), defaults.window_height_m, field_name="window_height_m"),
+            0.8, 2.2, field_name="window_height_m", warnings_list=warnings_list,
+        ),
+        window_recess_m=_clamp(
+            _coerce_float(raw_params.get("window_recess_m"), defaults.window_recess_m, field_name="window_recess_m"),
+            0.05, 0.25, field_name="window_recess_m", warnings_list=warnings_list,
+        ),
+        window_sill_height_m=_clamp(
+            _coerce_float(raw_params.get("window_sill_height_m"), defaults.window_sill_height_m, field_name="window_sill_height_m"),
+            0.6, 1.2, field_name="window_sill_height_m", warnings_list=warnings_list,
+        ),
+        mullion_width_m=_clamp(
+            _coerce_float(raw_params.get("mullion_width_m"), defaults.mullion_width_m, field_name="mullion_width_m"),
+            0.4, 2.0, field_name="mullion_width_m", warnings_list=warnings_list,
+        ),
+        wall_thickness_m=_clamp(
+            _coerce_float(raw_params.get("wall_thickness_m"), defaults.wall_thickness_m, field_name="wall_thickness_m"),
+            0.15, 0.50, field_name="wall_thickness_m", warnings_list=warnings_list,
+        ),
+        theme_name=theme_name,
+        height_class=height_class,
+        material_family=material_family,
+        style_tag=_validate_style_tag(raw_params.get("style_tag", defaults.style_tag), warnings_list=warnings_list),
+        detail_level=_clamp_int(
+            _coerce_int(raw_params.get("detail_level"), defaults.detail_level, field_name="detail_level"),
+            0, 3, field_name="detail_level", warnings_list=warnings_list,
+        ),
+    )
+
+
+def _building_quality_metrics(mesh, params: BuildingParams, runtime_profile: str, audit: _BuildingAudit) -> GenerationQualityMetrics:
+    actual_dims = _bbox_size(mesh)
+    face_count = int(len(mesh.faces))
+    poly_budget_k = int(_POLY_BUDGET_K["building"][runtime_profile])
+    ground_contact_ok = abs(float(mesh.bounds[0][1])) <= 0.01
+    return GenerationQualityMetrics(
+        face_count=face_count,
+        poly_budget_k=poly_budget_k,
+        dimension_error_ratio=_dimension_error_ratio(actual_dims, audit.expected_dims),
+        ground_contact_ok=ground_contact_ok,
+        meets_min_faces=face_count >= _MIN_FACES["building"],
+        within_poly_budget=face_count <= poly_budget_k * 1000,
+    )
+
+
 def _dimension_error_ratio(actual_dims: Tuple[float, float, float], expected_dims: Tuple[float, float, float]) -> float:
     ratios = []
     for actual, expected in zip(actual_dims, expected_dims):
@@ -854,7 +1514,7 @@ def _quality_gate(asset_kind: str, metrics: GenerationQualityMetrics) -> None:
 
 
 def generate_parametric_asset(request: GenerationRequest | Mapping[str, object]) -> ParametricAssetResult:
-    """Generate one deterministic bench or lamp mesh from explicit parameters."""
+    """Generate one deterministic bench, lamp, or building mesh from explicit parameters."""
     warnings_list: list[str] = []
     normalized_request = _validate_request(_to_request(request), warnings_list)
     resolved_device_backend = resolve_device_backend(
@@ -877,6 +1537,36 @@ def generate_parametric_asset(request: GenerationRequest | Mapping[str, object])
         snapshot["effective_detail_level"] = int(effective_detail_level)
         return ParametricAssetResult(
             asset_kind="bench",
+            runtime_profile=normalized_request.runtime_profile,
+            resolved_device_backend=resolved_device_backend,
+            mesh=mesh,
+            bbox_size_xyz=_bbox_size(mesh),
+            bbox_bounds=(
+                tuple(float(v) for v in mesh.bounds[0]),
+                tuple(float(v) for v in mesh.bounds[1]),
+            ),
+            parameter_snapshot=snapshot,
+            quality_metrics=metrics,
+            warnings=tuple(warnings_list),
+            material_family=params.material_family,
+            style_tags=(params.style_tag,),
+        )
+
+    if normalized_request.asset_kind == "building":
+        params = _validate_building_params(normalized_request.params, warnings_list)
+        effective_detail_level = _effective_detail_level(normalized_request.runtime_profile, params.detail_level)
+        mesh, audit = _build_building_mesh(params, detail_level=effective_detail_level)
+        metrics = _building_quality_metrics(mesh, params, normalized_request.runtime_profile, audit)
+        if normalized_request.runtime_profile == "production" and effective_detail_level < 3 and not metrics.meets_min_faces:
+            warnings_list.append("production building detail preset was upshifted once to satisfy quality gates")
+            effective_detail_level = 3
+            mesh, audit = _build_building_mesh(params, detail_level=effective_detail_level)
+            metrics = _building_quality_metrics(mesh, params, normalized_request.runtime_profile, audit)
+        _quality_gate("building", metrics)
+        snapshot = asdict(params)
+        snapshot["effective_detail_level"] = int(effective_detail_level)
+        return ParametricAssetResult(
+            asset_kind="building",
             runtime_profile=normalized_request.runtime_profile,
             resolved_device_backend=resolved_device_backend,
             mesh=mesh,

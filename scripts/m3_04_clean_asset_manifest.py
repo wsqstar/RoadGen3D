@@ -85,6 +85,39 @@ def _preview_should_be_demoted(row: Mapping[str, Any]) -> bool:
     return category in {"bench", "lamp"} and _generator_type(row) == "parametric" and _is_preview(row)
 
 
+def _raw_quality_notes(row: Mapping[str, Any]) -> List[str]:
+    notes = row.get("quality_notes")
+    if notes is None:
+        return []
+    if isinstance(notes, str):
+        return [notes.strip()] if notes.strip() else []
+    return [str(item).strip() for item in notes if str(item).strip()]
+
+
+def _tree_upright_validated(row: Mapping[str, Any]) -> bool:
+    if "tree_upright_validated" in _raw_quality_notes(row):
+        return True
+    metrics = row.get("quality_metrics")
+    if isinstance(metrics, Mapping):
+        validation = metrics.get("tree_upright_validation")
+        if isinstance(validation, Mapping):
+            return not bool(str(validation.get("failure_reason", "")).strip())
+    return False
+
+
+def _tree_requires_external_real_asset(row: Mapping[str, Any]) -> bool:
+    category = str(row.get("category", "") or "").strip().lower()
+    if category != "tree":
+        return False
+    provenance = _generator_type(row)
+    if provenance in {"parametric", "legacy", "procedural_fallback"}:
+        return True
+    source = str(row.get("source", "") or "").strip().lower()
+    if source in {"procedural_generated", "parametric_generated", "procedural_fallback", "external_import"}:
+        return True
+    return False
+
+
 def _thresholds_for_category(category: str) -> Tuple[int, int, int]:
     thresholds = {
         "tree": (120, 350, 1000),
@@ -125,6 +158,10 @@ def _scene_eligible(row: Mapping[str, Any], face_count: int, quality_tier: int) 
         return False
     if _preview_should_be_demoted(row):
         return False
+    if _tree_requires_external_real_asset(row):
+        return False
+    if category == "tree" and not _tree_upright_validated(row):
+        return False
     if category in {"lamp", "tree"} and quality_tier <= 0:
         return False
     if category in {"lamp", "tree"} and _is_preview(row) and quality_tier < 2:
@@ -134,8 +171,38 @@ def _scene_eligible(row: Mapping[str, Any], face_count: int, quality_tier: int) 
     return True
 
 
+def _custom_quality_notes(row: Mapping[str, Any]) -> List[str]:
+    managed_exact = {
+        "scene_ready",
+        "scene_blocked",
+        "low_poly_visual_asset",
+        "preview_runtime",
+        "preview_demoted_after_production_seed",
+        "procedural_tree_disabled_for_scene_generation",
+        "tree_upright_validation_required",
+    }
+    managed_prefixes = ("mesh_face_count=", "quality_tier=", "generator=")
+    notes = row.get("quality_notes")
+    if notes is None:
+        return []
+    if isinstance(notes, str):
+        raw_notes = [notes]
+    else:
+        raw_notes = [str(item).strip() for item in notes if str(item).strip()]
+    preserved: List[str] = []
+    for note in raw_notes:
+        if note in managed_exact:
+            continue
+        if any(note.startswith(prefix) for prefix in managed_prefixes):
+            continue
+        if note not in preserved:
+            preserved.append(note)
+    return preserved
+
+
 def _quality_notes(row: Mapping[str, Any], face_count: int, quality_tier: int, scene_eligible: bool) -> List[str]:
-    notes: List[str] = [f"mesh_face_count={face_count}", f"quality_tier={quality_tier}"]
+    notes: List[str] = list(_custom_quality_notes(row))
+    notes.extend((f"mesh_face_count={face_count}", f"quality_tier={quality_tier}"))
     category = str(row.get("category", "") or "").strip().lower()
     if scene_eligible:
         notes.append("scene_ready")
@@ -147,10 +214,18 @@ def _quality_notes(row: Mapping[str, Any], face_count: int, quality_tier: int, s
         notes.append("preview_runtime")
     if _preview_should_be_demoted(row):
         notes.append("preview_demoted_after_production_seed")
+    if _tree_requires_external_real_asset(row):
+        notes.append("procedural_tree_disabled_for_scene_generation")
+    elif category == "tree" and not _tree_upright_validated(row):
+        notes.append("tree_upright_validation_required")
     provenance = _generator_type(row)
     if provenance:
         notes.append(f"generator={provenance}")
-    return notes
+    deduped: List[str] = []
+    for note in notes:
+        if note not in deduped:
+            deduped.append(note)
+    return deduped
 
 
 def _clean_row(row: Mapping[str, Any], manifest_dir: Path) -> Dict[str, Any]:
