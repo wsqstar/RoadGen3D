@@ -463,9 +463,10 @@ def test_template_scene_layout_contains_simplified_production_steps(tmp_path: Pa
         "road_base",
         "furniture_required",
         "furniture_optional",
+        "scene_preview",
     ]
-    assert int(summary["production_step_count"]) == 3
-    assert summary["final_production_step_id"] == "furniture_optional"
+    assert int(summary["production_step_count"]) == 4
+    assert summary["final_production_step_id"] == "scene_preview"
     assert Path(payload["outputs"]["production_steps_dir"]).exists()
     assert Path(payload["outputs"]["production_steps_manifest"]).exists()
     assert all(Path(step["glb_path"]).exists() for step in steps)
@@ -1822,9 +1823,10 @@ def test_osm_scene_layout_contains_cumulative_production_steps(tmp_path: Path, m
         "furniture_anchor",
         "furniture_required",
         "furniture_optional",
+        "scene_preview",
     ]
-    assert int(summary["production_step_count"]) == 7
-    assert summary["final_production_step_id"] == "furniture_optional"
+    assert int(summary["production_step_count"]) == 8
+    assert summary["final_production_step_id"] == "scene_preview"
     assert summary["production_step_ids"] == [step["step_id"] for step in steps]
     assert Path(payload["outputs"]["production_steps_dir"]).exists()
     assert Path(payload["outputs"]["production_steps_manifest"]).exists()

@@ -23,6 +23,7 @@ from .beauty import (
     render_presentation_views,
     shape_program_for_style,
     style_palette,
+    surface_roughness,
 )
 from .design_rules import load_constraint_set
 from .embedder import ClipTextEmbedder
@@ -922,6 +923,7 @@ def _build_base_scene(
     *,
     street_program: object | None = None,
     palette: Optional[Dict[str, Tuple[int, int, int, int]]] = None,
+    roughness: Optional[Dict[str, float]] = None,
 ):
     trimesh = _require_trimesh()
     scene = trimesh.Scene()
@@ -929,19 +931,31 @@ def _build_base_scene(
     context_ground = trimesh.creation.box(
         extents=(float(length_m) + 24.0, 0.04, max(total_width_m + 28.0, 24.0))
     )
-    context_ground.visual.face_colors = list((palette or {}).get("context_ground", (168, 163, 150, 255)))
+    ctx_color = list((palette or {}).get("context_ground", (168, 163, 150, 255)))
+    if roughness:
+        _apply_pbr_material(context_ground, ctx_color, roughness.get("context_ground", 0.85))
+    else:
+        context_ground.visual.face_colors = ctx_color
     context_ground.apply_translation([0.0, -0.10, 0.0])
     scene.add_geometry(context_ground, node_name="context_ground")
 
     road = trimesh.creation.box(extents=(length_m, 0.06, road_width_m))
     colors = palette or {}
-    road.visual.face_colors = list(colors.get("carriageway", (65, 68, 72, 255)))
+    road_color = list(colors.get("carriageway", (65, 68, 72, 255)))
+    if roughness:
+        _apply_pbr_material(road, road_color, roughness.get("carriageway", 0.95))
+    else:
+        road.visual.face_colors = road_color
     road.apply_translation([0.0, -0.03, 0.0])
     scene.add_geometry(road, node_name="road_slab")
 
     sidewalk_color = list(colors.get("sidewalk", (165, 168, 172, 255)))
     furnishing_color = list(colors.get("furnishing", tuple(sidewalk_color)))
     clear_color = list(colors.get("clear_path", tuple(sidewalk_color)))
+
+    # Sidewalk top at Y = SIDEWALK_ELEVATION_M; slab is 0.08 m thick
+    sw_y_translation = SIDEWALK_ELEVATION_M - 0.04  # centre of 0.08-thick slab
+
     if street_program is not None and getattr(street_program, "bands", None):
         left_offset = road_width_m / 2.0
         right_offset = road_width_m / 2.0
@@ -953,12 +967,16 @@ def _build_base_scene(
                 continue
             color = clear_color if getattr(band, "kind", "") == "clear_path" else furnishing_color
             slab = trimesh.creation.box(extents=(length_m, 0.08, width_m))
-            slab.visual.face_colors = color
+            if roughness:
+                r_key = "clear_path" if getattr(band, "kind", "") == "clear_path" else "furnishing"
+                _apply_pbr_material(slab, color, roughness.get(r_key, 0.70))
+            else:
+                slab.visual.face_colors = color
             if getattr(band, "side", "") == "left":
-                slab.apply_translation([0.0, -0.04, left_offset + width_m / 2.0])
+                slab.apply_translation([0.0, sw_y_translation, left_offset + width_m / 2.0])
                 left_offset += width_m
             elif getattr(band, "side", "") == "right":
-                slab.apply_translation([0.0, -0.04, -right_offset - width_m / 2.0])
+                slab.apply_translation([0.0, sw_y_translation, -right_offset - width_m / 2.0])
                 right_offset += width_m
             else:
                 continue
@@ -966,15 +984,35 @@ def _build_base_scene(
     else:
         if left_side_width_m > 0.0:
             sidewalk_left = trimesh.creation.box(extents=(length_m, 0.08, left_side_width_m))
-            sidewalk_left.visual.face_colors = sidewalk_color
-            sidewalk_left.apply_translation([0.0, -0.04, road_width_m / 2.0 + left_side_width_m / 2.0])
+            if roughness:
+                _apply_pbr_material(sidewalk_left, sidewalk_color, roughness.get("sidewalk", 0.70))
+            else:
+                sidewalk_left.visual.face_colors = sidewalk_color
+            sidewalk_left.apply_translation([0.0, sw_y_translation, road_width_m / 2.0 + left_side_width_m / 2.0])
             scene.add_geometry(sidewalk_left, node_name="sidewalk_left")
 
         if right_side_width_m > 0.0:
             sidewalk_right = trimesh.creation.box(extents=(length_m, 0.08, right_side_width_m))
-            sidewalk_right.visual.face_colors = sidewalk_color
-            sidewalk_right.apply_translation([0.0, -0.04, -road_width_m / 2.0 - right_side_width_m / 2.0])
+            if roughness:
+                _apply_pbr_material(sidewalk_right, sidewalk_color, roughness.get("sidewalk", 0.70))
+            else:
+                sidewalk_right.visual.face_colors = sidewalk_color
+            sidewalk_right.apply_translation([0.0, sw_y_translation, -road_width_m / 2.0 - right_side_width_m / 2.0])
             scene.add_geometry(sidewalk_right, node_name="sidewalk_right")
+
+    # Curb stones along road edges
+    curb_color = list(colors.get("curb", (145, 145, 145, 255)))
+    curb_height = SIDEWALK_ELEVATION_M
+    curb_width = 0.12
+    for side_name, z_sign in (("left", 1.0), ("right", -1.0)):
+        curb = trimesh.creation.box(extents=(length_m, curb_height, curb_width))
+        if roughness:
+            _apply_pbr_material(curb, curb_color, roughness.get("curb", 0.40))
+        else:
+            curb.visual.face_colors = curb_color
+        curb.apply_translation([0.0, curb_height / 2.0, z_sign * (road_width_m / 2.0 + curb_width / 2.0)])
+        scene.add_geometry(curb, node_name=f"curb_{side_name}")
+
     return scene
 
 
@@ -987,6 +1025,23 @@ def _apply_ground_pose(mesh, *, x_m: float, z_m: float, yaw_deg: float) -> None:
     )
     mesh.apply_transform(rotation)
     mesh.apply_translation([float(x_m), 0.0, float(z_m)])
+
+
+SIDEWALK_ELEVATION_M = 0.15
+
+
+def _apply_pbr_material(mesh, rgba, roughness=0.9):
+    """Apply a PBR material to a mesh instead of plain face colors."""
+    trimesh = _require_trimesh()
+    from trimesh.visual.material import PBRMaterial
+
+    mat = PBRMaterial(
+        baseColorFactor=[rgba[0] / 255.0, rgba[1] / 255.0, rgba[2] / 255.0, rgba[3] / 255.0],
+        metallicFactor=0.0,
+        roughnessFactor=float(roughness),
+    )
+    mesh.visual = trimesh.visual.TextureVisuals(material=mat)
+    return mesh
 
 
 def _road_pose_from_context(placement_ctx: object | None, fallback_length_m: float) -> Tuple[float, float, float, float]:
@@ -1077,21 +1132,7 @@ def _add_beauty_scene_proxies(
                 dash_x += dash_length_m + dash_gap_m
 
         curb_half_width = road_width_m / 2.0
-        for side_name, local_z in (("left", curb_half_width), ("right", -curb_half_width)):
-            _add_road_box(
-                scene,
-                length_m=road_length_m,
-                width_m=0.14,
-                height_m=0.11,
-                local_x_m=0.0,
-                local_z_m=local_z,
-                road_center_x_m=road_center_x_m,
-                road_center_z_m=road_center_z_m,
-                road_yaw_deg=road_yaw_deg,
-                y_min_m=0.0,
-                color=colors.get("curb", (145, 145, 145, 255)),
-                node_name=f"curb_{side_name}",
-            )
+        # Curb geometry is now part of _build_base_scene; skip duplicate here.
 
         crossing_points = nonempty_poi_points(getattr(poi_ctx, "poi_points_by_type_xz", {}) or {}).get("crossing", ())
         for idx, point in enumerate(crossing_points):
@@ -1124,7 +1165,7 @@ def _add_beauty_scene_proxies(
                 road_center_x_m=x_m,
                 road_center_z_m=z_m,
                 road_yaw_deg=0.0,
-                y_min_m=0.001,
+                y_min_m=SIDEWALK_ELEVATION_M + 0.001,
                 color=colors.get("tree_pit", (98, 93, 76, 255)),
                 node_name=f"tree_pit_{idx}",
             )
@@ -1139,7 +1180,7 @@ def _add_beauty_scene_proxies(
                 road_center_x_m=x_m,
                 road_center_z_m=z_m,
                 road_yaw_deg=road_yaw_deg,
-                y_min_m=0.004,
+                y_min_m=SIDEWALK_ELEVATION_M + 0.004,
                 color=colors.get("transit_pad", (118, 129, 145, 255)),
                 node_name=f"transit_pad_{idx}",
             )
@@ -1163,10 +1204,12 @@ def _add_instance_meshes(
             [0.0, 1.0, 0.0],
             [0.0, 0.0, 0.0],
         )
+        # Street furniture sits on the elevated sidewalk; buildings stay at ground.
+        y_offset = SIDEWALK_ELEVATION_M if placement.placement_group != "building" else 0.0
         translation = trimesh.transformations.translation_matrix(
             [
                 float(placement.position_xyz[0]),
-                float(placement.position_xyz[1]),
+                float(placement.position_xyz[1]) + y_offset,
                 float(placement.position_xyz[2]),
             ]
         )
@@ -1221,11 +1264,13 @@ def _production_step_definitions(layout_mode: str) -> Tuple[Tuple[str, str], ...
             ("furniture_anchor", "Furniture Anchor"),
             ("furniture_required", "Furniture Required"),
             ("furniture_optional", "Furniture Optional"),
+            ("scene_preview", "Scene Preview"),
         )
     return (
         ("road_base", "Road Base"),
         ("furniture_required", "Furniture Required"),
         ("furniture_optional", "Furniture Optional"),
+        ("scene_preview", "Scene Preview"),
     )
 
 
@@ -1318,9 +1363,10 @@ def _stage_scene_base(
     resolved_program: object,
     placement_ctx: object | None,
     palette: Mapping[str, Tuple[int, int, int, int]],
+    roughness: Optional[Dict[str, float]] = None,
 ):
     if config.layout_mode == "osm" and placement_ctx is not None:
-        return _build_osm_base_scene(placement_ctx, palette=palette)
+        return _build_osm_base_scene(placement_ctx, palette=palette, roughness=roughness)
     left_side_width = sum(float(band.width_m) for band in resolved_program.bands if band.side == "left")
     right_side_width = sum(float(band.width_m) for band in resolved_program.bands if band.side == "right")
     return _build_base_scene(
@@ -1330,6 +1376,7 @@ def _stage_scene_base(
         right_side_width_m=float(right_side_width),
         street_program=resolved_program,
         palette=palette,
+        roughness=roughness,
     )
 
 
@@ -1494,6 +1541,7 @@ def _build_production_steps(
     step_dir.mkdir(parents=True, exist_ok=True)
     building_placements, anchor_placements, required_placements, optional_placements = _split_furniture_layers(placements)
     poi_points_by_type = extract_poi_points_by_type(poi_ctx, suffix="xz") if poi_ctx is not None else {}
+    rough = surface_roughness(getattr(config, "style_preset", None))
 
     stage_visibility: Dict[str, Tuple[bool, bool, Tuple[StreetPlacement, ...], Tuple[str, ...]]] = {}
     if str(config.layout_mode).strip().lower() == "osm":
@@ -1520,9 +1568,16 @@ def _build_production_steps(
                 tuple(list(building_placements) + list(anchor_placements) + list(required_placements) + list(optional_placements)),
                 tuple(placement.instance_id for placement in optional_placements),
             ),
+            "scene_preview": (
+                False,
+                False,
+                tuple(list(building_placements) + list(anchor_placements) + list(required_placements) + list(optional_placements)),
+                tuple(),
+            ),
         }
     else:
         non_optional = list(anchor_placements) + list(required_placements)
+        all_placements = non_optional + list(optional_placements)
         stage_visibility = {
             "road_base": (False, False, tuple(), tuple()),
             "furniture_required": (
@@ -1534,8 +1589,14 @@ def _build_production_steps(
             "furniture_optional": (
                 False,
                 False,
-                tuple(non_optional + list(optional_placements)),
+                tuple(all_placements),
                 tuple(placement.instance_id for placement in optional_placements),
+            ),
+            "scene_preview": (
+                False,
+                False,
+                tuple(all_placements),
+                tuple(),
             ),
         }
 
@@ -1547,6 +1608,7 @@ def _build_production_steps(
             resolved_program=resolved_program,
             placement_ctx=placement_ctx,
             palette=palette,
+            roughness=rough,
         )
         _add_beauty_scene_proxies(
             scene,
@@ -1591,7 +1653,7 @@ def _build_production_steps(
             visible_instance_ids=visible_ids,
             visible_placements=visible_placements,
             zoning_grid=zoning_grid if include_zoning else tuple(),
-            building_plans=building_plans if step_id in {"buildings", "poi_context", "furniture_anchor", "furniture_required", "furniture_optional"} else tuple(),
+            building_plans=building_plans if step_id in {"buildings", "poi_context", "furniture_anchor", "furniture_required", "furniture_optional", "scene_preview"} else tuple(),
             poi_points_by_type=poi_points_by_type if include_poi_overlays else {},
         )
         records.append(
@@ -1659,6 +1721,7 @@ def _build_osm_base_scene(
     placement_ctx: object,
     *,
     palette: Optional[Dict[str, Tuple[int, int, int, int]]] = None,
+    roughness: Optional[Dict[str, float]] = None,
 ):
     """Build a trimesh Scene with carriageway + sidewalk extruded slabs from OSM geometry."""
     trimesh = _require_trimesh()
@@ -1687,7 +1750,11 @@ def _build_osm_base_scene(
         ground = trimesh.creation.box(
             extents=(max(max_x - min_x + pad_m * 2.0, 20.0), 0.04, max(max_z - min_z + pad_m * 2.0, 20.0))
         )
-        ground.visual.face_colors = list(colors.get("context_ground", (168, 163, 150, 255)))
+        ground_color = list(colors.get("context_ground", (168, 163, 150, 255)))
+        if roughness:
+            _apply_pbr_material(ground, ground_color, roughness.get("context_ground", 0.85))
+        else:
+            ground.visual.face_colors = ground_color
         ground.apply_translation(
             [
                 float((min_x + max_x) / 2.0),
@@ -1697,14 +1764,14 @@ def _build_osm_base_scene(
         )
         scene.add_geometry(ground, node_name="context_ground")
 
-    def _extrude_polygon(geom, height: float, color, name_prefix: str) -> None:
+    def _extrude_polygon(geom, height: float, color, name_prefix: str, *, y_offset: float = 0.0, roughness_key: str = "") -> None:
         """Extrude a shapely geometry into a thin 3D slab and add to scene.
 
         ``extrude_polygon`` maps the 2-D polygon (x_east, y_north) to mesh
-        (X, Y) and extrudes along Z (0 … height).  The scene convention is
-        **Y-up** (XZ = ground), so we swap Y↔Z after extrusion:
-            X_3d = x_east,  Y_3d = z_extrude − height,  Z_3d = y_north
-        This puts the top surface at Y = 0 with the road lying flat on XZ.
+        (X, Y) and extrudes along Z (0 ... height).  The scene convention is
+        **Y-up** (XZ = ground), so we swap Y<->Z after extrusion:
+            X_3d = x_east,  Y_3d = z_extrude - height + y_offset,  Z_3d = y_north
+        This puts the top surface at Y = y_offset with the road lying flat on XZ.
         """
         from shapely.geometry import MultiPolygon, Polygon as ShapelyPolygon
         polygons = []
@@ -1717,24 +1784,44 @@ def _build_osm_base_scene(
                 continue
             try:
                 mesh = trimesh.creation.extrude_polygon(poly, height)
-                # Swap Y↔Z so road lies flat on XZ ground plane (Y-up)
+                # Swap Y<->Z so road lies flat on XZ ground plane (Y-up)
                 verts = mesh.vertices.copy()
                 old_y = verts[:, 1].copy()   # was northing
                 old_z = verts[:, 2].copy()   # was extrusion 0..height
-                verts[:, 1] = old_z - height  # Y = extrusion shifted → top at Y=0
+                verts[:, 1] = old_z - height + y_offset  # Y = extrusion shifted + offset
                 verts[:, 2] = old_y           # Z = northing
                 mesh.vertices = verts
                 mesh.fix_normals()
-                mesh.visual.face_colors = color
+                if roughness and roughness_key:
+                    _apply_pbr_material(mesh, color, roughness.get(roughness_key, 0.9))
+                else:
+                    mesh.visual.face_colors = color
                 scene.add_geometry(mesh, node_name=f"{name_prefix}_{idx}")
             except (ValueError, RuntimeError, IndexError):
                 logger.debug("Skipping degenerate %s polygon %d", name_prefix, idx)
                 continue
 
     if not carriageway.is_empty:
-        _extrude_polygon(carriageway, 0.06, list(colors.get("carriageway", (65, 68, 72, 255))), "carriageway")
+        _extrude_polygon(carriageway, 0.06, list(colors.get("carriageway", (65, 68, 72, 255))), "carriageway", roughness_key="carriageway")
     if not sidewalk_zone.is_empty:
-        _extrude_polygon(sidewalk_zone, 0.08, list(colors.get("sidewalk", (165, 168, 172, 255))), "sidewalk")
+        _extrude_polygon(
+            sidewalk_zone, 0.08, list(colors.get("sidewalk", (165, 168, 172, 255))), "sidewalk",
+            y_offset=SIDEWALK_ELEVATION_M, roughness_key="sidewalk",
+        )
+
+    # Curb: thin ring around the carriageway edge, extruded to sidewalk elevation
+    curb_width = 0.12
+    curb_color = list(colors.get("curb", (145, 145, 145, 255)))
+    if not carriageway.is_empty:
+        try:
+            curb_zone = carriageway.buffer(curb_width).difference(carriageway)
+            if not curb_zone.is_empty:
+                _extrude_polygon(
+                    curb_zone, SIDEWALK_ELEVATION_M, curb_color, "curb",
+                    y_offset=0.0, roughness_key="curb",
+                )
+        except Exception:
+            logger.debug("Skipping curb geometry in OSM base scene")
 
     return scene
 
@@ -3550,8 +3637,9 @@ def compose_street_scene(
         else getattr(config, "style_preset", None)
     )
     palette = style_palette(dominant_palette_style)
+    rough = surface_roughness(dominant_palette_style)
     if config.layout_mode == "osm" and placement_ctx is not None:
-        scene = _build_osm_base_scene(placement_ctx, palette=palette)
+        scene = _build_osm_base_scene(placement_ctx, palette=palette, roughness=rough)
     else:
         left_side_width = sum(float(band.width_m) for band in resolved_program.bands if band.side == "left")
         right_side_width = sum(float(band.width_m) for band in resolved_program.bands if band.side == "right")
@@ -3562,6 +3650,7 @@ def compose_street_scene(
             right_side_width_m=float(right_side_width),
             street_program=resolved_program,
             palette=palette,
+            roughness=rough,
         )
     _add_beauty_scene_proxies(
         scene,

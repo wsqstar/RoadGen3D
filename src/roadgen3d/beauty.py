@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import math
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
 
@@ -29,6 +29,11 @@ class StylePresetSpec:
     category_materials: Dict[str, Tuple[str, ...]]
     local_density_limit: int
     scene_colors: Dict[str, Tuple[int, int, int, int]]
+    surface_roughness: Dict[str, float] = field(default_factory=lambda: {
+        "carriageway": 0.95, "sidewalk": 0.70, "curb": 0.40,
+        "context_ground": 0.85, "furnishing": 0.70, "clear_path": 0.65,
+        "lane_mark": 0.30, "crossing": 0.35, "transit_pad": 0.50, "tree_pit": 0.90,
+    })
 
 
 STYLE_PRESETS: Dict[str, StylePresetSpec] = {
@@ -75,6 +80,11 @@ STYLE_PRESETS: Dict[str, StylePresetSpec] = {
             "crossing": (236, 228, 208, 255),
             "tree_pit": (98, 93, 76, 255),
         },
+        surface_roughness={
+            "carriageway": 0.95, "sidewalk": 0.65, "curb": 0.40,
+            "context_ground": 0.85, "furnishing": 0.65, "clear_path": 0.60,
+            "lane_mark": 0.30, "crossing": 0.35, "transit_pad": 0.50, "tree_pit": 0.90,
+        },
     ),
     "transit_modern_v1": StylePresetSpec(
         name="transit_modern_v1",
@@ -119,6 +129,11 @@ STYLE_PRESETS: Dict[str, StylePresetSpec] = {
             "crossing": (233, 236, 240, 255),
             "tree_pit": (92, 96, 84, 255),
         },
+        surface_roughness={
+            "carriageway": 0.93, "sidewalk": 0.60, "curb": 0.35,
+            "context_ground": 0.80, "furnishing": 0.60, "clear_path": 0.55,
+            "lane_mark": 0.25, "crossing": 0.30, "transit_pad": 0.45, "tree_pit": 0.85,
+        },
     ),
     "lush_walkable_v1": StylePresetSpec(
         name="lush_walkable_v1",
@@ -162,6 +177,11 @@ STYLE_PRESETS: Dict[str, StylePresetSpec] = {
             "transit_pad": (122, 132, 110, 255),
             "crossing": (233, 224, 196, 255),
             "tree_pit": (89, 78, 56, 255),
+        },
+        surface_roughness={
+            "carriageway": 0.95, "sidewalk": 0.75, "curb": 0.45,
+            "context_ground": 0.90, "furnishing": 0.75, "clear_path": 0.70,
+            "lane_mark": 0.35, "crossing": 0.40, "transit_pad": 0.55, "tree_pit": 0.92,
         },
     ),
 }
@@ -758,6 +778,10 @@ def compute_presentation_report(
 
 def style_palette(name: str | None) -> Dict[str, Tuple[int, int, int, int]]:
     return dict(load_style_preset(name).scene_colors)
+
+
+def surface_roughness(name: str | None) -> Dict[str, float]:
+    return dict(load_style_preset(name).surface_roughness)
 
 
 def _require_matplotlib():
