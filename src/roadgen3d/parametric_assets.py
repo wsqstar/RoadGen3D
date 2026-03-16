@@ -36,16 +36,27 @@ _LUMINAIRE_TYPES = frozenset({"flat_led", "globe", "box", "cone"})
 _LAMP_ARM_TYPES = frozenset({"single", "double"})
 _LIGHT_DIRECTIONS = frozenset({"roadside", "bidirectional", "downward"})
 _BUILDING_MATERIALS = frozenset({"concrete", "brick", "stone", "glass_curtain", "stucco"})
+_TREE_CANOPY_STYLES = frozenset({"sphere", "cone", "oval", "flat_disc", "multi_blob"})
+_TREE_TRUNK_COLOR = (101, 67, 33, 255)
+_TREE_CANOPY_COLORS = {
+    "deciduous_green": (62, 120, 50, 255),
+    "dark_green": (38, 85, 40, 255),
+    "light_green": (95, 155, 70, 255),
+    "autumn_orange": (188, 120, 42, 255),
+    "autumn_red": (165, 55, 40, 255),
+    "spring_pink": (200, 130, 150, 255),
+}
 _FOOTPRINT_SHAPES = frozenset({"RECT", "L", "U"})
 _HEIGHT_CLASSES = frozenset({"lowrise", "midrise", "highrise"})
 _BUILDING_BASE_DARKEN = 0.85
 _BUILDING_SPANDREL_DARKEN = 0.92
 _DEFAULT_PROFILE = "default_v1"
-_MIN_FACES = {"bench": 300, "lamp": 500, "building": 8}
+_MIN_FACES = {"bench": 300, "lamp": 500, "building": 8, "tree": 12}
 _POLY_BUDGET_K = {
     "bench": {"preview": 8, "production": 15},
     "lamp": {"preview": 10, "production": 20},
     "building": {"preview": 30, "production": 80},
+    "tree": {"preview": 12, "production": 30},
 }
 
 
@@ -113,6 +124,17 @@ class BuildingParams:
     theme_name: str = "commercial"
     height_class: str = "midrise"
     material_family: str = "concrete"
+    style_tag: str = "modern"
+    detail_level: int = 2
+
+
+@dataclass(frozen=True)
+class TreeParams:
+    trunk_height_m: float = 3.0
+    trunk_radius_m: float = 0.18
+    canopy_radius_m: float = 1.10
+    canopy_style: str = "sphere"
+    canopy_color_name: str = "deciduous_green"
     style_tag: str = "modern"
     detail_level: int = 2
 
@@ -207,6 +229,13 @@ class _BuildingAudit:
     window_count: int
     wing_count: int
     footprint_shape: str
+
+
+@dataclass(frozen=True)
+class _TreeAudit:
+    expected_dims: Tuple[float, float, float]
+    canopy_style: str
+    trunk_height_m: float
 
 
 @dataclass(frozen=True)
@@ -427,8 +456,8 @@ def _to_request(payload: GenerationRequest | Mapping[str, object]) -> Generation
 
 def _validate_request(request: GenerationRequest, warnings_list: list[str]) -> GenerationRequest:
     asset_kind = str(request.asset_kind).strip().lower()
-    if asset_kind not in {"bench", "lamp", "building"}:
-        raise ValueError("asset_kind must be 'bench', 'lamp', or 'building'")
+    if asset_kind not in {"bench", "lamp", "building", "tree"}:
+        raise ValueError("asset_kind must be 'bench', 'lamp', 'building', or 'tree'")
     runtime_profile = str(request.runtime_profile).strip().lower()
     if runtime_profile not in {"preview", "production"}:
         raise ValueError("runtime_profile must be 'preview' or 'production'")
@@ -1496,6 +1525,189 @@ def _lamp_quality_metrics(mesh, params: LampParams, runtime_profile: str, audit:
     )
 
 
+def _validate_tree_params(raw_params: Mapping[str, object], warnings_list: list[str]) -> TreeParams:
+    defaults = TreeParams()
+    canopy_style = str(raw_params.get("canopy_style", defaults.canopy_style)).strip().lower() or defaults.canopy_style
+    if canopy_style not in _TREE_CANOPY_STYLES:
+        warnings_list.append(f"Unknown canopy_style '{canopy_style}' was replaced with 'sphere'")
+        canopy_style = "sphere"
+    canopy_color_name = str(raw_params.get("canopy_color_name", defaults.canopy_color_name)).strip().lower() or defaults.canopy_color_name
+    if canopy_color_name not in _TREE_CANOPY_COLORS:
+        warnings_list.append(f"Unknown canopy_color_name '{canopy_color_name}' was replaced with 'deciduous_green'")
+        canopy_color_name = "deciduous_green"
+    return TreeParams(
+        trunk_height_m=_clamp(
+            _coerce_float(raw_params.get("trunk_height_m"), defaults.trunk_height_m, field_name="trunk_height_m"),
+            1.5, 8.0, field_name="trunk_height_m", warnings_list=warnings_list,
+        ),
+        trunk_radius_m=_clamp(
+            _coerce_float(raw_params.get("trunk_radius_m"), defaults.trunk_radius_m, field_name="trunk_radius_m"),
+            0.06, 0.40, field_name="trunk_radius_m", warnings_list=warnings_list,
+        ),
+        canopy_radius_m=_clamp(
+            _coerce_float(raw_params.get("canopy_radius_m"), defaults.canopy_radius_m, field_name="canopy_radius_m"),
+            0.50, 3.00, field_name="canopy_radius_m", warnings_list=warnings_list,
+        ),
+        canopy_style=canopy_style,
+        canopy_color_name=canopy_color_name,
+        style_tag=_validate_style_tag(raw_params.get("style_tag", defaults.style_tag), warnings_list=warnings_list),
+        detail_level=_clamp_int(
+            _coerce_int(raw_params.get("detail_level"), defaults.detail_level, field_name="detail_level"),
+            0, 3, field_name="detail_level", warnings_list=warnings_list,
+        ),
+    )
+
+
+def _pbr_color(mesh, rgba: Tuple[int, int, int, int]):
+    """Assign a non-metallic PBR material to a mesh so it renders correctly in GLB viewers."""
+    trimesh = _require_trimesh()
+    from trimesh.visual.material import PBRMaterial
+
+    mat = PBRMaterial(
+        baseColorFactor=[rgba[0] / 255.0, rgba[1] / 255.0, rgba[2] / 255.0, rgba[3] / 255.0],
+        metallicFactor=0.0,
+        roughnessFactor=0.9,
+    )
+    mesh.visual = trimesh.visual.TextureVisuals(material=mat)
+    return mesh
+
+
+def _build_tree_mesh(params: TreeParams, *, detail_level: int):
+    trimesh = _require_trimesh()
+    trunk_h = float(params.trunk_height_m)
+    trunk_r = float(params.trunk_radius_m)
+    canopy_r = float(params.canopy_radius_m)
+    canopy_color = _TREE_CANOPY_COLORS.get(params.canopy_color_name, _TREE_CANOPY_COLORS["deciduous_green"])
+    trunk_sections = {0: 6, 1: 10, 2: 16, 3: 24}.get(detail_level, 16)
+    canopy_subdiv = {0: 1, 1: 2, 2: 3, 3: 3}.get(detail_level, 2)
+
+    # Collect parts grouped by material colour
+    trunk_parts = []
+    canopy_parts = []
+
+    # Trunk
+    trunk = trimesh.creation.cylinder(radius=trunk_r, height=trunk_h, sections=trunk_sections)
+    trunk.apply_translation([0.0, trunk_h / 2.0, 0.0])
+    trunk_parts.append(trunk)
+
+    canopy_base = trunk_h
+    style = params.canopy_style
+
+    if style == "sphere":
+        canopy = trimesh.creation.icosphere(subdivisions=canopy_subdiv, radius=canopy_r)
+        canopy.apply_translation([0.0, canopy_base + canopy_r, 0.0])
+        canopy_parts.append(canopy)
+
+    elif style == "cone":
+        cone_h = canopy_r * 2.5
+        canopy = trimesh.creation.cone(radius=canopy_r, height=cone_h, sections=trunk_sections)
+        canopy.apply_translation([0.0, canopy_base + cone_h / 2.0, 0.0])
+        canopy_parts.append(canopy)
+
+    elif style == "oval":
+        canopy = trimesh.creation.icosphere(subdivisions=canopy_subdiv, radius=canopy_r)
+        canopy.apply_translation([0.0, canopy_base + canopy_r * 1.2, 0.0])
+        canopy.apply_transform(np.diag([0.8, 1.3, 0.8, 1.0]))
+        canopy_parts.append(canopy)
+
+    elif style == "flat_disc":
+        canopy = trimesh.creation.cylinder(radius=canopy_r, height=max(0.25, canopy_r * 0.3), sections=trunk_sections + 4)
+        canopy.apply_translation([0.0, canopy_base + canopy_r * 0.15, 0.0])
+        canopy_parts.append(canopy)
+
+    elif style == "multi_blob":
+        rng = np.random.default_rng(42)
+        blob_count = {0: 2, 1: 3, 2: 5, 3: 7}.get(detail_level, 4)
+        for bi in range(blob_count):
+            br = canopy_r * float(rng.uniform(0.35, 0.65))
+            theta = float(rng.uniform(0.0, math.tau))
+            radial = canopy_r * 0.4 * float(rng.uniform(0.0, 1.0))
+            bx = radial * math.cos(theta)
+            bz = radial * math.sin(theta)
+            by = canopy_base + canopy_r * 0.5 + float(rng.uniform(0.0, canopy_r * 0.8))
+            blob = trimesh.creation.icosphere(subdivisions=max(1, canopy_subdiv - 1), radius=br)
+            blob.apply_translation([bx, by, bz])
+            canopy_parts.append(blob)
+
+    else:
+        # fallback to sphere
+        canopy = trimesh.creation.icosphere(subdivisions=canopy_subdiv, radius=canopy_r)
+        canopy.apply_translation([0.0, canopy_base + canopy_r, 0.0])
+        canopy_parts.append(canopy)
+
+    # Detail: branches at higher detail levels
+    if detail_level >= 2:
+        branch_count = 3 if detail_level == 2 else 5
+        for bi in range(branch_count):
+            angle = (360.0 / branch_count) * bi
+            br = max(0.03, trunk_r * 0.45)
+            bl = max(0.25, canopy_r * 0.35)
+            branch = trimesh.creation.cylinder(radius=br, height=bl, sections=max(6, trunk_sections // 2))
+            branch.apply_translation([bl * 0.5, trunk_h * 0.65, 0.0])
+            branch.apply_transform(
+                trimesh.transformations.rotation_matrix(math.radians(45.0), [0, 0, 1])
+            )
+            branch.apply_transform(
+                trimesh.transformations.rotation_matrix(math.radians(angle), [0, 1, 0])
+            )
+            trunk_parts.append(branch)
+
+    # Merge each colour group into a single mesh with PBR material
+    trunk_merged = trimesh.util.concatenate(trunk_parts) if trunk_parts else None
+    canopy_merged = trimesh.util.concatenate(canopy_parts) if canopy_parts else None
+
+    if trunk_merged is not None:
+        _pbr_color(trunk_merged, _TREE_TRUNK_COLOR)
+    if canopy_merged is not None:
+        _pbr_color(canopy_merged, canopy_color)
+
+    # Assemble as a Scene so each material group stays separate in GLB
+    scene = trimesh.Scene()
+    if trunk_merged is not None:
+        scene.add_geometry(trunk_merged, node_name="trunk", geom_name="trunk")
+    if canopy_merged is not None:
+        scene.add_geometry(canopy_merged, node_name="canopy", geom_name="canopy")
+
+    # Ground the scene (shift so min_y == 0)
+    bounds = np.asarray(scene.bounds, dtype=np.float64)
+    if abs(bounds[0][1]) > 1e-6:
+        shift = np.eye(4, dtype=np.float64)
+        shift[1, 3] = -float(bounds[0][1])
+        scene.apply_transform(shift)
+
+    # Also produce a concatenated flat mesh for quality metrics
+    all_parts_flat = []
+    for part in trunk_parts + canopy_parts:
+        p = part.copy()
+        all_parts_flat.append(p)
+    flat_mesh = _ground(_concat(all_parts_flat))
+
+    total_height = trunk_h + canopy_r * 2.0
+    canopy_diameter = canopy_r * 2.0
+    expected_dims = (canopy_diameter, total_height, canopy_diameter)
+    audit = _TreeAudit(
+        expected_dims=expected_dims,
+        canopy_style=params.canopy_style,
+        trunk_height_m=trunk_h,
+    )
+    return scene, flat_mesh, audit
+
+
+def _tree_quality_metrics(mesh, params: TreeParams, runtime_profile: str, audit: _TreeAudit) -> GenerationQualityMetrics:
+    actual_dims = _bbox_size(mesh)
+    face_count = int(len(mesh.faces))
+    poly_budget_k = int(_POLY_BUDGET_K["tree"][runtime_profile])
+    ground_contact_ok = abs(float(mesh.bounds[0][1])) <= 0.01
+    return GenerationQualityMetrics(
+        face_count=face_count,
+        poly_budget_k=poly_budget_k,
+        dimension_error_ratio=_dimension_error_ratio(actual_dims, audit.expected_dims),
+        ground_contact_ok=ground_contact_ok,
+        meets_min_faces=face_count >= _MIN_FACES["tree"],
+        within_poly_budget=face_count <= poly_budget_k * 1000,
+    )
+
+
 def _quality_gate(asset_kind: str, metrics: GenerationQualityMetrics) -> None:
     if not metrics.ground_contact_ok:
         raise RuntimeError(f"{asset_kind} generation failed ground contact check")
@@ -1514,7 +1726,7 @@ def _quality_gate(asset_kind: str, metrics: GenerationQualityMetrics) -> None:
 
 
 def generate_parametric_asset(request: GenerationRequest | Mapping[str, object]) -> ParametricAssetResult:
-    """Generate one deterministic bench, lamp, or building mesh from explicit parameters."""
+    """Generate one deterministic bench, lamp, building, or tree mesh from explicit parameters."""
     warnings_list: list[str] = []
     normalized_request = _validate_request(_to_request(request), warnings_list)
     resolved_device_backend = resolve_device_backend(
@@ -1579,6 +1791,37 @@ def generate_parametric_asset(request: GenerationRequest | Mapping[str, object])
             quality_metrics=metrics,
             warnings=tuple(warnings_list),
             material_family=params.material_family,
+            style_tags=(params.style_tag,),
+        )
+
+    if normalized_request.asset_kind == "tree":
+        params = _validate_tree_params(normalized_request.params, warnings_list)
+        effective_detail_level = _effective_detail_level(normalized_request.runtime_profile, params.detail_level)
+        tree_scene, flat_mesh, audit = _build_tree_mesh(params, detail_level=effective_detail_level)
+        metrics = _tree_quality_metrics(flat_mesh, params, normalized_request.runtime_profile, audit)
+        if normalized_request.runtime_profile == "production" and effective_detail_level < 3 and not metrics.meets_min_faces:
+            warnings_list.append("production tree detail preset was upshifted once to satisfy quality gates")
+            effective_detail_level = 3
+            tree_scene, flat_mesh, audit = _build_tree_mesh(params, detail_level=effective_detail_level)
+            metrics = _tree_quality_metrics(flat_mesh, params, normalized_request.runtime_profile, audit)
+        _quality_gate("tree", metrics)
+        snapshot = asdict(params)
+        snapshot["effective_detail_level"] = int(effective_detail_level)
+        scene_bounds = np.asarray(tree_scene.bounds, dtype=np.float64)
+        scene_span = scene_bounds[1] - scene_bounds[0]
+        return ParametricAssetResult(
+            asset_kind="tree",
+            runtime_profile=normalized_request.runtime_profile,
+            resolved_device_backend=resolved_device_backend,
+            mesh=tree_scene,
+            bbox_size_xyz=(float(scene_span[0]), float(scene_span[1]), float(scene_span[2])),
+            bbox_bounds=(
+                tuple(float(v) for v in scene_bounds[0]),
+                tuple(float(v) for v in scene_bounds[1]),
+            ),
+            parameter_snapshot=snapshot,
+            quality_metrics=metrics,
+            warnings=tuple(warnings_list),
             style_tags=(params.style_tag,),
         )
 

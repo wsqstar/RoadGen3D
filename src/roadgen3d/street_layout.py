@@ -691,6 +691,96 @@ def _placeholder_building_entry(
     )
 
 
+_PARAMETRIC_TREE_VARIANTS = (
+    {"canopy_style": "sphere", "trunk_height_m": 3.0, "canopy_radius_m": 1.10, "canopy_color_name": "deciduous_green", "style_tag": "modern"},
+    {"canopy_style": "sphere", "trunk_height_m": 3.3, "canopy_radius_m": 1.30, "canopy_color_name": "dark_green", "style_tag": "classic"},
+    {"canopy_style": "cone", "trunk_height_m": 2.5, "canopy_radius_m": 1.00, "canopy_color_name": "dark_green", "style_tag": "nordic"},
+    {"canopy_style": "oval", "trunk_height_m": 3.0, "canopy_radius_m": 1.00, "canopy_color_name": "deciduous_green", "style_tag": "victorian"},
+    {"canopy_style": "multi_blob", "trunk_height_m": 3.0, "canopy_radius_m": 1.20, "canopy_color_name": "light_green", "style_tag": "eco"},
+)
+
+
+def _parametric_tree_entry(
+    *,
+    asset_id: str,
+    variant_index: int = 0,
+) -> _MeshCacheEntry:
+    try:
+        from .parametric_assets import generate_parametric_asset
+
+        variant = _PARAMETRIC_TREE_VARIANTS[variant_index % len(_PARAMETRIC_TREE_VARIANTS)]
+        result = generate_parametric_asset(
+            {
+                "asset_kind": "tree",
+                "runtime_profile": "preview",
+                "params": dict(variant),
+            }
+        )
+        mesh_or_scene = result.mesh
+    except Exception:
+        trimesh = _require_trimesh()
+        from trimesh.visual.material import PBRMaterial
+
+        trunk = trimesh.creation.cylinder(radius=0.18, height=3.0, sections=10)
+        trunk.apply_translation([0.0, 1.5, 0.0])
+        trunk.visual = trimesh.visual.TextureVisuals(
+            material=PBRMaterial(baseColorFactor=[101 / 255, 67 / 255, 33 / 255, 1.0], metallicFactor=0.0, roughnessFactor=0.9)
+        )
+        canopy = trimesh.creation.icosphere(subdivisions=2, radius=1.10)
+        canopy.apply_translation([0.0, 3.0 + 1.10, 0.0])
+        canopy.visual = trimesh.visual.TextureVisuals(
+            material=PBRMaterial(baseColorFactor=[62 / 255, 120 / 255, 50 / 255, 1.0], metallicFactor=0.0, roughnessFactor=0.9)
+        )
+        mesh_or_scene = trimesh.Scene()
+        mesh_or_scene.add_geometry(trunk, node_name="trunk", geom_name="trunk")
+        mesh_or_scene.add_geometry(canopy, node_name="canopy", geom_name="canopy")
+    bounds = np.asarray(mesh_or_scene.bounds, dtype=np.float64)
+    span = bounds[1] - bounds[0]
+    is_scene = isinstance(mesh_or_scene, _require_trimesh().Scene)
+    return _MeshCacheEntry(
+        mesh=mesh_or_scene,
+        half_x=float(max(span[0] / 2.0, 1e-3)),
+        half_z=float(max(span[2] / 2.0, 1e-3)),
+        min_y=float(bounds[0][1]),
+        is_scene=is_scene,
+    )
+
+
+def _inject_parametric_trees(
+    category_to_rows: Dict[str, List[Dict[str, str]]],
+    mesh_cache: Dict[str, _MeshCacheEntry],
+    asset_by_id: Dict[str, Dict[str, object]],
+) -> int:
+    """Generate parametric tree entries as fallback when no external trees are available.
+
+    Returns the number of injected tree variants.
+    """
+    injected = 0
+    for vi in range(len(_PARAMETRIC_TREE_VARIANTS)):
+        asset_id = f"tree_parametric_{vi:03d}"
+        entry = _parametric_tree_entry(asset_id=asset_id, variant_index=vi)
+        mesh_cache[asset_id] = entry
+        variant = _PARAMETRIC_TREE_VARIANTS[vi]
+        row: Dict[str, str] = {
+            "asset_id": asset_id,
+            "category": "tree",
+            "text_desc": f"{variant.get('style_tag', 'modern')} parametric street tree ({variant.get('canopy_style', 'sphere')})",
+            "mesh_path": "",
+            "latent_path": "",
+            "source": "parametric_generated",
+            "asset_role": "street_furniture",
+            "scene_eligible": True,
+            "quality_notes": ["parametric_tree", "tree_upright_validated"],
+            "quality_metrics": {
+                "tree_upright_validation": {"failure_reason": ""},
+            },
+        }
+        asset_by_id[asset_id] = row
+        category_to_rows.setdefault("tree", []).append(row)
+        injected += 1
+    return injected
+
+
 def _pick_category_candidate(
     query: str,
     category: str,
@@ -1063,7 +1153,7 @@ def _add_instance_meshes(
     trimesh = _require_trimesh()
     for placement in placements:
         entry = mesh_cache[placement.asset_id]
-        mesh = entry.mesh.copy()
+        mesh_or_scene = entry.mesh.copy()
         if placement.scale_xyz:
             scale = [float(value) for value in placement.scale_xyz]
         else:
@@ -1080,13 +1170,29 @@ def _add_instance_meshes(
                 float(placement.position_xyz[2]),
             ]
         )
-        if isinstance(scale, list):
-            mesh.apply_scale(scale)
+        if isinstance(mesh_or_scene, trimesh.Scene):
+            # Scene-type entries (e.g. parametric trees with PBR materials):
+            # apply transforms, then add each sub-geometry individually.
+            if isinstance(scale, list):
+                mesh_or_scene.apply_scale(scale)
+            else:
+                mesh_or_scene.apply_scale(float(scale))
+            mesh_or_scene.apply_transform(rotation)
+            mesh_or_scene.apply_transform(translation)
+            for gidx, node_name in enumerate(mesh_or_scene.graph.nodes_geometry):
+                transform, geom_name = mesh_or_scene.graph[node_name]
+                geom = mesh_or_scene.geometry[geom_name]
+                placed = geom.copy()
+                placed.apply_transform(transform)
+                scene.add_geometry(placed, node_name=f"{placement.instance_id}_{geom_name}_{gidx}")
         else:
-            mesh.apply_scale(float(scale))
-        mesh.apply_transform(rotation)
-        mesh.apply_transform(translation)
-        scene.add_geometry(mesh, node_name=placement.instance_id)
+            if isinstance(scale, list):
+                mesh_or_scene.apply_scale(scale)
+            else:
+                mesh_or_scene.apply_scale(float(scale))
+            mesh_or_scene.apply_transform(rotation)
+            mesh_or_scene.apply_transform(translation)
+            scene.add_geometry(mesh_or_scene, node_name=placement.instance_id)
 
 
 def _export_scene(scene, out_dir: Path, export_format: str) -> Dict[str, str]:
@@ -2793,6 +2899,15 @@ def compose_street_scene(
 
     mesh_cache = _load_mesh_cache(rows)
 
+    # Inject parametric trees as fallback when no external tree assets are available
+    parametric_tree_count = 0
+    if not category_to_rows.get("tree"):
+        parametric_tree_count = _inject_parametric_trees(category_to_rows, mesh_cache, asset_by_id)
+        if parametric_tree_count > 0:
+            tree_assets_unavailable = False
+            # Refresh available_categories so tree slots are generated by the planner
+            available_categories = [category for category, pool in category_to_rows.items() if pool]
+
     embedder = ClipTextEmbedder(
         model_name=model_name,
         model_dir=model_dir,
@@ -3678,6 +3793,7 @@ def compose_street_scene(
         "tree_assets_unavailable": bool(tree_assets_unavailable),
         "tree_inventory_raw_count": int(raw_tree_inventory_count),
         "tree_inventory_scene_ready_count": int(len(category_to_rows.get("tree", ()))),
+        "parametric_tree_fallback_count": int(parametric_tree_count),
         "scene_debug_overlays_enabled": bool(debug_scene_overlays_enabled),
         "theme_segments": [segment.to_dict() for segment in theme_segments],
         "theme_diagnostics": {

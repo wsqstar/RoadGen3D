@@ -43,6 +43,7 @@ from .parametric_assets import (
     GenerationRequest,
     LampParams,
     ParametricAssetResult,
+    TreeParams,
     generate_parametric_asset,
 )
 from .pipeline import M1Pipeline
@@ -156,6 +157,7 @@ __all__ = [
     "StreetPlacement",
     "StreetProgram",
     "ThemeSegment",
+    "TreeParams",
     "WorkspaceReadiness",
     "aggregate_scene_rows",
     "build_candidate_feature",

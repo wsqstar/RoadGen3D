@@ -321,3 +321,125 @@ def test_building_themes_produce_different_colors():
     res_colors = np.array(residential.mesh.visual.face_colors)
     com_colors = np.array(commercial.mesh.visual.face_colors)
     assert not np.array_equal(res_colors[0], com_colors[0])
+
+
+# ---------------------------------------------------------------------------
+# Tree tests
+# ---------------------------------------------------------------------------
+
+
+def test_tree_sphere_basic():
+    pytest.importorskip("trimesh")
+    result = generate_parametric_asset(
+        {
+            "asset_kind": "tree",
+            "runtime_profile": "preview",
+            "params": {"canopy_style": "sphere"},
+        }
+    )
+    assert result.asset_kind == "tree"
+    assert result.quality_metrics.ground_contact_ok
+    assert result.quality_metrics.meets_min_faces
+    # Tree should be taller than wide
+    w, h, d = result.bbox_size_xyz
+    assert h > max(w, d)
+
+
+def test_tree_all_canopy_styles():
+    pytest.importorskip("trimesh")
+    for style in ("sphere", "cone", "oval", "flat_disc", "multi_blob"):
+        result = generate_parametric_asset(
+            {
+                "asset_kind": "tree",
+                "runtime_profile": "preview",
+                "params": {"canopy_style": style},
+            }
+        )
+        assert result.asset_kind == "tree"
+        assert result.quality_metrics.ground_contact_ok
+        assert result.quality_metrics.meets_min_faces
+
+
+def test_tree_detail_levels():
+    pytest.importorskip("trimesh")
+    results = []
+    for dl in range(4):
+        result = generate_parametric_asset(
+            {
+                "asset_kind": "tree",
+                "runtime_profile": "production",
+                "params": {"detail_level": dl},
+            }
+        )
+        results.append(result)
+        assert result.quality_metrics.meets_min_faces
+        assert result.quality_metrics.ground_contact_ok
+    # Higher detail should produce more faces
+    assert results[-1].quality_metrics.face_count >= results[0].quality_metrics.face_count
+
+
+def test_tree_params_clamped():
+    pytest.importorskip("trimesh")
+    result = generate_parametric_asset(
+        {
+            "asset_kind": "tree",
+            "runtime_profile": "preview",
+            "params": {
+                "trunk_height_m": 100.0,
+                "trunk_radius_m": 0.01,
+                "canopy_radius_m": 0.1,
+            },
+        }
+    )
+    snapshot = result.parameter_snapshot
+    assert snapshot["trunk_height_m"] == pytest.approx(8.0)
+    assert snapshot["trunk_radius_m"] == pytest.approx(0.06)
+    assert snapshot["canopy_radius_m"] == pytest.approx(0.50)
+    assert any("clamped" in w for w in result.warnings)
+
+
+def test_tree_canopy_colors():
+    pytest.importorskip("trimesh")
+    import numpy as np
+
+    green = generate_parametric_asset(
+        {
+            "asset_kind": "tree",
+            "runtime_profile": "preview",
+            "params": {"canopy_color_name": "deciduous_green"},
+        }
+    )
+    autumn = generate_parametric_asset(
+        {
+            "asset_kind": "tree",
+            "runtime_profile": "preview",
+            "params": {"canopy_color_name": "autumn_orange"},
+        }
+    )
+    # result.mesh is now a Scene; compare PBR materials of the canopy geometry
+    import trimesh as _tm
+
+    def _canopy_base_color(result):
+        scene = result.mesh
+        assert isinstance(scene, _tm.Scene)
+        for name, geom in scene.geometry.items():
+            if "canopy" in name:
+                return tuple(geom.visual.material.baseColorFactor)
+        raise AssertionError("No canopy geometry found")
+
+    g_color = _canopy_base_color(green)
+    a_color = _canopy_base_color(autumn)
+    assert g_color != a_color
+
+
+def test_tree_unknown_canopy_style_falls_back():
+    pytest.importorskip("trimesh")
+    result = generate_parametric_asset(
+        {
+            "asset_kind": "tree",
+            "runtime_profile": "preview",
+            "params": {"canopy_style": "nonexistent_style"},
+        }
+    )
+    assert result.parameter_snapshot["canopy_style"] == "sphere"
+    assert any("canopy_style" in w for w in result.warnings)

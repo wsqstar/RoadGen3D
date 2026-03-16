@@ -3660,7 +3660,7 @@ def build_demo() -> gr.Blocks:
                         ]
                     )
                 )
-                query = gr.Textbox(label="Query", value="pedestrian-friendly boulevard with transit access")
+                query = gr.Textbox(label="Query", value="pedestrian-friendly boulevard with stylized trees and transit access")
                 with gr.Row():
                     m5_layout_mode = gr.Dropdown(label="Layout Mode", choices=["template", "osm"], value="osm")
                     design_rule_profile = gr.Dropdown(

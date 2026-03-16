@@ -299,6 +299,15 @@ def _filter_candidates_for_curation_mode(
         if external_tree_only:
             info["provenance_filter"] = "external_tree_only"
             return external_tree_only, info
+        # Allow parametric trees when no external trees are available
+        parametric_tree_only = [
+            item for item in filtered
+            if str(item[0].get("source", "") or "").strip().lower() == "parametric_generated"
+            and _tree_upright_validated(item[0])
+        ]
+        if parametric_tree_only:
+            info["provenance_filter"] = "parametric_tree_fallback"
+            return parametric_tree_only, info
 
     if category == "bench" and mode in {"scene_ready_first", "curated_first", "parametric_first"}:
         parametric_only = [item for item in filtered if _parametric_scene_ready(item[0])]

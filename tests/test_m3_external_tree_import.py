@@ -191,13 +191,14 @@ def test_compose_degrades_gracefully_when_only_procedural_trees_exist(tmp_path: 
     )
 
     assert isinstance(result, StreetComposeResult)
-    assert all(placement.category != "tree" for placement in result.placements)
 
     payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
     summary = payload["summary"]
-    assert summary["tree_assets_unavailable"] is True
+    # Parametric trees are injected as fallback when no external trees are available
+    assert summary["tree_assets_unavailable"] is False
     assert summary["tree_inventory_raw_count"] == 1
-    assert summary["tree_inventory_scene_ready_count"] == 0
+    assert summary["parametric_tree_fallback_count"] > 0
+    assert summary["tree_inventory_scene_ready_count"] > 0
 
 
 def test_import_external_tree_assets_accepts_upright_tree(tmp_path: Path):
