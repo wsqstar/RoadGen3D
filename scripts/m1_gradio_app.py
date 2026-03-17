@@ -2072,7 +2072,7 @@ def run_street_compose(
     m5_bbox_max_lat: float = 0.0,
     design_rule_profile: str = "balanced_complete_street_v1",
     program_generator: str = "heuristic_v1",
-    layout_solver: str = "banded",
+    layout_solver: str = "hybrid_milp_v1",
     program_ckpt_text: str = "",
     osm_cache_dir_text: str = "",
     city_context: str = "generic_city",
@@ -2706,7 +2706,7 @@ def run_best_model_street(
     m5_bbox_max_lat: float = 0.0,
     design_rule_profile: str = "balanced_complete_street_v1",
     program_generator: str = "heuristic_v1",
-    layout_solver: str = "banded",
+    layout_solver: str = "hybrid_milp_v1",
     program_ckpt_text: str = "",
     osm_cache_dir_text: str = "",
     city_context: str = "generic_city",
@@ -3726,8 +3726,8 @@ def build_demo() -> gr.Blocks:
                         )
                         layout_solver = gr.Dropdown(
                             label="Layout Solver",
-                            choices=["milp_template_v1", "banded"],
-                            value="milp_template_v1",
+                            choices=["hybrid_milp_v1", "milp_template_v1", "banded"],
+                            value="hybrid_milp_v1",
                         )
                         street_placement_policy = gr.Dropdown(
                             label="Policy",

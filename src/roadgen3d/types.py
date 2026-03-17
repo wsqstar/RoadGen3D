@@ -83,7 +83,12 @@ class StreetComposeConfig:
     design_rule_profile: str = "balanced_complete_street_v1"
     city_context: str = "generic_city"
     target_street_type: str = "mixed_use"
-    layout_solver: str = "banded"
+    layout_solver: str = "hybrid_milp_v1"
+    objective_profile: str = "balanced"  # "balanced" | "greening" | "commerce" | "transit"
+    ped_demand_level: str = "medium"  # "low" | "medium" | "high"
+    bike_demand_level: str = "low"  # "low" | "medium" | "high"
+    transit_demand_level: str = "medium"  # "low" | "medium" | "high"
+    vehicle_demand_level: str = "medium"  # "low" | "medium" | "high"
     allow_solver_fallback: bool = True
     segment_length_m: float = 12.0
     enable_surrounding_buildings: bool = True
@@ -133,6 +138,10 @@ class StreetProgram:
     control_points: Tuple[str, ...]
     design_goals: Tuple[str, ...]
     context_conditions: Dict[str, str]
+    objective_profile: str = "balanced"
+    throughput_requirements: Dict[str, float] = field(default_factory=dict)
+    band_bounds: Dict[str, Dict[str, float]] = field(default_factory=dict)
+    topology_requirements: Dict[str, Any] = field(default_factory=dict)
     observed_poi_counts: Dict[str, int] = field(default_factory=dict)
     reserved_band_categories: Dict[str, str] = field(default_factory=dict)
     design_goal_weights: Dict[str, float] = field(default_factory=dict)
@@ -298,6 +307,26 @@ class LayoutConflict:
 
 
 @dataclass(frozen=True)
+class BandSolution:
+    """Resolved width solution for one functional band."""
+
+    band_name: str
+    band_kind: str
+    side: str
+    width_m: float
+    min_width_m: float
+    max_width_m: float
+    slack_m: float = 0.0
+    objective_weight: float = 0.0
+    active_constraint_names: Tuple[str, ...] = ()
+
+    def to_dict(self) -> Dict[str, Any]:
+        payload = asdict(self)
+        payload["active_constraint_names"] = list(self.active_constraint_names)
+        return payload
+
+
+@dataclass(frozen=True)
 class LayoutSlotPlan:
     """One solver-produced layout slot before asset realization."""
 
@@ -345,6 +374,7 @@ class LayoutSolverResult:
     """Output of the constrained layout solver."""
 
     resolved_program: StreetProgram
+    band_solutions: Tuple[BandSolution, ...]
     slot_plans: Tuple[LayoutSlotPlan, ...]
     rule_evaluations: Tuple[RuleEvaluation, ...]
     edits: Tuple[LayoutEdit, ...]
@@ -354,6 +384,10 @@ class LayoutSolverResult:
     rule_satisfaction_rate: float
     editability: float
     conflict_explainability: float
+    active_constraints: Tuple[str, ...] = ()
+    throughput_feasibility: Dict[str, Any] = field(default_factory=dict)
+    objective_profile: str = "balanced"
+    objective_score_breakdown: Dict[str, float] = field(default_factory=dict)
     backend_requested: str = "banded"
     backend_used: str = "banded"
     fallback_reason: str = ""
@@ -362,6 +396,7 @@ class LayoutSolverResult:
     def to_dict(self) -> Dict[str, Any]:
         return {
             "resolved_program": self.resolved_program.to_dict(),
+            "band_solutions": [band.to_dict() for band in self.band_solutions],
             "slot_plans": [slot.to_dict() for slot in self.slot_plans],
             "rule_evaluations": [evaluation.to_dict() for evaluation in self.rule_evaluations],
             "edits": [edit.to_dict() for edit in self.edits],
@@ -371,6 +406,10 @@ class LayoutSolverResult:
             "rule_satisfaction_rate": float(self.rule_satisfaction_rate),
             "editability": float(self.editability),
             "conflict_explainability": float(self.conflict_explainability),
+            "active_constraints": list(self.active_constraints),
+            "throughput_feasibility": dict(self.throughput_feasibility),
+            "objective_profile": self.objective_profile,
+            "objective_score_breakdown": dict(self.objective_score_breakdown),
             "backend_requested": self.backend_requested,
             "backend_used": self.backend_used,
             "fallback_reason": self.fallback_reason,

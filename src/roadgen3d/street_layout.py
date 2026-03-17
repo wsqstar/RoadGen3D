@@ -249,8 +249,14 @@ def _validate_config(config: StreetComposeConfig) -> None:
         raise ValueError("constraint_veto_threshold must be in [0.0, 1.0]")
     if str(config.program_generator).strip().lower() not in {"heuristic_v1", "learned_v1"}:
         raise ValueError("program_generator must be 'heuristic_v1' or 'learned_v1'")
-    if str(config.layout_solver).strip().lower() not in {"banded", "milp_template_v1"}:
-        raise ValueError("layout_solver must be 'banded' or 'milp_template_v1'")
+    if str(config.layout_solver).strip().lower() not in {"banded", "milp_template_v1", "hybrid_milp_v1"}:
+        raise ValueError("layout_solver must be 'banded', 'milp_template_v1', or 'hybrid_milp_v1'")
+    if str(getattr(config, "objective_profile", "balanced")).strip().lower() not in {"balanced", "greening", "commerce", "transit"}:
+        raise ValueError("objective_profile must be 'balanced', 'greening', 'commerce', or 'transit'")
+    demand_levels = {"low", "medium", "high"}
+    for field_name in ("ped_demand_level", "bike_demand_level", "transit_demand_level", "vehicle_demand_level"):
+        if str(getattr(config, field_name, "medium")).strip().lower() not in demand_levels:
+            raise ValueError(f"{field_name} must be 'low', 'medium', or 'high'")
     if float(getattr(config, "segment_length_m", 12.0)) <= 0.0:
         raise ValueError("segment_length_m must be > 0")
     if str(getattr(config, "width_budget_mode", "expand_total_width")).strip().lower() != "expand_total_width":
@@ -504,6 +510,11 @@ def _aggregate_solver_results(
     fallback_values = [str(result.fallback_reason).strip() for result in solver_results if str(result.fallback_reason).strip()]
     return LayoutSolverResult(
         resolved_program=resolved_program,
+        band_solutions=tuple(
+            band_solution
+            for result in solver_results
+            for band_solution in result.band_solutions
+        ),
         slot_plans=tuple(slot_plans),
         rule_evaluations=tuple(
             evaluation
@@ -517,6 +528,26 @@ def _aggregate_solver_results(
         rule_satisfaction_rate=float(sum(float(result.rule_satisfaction_rate) for result in solver_results) / len(solver_results)),
         editability=float(sum(float(result.editability) for result in solver_results) / len(solver_results)),
         conflict_explainability=float(sum(float(result.conflict_explainability) for result in solver_results) / len(solver_results)),
+        active_constraints=tuple(
+            dict.fromkeys(
+                constraint_name
+                for result in solver_results
+                for constraint_name in result.active_constraints
+            )
+        ),
+        throughput_feasibility={
+            "overall_satisfied": all(bool(result.throughput_feasibility.get("overall_satisfied", True)) for result in solver_results),
+            "by_mode": {
+                mode: data
+                for result in solver_results
+                for mode, data in dict(result.throughput_feasibility.get("by_mode", {})).items()
+            },
+        },
+        objective_profile=str(getattr(resolved_program, "objective_profile", "balanced")),
+        objective_score_breakdown={
+            key: float(sum(float(result.objective_score_breakdown.get(key, 0.0)) for result in solver_results))
+            for key in {"total_width_score", "unused_row_budget_m", "slot_mix_bias"}
+        },
         backend_requested=backend_requested,
         backend_used=backend_used_values[0] if len(backend_used_values) == 1 else "mixed",
         fallback_reason=" | ".join(dict.fromkeys(fallback_values)),
@@ -3881,10 +3912,17 @@ def compose_street_scene(
         "style_consistency": float(style_consistency),
         "balance_score": float(balance_score),
         "design_rule_profile": str(config.design_rule_profile),
+        "objective_profile": str(getattr(config, "objective_profile", "balanced")),
+        "ped_demand_level": str(getattr(config, "ped_demand_level", "medium")),
+        "bike_demand_level": str(getattr(config, "bike_demand_level", "low")),
+        "transit_demand_level": str(getattr(config, "transit_demand_level", "medium")),
+        "vehicle_demand_level": str(getattr(config, "vehicle_demand_level", "medium")),
         "program_generator_requested": str(config.program_generator),
         "program_generator_used": str(program_used),
         "layout_solver_requested": str(config.layout_solver),
         "layout_solver_used": str(solver_result.backend_used),
+        "solver_backend_requested": str(solver_result.backend_requested),
+        "solver_backend_used": str(solver_result.backend_used),
         "cross_section_type": str(resolved_program.cross_section_type),
         "road_width_m": float(resolved_program.road_width_m),
         "sidewalk_width_m": float(resolved_program.sidewalk_width_m),
@@ -3904,6 +3942,10 @@ def compose_street_scene(
         "cross_section_feasibility": float(cross_section_feasibility),
         "editability": float(editability),
         "conflict_explainability": float(conflict_explainability),
+        "active_constraints": list(solver_result.active_constraints),
+        "throughput_feasibility": dict(solver_result.throughput_feasibility),
+        "objective_score_breakdown": dict(solver_result.objective_score_breakdown),
+        "band_solution_count": int(len(solver_result.band_solutions)),
         "solver_edit_count": int(len(solver_result.edits)),
         "solver_conflict_count": int(len(solver_result.conflicts)),
         "rule_evaluation_counts": rule_evaluation_counts,
@@ -4047,6 +4089,21 @@ def compose_street_scene(
         "production_steps": [record.to_dict() for record in production_steps],
         "unplaced_slot_diagnostics": list(unplaced_slot_diagnostics),
         "outputs": outputs,
+        "supervision_sample": {
+            "inputs": {
+                "config": config.to_dict(),
+                "inventory_summary": inventory_summary.to_dict(),
+                "constraint_set": base_constraint_set.to_dict(),
+                "road_segment_graph_summary": solver_result.road_segment_graph_summary,
+                "observed_poi_counts": dict(resolved_program.observed_poi_counts),
+            },
+            "labels": {
+                "resolved_program": resolved_program.to_dict(),
+                "band_solutions": [band.to_dict() for band in solver_result.band_solutions],
+                "slot_plans": [slot.to_dict() for slot in solver_result.slot_plans],
+                "objective_profile": str(resolved_program.objective_profile),
+            },
+        },
     }
     layout_payload["summary"].update(presentation_report)
     scene_graph = build_scene_graph(layout_payload, road_segment_graph=road_segment_graph)
@@ -4067,6 +4124,7 @@ def compose_street_scene(
     outputs["scene_layout"] = str(layout_path)
     outputs["policy_used"] = policy_used
     outputs["design_rule_profile"] = str(config.design_rule_profile)
+    outputs["objective_profile"] = str(getattr(config, "objective_profile", "balanced"))
     outputs["program_cross_section_type"] = str(resolved_program.cross_section_type)
     outputs["program_generator_requested"] = str(config.program_generator)
     outputs["program_generator_used"] = str(program_used)

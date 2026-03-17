@@ -64,7 +64,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--policy-temperature", type=float, default=0.12)
     parser.add_argument("--program-generator", choices=["heuristic_v1", "learned_v1"], default="learned_v1")
     parser.add_argument("--program-ckpt", type=Path, default=None)
-    parser.add_argument("--layout-solver", choices=["banded", "milp_template_v1"], default="milp_template_v1")
+    parser.add_argument("--layout-solver", choices=["hybrid_milp_v1", "milp_template_v1", "banded"], default="hybrid_milp_v1")
     parser.add_argument("--no-solver-fallback", action="store_true")
     parser.add_argument("--segment-length-m", type=float, default=12.0)
     parser.add_argument("--compare-rule", action="store_true")

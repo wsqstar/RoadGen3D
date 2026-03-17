@@ -61,7 +61,12 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--city-context", type=str, default="generic_city")
     parser.add_argument("--target-street-type", type=str, default="mixed_use")
-    parser.add_argument("--layout-solver", choices=["banded", "milp_template_v1"], default="banded")
+    parser.add_argument("--layout-solver", choices=["hybrid_milp_v1", "milp_template_v1", "banded"], default="hybrid_milp_v1")
+    parser.add_argument("--objective-profile", choices=["balanced", "greening", "commerce", "transit"], default="balanced")
+    parser.add_argument("--ped-demand-level", choices=["low", "medium", "high"], default="medium")
+    parser.add_argument("--bike-demand-level", choices=["low", "medium", "high"], default="low")
+    parser.add_argument("--transit-demand-level", choices=["low", "medium", "high"], default="medium")
+    parser.add_argument("--vehicle-demand-level", choices=["low", "medium", "high"], default="medium")
     parser.add_argument("--no-solver-fallback", action="store_true")
     parser.add_argument("--segment-length-m", type=float, default=12.0)
     return parser.parse_args()
@@ -91,6 +96,11 @@ def main() -> int:
         city_context=args.city_context,
         target_street_type=args.target_street_type,
         layout_solver=args.layout_solver,
+        objective_profile=args.objective_profile,
+        ped_demand_level=args.ped_demand_level,
+        bike_demand_level=args.bike_demand_level,
+        transit_demand_level=args.transit_demand_level,
+        vehicle_demand_level=args.vehicle_demand_level,
         allow_solver_fallback=not bool(args.no_solver_fallback),
         segment_length_m=float(args.segment_length_m),
     )

@@ -92,6 +92,12 @@ _QUERY_CATEGORY_BOOSTS: Tuple[Tuple[Tuple[str, ...], Dict[str, float]], ...] = (
     (("clean", "orderly", "minimal"), {"trash": 1.15, "bollard": 1.1}),
 )
 
+_DEMAND_FACTORS: Dict[str, float] = {
+    "low": 0.85,
+    "medium": 1.0,
+    "high": 1.2,
+}
+
 
 def _profile_defaults(profile_name: str) -> Dict[str, object]:
     return dict(_PROFILE_DEFAULTS.get(profile_name, _PROFILE_DEFAULTS["balanced_complete_street_v1"]))
@@ -136,6 +142,10 @@ def _goal_weights(goals: Sequence[str]) -> Dict[str, float]:
         return {}
     total = float(len(goals))
     return {str(goal): float(1.0 / total) for goal in goals}
+
+
+def _demand_factor(level: str) -> float:
+    return float(_DEMAND_FACTORS.get(str(level).strip().lower(), 1.0))
 
 
 def _observed_poi_counts(poi_context: object | None) -> Dict[str, int]:
@@ -308,6 +318,78 @@ def _estimate_furniture_requirements(
     return requirements
 
 
+def _throughput_requirements(config: StreetComposeConfig, profile_name: str, lane_count: int) -> Dict[str, float]:
+    ped_factor = _demand_factor(str(getattr(config, "ped_demand_level", "medium")))
+    transit_factor = _demand_factor(str(getattr(config, "transit_demand_level", "medium")))
+    vehicle_factor = _demand_factor(str(getattr(config, "vehicle_demand_level", "medium")))
+    lane_width_m = float(getattr(config, "base_lane_width_m", None) or 3.0)
+
+    requirements = {
+        "ped_clear_path": float(1.8 * ped_factor),
+        "vehicle_carriageway": float(max(3.0, lane_width_m) * max(1, int(lane_count)) * vehicle_factor),
+    }
+    if (
+        profile_name == "transit_priority_v1"
+        or str(getattr(config, "objective_profile", "balanced")).strip().lower() == "transit"
+        or float(transit_factor) > 1.05
+    ):
+        requirements["transit_edge"] = float(1.4 * transit_factor)
+    return requirements
+
+
+def _default_band_bounds(
+    bands: Sequence[StreetBand],
+    *,
+    config: StreetComposeConfig,
+    profile_name: str,
+    throughput_requirements: Dict[str, float],
+) -> Dict[str, Dict[str, float]]:
+    bounds: Dict[str, Dict[str, float]] = {}
+    for band in bands:
+        min_width = 0.5
+        max_width = max(float(band.width_m), 0.5)
+        if band.kind == "carriageway":
+            min_width = float(throughput_requirements.get("vehicle_carriageway", max(float(band.width_m), 3.0)))
+            max_width = max(float(band.width_m), float(max(1, int(config.lane_count))) * 3.8)
+        elif band.kind == "clear_path":
+            min_width = float(max(float(band.width_m), throughput_requirements.get("ped_clear_path", 1.8)))
+            max_width = max(float(band.width_m), 4.5)
+        elif band.kind == "transit_edge":
+            min_width = float(max(1.0, throughput_requirements.get("transit_edge", 1.2)))
+            max_width = max(float(band.width_m), 3.2)
+        elif band.kind == "furnishing":
+            min_width = float(max(0.8, min(float(band.width_m), 1.2)))
+            max_width = max(float(band.width_m), 3.4 if profile_name == "pedestrian_priority_v1" else 3.0)
+        bounds[band.name] = {
+            "min_width_m": float(min_width),
+            "max_width_m": float(max(max_width, min_width)),
+        }
+    return bounds
+
+
+def _topology_requirements(profile_name: str, bands: Sequence[StreetBand]) -> Dict[str, object]:
+    band_names = {band.name for band in bands}
+    adjacency: List[Dict[str, str]] = []
+    separation: List[Dict[str, str]] = []
+    if "left_furnishing" in band_names and "left_clear_path" in band_names:
+        adjacency.append({"band_name": "left_clear_path", "adjacent_to": "left_furnishing"})
+    if "right_clear_path" in band_names and "right_furnishing" in band_names:
+        adjacency.append({"band_name": "right_clear_path", "adjacent_to": "right_furnishing"})
+    if "right_clear_path" in band_names and "right_transit_edge" in band_names:
+        adjacency.append({"band_name": "right_clear_path", "adjacent_to": "right_transit_edge"})
+    if "left_furnishing" in band_names and "left_clear_path" in band_names and "carriageway" in band_names:
+        separation.append({"left": "left_furnishing", "right": "carriageway", "separator": "left_clear_path"})
+    if "carriageway" in band_names and "right_clear_path" in band_names and "right_furnishing" in band_names:
+        separation.append({"left": "carriageway", "right": "right_furnishing", "separator": "right_clear_path"})
+    if "carriageway" in band_names and "right_clear_path" in band_names and "right_transit_edge" in band_names:
+        separation.append({"left": "carriageway", "right": "right_transit_edge", "separator": "right_clear_path"})
+    return {
+        "profile_name": str(profile_name),
+        "adjacency_required": adjacency,
+        "separation_required": separation,
+    }
+
+
 def infer_street_program(
     config: StreetComposeConfig,
     available_categories: Iterable[str],
@@ -367,11 +449,20 @@ def infer_street_program(
         bands=bands,
         profile_name=profile_name,
     )
+    throughput_requirements = _throughput_requirements(config, profile_name, max(1, int(config.lane_count)))
+    band_bounds = _default_band_bounds(
+        bands,
+        config=config,
+        profile_name=profile_name,
+        throughput_requirements=throughput_requirements,
+    )
+    topology_requirements = _topology_requirements(profile_name, bands)
 
     notes = (
         "heuristic_program_generator_v1",
         f"profile={profile_name}",
         "observed_poi_binding_v1",
+        f"objective_profile={str(getattr(config, 'objective_profile', 'balanced')).strip().lower() or 'balanced'}",
     )
     return StreetProgram(
         query=str(config.query),
@@ -392,7 +483,16 @@ def infer_street_program(
             "city_context": str(config.city_context),
             "target_street_type": str(config.target_street_type),
             "program_generator": str(config.program_generator),
+            "objective_profile": str(getattr(config, "objective_profile", "balanced")),
+            "ped_demand_level": str(getattr(config, "ped_demand_level", "medium")),
+            "bike_demand_level": str(getattr(config, "bike_demand_level", "low")),
+            "transit_demand_level": str(getattr(config, "transit_demand_level", "medium")),
+            "vehicle_demand_level": str(getattr(config, "vehicle_demand_level", "medium")),
         },
+        objective_profile=str(getattr(config, "objective_profile", "balanced")).strip().lower() or "balanced",
+        throughput_requirements=throughput_requirements,
+        band_bounds=band_bounds,
+        topology_requirements=topology_requirements,
         observed_poi_counts=observed_poi_counts,
         reserved_band_categories=reserved_band_categories,
         design_goal_weights=_goal_weights(merged_goals),

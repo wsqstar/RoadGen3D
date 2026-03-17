@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from typing import Dict, Iterable, List, Sequence, Tuple
 
@@ -96,12 +97,53 @@ def _candidate_utility(candidate: _Candidate, category: str, required: bool) -> 
     return utility
 
 
+def _objective_bonus(category: str, objective_profile: str) -> float:
+    profile = str(objective_profile).strip().lower()
+    if profile == "greening":
+        return {
+            "tree": 0.65,
+            "bench": 0.1,
+            "lamp": -0.1,
+            "bollard": -0.25,
+        }.get(category, 0.0)
+    if profile == "commerce":
+        return {
+            "bench": 0.35,
+            "trash": 0.25,
+            "lamp": 0.1,
+            "tree": -0.05,
+            "bollard": -0.2,
+        }.get(category, 0.0)
+    if profile == "transit":
+        return {
+            "bus_stop": 0.35,
+            "lamp": 0.18,
+            "bollard": 0.22,
+            "bench": -0.1,
+        }.get(category, 0.0)
+    return 0.0
+
+
+def _violates_keepout(candidate: _Candidate, category: str, keepout_rules: Sequence[Dict[str, object]]) -> bool:
+    for rule in keepout_rules:
+        target_category = str(rule.get("category", "all")).strip().lower()
+        if target_category not in {"all", str(category).strip().lower()}:
+            continue
+        for point in rule.get("points", ()):
+            dist = math.hypot(float(candidate.x_center_m) - float(point[0]), float(candidate.z_center_m) - float(point[1]))
+            if dist < float(rule.get("radius_m", 0.0)):
+                return True
+    return False
+
+
 def _greedy_select(
     *,
     candidates: Sequence[_Candidate],
     requirements: Dict[str, int],
     required_categories: Iterable[str],
     reserved_band_categories: Dict[str, str],
+    keepout_rules: Sequence[Dict[str, object]],
+    objective_profile: str,
 ) -> Tuple[List[Tuple[_Candidate, str]], List[LayoutConflict]]:
     required_set = set(required_categories)
     remaining = {category: int(count) for category, count in requirements.items() if int(count) > 0}
@@ -114,12 +156,17 @@ def _greedy_select(
             candidate for candidate in candidates
             if candidate.candidate_id not in used_candidates
             and category in candidate.allowed_categories
+            and not _violates_keepout(candidate, category, keepout_rules)
             and (
                 reserved_band_categories.get(candidate.band_name, category) == category
                 or candidate.band_name not in reserved_band_categories
             )
         ]
-        ranked = sorted(allowed, key=lambda candidate: _candidate_utility(candidate, category, category in required_set), reverse=True)
+        ranked = sorted(
+            allowed,
+            key=lambda candidate: _candidate_utility(candidate, category, category in required_set) + _objective_bonus(category, objective_profile),
+            reverse=True,
+        )
         picked = ranked[:count]
         for candidate in picked:
             selections.append((candidate, category))
@@ -142,6 +189,8 @@ def _pulp_select(
     requirements: Dict[str, int],
     required_categories: Iterable[str],
     reserved_band_categories: Dict[str, str],
+    keepout_rules: Sequence[Dict[str, object]],
+    objective_profile: str,
 ) -> Tuple[List[Tuple[_Candidate, str]], List[LayoutConflict]]:
     if pulp is None:
         return _greedy_select(
@@ -149,6 +198,8 @@ def _pulp_select(
             requirements=requirements,
             required_categories=required_categories,
             reserved_band_categories=reserved_band_categories,
+            keepout_rules=keepout_rules,
+            objective_profile=objective_profile,
         )
 
     required_set = set(required_categories)
@@ -158,6 +209,8 @@ def _pulp_select(
             if count <= 0:
                 continue
             if category not in candidate.allowed_categories:
+                continue
+            if _violates_keepout(candidate, category, keepout_rules):
                 continue
             reserved = reserved_band_categories.get(candidate.band_name)
             if reserved is not None and reserved != category:
@@ -171,7 +224,10 @@ def _pulp_select(
     }
 
     problem += pulp.lpSum(
-        _candidate_utility(candidate, category, category in required_set) * variables[(idx, category)]
+        (
+            _candidate_utility(candidate, category, category in required_set)
+            + _objective_bonus(category, objective_profile)
+        ) * variables[(idx, category)]
         for idx, category, candidate in feasible_pairs
     )
 
@@ -230,6 +286,8 @@ def solve_candidate_assignment(
     requirements: Dict[str, int],
     required_categories: Iterable[str],
     reserved_band_categories: Dict[str, str],
+    keepout_rules: Sequence[Dict[str, object]] = (),
+    objective_profile: str = "balanced",
 ) -> Tuple[Tuple[LayoutSlotPlan, ...], List[LayoutConflict], Dict[str, object]]:
     """Solve discrete slot activation/assignment for template or OSM graphs."""
 
@@ -245,6 +303,8 @@ def solve_candidate_assignment(
         requirements=requirements,
         required_categories=required_categories,
         reserved_band_categories=reserved_band_categories,
+        keepout_rules=tuple(keepout_rules),
+        objective_profile=str(objective_profile),
     )
 
     slot_plans = tuple(

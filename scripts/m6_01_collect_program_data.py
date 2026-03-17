@@ -59,7 +59,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--density", type=float, default=1.0)
     parser.add_argument("--topk-per-category", type=int, default=20)
     parser.add_argument("--max-trials-per-slot", type=int, default=30)
-    parser.add_argument("--layout-solver", choices=["banded", "milp_template_v1"], default="milp_template_v1")
+    parser.add_argument("--layout-solver", choices=["hybrid_milp_v1", "milp_template_v1", "banded"], default="hybrid_milp_v1")
     parser.add_argument("--osm-bboxes-jsonl", type=Path, default=None)
     parser.add_argument("--osm-cache-dir", type=Path, default=Path("artifacts/m5/osm_cache"))
     parser.add_argument("--use-china-cities", action="store_true",

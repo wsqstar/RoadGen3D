@@ -95,7 +95,13 @@ def _setup_fake_retrieval(monkeypatch, asset_ids: list[str]) -> None:
     monkeypatch.setattr(street_layout, "FaissIndexStore", FakeIndexStore)
 
 
-def _build_config(profile: str, seed: int = 42) -> StreetComposeConfig:
+def _build_config(
+    profile: str,
+    seed: int = 42,
+    *,
+    layout_solver: str = "hybrid_milp_v1",
+    objective_profile: str = "balanced",
+) -> StreetComposeConfig:
     return StreetComposeConfig(
         query="pedestrian-friendly boulevard with transit access",
         length_m=60.0,
@@ -107,6 +113,8 @@ def _build_config(profile: str, seed: int = 42) -> StreetComposeConfig:
         topk_per_category=20,
         max_trials_per_slot=30,
         design_rule_profile=profile,
+        layout_solver=layout_solver,
+        objective_profile=objective_profile,
     )
 
 
@@ -198,3 +206,39 @@ def test_compose_surfaces_conflict_report_when_rule_is_unsatisfied(tmp_path: Pat
     summary = payload["summary"]
     assert summary["solver_conflict_count"] >= 1
     assert summary["conflict_explainability"] == 1.0
+
+
+def test_compose_exports_hybrid_solver_metadata_and_supervision_sample(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    rows = _build_real_rows(tmp_path / "data")
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+
+    result = compose_street_scene(
+        config=_build_config(
+            "balanced_complete_street_v1",
+            seed=5,
+            layout_solver="hybrid_milp_v1",
+            objective_profile="greening",
+        ),
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+
+    payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    summary = payload["summary"]
+    solver_payload = payload["solver"]
+
+    assert summary["objective_profile"] == "greening"
+    assert summary["solver_backend_used"] == "hybrid_milp_v1"
+    assert "throughput_feasibility" in summary
+    assert summary["band_solution_count"] >= 1
+    assert solver_payload["band_solutions"]
+    assert solver_payload["objective_profile"] == "greening"
+    assert payload["supervision_sample"]["labels"]["objective_profile"] == "greening"
+    assert payload["supervision_sample"]["labels"]["band_solutions"]

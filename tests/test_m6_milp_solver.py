@@ -33,7 +33,14 @@ def _inventory(*categories: str) -> InventorySummary:
     )
 
 
-def _config(*, profile: str = "balanced_complete_street_v1", layout_mode: str = "template", allow_fallback: bool = True) -> StreetComposeConfig:
+def _config(
+    *,
+    profile: str = "balanced_complete_street_v1",
+    layout_mode: str = "template",
+    allow_fallback: bool = True,
+    layout_solver: str = "milp_template_v1",
+    objective_profile: str = "balanced",
+) -> StreetComposeConfig:
     return StreetComposeConfig(
         query="pedestrian-friendly boulevard with transit access",
         length_m=60.0,
@@ -47,9 +54,17 @@ def _config(*, profile: str = "balanced_complete_street_v1", layout_mode: str = 
         layout_mode=layout_mode,
         aoi_bbox=(0.0, 0.0, 0.01, 0.01) if layout_mode == "osm" else None,
         design_rule_profile=profile,
-        layout_solver="milp_template_v1",
+        layout_solver=layout_solver,
+        objective_profile=objective_profile,
         allow_solver_fallback=allow_fallback,
     )
+
+
+def _band_widths(result) -> dict[str, float]:
+    return {
+        band.band_name: float(band.width_m)
+        for band in result.band_solutions
+    }
 
 
 def _graph(*, allow_bus_stop: bool) -> RoadSegmentGraph:
@@ -245,3 +260,120 @@ def test_milp_template_solver_falls_back_to_banded_for_poi_anchored_slots():
     assert result.backend_used == "banded"
     assert "poi-backed anchored slots" in result.fallback_reason.lower()
     assert any(slot.anchor_poi_type == "bus_stop" for slot in result.slot_plans)
+
+
+def test_hybrid_solver_reports_band_solutions_and_throughput_feasibility():
+    config = _config(
+        profile="balanced_complete_street_v1",
+        layout_solver="hybrid_milp_v1",
+        objective_profile="balanced",
+    )
+    available = ("bench", "lamp", "trash", "tree", "bus_stop", "bollard")
+    program = infer_street_program(config, available)
+    runtime = LayoutSolverRuntime(backend="hybrid_milp_v1")
+
+    result = runtime.solve(
+        LayoutSolverInput(
+            program=program,
+            config=config,
+            available_categories=available,
+            constraint_set=load_constraint_set("balanced_complete_street_v1"),
+            inventory_summary=_inventory(*available),
+        )
+    )
+
+    assert result.backend_used == "hybrid_milp_v1"
+    assert result.band_solutions
+    assert result.throughput_feasibility["overall_satisfied"] is True
+    assert result.active_constraints
+    for band in result.band_solutions:
+        assert float(band.min_width_m) <= float(band.width_m) <= float(band.max_width_m)
+
+
+def test_hybrid_objective_profiles_change_band_widths_and_slot_mix():
+    available = ("bench", "lamp", "trash", "tree", "bus_stop", "bollard")
+    runtime = LayoutSolverRuntime(backend="hybrid_milp_v1")
+
+    greening_cfg = _config(
+        profile="balanced_complete_street_v1",
+        layout_solver="hybrid_milp_v1",
+        objective_profile="greening",
+    )
+    commerce_cfg = _config(
+        profile="balanced_complete_street_v1",
+        layout_solver="hybrid_milp_v1",
+        objective_profile="commerce",
+    )
+    transit_cfg = _config(
+        profile="transit_priority_v1",
+        layout_solver="hybrid_milp_v1",
+        objective_profile="transit",
+    )
+
+    greening = runtime.solve(
+        LayoutSolverInput(
+            program=infer_street_program(greening_cfg, available),
+            config=greening_cfg,
+            available_categories=available,
+            constraint_set=load_constraint_set("balanced_complete_street_v1"),
+            inventory_summary=_inventory(*available),
+        )
+    )
+    commerce = runtime.solve(
+        LayoutSolverInput(
+            program=infer_street_program(commerce_cfg, available),
+            config=commerce_cfg,
+            available_categories=available,
+            constraint_set=load_constraint_set("balanced_complete_street_v1"),
+            inventory_summary=_inventory(*available),
+        )
+    )
+    transit = runtime.solve(
+        LayoutSolverInput(
+            program=infer_street_program(transit_cfg, available),
+            config=transit_cfg,
+            available_categories=available,
+            constraint_set=load_constraint_set("transit_priority_v1"),
+            inventory_summary=_inventory(*available),
+        )
+    )
+
+    greening_bench_slots = sum(1 for slot in greening.slot_plans if slot.category == "bench")
+    commerce_bench_slots = sum(1 for slot in commerce.slot_plans if slot.category == "bench")
+    transit_bus_slots = sum(1 for slot in transit.slot_plans if slot.category == "bus_stop")
+
+    assert commerce_bench_slots > greening_bench_slots
+    assert transit_bus_slots >= 1
+    assert _band_widths(greening) != _band_widths(commerce)
+
+
+def test_hybrid_solver_respects_keepout_rules_for_template_candidates():
+    config = _config(
+        profile="balanced_complete_street_v1",
+        layout_mode="osm",
+        layout_solver="hybrid_milp_v1",
+        objective_profile="commerce",
+    )
+    available = ("bench", "lamp", "trash", "tree", "bus_stop", "bollard")
+    placement_context = SimpleNamespace(
+        entrance_points=[(0.0, 4.5)],
+        bus_stop_points=[],
+        fire_points=[],
+    )
+    program = infer_street_program(config, available)
+    runtime = LayoutSolverRuntime(backend="hybrid_milp_v1")
+
+    result = runtime.solve(
+        LayoutSolverInput(
+            program=program,
+            config=config,
+            available_categories=available,
+            constraint_set=load_constraint_set("balanced_complete_street_v1"),
+            inventory_summary=_inventory(*available),
+            placement_context=placement_context,
+        )
+    )
+
+    bench_slots = [slot for slot in result.slot_plans if slot.category == "bench"]
+    assert bench_slots
+    assert all(abs(float(slot.x_center_m)) >= 1.8 for slot in bench_slots)
