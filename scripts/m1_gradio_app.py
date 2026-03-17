@@ -69,6 +69,7 @@ from roadgen3d.scene_graph_viz import (
     plot_scene_graph,
     scene_graph_control_state,
 )
+from roadgen3d.solver_diagnostics_viz import build_cross_section_preview, build_solver_diagnostics
 from roadgen3d.street_layout import compose_street_scene
 from roadgen3d.spatial_features import SpatialContext
 from roadgen3d.spatial_viz import (
@@ -1510,17 +1511,46 @@ def _extract_solver_summary(layout_json_text: str) -> str:
     summary = payload.get("summary", {}) or {}
     solver = payload.get("solver", {}) or {}
     result = {
-        "layout_solver_used": summary.get("layout_solver_used", ""),
+        "layout_solver_requested": summary.get("layout_solver_requested", summary.get("solver_backend_requested", "")),
+        "layout_solver_used": summary.get("layout_solver_used", summary.get("solver_backend_used", "")),
+        "backend_requested": solver.get("backend_requested", summary.get("solver_backend_requested", "")),
+        "backend_used": solver.get("backend_used", summary.get("solver_backend_used", "")),
+        "objective_profile": solver.get("objective_profile", summary.get("objective_profile", "balanced")),
         "rule_satisfaction_rate": summary.get("rule_satisfaction_rate", 0.0),
         "topology_validity": summary.get("topology_validity", 0.0),
         "cross_section_feasibility": summary.get("cross_section_feasibility", 0.0),
         "editability": summary.get("editability", 0.0),
         "conflict_explainability": summary.get("conflict_explainability", 0.0),
-        "fallback_reason": summary.get("solver_fallback_reason", ""),
+        "active_constraints": solver.get("active_constraints", summary.get("active_constraints", [])),
+        "throughput_feasibility": solver.get("throughput_feasibility", summary.get("throughput_feasibility", {})),
+        "objective_score_breakdown": solver.get("objective_score_breakdown", summary.get("objective_score_breakdown", {})),
+        "fallback_reason": solver.get("fallback_reason", summary.get("solver_fallback_reason", "")),
         "edits": solver.get("edits", []),
         "conflicts": solver.get("conflicts", []),
     }
     return json.dumps(result, indent=2, ensure_ascii=True)
+
+
+def _extract_solver_diagnostics(layout_json_text: str):
+    if not layout_json_text.strip():
+        return None, "{}"
+    try:
+        payload = json.loads(layout_json_text)
+        fig, summary, _band_rows = build_solver_diagnostics(payload)
+        return fig, json.dumps(summary, indent=2, ensure_ascii=True)
+    except Exception:
+        return None, "{}"
+
+
+def _extract_cross_section_preview(layout_json_text: str):
+    if not layout_json_text.strip():
+        return None, "{}"
+    try:
+        payload = json.loads(layout_json_text)
+        fig, summary = build_cross_section_preview(payload)
+        return fig, json.dumps(summary, indent=2, ensure_ascii=True)
+    except Exception:
+        return None, "{}"
 
 
 def _extract_presentation_views(layout_json_text: str):
@@ -2073,6 +2103,11 @@ def run_street_compose(
     design_rule_profile: str = "balanced_complete_street_v1",
     program_generator: str = "heuristic_v1",
     layout_solver: str = "hybrid_milp_v1",
+    objective_profile: str = "balanced",
+    ped_demand_level: str = "medium",
+    bike_demand_level: str = "low",
+    transit_demand_level: str = "medium",
+    vehicle_demand_level: str = "medium",
     program_ckpt_text: str = "",
     osm_cache_dir_text: str = "",
     city_context: str = "generic_city",
@@ -2166,6 +2201,11 @@ def run_street_compose(
             target_street_type=str(target_street_type).strip(),
             program_generator=str(program_generator).strip(),
             layout_solver=str(layout_solver).strip(),
+            objective_profile=str(objective_profile).strip(),
+            ped_demand_level=str(ped_demand_level).strip(),
+            bike_demand_level=str(bike_demand_level).strip(),
+            transit_demand_level=str(transit_demand_level).strip(),
+            vehicle_demand_level=str(vehicle_demand_level).strip(),
             allow_solver_fallback=bool(allow_solver_fallback),
             segment_length_m=float(segment_length_m),
             road_selection=str(road_selection).strip(),
@@ -2240,7 +2280,13 @@ def run_street_compose(
             f"- dropped_slots: {result.dropped_slots}\n"
             f"- policy_used: {result.outputs.get('policy_used', street_placement_policy)}\n"
             f"- program_generator_used: {result.outputs.get('program_generator_used', program_generator)}\n"
-            f"- layout_solver_used: {result.outputs.get('layout_solver_used', layout_solver)}\n"
+            f"- objective_profile: {layout_summary.get('objective_profile', objective_profile)}\n"
+            f"- demand_levels: ped={layout_summary.get('ped_demand_level', ped_demand_level)}, "
+            f"bike={layout_summary.get('bike_demand_level', bike_demand_level)}, "
+            f"transit={layout_summary.get('transit_demand_level', transit_demand_level)}, "
+            f"vehicle={layout_summary.get('vehicle_demand_level', vehicle_demand_level)}\n"
+            f"- solver_backend_requested: {layout_summary.get('solver_backend_requested', result.outputs.get('layout_solver_requested', layout_solver))}\n"
+            f"- solver_backend_used: {layout_summary.get('solver_backend_used', result.outputs.get('layout_solver_used', layout_solver))}\n"
             f"- cross_section_type: {layout_summary.get('cross_section_type', '')}\n"
             f"- style_preset: {layout_summary.get('style_preset', style_preset)}\n"
             f"- asset_curation_mode: {layout_summary.get('asset_curation_mode', asset_curation_mode)}\n"
@@ -2707,6 +2753,11 @@ def run_best_model_street(
     design_rule_profile: str = "balanced_complete_street_v1",
     program_generator: str = "heuristic_v1",
     layout_solver: str = "hybrid_milp_v1",
+    objective_profile: str = "balanced",
+    ped_demand_level: str = "medium",
+    bike_demand_level: str = "low",
+    transit_demand_level: str = "medium",
+    vehicle_demand_level: str = "medium",
     program_ckpt_text: str = "",
     osm_cache_dir_text: str = "",
     city_context: str = "generic_city",
@@ -2763,6 +2814,11 @@ def run_best_model_street(
         design_rule_profile=design_rule_profile,
         program_generator=program_generator,
         layout_solver=layout_solver,
+        objective_profile=objective_profile,
+        ped_demand_level=ped_demand_level,
+        bike_demand_level=bike_demand_level,
+        transit_demand_level=transit_demand_level,
+        vehicle_demand_level=vehicle_demand_level,
         program_ckpt_text=program_ckpt_text,
         osm_cache_dir_text=osm_cache_dir_text,
         city_context=city_context,
@@ -3670,6 +3726,7 @@ def build_demo() -> gr.Blocks:
                         prepare_bbox_max_lat = gr.Number(label="AOI Max Lat", value=23.1325)
 
             with gr.Tab("2) 生成街道"):
+                gr.Markdown("默认入口以规则驱动为主：`heuristic_v1 + rule + hybrid_milp_v1`，研究页才是 learned runtime 主入口。")
                 with gr.Row():
                     query = gr.Textbox(
                         label="Query",
@@ -3722,7 +3779,7 @@ def build_demo() -> gr.Blocks:
                         program_generator = gr.Dropdown(
                             label="Program Generator",
                             choices=["learned_v1", "heuristic_v1"],
-                            value="learned_v1",
+                            value="heuristic_v1",
                         )
                         layout_solver = gr.Dropdown(
                             label="Layout Solver",
@@ -3732,7 +3789,7 @@ def build_demo() -> gr.Blocks:
                         street_placement_policy = gr.Dropdown(
                             label="Policy",
                             choices=["rule", "learned"],
-                            value="learned",
+                            value="rule",
                         )
                         style_preset = gr.Dropdown(
                             label="Style Preset",
@@ -3780,6 +3837,32 @@ def build_demo() -> gr.Blocks:
                     with gr.Row():
                         city_context = gr.Textbox(label="City Context", value="generic_city")
                         target_street_type = gr.Textbox(label="Target Street Type", value="mixed_use")
+                    with gr.Row():
+                        objective_profile = gr.Dropdown(
+                            label="Objective Profile",
+                            choices=["balanced", "greening", "commerce", "transit"],
+                            value="balanced",
+                        )
+                        ped_demand_level = gr.Dropdown(
+                            label="Ped Demand",
+                            choices=["low", "medium", "high"],
+                            value="medium",
+                        )
+                        bike_demand_level = gr.Dropdown(
+                            label="Bike Demand",
+                            choices=["low", "medium", "high"],
+                            value="low",
+                        )
+                        transit_demand_level = gr.Dropdown(
+                            label="Transit Demand",
+                            choices=["low", "medium", "high"],
+                            value="medium",
+                        )
+                        vehicle_demand_level = gr.Dropdown(
+                            label="Vehicle Demand",
+                            choices=["low", "medium", "high"],
+                            value="medium",
+                        )
                     with gr.Row():
                         beauty_mode = gr.Dropdown(
                             label="Beauty Mode",
@@ -3842,7 +3925,13 @@ def build_demo() -> gr.Blocks:
                     with gr.Accordion("StreetProgram / Solver", open=False):
                         with gr.Row():
                             street_program_summary = gr.Code(label="StreetProgram Summary", language="json")
-                            street_solver_summary = gr.Code(label="Solver Edits / Conflicts", language="json")
+                            street_solver_summary = gr.Code(label="Solver Summary", language="json")
+                    with gr.Accordion("Cross-Section Preview", open=False):
+                        cross_section_preview_plot = gr.Plot(label="Cross-Section Preview")
+                        cross_section_preview_summary = gr.Code(label="Cross-Section Summary", language="json")
+                    with gr.Accordion("Solver Diagnostics", open=False):
+                        solver_diagnostics_plot = gr.Plot(label="Solver Diagnostics")
+                        solver_diagnostics_summary = gr.Code(label="Solver Diagnostics Summary", language="json")
                     with gr.Accordion("Theme / Building Summary", open=False):
                         with gr.Row():
                             theme_segments_preview = gr.Code(label="Theme Segments Preview", language="json")
@@ -4153,6 +4242,11 @@ def build_demo() -> gr.Blocks:
                 design_rule_profile,
                 program_generator,
                 layout_solver,
+                objective_profile,
+                ped_demand_level,
+                bike_demand_level,
+                transit_demand_level,
+                vehicle_demand_level,
                 program_ckpt,
                 street_osm_cache_dir,
                 city_context,
@@ -4202,6 +4296,14 @@ def build_demo() -> gr.Blocks:
             fn=_extract_solver_summary,
             inputs=[street_layout_json],
             outputs=[street_solver_summary],
+        ).then(
+            fn=_extract_cross_section_preview,
+            inputs=[street_layout_json],
+            outputs=[cross_section_preview_plot, cross_section_preview_summary],
+        ).then(
+            fn=_extract_solver_diagnostics,
+            inputs=[street_layout_json],
+            outputs=[solver_diagnostics_plot, solver_diagnostics_summary],
         ).then(
             fn=_extract_theme_summary,
             inputs=[street_layout_json],
@@ -4409,6 +4511,11 @@ def build_demo() -> gr.Blocks:
                 design_rule_profile,
                 program_generator,
                 layout_solver,
+                objective_profile,
+                ped_demand_level,
+                bike_demand_level,
+                transit_demand_level,
+                vehicle_demand_level,
                 program_ckpt,
                 street_osm_cache_dir,
                 city_context,
@@ -4459,6 +4566,14 @@ def build_demo() -> gr.Blocks:
             fn=_extract_presentation_views,
             inputs=[street_layout_json],
             outputs=[presentation_gallery, presentation_report],
+        ).then(
+            fn=_extract_cross_section_preview,
+            inputs=[street_layout_json],
+            outputs=[cross_section_preview_plot, cross_section_preview_summary],
+        ).then(
+            fn=_extract_solver_diagnostics,
+            inputs=[street_layout_json],
+            outputs=[solver_diagnostics_plot, solver_diagnostics_summary],
         ).then(
             fn=_extract_program_summary,
             inputs=[run_best_layout_json],

@@ -313,8 +313,34 @@ def test_build_demo_street_tab_defaults_to_minimal_surface():
     assert accordion_props["高级设置"]["open"] is False
     assert accordion_props["更多结果"]["open"] is False
     assert accordion_props["Presentation Views"]["open"] is False
+    assert accordion_props["Cross-Section Preview"]["open"] is False
+    assert accordion_props["Solver Diagnostics"]["open"] is False
     assert accordion_props["Scene Graph"]["open"] is False
     assert accordion_props["POI Analysis"]["open"] is False
+
+
+def test_build_demo_street_defaults_are_procedural_first():
+    pytest.importorskip("gradio")
+
+    demo = app.build_demo()
+    config = demo.get_config_file()
+    dropdown_props = _typed_props_by_label(config, "dropdown")
+    plot_labels = _labels_by_component_type(config, "plot")
+    code_labels = _labels_by_component_type(config, "code")
+
+    assert dropdown_props["Layout Mode"]["value"] == "osm"
+    assert dropdown_props["Program Generator"]["value"] == "heuristic_v1"
+    assert dropdown_props["Policy"]["value"] == "rule"
+    assert dropdown_props["Layout Solver"]["value"] == "hybrid_milp_v1"
+    assert dropdown_props["Objective Profile"]["value"] == "balanced"
+    assert dropdown_props["Ped Demand"]["value"] == "medium"
+    assert dropdown_props["Bike Demand"]["value"] == "low"
+    assert dropdown_props["Transit Demand"]["value"] == "medium"
+    assert dropdown_props["Vehicle Demand"]["value"] == "medium"
+    assert "Cross-Section Preview" in plot_labels
+    assert "Cross-Section Summary" in code_labels
+    assert "Solver Diagnostics" in plot_labels
+    assert "Solver Diagnostics Summary" in code_labels
 
 
 def test_production_step_helpers_select_stage_outputs(tmp_path: Path):

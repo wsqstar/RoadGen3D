@@ -619,6 +619,370 @@ def test_street_compose_gradio_callback_returns_model_path(tmp_path: Path, monke
     assert any(str(path).endswith("scene_layout.json") for path in files)
 
 
+def test_street_compose_gradio_callback_propagates_objective_and_demand_controls(tmp_path: Path, monkeypatch):
+    pytest.importorskip("gradio")
+    import scripts.m1_gradio_app as app
+
+    glb_path = (tmp_path / "scene.glb").resolve()
+    layout_path = (tmp_path / "scene_layout.json").resolve()
+    glb_path.write_bytes(b"glb")
+    captured_config: dict[str, object] = {}
+    layout_payload = {
+        "summary": {
+            "instance_count": 1,
+            "dropped_slots": 0,
+            "objective_profile": "commerce",
+            "ped_demand_level": "high",
+            "bike_demand_level": "medium",
+            "transit_demand_level": "low",
+            "vehicle_demand_level": "medium",
+            "solver_backend_requested": "hybrid_milp_v1",
+            "solver_backend_used": "hybrid_milp_v1",
+            "cross_section_type": "complete_street",
+            "style_preset": "civic_clean_v1",
+            "asset_curation_mode": "scene_ready_first",
+            "parametric_instance_count": 0,
+            "production_step_count": 4,
+            "presentation_score": 0.42,
+        },
+        "placements": [],
+    }
+    layout_path.write_text(json.dumps(layout_payload), encoding="utf-8")
+
+    def fake_compose(**kwargs):
+        config = kwargs["config"]
+        captured_config["objective_profile"] = config.objective_profile
+        captured_config["ped_demand_level"] = config.ped_demand_level
+        captured_config["bike_demand_level"] = config.bike_demand_level
+        captured_config["transit_demand_level"] = config.transit_demand_level
+        captured_config["vehicle_demand_level"] = config.vehicle_demand_level
+        return StreetComposeResult(
+            query="urban street",
+            instance_count=1,
+            dropped_slots=0,
+            placements=[],
+            outputs={
+                "scene_glb": str(glb_path),
+                "scene_layout": str(layout_path),
+                "layout_solver_requested": "hybrid_milp_v1",
+                "layout_solver_used": "hybrid_milp_v1",
+            },
+        )
+
+    manifest_path = tmp_path / "real_assets_manifest.jsonl"
+    manifest_path.write_text(
+        json.dumps(
+            {
+                "asset_id": "bench_01",
+                "category": "bench",
+                "text_desc": "test bench",
+                "latent_path": str(tmp_path / "latents" / "bench_01.pt"),
+                "source": "parametric_generated",
+                "generator_type": "parametric_v1",
+            },
+            ensure_ascii=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(app, "compose_street_scene", fake_compose)
+    summary, rows, layout_json, model_path, files = app.run_street_compose(
+        dataset_profile="real",
+        query="urban street",
+        real_manifest_text=str(manifest_path),
+        artifacts_dir_text=str(tmp_path),
+        local_files_only=True,
+        device="cpu",
+        objective_profile="commerce",
+        ped_demand_level="high",
+        bike_demand_level="medium",
+        transit_demand_level="low",
+        vehicle_demand_level="medium",
+    )
+
+    assert captured_config == {
+        "objective_profile": "commerce",
+        "ped_demand_level": "high",
+        "bike_demand_level": "medium",
+        "transit_demand_level": "low",
+        "vehicle_demand_level": "medium",
+    }
+    assert "objective_profile: commerce" in summary
+    assert "demand_levels: ped=high, bike=medium, transit=low, vehicle=medium" in summary
+    assert "solver_backend_requested: hybrid_milp_v1" in summary
+    assert "solver_backend_used: hybrid_milp_v1" in summary
+    assert rows == []
+    assert layout_json
+    assert model_path == str(glb_path)
+    assert str(layout_path) in files
+
+
+def test_extract_solver_diagnostics_aggregates_osm_band_view():
+    pytest.importorskip("gradio")
+    import scripts.m1_gradio_app as app
+
+    payload = {
+        "config": {"layout_mode": "osm"},
+        "summary": {
+            "layout_mode": "osm",
+            "solver_backend_requested": "hybrid_milp_v1",
+            "solver_backend_used": "banded",
+            "objective_profile": "greening",
+            "solver_fallback_reason": "hybrid_milp_v1 produced no feasible slot assignment; fallback to banded",
+        },
+        "solver": {
+            "backend_requested": "hybrid_milp_v1",
+            "backend_used": "banded",
+            "objective_profile": "greening",
+            "fallback_reason": "hybrid_milp_v1 produced no feasible slot assignment; fallback to banded",
+            "active_constraints": [f"constraint_{idx}" for idx in range(12)],
+            "objective_score_breakdown": {"total_width_score": 8.0},
+            "throughput_feasibility": {
+                "overall_satisfied": False,
+                "by_mode": {
+                    "ped_clear_path": {"required": 2.4, "actual": 1.8, "satisfied": False},
+                    "vehicle_carriageway": {"required": 6.0, "actual": 8.0, "satisfied": True},
+                },
+            },
+            "band_solutions": [
+                {
+                    "band_name": "left_clear_path",
+                    "band_kind": "clear_path",
+                    "side": "left",
+                    "width_m": 2.2,
+                    "min_width_m": 1.8,
+                    "max_width_m": 3.2,
+                    "slack_m": 1.0,
+                    "objective_weight": 1.1,
+                    "active_constraint_names": ["left:min"],
+                },
+                {
+                    "band_name": "left_clear_path",
+                    "band_kind": "clear_path",
+                    "side": "left",
+                    "width_m": 2.6,
+                    "min_width_m": 1.8,
+                    "max_width_m": 3.4,
+                    "slack_m": 0.8,
+                    "objective_weight": 1.0,
+                    "active_constraint_names": ["left:min", "ped:throughput"],
+                },
+                {
+                    "band_name": "carriageway",
+                    "band_kind": "carriageway",
+                    "side": "",
+                    "width_m": 8.0,
+                    "min_width_m": 6.0,
+                    "max_width_m": 10.0,
+                    "slack_m": 2.0,
+                    "objective_weight": 1.0,
+                    "active_constraint_names": ["vehicle:throughput"],
+                },
+            ],
+        },
+    }
+
+    fig, summary_json = app._extract_solver_diagnostics(json.dumps(payload, ensure_ascii=True))
+    summary = json.loads(summary_json)
+
+    assert summary["band_view"] == "OSM aggregated band view"
+    assert summary["band_row_count"] == 2
+    assert summary["fallback_reason"].endswith("fallback to banded")
+    assert summary["active_constraint_count"] == 12
+    assert summary["active_constraints_display"][-1] == "+2 more"
+    assert summary["overall_throughput_satisfied"] is False
+    assert summary["throughput_feasibility"]["by_mode"]["ped_clear_path"]["satisfied"] is False
+    assert fig is not None
+
+
+def test_extract_cross_section_preview_builds_template_cross_section():
+    pytest.importorskip("gradio")
+    import scripts.m1_gradio_app as app
+
+    payload = {
+        "config": {"layout_mode": "template"},
+        "summary": {
+            "layout_mode": "template",
+            "solver_backend_used": "hybrid_milp_v1",
+            "objective_profile": "balanced",
+        },
+        "solver": {
+            "backend_used": "hybrid_milp_v1",
+            "objective_profile": "balanced",
+            "band_solutions": [
+                {
+                    "band_name": "left_furnishing",
+                    "band_kind": "furnishing",
+                    "side": "left",
+                    "width_m": 1.4,
+                    "min_width_m": 1.0,
+                    "max_width_m": 2.2,
+                },
+                {
+                    "band_name": "left_clear_path",
+                    "band_kind": "clear_path",
+                    "side": "left",
+                    "width_m": 2.2,
+                    "min_width_m": 1.8,
+                    "max_width_m": 3.0,
+                },
+                {
+                    "band_name": "carriageway",
+                    "band_kind": "carriageway",
+                    "side": "center",
+                    "width_m": 8.0,
+                    "min_width_m": 6.0,
+                    "max_width_m": 8.0,
+                },
+                {
+                    "band_name": "right_clear_path",
+                    "band_kind": "clear_path",
+                    "side": "right",
+                    "width_m": 2.2,
+                    "min_width_m": 1.8,
+                    "max_width_m": 3.0,
+                },
+                {
+                    "band_name": "right_furnishing",
+                    "band_kind": "furnishing",
+                    "side": "right",
+                    "width_m": 1.4,
+                    "min_width_m": 1.0,
+                    "max_width_m": 2.2,
+                },
+            ],
+        },
+    }
+
+    fig, summary_json = app._extract_cross_section_preview(json.dumps(payload, ensure_ascii=True))
+    summary = json.loads(summary_json)
+
+    assert summary["view_mode"] == "template"
+    assert summary["data_source"] == "solver_bands"
+    assert summary["band_count"] == 5
+    assert summary["total_width_m"] == pytest.approx(15.2)
+    assert fig is not None
+    assert fig.layout.title.text == "Cross-Section Preview"
+
+
+def test_extract_cross_section_preview_builds_osm_aggregated_cross_section():
+    pytest.importorskip("gradio")
+    import scripts.m1_gradio_app as app
+
+    payload = {
+        "config": {"layout_mode": "osm"},
+        "summary": {
+            "layout_mode": "osm",
+            "solver_backend_used": "banded",
+            "objective_profile": "greening",
+        },
+        "solver": {
+            "backend_used": "banded",
+            "objective_profile": "greening",
+            "band_solutions": [
+                {
+                    "band_name": "left_furnishing",
+                    "band_kind": "furnishing",
+                    "side": "left",
+                    "width_m": 1.2,
+                    "min_width_m": 0.9,
+                    "max_width_m": 2.0,
+                },
+                {
+                    "band_name": "left_furnishing",
+                    "band_kind": "furnishing",
+                    "side": "left",
+                    "width_m": 1.6,
+                    "min_width_m": 1.0,
+                    "max_width_m": 2.3,
+                },
+                {
+                    "band_name": "left_clear_path",
+                    "band_kind": "clear_path",
+                    "side": "left",
+                    "width_m": 2.4,
+                    "min_width_m": 1.8,
+                    "max_width_m": 3.0,
+                },
+                {
+                    "band_name": "carriageway",
+                    "band_kind": "carriageway",
+                    "side": "center",
+                    "width_m": 8.0,
+                    "min_width_m": 6.0,
+                    "max_width_m": 8.5,
+                },
+                {
+                    "band_name": "right_clear_path",
+                    "band_kind": "clear_path",
+                    "side": "right",
+                    "width_m": 2.1,
+                    "min_width_m": 1.8,
+                    "max_width_m": 3.0,
+                },
+                {
+                    "band_name": "right_transit_edge",
+                    "band_kind": "transit_edge",
+                    "side": "right",
+                    "width_m": 1.5,
+                    "min_width_m": 1.2,
+                    "max_width_m": 2.4,
+                },
+            ],
+        },
+    }
+
+    fig, summary_json = app._extract_cross_section_preview(json.dumps(payload, ensure_ascii=True))
+    summary = json.loads(summary_json)
+
+    assert summary["view_mode"] == "osm_aggregated"
+    assert summary["band_view"] == "OSM aggregated band view"
+    assert summary["data_source"] == "solver_bands"
+    assert summary["band_count"] == 5
+    assert fig is not None
+
+
+def test_extract_solver_diagnostics_tolerates_legacy_layout_payload():
+    pytest.importorskip("gradio")
+    import scripts.m1_gradio_app as app
+
+    fig, summary_json = app._extract_solver_diagnostics(json.dumps({"summary": {"layout_mode": "template"}}, ensure_ascii=True))
+    summary = json.loads(summary_json)
+
+    assert summary["band_view"] == "Template band view"
+    assert summary["band_row_count"] == 0
+    assert summary["throughput_mode_count"] == 0
+    assert summary["fallback_reason"] == "no fallback"
+    assert summary["active_constraints_display"] == []
+    if fig is not None:
+        assert fig.layout.title.text == "Solver Diagnostics"
+
+
+def test_extract_cross_section_preview_tolerates_legacy_layout_payload():
+    pytest.importorskip("gradio")
+    import scripts.m1_gradio_app as app
+
+    payload = {
+        "summary": {
+            "layout_mode": "template",
+            "left_clear_path_width_m": 2.0,
+            "left_furnishing_width_m": 1.2,
+            "road_width_m": 8.0,
+            "right_furnishing_width_m": 1.2,
+            "right_clear_path_width_m": 2.0,
+        }
+    }
+    fig, summary_json = app._extract_cross_section_preview(json.dumps(payload, ensure_ascii=True))
+    summary = json.loads(summary_json)
+
+    assert summary["data_source"] == "summary_fields"
+    assert summary["band_count"] == 5
+    assert summary["total_width_m"] == pytest.approx(14.4)
+    if fig is not None:
+        assert fig.layout.title.text == "Cross-Section Preview"
+
+
 def test_pick_category_candidate_parametric_first_prefers_parametric_bench(monkeypatch):
     asset_by_id = {
         "bench_legacy": _asset_row("bench_legacy", "bench", source="procedural_generated"),
