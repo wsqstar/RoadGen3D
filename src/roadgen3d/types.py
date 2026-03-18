@@ -75,6 +75,7 @@ class StreetComposeConfig:
     style_preset: str = "civic_clean_v1"
     render_preset: str = "jury_default_v1"
     topdown_render_mode: str = "design_tiles_v1"  # "legacy_vector" | "design_tiles_v1"
+    scene_texture_mode: str = "topdown_tiles_v1"  # "topdown_tiles_v1" | "solid_color_legacy"
     topdown_canvas_px: int = 2048
     asset_curation_mode: str = "scene_ready_first"
 
@@ -98,6 +99,10 @@ class StreetComposeConfig:
     theme_vocab_name: str = "fixed_v1"
     building_height_mode: str = "theme_random"  # "class_only" | "theme_random"
     building_height_profile: str = "urban_default_v1"
+    land_use_asymmetry_strength: float = 0.35
+    left_right_bias: float = 0.0
+    building_front_setback_min_m: float = 1.0
+    building_front_setback_max_m: float = 2.0
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -552,15 +557,24 @@ class BuildingFootprint:
     depth_m: float
     yaw_deg: float
     theme_id: str
+    land_use_type: str = ""
+    side: str = ""
     height_class: str = "midrise"
     target_height_m: float = 0.0
     anchor_geom_id: str = ""
     size_class: str = "medium"
+    street_edge_xz: Tuple[float, float] = (0.0, 0.0)
+    placement_xz: Tuple[float, float] = (0.0, 0.0)
+    front_setback_m: float = 0.0
+    placement_strategy: str = "footprint_centroid"
+    building_depth_m: float = 0.0
 
     def to_dict(self) -> Dict[str, Any]:
         payload = asdict(self)
         payload["polygon_xz"] = [list(point) for point in self.polygon_xz]
         payload["centroid_xz"] = list(self.centroid_xz)
+        payload["street_edge_xz"] = list(self.street_edge_xz)
+        payload["placement_xz"] = list(self.placement_xz)
         return payload
 
 
@@ -582,11 +596,18 @@ class GeneratedLot:
     source: str = "grid_growth"
     cell_ids: Tuple[str, ...] = ()
     segment_ids: Tuple[str, ...] = ()
+    street_edge_xz: Tuple[float, float] = (0.0, 0.0)
+    placement_xz: Tuple[float, float] = (0.0, 0.0)
+    front_setback_m: float = 0.0
+    placement_strategy: str = "lot_center"
+    building_depth_m: float = 0.0
 
     def to_dict(self) -> Dict[str, Any]:
         payload = asdict(self)
         payload["polygon_xz"] = [list(point) for point in self.polygon_xz]
         payload["center_xz"] = list(self.center_xz)
+        payload["street_edge_xz"] = list(self.street_edge_xz)
+        payload["placement_xz"] = list(self.placement_xz)
         payload["cell_ids"] = list(self.cell_ids)
         payload["segment_ids"] = list(self.segment_ids)
         return payload
@@ -611,6 +632,8 @@ class BuildingPlacementPlan:
     retrieval_score: float = 0.0
     fallback_reason: str = ""
     target_height_m: float = 0.0
+    placement_strategy: str = ""
+    front_setback_m: float = 0.0
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -717,6 +740,8 @@ class ProductionStepRecord:
     title: str
     glb_path: str
     companion_path: str = ""
+    scene_texture_mode: str = "topdown_tiles_v1"
+    textured_base_enabled: bool = False
     visible_instance_ids: Tuple[str, ...] = ()
     delta_instance_ids: Tuple[str, ...] = ()
     counts: Dict[str, int] = field(default_factory=dict)

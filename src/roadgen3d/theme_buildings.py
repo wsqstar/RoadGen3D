@@ -266,6 +266,10 @@ def collect_building_footprints(
     seed: int = 0,
     height_mode: str = "theme_random",
     height_profile: str = "urban_default_v1",
+    asymmetry_strength: float = 0.35,
+    left_right_bias: float = 0.0,
+    front_setback_min_m: float = 1.0,
+    front_setback_max_m: float = 2.0,
 ) -> Tuple[BuildingFootprint, ...]:
     """Collect nearby OSM building footprints or fallback proxy footprints."""
 
@@ -288,10 +292,11 @@ def collect_building_footprints(
                 continue
             centroid = (float(polygon.centroid.x), float(polygon.centroid.y))
             theme_id = assign_theme_id_for_point(centroid, theme_segments, road_segment_graph)
+            theme_name = _resolve_theme_key(theme_id, theme_segments)
             yaw_deg, frontage_width_m, depth_m = oriented_bounds_metrics(polygon)
             fid = f"building_{len(footprints):03d}"
             if height_mode == "theme_random":
-                _theme_key = _resolve_theme_key(theme_id, theme_segments)
+                _theme_key = theme_name
                 _th = sample_building_target_height(
                     seed=seed,
                     target_id=fid,
@@ -315,17 +320,29 @@ def collect_building_footprints(
                     depth_m=float(depth_m),
                     yaw_deg=float(yaw_deg),
                     theme_id=theme_id,
+                    land_use_type=land_use_for_theme(theme_name),
                     height_class=_hc,
                     target_height_m=_th,
                     anchor_geom_id=str(getattr(building, "osm_id", "")),
                     size_class=_size_class(frontage_width_m, depth_m),
+                    street_edge_xz=centroid,
+                    placement_xz=centroid,
+                    front_setback_m=0.0,
+                    placement_strategy="footprint_centroid",
+                    building_depth_m=float(depth_m),
                 )
             )
     if footprints:
         return tuple(footprints)
     return tuple(_fallback_building_footprints(
         theme_segments, placement_context, road_segment_graph,
-        seed=seed, height_mode=height_mode, height_profile=height_profile,
+        seed=seed,
+        height_mode=height_mode,
+        height_profile=height_profile,
+        asymmetry_strength=asymmetry_strength,
+        left_right_bias=left_right_bias,
+        front_setback_min_m=front_setback_min_m,
+        front_setback_max_m=front_setback_max_m,
     ))
 
 
@@ -453,6 +470,169 @@ def oriented_rectangle_points(
 def land_use_for_theme(theme_name: str) -> str:
     theme_value = str(theme_name).strip().lower()
     return theme_value if theme_value in THEME_VOCAB else "commercial"
+
+
+def _clamp(value: float, lower: float, upper: float) -> float:
+    return float(max(lower, min(upper, value)))
+
+
+def _quiet_land_use_for_theme(theme_name: str) -> str:
+    base = land_use_for_theme(theme_name)
+    if base == "commercial":
+        return "residential"
+    if base == "transit":
+        return "commercial"
+    if base == "residential":
+        return "commercial"
+    if base == "green":
+        return "residential"
+    return "residential"
+
+
+def _resolve_active_side(
+    *,
+    seed: int,
+    theme_id: str,
+    theme_name: str,
+    left_right_bias: float,
+) -> str:
+    bias = _clamp(float(left_right_bias), -1.0, 1.0)
+    if bias > 1e-6:
+        return "left"
+    if bias < -1e-6:
+        return "right"
+    u = _hash_to_unit(f"{seed}:active_side:{theme_id}:{theme_name}")
+    return "left" if u >= 0.5 else "right"
+
+
+def _resolve_side_zoning_profile(
+    *,
+    seed: int,
+    theme_id: str,
+    theme_name: str,
+    asymmetry_strength: float,
+    left_right_bias: float,
+) -> Dict[str, object]:
+    strength = _clamp(float(asymmetry_strength), 0.0, 1.0)
+    base_land_use = land_use_for_theme(theme_name)
+    quiet_land_use = _quiet_land_use_for_theme(theme_name)
+    if strength <= 1e-6:
+        return {
+            "active_side": "",
+            "left_land_use_type": base_land_use,
+            "right_land_use_type": base_land_use,
+            "left_width_multiplier": 1.0,
+            "right_width_multiplier": 1.0,
+        }
+
+    active_side = _resolve_active_side(
+        seed=seed,
+        theme_id=theme_id,
+        theme_name=theme_name,
+        left_right_bias=left_right_bias,
+    )
+    delta = 0.25 * strength
+    if active_side == "left":
+        return {
+            "active_side": "left",
+            "left_land_use_type": base_land_use,
+            "right_land_use_type": quiet_land_use,
+            "left_width_multiplier": 1.0 + delta,
+            "right_width_multiplier": max(0.5, 1.0 - delta),
+        }
+    return {
+        "active_side": "right",
+        "left_land_use_type": quiet_land_use,
+        "right_land_use_type": base_land_use,
+        "left_width_multiplier": max(0.5, 1.0 - delta),
+        "right_width_multiplier": 1.0 + delta,
+    }
+
+
+def _segment_offset_midpoint(
+    start_xy: Tuple[float, float],
+    end_xy: Tuple[float, float],
+    *,
+    offset_m: float,
+) -> Tuple[float, float]:
+    tangent_payload = _segment_tangent_normal(start_xy, end_xy)
+    if tangent_payload is None:
+        return (
+            (float(start_xy[0]) + float(end_xy[0])) / 2.0,
+            (float(start_xy[1]) + float(end_xy[1])) / 2.0,
+        )
+    _tangent, left_normal, _length = tangent_payload
+    start = (
+        float(start_xy[0]) + left_normal[0] * float(offset_m),
+        float(start_xy[1]) + left_normal[1] * float(offset_m),
+    )
+    end = (
+        float(end_xy[0]) + left_normal[0] * float(offset_m),
+        float(end_xy[1]) + left_normal[1] * float(offset_m),
+    )
+    return ((start[0] + end[0]) / 2.0, (start[1] + end[1]) / 2.0)
+
+
+def _average_points(points: Sequence[Tuple[float, float]]) -> Tuple[float, float]:
+    samples = [(float(x), float(z)) for x, z in points]
+    if not samples:
+        return (0.0, 0.0)
+    return (
+        float(sum(point[0] for point in samples) / len(samples)),
+        float(sum(point[1] for point in samples) / len(samples)),
+    )
+
+
+def _sample_front_setback_m(
+    *,
+    seed: int,
+    target_id: str,
+    minimum_m: float,
+    maximum_m: float,
+) -> float:
+    lo = max(0.0, float(minimum_m))
+    hi = max(lo, float(maximum_m))
+    if hi - lo <= 1e-6:
+        return round(lo, 3)
+    u = _hash_to_unit(f"{seed}:front_setback:{target_id}")
+    return round(lo + (hi - lo) * u, 3)
+
+
+def _resolve_frontage_placement(
+    *,
+    street_edge_xz: Tuple[float, float],
+    side: str,
+    yaw_deg: float,
+    parcel_depth_m: float,
+    front_setback_m: float,
+) -> Tuple[Tuple[float, float], float, str]:
+    parcel_depth = max(float(parcel_depth_m), 1.5)
+    setback = max(float(front_setback_m), 0.0)
+    desired_depth = max(4.0, parcel_depth * 0.68)
+    max_depth_without_clamp = max(parcel_depth - setback - 0.75, 1.5)
+    if max_depth_without_clamp >= 4.0:
+        building_depth = min(desired_depth, max_depth_without_clamp)
+        placement_strategy = "frontage_setback"
+    else:
+        building_depth = max(parcel_depth - setback, 1.5)
+        placement_strategy = "frontage_clamped"
+        if building_depth <= 1.5:
+            building_depth = max(parcel_depth * 0.5, 1.0)
+            placement_strategy = "lot_center"
+            setback = 0.0
+    if building_depth > parcel_depth - setback:
+        building_depth = max(parcel_depth - setback, 1.0)
+        placement_strategy = "frontage_clamped"
+
+    center_offset_m = max(setback + building_depth / 2.0, building_depth / 2.0)
+    yaw_rad = math.radians(float(yaw_deg))
+    left_normal = (-math.sin(yaw_rad), math.cos(yaw_rad))
+    sign = 1.0 if str(side).strip().lower() == "left" else -1.0
+    placement_xz = (
+        float(street_edge_xz[0]) + left_normal[0] * sign * center_offset_m,
+        float(street_edge_xz[1]) + left_normal[1] * sign * center_offset_m,
+    )
+    return placement_xz, float(building_depth), placement_strategy
 
 
 def infer_grid_height_class(land_use_type: str, *, road_type: str = "") -> str:
@@ -589,6 +769,8 @@ def generate_grid_growth_lots(
     seed: int = 0,
     height_mode: str = "theme_random",
     height_profile: str = "urban_default_v1",
+    front_setback_min_m: float = 1.0,
+    front_setback_max_m: float = 2.0,
 ) -> Tuple[Tuple[Dict[str, Any], ...], Tuple[GeneratedLot, ...], Dict[str, Any]]:
     annotated_cells: List[Dict[str, Any]] = []
     for cell in zoning_grid:
@@ -668,15 +850,41 @@ def generate_grid_growth_lots(
             depth_m = max(_cell_frontage_depth(cell)[1] for cell in lot_cells)
             lot_id = f"lot_{len(lots):03d}"
             yaw_deg = _cell_yaw_deg(lot_cells[0])
+            street_edge_points = [
+                (float(edge[0]), float(edge[1]))
+                for cell in lot_cells
+                for edge in [cell.get("street_edge_xz", ()) or ()]
+                if len(edge) >= 2
+            ]
+            street_edge_xz = _average_points(street_edge_points) if street_edge_points else (float(center_xz[0]), float(center_xz[1]))
+            front_setback_m = _sample_front_setback_m(
+                seed=seed,
+                target_id=lot_id,
+                minimum_m=front_setback_min_m,
+                maximum_m=front_setback_max_m,
+            )
+            if street_edge_points:
+                placement_xz, building_depth_m, placement_strategy = _resolve_frontage_placement(
+                    street_edge_xz=street_edge_xz,
+                    side=_cell_side(lot_cells[0]),
+                    yaw_deg=float(yaw_deg),
+                    parcel_depth_m=float(depth_m),
+                    front_setback_m=float(front_setback_m),
+                )
+            else:
+                placement_xz = (float(center_xz[0]), float(center_xz[1]))
+                building_depth_m = float(max(depth_m, 4.0))
+                placement_strategy = "lot_center"
+                front_setback_m = 0.0
             _fw = float(max(frontage_width_m, 4.0))
-            _dp = float(max(depth_m, 4.0))
+            _sample_depth_m = float(max(building_depth_m, 4.0))
             if height_mode == "theme_random":
                 _th = sample_building_target_height(
                     seed=seed,
                     target_id=lot_id,
                     land_use_type=land_use_type,
                     frontage_width_m=_fw,
-                    depth_m=_dp,
+                    depth_m=_sample_depth_m,
                     source="grid_growth",
                     height_profile=height_profile,
                 )
@@ -696,7 +904,7 @@ def generate_grid_growth_lots(
                     land_use_type=land_use_type,
                     theme_id=str(lot_cells[0].get("theme_id", "") or ""),
                     frontage_width_m=_fw,
-                    depth_m=_dp,
+                    depth_m=float(max(depth_m, 4.0)),
                     height_class=_hc,
                     target_height_m=_th,
                     yaw_deg=float(yaw_deg),
@@ -712,6 +920,11 @@ def generate_grid_growth_lots(
                             }
                         )
                     ),
+                    street_edge_xz=(float(street_edge_xz[0]), float(street_edge_xz[1])),
+                    placement_xz=(float(placement_xz[0]), float(placement_xz[1])),
+                    front_setback_m=float(front_setback_m),
+                    placement_strategy=str(placement_strategy),
+                    building_depth_m=float(building_depth_m),
                 )
             )
             cursor = next_cursor
@@ -735,7 +948,18 @@ def generate_grid_growth_lots(
                 if "building_buffer" in str(cell.get("lane_role", "") or "") and str(cell.get("lot_id", "") or "")
             )
         ),
+        "placement_strategy_counts": {
+            key: int(value)
+            for key, value in sorted(Counter(lot.placement_strategy for lot in lots).items())
+        },
     }
+    _front_setbacks = [lot.front_setback_m for lot in lots if lot.front_setback_m > 0.0]
+    if _front_setbacks:
+        summary["front_setback_stats"] = {
+            "min_m": round(min(_front_setbacks), 3),
+            "max_m": round(max(_front_setbacks), 3),
+            "mean_m": round(sum(_front_setbacks) / len(_front_setbacks), 3),
+        }
     # Add target height stats when in theme_random mode
     _heights = [lot.target_height_m for lot in lots if lot.target_height_m > 0.0]
     if _heights:
@@ -755,9 +979,28 @@ def _fallback_building_footprints(
     seed: int = 0,
     height_mode: str = "theme_random",
     height_profile: str = "urban_default_v1",
+    asymmetry_strength: float = 0.35,
+    left_right_bias: float = 0.0,
+    front_setback_min_m: float = 1.0,
+    front_setback_max_m: float = 2.0,
 ) -> List[BuildingFootprint]:
     footprints: List[BuildingFootprint] = []
-    row_half = float(getattr(placement_context, "row_width_m", 16.0) or 16.0) / 2.0
+    carriageway_width_m = float(
+        getattr(placement_context, "carriageway_width_m", 0.0)
+        or getattr(placement_context, "road_width_m", 0.0)
+        or 8.0
+    )
+    carriageway_half = carriageway_width_m / 2.0
+    left_sidewalk_width_m = float(
+        (getattr(placement_context, "left_clear_path_width_m", 0.0) or 0.0)
+        + (getattr(placement_context, "left_furnishing_width_m", 0.0) or 0.0)
+        or 2.5
+    )
+    right_sidewalk_width_m = float(
+        (getattr(placement_context, "right_clear_path_width_m", 0.0) or 0.0)
+        + (getattr(placement_context, "right_furnishing_width_m", 0.0) or 0.0)
+        or 2.5
+    )
     nodes_by_id = {
         str(getattr(node, "segment_id", "")): node
         for node in getattr(road_segment_graph, "nodes", ()) or ()
@@ -770,51 +1013,103 @@ def _fallback_building_footprints(
             dx = float(getattr(sample_node, "end_xy", (1.0, 0.0))[0]) - float(getattr(sample_node, "start_xy", (0.0, 0.0))[0])
             dz = float(getattr(sample_node, "end_xy", (1.0, 0.0))[1]) - float(getattr(sample_node, "start_xy", (0.0, 0.0))[1])
             yaw_deg = math.degrees(math.atan2(dz, dx)) if abs(dx) + abs(dz) > 1e-6 else 0.0
+            start_xy = tuple(float(v) for v in getattr(sample_node, "start_xy", (center_x, center_z)))
+            end_xy = tuple(float(v) for v in getattr(sample_node, "end_xy", (center_x + 1.0, center_z)))
         else:
             center_x, center_z, yaw_deg = theme_segment.center_x_m, 0.0, 0.0
-        length_m = min(max(theme_segment.length_m * 0.55, 12.0), 24.0)
-        depth_m = 12.0 if theme_segment.theme_name in {"commercial", "transit"} else 10.0
-        lateral_offset = row_half + depth_m / 2.0 + 6.0
-        yaw_rad = math.radians(yaw_deg)
-        left_normal = (-math.sin(yaw_rad), math.cos(yaw_rad))
-        for side_name, sign in (("left", 1.0), ("right", -1.0)):
-            offset_x = center_x + left_normal[0] * lateral_offset * sign
-            offset_z = center_z + left_normal[1] * lateral_offset * sign
+            half_span = float(theme_segment.length_m) / 2.0
+            yaw_rad = math.radians(yaw_deg)
+            start_xy = (
+                float(center_x) - math.cos(yaw_rad) * half_span,
+                float(center_z) - math.sin(yaw_rad) * half_span,
+            )
+            end_xy = (
+                float(center_x) + math.cos(yaw_rad) * half_span,
+                float(center_z) + math.sin(yaw_rad) * half_span,
+            )
+        profile = _resolve_side_zoning_profile(
+            seed=seed,
+            theme_id=theme_segment.theme_id,
+            theme_name=theme_segment.theme_name,
+            asymmetry_strength=asymmetry_strength,
+            left_right_bias=left_right_bias,
+        )
+        base_frontage_m = min(max(theme_segment.length_m * 0.55, 12.0), 24.0)
+        for side_name in ("left", "right"):
+            land_use_type = str(profile[f"{side_name}_land_use_type"])
+            width_multiplier = float(profile[f"{side_name}_width_multiplier"])
+            frontage_scale = 1.0 + (0.12 * float(asymmetry_strength) if side_name == str(profile.get("active_side", "")) else -0.08 * float(asymmetry_strength))
+            frontage_m = max(8.0, base_frontage_m * max(frontage_scale, 0.7))
+            base_depth_m = 12.0 if land_use_type in {"commercial", "transit"} else 10.0
+            parcel_depth_m = max(8.0, base_depth_m * max(width_multiplier, 0.65))
+            if side_name == "left":
+                street_edge_xz = _segment_offset_midpoint(
+                    start_xy,
+                    end_xy,
+                    offset_m=float(carriageway_half + left_sidewalk_width_m),
+                )
+            else:
+                street_edge_xz = _segment_offset_midpoint(
+                    start_xy,
+                    end_xy,
+                    offset_m=-float(carriageway_half + right_sidewalk_width_m),
+                )
             fid = f"{theme_segment.theme_id}_{side_name}"
+            front_setback_m = _sample_front_setback_m(
+                seed=seed,
+                target_id=fid,
+                minimum_m=front_setback_min_m,
+                maximum_m=front_setback_max_m,
+            )
+            placement_xz, building_depth_m, placement_strategy = _resolve_frontage_placement(
+                street_edge_xz=street_edge_xz,
+                side=side_name,
+                yaw_deg=float(yaw_deg),
+                parcel_depth_m=float(parcel_depth_m),
+                front_setback_m=float(front_setback_m),
+            )
             if height_mode == "theme_random":
                 _th = sample_building_target_height(
                     seed=seed,
                     target_id=fid,
                     theme_name=theme_segment.theme_name,
-                    frontage_width_m=float(length_m),
-                    depth_m=float(depth_m),
+                    land_use_type=land_use_type,
+                    frontage_width_m=float(frontage_m),
+                    depth_m=float(building_depth_m),
                     source="fallback",
                     height_profile=height_profile,
                 )
                 _hc = height_class_from_height_m(_th)
             else:
                 _th = 0.0
-                _hc = "midrise"
+                _hc = str(infer_grid_height_class(land_use_type) or "midrise")
             footprints.append(
                 BuildingFootprint(
                     footprint_id=fid,
                     source="fallback",
                     polygon_xz=oriented_rectangle_points(
-                        center_x=float(offset_x),
-                        center_z=float(offset_z),
+                        center_x=float(placement_xz[0]),
+                        center_z=float(placement_xz[1]),
                         yaw_deg=float(yaw_deg),
-                        length_m=float(length_m),
-                        depth_m=float(depth_m),
+                        length_m=float(frontage_m),
+                        depth_m=float(building_depth_m),
                     ),
-                    centroid_xz=(float(offset_x), float(offset_z)),
-                    frontage_width_m=float(length_m),
-                    depth_m=float(depth_m),
+                    centroid_xz=(float(placement_xz[0]), float(placement_xz[1])),
+                    frontage_width_m=float(frontage_m),
+                    depth_m=float(building_depth_m),
                     yaw_deg=float(yaw_deg),
                     theme_id=theme_segment.theme_id,
+                    land_use_type=land_use_type,
+                    side=side_name,
                     height_class=_hc,
                     target_height_m=_th,
                     anchor_geom_id=f"{theme_segment.theme_id}:{side_name}",
-                    size_class=_size_class(length_m, depth_m),
+                    size_class=_size_class(frontage_m, building_depth_m),
+                    street_edge_xz=(float(street_edge_xz[0]), float(street_edge_xz[1])),
+                    placement_xz=(float(placement_xz[0]), float(placement_xz[1])),
+                    front_setback_m=float(front_setback_m),
+                    placement_strategy=str(placement_strategy),
+                    building_depth_m=float(building_depth_m),
                 )
             )
     return footprints
@@ -1003,6 +1298,10 @@ def build_zoning_grid_preview(
     building_footprints: Sequence[BuildingFootprint],
     road_buffer_m: float = 35.0,
 ) -> Tuple[Tuple[Dict[str, Any], ...], Dict[str, Any]]:
+    asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.35)
+    bias_raw = getattr(config, "left_right_bias", 0.0)
+    asymmetry_strength = _clamp(float(0.35 if asymmetry_raw is None else asymmetry_raw), 0.0, 1.0)
+    left_right_bias = _clamp(float(0.0 if bias_raw is None else bias_raw), -1.0, 1.0)
     theme_by_segment_id = {
         segment_id: theme_segment
         for theme_segment in theme_segments
@@ -1061,6 +1360,11 @@ def build_zoning_grid_preview(
             "building_cell_counts": {},
             "occupied_building_cells": 0,
             "buildable_cell_count": 0,
+            "side_land_use_counts": {"left": {}, "right": {}},
+            "active_side_counts": {},
+            "building_buffer_width_m": {"left": 0.0, "right": 0.0},
+            "asymmetry_strength": float(asymmetry_strength),
+            "left_right_bias": float(left_right_bias),
         }
 
     try:
@@ -1083,23 +1387,48 @@ def build_zoning_grid_preview(
         )
 
     carriageway_half = float(carriageway_width_m) / 2.0
-    lane_specs = (
-        ("left_building_buffer", float(carriageway_half + left_sidewalk_width_m), float(carriageway_half + left_sidewalk_width_m + left_building_buffer_m)),
-        ("left_sidewalk", float(carriageway_half), float(carriageway_half + left_sidewalk_width_m)),
-        ("carriageway", -float(carriageway_half), float(carriageway_half)),
-        ("right_sidewalk", -float(carriageway_half + right_sidewalk_width_m), -float(carriageway_half)),
-        ("right_building_buffer", -float(carriageway_half + right_sidewalk_width_m + right_building_buffer_m), -float(carriageway_half + right_sidewalk_width_m)),
-    )
     building_roles = {"left_building_buffer", "right_building_buffer"}
 
     cells: List[Dict[str, Any]] = []
     theme_cell_counts: Dict[str, int] = {}
     building_cell_counts: Dict[str, int] = {}
+    side_land_use_counts: Dict[str, Dict[str, int]] = {"left": {}, "right": {}}
+    active_side_counts: Dict[str, int] = {}
+    buffer_width_accum: Dict[str, List[float]] = {"left": [], "right": []}
     occupied_building_cells = 0
     for segment_idx, segment in enumerate(raw_segments):
         theme_segment = segment.get("theme_segment")
         theme_id = str(getattr(theme_segment, "theme_id", "") or "")
         theme_name = str(getattr(theme_segment, "theme_name", "") or "commercial")
+        side_profile = _resolve_side_zoning_profile(
+            seed=int(getattr(config, "seed", 0) or 0),
+            theme_id=theme_id or f"seg_{segment_idx:03d}",
+            theme_name=theme_name,
+            asymmetry_strength=asymmetry_strength,
+            left_right_bias=left_right_bias,
+        )
+        if str(side_profile.get("active_side", "") or ""):
+            active_side = str(side_profile["active_side"])
+            active_side_counts[active_side] = active_side_counts.get(active_side, 0) + 1
+        segment_left_building_buffer_m = _clamp(
+            float(left_building_buffer_m) * float(side_profile.get("left_width_multiplier", 1.0) or 1.0),
+            8.0,
+            float(road_buffer_m),
+        )
+        segment_right_building_buffer_m = _clamp(
+            float(right_building_buffer_m) * float(side_profile.get("right_width_multiplier", 1.0) or 1.0),
+            8.0,
+            float(road_buffer_m),
+        )
+        buffer_width_accum["left"].append(float(segment_left_building_buffer_m))
+        buffer_width_accum["right"].append(float(segment_right_building_buffer_m))
+        lane_specs = (
+            ("left_building_buffer", float(carriageway_half + left_sidewalk_width_m), float(carriageway_half + left_sidewalk_width_m + segment_left_building_buffer_m)),
+            ("left_sidewalk", float(carriageway_half), float(carriageway_half + left_sidewalk_width_m)),
+            ("carriageway", -float(carriageway_half), float(carriageway_half)),
+            ("right_sidewalk", -float(carriageway_half + right_sidewalk_width_m), -float(carriageway_half)),
+            ("right_building_buffer", -float(carriageway_half + right_sidewalk_width_m + segment_right_building_buffer_m), -float(carriageway_half + right_sidewalk_width_m)),
+        )
         segment_ids = [str(segment["segment_id"])]
         for lane_role, inner_offset_m, outer_offset_m in lane_specs:
             polygon_xz = _band_polygon_from_segment(
@@ -1129,9 +1458,34 @@ def build_zoning_grid_preview(
                 building_cell_counts[lane_role] = building_cell_counts.get(lane_role, 0) + 1
                 if footprint_ids:
                     occupied_building_cells += 1
-            land_use_type = land_use_for_theme(theme_name) if lane_role in building_roles else ""
+            if lane_role == "left_building_buffer":
+                land_use_type = str(side_profile.get("left_land_use_type", land_use_for_theme(theme_name)))
+                street_edge_xz = _segment_offset_midpoint(
+                    tuple(segment["start_xy"]),
+                    tuple(segment["end_xy"]),
+                    offset_m=float(carriageway_half + left_sidewalk_width_m),
+                )
+                side_land_use_counts["left"][land_use_type] = side_land_use_counts["left"].get(land_use_type, 0) + 1
+            elif lane_role == "right_building_buffer":
+                land_use_type = str(side_profile.get("right_land_use_type", land_use_for_theme(theme_name)))
+                street_edge_xz = _segment_offset_midpoint(
+                    tuple(segment["start_xy"]),
+                    tuple(segment["end_xy"]),
+                    offset_m=-float(carriageway_half + right_sidewalk_width_m),
+                )
+                side_land_use_counts["right"][land_use_type] = side_land_use_counts["right"].get(land_use_type, 0) + 1
+            else:
+                land_use_type = ""
+                street_edge_xz = None
             buildable = bool(lane_role in building_roles and land_use_type and land_use_type != "green")
             cell_center = _polygon_center(polygon_xz)
+            building_buffer_width_for_cell = (
+                float(segment_left_building_buffer_m)
+                if lane_role == "left_building_buffer"
+                else float(segment_right_building_buffer_m)
+                if lane_role == "right_building_buffer"
+                else 0.0
+            )
             cells.append(
                 {
                     "cell_id": f"zone_{segment_idx:03d}_{lane_role}",
@@ -1153,6 +1507,9 @@ def build_zoning_grid_preview(
                         float(segment.get("station_start_m", 0.0) or 0.0),
                         float(segment.get("station_end_m", 0.0) or 0.0),
                     ],
+                    "street_edge_xz": [float(street_edge_xz[0]), float(street_edge_xz[1])] if street_edge_xz is not None else [],
+                    "building_buffer_width_m": float(building_buffer_width_for_cell),
+                    "active_side": str(side_profile.get("active_side", "") or ""),
                 }
             )
             theme_cell_counts[theme_name] = theme_cell_counts.get(theme_name, 0) + 1
@@ -1165,9 +1522,16 @@ def build_zoning_grid_preview(
         "occupied_building_cells": int(occupied_building_cells),
         "buildable_cell_count": int(sum(1 for cell in cells if bool(cell.get("buildable", False)))),
         "building_buffer_width_m": {
-            "left": float(left_building_buffer_m),
-            "right": float(right_building_buffer_m),
+            "left": round(sum(buffer_width_accum["left"]) / len(buffer_width_accum["left"]), 3) if buffer_width_accum["left"] else 0.0,
+            "right": round(sum(buffer_width_accum["right"]) / len(buffer_width_accum["right"]), 3) if buffer_width_accum["right"] else 0.0,
         },
+        "side_land_use_counts": {
+            side: {key: int(value) for key, value in sorted(counts.items())}
+            for side, counts in side_land_use_counts.items()
+        },
+        "active_side_counts": {key: int(value) for key, value in sorted(active_side_counts.items())},
+        "asymmetry_strength": float(asymmetry_strength),
+        "left_right_bias": float(left_right_bias),
     }
     return tuple(cells), summary
 

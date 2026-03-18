@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
@@ -13,12 +14,13 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from roadgen3d.theme_buildings import (
+    build_zoning_grid_preview,
     generate_grid_growth_lots,
     height_class_from_height_m,
     infer_theme_segments,
     sample_building_target_height,
 )
-from roadgen3d.types import RoadSegmentGraph, RoadSegmentNode
+from roadgen3d.types import RoadSegmentGraph, RoadSegmentNode, StreetComposeConfig, ThemeSegment
 
 
 def _graph_for_theme(*, highway_type: str, poi_types: tuple[str, ...]) -> RoadSegmentGraph:
@@ -40,6 +42,37 @@ def _graph_for_theme(*, highway_type: str, poi_types: tuple[str, ...]) -> RoadSe
         ),
         edges=(),
         mode="osm",
+    )
+
+
+def _zoning_config(*, seed: int = 42, asymmetry_strength: float = 0.35, left_right_bias: float = 0.0) -> StreetComposeConfig:
+    return StreetComposeConfig(
+        query="commercial boulevard",
+        length_m=40.0,
+        road_width_m=8.0,
+        sidewalk_width_m=2.5,
+        lane_count=2,
+        density=1.0,
+        seed=seed,
+        topk_per_category=10,
+        max_trials_per_slot=10,
+        layout_mode="osm",
+        land_use_asymmetry_strength=asymmetry_strength,
+        left_right_bias=left_right_bias,
+    )
+
+
+def _single_theme_segment(theme_name: str = "commercial") -> tuple[ThemeSegment, ...]:
+    return (
+        ThemeSegment(
+            theme_id="theme_000",
+            theme_name=theme_name,
+            x_start_m=-5.0,
+            x_end_m=5.0,
+            center_x_m=0.0,
+            length_m=10.0,
+            segment_ids=("seg_0000",),
+        ),
     )
 
 
@@ -125,12 +158,110 @@ def test_infer_theme_segments_merges_adjacent_equal_themes():
     assert segments[1].theme_name == "transit"
 
 
+def test_build_zoning_grid_preview_defaults_to_side_specific_land_use_and_widths():
+    graph = _graph_for_theme(highway_type="tertiary", poi_types=("entrance",))
+    placement_context = SimpleNamespace(
+        carriageway_width_m=8.0,
+        left_clear_path_width_m=1.8,
+        left_furnishing_width_m=0.7,
+        right_clear_path_width_m=1.8,
+        right_furnishing_width_m=0.7,
+    )
+
+    zoning_grid, summary = build_zoning_grid_preview(
+        config=_zoning_config(seed=11),
+        placement_context=placement_context,
+        road_segment_graph=graph,
+        theme_segments=_single_theme_segment("commercial"),
+        building_footprints=(),
+        road_buffer_m=35.0,
+    )
+
+    left_cell = next(cell for cell in zoning_grid if cell["lane_role"] == "left_building_buffer")
+    right_cell = next(cell for cell in zoning_grid if cell["lane_role"] == "right_building_buffer")
+
+    assert left_cell["land_use_type"] != right_cell["land_use_type"]
+    assert left_cell["building_buffer_width_m"] != right_cell["building_buffer_width_m"]
+    assert summary["side_land_use_counts"]["left"]
+    assert summary["side_land_use_counts"]["right"]
+    assert summary["asymmetry_strength"] == pytest.approx(0.35)
+    assert summary["active_side_counts"]
+
+
+@pytest.mark.parametrize(
+    ("bias", "expected_active_side"),
+    [
+        (0.4, "left"),
+        (-0.4, "right"),
+    ],
+)
+def test_build_zoning_grid_preview_respects_left_right_bias(bias: float, expected_active_side: str):
+    graph = _graph_for_theme(highway_type="tertiary", poi_types=("entrance",))
+    placement_context = SimpleNamespace(
+        carriageway_width_m=8.0,
+        left_clear_path_width_m=1.8,
+        left_furnishing_width_m=0.7,
+        right_clear_path_width_m=1.8,
+        right_furnishing_width_m=0.7,
+    )
+
+    zoning_grid, summary = build_zoning_grid_preview(
+        config=_zoning_config(seed=11, left_right_bias=bias),
+        placement_context=placement_context,
+        road_segment_graph=graph,
+        theme_segments=_single_theme_segment("commercial"),
+        building_footprints=(),
+        road_buffer_m=35.0,
+    )
+
+    left_cell = next(cell for cell in zoning_grid if cell["lane_role"] == "left_building_buffer")
+    right_cell = next(cell for cell in zoning_grid if cell["lane_role"] == "right_building_buffer")
+
+    assert summary["active_side_counts"] == {expected_active_side: 1}
+    if expected_active_side == "left":
+        assert left_cell["land_use_type"] == "commercial"
+        assert right_cell["land_use_type"] == "residential"
+        assert left_cell["building_buffer_width_m"] > right_cell["building_buffer_width_m"]
+    else:
+        assert right_cell["land_use_type"] == "commercial"
+        assert left_cell["land_use_type"] == "residential"
+        assert right_cell["building_buffer_width_m"] > left_cell["building_buffer_width_m"]
+
+
+def test_build_zoning_grid_preview_asymmetry_strength_zero_restores_symmetric_baseline():
+    graph = _graph_for_theme(highway_type="tertiary", poi_types=("entrance",))
+    placement_context = SimpleNamespace(
+        carriageway_width_m=8.0,
+        left_clear_path_width_m=1.8,
+        left_furnishing_width_m=0.7,
+        right_clear_path_width_m=1.8,
+        right_furnishing_width_m=0.7,
+    )
+
+    zoning_grid, summary = build_zoning_grid_preview(
+        config=_zoning_config(seed=11, asymmetry_strength=0.0),
+        placement_context=placement_context,
+        road_segment_graph=graph,
+        theme_segments=_single_theme_segment("commercial"),
+        building_footprints=(),
+        road_buffer_m=35.0,
+    )
+
+    left_cell = next(cell for cell in zoning_grid if cell["lane_role"] == "left_building_buffer")
+    right_cell = next(cell for cell in zoning_grid if cell["lane_role"] == "right_building_buffer")
+
+    assert left_cell["land_use_type"] == right_cell["land_use_type"] == "commercial"
+    assert left_cell["building_buffer_width_m"] == pytest.approx(right_cell["building_buffer_width_m"])
+    assert summary["active_side_counts"] == {}
+
+
 def test_generate_grid_growth_lots_respects_land_use_side_and_height_rules():
     zoning_grid = [
         {
             "cell_id": "zone_left_res_0",
             "polygon_xz": [[0.0, 5.0], [8.0, 5.0], [8.0, 9.0], [0.0, 9.0], [0.0, 5.0]],
             "center_xz": [4.0, 7.0],
+            "street_edge_xz": [4.0, 5.0],
             "lane_role": "left_building_buffer",
             "theme_id": "theme_res",
             "theme_name": "residential",
@@ -144,6 +275,7 @@ def test_generate_grid_growth_lots_respects_land_use_side_and_height_rules():
             "cell_id": "zone_left_res_1",
             "polygon_xz": [[8.0, 5.0], [16.0, 5.0], [16.0, 9.0], [8.0, 9.0], [8.0, 5.0]],
             "center_xz": [12.0, 7.0],
+            "street_edge_xz": [12.0, 5.0],
             "lane_role": "left_building_buffer",
             "theme_id": "theme_res",
             "theme_name": "residential",
@@ -157,6 +289,7 @@ def test_generate_grid_growth_lots_respects_land_use_side_and_height_rules():
             "cell_id": "zone_left_green",
             "polygon_xz": [[16.0, 5.0], [24.0, 5.0], [24.0, 9.0], [16.0, 9.0], [16.0, 5.0]],
             "center_xz": [20.0, 7.0],
+            "street_edge_xz": [20.0, 5.0],
             "lane_role": "left_building_buffer",
             "theme_id": "theme_green",
             "theme_name": "green",
@@ -170,6 +303,7 @@ def test_generate_grid_growth_lots_respects_land_use_side_and_height_rules():
             "cell_id": "zone_right_transit",
             "polygon_xz": [[0.0, -9.0], [8.0, -9.0], [8.0, -5.0], [0.0, -5.0], [0.0, -9.0]],
             "center_xz": [4.0, -7.0],
+            "street_edge_xz": [4.0, -5.0],
             "lane_role": "right_building_buffer",
             "theme_id": "theme_transit",
             "theme_name": "transit",
@@ -190,12 +324,24 @@ def test_generate_grid_growth_lots_respects_land_use_side_and_height_rules():
     assert next(lot for lot in generated_lots if lot.land_use_type == "transit").height_class == "highrise"
     assert summary["lot_count"] == 2
     assert summary["occupied_lot_cells"] == 3
+    assert sum(summary["placement_strategy_counts"].values()) == len(generated_lots)
+    assert 1.0 <= summary["front_setback_stats"]["min_m"] <= 2.0
+    assert 1.0 <= summary["front_setback_stats"]["max_m"] <= 2.0
     lot_ids = {lot.lot_id for lot in generated_lots}
     assert {
         str(cell.get("lot_id", "") or "")
         for cell in annotated_cells
         if str(cell.get("land_use_type", "") or "") in {"residential", "transit"}
     } <= lot_ids
+    for lot in generated_lots:
+        assert lot.placement_strategy in {"frontage_setback", "frontage_clamped"}
+        assert 1.0 <= lot.front_setback_m <= 2.0
+        if lot.side == "left":
+            front_edge_z = lot.placement_xz[1] - lot.building_depth_m / 2.0
+            assert front_edge_z == pytest.approx(lot.street_edge_xz[1] + lot.front_setback_m, abs=1e-6)
+        elif lot.side == "right":
+            front_edge_z = lot.placement_xz[1] + lot.building_depth_m / 2.0
+            assert front_edge_z == pytest.approx(lot.street_edge_xz[1] - lot.front_setback_m, abs=1e-6)
     assert all(
         str(cell.get("lot_id", "") or "") == ""
         for cell in annotated_cells

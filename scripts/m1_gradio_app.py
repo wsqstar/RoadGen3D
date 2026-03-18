@@ -1489,10 +1489,15 @@ def _extract_building_summary(layout_json_text: str) -> str:
     summary = payload.get("summary", {}) or {}
     result = {
         "building_generation_mode": summary.get("building_generation_mode", "footprint_based"),
+        "land_use_asymmetry_strength": summary.get("land_use_asymmetry_strength", 0.35),
+        "left_right_bias": summary.get("left_right_bias", 0.0),
+        "building_front_setback_min_m": summary.get("building_front_setback_min_m", 1.0),
+        "building_front_setback_max_m": summary.get("building_front_setback_max_m", 2.0),
         "building_summary": summary.get("building_summary", {}),
         "land_use_summary": summary.get("land_use_summary", {}),
         "lot_generation_summary": summary.get("lot_generation_summary", {}),
         "building_retrieval_coverage": summary.get("building_retrieval_coverage", {}),
+        "zoning_preview_summary": summary.get("zoning_preview_summary", {}),
         "building_footprint_count": len(payload.get("building_footprints", []) or []),
         "generated_lot_count": len(payload.get("generated_lots", []) or []),
         "building_placement_count": len(payload.get("building_placements", []) or []),
@@ -2123,6 +2128,10 @@ def run_street_compose(
     asset_curation_mode: str = "scene_ready_first",
     enable_surrounding_buildings: bool = True,
     building_search_topk: int = 5,
+    land_use_asymmetry_strength: float = 0.35,
+    left_right_bias: float = 0.0,
+    building_front_setback_min_m: float = 1.0,
+    building_front_setback_max_m: float = 2.0,
     theme_inference_mode: str = "deterministic_auto",
     theme_vocab_name: str = "fixed_v1",
     surrounding_building_mode: str = "footprint_based",
@@ -2226,6 +2235,10 @@ def run_street_compose(
             theme_vocab_name=str(theme_vocab_name).strip(),
             building_height_mode=str(building_height_mode).strip(),
             building_height_profile=str(building_height_profile).strip(),
+            land_use_asymmetry_strength=float(0.35 if land_use_asymmetry_strength is None else land_use_asymmetry_strength),
+            left_right_bias=float(0.0 if left_right_bias is None else left_right_bias),
+            building_front_setback_min_m=float(1.0 if building_front_setback_min_m is None else building_front_setback_min_m),
+            building_front_setback_max_m=float(2.0 if building_front_setback_max_m is None else building_front_setback_max_m),
         )
         result = compose_street_scene(
             config=config,
@@ -2352,6 +2365,19 @@ def run_street_compose(
         summary += f"\n- theme_segment_count: {len(layout_summary.get('theme_segments', []) or [])}"
         summary += f"\n- surrounding_buildings_enabled: {bool(enable_surrounding_buildings)}"
         summary += f"\n- building_generation_mode: {layout_summary.get('building_generation_mode', surrounding_building_mode)}"
+        summary += (
+            f"\n- land_use_asymmetry_strength: "
+            f"{float(layout_summary.get('land_use_asymmetry_strength', land_use_asymmetry_strength) or 0.0):.2f}"
+        )
+        summary += (
+            f"\n- left_right_bias: "
+            f"{float(layout_summary.get('left_right_bias', left_right_bias) or 0.0):.2f}"
+        )
+        summary += (
+            f"\n- building_front_setback_range_m: "
+            f"{float(layout_summary.get('building_front_setback_min_m', building_front_setback_min_m) or 0.0):.2f}"
+            f"-{float(layout_summary.get('building_front_setback_max_m', building_front_setback_max_m) or 0.0):.2f}"
+        )
         summary += (
             f"\n- building_footprint_count: "
             f"{int((layout_summary.get('building_retrieval_coverage', {}) or {}).get('footprint_count', 0) or 0)}"
@@ -2774,6 +2800,10 @@ def run_best_model_street(
     asset_curation_mode: str = "scene_ready_first",
     enable_surrounding_buildings: bool = True,
     building_search_topk: int = 5,
+    land_use_asymmetry_strength: float = 0.35,
+    left_right_bias: float = 0.0,
+    building_front_setback_min_m: float = 1.0,
+    building_front_setback_max_m: float = 2.0,
     theme_inference_mode: str = "deterministic_auto",
     theme_vocab_name: str = "fixed_v1",
     surrounding_building_mode: str = "footprint_based",
@@ -2839,6 +2869,10 @@ def run_best_model_street(
         theme_vocab_name=theme_vocab_name,
         building_height_mode=building_height_mode,
         building_height_profile=building_height_profile,
+        land_use_asymmetry_strength=land_use_asymmetry_strength,
+        left_right_bias=left_right_bias,
+        building_front_setback_min_m=building_front_setback_min_m,
+        building_front_setback_max_m=building_front_setback_max_m,
     )
     best_log = (
         "Best model run done.\n"
@@ -3901,6 +3935,31 @@ def build_demo() -> gr.Blocks:
                         )
                         building_search_topk = gr.Slider(label="Building Search TopK", minimum=1, maximum=20, step=1, value=5)
                     with gr.Row():
+                        land_use_asymmetry_strength = gr.Slider(
+                            label="Land-Use Asymmetry Strength",
+                            minimum=0.0,
+                            maximum=1.0,
+                            step=0.05,
+                            value=0.35,
+                        )
+                        left_right_bias = gr.Slider(
+                            label="Left/Right Bias",
+                            minimum=-1.0,
+                            maximum=1.0,
+                            step=0.05,
+                            value=0.0,
+                        )
+                        building_front_setback_min_m = gr.Number(
+                            label="Front Setback Min (m)",
+                            value=1.0,
+                            precision=2,
+                        )
+                        building_front_setback_max_m = gr.Number(
+                            label="Front Setback Max (m)",
+                            value=2.0,
+                            precision=2,
+                        )
+                    with gr.Row():
                         building_height_mode = gr.Dropdown(
                             label="Building Height Mode",
                             choices=["theme_random", "class_only"],
@@ -4262,6 +4321,10 @@ def build_demo() -> gr.Blocks:
                 asset_curation_mode,
                 enable_surrounding_buildings,
                 building_search_topk,
+                land_use_asymmetry_strength,
+                left_right_bias,
+                building_front_setback_min_m,
+                building_front_setback_max_m,
                 theme_inference_mode,
                 theme_vocab_name,
                 surrounding_building_mode,
@@ -4532,6 +4595,10 @@ def build_demo() -> gr.Blocks:
                 asset_curation_mode,
                 enable_surrounding_buildings,
                 building_search_topk,
+                land_use_asymmetry_strength,
+                left_right_bias,
+                building_front_setback_min_m,
+                building_front_setback_max_m,
                 theme_inference_mode,
                 theme_vocab_name,
                 surrounding_building_mode,

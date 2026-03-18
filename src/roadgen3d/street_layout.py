@@ -79,6 +79,12 @@ from .poi_taxonomy import (
 from .program_generator import ProgramGeneratorRuntime
 from .poi_rules import load_rule_set
 from .scene_graph_viz import build_scene_graph
+from .scene_textures import (
+    VALID_SCENE_TEXTURE_MODES,
+    apply_default_scene_texture,
+    create_scene_texture_tracker,
+    scene_texture_pack_name,
+)
 from .spatial_viz import (
     plot_poi_exclusion_overview,
     plot_zoning_grid_preview as plot_zoning_grid_preview_2d,
@@ -277,6 +283,8 @@ def _validate_config(config: StreetComposeConfig) -> None:
         "design_tiles_v1",
     }:
         raise ValueError("topdown_render_mode must be 'legacy_vector' or 'design_tiles_v1'")
+    if str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")).strip().lower() not in VALID_SCENE_TEXTURE_MODES:
+        raise ValueError("scene_texture_mode must be 'topdown_tiles_v1' or 'solid_color_legacy'")
     if int(getattr(config, "topdown_canvas_px", 2048)) <= 0:
         raise ValueError("topdown_canvas_px must be > 0")
     if str(getattr(config, "asset_curation_mode", "scene_ready_first")).strip().lower() not in {
@@ -973,6 +981,8 @@ def _build_base_scene(
     street_program: object | None = None,
     palette: Optional[Dict[str, Tuple[int, int, int, int]]] = None,
     roughness: Optional[Dict[str, float]] = None,
+    texture_mode: str = "topdown_tiles_v1",
+    texture_tracker=None,
 ):
     trimesh = _require_trimesh()
     scene = trimesh.Scene()
@@ -981,21 +991,29 @@ def _build_base_scene(
         extents=(float(length_m) + 24.0, 0.04, max(total_width_m + 28.0, 24.0))
     )
     ctx_color = list((palette or {}).get("context_ground", (168, 163, 150, 255)))
-    if roughness:
-        _apply_pbr_material(context_ground, ctx_color, roughness.get("context_ground", 0.85))
-    else:
-        context_ground.visual.face_colors = ctx_color
     context_ground.apply_translation([0.0, -0.10, 0.0])
+    context_ground = _apply_surface_finish(
+        context_ground,
+        surface_role="context_ground",
+        rgba=ctx_color,
+        roughness=(roughness or {}).get("context_ground", 0.85),
+        texture_mode=texture_mode,
+        texture_tracker=texture_tracker,
+    )
     scene.add_geometry(context_ground, node_name="context_ground")
 
     road = trimesh.creation.box(extents=(length_m, 0.06, road_width_m))
     colors = palette or {}
     road_color = list(colors.get("carriageway", (65, 68, 72, 255)))
-    if roughness:
-        _apply_pbr_material(road, road_color, roughness.get("carriageway", 0.95))
-    else:
-        road.visual.face_colors = road_color
     road.apply_translation([0.0, -0.03, 0.0])
+    road = _apply_surface_finish(
+        road,
+        surface_role="carriageway",
+        rgba=road_color,
+        roughness=(roughness or {}).get("carriageway", 0.95),
+        texture_mode=texture_mode,
+        texture_tracker=texture_tracker,
+    )
     scene.add_geometry(road, node_name="road_slab")
 
     sidewalk_color = list(colors.get("sidewalk", (165, 168, 172, 255)))
@@ -1014,13 +1032,9 @@ def _build_base_scene(
             width_m = float(getattr(band, "width_m", 0.0) or 0.0)
             if width_m <= 0.0:
                 continue
-            color = clear_color if getattr(band, "kind", "") == "clear_path" else furnishing_color
+            band_kind = str(getattr(band, "kind", "") or "")
+            color = clear_color if band_kind == "clear_path" else furnishing_color
             slab = trimesh.creation.box(extents=(length_m, 0.08, width_m))
-            if roughness:
-                r_key = "clear_path" if getattr(band, "kind", "") == "clear_path" else "furnishing"
-                _apply_pbr_material(slab, color, roughness.get(r_key, 0.70))
-            else:
-                slab.visual.face_colors = color
             if getattr(band, "side", "") == "left":
                 slab.apply_translation([0.0, sw_y_translation, left_offset + width_m / 2.0])
                 left_offset += width_m
@@ -1029,24 +1043,41 @@ def _build_base_scene(
                 right_offset += width_m
             else:
                 continue
+            r_key = "clear_path" if band_kind == "clear_path" else "furnishing"
+            slab = _apply_surface_finish(
+                slab,
+                surface_role=r_key,
+                rgba=color,
+                roughness=(roughness or {}).get(r_key, 0.70),
+                texture_mode=texture_mode,
+                texture_tracker=texture_tracker,
+            )
             scene.add_geometry(slab, node_name=f"sidewalk_{getattr(band, 'name', 'band')}")
     else:
         if left_side_width_m > 0.0:
             sidewalk_left = trimesh.creation.box(extents=(length_m, 0.08, left_side_width_m))
-            if roughness:
-                _apply_pbr_material(sidewalk_left, sidewalk_color, roughness.get("sidewalk", 0.70))
-            else:
-                sidewalk_left.visual.face_colors = sidewalk_color
             sidewalk_left.apply_translation([0.0, sw_y_translation, road_width_m / 2.0 + left_side_width_m / 2.0])
+            sidewalk_left = _apply_surface_finish(
+                sidewalk_left,
+                surface_role="sidewalk",
+                rgba=sidewalk_color,
+                roughness=(roughness or {}).get("sidewalk", 0.70),
+                texture_mode=texture_mode,
+                texture_tracker=texture_tracker,
+            )
             scene.add_geometry(sidewalk_left, node_name="sidewalk_left")
 
         if right_side_width_m > 0.0:
             sidewalk_right = trimesh.creation.box(extents=(length_m, 0.08, right_side_width_m))
-            if roughness:
-                _apply_pbr_material(sidewalk_right, sidewalk_color, roughness.get("sidewalk", 0.70))
-            else:
-                sidewalk_right.visual.face_colors = sidewalk_color
             sidewalk_right.apply_translation([0.0, sw_y_translation, -road_width_m / 2.0 - right_side_width_m / 2.0])
+            sidewalk_right = _apply_surface_finish(
+                sidewalk_right,
+                surface_role="sidewalk",
+                rgba=sidewalk_color,
+                roughness=(roughness or {}).get("sidewalk", 0.70),
+                texture_mode=texture_mode,
+                texture_tracker=texture_tracker,
+            )
             scene.add_geometry(sidewalk_right, node_name="sidewalk_right")
 
     # Curb stones along road edges
@@ -1055,11 +1086,15 @@ def _build_base_scene(
     curb_width = 0.12
     for side_name, z_sign in (("left", 1.0), ("right", -1.0)):
         curb = trimesh.creation.box(extents=(length_m, curb_height, curb_width))
-        if roughness:
-            _apply_pbr_material(curb, curb_color, roughness.get("curb", 0.40))
-        else:
-            curb.visual.face_colors = curb_color
         curb.apply_translation([0.0, curb_height / 2.0, z_sign * (road_width_m / 2.0 + curb_width / 2.0)])
+        curb = _apply_surface_finish(
+            curb,
+            surface_role="curb",
+            rgba=curb_color,
+            roughness=(roughness or {}).get("curb", 0.40),
+            texture_mode=texture_mode,
+            texture_tracker=texture_tracker,
+        )
         scene.add_geometry(curb, node_name=f"curb_{side_name}")
 
     return scene
@@ -1091,6 +1126,25 @@ def _apply_pbr_material(mesh, rgba, roughness=0.9):
     )
     mesh.visual = trimesh.visual.TextureVisuals(material=mat)
     return mesh
+
+
+def _apply_surface_finish(
+    mesh,
+    *,
+    surface_role: str,
+    rgba: Sequence[int],
+    roughness: float,
+    texture_mode: str,
+    texture_tracker=None,
+):
+    return apply_default_scene_texture(
+        mesh,
+        surface_role=str(surface_role),
+        tint_rgba=list(rgba),
+        roughness=float(roughness),
+        texture_mode=str(texture_mode),
+        tracker=texture_tracker,
+    )
 
 
 def _road_pose_from_context(placement_ctx: object | None, fallback_length_m: float) -> Tuple[float, float, float, float]:
@@ -1125,13 +1179,24 @@ def _add_road_box(
     road_yaw_deg: float,
     y_min_m: float,
     color: Sequence[int],
+    surface_role: str,
     node_name: str,
+    roughness: float = 0.7,
+    texture_mode: str = "topdown_tiles_v1",
+    texture_tracker=None,
 ) -> None:
     trimesh = _require_trimesh()
     mesh = trimesh.creation.box(extents=(float(length_m), float(height_m), float(width_m)))
-    mesh.visual.face_colors = list(color)
     mesh.apply_translation([float(local_x_m), float(y_min_m) + float(height_m) / 2.0, float(local_z_m)])
     _apply_ground_pose(mesh, x_m=road_center_x_m, z_m=road_center_z_m, yaw_deg=road_yaw_deg)
+    mesh = _apply_surface_finish(
+        mesh,
+        surface_role=surface_role,
+        rgba=list(color),
+        roughness=float(roughness),
+        texture_mode=texture_mode,
+        texture_tracker=texture_tracker,
+    )
     scene.add_geometry(mesh, node_name=node_name)
 
 
@@ -1143,8 +1208,11 @@ def _add_beauty_scene_proxies(
     placement_ctx: object | None,
     poi_ctx: object | None,
     placements: List[StreetPlacement],
+    texture_mode: str = "topdown_tiles_v1",
+    texture_tracker=None,
 ) -> None:
     colors = style_palette(getattr(config, "style_preset", None))
+    rough = surface_roughness(getattr(config, "style_preset", None))
     road_center_x_m, road_center_z_m, road_yaw_deg, road_length_m = _road_pose_from_context(
         placement_ctx,
         float(config.length_m),
@@ -1175,7 +1243,11 @@ def _add_beauty_scene_proxies(
                         road_yaw_deg=road_yaw_deg,
                         y_min_m=0.004,
                         color=colors.get("lane_mark", (238, 232, 208, 255)),
+                        surface_role="lane_mark",
                         node_name=f"lane_mark_{lane_idx}_{dash_idx}",
+                        roughness=rough.get("lane_mark", 0.30),
+                        texture_mode=texture_mode,
+                        texture_tracker=texture_tracker,
                     )
                 dash_idx += 1
                 dash_x += dash_length_m + dash_gap_m
@@ -1197,7 +1269,11 @@ def _add_beauty_scene_proxies(
                 road_yaw_deg=road_yaw_deg,
                 y_min_m=0.004,
                 color=colors.get("crossing", (236, 228, 208, 255)),
+                surface_role="crossing",
                 node_name=f"crossing_patch_{idx}",
+                roughness=rough.get("crossing", 0.35),
+                texture_mode=texture_mode,
+                texture_tracker=texture_tracker,
             )
 
     for idx, placement in enumerate(placements):
@@ -1216,7 +1292,11 @@ def _add_beauty_scene_proxies(
                 road_yaw_deg=0.0,
                 y_min_m=SIDEWALK_ELEVATION_M + 0.001,
                 color=colors.get("tree_pit", (98, 93, 76, 255)),
+                surface_role="tree_pit",
                 node_name=f"tree_pit_{idx}",
+                roughness=rough.get("tree_pit", 0.90),
+                texture_mode=texture_mode,
+                texture_tracker=texture_tracker,
             )
         elif placement.category == "bus_stop":
             _add_road_box(
@@ -1231,7 +1311,11 @@ def _add_beauty_scene_proxies(
                 road_yaw_deg=road_yaw_deg,
                 y_min_m=SIDEWALK_ELEVATION_M + 0.004,
                 color=colors.get("transit_pad", (118, 129, 145, 255)),
+                surface_role="transit_pad",
                 node_name=f"transit_pad_{idx}",
+                roughness=rough.get("transit_pad", 0.50),
+                texture_mode=texture_mode,
+                texture_tracker=texture_tracker,
             )
 
 
@@ -1413,9 +1497,16 @@ def _stage_scene_base(
     placement_ctx: object | None,
     palette: Mapping[str, Tuple[int, int, int, int]],
     roughness: Optional[Dict[str, float]] = None,
+    texture_tracker=None,
 ):
     if config.layout_mode == "osm" and placement_ctx is not None:
-        return _build_osm_base_scene(placement_ctx, palette=palette, roughness=roughness)
+        return _build_osm_base_scene(
+            placement_ctx,
+            palette=palette,
+            roughness=roughness,
+            texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
+            texture_tracker=texture_tracker,
+        )
     left_side_width = sum(float(band.width_m) for band in resolved_program.bands if band.side == "left")
     right_side_width = sum(float(band.width_m) for band in resolved_program.bands if band.side == "right")
     return _build_base_scene(
@@ -1426,6 +1517,8 @@ def _stage_scene_base(
         street_program=resolved_program,
         palette=palette,
         roughness=roughness,
+        texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
+        texture_tracker=texture_tracker,
     )
 
 
@@ -1436,7 +1529,11 @@ def _add_polygon_slab(
     height_m: float,
     y_min_m: float,
     color: Sequence[int],
+    surface_role: str,
+    roughness: float,
+    texture_mode: str,
     node_name: str,
+    texture_tracker=None,
 ) -> None:
     if len(polygon_xz) < 3:
         return
@@ -1457,7 +1554,14 @@ def _add_polygon_slab(
             verts[:, 2] = old_y
             mesh.vertices = verts
             mesh.fix_normals()
-            mesh.visual.face_colors = list(color)
+            mesh = _apply_surface_finish(
+                mesh,
+                surface_role=surface_role,
+                rgba=list(color),
+                roughness=float(roughness),
+                texture_mode=texture_mode,
+                texture_tracker=texture_tracker,
+            )
             scene.add_geometry(mesh, node_name=node_name)
             return
         except Exception:
@@ -1477,6 +1581,14 @@ def _add_polygon_slab(
             float(y_min_m) + float(height_m) / 2.0,
             float((min(zs) + max(zs)) / 2.0),
         ]
+    )
+    mesh = _apply_surface_finish(
+        mesh,
+        surface_role=surface_role,
+        rgba=list(color),
+        roughness=float(roughness),
+        texture_mode=texture_mode,
+        texture_tracker=texture_tracker,
     )
     scene.add_geometry(mesh, node_name=node_name)
 
@@ -1498,18 +1610,44 @@ def _zoning_proxy_color(cell: Mapping[str, object]) -> Tuple[int, int, int, int]
     return (170, 170, 170, 220)
 
 
-def _add_zoning_proxies(scene, zoning_grid: Sequence[Dict[str, object]]) -> None:
+def _zoning_proxy_surface_role(cell: Mapping[str, object]) -> str:
+    lane_role = str(cell.get("lane_role", "") or "")
+    land_use_type = str(cell.get("land_use_type", "") or "")
+    if lane_role == "carriageway":
+        return "carriageway"
+    if "sidewalk" in lane_role:
+        return "clear_path"
+    if lane_role.startswith("left_building_buffer") or lane_role.startswith("right_building_buffer"):
+        if land_use_type == "green":
+            return "grass"
+        return "building_buffer"
+    return "furnishing"
+
+
+def _add_zoning_proxies(
+    scene,
+    zoning_grid: Sequence[Dict[str, object]],
+    *,
+    roughness: Optional[Dict[str, float]] = None,
+    texture_mode: str = "topdown_tiles_v1",
+    texture_tracker=None,
+) -> None:
     for idx, cell in enumerate(zoning_grid):
         polygon_xz = cell.get("polygon_xz", []) or []
         if not polygon_xz:
             continue
+        surface_role = _zoning_proxy_surface_role(cell)
         _add_polygon_slab(
             scene,
             polygon_xz=polygon_xz,
             height_m=0.04 if str(cell.get("lane_role", "") or "") == "carriageway" else 0.08,
             y_min_m=0.01,
             color=_zoning_proxy_color(cell),
+            surface_role=surface_role,
+            roughness=(roughness or {}).get(surface_role, 0.70),
+            texture_mode=texture_mode,
             node_name=f"zoning_proxy_{idx:03d}",
+            texture_tracker=texture_tracker,
         )
 
 
@@ -1585,6 +1723,7 @@ def _build_production_steps(
     exclusion_zones: Sequence[object],
     palette: Mapping[str, Tuple[int, int, int, int]],
     osm_geometry: Mapping[str, object] | None,
+    overall_texture_tracker=None,
 ) -> Tuple[ProductionStepRecord, ...]:
     step_dir = (out_dir / "production_steps").resolve()
     step_dir.mkdir(parents=True, exist_ok=True)
@@ -1652,12 +1791,14 @@ def _build_production_steps(
     records: List[ProductionStepRecord] = []
     for index, (step_id, title) in enumerate(_production_step_definitions(config.layout_mode)):
         include_zoning, include_poi_overlays, visible_placements, delta_ids = stage_visibility[step_id]
+        step_texture_tracker = create_scene_texture_tracker(str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")))
         scene = _stage_scene_base(
             config=config,
             resolved_program=resolved_program,
             placement_ctx=placement_ctx,
             palette=palette,
             roughness=rough,
+            texture_tracker=step_texture_tracker,
         )
         _add_beauty_scene_proxies(
             scene,
@@ -1666,9 +1807,17 @@ def _build_production_steps(
             placement_ctx=placement_ctx,
             poi_ctx=poi_ctx,
             placements=list(visible_placements),
+            texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
+            texture_tracker=step_texture_tracker,
         )
         if include_zoning:
-            _add_zoning_proxies(scene, zoning_grid)
+            _add_zoning_proxies(
+                scene,
+                zoning_grid,
+                roughness=rough,
+                texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
+                texture_tracker=step_texture_tracker,
+            )
         if visible_placements:
             _add_instance_meshes(scene=scene, placements=list(visible_placements), mesh_cache=dict(mesh_cache))
         if include_poi_overlays:
@@ -1723,6 +1872,8 @@ def _build_production_steps(
             building_plans=building_plans if step_id in {"buildings", "poi_context", "furniture_anchor", "furniture_required", "furniture_optional", "scene_preview"} else tuple(),
             poi_points_by_type=poi_points_by_type if include_poi_overlays else {},
         )
+        if overall_texture_tracker is not None:
+            overall_texture_tracker.merge(step_texture_tracker)
         records.append(
             ProductionStepRecord(
                 step_id=step_id,
@@ -1730,6 +1881,8 @@ def _build_production_steps(
                 title=title,
                 glb_path=str(glb_path),
                 companion_path=str(companion_path),
+                scene_texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
+                textured_base_enabled=bool(step_texture_tracker.textured_geometry_count > 0),
                 visible_instance_ids=visible_ids,
                 delta_instance_ids=tuple(delta_ids),
                 counts=counts,
@@ -1789,10 +1942,11 @@ def _build_osm_base_scene(
     *,
     palette: Optional[Dict[str, Tuple[int, int, int, int]]] = None,
     roughness: Optional[Dict[str, float]] = None,
+    texture_mode: str = "topdown_tiles_v1",
+    texture_tracker=None,
 ):
     """Build a trimesh Scene with carriageway + sidewalk extruded slabs from OSM geometry."""
     trimesh = _require_trimesh()
-    import numpy as _np
     scene = trimesh.Scene()
 
     carriageway = placement_ctx.carriageway  # type: ignore[attr-defined]
@@ -1818,10 +1972,6 @@ def _build_osm_base_scene(
             extents=(max(max_x - min_x + pad_m * 2.0, 20.0), 0.04, max(max_z - min_z + pad_m * 2.0, 20.0))
         )
         ground_color = list(colors.get("context_ground", (168, 163, 150, 255)))
-        if roughness:
-            _apply_pbr_material(ground, ground_color, roughness.get("context_ground", 0.85))
-        else:
-            ground.visual.face_colors = ground_color
         ground.apply_translation(
             [
                 float((min_x + max_x) / 2.0),
@@ -1829,9 +1979,26 @@ def _build_osm_base_scene(
                 float((min_z + max_z) / 2.0),
             ]
         )
+        ground = _apply_surface_finish(
+            ground,
+            surface_role="context_ground",
+            rgba=ground_color,
+            roughness=(roughness or {}).get("context_ground", 0.85),
+            texture_mode=texture_mode,
+            texture_tracker=texture_tracker,
+        )
         scene.add_geometry(ground, node_name="context_ground")
 
-    def _extrude_polygon(geom, height: float, color, name_prefix: str, *, y_offset: float = 0.0, roughness_key: str = "") -> None:
+    def _extrude_polygon(
+        geom,
+        height: float,
+        color,
+        name_prefix: str,
+        *,
+        y_offset: float = 0.0,
+        roughness_key: str = "",
+        surface_role: str = "",
+    ) -> None:
         """Extrude a shapely geometry into a thin 3D slab and add to scene.
 
         ``extrude_polygon`` maps the 2-D polygon (x_east, y_north) to mesh
@@ -1859,21 +2026,32 @@ def _build_osm_base_scene(
                 verts[:, 2] = old_y           # Z = northing
                 mesh.vertices = verts
                 mesh.fix_normals()
-                if roughness and roughness_key:
-                    _apply_pbr_material(mesh, color, roughness.get(roughness_key, 0.9))
-                else:
-                    mesh.visual.face_colors = color
+                mesh = _apply_surface_finish(
+                    mesh,
+                    surface_role=surface_role or roughness_key or "sidewalk",
+                    rgba=list(color),
+                    roughness=(roughness or {}).get(roughness_key or surface_role or "sidewalk", 0.9),
+                    texture_mode=texture_mode,
+                    texture_tracker=texture_tracker,
+                )
                 scene.add_geometry(mesh, node_name=f"{name_prefix}_{idx}")
             except (ValueError, RuntimeError, IndexError):
                 logger.debug("Skipping degenerate %s polygon %d", name_prefix, idx)
                 continue
 
     if not carriageway.is_empty:
-        _extrude_polygon(carriageway, 0.06, list(colors.get("carriageway", (65, 68, 72, 255))), "carriageway", roughness_key="carriageway")
+        _extrude_polygon(
+            carriageway,
+            0.06,
+            list(colors.get("carriageway", (65, 68, 72, 255))),
+            "carriageway",
+            roughness_key="carriageway",
+            surface_role="carriageway",
+        )
     if not sidewalk_zone.is_empty:
         _extrude_polygon(
             sidewalk_zone, 0.08, list(colors.get("sidewalk", (165, 168, 172, 255))), "sidewalk",
-            y_offset=SIDEWALK_ELEVATION_M, roughness_key="sidewalk",
+            y_offset=SIDEWALK_ELEVATION_M, roughness_key="sidewalk", surface_role="sidewalk",
         )
 
     # Curb: thin ring around the carriageway edge, extruded to sidewalk elevation
@@ -1885,7 +2063,7 @@ def _build_osm_base_scene(
             if not curb_zone.is_empty:
                 _extrude_polygon(
                     curb_zone, SIDEWALK_ELEVATION_M, curb_color, "curb",
-                    y_offset=0.0, roughness_key="curb",
+                    y_offset=0.0, roughness_key="curb", surface_role="curb",
                 )
         except Exception:
             logger.debug("Skipping curb geometry in OSM base scene")
@@ -2694,14 +2872,21 @@ def _footprint_target_records(footprints: Sequence[BuildingFootprint]) -> List[D
             "source": str(footprint.source),
             "polygon_xz": tuple((float(x), float(z)) for x, z in footprint.polygon_xz),
             "center_xz": (float(footprint.centroid_xz[0]), float(footprint.centroid_xz[1])),
+            "placement_xz": (float(footprint.placement_xz[0]), float(footprint.placement_xz[1])),
+            "street_edge_xz": (float(footprint.street_edge_xz[0]), float(footprint.street_edge_xz[1])),
             "frontage_width_m": float(footprint.frontage_width_m),
-            "depth_m": float(footprint.depth_m),
+            "depth_m": float(footprint.building_depth_m or footprint.depth_m),
+            "parcel_depth_m": float(footprint.depth_m),
             "yaw_deg": float(footprint.yaw_deg),
             "theme_id": str(footprint.theme_id),
+            "land_use_type": str(footprint.land_use_type),
+            "side": str(footprint.side),
             "height_class": str(footprint.height_class),
             "target_height_m": float(footprint.target_height_m),
             "anchor_geom_id": str(footprint.anchor_geom_id),
             "size_class": str(footprint.size_class),
+            "front_setback_m": float(footprint.front_setback_m),
+            "placement_strategy": str(footprint.placement_strategy),
         }
         for footprint in footprints
     ]
@@ -2715,15 +2900,21 @@ def _lot_target_records(lots: Sequence[GeneratedLot]) -> List[Dict[str, object]]
             "source": str(lot.source),
             "polygon_xz": tuple((float(x), float(z)) for x, z in lot.polygon_xz),
             "center_xz": (float(lot.center_xz[0]), float(lot.center_xz[1])),
+            "placement_xz": (float(lot.placement_xz[0]), float(lot.placement_xz[1])),
+            "street_edge_xz": (float(lot.street_edge_xz[0]), float(lot.street_edge_xz[1])),
             "frontage_width_m": float(lot.frontage_width_m),
-            "depth_m": float(lot.depth_m),
+            "depth_m": float(lot.building_depth_m or lot.depth_m),
+            "parcel_depth_m": float(lot.depth_m),
             "yaw_deg": float(lot.yaw_deg),
             "theme_id": str(lot.theme_id),
             "height_class": str(lot.height_class),
             "target_height_m": float(lot.target_height_m),
             "anchor_geom_id": str(lot.lot_id),
-            "size_class": str(_building_size_class(lot.frontage_width_m, lot.depth_m)),
+            "size_class": str(_building_size_class(lot.frontage_width_m, lot.building_depth_m or lot.depth_m)),
             "land_use_type": str(lot.land_use_type),
+            "side": str(lot.side),
+            "front_setback_m": float(lot.front_setback_m),
+            "placement_strategy": str(lot.placement_strategy),
         }
         for lot in lots
     ]
@@ -2751,6 +2942,8 @@ def _place_building_targets(
     asset_count = 0
     instance_index = int(start_instance_index)
     source_counts: Dict[str, int] = {}
+    placement_strategy_counts: Dict[str, int] = {}
+    front_setbacks: List[float] = []
 
     for target_idx, target in enumerate(targets):
         theme_id = str(target.get("theme_id", "") or "")
@@ -2825,10 +3018,13 @@ def _place_building_targets(
             fallback_count += 1
             fallback_reason = "no_building_asset_match"
 
+        placement_xz_raw = target.get("placement_xz", target.get("center_xz", (0.0, 0.0))) or (0.0, 0.0)
         center_xz = (
-            float(target.get("center_xz", (0.0, 0.0))[0]),
-            float(target.get("center_xz", (0.0, 0.0))[1]),
+            float(placement_xz_raw[0]),
+            float(placement_xz_raw[1]),
         )
+        placement_strategy = str(target.get("placement_strategy", "") or "")
+        front_setback_m = float(target.get("front_setback_m", 0.0) or 0.0)
         bbox = _compute_bbox(
             x=float(center_xz[0]),
             z=float(center_xz[1]),
@@ -2856,6 +3052,8 @@ def _place_building_targets(
                 retrieval_score=float(score),
                 fallback_reason=fallback_reason,
                 target_height_m=_target_height_m,
+                placement_strategy=placement_strategy,
+                front_setback_m=front_setback_m,
             )
         )
         placements.append(
@@ -2877,6 +3075,10 @@ def _place_building_targets(
         )
         source_name = str(target.get("source", "") or "")
         source_counts[source_name] = source_counts.get(source_name, 0) + 1
+        if placement_strategy:
+            placement_strategy_counts[placement_strategy] = placement_strategy_counts.get(placement_strategy, 0) + 1
+        if front_setback_m > 0.0:
+            front_setbacks.append(front_setback_m)
         instance_index += 1
 
     summary = {
@@ -2886,7 +3088,14 @@ def _place_building_targets(
         "asset_count": int(asset_count),
         "fallback_count": int(fallback_count),
         "sources": source_counts,
+        "placement_strategy_counts": placement_strategy_counts,
     }
+    if front_setbacks:
+        summary["front_setback_stats"] = {
+            "min_m": round(min(front_setbacks), 3),
+            "max_m": round(max(front_setbacks), 3),
+            "mean_m": round(sum(front_setbacks) / len(front_setbacks), 3),
+        }
     return tuple(placements), tuple(plans), tuple(retrieval_predictions), summary, instance_index
 
 
@@ -2926,6 +3135,10 @@ def _place_surrounding_buildings(
     generated_lots: Tuple[GeneratedLot, ...] = tuple()
 
     if mode == "footprint_based":
+        asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.35)
+        bias_raw = getattr(config, "left_right_bias", 0.0)
+        setback_min_raw = getattr(config, "building_front_setback_min_m", 1.0)
+        setback_max_raw = getattr(config, "building_front_setback_max_m", 2.0)
         building_footprints = tuple(
             collect_building_footprints(
                 projected_features,
@@ -2936,6 +3149,10 @@ def _place_surrounding_buildings(
                 seed=int(getattr(config, "seed", 0) or 0),
                 height_mode=str(getattr(config, "building_height_mode", "theme_random") or "theme_random"),
                 height_profile=str(getattr(config, "building_height_profile", "urban_default_v1") or "urban_default_v1"),
+                asymmetry_strength=float(0.35 if asymmetry_raw is None else asymmetry_raw),
+                left_right_bias=float(0.0 if bias_raw is None else bias_raw),
+                front_setback_min_m=float(1.0 if setback_min_raw is None else setback_min_raw),
+                front_setback_max_m=float(2.0 if setback_max_raw is None else setback_max_raw),
             )
         )
 
@@ -2950,12 +3167,16 @@ def _place_surrounding_buildings(
     zoning_grid = zoning_grid_base
     lot_generation_summary: Dict[str, object] = {"lot_count": 0}
     if mode == "grid_growth":
+        setback_min_raw = getattr(config, "building_front_setback_min_m", 1.0)
+        setback_max_raw = getattr(config, "building_front_setback_max_m", 2.0)
         zoning_grid, generated_lots, lot_generation_summary = generate_grid_growth_lots(
             zoning_grid_base,
             road_type=road_type,
             seed=int(getattr(config, "seed", 0) or 0),
             height_mode=str(getattr(config, "building_height_mode", "theme_random") or "theme_random"),
             height_profile=str(getattr(config, "building_height_profile", "urban_default_v1") or "urban_default_v1"),
+            front_setback_min_m=float(1.0 if setback_min_raw is None else setback_min_raw),
+            front_setback_max_m=float(2.0 if setback_max_raw is None else setback_max_raw),
         )
     land_use_summary = summarize_land_use_grid(zoning_grid)
 
@@ -2991,6 +3212,10 @@ def _place_surrounding_buildings(
         "occupied_building_cells": int(occupied_building_cells),
         "generated_lot_count": int(len(generated_lots)),
     }
+    asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.35)
+    bias_raw = getattr(config, "left_right_bias", 0.0)
+    setback_min_raw = getattr(config, "building_front_setback_min_m", 1.0)
+    setback_max_raw = getattr(config, "building_front_setback_max_m", 2.0)
     building_summary = {
         **dict(placement_summary),
         "enabled": True,
@@ -2998,6 +3223,10 @@ def _place_surrounding_buildings(
         "footprint_count": int(len(building_footprints)),
         "lot_count": int(len(generated_lots)),
         "target_type": "lot" if mode == "grid_growth" else "footprint",
+        "land_use_asymmetry_strength": float(0.35 if asymmetry_raw is None else asymmetry_raw),
+        "left_right_bias": float(0.0 if bias_raw is None else bias_raw),
+        "building_front_setback_min_m": float(1.0 if setback_min_raw is None else setback_min_raw),
+        "building_front_setback_max_m": float(2.0 if setback_max_raw is None else setback_max_raw),
     }
     # Attach continuous height stats when available
     _all_heights: list[float] = []
@@ -3734,8 +3963,15 @@ def compose_street_scene(
     )
     palette = style_palette(dominant_palette_style)
     rough = surface_roughness(dominant_palette_style)
+    scene_texture_tracker = create_scene_texture_tracker(str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")))
     if config.layout_mode == "osm" and placement_ctx is not None:
-        scene = _build_osm_base_scene(placement_ctx, palette=palette, roughness=rough)
+        scene = _build_osm_base_scene(
+            placement_ctx,
+            palette=palette,
+            roughness=rough,
+            texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
+            texture_tracker=scene_texture_tracker,
+        )
     else:
         left_side_width = sum(float(band.width_m) for band in resolved_program.bands if band.side == "left")
         right_side_width = sum(float(band.width_m) for band in resolved_program.bands if band.side == "right")
@@ -3747,6 +3983,8 @@ def compose_street_scene(
             street_program=resolved_program,
             palette=palette,
             roughness=rough,
+            texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
+            texture_tracker=scene_texture_tracker,
         )
     _add_beauty_scene_proxies(
         scene,
@@ -3755,6 +3993,8 @@ def compose_street_scene(
         placement_ctx=placement_ctx,
         poi_ctx=poi_ctx,
         placements=placements,
+        texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
+        texture_tracker=scene_texture_tracker,
     )
     _add_instance_meshes(scene=scene, placements=placements, mesh_cache=mesh_cache)
 
@@ -3792,6 +4032,7 @@ def compose_street_scene(
         exclusion_zones=exclusion_zones,
         palette=palette,
         osm_geometry=serialized_osm_geometry,
+        overall_texture_tracker=scene_texture_tracker,
     )
     production_steps_dir = (out_dir / "production_steps").resolve()
     production_steps_manifest = (production_steps_dir / "production_steps.json").resolve()
@@ -3881,6 +4122,10 @@ def compose_street_scene(
 
     program_fallback_reason = " | ".join(dict.fromkeys(reason for reason in program_fallback_reasons if reason))
     layout_path = (out_dir / "scene_layout.json").resolve()
+    asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.35)
+    bias_raw = getattr(config, "left_right_bias", 0.0)
+    setback_min_raw = getattr(config, "building_front_setback_min_m", 1.0)
+    setback_max_raw = getattr(config, "building_front_setback_max_m", 2.0)
     summary_payload = {
         "instance_count": len(placements),
         "dropped_slots": int(dropped_slots),
@@ -3900,6 +4145,10 @@ def compose_street_scene(
         "production_step_count": int(len(production_steps)),
         "production_step_ids": [record.step_id for record in production_steps],
         "final_production_step_id": production_steps[-1].step_id if production_steps else "",
+        "scene_texture_mode": str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
+        "scene_texture_pack": scene_texture_pack_name(str(getattr(config, "scene_texture_mode", "topdown_tiles_v1"))),
+        "scene_texture_fallback_used": bool(scene_texture_tracker.fallback_used),
+        "scene_texture_missing_assets": sorted(scene_texture_tracker.missing_assets),
         "layout_mode": config.layout_mode,
         "constraint_mode": config.constraint_mode,
         "aoi_bbox": list(config.aoi_bbox) if config.aoi_bbox else None,
@@ -4015,6 +4264,10 @@ def compose_street_scene(
         ),
         "unplaced_required_slot_count": int(anchor_resolution_summary["unplaced_required"]),
         "building_generation_mode": str(getattr(config, "surrounding_building_mode", "footprint_based")),
+        "land_use_asymmetry_strength": float(0.35 if asymmetry_raw is None else asymmetry_raw),
+        "left_right_bias": float(0.0 if bias_raw is None else bias_raw),
+        "building_front_setback_min_m": float(1.0 if setback_min_raw is None else setback_min_raw),
+        "building_front_setback_max_m": float(2.0 if setback_max_raw is None else setback_max_raw),
         "building_summary": dict(building_summary),
         "land_use_summary": dict(land_use_summary),
         "lot_generation_summary": dict(lot_generation_summary),

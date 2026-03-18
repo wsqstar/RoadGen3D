@@ -20,6 +20,23 @@ from roadgen3d.types import RetrievalHit, StreetComposeConfig, StreetComposeResu
 from roadgen3d.street_layout import compose_street_scene
 import roadgen3d.street_layout as street_layout
 from roadgen3d.poi_rules import PoiContext
+from roadgen3d.scene_textures import apply_default_scene_texture, create_scene_texture_tracker
+
+
+def _has_embedded_texture(scene_or_mesh) -> bool:
+    geometry = getattr(scene_or_mesh, "geometry", None)
+    if isinstance(geometry, dict):
+        meshes = geometry.values()
+    else:
+        meshes = [scene_or_mesh]
+    for mesh in meshes:
+        visual = getattr(mesh, "visual", None)
+        material = getattr(visual, "material", None)
+        if getattr(visual, "uv", None) is None:
+            continue
+        if getattr(material, "baseColorTexture", None) is not None:
+            return True
+    return False
 
 
 def _make_mesh(path: Path, kind: str = "box") -> None:
@@ -208,6 +225,10 @@ def _build_osm_config(
     *,
     seed: int = 42,
     surrounding_building_mode: str = "footprint_based",
+    land_use_asymmetry_strength: float = 0.35,
+    left_right_bias: float = 0.0,
+    building_front_setback_min_m: float = 1.0,
+    building_front_setback_max_m: float = 2.0,
 ) -> StreetComposeConfig:
     return StreetComposeConfig(
         query="urban street",
@@ -229,7 +250,98 @@ def _build_osm_config(
         enable_surrounding_buildings=True,
         surrounding_building_mode=surrounding_building_mode,
         building_search_topk=3,
+        land_use_asymmetry_strength=land_use_asymmetry_strength,
+        left_right_bias=left_right_bias,
+        building_front_setback_min_m=building_front_setback_min_m,
+        building_front_setback_max_m=building_front_setback_max_m,
     )
+
+
+def test_apply_default_scene_texture_assigns_uv_and_basecolor_texture():
+    trimesh = pytest.importorskip("trimesh")
+    mesh = trimesh.creation.box(extents=(2.0, 0.08, 1.0))
+    mesh.apply_translation([0.0, 0.04, 0.0])
+    tracker = create_scene_texture_tracker("topdown_tiles_v1")
+
+    textured = apply_default_scene_texture(
+        mesh,
+        surface_role="carriageway",
+        tint_rgba=[65, 68, 72, 255],
+        roughness=0.95,
+        texture_mode="topdown_tiles_v1",
+        tracker=tracker,
+    )
+
+    assert getattr(textured.visual, "uv", None) is not None
+    assert getattr(textured.visual.material, "baseColorTexture", None) is not None
+    assert tracker.textured_geometry_count == 1
+    assert tracker.fallback_used is False
+
+
+def test_apply_default_scene_texture_falls_back_when_asset_missing(monkeypatch: pytest.MonkeyPatch):
+    trimesh = pytest.importorskip("trimesh")
+    import roadgen3d.scene_textures as scene_textures
+
+    mesh = trimesh.creation.box(extents=(2.0, 0.08, 1.0))
+    tracker = create_scene_texture_tracker("topdown_tiles_v1")
+    monkeypatch.setitem(scene_textures._TEXTURE_PATHS, "carriageway", Path("/tmp/does_not_exist_texture.png"))
+    scene_textures._load_texture_rgba.cache_clear()
+
+    textured = apply_default_scene_texture(
+        mesh,
+        surface_role="carriageway",
+        tint_rgba=[65, 68, 72, 255],
+        roughness=0.95,
+        texture_mode="topdown_tiles_v1",
+        tracker=tracker,
+    )
+
+    assert getattr(textured.visual.material, "baseColorTexture", None) is None
+    assert tracker.fallback_used is True
+    assert tracker.missing_assets
+
+
+def test_apply_default_scene_texture_uses_world_space_uv_continuity():
+    trimesh = pytest.importorskip("trimesh")
+
+    def _uv_samples(mesh):
+        samples: dict[tuple[float, float, float], set[tuple[float, float]]] = {}
+        vertices = np.asarray(mesh.vertices, dtype=float)
+        uv = np.asarray(mesh.visual.uv, dtype=float)
+        top_y = float(vertices[:, 1].max())
+        for vertex, uv_pair in zip(vertices, uv):
+            if abs(float(vertex[1]) - top_y) > 1e-6:
+                continue
+            key = (round(float(vertex[0]), 3), round(float(vertex[1]), 3), round(float(vertex[2]), 3))
+            samples.setdefault(key, set()).add((round(float(uv_pair[0]), 4), round(float(uv_pair[1]), 4)))
+        return samples
+
+    left = trimesh.creation.box(extents=(2.0, 0.08, 1.0))
+    left.apply_translation([-1.0, 0.04, 0.0])
+    right = trimesh.creation.box(extents=(2.0, 0.08, 1.0))
+    right.apply_translation([1.0, 0.04, 0.0])
+
+    left = apply_default_scene_texture(
+        left,
+        surface_role="sidewalk",
+        tint_rgba=[165, 168, 172, 255],
+        roughness=0.70,
+        texture_mode="topdown_tiles_v1",
+        tracker=create_scene_texture_tracker("topdown_tiles_v1"),
+    )
+    right = apply_default_scene_texture(
+        right,
+        surface_role="sidewalk",
+        tint_rgba=[165, 168, 172, 255],
+        roughness=0.70,
+        texture_mode="topdown_tiles_v1",
+        tracker=create_scene_texture_tracker("topdown_tiles_v1"),
+    )
+
+    left_samples = _uv_samples(left)
+    right_samples = _uv_samples(right)
+    assert left_samples[(0.0, 0.08, -0.5)] & right_samples[(0.0, 0.08, -0.5)]
+    assert left_samples[(0.0, 0.08, 0.5)] & right_samples[(0.0, 0.08, 0.5)]
 
 
 class _UnitFakeEmbedder:
@@ -438,7 +550,7 @@ def test_street_placement_to_dict_serializes_required_flag():
 
 
 def test_template_scene_layout_contains_simplified_production_steps(tmp_path: Path, monkeypatch):
-    pytest.importorskip("trimesh")
+    trimesh = pytest.importorskip("trimesh")
     rows = _build_real_rows(tmp_path / "data")
     manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
     _write_manifest(manifest, rows)
@@ -467,11 +579,21 @@ def test_template_scene_layout_contains_simplified_production_steps(tmp_path: Pa
     ]
     assert int(summary["production_step_count"]) == 4
     assert summary["final_production_step_id"] == "scene_preview"
+    assert summary["scene_texture_mode"] == "topdown_tiles_v1"
+    assert summary["scene_texture_pack"] == "topdown_tiles_v1"
+    assert summary["scene_texture_fallback_used"] is False
+    assert summary["scene_texture_missing_assets"] == []
     assert Path(payload["outputs"]["production_steps_dir"]).exists()
     assert Path(payload["outputs"]["production_steps_manifest"]).exists()
     assert all(Path(step["glb_path"]).exists() for step in steps)
+    assert all(step["scene_texture_mode"] == "topdown_tiles_v1" for step in steps)
+    assert all(bool(step["textured_base_enabled"]) for step in steps)
     assert steps[0]["counts"]["street_furniture_count"] == 0
     assert steps[1]["counts"]["visible_instance_count"] <= steps[2]["counts"]["visible_instance_count"]
+    loaded_scene = trimesh.load(Path(result.outputs["scene_glb"]), force="scene")
+    assert _has_embedded_texture(loaded_scene) is True
+    loaded_step = trimesh.load(Path(steps[0]["glb_path"]), force="scene")
+    assert _has_embedded_texture(loaded_step) is True
 
 
 def test_street_compose_seed_deterministic(tmp_path: Path, monkeypatch):
@@ -644,6 +766,10 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
             "parametric_instance_count": 0,
             "production_step_count": 4,
             "presentation_score": 0.42,
+            "land_use_asymmetry_strength": 0.55,
+            "left_right_bias": -0.25,
+            "building_front_setback_min_m": 1.1,
+            "building_front_setback_max_m": 1.9,
         },
         "placements": [],
     }
@@ -656,6 +782,10 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
         captured_config["bike_demand_level"] = config.bike_demand_level
         captured_config["transit_demand_level"] = config.transit_demand_level
         captured_config["vehicle_demand_level"] = config.vehicle_demand_level
+        captured_config["land_use_asymmetry_strength"] = config.land_use_asymmetry_strength
+        captured_config["left_right_bias"] = config.left_right_bias
+        captured_config["building_front_setback_min_m"] = config.building_front_setback_min_m
+        captured_config["building_front_setback_max_m"] = config.building_front_setback_max_m
         return StreetComposeResult(
             query="urban street",
             instance_count=1,
@@ -699,6 +829,10 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
         bike_demand_level="medium",
         transit_demand_level="low",
         vehicle_demand_level="medium",
+        land_use_asymmetry_strength=0.55,
+        left_right_bias=-0.25,
+        building_front_setback_min_m=1.1,
+        building_front_setback_max_m=1.9,
     )
 
     assert captured_config == {
@@ -707,11 +841,18 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
         "bike_demand_level": "medium",
         "transit_demand_level": "low",
         "vehicle_demand_level": "medium",
+        "land_use_asymmetry_strength": 0.55,
+        "left_right_bias": -0.25,
+        "building_front_setback_min_m": 1.1,
+        "building_front_setback_max_m": 1.9,
     }
     assert "objective_profile: commerce" in summary
     assert "demand_levels: ped=high, bike=medium, transit=low, vehicle=medium" in summary
     assert "solver_backend_requested: hybrid_milp_v1" in summary
     assert "solver_backend_used: hybrid_milp_v1" in summary
+    assert "land_use_asymmetry_strength: 0.55" in summary
+    assert "left_right_bias: -0.25" in summary
+    assert "building_front_setback_range_m: 1.10-1.90" in summary
     assert rows == []
     assert layout_json
     assert model_path == str(glb_path)
@@ -2128,19 +2269,26 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
     assert all(placement.asset_id in {"building_01", "building_02"} for placement in building_group)
     assert all(placement.selection_source == "building_asset" for placement in building_group)
     assert summary["building_generation_mode"] == "footprint_based"
+    assert summary["land_use_asymmetry_strength"] == pytest.approx(0.35)
+    assert summary["building_front_setback_min_m"] == pytest.approx(1.0)
+    assert summary["building_front_setback_max_m"] == pytest.approx(2.0)
     assert summary["building_retrieval_coverage"]["footprint_count"] == len(payload["building_footprints"])
     assert summary["building_retrieval_coverage"]["placed_count"] == len(payload["building_placements"])
     assert summary["zoning_preview_summary"]["cell_count"] == len(payload["zoning_grid"])
+    assert summary["zoning_preview_summary"]["side_land_use_counts"]["left"]
+    assert summary["zoning_preview_summary"]["side_land_use_counts"]["right"]
     assert {"left_building_buffer", "left_sidewalk", "carriageway", "right_sidewalk", "right_building_buffer"} <= {
         cell["lane_role"] for cell in payload["zoning_grid"]
     }
     assert {cell["theme_name"] for cell in payload["zoning_grid"]} >= {"commercial", "transit"}
     assert all("land_use_type" in cell and "buildable" in cell and "lot_id" in cell for cell in payload["zoning_grid"])
     assert any(cell["footprint_ids"] for cell in payload["zoning_grid"] if "building_buffer" in cell["lane_role"])
+    assert all(footprint["placement_strategy"] == "footprint_centroid" for footprint in payload["building_footprints"])
+    assert all(footprint["placement_xz"] == footprint["centroid_xz"] for footprint in payload["building_footprints"])
 
 
 def test_osm_scene_layout_contains_cumulative_production_steps(tmp_path: Path, monkeypatch):
-    pytest.importorskip("trimesh")
+    trimesh = pytest.importorskip("trimesh")
     pytest.importorskip("pyproj")
     pytest.importorskip("shapely")
     pytest.importorskip("matplotlib")
@@ -2192,9 +2340,15 @@ def test_osm_scene_layout_contains_cumulative_production_steps(tmp_path: Path, m
     assert int(summary["production_step_count"]) == 8
     assert summary["final_production_step_id"] == "scene_preview"
     assert summary["production_step_ids"] == [step["step_id"] for step in steps]
+    assert summary["scene_texture_mode"] == "topdown_tiles_v1"
+    assert summary["scene_texture_pack"] == "topdown_tiles_v1"
+    assert summary["scene_texture_fallback_used"] is False
+    assert summary["scene_texture_missing_assets"] == []
     assert Path(payload["outputs"]["production_steps_dir"]).exists()
     assert Path(payload["outputs"]["production_steps_manifest"]).exists()
     assert all(Path(step["glb_path"]).exists() for step in steps)
+    assert all(step["scene_texture_mode"] == "topdown_tiles_v1" for step in steps)
+    assert all(bool(step["textured_base_enabled"]) for step in steps)
     assert step_by_id["road_base"]["counts"]["street_furniture_count"] == 0
     assert step_by_id["buildings"]["counts"]["street_furniture_count"] == 0
     assert set(step_by_id["buildings"]["visible_instance_ids"]) == building_ids
@@ -2208,6 +2362,10 @@ def test_osm_scene_layout_contains_cumulative_production_steps(tmp_path: Path, m
         <= int(step_by_id["furniture_required"]["counts"]["visible_instance_count"])
         <= int(step_by_id["furniture_optional"]["counts"]["visible_instance_count"])
     )
+    loaded_scene = trimesh.load(Path(result.outputs["scene_glb"]), force="scene")
+    assert _has_embedded_texture(loaded_scene) is True
+    loaded_zoning = trimesh.load(Path(step_by_id["land_use_zoning"]["glb_path"]), force="scene")
+    assert _has_embedded_texture(loaded_zoning) is True
 
 
 def test_osm_compose_building_fallback_survives_missing_assets_and_footprints(tmp_path: Path, monkeypatch):
@@ -2251,6 +2409,19 @@ def test_osm_compose_building_fallback_survives_missing_assets_and_footprints(tm
     assert payload["zoning_grid"]
     assert payload["generated_lots"] == []
     assert summary["zoning_preview_summary"]["occupied_building_cells"] > 0
+    fallback_footprints = [footprint for footprint in payload["building_footprints"] if footprint["source"] == "fallback"]
+    assert fallback_footprints
+    assert all(1.0 <= float(footprint["front_setback_m"]) <= 2.0 for footprint in fallback_footprints)
+    assert any(str(footprint["placement_strategy"]).startswith("frontage_") for footprint in fallback_footprints)
+    themed_pairs = {}
+    for footprint in fallback_footprints:
+        themed_pairs.setdefault(footprint["theme_id"], {})[footprint["side"]] = footprint
+    assert any(
+        pair.get("left", {}).get("land_use_type") != pair.get("right", {}).get("land_use_type")
+        or pair.get("left", {}).get("frontage_width_m") != pair.get("right", {}).get("frontage_width_m")
+        for pair in themed_pairs.values()
+        if "left" in pair and "right" in pair
+    )
     assert any(
         cell["has_fallback_footprints"]
         for cell in payload["zoning_grid"]
@@ -2293,10 +2464,17 @@ def test_osm_compose_grid_growth_generates_lots_and_lot_based_buildings(tmp_path
     assert summary["lot_generation_summary"]["lot_count"] == len(payload["generated_lots"])
     assert summary["land_use_summary"]["buildable_cell_count"] > 0
     assert summary["building_retrieval_coverage"]["lot_count"] == len(payload["generated_lots"])
+    assert summary["zoning_preview_summary"]["side_land_use_counts"]["left"]
+    assert summary["zoning_preview_summary"]["side_land_use_counts"]["right"]
     assert all(plan["anchor_geom_id"] in lot_ids for plan in payload["building_placements"])
     assert all(placement.anchor_geom_id in lot_ids for placement in result.placements if placement.placement_group == "building")
     assert any(str(cell.get("lot_id", "") or "") for cell in payload["zoning_grid"] if bool(cell.get("buildable", False)))
     assert all("building_buffer" in cell["lane_role"] for cell in payload["zoning_grid"] if str(cell.get("lot_id", "") or ""))
+    assert all(plan["placement_strategy"] in {"frontage_setback", "frontage_clamped"} for plan in payload["building_placements"])
+    assert all(1.0 <= float(plan["front_setback_m"]) <= 2.0 for plan in payload["building_placements"])
+    assert all(lot["placement_strategy"] in {"frontage_setback", "frontage_clamped"} for lot in payload["generated_lots"])
+    assert all(1.0 <= float(lot["front_setback_m"]) <= 2.0 for lot in payload["generated_lots"])
+    assert any(lot["placement_xz"] != lot["center_xz"] for lot in payload["generated_lots"])
 
 
 def test_osm_compose_grid_growth_falls_back_without_building_assets(tmp_path: Path, monkeypatch):

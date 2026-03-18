@@ -250,6 +250,24 @@ def test_build_demo_exposes_surrounding_building_mode_control():
     assert "Surrounding Building Mode" in labels
 
 
+def test_build_demo_exposes_asymmetry_and_setback_controls_with_defaults():
+    pytest.importorskip("gradio")
+
+    demo = app.build_demo()
+    config = demo.get_config_file()
+    slider_props = _typed_props_by_label(config, "slider")
+    number_props = _typed_props_by_label(config, "number")
+
+    assert slider_props["Land-Use Asymmetry Strength"]["value"] == 0.35
+    assert slider_props["Land-Use Asymmetry Strength"]["minimum"] == 0.0
+    assert slider_props["Land-Use Asymmetry Strength"]["maximum"] == 1.0
+    assert slider_props["Left/Right Bias"]["value"] == 0.0
+    assert slider_props["Left/Right Bias"]["minimum"] == -1.0
+    assert slider_props["Left/Right Bias"]["maximum"] == 1.0
+    assert number_props["Front Setback Min (m)"]["value"] == 1.0
+    assert number_props["Front Setback Max (m)"]["value"] == 2.0
+
+
 def test_build_demo_exposes_parametric_asset_preview_controls():
     pytest.importorskip("gradio")
 
