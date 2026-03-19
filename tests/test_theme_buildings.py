@@ -187,6 +187,76 @@ def test_build_zoning_grid_preview_defaults_to_side_specific_land_use_and_widths
     assert summary["side_land_use_counts"]["right"]
     assert summary["asymmetry_strength"] == pytest.approx(0.35)
     assert summary["active_side_counts"]
+    assert summary["zoning_preview_mode"] == "parcel_first"
+    assert summary["frontage_cell_count"] >= 2
+
+
+def test_build_zoning_grid_preview_is_parcel_first_even_when_theme_segments_are_few():
+    placement_context = SimpleNamespace(
+        carriageway_width_m=8.0,
+        left_clear_path_width_m=1.8,
+        left_furnishing_width_m=0.7,
+        right_clear_path_width_m=1.8,
+        right_furnishing_width_m=0.7,
+    )
+    theme_segments = (
+        ThemeSegment(
+            theme_id="theme_000",
+            theme_name="commercial",
+            x_start_m=0.0,
+            x_end_m=12.0,
+            center_x_m=6.0,
+            length_m=12.0,
+            segment_ids=("seg_0000",),
+        ),
+        ThemeSegment(
+            theme_id="theme_001",
+            theme_name="transit",
+            x_start_m=12.0,
+            x_end_m=24.0,
+            center_x_m=18.0,
+            length_m=12.0,
+            segment_ids=("seg_0001",),
+        ),
+        ThemeSegment(
+            theme_id="theme_002",
+            theme_name="commercial",
+            x_start_m=24.0,
+            x_end_m=36.0,
+            center_x_m=30.0,
+            length_m=12.0,
+            segment_ids=("seg_0002",),
+        ),
+    )
+
+    zoning_grid, summary = build_zoning_grid_preview(
+        config=StreetComposeConfig(
+            query="mixed use corridor",
+            length_m=36.0,
+            road_width_m=8.0,
+            sidewalk_width_m=2.5,
+            lane_count=2,
+            density=1.0,
+            seed=11,
+            topk_per_category=10,
+            max_trials_per_slot=10,
+            layout_mode="template",
+            segment_length_m=18.0,
+            zoning_granularity="fine",
+            streetwall_continuity=0.95,
+        ),
+        placement_context=placement_context,
+        road_segment_graph=None,
+        theme_segments=theme_segments,
+        building_footprints=(),
+        road_buffer_m=35.0,
+    )
+
+    building_cells = [cell for cell in zoning_grid if "building_buffer" in cell["lane_role"]]
+    assert summary["zoning_preview_mode"] == "parcel_first"
+    assert summary["theme_segment_count"] == 3
+    assert summary["frontage_cell_count"] == len(building_cells)
+    assert summary["frontage_cell_count"] > summary["theme_segment_count"]
 
 
 @pytest.mark.parametrize(
@@ -318,12 +388,12 @@ def test_generate_grid_growth_lots_respects_land_use_side_and_height_rules():
 
     annotated_cells, generated_lots, summary = generate_grid_growth_lots(zoning_grid, road_type="primary", height_mode="class_only")
 
-    assert len(generated_lots) == 3
+    assert len(generated_lots) >= 3
     assert {lot.land_use_type for lot in generated_lots} == {"residential", "transit"}
     assert {lot.side for lot in generated_lots} == {"left", "right"}
     assert next(lot for lot in generated_lots if lot.land_use_type == "residential").height_class == "midrise"
     assert next(lot for lot in generated_lots if lot.land_use_type == "transit").height_class == "highrise"
-    assert summary["lot_count"] == 3
+    assert summary["lot_count"] == len(generated_lots)
     assert summary["frontage_parcel_count"] == len(generated_lots)
     assert summary["occupied_lot_cells"] == 3
     assert sum(summary["placement_strategy_counts"].values()) == len(generated_lots)

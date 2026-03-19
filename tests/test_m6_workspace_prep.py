@@ -264,7 +264,7 @@ def test_build_demo_exposes_asymmetry_and_setback_controls_with_defaults():
     assert slider_props["Left/Right Bias"]["value"] == 0.0
     assert slider_props["Left/Right Bias"]["minimum"] == -1.0
     assert slider_props["Left/Right Bias"]["maximum"] == 1.0
-    assert slider_props["Streetwall Continuity"]["value"] == 0.85
+    assert slider_props["Streetwall Continuity"]["value"] == 0.95
     assert slider_props["Streetwall Continuity"]["minimum"] == 0.0
     assert slider_props["Streetwall Continuity"]["maximum"] == 1.0
     assert number_props["Front Setback Min (m)"]["value"] == 1.0
@@ -278,9 +278,9 @@ def test_build_demo_exposes_zoning_and_infill_controls_with_defaults():
     config = demo.get_config_file()
     dropdown_props = _typed_props_by_label(config, "dropdown")
 
-    assert dropdown_props["Zoning Granularity"]["value"] == "balanced"
+    assert dropdown_props["Zoning Granularity"]["value"] == "fine"
     assert ("balanced", "balanced") in dropdown_props["Zoning Granularity"]["choices"]
-    assert dropdown_props["Infill Policy"]["value"] == "large_gap_only"
+    assert dropdown_props["Infill Policy"]["value"] == "aggressive"
     assert ("large_gap_only", "large_gap_only") in dropdown_props["Infill Policy"]["choices"]
 
 
@@ -366,6 +366,7 @@ def test_build_demo_street_defaults_are_procedural_first():
     assert dropdown_props["Program Generator"]["value"] == "heuristic_v1"
     assert dropdown_props["Policy"]["value"] == "rule"
     assert dropdown_props["Layout Solver"]["value"] == "hybrid_milp_v1"
+    assert dropdown_props["Surrounding Building Mode"]["value"] == "grid_growth"
     assert dropdown_props["Objective Profile"]["value"] == "balanced"
     assert dropdown_props["Ped Demand"]["value"] == "medium"
     assert dropdown_props["Bike Demand"]["value"] == "low"

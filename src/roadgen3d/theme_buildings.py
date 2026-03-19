@@ -287,8 +287,8 @@ def collect_building_footprints(
     left_right_bias: float = 0.0,
     front_setback_min_m: float = 1.0,
     front_setback_max_m: float = 2.0,
-    zoning_granularity: str = "balanced",
-    streetwall_continuity: float = 0.85,
+    zoning_granularity: str = "fine",
+    streetwall_continuity: float = 0.95,
 ) -> Tuple[BuildingFootprint, ...]:
     """Collect nearby OSM building footprints or fallback proxy footprints."""
 
@@ -709,6 +709,35 @@ def _frontage_intervals_for_length(
             min_frontage_m=float(rule["min_frontage_m"]),
             max_frontage_m=float(rule["max_frontage_m"]),
         )
+    )
+
+
+def _preview_frontage_intervals_for_length(
+    total_frontage_m: float,
+    *,
+    land_use_type: str,
+    zoning_granularity: str,
+    streetwall_continuity: float,
+) -> Tuple[Tuple[float, float], ...]:
+    land_use = str(land_use_type or "").strip().lower()
+    if land_use in {"residential", "commercial", "transit"}:
+        intervals = _frontage_intervals_for_length(
+            total_frontage_m,
+            land_use_type=land_use,
+            zoning_granularity=zoning_granularity,
+            streetwall_continuity=streetwall_continuity,
+        )
+        if intervals:
+            return intervals
+    fallback_rule = _frontage_rule(
+        "residential" if land_use == "green" else "commercial",
+        zoning_granularity=zoning_granularity,
+    )
+    return _partition_frontage_interval(
+        total_frontage_m,
+        target_frontage_m=float(fallback_rule["target_frontage_m"]),
+        min_frontage_m=float(fallback_rule["min_frontage_m"]),
+        max_frontage_m=float(fallback_rule["max_frontage_m"]),
     )
 
 
@@ -1150,8 +1179,8 @@ def generate_grid_growth_lots(
     height_profile: str = "urban_default_v1",
     front_setback_min_m: float = 1.0,
     front_setback_max_m: float = 2.0,
-    zoning_granularity: str = "balanced",
-    streetwall_continuity: float = 0.85,
+    zoning_granularity: str = "fine",
+    streetwall_continuity: float = 0.95,
 ) -> Tuple[Tuple[Dict[str, Any], ...], Tuple[GeneratedLot, ...], Dict[str, Any]]:
     annotated_cells: List[Dict[str, Any]] = []
     for cell in zoning_grid:
@@ -1325,8 +1354,8 @@ def _fallback_building_footprints(
     left_right_bias: float = 0.0,
     front_setback_min_m: float = 1.0,
     front_setback_max_m: float = 2.0,
-    zoning_granularity: str = "balanced",
-    streetwall_continuity: float = 0.85,
+    zoning_granularity: str = "fine",
+    streetwall_continuity: float = 0.95,
 ) -> List[BuildingFootprint]:
     footprints: List[BuildingFootprint] = []
     carriageway_width_m = float(
@@ -1497,9 +1526,9 @@ def generate_frontage_infill_footprints(
     seed: int = 0,
     height_mode: str = "theme_random",
     height_profile: str = "urban_default_v1",
-    zoning_granularity: str = "balanced",
-    streetwall_continuity: float = 0.85,
-    infill_policy: str = "large_gap_only",
+    zoning_granularity: str = "fine",
+    streetwall_continuity: float = 0.95,
+    infill_policy: str = "aggressive",
     front_setback_min_m: float = 1.0,
     front_setback_max_m: float = 2.0,
 ) -> Tuple[Tuple[BuildingFootprint, ...], Dict[str, Any]]:
@@ -1837,8 +1866,14 @@ def build_zoning_grid_preview(
 ) -> Tuple[Tuple[Dict[str, Any], ...], Dict[str, Any]]:
     asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.35)
     bias_raw = getattr(config, "left_right_bias", 0.0)
+    zoning_granularity_raw = getattr(config, "zoning_granularity", "fine")
+    streetwall_continuity_raw = getattr(config, "streetwall_continuity", 0.95)
     asymmetry_strength = _clamp(float(0.35 if asymmetry_raw is None else asymmetry_raw), 0.0, 1.0)
     left_right_bias = _clamp(float(0.0 if bias_raw is None else bias_raw), -1.0, 1.0)
+    normalized_granularity = _normalize_zoning_granularity(
+        str("fine" if zoning_granularity_raw is None else zoning_granularity_raw)
+    )
+    continuity = _clamp(float(0.95 if streetwall_continuity_raw is None else streetwall_continuity_raw), 0.0, 1.0)
     theme_by_segment_id = {
         segment_id: theme_segment
         for theme_segment in theme_segments
@@ -1902,6 +1937,9 @@ def build_zoning_grid_preview(
             "building_buffer_width_m": {"left": 0.0, "right": 0.0},
             "asymmetry_strength": float(asymmetry_strength),
             "left_right_bias": float(left_right_bias),
+            "zoning_preview_mode": "parcel_first",
+            "frontage_cell_count": 0,
+            "theme_segment_count": int(len(theme_segments)),
         }
 
     try:
@@ -1968,95 +2006,143 @@ def build_zoning_grid_preview(
         )
         segment_ids = [str(segment["segment_id"])]
         for lane_role, inner_offset_m, outer_offset_m in lane_specs:
-            polygon_xz = _band_polygon_from_segment(
+            band_polygon_xz = _band_polygon_from_segment(
                 tuple(segment["start_xy"]),
                 tuple(segment["end_xy"]),
                 inner_offset_m=float(inner_offset_m),
                 outer_offset_m=float(outer_offset_m),
             )
-            if not polygon_xz:
+            if not band_polygon_xz:
                 continue
-            cell_geom = ShapelyPolygon(polygon_xz) if ShapelyPolygon is not None else None
-            cell_bbox = _polygon_bbox(polygon_xz)
-            footprint_ids: List[str] = []
-            footprint_source_counts: Dict[str, int] = {}
-            if lane_role in building_roles:
-                for footprint in footprint_records:
-                    intersects = False
-                    if cell_geom is not None and footprint["geom"] is not None:
-                        intersects = bool(footprint["geom"].intersects(cell_geom))
-                    else:
-                        intersects = _bbox_intersects(cell_bbox, footprint["bbox"])
-                    if not intersects:
-                        continue
-                    footprint_ids.append(str(footprint["footprint_id"]))
-                    source_name = str(footprint["source"])
-                    footprint_source_counts[source_name] = footprint_source_counts.get(source_name, 0) + 1
-                building_cell_counts[lane_role] = building_cell_counts.get(lane_role, 0) + 1
-                if footprint_ids:
-                    occupied_building_cells += 1
             if lane_role == "left_building_buffer":
                 land_use_type = str(side_profile.get("left_land_use_type", land_use_for_theme(theme_name)))
-                street_edge_xz = _segment_offset_midpoint(
-                    tuple(segment["start_xy"]),
-                    tuple(segment["end_xy"]),
-                    offset_m=float(carriageway_half + left_sidewalk_width_m),
-                )
-                side_land_use_counts["left"][land_use_type] = side_land_use_counts["left"].get(land_use_type, 0) + 1
+                building_buffer_width_for_cell = float(segment_left_building_buffer_m)
             elif lane_role == "right_building_buffer":
                 land_use_type = str(side_profile.get("right_land_use_type", land_use_for_theme(theme_name)))
-                street_edge_xz = _segment_offset_midpoint(
-                    tuple(segment["start_xy"]),
-                    tuple(segment["end_xy"]),
-                    offset_m=-float(carriageway_half + right_sidewalk_width_m),
-                )
-                side_land_use_counts["right"][land_use_type] = side_land_use_counts["right"].get(land_use_type, 0) + 1
+                building_buffer_width_for_cell = float(segment_right_building_buffer_m)
             else:
                 land_use_type = ""
-                street_edge_xz = None
-            buildable = bool(lane_role in building_roles and land_use_type and land_use_type != "green")
-            cell_center = _polygon_center(polygon_xz)
-            building_buffer_width_for_cell = (
-                float(segment_left_building_buffer_m)
-                if lane_role == "left_building_buffer"
-                else float(segment_right_building_buffer_m)
-                if lane_role == "right_building_buffer"
-                else 0.0
-            )
-            cells.append(
-                {
-                    "cell_id": f"zone_{segment_idx:03d}_{lane_role}",
-                    "polygon_xz": [[float(x), float(z)] for x, z in polygon_xz],
-                    "center_xz": [float(cell_center[0]), float(cell_center[1])],
+                building_buffer_width_for_cell = 0.0
+
+            subcells: List[Tuple[Tuple[Tuple[float, float], ...], float, float, Tuple[float, float] | None, str]] = []
+            if lane_role in building_roles:
+                template_cell = {
                     "lane_role": lane_role,
-                    "side": _cell_side({"lane_role": lane_role}),
-                    "theme_id": theme_id,
-                    "theme_name": theme_name,
-                    "land_use_type": land_use_type,
-                    "buildable": bool(buildable),
-                    "lot_id": "",
-                    "lot_ids": [],
-                    "segment_ids": segment_ids,
-                    "footprint_ids": footprint_ids,
-                    "footprint_count": int(len(footprint_ids)),
-                    "has_fallback_footprints": bool(footprint_source_counts.get("fallback", 0)),
-                    "footprint_source_counts": footprint_source_counts,
+                    "polygon_xz": [[float(x), float(z)] for x, z in band_polygon_xz],
                     "station_range_m": [
                         float(segment.get("station_start_m", 0.0) or 0.0),
                         float(segment.get("station_end_m", 0.0) or 0.0),
                     ],
-                    "street_edge_xz": [float(street_edge_xz[0]), float(street_edge_xz[1])] if street_edge_xz is not None else [],
-                    "building_buffer_width_m": float(building_buffer_width_for_cell),
-                    "active_side": str(side_profile.get("active_side", "") or ""),
                 }
-            )
-            theme_cell_counts[theme_name] = theme_cell_counts.get(theme_name, 0) + 1
+                frontage_m, _depth_m = _cell_frontage_depth(template_cell)
+                frontage_intervals = _preview_frontage_intervals_for_length(
+                    frontage_m,
+                    land_use_type=land_use_type,
+                    zoning_granularity=normalized_granularity,
+                    streetwall_continuity=continuity,
+                )
+                if not frontage_intervals:
+                    frontage_intervals = ((0.0, float(frontage_m)),)
+                station_start_m = float(segment.get("station_start_m", 0.0) or 0.0)
+                station_end_m = float(segment.get("station_end_m", 0.0) or 0.0)
+                station_span_m = float(station_end_m - station_start_m)
+                for interval_idx, (start_m, end_m) in enumerate(frontage_intervals):
+                    polygon_xz = _parcel_polygon_from_cell_interval(
+                        template_cell,
+                        start_m=float(start_m),
+                        end_m=float(end_m),
+                    )
+                    if not polygon_xz:
+                        continue
+                    if frontage_m > 1e-6 and abs(station_span_m) > 1e-6:
+                        cell_station_start_m = station_start_m + station_span_m * (float(start_m) / frontage_m)
+                        cell_station_end_m = station_start_m + station_span_m * (float(end_m) / frontage_m)
+                    else:
+                        cell_station_start_m = station_start_m
+                        cell_station_end_m = station_end_m
+                    subcells.append(
+                        (
+                            polygon_xz,
+                            float(cell_station_start_m),
+                            float(cell_station_end_m),
+                            _street_edge_midpoint_for_interval(
+                                template_cell,
+                                start_m=float(start_m),
+                                end_m=float(end_m),
+                            ),
+                            f"zone_{segment_idx:03d}_{lane_role}_{interval_idx:02d}",
+                        )
+                    )
+            else:
+                subcells.append(
+                    (
+                        band_polygon_xz,
+                        float(segment.get("station_start_m", 0.0) or 0.0),
+                        float(segment.get("station_end_m", 0.0) or 0.0),
+                        None,
+                        f"zone_{segment_idx:03d}_{lane_role}",
+                    )
+                )
+
+            for polygon_xz, cell_station_start_m, cell_station_end_m, street_edge_xz, cell_id in subcells:
+                cell_geom = ShapelyPolygon(polygon_xz) if ShapelyPolygon is not None else None
+                cell_bbox = _polygon_bbox(polygon_xz)
+                footprint_ids: List[str] = []
+                footprint_source_counts: Dict[str, int] = {}
+                if lane_role in building_roles:
+                    for footprint in footprint_records:
+                        intersects = False
+                        if cell_geom is not None and footprint["geom"] is not None:
+                            intersects = bool(footprint["geom"].intersects(cell_geom))
+                        else:
+                            intersects = _bbox_intersects(cell_bbox, footprint["bbox"])
+                        if not intersects:
+                            continue
+                        footprint_ids.append(str(footprint["footprint_id"]))
+                        source_name = str(footprint["source"])
+                        footprint_source_counts[source_name] = footprint_source_counts.get(source_name, 0) + 1
+                    building_cell_counts[lane_role] = building_cell_counts.get(lane_role, 0) + 1
+                    if footprint_ids:
+                        occupied_building_cells += 1
+                    side_name = "left" if lane_role == "left_building_buffer" else "right"
+                    side_land_use_counts[side_name][land_use_type] = side_land_use_counts[side_name].get(land_use_type, 0) + 1
+
+                buildable = bool(lane_role in building_roles and land_use_type and land_use_type != "green")
+                cell_center = _polygon_center(polygon_xz)
+                cells.append(
+                    {
+                        "cell_id": cell_id,
+                        "polygon_xz": [[float(x), float(z)] for x, z in polygon_xz],
+                        "center_xz": [float(cell_center[0]), float(cell_center[1])],
+                        "lane_role": lane_role,
+                        "side": _cell_side({"lane_role": lane_role}),
+                        "theme_id": theme_id,
+                        "theme_name": theme_name,
+                        "land_use_type": land_use_type,
+                        "buildable": bool(buildable),
+                        "lot_id": "",
+                        "lot_ids": [],
+                        "segment_ids": segment_ids,
+                        "footprint_ids": footprint_ids,
+                        "footprint_count": int(len(footprint_ids)),
+                        "has_fallback_footprints": bool(footprint_source_counts.get("fallback", 0)),
+                        "footprint_source_counts": footprint_source_counts,
+                        "station_range_m": [
+                            float(cell_station_start_m),
+                            float(cell_station_end_m),
+                        ],
+                        "street_edge_xz": [float(street_edge_xz[0]), float(street_edge_xz[1])] if street_edge_xz is not None else [],
+                        "building_buffer_width_m": float(building_buffer_width_for_cell),
+                        "active_side": str(side_profile.get("active_side", "") or ""),
+                    }
+                )
+                theme_cell_counts[theme_name] = theme_cell_counts.get(theme_name, 0) + 1
 
     summary = {
         "enabled": True,
         "cell_count": int(len(cells)),
-        "theme_cell_counts": theme_cell_counts,
-        "building_cell_counts": building_cell_counts,
+        "theme_cell_counts": {key: int(value) for key, value in sorted(theme_cell_counts.items())},
+        "building_cell_counts": {key: int(value) for key, value in sorted(building_cell_counts.items())},
         "occupied_building_cells": int(occupied_building_cells),
         "buildable_cell_count": int(sum(1 for cell in cells if bool(cell.get("buildable", False)))),
         "building_buffer_width_m": {
@@ -2070,6 +2156,11 @@ def build_zoning_grid_preview(
         "active_side_counts": {key: int(value) for key, value in sorted(active_side_counts.items())},
         "asymmetry_strength": float(asymmetry_strength),
         "left_right_bias": float(left_right_bias),
+        "zoning_preview_mode": "parcel_first",
+        "frontage_cell_count": int(
+            sum(1 for cell in cells if "building_buffer" in str(cell.get("lane_role", "") or ""))
+        ),
+        "theme_segment_count": int(len(theme_segments)),
     }
     return tuple(cells), summary
 

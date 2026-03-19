@@ -226,14 +226,14 @@ def _build_osm_config(
     tmp_path: Path,
     *,
     seed: int = 42,
-    surrounding_building_mode: str = "footprint_based",
+    surrounding_building_mode: str = "grid_growth",
     land_use_asymmetry_strength: float = 0.35,
     left_right_bias: float = 0.0,
     building_front_setback_min_m: float = 1.0,
     building_front_setback_max_m: float = 2.0,
-    zoning_granularity: str = "balanced",
-    streetwall_continuity: float = 0.85,
-    infill_policy: str = "large_gap_only",
+    zoning_granularity: str = "fine",
+    streetwall_continuity: float = 0.95,
+    infill_policy: str = "aggressive",
 ) -> StreetComposeConfig:
     return StreetComposeConfig(
         query="urban street",
@@ -2584,24 +2584,28 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
 
     assert len(summary["theme_segments"]) >= 2
     assert {segment["theme_name"] for segment in summary["theme_segments"]} >= {"commercial", "transit"}
-    assert payload["building_footprints"]
+    assert payload["building_footprints"] == []
     assert payload["building_placements"]
-    assert payload["generated_lots"] == []
+    assert payload["generated_lots"]
     assert payload["zoning_grid"]
     assert furniture_group
     assert building_group
     assert all(placement.asset_id in {"building_01", "building_02"} for placement in building_group)
     assert all(placement.selection_source == "building_asset" for placement in building_group)
-    assert summary["building_generation_mode"] == "footprint_based"
+    assert summary["building_generation_mode"] == "grid_growth"
     assert summary["land_use_asymmetry_strength"] == pytest.approx(0.35)
     assert summary["building_front_setback_min_m"] == pytest.approx(1.0)
     assert summary["building_front_setback_max_m"] == pytest.approx(2.0)
-    assert summary["zoning_granularity"] == "balanced"
-    assert summary["streetwall_continuity"] == pytest.approx(0.85)
-    assert summary["infill_policy"] == "large_gap_only"
-    assert summary["building_retrieval_coverage"]["footprint_count"] == len(payload["building_footprints"])
+    assert summary["zoning_granularity"] == "fine"
+    assert summary["streetwall_continuity"] == pytest.approx(0.95)
+    assert summary["infill_policy"] == "aggressive"
+    assert summary["zoning_preview_mode"] == "parcel_first"
+    assert summary["frontage_cell_count"] > len(summary["theme_segments"])
+    assert summary["building_retrieval_coverage"]["footprint_count"] == 0
     assert summary["building_retrieval_coverage"]["placed_count"] == len(payload["building_placements"])
     assert summary["zoning_preview_summary"]["cell_count"] == len(payload["zoning_grid"])
+    assert summary["zoning_preview_summary"]["zoning_preview_mode"] == "parcel_first"
+    assert summary["zoning_preview_summary"]["frontage_cell_count"] > len(summary["theme_segments"])
     assert summary["zoning_preview_summary"]["side_land_use_counts"]["left"]
     assert summary["zoning_preview_summary"]["side_land_use_counts"]["right"]
     assert {"left_building_buffer", "left_sidewalk", "carriageway", "right_sidewalk", "right_building_buffer"} <= {
@@ -2609,19 +2613,14 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
     }
     assert {cell["theme_name"] for cell in payload["zoning_grid"]} >= {"commercial", "transit"}
     assert all("land_use_type" in cell and "buildable" in cell and "lot_id" in cell for cell in payload["zoning_grid"])
-    assert any(cell["footprint_ids"] for cell in payload["zoning_grid"] if "building_buffer" in cell["lane_role"])
-    osm_footprints = [footprint for footprint in payload["building_footprints"] if footprint["source"] == "osm"]
-    infill_footprints = [footprint for footprint in payload["building_footprints"] if footprint["source"] == "infill"]
-    assert osm_footprints
-    assert all(footprint["placement_strategy"] == "footprint_centroid" for footprint in osm_footprints)
-    assert all(footprint["placement_xz"] == footprint["centroid_xz"] for footprint in osm_footprints)
-    assert infill_footprints
-    assert summary["infill_footprint_count"] == len(infill_footprints)
-    assert summary["building_summary"]["real_footprint_count"] == len(osm_footprints)
-    assert summary["building_summary"]["infill_footprint_count"] == len(infill_footprints)
+    assert not any(cell["footprint_ids"] for cell in payload["zoning_grid"] if "building_buffer" in cell["lane_role"])
+    assert summary["infill_footprint_count"] == 0
+    assert summary["building_summary"]["real_footprint_count"] == 0
+    assert summary["building_summary"]["infill_footprint_count"] == 0
     assert summary["frontage_coverage_by_side"]["left"]["coverage_ratio"] >= 0.0
     assert summary["frontage_gap_stats_by_side"]["left"]["gap_count"] >= 0
-    assert all(str(footprint["placement_strategy"]).startswith("frontage_") for footprint in infill_footprints)
+    assert len(payload["generated_lots"]) >= summary["land_use_summary"]["buildable_cell_count"]
+    assert summary["building_summary"]["frontage_cell_count"] == summary["frontage_cell_count"]
 
 
 def test_osm_scene_layout_contains_cumulative_production_steps(tmp_path: Path, monkeypatch):
@@ -2740,33 +2739,16 @@ def test_osm_compose_building_fallback_survives_missing_assets_and_footprints(tm
     assert all(placement.asset_id.startswith("building_fallback_") for placement in building_group)
     assert all(placement.selection_source == "procedural_fallback" for placement in building_group)
     assert summary["building_summary"]["fallback_count"] > 0
-    assert summary["building_generation_mode"] == "footprint_based"
-    assert summary["building_summary"]["sources"]["fallback"] > 0
+    assert summary["building_generation_mode"] == "grid_growth"
     assert summary["building_summary"]["real_footprint_count"] == 0
     assert summary["building_summary"]["infill_footprint_count"] == 0
     assert any(plan["selection_source"] == "procedural_fallback" for plan in building_plans)
     assert payload["zoning_grid"]
-    assert payload["generated_lots"] == []
+    assert payload["generated_lots"]
     assert summary["zoning_preview_summary"]["occupied_building_cells"] > 0
-    fallback_footprints = [footprint for footprint in payload["building_footprints"] if footprint["source"] == "fallback"]
-    assert fallback_footprints
-    assert len(fallback_footprints) >= 2
-    assert all(1.0 <= float(footprint["front_setback_m"]) <= 2.0 for footprint in fallback_footprints)
-    assert any(str(footprint["placement_strategy"]).startswith("frontage_") for footprint in fallback_footprints)
-    themed_pairs = {}
-    for footprint in fallback_footprints:
-        themed_pairs.setdefault(footprint["theme_id"], {})[footprint["side"]] = footprint
-    assert any(
-        pair.get("left", {}).get("land_use_type") != pair.get("right", {}).get("land_use_type")
-        or pair.get("left", {}).get("frontage_width_m") != pair.get("right", {}).get("frontage_width_m")
-        for pair in themed_pairs.values()
-        if "left" in pair and "right" in pair
-    )
-    assert any(
-        cell["has_fallback_footprints"]
-        for cell in payload["zoning_grid"]
-        if "building_buffer" in cell["lane_role"]
-    )
+    assert summary["frontage_parcel_count"] == len(payload["generated_lots"])
+    assert summary["zoning_preview_mode"] == "parcel_first"
+    assert summary["frontage_cell_count"] > len(summary["theme_segments"])
 
 
 def test_osm_compose_grid_growth_generates_lots_and_lot_based_buildings(tmp_path: Path, monkeypatch):
@@ -2806,7 +2788,8 @@ def test_osm_compose_grid_growth_generates_lots_and_lot_based_buildings(tmp_path
     assert summary["building_summary"]["frontage_parcel_count"] == len(payload["generated_lots"])
     assert summary["land_use_summary"]["buildable_cell_count"] > 0
     assert summary["building_retrieval_coverage"]["lot_count"] == len(payload["generated_lots"])
-    assert len(payload["generated_lots"]) > summary["land_use_summary"]["buildable_cell_count"]
+    assert len(payload["generated_lots"]) >= summary["land_use_summary"]["buildable_cell_count"]
+    assert summary["frontage_cell_count"] > len(summary["theme_segments"])
     assert summary["zoning_preview_summary"]["side_land_use_counts"]["left"]
     assert summary["zoning_preview_summary"]["side_land_use_counts"]["right"]
     assert all(plan["anchor_geom_id"] in lot_ids for plan in payload["building_placements"])

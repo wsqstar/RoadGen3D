@@ -94,7 +94,7 @@ class StreetComposeConfig:
     allow_solver_fallback: bool = True
     segment_length_m: float = 12.0
     enable_surrounding_buildings: bool = True
-    surrounding_building_mode: str = "footprint_based"
+    surrounding_building_mode: str = "grid_growth"
     building_search_topk: int = 5
     theme_inference_mode: str = "deterministic_auto"
     theme_vocab_name: str = "fixed_v1"
@@ -104,9 +104,9 @@ class StreetComposeConfig:
     left_right_bias: float = 0.0
     building_front_setback_min_m: float = 1.0
     building_front_setback_max_m: float = 2.0
-    zoning_granularity: str = "balanced"  # "coarse" | "balanced" | "fine"
-    streetwall_continuity: float = 0.85
-    infill_policy: str = "large_gap_only"  # "off" | "large_gap_only" | "balanced" | "aggressive"
+    zoning_granularity: str = "fine"  # "coarse" | "balanced" | "fine"
+    streetwall_continuity: float = 0.95
+    infill_policy: str = "aggressive"  # "off" | "large_gap_only" | "balanced" | "aggressive"
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)

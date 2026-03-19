@@ -1503,14 +1503,16 @@ def _extract_building_summary(layout_json_text: str) -> str:
     payload = json.loads(layout_json_text)
     summary = payload.get("summary", {}) or {}
     result = {
-        "building_generation_mode": summary.get("building_generation_mode", "footprint_based"),
+        "building_generation_mode": summary.get("building_generation_mode", "grid_growth"),
         "land_use_asymmetry_strength": summary.get("land_use_asymmetry_strength", 0.35),
         "left_right_bias": summary.get("left_right_bias", 0.0),
         "building_front_setback_min_m": summary.get("building_front_setback_min_m", 1.0),
         "building_front_setback_max_m": summary.get("building_front_setback_max_m", 2.0),
-        "zoning_granularity": summary.get("zoning_granularity", "balanced"),
-        "streetwall_continuity": summary.get("streetwall_continuity", 0.85),
-        "infill_policy": summary.get("infill_policy", "large_gap_only"),
+        "zoning_granularity": summary.get("zoning_granularity", "fine"),
+        "streetwall_continuity": summary.get("streetwall_continuity", 0.95),
+        "infill_policy": summary.get("infill_policy", "aggressive"),
+        "zoning_preview_mode": summary.get("zoning_preview_mode", "parcel_first"),
+        "frontage_cell_count": summary.get("frontage_cell_count", 0),
         "frontage_parcel_count": summary.get("frontage_parcel_count", 0),
         "infill_footprint_count": summary.get("infill_footprint_count", 0),
         "frontage_coverage_by_side": summary.get("frontage_coverage_by_side", {}),
@@ -2241,12 +2243,12 @@ def run_street_compose(
     left_right_bias: float = 0.0,
     building_front_setback_min_m: float = 1.0,
     building_front_setback_max_m: float = 2.0,
-    zoning_granularity: str = "balanced",
-    streetwall_continuity: float = 0.85,
-    infill_policy: str = "large_gap_only",
+    zoning_granularity: str = "fine",
+    streetwall_continuity: float = 0.95,
+    infill_policy: str = "aggressive",
     theme_inference_mode: str = "deterministic_auto",
     theme_vocab_name: str = "fixed_v1",
-    surrounding_building_mode: str = "footprint_based",
+    surrounding_building_mode: str = "grid_growth",
     building_height_mode: str = "theme_random",
     building_height_profile: str = "urban_default_v1",
 ) -> Tuple[str, List[List[str]], str, str | None, List[str]]:
@@ -2353,7 +2355,7 @@ def run_street_compose(
             building_front_setback_min_m=float(1.0 if building_front_setback_min_m is None else building_front_setback_min_m),
             building_front_setback_max_m=float(2.0 if building_front_setback_max_m is None else building_front_setback_max_m),
             zoning_granularity=str(zoning_granularity).strip(),
-            streetwall_continuity=float(0.85 if streetwall_continuity is None else streetwall_continuity),
+            streetwall_continuity=float(0.95 if streetwall_continuity is None else streetwall_continuity),
             infill_policy=str(infill_policy).strip(),
         )
         result = compose_street_scene(
@@ -2549,6 +2551,8 @@ def run_street_compose(
             )
             summary += f"\n- street_scale_summary: {scale_text}"
         summary += f"\n- theme_segment_count: {len(layout_summary.get('theme_segments', []) or [])}"
+        summary += f"\n- zoning_preview_mode: {layout_summary.get('zoning_preview_mode', 'parcel_first')}"
+        summary += f"\n- frontage_cell_count: {int(layout_summary.get('frontage_cell_count', 0) or 0)}"
         summary += f"\n- surrounding_buildings_enabled: {bool(enable_surrounding_buildings)}"
         summary += f"\n- building_generation_mode: {layout_summary.get('building_generation_mode', surrounding_building_mode)}"
         summary += (
@@ -3005,12 +3009,12 @@ def run_best_model_street(
     left_right_bias: float = 0.0,
     building_front_setback_min_m: float = 1.0,
     building_front_setback_max_m: float = 2.0,
-    zoning_granularity: str = "balanced",
-    streetwall_continuity: float = 0.85,
-    infill_policy: str = "large_gap_only",
+    zoning_granularity: str = "fine",
+    streetwall_continuity: float = 0.95,
+    infill_policy: str = "aggressive",
     theme_inference_mode: str = "deterministic_auto",
     theme_vocab_name: str = "fixed_v1",
-    surrounding_building_mode: str = "footprint_based",
+    surrounding_building_mode: str = "grid_growth",
     building_height_mode: str = "theme_random",
     building_height_profile: str = "urban_default_v1",
 ) -> Tuple[str, List[List[str]], str, str | None, List[str], str, str, str | None, List[str]]:
@@ -4144,7 +4148,7 @@ def build_demo() -> gr.Blocks:
                         surrounding_building_mode = gr.Dropdown(
                             label="Surrounding Building Mode",
                             choices=["footprint_based", "grid_growth"],
-                            value="footprint_based",
+                            value="grid_growth",
                         )
                         building_search_topk = gr.Slider(label="Building Search TopK", minimum=1, maximum=20, step=1, value=5)
                     with gr.Row():
@@ -4176,19 +4180,19 @@ def build_demo() -> gr.Blocks:
                         zoning_granularity = gr.Dropdown(
                             label="Zoning Granularity",
                             choices=["coarse", "balanced", "fine"],
-                            value="balanced",
+                            value="fine",
                         )
                         streetwall_continuity = gr.Slider(
                             label="Streetwall Continuity",
                             minimum=0.0,
                             maximum=1.0,
                             step=0.05,
-                            value=0.85,
+                            value=0.95,
                         )
                         infill_policy = gr.Dropdown(
                             label="Infill Policy",
                             choices=["off", "large_gap_only", "balanced", "aggressive"],
-                            value="large_gap_only",
+                            value="aggressive",
                         )
                     with gr.Row():
                         building_height_mode = gr.Dropdown(

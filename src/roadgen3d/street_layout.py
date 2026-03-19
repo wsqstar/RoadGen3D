@@ -350,13 +350,13 @@ def _validate_config(config: StreetComposeConfig) -> None:
         raise ValueError("road_selection must be 'all', 'primary_road', 'longest' or 'walkable_neighborhood'")
     if int(getattr(config, "building_search_topk", 1)) <= 0:
         raise ValueError("building_search_topk must be >= 1")
-    if str(getattr(config, "surrounding_building_mode", "footprint_based")).strip().lower() not in {"footprint_based", "grid_growth"}:
+    if str(getattr(config, "surrounding_building_mode", "grid_growth")).strip().lower() not in {"footprint_based", "grid_growth"}:
         raise ValueError("surrounding_building_mode must be 'footprint_based' or 'grid_growth'")
-    if str(getattr(config, "zoning_granularity", "balanced")).strip().lower() not in {"coarse", "balanced", "fine"}:
+    if str(getattr(config, "zoning_granularity", "fine")).strip().lower() not in {"coarse", "balanced", "fine"}:
         raise ValueError("zoning_granularity must be 'coarse', 'balanced' or 'fine'")
-    if not 0.0 <= float(getattr(config, "streetwall_continuity", 0.85)) <= 1.0:
+    if not 0.0 <= float(getattr(config, "streetwall_continuity", 0.95)) <= 1.0:
         raise ValueError("streetwall_continuity must be in [0.0, 1.0]")
-    if str(getattr(config, "infill_policy", "large_gap_only")).strip().lower() not in {
+    if str(getattr(config, "infill_policy", "aggressive")).strip().lower() not in {
         "off",
         "large_gap_only",
         "balanced",
@@ -3109,13 +3109,13 @@ def _place_surrounding_buildings(
             instance_index=int(start_instance_index),
         )
 
-    mode = str(getattr(config, "surrounding_building_mode", "footprint_based") or "footprint_based").strip().lower()
+    mode = str(getattr(config, "surrounding_building_mode", "grid_growth") or "grid_growth").strip().lower()
     road_type = _dominant_building_road_type(road_segment_graph, resolved_program)
     building_footprints: Tuple[BuildingFootprint, ...] = tuple()
     generated_lots: Tuple[GeneratedLot, ...] = tuple()
-    zoning_granularity = str(getattr(config, "zoning_granularity", "balanced") or "balanced")
-    streetwall_continuity = float(getattr(config, "streetwall_continuity", 0.85) or 0.85)
-    infill_policy = str(getattr(config, "infill_policy", "large_gap_only") or "large_gap_only")
+    zoning_granularity = str(getattr(config, "zoning_granularity", "fine") or "fine")
+    streetwall_continuity = float(getattr(config, "streetwall_continuity", 0.95) or 0.95)
+    infill_policy = str(getattr(config, "infill_policy", "aggressive") or "aggressive")
     footprint_frontage_summary: Dict[str, object] = {
         "real_footprint_count": 0,
         "infill_footprint_count": 0,
@@ -3230,6 +3230,9 @@ def _place_surrounding_buildings(
         **dict(zoning_preview_summary),
         "occupied_building_cells": int(occupied_building_cells),
         "generated_lot_count": int(len(generated_lots)),
+        "zoning_preview_mode": str(zoning_preview_summary.get("zoning_preview_mode", "parcel_first") or "parcel_first"),
+        "frontage_cell_count": int(zoning_preview_summary.get("frontage_cell_count", 0) or 0),
+        "theme_segment_count": int(zoning_preview_summary.get("theme_segment_count", len(theme_segments)) or len(theme_segments)),
         "frontage_parcel_count": int(
             lot_generation_summary.get("frontage_parcel_count", len(generated_lots))
             if mode == "grid_growth"
@@ -3260,6 +3263,8 @@ def _place_surrounding_buildings(
             if mode == "grid_growth"
             else 0
         ),
+        "zoning_preview_mode": str(zoning_preview_summary.get("zoning_preview_mode", "parcel_first") or "parcel_first"),
+        "frontage_cell_count": int(zoning_preview_summary.get("frontage_cell_count", 0) or 0),
         "real_footprint_count": int(footprint_frontage_summary.get("real_footprint_count", 0) or 0),
         "infill_footprint_count": int(footprint_frontage_summary.get("infill_footprint_count", 0) or 0),
         "frontage_coverage_by_side": dict(frontage_metrics_source.get("frontage_coverage_by_side", {}) or {}),
@@ -4189,9 +4194,9 @@ def compose_street_scene(
     bias_raw = getattr(config, "left_right_bias", 0.0)
     setback_min_raw = getattr(config, "building_front_setback_min_m", 1.0)
     setback_max_raw = getattr(config, "building_front_setback_max_m", 2.0)
-    zoning_granularity_raw = getattr(config, "zoning_granularity", "balanced")
-    streetwall_continuity_raw = getattr(config, "streetwall_continuity", 0.85)
-    infill_policy_raw = getattr(config, "infill_policy", "large_gap_only")
+    zoning_granularity_raw = getattr(config, "zoning_granularity", "fine")
+    streetwall_continuity_raw = getattr(config, "streetwall_continuity", 0.95)
+    infill_policy_raw = getattr(config, "infill_policy", "aggressive")
     summary_payload = {
         "instance_count": len(placements),
         "dropped_slots": int(dropped_slots),
@@ -4359,14 +4364,16 @@ def compose_street_scene(
             else 1.0
         ),
         "unplaced_required_slot_count": int(anchor_resolution_summary["unplaced_required"]),
-        "building_generation_mode": str(getattr(config, "surrounding_building_mode", "footprint_based")),
+        "building_generation_mode": str(getattr(config, "surrounding_building_mode", "grid_growth")),
         "land_use_asymmetry_strength": float(0.35 if asymmetry_raw is None else asymmetry_raw),
         "left_right_bias": float(0.0 if bias_raw is None else bias_raw),
         "building_front_setback_min_m": float(1.0 if setback_min_raw is None else setback_min_raw),
         "building_front_setback_max_m": float(2.0 if setback_max_raw is None else setback_max_raw),
-        "zoning_granularity": str("balanced" if zoning_granularity_raw is None else zoning_granularity_raw),
-        "streetwall_continuity": float(0.85 if streetwall_continuity_raw is None else streetwall_continuity_raw),
-        "infill_policy": str("large_gap_only" if infill_policy_raw is None else infill_policy_raw),
+        "zoning_granularity": str("fine" if zoning_granularity_raw is None else zoning_granularity_raw),
+        "streetwall_continuity": float(0.95 if streetwall_continuity_raw is None else streetwall_continuity_raw),
+        "infill_policy": str("aggressive" if infill_policy_raw is None else infill_policy_raw),
+        "zoning_preview_mode": str(zoning_preview_summary.get("zoning_preview_mode", "parcel_first") or "parcel_first"),
+        "frontage_cell_count": int(zoning_preview_summary.get("frontage_cell_count", 0) or 0),
         "frontage_parcel_count": int(lot_generation_summary.get("frontage_parcel_count", len(generated_lots)) or 0),
         "infill_footprint_count": int(building_summary.get("infill_footprint_count", 0) or 0),
         "frontage_coverage_by_side": dict(building_summary.get("frontage_coverage_by_side", {}) or {}),
