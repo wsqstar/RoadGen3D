@@ -278,18 +278,13 @@ def _tree_upright_validated(row: Mapping[str, Any]) -> bool:
 
 
 def _is_external_tree_asset(row: Mapping[str, Any]) -> bool:
-    """Check if a tree asset is externally imported (not procedurally/parametrically generated).
-    
-    External trees have source='external_import' and pass upright validation.
-    Procedural/parametric trees are excluded to prefer real imported tree models.
-    """
+    """Check if a tree asset is a validated non-procedural scene tree."""
     if str(row.get("category", "")).strip().lower() != "tree":
         return False
     provenance = asset_generator_type(row)
     if provenance in {"parametric", "legacy", "procedural_fallback"}:
         return False
     source = str(row.get("source", "") or "").strip().lower()
-    # external_import trees ARE external assets - only exclude procedural/parametric generated ones
     is_external = source not in {"procedural_generated", "parametric_generated", "procedural_fallback"}
     if is_external and _tree_upright_validated(row):
         return True
@@ -328,15 +323,6 @@ def _filter_candidates_for_curation_mode(
         if external_tree_only:
             info["provenance_filter"] = "external_tree_only"
             return external_tree_only, info
-        # Allow parametric trees when no external trees are available
-        parametric_tree_only = [
-            item for item in filtered
-            if str(item[0].get("source", "") or "").strip().lower() == "parametric_generated"
-            and _tree_upright_validated(item[0])
-        ]
-        if parametric_tree_only:
-            info["provenance_filter"] = "parametric_tree_fallback"
-            return parametric_tree_only, info
 
     if category == "bench" and mode in {"scene_ready_first", "curated_first", "parametric_first"}:
         parametric_only = [item for item in filtered if _parametric_scene_ready(item[0])]

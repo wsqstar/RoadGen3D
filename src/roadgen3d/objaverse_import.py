@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import importlib
 import json
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
@@ -17,6 +18,7 @@ class ObjaverseTargetSpec:
     lvis_categories: Tuple[str, ...]
     positive_keywords: Tuple[str, ...]
     negative_keywords: Tuple[str, ...] = ()
+    strict_name_keywords: Tuple[str, ...] = ()
     theme_tags: Tuple[str, ...] = ()
     asset_role: str = "street_furniture"
     min_face_count: int = 80
@@ -62,6 +64,42 @@ class ObjaverseImportResult:
 
 
 _DEFAULT_TARGET_SPECS: Tuple[ObjaverseTargetSpec, ...] = (
+    ObjaverseTargetSpec(
+        roadgen_category="tree",
+        lvis_categories=("tree",),
+        positive_keywords=(
+            "tree",
+            "street tree",
+            "oak",
+            "maple",
+            "park",
+            "urban",
+            "outdoor",
+            "stylized",
+            "low poly",
+            "lowpoly",
+        ),
+        negative_keywords=(
+            "bonsai",
+            "potted",
+            "pot plant",
+            "houseplant",
+            "indoor",
+            "christmas",
+            "miniature",
+            "palm",
+            "bench",
+            "building",
+            "house",
+            "pack",
+            "stump",
+            "treehouse",
+        ),
+        strict_name_keywords=("tree", "pine", "oak", "maple", "spruce", "evergreen", "conifer"),
+        theme_tags=("green", "residential", "civic"),
+        min_face_count=120,
+        max_face_count=40000,
+    ),
     ObjaverseTargetSpec(
         roadgen_category="bench",
         lvis_categories=("bench",),
@@ -178,11 +216,50 @@ def load_annotation_subset(cache_root: Path, uids: Sequence[str]) -> Dict[str, A
     return dict(objaverse.load_annotations(ordered))
 
 
+def load_all_annotations(cache_root: Path) -> Dict[str, Any]:
+    """Load the full Objaverse metadata table."""
+
+    objaverse = configure_objaverse_cache(cache_root)
+    return dict(objaverse.load_annotations())
+
+
+def _annotation_text_blob(annotation: Mapping[str, Any], *, lvis_category: str) -> str:
+    text_parts = [
+        str(annotation.get("name", "") or ""),
+        str(annotation.get("description", "") or ""),
+        str(lvis_category or ""),
+        " ".join(_annotation_tag_names(annotation)),
+        " ".join(_annotation_category_names(annotation)),
+    ]
+    return " ".join(part.strip().lower() for part in text_parts if part and part.strip())
+
+
+def _annotation_primary_text_blob(annotation: Mapping[str, Any], *, lvis_category: str) -> str:
+    text_parts = [
+        str(annotation.get("name", "") or ""),
+        str(annotation.get("description", "") or ""),
+        str(lvis_category or ""),
+        " ".join(_annotation_category_names(annotation)),
+    ]
+    return " ".join(part.strip().lower() for part in text_parts if part and part.strip())
+
+
+def _text_contains_keyword(text: str, keyword: str) -> bool:
+    normalized_text = str(text or "").strip().lower()
+    normalized_keyword = str(keyword or "").strip().lower()
+    if not normalized_text or not normalized_keyword:
+        return False
+    if " " in normalized_keyword or "-" in normalized_keyword:
+        return normalized_keyword in normalized_text
+    return normalized_keyword in set(re.findall(r"[a-z0-9]+", normalized_text))
+
+
 def score_candidate(
     annotation: Mapping[str, Any],
     spec: ObjaverseTargetSpec,
     *,
     lvis_category: str,
+    require_keyword_match: bool = False,
 ) -> Optional[ObjaverseCandidate]:
     """Score one Objaverse annotation for one RoadGen category."""
 
@@ -198,22 +275,25 @@ def score_candidate(
     if license_name and "editorial" in license_name.lower():
         return None
 
-    text_parts = [
-        str(annotation.get("name", "") or ""),
-        str(annotation.get("description", "") or ""),
-        str(lvis_category or ""),
-        " ".join(_annotation_tag_names(annotation)),
-        " ".join(_annotation_category_names(annotation)),
-    ]
-    text_blob = " ".join(part.strip().lower() for part in text_parts if part and part.strip())
+    text_blob = _annotation_text_blob(annotation, lvis_category=lvis_category)
+    primary_text_blob = _annotation_primary_text_blob(annotation, lvis_category=lvis_category)
+    name_blob = str(annotation.get("name", "") or "").strip().lower()
     score = 1.0
-    reasons: List[str] = [f"lvis:{lvis_category}"]
+    reasons: List[str] = [f"lvis:{lvis_category}" if lvis_category else "metadata_scan"]
 
-    keyword_hits = [keyword for keyword in spec.positive_keywords if keyword in text_blob]
+    keyword_hits = [keyword for keyword in spec.positive_keywords if _text_contains_keyword(text_blob, keyword)]
+    primary_keyword_hits = [keyword for keyword in spec.positive_keywords if _text_contains_keyword(primary_text_blob, keyword)]
+    strict_name_keywords = tuple(str(keyword).strip().lower() for keyword in spec.strict_name_keywords if str(keyword).strip())
+    if require_keyword_match and strict_name_keywords and not any(_text_contains_keyword(name_blob, keyword) for keyword in strict_name_keywords):
+        return None
+    if require_keyword_match and not primary_keyword_hits:
+        return None
     if keyword_hits:
         score += 0.45 * len(keyword_hits)
         reasons.extend(f"kw+:{keyword}" for keyword in keyword_hits[:6])
-    negative_hits = [keyword for keyword in spec.negative_keywords if keyword in text_blob]
+    negative_hits = [keyword for keyword in spec.negative_keywords if _text_contains_keyword(text_blob, keyword)]
+    if require_keyword_match and negative_hits:
+        return None
     if negative_hits:
         score -= 0.65 * len(negative_hits)
         reasons.extend(f"kw-:{keyword}" for keyword in negative_hits[:4])
@@ -271,6 +351,46 @@ def select_top_candidates(
             reverse=True,
         )
         selected.extend(scored[: max(int(max_per_category), 0)])
+    return tuple(selected)
+
+
+def select_top_candidates_from_metadata_scan(
+    annotations_by_uid: Mapping[str, Mapping[str, Any]],
+    specs: Sequence[ObjaverseTargetSpec],
+    *,
+    max_per_category_by_category: Mapping[str, int],
+    exclude_uids: Sequence[str] = (),
+) -> Tuple[ObjaverseCandidate, ...]:
+    """Fallback search for categories missing LVIS aliases by scanning annotation text."""
+
+    excluded = {str(uid) for uid in exclude_uids if str(uid)}
+    selected: List[ObjaverseCandidate] = []
+    for spec in specs:
+        remaining = max(int(max_per_category_by_category.get(spec.roadgen_category, 0)), 0)
+        if remaining <= 0:
+            continue
+        scored: List[ObjaverseCandidate] = []
+        for uid, annotation in annotations_by_uid.items():
+            uid_text = str(uid)
+            if not uid_text or uid_text in excluded:
+                continue
+            candidate = score_candidate(
+                annotation,
+                spec,
+                lvis_category="",
+                require_keyword_match=True,
+            )
+            if candidate is not None:
+                scored.append(candidate)
+        scored.sort(
+            key=lambda item: (
+                float(item.score),
+                int(item.annotation.get("faceCount", 0) or 0),
+                str(item.annotation.get("name", "") or ""),
+            ),
+            reverse=True,
+        )
+        selected.extend(scored[:remaining])
     return tuple(selected)
 
 
@@ -357,6 +477,27 @@ def import_objaverse_assets(
         specs,
         max_per_category=int(max_per_category),
     )
+    selected_by_category = _count_by_key(selected, key=lambda item: item.roadgen_category)
+    missing_specs = []
+    remaining_by_category: Dict[str, int] = {}
+    for spec in specs:
+        remaining = max(int(max_per_category) - int(selected_by_category.get(spec.roadgen_category, 0)), 0)
+        if remaining > 0:
+            missing_specs.append(spec)
+            remaining_by_category[spec.roadgen_category] = remaining
+    metadata_scan_used = False
+    if missing_specs:
+        all_annotations = load_all_annotations(cache_root)
+        fallback_selected = select_top_candidates_from_metadata_scan(
+            all_annotations,
+            missing_specs,
+            max_per_category_by_category=remaining_by_category,
+            exclude_uids=[candidate.uid for candidate in selected],
+        )
+        if fallback_selected:
+            metadata_scan_used = True
+            selected = tuple(list(selected) + list(fallback_selected))
+            selected_by_category = _count_by_key(selected, key=lambda item: item.roadgen_category)
     downloaded_paths = download_selected_objects(
         cache_root,
         selected,
@@ -378,11 +519,12 @@ def import_objaverse_assets(
         "recommended_default_categories": list(recommended_default_categories()),
         "selected_count": int(len(selected)),
         "downloaded_count": int(len(downloaded_paths)),
-        "selected_by_category": _count_by_key(selected, key=lambda item: item.roadgen_category),
+        "selected_by_category": selected_by_category,
         "available_lvis_counts": {
             category: int(len(uid_pools_by_category.get(category, ()) or ()))
             for category in [spec.roadgen_category for spec in specs]
         },
+        "metadata_scan_used": bool(metadata_scan_used),
         "downloaded_paths": {str(key): str(value) for key, value in downloaded_paths.items()},
         "manifest_asset_ids": [str(row.get("asset_id", "") or "") for row in manifest_rows],
         "selected_candidates": [candidate.to_report_dict() for candidate in selected],
@@ -501,6 +643,7 @@ def _largest_thumbnail_url(annotation: Mapping[str, Any]) -> str:
 
 def _default_theme_tags(category: str) -> Tuple[str, ...]:
     mapping = {
+        "tree": ("green", "residential", "civic"),
         "bench": ("commercial", "residential", "transit"),
         "lamp": ("commercial", "transit", "civic"),
         "trash": ("commercial", "transit"),

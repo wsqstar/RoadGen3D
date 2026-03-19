@@ -81,6 +81,34 @@ def _mesh_face_count(mesh: object) -> int:
     return int(len(getattr(mesh, "faces", ())))
 
 
+def _validate_tree_for_scene_import(mesh: object) -> tuple[bool, Dict[str, Any]]:
+    is_upright, diagnostics = validate_tree_upright(mesh)
+    if is_upright:
+        out = dict(diagnostics)
+        out["validation_mode"] = "trunk_axis"
+        return True, out
+
+    bounds = getattr(mesh, "bounds", None)
+    if bounds is None:
+        return False, dict(diagnostics)
+    span = bounds[1] - bounds[0]
+    width = float(max(span[0], 0.0))
+    height = float(max(span[1], 0.0))
+    depth = float(max(span[2], 0.0))
+    dominant_horizontal = max(width, depth)
+    if (
+        float(bounds[0][1]) >= -1e-3
+        and dominant_horizontal > 1e-6
+        and height >= dominant_horizontal * 1.2
+    ):
+        relaxed = dict(diagnostics)
+        relaxed["failure_reason"] = ""
+        relaxed["validation_mode"] = "overall_upright_fallback"
+        relaxed["fallback_threshold_ratio"] = 1.2
+        return True, relaxed
+    return False, dict(diagnostics)
+
+
 def _tree_manifest_row(
     *,
     source_row: Mapping[str, Any],
@@ -109,6 +137,8 @@ def _tree_manifest_row(
         "quality_notes": ["tree_upright_validated"],
     }
     passthrough_fields = (
+        "generator_type",
+        "runtime_profile",
         "style_tags",
         "material_family",
         "theme_tags",
@@ -116,6 +146,14 @@ def _tree_manifest_row(
         "avoid_with_presets",
         "frontage_width_m",
         "depth_m",
+        "tags",
+        "objaverse_uid",
+        "objaverse_uri",
+        "objaverse_viewer_url",
+        "objaverse_thumbnail_url",
+        "objaverse_lvis_category",
+        "objaverse_score",
+        "objaverse_reasons",
     )
     for field in passthrough_fields:
         if field in source_row and source_row[field] is not None:
@@ -179,7 +217,7 @@ def import_external_tree_assets(
 
         mesh = _load_mesh_as_single_mesh(source_mesh_path)
         mesh = normalize_grounded_mesh(mesh, rotation_deg_xyz=row.get("import_rotation_deg_xyz"))
-        is_upright, diagnostics = validate_tree_upright(mesh)
+        is_upright, diagnostics = _validate_tree_for_scene_import(mesh)
         if not is_upright:
             raise ValueError(
                 f"tree asset '{asset_id}' failed upright validation: "

@@ -18,6 +18,7 @@ from roadgen3d.objaverse_import import (
     append_manifest_rows,
     collect_lvis_candidate_uids,
     compose_manifest_row,
+    default_target_specs,
     import_objaverse_assets,
     recommended_default_categories,
     score_candidate,
@@ -53,6 +54,15 @@ def _annotation(
 
 def test_recommended_default_categories_focus_on_first_wave_street_assets():
     assert recommended_default_categories() == ("bench", "lamp", "trash", "mailbox")
+
+
+def test_default_target_specs_support_tree_imports_without_making_them_first_wave_default():
+    specs = {spec.roadgen_category: spec for spec in default_target_specs(["tree", "bench"])}
+
+    assert "tree" in specs
+    assert specs["tree"].lvis_categories == ("tree",)
+    assert "stylized" in specs["tree"].positive_keywords
+    assert "potted" in specs["tree"].negative_keywords
 
 
 def test_collect_lvis_candidate_uids_dedupes_alias_overlap():
@@ -161,6 +171,51 @@ def test_import_objaverse_assets_selects_and_reports(monkeypatch, tmp_path: Path
         "objaverse_bench_bench_uid",
         "objaverse_lamp_lamp_uid",
     }
+
+
+def test_import_objaverse_assets_supports_tree_category(monkeypatch, tmp_path: Path):
+    tree_annotation = _annotation(
+        uid="tree_uid",
+        name="Stylized street tree",
+        description="Outdoor low poly maple tree",
+        face_count=1200,
+    )
+    tree_annotation["categories"] = [{"name": "tree"}]
+    tree_annotation["tags"] = [{"name": "tree"}, {"name": "outdoor"}, {"name": "stylized"}]
+
+    monkeypatch.setattr(
+        "roadgen3d.objaverse_import.load_lvis_annotations",
+        lambda cache_root: {"tree": []},
+    )
+    monkeypatch.setattr(
+        "roadgen3d.objaverse_import.load_annotation_subset",
+        lambda cache_root, uids: {},
+    )
+    monkeypatch.setattr(
+        "roadgen3d.objaverse_import.load_all_annotations",
+        lambda cache_root: {"tree_uid": tree_annotation},
+    )
+    monkeypatch.setattr(
+        "roadgen3d.objaverse_import.download_selected_objects",
+        lambda cache_root, candidates, download_processes=1: {
+            candidate.uid: str((tmp_path / f"{candidate.uid}.glb").resolve()) for candidate in candidates
+        },
+    )
+
+    result = import_objaverse_assets(
+        cache_root=tmp_path / "cache",
+        latents_dir=tmp_path / "latents",
+        requested_categories=["tree"],
+        max_per_category=1,
+        download_processes=1,
+    )
+
+    assert len(result.manifest_rows) == 1
+    row = result.manifest_rows[0]
+    assert row["category"] == "tree"
+    assert row["source"] == "objaverse_import"
+    assert row["theme_tags"] == ["green", "residential", "civic"]
+    assert result.report["metadata_scan_used"] is True
 
 
 def test_run_objaverse_import_writes_clean_manifest_and_append_dedupes(monkeypatch, tmp_path: Path):

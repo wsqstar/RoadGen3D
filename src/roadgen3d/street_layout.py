@@ -213,7 +213,7 @@ def _is_external_tree_asset(row: Mapping[str, object]) -> bool:
     if provenance in {"parametric", "legacy", "procedural_fallback"}:
         return False
     source = str(row.get("source", "") or "").strip().lower()
-    return source not in {"procedural_generated", "parametric_generated", "procedural_fallback", "external_import"} and _tree_upright_validated(row)
+    return source not in {"procedural_generated", "parametric_generated", "procedural_fallback"} and _tree_upright_validated(row)
 
 
 def _yaw_for_asset_category(category: str, facing_yaw_deg: float) -> float:
@@ -811,97 +811,6 @@ def _placeholder_building_entry(
         min_y=float(bounds[0][1]),
         native_height_y=float(max(span[1], 1e-3)),
     )
-
-
-_PARAMETRIC_TREE_VARIANTS = (
-    {"canopy_style": "sphere", "trunk_height_m": 3.0, "canopy_radius_m": 1.10, "canopy_color_name": "deciduous_green", "style_tag": "modern"},
-    {"canopy_style": "sphere", "trunk_height_m": 3.3, "canopy_radius_m": 1.30, "canopy_color_name": "dark_green", "style_tag": "classic"},
-    {"canopy_style": "cone", "trunk_height_m": 2.5, "canopy_radius_m": 1.00, "canopy_color_name": "dark_green", "style_tag": "nordic"},
-    {"canopy_style": "oval", "trunk_height_m": 3.0, "canopy_radius_m": 1.00, "canopy_color_name": "deciduous_green", "style_tag": "victorian"},
-    {"canopy_style": "multi_blob", "trunk_height_m": 3.0, "canopy_radius_m": 1.20, "canopy_color_name": "light_green", "style_tag": "eco"},
-)
-
-
-def _parametric_tree_entry(
-    *,
-    asset_id: str,
-    variant_index: int = 0,
-) -> _MeshCacheEntry:
-    try:
-        from .parametric_assets import generate_parametric_asset
-
-        variant = _PARAMETRIC_TREE_VARIANTS[variant_index % len(_PARAMETRIC_TREE_VARIANTS)]
-        result = generate_parametric_asset(
-            {
-                "asset_kind": "tree",
-                "runtime_profile": "preview",
-                "params": dict(variant),
-            }
-        )
-        mesh_or_scene = result.mesh
-    except Exception:
-        trimesh = _require_trimesh()
-        from trimesh.visual.material import PBRMaterial
-
-        trunk = trimesh.creation.cylinder(radius=0.18, height=3.0, sections=10)
-        trunk.apply_translation([0.0, 1.5, 0.0])
-        trunk.visual = trimesh.visual.TextureVisuals(
-            material=PBRMaterial(baseColorFactor=[101 / 255, 67 / 255, 33 / 255, 1.0], metallicFactor=0.0, roughnessFactor=0.9)
-        )
-        canopy = trimesh.creation.icosphere(subdivisions=2, radius=1.10)
-        canopy.apply_translation([0.0, 3.0 + 1.10, 0.0])
-        canopy.visual = trimesh.visual.TextureVisuals(
-            material=PBRMaterial(baseColorFactor=[62 / 255, 120 / 255, 50 / 255, 1.0], metallicFactor=0.0, roughnessFactor=0.9)
-        )
-        mesh_or_scene = trimesh.Scene()
-        mesh_or_scene.add_geometry(trunk, node_name="trunk", geom_name="trunk")
-        mesh_or_scene.add_geometry(canopy, node_name="canopy", geom_name="canopy")
-    bounds = np.asarray(mesh_or_scene.bounds, dtype=np.float64)
-    span = bounds[1] - bounds[0]
-    is_scene = isinstance(mesh_or_scene, _require_trimesh().Scene)
-    return _MeshCacheEntry(
-        mesh=mesh_or_scene,
-        half_x=float(max(span[0] / 2.0, 1e-3)),
-        half_z=float(max(span[2] / 2.0, 1e-3)),
-        min_y=float(bounds[0][1]),
-        is_scene=is_scene,
-        native_height_y=float(max(span[1], 1e-3)),
-    )
-
-
-def _inject_parametric_trees(
-    category_to_rows: Dict[str, List[Dict[str, str]]],
-    mesh_cache: Dict[str, _MeshCacheEntry],
-    asset_by_id: Dict[str, Dict[str, object]],
-) -> int:
-    """Generate parametric tree entries as fallback when no external trees are available.
-
-    Returns the number of injected tree variants.
-    """
-    injected = 0
-    for vi in range(len(_PARAMETRIC_TREE_VARIANTS)):
-        asset_id = f"tree_parametric_{vi:03d}"
-        entry = _parametric_tree_entry(asset_id=asset_id, variant_index=vi)
-        mesh_cache[asset_id] = entry
-        variant = _PARAMETRIC_TREE_VARIANTS[vi]
-        row: Dict[str, str] = {
-            "asset_id": asset_id,
-            "category": "tree",
-            "text_desc": f"{variant.get('style_tag', 'modern')} parametric street tree ({variant.get('canopy_style', 'sphere')})",
-            "mesh_path": "",
-            "latent_path": "",
-            "source": "parametric_generated",
-            "asset_role": "street_furniture",
-            "scene_eligible": True,
-            "quality_notes": ["parametric_tree", "tree_upright_validated"],
-            "quality_metrics": {
-                "tree_upright_validation": {"failure_reason": ""},
-            },
-        }
-        asset_by_id[asset_id] = row
-        category_to_rows.setdefault("tree", []).append(row)
-        injected += 1
-    return injected
 
 
 def _pick_category_candidate(
@@ -3428,7 +3337,7 @@ def compose_street_scene(
                 if not _row_scene_eligible(row) or not _is_external_tree_asset(row):
                     continue
             category_to_rows[category].append(row)
-    tree_assets_unavailable = raw_tree_inventory_count > 0 and not category_to_rows.get("tree")
+    tree_assets_unavailable = not bool(category_to_rows.get("tree"))
 
     available_categories = [category for category, pool in category_to_rows.items() if pool]
     if not available_categories:
@@ -3439,14 +3348,7 @@ def compose_street_scene(
 
     mesh_cache = _load_mesh_cache(rows)
 
-    # Inject parametric trees as fallback when no external tree assets are available
     parametric_tree_count = 0
-    if not category_to_rows.get("tree"):
-        parametric_tree_count = _inject_parametric_trees(category_to_rows, mesh_cache, asset_by_id)
-        if parametric_tree_count > 0:
-            tree_assets_unavailable = False
-            # Refresh available_categories so tree slots are generated by the planner
-            available_categories = [category for category, pool in category_to_rows.items() if pool]
 
     embedder = ClipTextEmbedder(
         model_name=model_name,

@@ -50,6 +50,15 @@ def _make_tree_mesh(path: Path, *, sideways: bool = False) -> None:
     mesh.export(path)
 
 
+def _make_stylized_upright_tree_mesh(path: Path) -> None:
+    trimesh = pytest.importorskip("trimesh")
+    canopy = trimesh.creation.cone(radius=0.35, height=1.5, sections=64)
+    canopy.apply_transform(trimesh.transformations.rotation_matrix(-np.pi / 2.0, [1.0, 0.0, 0.0]))
+    canopy.apply_translation([0.0, 0.75, 0.0])
+    path.parent.mkdir(parents=True, exist_ok=True)
+    canopy.export(path)
+
+
 def _build_rows(base_dir: Path, *, tree_source: str, external_tree: bool = False) -> list[dict[str, object]]:
     categories = [
         ("bench_01", "bench", "test"),
@@ -138,9 +147,9 @@ def test_clean_manifest_rows_disables_procedural_tree_scene_eligibility(tmp_path
             "quality_metrics": {"face_count": 620},
         },
         {
-            "asset_id": "tree_external_unvalidated",
+            "asset_id": "tree_stylized",
             "category": "tree",
-            "text_desc": "legacy imported tree",
+            "text_desc": "stylized imported tree",
             "mesh_path": str(tmp_path / "tree_external.glb"),
             "latent_path": str(tmp_path / "tree_external.pt"),
             "source": "external_import",
@@ -154,7 +163,8 @@ def test_clean_manifest_rows_disables_procedural_tree_scene_eligibility(tmp_path
             "text_desc": "real tree",
             "mesh_path": str(tmp_path / "tree_real.glb"),
             "latent_path": str(tmp_path / "tree_real.pt"),
-            "source": "objaverse",
+            "source": "objaverse_import",
+            "generator_type": "objaverse_v1",
             "mesh_face_count": 620,
             "quality_metrics": {"face_count": 620},
             "quality_notes": ["tree_upright_validated"],
@@ -166,8 +176,8 @@ def test_clean_manifest_rows_disables_procedural_tree_scene_eligibility(tmp_path
 
     assert by_id["tree_legacy"]["scene_eligible"] is False
     assert "procedural_tree_disabled_for_scene_generation" in by_id["tree_legacy"]["quality_notes"]
-    assert by_id["tree_external_unvalidated"]["scene_eligible"] is False
-    assert "procedural_tree_disabled_for_scene_generation" in by_id["tree_external_unvalidated"]["quality_notes"]
+    assert by_id["tree_stylized"]["scene_eligible"] is True
+    assert "tree_upright_validated" in by_id["tree_stylized"]["quality_notes"]
     assert by_id["tree_real"]["scene_eligible"] is True
     assert "tree_upright_validated" in by_id["tree_real"]["quality_notes"]
 
@@ -194,11 +204,10 @@ def test_compose_degrades_gracefully_when_only_procedural_trees_exist(tmp_path: 
 
     payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
     summary = payload["summary"]
-    # Parametric trees are injected as fallback when no external trees are available
-    assert summary["tree_assets_unavailable"] is False
+    assert summary["tree_assets_unavailable"] is True
     assert summary["tree_inventory_raw_count"] == 1
-    assert summary["parametric_tree_fallback_count"] > 0
-    assert summary["tree_inventory_scene_ready_count"] > 0
+    assert summary["parametric_tree_fallback_count"] == 0
+    assert summary["tree_inventory_scene_ready_count"] == 0
 
 
 def test_import_external_tree_assets_accepts_upright_tree(tmp_path: Path):
@@ -215,8 +224,14 @@ def test_import_external_tree_assets_accepts_upright_tree(tmp_path: Path):
                 "text_desc": "high quality maple street tree",
                 "mesh_path": str(source_mesh),
                 "license": "cc-by",
-                "source": "objaverse",
+                "source": "objaverse_import",
                 "split": "train",
+                "generator_type": "objaverse_v1",
+                "style_tags": ["stylized", "street_tree"],
+                "theme_tags": ["green", "residential"],
+                "objaverse_uid": "obj_uid_tree_001",
+                "objaverse_lvis_category": "tree",
+                "objaverse_score": 3.25,
             }
         ],
     )
@@ -242,8 +257,82 @@ def test_import_external_tree_assets_accepts_upright_tree(tmp_path: Path):
     assert row["asset_id"] == "tree_real_001"
     assert row["scene_eligible"] is True
     assert "tree_upright_validated" in row["quality_notes"]
+    assert row["source"] == "objaverse_import"
+    assert row["generator_type"] == "objaverse_v1"
+    assert row["style_tags"] == ["stylized", "street_tree"]
+    assert row["theme_tags"] == ["green", "residential"]
+    assert row["objaverse_uid"] == "obj_uid_tree_001"
+    assert row["objaverse_lvis_category"] == "tree"
+    assert row["objaverse_score"] == pytest.approx(3.25)
     assert Path(row["mesh_path"]).exists()
     assert Path(row["latent_path"]).exists()
+
+
+def test_import_external_tree_assets_accepts_stylized_overall_upright_tree(tmp_path: Path):
+    pytest.importorskip("trimesh")
+    source_mesh = tmp_path / "external" / "tree_stylized_001.glb"
+    _make_stylized_upright_tree_mesh(source_mesh)
+    input_manifest = tmp_path / "external_trees.jsonl"
+    _write_manifest(
+        input_manifest,
+        [
+            {
+                "asset_id": "tree_stylized_001",
+                "category": "tree",
+                "text_desc": "stylized upright conifer tree",
+                "mesh_path": str(source_mesh),
+                "license": "cc-by",
+                "source": "objaverse_import",
+                "split": "train",
+            }
+        ],
+    )
+
+    tree_import.import_external_tree_assets(
+        input_manifest=input_manifest,
+        output_manifest=tmp_path / "data" / "real_assets_manifest.jsonl",
+        mesh_out_dir=tmp_path / "data" / "meshes",
+        latents_dir=tmp_path / "data" / "latents",
+        artifacts_dir=tmp_path / "artifacts" / "real",
+        local_files_only=True,
+        device="cpu",
+        rebuild_index_enabled=False,
+    )
+
+    rows = [
+        json.loads(line)
+        for line in (tmp_path / "data" / "real_assets_manifest.jsonl").read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    metrics = rows[0]["quality_metrics"]["tree_upright_validation"]
+    assert rows[0]["scene_eligible"] is True
+    assert metrics["validation_mode"] == "overall_upright_fallback"
+
+
+def test_compose_accepts_scene_ready_stylized_tree_inventory(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    rows = _build_rows(tmp_path / "data", tree_source="external_import", external_tree=True)
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+    monkeypatch.setattr(street_layout, "render_presentation_views", lambda *args, **kwargs: [])
+
+    result = compose_street_scene(
+        config=_config(),
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+
+    payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    summary = payload["summary"]
+
+    assert summary["tree_assets_unavailable"] is False
+    assert summary["tree_inventory_scene_ready_count"] == 1
+    assert summary["parametric_tree_fallback_count"] == 0
 
 
 def test_import_external_tree_assets_rejects_sideways_tree_without_rotation(tmp_path: Path):

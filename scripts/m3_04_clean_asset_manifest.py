@@ -113,7 +113,7 @@ def _tree_requires_external_real_asset(row: Mapping[str, Any]) -> bool:
     if provenance in {"parametric", "legacy", "procedural_fallback"}:
         return True
     source = str(row.get("source", "") or "").strip().lower()
-    if source in {"procedural_generated", "parametric_generated", "procedural_fallback", "external_import"}:
+    if source in {"procedural_generated", "parametric_generated", "procedural_fallback"}:
         return True
     return False
 
