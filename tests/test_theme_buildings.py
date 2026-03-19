@@ -15,12 +15,13 @@ if str(SRC) not in sys.path:
 
 from roadgen3d.theme_buildings import (
     build_zoning_grid_preview,
+    generate_frontage_infill_footprints,
     generate_grid_growth_lots,
     height_class_from_height_m,
     infer_theme_segments,
     sample_building_target_height,
 )
-from roadgen3d.types import RoadSegmentGraph, RoadSegmentNode, StreetComposeConfig, ThemeSegment
+from roadgen3d.types import BuildingFootprint, RoadSegmentGraph, RoadSegmentNode, StreetComposeConfig, ThemeSegment
 
 
 def _graph_for_theme(*, highway_type: str, poi_types: tuple[str, ...]) -> RoadSegmentGraph:
@@ -317,16 +318,19 @@ def test_generate_grid_growth_lots_respects_land_use_side_and_height_rules():
 
     annotated_cells, generated_lots, summary = generate_grid_growth_lots(zoning_grid, road_type="primary", height_mode="class_only")
 
-    assert len(generated_lots) == 2
+    assert len(generated_lots) == 3
     assert {lot.land_use_type for lot in generated_lots} == {"residential", "transit"}
     assert {lot.side for lot in generated_lots} == {"left", "right"}
     assert next(lot for lot in generated_lots if lot.land_use_type == "residential").height_class == "midrise"
     assert next(lot for lot in generated_lots if lot.land_use_type == "transit").height_class == "highrise"
-    assert summary["lot_count"] == 2
+    assert summary["lot_count"] == 3
+    assert summary["frontage_parcel_count"] == len(generated_lots)
     assert summary["occupied_lot_cells"] == 3
     assert sum(summary["placement_strategy_counts"].values()) == len(generated_lots)
     assert 1.0 <= summary["front_setback_stats"]["min_m"] <= 2.0
     assert 1.0 <= summary["front_setback_stats"]["max_m"] <= 2.0
+    assert summary["frontage_coverage_by_side"]["left"]["coverage_ratio"] > 0.7
+    assert summary["frontage_coverage_by_side"]["right"]["coverage_ratio"] > 0.7
     lot_ids = {lot.lot_id for lot in generated_lots}
     assert {
         str(cell.get("lot_id", "") or "")
@@ -347,6 +351,104 @@ def test_generate_grid_growth_lots_respects_land_use_side_and_height_rules():
         for cell in annotated_cells
         if str(cell.get("land_use_type", "") or "") == "green"
     )
+
+
+def test_generate_grid_growth_lots_respects_zoning_granularity():
+    zoning_grid = [
+        {
+            "cell_id": "long_strip",
+            "polygon_xz": [[0.0, 5.0], [30.0, 5.0], [30.0, 11.0], [0.0, 11.0], [0.0, 5.0]],
+            "center_xz": [15.0, 8.0],
+            "street_edge_xz": [15.0, 5.0],
+            "lane_role": "left_building_buffer",
+            "theme_id": "theme_commercial",
+            "theme_name": "commercial",
+            "land_use_type": "commercial",
+            "buildable": True,
+            "lot_id": "",
+            "segment_ids": ["seg_long"],
+            "station_range_m": [0.0, 30.0],
+        },
+    ]
+
+    _, coarse_lots, coarse_summary = generate_grid_growth_lots(
+        zoning_grid,
+        road_type="primary",
+        height_mode="class_only",
+        zoning_granularity="coarse",
+    )
+    _, fine_lots, fine_summary = generate_grid_growth_lots(
+        zoning_grid,
+        road_type="primary",
+        height_mode="class_only",
+        zoning_granularity="fine",
+    )
+
+    assert len(coarse_lots) < len(fine_lots)
+    assert coarse_summary["zoning_granularity"] == "coarse"
+    assert fine_summary["zoning_granularity"] == "fine"
+
+
+def test_generate_frontage_infill_footprints_only_fills_large_gaps():
+    zoning_grid = [
+        {
+            "cell_id": "left_commercial",
+            "polygon_xz": [[0.0, 5.0], [24.0, 5.0], [24.0, 11.0], [0.0, 11.0], [0.0, 5.0]],
+            "lane_role": "left_building_buffer",
+            "theme_id": "theme_commercial",
+            "theme_name": "commercial",
+            "land_use_type": "commercial",
+            "buildable": True,
+            "station_range_m": [0.0, 24.0],
+        },
+        {
+            "cell_id": "right_green",
+            "polygon_xz": [[0.0, -11.0], [24.0, -11.0], [24.0, -5.0], [0.0, -5.0], [0.0, -11.0]],
+            "lane_role": "right_building_buffer",
+            "theme_id": "theme_green",
+            "theme_name": "green",
+            "land_use_type": "green",
+            "buildable": False,
+            "station_range_m": [0.0, 24.0],
+        },
+    ]
+    existing = (
+        BuildingFootprint(
+            footprint_id="building_000",
+            source="osm",
+            polygon_xz=((0.0, 6.0), (6.0, 6.0), (6.0, 10.0), (0.0, 10.0), (0.0, 6.0)),
+            centroid_xz=(3.0, 8.0),
+            frontage_width_m=6.0,
+            depth_m=4.0,
+            yaw_deg=0.0,
+            theme_id="theme_commercial",
+            land_use_type="commercial",
+            side="left",
+            placement_strategy="footprint_centroid",
+        ),
+    )
+
+    infill, summary = generate_frontage_infill_footprints(
+        zoning_grid,
+        existing,
+        seed=7,
+        height_mode="class_only",
+        zoning_granularity="balanced",
+        streetwall_continuity=0.85,
+        infill_policy="large_gap_only",
+        front_setback_min_m=1.0,
+        front_setback_max_m=2.0,
+    )
+
+    assert infill
+    assert all(footprint.source == "infill" for footprint in infill)
+    assert all(footprint.side == "left" for footprint in infill)
+    assert all(footprint.land_use_type != "green" for footprint in infill)
+    assert all(str(footprint.placement_strategy).startswith("frontage_") for footprint in infill)
+    assert summary["real_footprint_count"] == 1
+    assert summary["infill_footprint_count"] == len(infill)
+    assert summary["frontage_coverage_by_side"]["left"]["coverage_ratio"] > 0.7
+    assert summary["frontage_coverage_by_side"]["right"]["coverage_ratio"] == 0.0
 
 
 def test_height_class_from_height_m_thresholds():

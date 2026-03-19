@@ -103,6 +103,9 @@ class StreetComposeConfig:
     left_right_bias: float = 0.0
     building_front_setback_min_m: float = 1.0
     building_front_setback_max_m: float = 2.0
+    zoning_granularity: str = "balanced"  # "coarse" | "balanced" | "fine"
+    streetwall_continuity: float = 0.85
+    infill_policy: str = "large_gap_only"  # "off" | "large_gap_only" | "balanced" | "aggressive"
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)

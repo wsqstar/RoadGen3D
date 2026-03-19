@@ -1493,6 +1493,13 @@ def _extract_building_summary(layout_json_text: str) -> str:
         "left_right_bias": summary.get("left_right_bias", 0.0),
         "building_front_setback_min_m": summary.get("building_front_setback_min_m", 1.0),
         "building_front_setback_max_m": summary.get("building_front_setback_max_m", 2.0),
+        "zoning_granularity": summary.get("zoning_granularity", "balanced"),
+        "streetwall_continuity": summary.get("streetwall_continuity", 0.85),
+        "infill_policy": summary.get("infill_policy", "large_gap_only"),
+        "frontage_parcel_count": summary.get("frontage_parcel_count", 0),
+        "infill_footprint_count": summary.get("infill_footprint_count", 0),
+        "frontage_coverage_by_side": summary.get("frontage_coverage_by_side", {}),
+        "frontage_gap_stats_by_side": summary.get("frontage_gap_stats_by_side", {}),
         "building_summary": summary.get("building_summary", {}),
         "land_use_summary": summary.get("land_use_summary", {}),
         "lot_generation_summary": summary.get("lot_generation_summary", {}),
@@ -1507,6 +1514,69 @@ def _extract_building_summary(layout_json_text: str) -> str:
     if "height_stats" in bld_summary:
         result["height_stats"] = bld_summary["height_stats"]
     return json.dumps(result, indent=2, ensure_ascii=True)
+
+
+def _asset_source_display_name(source_key: object) -> str:
+    key = str(source_key or "").strip().lower()
+    mapping = {
+        "objaverse_import": "Objaverse",
+        "parametric_generated": "Parametric",
+        "procedural_generated": "Procedural",
+        "procedural_fallback": "Procedural Fallback",
+        "external_import": "External Import",
+        "test": "Test",
+        "unknown": "Unknown",
+    }
+    return mapping.get(key, key or "Unknown")
+
+
+def _extract_asset_usage_summary(layout_json_text: str) -> tuple[str, list[list[object]]]:
+    if not layout_json_text.strip():
+        return "{}", []
+    payload = json.loads(layout_json_text)
+    summary = payload.get("summary", {}) or {}
+    usage_by_source = list(summary.get("asset_usage_by_source", []) or [])
+    if not usage_by_source:
+        counts = dict(summary.get("asset_source_counts", {}) or {})
+        unique_counts = dict(summary.get("asset_source_unique_counts", {}) or {})
+        usage_by_source = [
+            {
+                "source": source_key,
+                "instance_count": int(counts.get(source_key, 0) or 0),
+                "unique_asset_count": int(unique_counts.get(source_key, 0) or 0),
+                "categories": [],
+                "generator_types": [],
+                "asset_ids": [],
+            }
+            for source_key in sorted(counts, key=lambda key: (-int(counts.get(key, 0) or 0), str(key)))
+        ]
+
+    table_rows: list[list[object]] = []
+    for item in usage_by_source:
+        source_key = str(item.get("source", "") or "")
+        table_rows.append(
+            [
+                _asset_source_display_name(source_key),
+                source_key,
+                int(item.get("instance_count", 0) or 0),
+                int(item.get("unique_asset_count", 0) or 0),
+                ", ".join(str(category) for category in (item.get("categories", []) or []) if str(category)),
+                ", ".join(str(generator) for generator in (item.get("generator_types", []) or []) if str(generator)),
+                ", ".join(str(asset_id) for asset_id in (item.get("asset_ids", []) or [])[:6] if str(asset_id)),
+            ]
+        )
+
+    result = {
+        "instance_count": int(summary.get("instance_count", 0) or 0),
+        "unique_asset_count": int(summary.get("unique_asset_count", 0) or 0),
+        "asset_source_counts": dict(summary.get("asset_source_counts", {}) or {}),
+        "asset_source_unique_counts": dict(summary.get("asset_source_unique_counts", {}) or {}),
+        "asset_generator_type_counts": dict(summary.get("asset_generator_type_counts", {}) or {}),
+        "objaverse_instance_count": int((summary.get("asset_source_counts", {}) or {}).get("objaverse_import", 0) or 0),
+        "objaverse_unique_asset_count": int((summary.get("asset_source_unique_counts", {}) or {}).get("objaverse_import", 0) or 0),
+        "asset_usage_by_source": usage_by_source,
+    }
+    return json.dumps(result, indent=2, ensure_ascii=True), table_rows
 
 
 def _extract_solver_summary(layout_json_text: str) -> str:
@@ -2132,6 +2202,9 @@ def run_street_compose(
     left_right_bias: float = 0.0,
     building_front_setback_min_m: float = 1.0,
     building_front_setback_max_m: float = 2.0,
+    zoning_granularity: str = "balanced",
+    streetwall_continuity: float = 0.85,
+    infill_policy: str = "large_gap_only",
     theme_inference_mode: str = "deterministic_auto",
     theme_vocab_name: str = "fixed_v1",
     surrounding_building_mode: str = "footprint_based",
@@ -2239,6 +2312,9 @@ def run_street_compose(
             left_right_bias=float(0.0 if left_right_bias is None else left_right_bias),
             building_front_setback_min_m=float(1.0 if building_front_setback_min_m is None else building_front_setback_min_m),
             building_front_setback_max_m=float(2.0 if building_front_setback_max_m is None else building_front_setback_max_m),
+            zoning_granularity=str(zoning_granularity).strip(),
+            streetwall_continuity=float(0.85 if streetwall_continuity is None else streetwall_continuity),
+            infill_policy=str(infill_policy).strip(),
         )
         result = compose_street_scene(
             config=config,
@@ -2362,6 +2438,30 @@ def run_street_compose(
             summary += f"\n- program_fallback_reason: {result.outputs['program_fallback_reason']}"
         if result.outputs.get("solver_fallback_reason"):
             summary += f"\n- solver_fallback_reason: {result.outputs['solver_fallback_reason']}"
+        asset_source_counts = dict(layout_summary.get("asset_source_counts", {}) or {})
+        asset_source_unique_counts = dict(layout_summary.get("asset_source_unique_counts", {}) or {})
+        if asset_source_counts:
+            source_count_text = ", ".join(
+                f"{_asset_source_display_name(source_key)}={int(asset_source_counts[source_key])}"
+                for source_key in sorted(
+                    asset_source_counts,
+                    key=lambda key: (-int(asset_source_counts.get(key, 0) or 0), str(key)),
+                )
+            )
+            summary += f"\n- asset_source_counts: {source_count_text}"
+            summary += (
+                f"\n- objaverse_instances: "
+                f"{int(asset_source_counts.get('objaverse_import', 0) or 0)}"
+            )
+        if asset_source_unique_counts:
+            unique_count_text = ", ".join(
+                f"{_asset_source_display_name(source_key)}={int(asset_source_unique_counts[source_key])}"
+                for source_key in sorted(
+                    asset_source_unique_counts,
+                    key=lambda key: (-int(asset_source_unique_counts.get(key, 0) or 0), str(key)),
+                )
+            )
+            summary += f"\n- asset_source_unique_counts: {unique_count_text}"
         summary += f"\n- theme_segment_count: {len(layout_summary.get('theme_segments', []) or [])}"
         summary += f"\n- surrounding_buildings_enabled: {bool(enable_surrounding_buildings)}"
         summary += f"\n- building_generation_mode: {layout_summary.get('building_generation_mode', surrounding_building_mode)}"
@@ -2378,9 +2478,23 @@ def run_street_compose(
             f"{float(layout_summary.get('building_front_setback_min_m', building_front_setback_min_m) or 0.0):.2f}"
             f"-{float(layout_summary.get('building_front_setback_max_m', building_front_setback_max_m) or 0.0):.2f}"
         )
+        summary += f"\n- zoning_granularity: {layout_summary.get('zoning_granularity', zoning_granularity)}"
+        summary += (
+            f"\n- streetwall_continuity: "
+            f"{float(layout_summary.get('streetwall_continuity', streetwall_continuity) or 0.0):.2f}"
+        )
+        summary += f"\n- infill_policy: {layout_summary.get('infill_policy', infill_policy)}"
         summary += (
             f"\n- building_footprint_count: "
             f"{int((layout_summary.get('building_retrieval_coverage', {}) or {}).get('footprint_count', 0) or 0)}"
+        )
+        summary += (
+            f"\n- frontage_parcel_count: "
+            f"{int(layout_summary.get('frontage_parcel_count', 0) or 0)}"
+        )
+        summary += (
+            f"\n- infill_footprint_count: "
+            f"{int(layout_summary.get('infill_footprint_count', 0) or 0)}"
         )
         summary += (
             f"\n- generated_lot_count: "
@@ -2804,6 +2918,9 @@ def run_best_model_street(
     left_right_bias: float = 0.0,
     building_front_setback_min_m: float = 1.0,
     building_front_setback_max_m: float = 2.0,
+    zoning_granularity: str = "balanced",
+    streetwall_continuity: float = 0.85,
+    infill_policy: str = "large_gap_only",
     theme_inference_mode: str = "deterministic_auto",
     theme_vocab_name: str = "fixed_v1",
     surrounding_building_mode: str = "footprint_based",
@@ -2873,6 +2990,9 @@ def run_best_model_street(
         left_right_bias=left_right_bias,
         building_front_setback_min_m=building_front_setback_min_m,
         building_front_setback_max_m=building_front_setback_max_m,
+        zoning_granularity=zoning_granularity,
+        streetwall_continuity=streetwall_continuity,
+        infill_policy=infill_policy,
     )
     best_log = (
         "Best model run done.\n"
@@ -3960,6 +4080,24 @@ def build_demo() -> gr.Blocks:
                             precision=2,
                         )
                     with gr.Row():
+                        zoning_granularity = gr.Dropdown(
+                            label="Zoning Granularity",
+                            choices=["coarse", "balanced", "fine"],
+                            value="balanced",
+                        )
+                        streetwall_continuity = gr.Slider(
+                            label="Streetwall Continuity",
+                            minimum=0.0,
+                            maximum=1.0,
+                            step=0.05,
+                            value=0.85,
+                        )
+                        infill_policy = gr.Dropdown(
+                            label="Infill Policy",
+                            choices=["off", "large_gap_only", "balanced", "aggressive"],
+                            value="large_gap_only",
+                        )
+                    with gr.Row():
                         building_height_mode = gr.Dropdown(
                             label="Building Height Mode",
                             choices=["theme_random", "class_only"],
@@ -3985,6 +4123,16 @@ def build_demo() -> gr.Blocks:
                         with gr.Row():
                             street_program_summary = gr.Code(label="StreetProgram Summary", language="json")
                             street_solver_summary = gr.Code(label="Solver Summary", language="json")
+                    with gr.Accordion("Asset Usage Summary", open=False):
+                        with gr.Row():
+                            asset_usage_summary_json = gr.Code(label="Asset Usage Summary", language="json")
+                        asset_usage_table = gr.Dataframe(
+                            headers=["label", "source", "instance_count", "unique_asset_count", "categories", "generator_types", "sample_asset_ids"],
+                            datatype=["str", "str", "number", "number", "str", "str", "str"],
+                            row_count=(0, "dynamic"),
+                            col_count=(7, "fixed"),
+                            label="Asset Usage By Source",
+                        )
                     with gr.Accordion("Cross-Section Preview", open=False):
                         cross_section_preview_plot = gr.Plot(label="Cross-Section Preview")
                         cross_section_preview_summary = gr.Code(label="Cross-Section Summary", language="json")
@@ -4325,6 +4473,9 @@ def build_demo() -> gr.Blocks:
                 left_right_bias,
                 building_front_setback_min_m,
                 building_front_setback_max_m,
+                zoning_granularity,
+                streetwall_continuity,
+                infill_policy,
                 theme_inference_mode,
                 theme_vocab_name,
                 surrounding_building_mode,
@@ -4359,6 +4510,10 @@ def build_demo() -> gr.Blocks:
             fn=_extract_solver_summary,
             inputs=[street_layout_json],
             outputs=[street_solver_summary],
+        ).then(
+            fn=_extract_asset_usage_summary,
+            inputs=[street_layout_json],
+            outputs=[asset_usage_summary_json, asset_usage_table],
         ).then(
             fn=_extract_cross_section_preview,
             inputs=[street_layout_json],
@@ -4599,6 +4754,9 @@ def build_demo() -> gr.Blocks:
                 left_right_bias,
                 building_front_setback_min_m,
                 building_front_setback_max_m,
+                zoning_granularity,
+                streetwall_continuity,
+                infill_policy,
                 theme_inference_mode,
                 theme_vocab_name,
                 surrounding_building_mode,

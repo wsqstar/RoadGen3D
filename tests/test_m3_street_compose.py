@@ -229,6 +229,9 @@ def _build_osm_config(
     left_right_bias: float = 0.0,
     building_front_setback_min_m: float = 1.0,
     building_front_setback_max_m: float = 2.0,
+    zoning_granularity: str = "balanced",
+    streetwall_continuity: float = 0.85,
+    infill_policy: str = "large_gap_only",
 ) -> StreetComposeConfig:
     return StreetComposeConfig(
         query="urban street",
@@ -254,6 +257,9 @@ def _build_osm_config(
         left_right_bias=left_right_bias,
         building_front_setback_min_m=building_front_setback_min_m,
         building_front_setback_max_m=building_front_setback_max_m,
+        zoning_granularity=zoning_granularity,
+        streetwall_continuity=streetwall_continuity,
+        infill_policy=infill_policy,
     )
 
 
@@ -770,6 +776,11 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
             "left_right_bias": -0.25,
             "building_front_setback_min_m": 1.1,
             "building_front_setback_max_m": 1.9,
+            "zoning_granularity": "fine",
+            "streetwall_continuity": 0.9,
+            "infill_policy": "balanced",
+            "frontage_parcel_count": 12,
+            "infill_footprint_count": 3,
         },
         "placements": [],
     }
@@ -786,6 +797,9 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
         captured_config["left_right_bias"] = config.left_right_bias
         captured_config["building_front_setback_min_m"] = config.building_front_setback_min_m
         captured_config["building_front_setback_max_m"] = config.building_front_setback_max_m
+        captured_config["zoning_granularity"] = config.zoning_granularity
+        captured_config["streetwall_continuity"] = config.streetwall_continuity
+        captured_config["infill_policy"] = config.infill_policy
         return StreetComposeResult(
             query="urban street",
             instance_count=1,
@@ -833,6 +847,9 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
         left_right_bias=-0.25,
         building_front_setback_min_m=1.1,
         building_front_setback_max_m=1.9,
+        zoning_granularity="fine",
+        streetwall_continuity=0.9,
+        infill_policy="balanced",
     )
 
     assert captured_config == {
@@ -845,6 +862,9 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
         "left_right_bias": -0.25,
         "building_front_setback_min_m": 1.1,
         "building_front_setback_max_m": 1.9,
+        "zoning_granularity": "fine",
+        "streetwall_continuity": 0.9,
+        "infill_policy": "balanced",
     }
     assert "objective_profile: commerce" in summary
     assert "demand_levels: ped=high, bike=medium, transit=low, vehicle=medium" in summary
@@ -853,6 +873,11 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
     assert "land_use_asymmetry_strength: 0.55" in summary
     assert "left_right_bias: -0.25" in summary
     assert "building_front_setback_range_m: 1.10-1.90" in summary
+    assert "zoning_granularity: fine" in summary
+    assert "streetwall_continuity: 0.90" in summary
+    assert "infill_policy: balanced" in summary
+    assert "frontage_parcel_count: 12" in summary
+    assert "infill_footprint_count: 3" in summary
     assert rows == []
     assert layout_json
     assert model_path == str(glb_path)
@@ -1861,6 +1886,97 @@ def test_run_street_compose_auto_discovers_when_cached_roads_missing(tmp_path: P
     assert "selected_road_effective_poi_count: 2" in summary
 
 
+def test_run_street_compose_summary_and_asset_usage_extract_show_objaverse_counts(tmp_path: Path, monkeypatch):
+    pytest.importorskip("gradio")
+    import scripts.m1_gradio_app as app
+
+    glb_path = (tmp_path / "scene.glb").resolve()
+    layout_path = (tmp_path / "scene_layout.json").resolve()
+    glb_path.write_bytes(b"glb")
+    layout_payload = {
+        "summary": {
+            "instance_count": 4,
+            "dropped_slots": 0,
+            "asset_source_counts": {
+                "objaverse_import": 2,
+                "procedural_generated": 1,
+                "parametric_generated": 1,
+            },
+            "asset_source_unique_counts": {
+                "objaverse_import": 2,
+                "procedural_generated": 1,
+                "parametric_generated": 1,
+            },
+            "asset_generator_type_counts": {
+                "objaverse_v1": 2,
+                "legacy": 1,
+                "parametric": 1,
+            },
+            "asset_usage_by_source": [
+                {
+                    "source": "objaverse_import",
+                    "instance_count": 2,
+                    "unique_asset_count": 2,
+                    "categories": ["bench", "lamp"],
+                    "generator_types": ["objaverse_v1"],
+                    "asset_ids": ["objaverse_bench_x", "objaverse_lamp_y"],
+                },
+                {
+                    "source": "procedural_generated",
+                    "instance_count": 1,
+                    "unique_asset_count": 1,
+                    "categories": ["tree"],
+                    "generator_types": ["legacy"],
+                    "asset_ids": ["tree_01"],
+                },
+            ],
+        },
+        "placements": [],
+    }
+    layout_path.write_text(json.dumps(layout_payload, ensure_ascii=True), encoding="utf-8")
+
+    def fake_compose(**kwargs):
+        return StreetComposeResult(
+            query="urban street",
+            instance_count=4,
+            dropped_slots=0,
+            placements=[],
+            outputs={"scene_glb": str(glb_path), "scene_ply": "", "scene_layout": str(layout_path)},
+        )
+
+    monkeypatch.setattr(app, "compose_street_scene", fake_compose)
+
+    summary, _rows, layout_json, _model_path, _files = app.run_street_compose(
+        dataset_profile="real",
+        query="urban street",
+        real_manifest_text=str(tmp_path / "real_assets_manifest.jsonl"),
+        artifacts_dir_text=str(tmp_path / "artifacts"),
+        model_name="openai/clip-vit-base-patch32",
+        model_dir_text="",
+        local_files_only=True,
+        device="cpu",
+        street_length_m=80.0,
+        street_road_width_m=8.0,
+        street_sidewalk_width_m=2.5,
+        street_lane_count=2,
+        street_density=1.0,
+        street_seed=0,
+        street_topk_per_category=20,
+        street_max_trials_per_slot=30,
+        export_format="glb",
+        m5_layout_mode="template",
+        m5_constraint_mode="off",
+    )
+    usage_json, usage_rows = app._extract_asset_usage_summary(layout_json)
+
+    assert "asset_source_counts: Objaverse=2, Parametric=1, Procedural=1" in summary
+    assert "objaverse_instances: 2" in summary
+    parsed_usage = json.loads(usage_json)
+    assert parsed_usage["objaverse_instance_count"] == 2
+    assert usage_rows[0][0] == "Objaverse"
+    assert usage_rows[0][2] == 2
+
+
 def test_run_street_compose_rediscover_when_cached_metadata_mismatches(tmp_path: Path, monkeypatch):
     pytest.importorskip("gradio")
     import scripts.m1_gradio_app as app
@@ -2178,6 +2294,49 @@ def test_scene_layout_contains_parametric_provenance_counts(tmp_path: Path, monk
     assert int(summary["parametric_instance_count"]) >= 1
 
 
+def test_scene_layout_contains_asset_source_usage_summary(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    rows = _build_real_rows(tmp_path / "data")
+    rows[0]["source"] = "objaverse_import"
+    rows[0]["generator_type"] = "objaverse_v1"
+    rows[1]["source"] = "objaverse_import"
+    rows[1]["generator_type"] = "objaverse_v1"
+    rows[2]["source"] = "parametric_generated"
+    rows[2]["generator_type"] = "parametric_v1"
+    rows[3]["source"] = "procedural_generated"
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+
+    result = compose_street_scene(
+        config=StreetComposeConfig(
+            query="street furniture with benches lamps and bins",
+            length_m=60.0,
+            road_width_m=8.0,
+            sidewalk_width_m=2.5,
+            lane_count=2,
+            density=1.0,
+            seed=42,
+            topk_per_category=20,
+            max_trials_per_slot=30,
+        ),
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+    payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    summary = payload["summary"]
+
+    assert "asset_source_counts" in summary
+    assert int(summary["asset_source_counts"].get("objaverse_import", 0)) >= 1
+    assert "asset_source_unique_counts" in summary
+    assert isinstance(summary.get("asset_usage_by_source", []), list)
+    assert any(item.get("source") == "objaverse_import" for item in summary.get("asset_usage_by_source", []))
+
+
 def test_scene_layout_contains_presentation_views_and_metrics(tmp_path: Path, monkeypatch):
     pytest.importorskip("trimesh")
     pytest.importorskip("matplotlib")
@@ -2272,6 +2431,9 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
     assert summary["land_use_asymmetry_strength"] == pytest.approx(0.35)
     assert summary["building_front_setback_min_m"] == pytest.approx(1.0)
     assert summary["building_front_setback_max_m"] == pytest.approx(2.0)
+    assert summary["zoning_granularity"] == "balanced"
+    assert summary["streetwall_continuity"] == pytest.approx(0.85)
+    assert summary["infill_policy"] == "large_gap_only"
     assert summary["building_retrieval_coverage"]["footprint_count"] == len(payload["building_footprints"])
     assert summary["building_retrieval_coverage"]["placed_count"] == len(payload["building_placements"])
     assert summary["zoning_preview_summary"]["cell_count"] == len(payload["zoning_grid"])
@@ -2283,8 +2445,18 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
     assert {cell["theme_name"] for cell in payload["zoning_grid"]} >= {"commercial", "transit"}
     assert all("land_use_type" in cell and "buildable" in cell and "lot_id" in cell for cell in payload["zoning_grid"])
     assert any(cell["footprint_ids"] for cell in payload["zoning_grid"] if "building_buffer" in cell["lane_role"])
-    assert all(footprint["placement_strategy"] == "footprint_centroid" for footprint in payload["building_footprints"])
-    assert all(footprint["placement_xz"] == footprint["centroid_xz"] for footprint in payload["building_footprints"])
+    osm_footprints = [footprint for footprint in payload["building_footprints"] if footprint["source"] == "osm"]
+    infill_footprints = [footprint for footprint in payload["building_footprints"] if footprint["source"] == "infill"]
+    assert osm_footprints
+    assert all(footprint["placement_strategy"] == "footprint_centroid" for footprint in osm_footprints)
+    assert all(footprint["placement_xz"] == footprint["centroid_xz"] for footprint in osm_footprints)
+    assert infill_footprints
+    assert summary["infill_footprint_count"] == len(infill_footprints)
+    assert summary["building_summary"]["real_footprint_count"] == len(osm_footprints)
+    assert summary["building_summary"]["infill_footprint_count"] == len(infill_footprints)
+    assert summary["frontage_coverage_by_side"]["left"]["coverage_ratio"] >= 0.0
+    assert summary["frontage_gap_stats_by_side"]["left"]["gap_count"] >= 0
+    assert all(str(footprint["placement_strategy"]).startswith("frontage_") for footprint in infill_footprints)
 
 
 def test_osm_scene_layout_contains_cumulative_production_steps(tmp_path: Path, monkeypatch):
@@ -2405,12 +2577,15 @@ def test_osm_compose_building_fallback_survives_missing_assets_and_footprints(tm
     assert summary["building_summary"]["fallback_count"] > 0
     assert summary["building_generation_mode"] == "footprint_based"
     assert summary["building_summary"]["sources"]["fallback"] > 0
+    assert summary["building_summary"]["real_footprint_count"] == 0
+    assert summary["building_summary"]["infill_footprint_count"] == 0
     assert any(plan["selection_source"] == "procedural_fallback" for plan in building_plans)
     assert payload["zoning_grid"]
     assert payload["generated_lots"] == []
     assert summary["zoning_preview_summary"]["occupied_building_cells"] > 0
     fallback_footprints = [footprint for footprint in payload["building_footprints"] if footprint["source"] == "fallback"]
     assert fallback_footprints
+    assert len(fallback_footprints) >= 2
     assert all(1.0 <= float(footprint["front_setback_m"]) <= 2.0 for footprint in fallback_footprints)
     assert any(str(footprint["placement_strategy"]).startswith("frontage_") for footprint in fallback_footprints)
     themed_pairs = {}
@@ -2462,8 +2637,11 @@ def test_osm_compose_grid_growth_generates_lots_and_lot_based_buildings(tmp_path
     assert payload["building_footprints"] == []
     assert payload["generated_lots"]
     assert summary["lot_generation_summary"]["lot_count"] == len(payload["generated_lots"])
+    assert summary["frontage_parcel_count"] == len(payload["generated_lots"])
+    assert summary["building_summary"]["frontage_parcel_count"] == len(payload["generated_lots"])
     assert summary["land_use_summary"]["buildable_cell_count"] > 0
     assert summary["building_retrieval_coverage"]["lot_count"] == len(payload["generated_lots"])
+    assert len(payload["generated_lots"]) > summary["land_use_summary"]["buildable_cell_count"]
     assert summary["zoning_preview_summary"]["side_land_use_counts"]["left"]
     assert summary["zoning_preview_summary"]["side_land_use_counts"]["right"]
     assert all(plan["anchor_geom_id"] in lot_ids for plan in payload["building_placements"])
@@ -2475,6 +2653,7 @@ def test_osm_compose_grid_growth_generates_lots_and_lot_based_buildings(tmp_path
     assert all(lot["placement_strategy"] in {"frontage_setback", "frontage_clamped"} for lot in payload["generated_lots"])
     assert all(1.0 <= float(lot["front_setback_m"]) <= 2.0 for lot in payload["generated_lots"])
     assert any(lot["placement_xz"] != lot["center_xz"] for lot in payload["generated_lots"])
+    assert summary["frontage_coverage_by_side"]["left"]["coverage_ratio"] > 0.5
 
 
 def test_osm_compose_grid_growth_falls_back_without_building_assets(tmp_path: Path, monkeypatch):
@@ -2512,6 +2691,7 @@ def test_osm_compose_grid_growth_falls_back_without_building_assets(tmp_path: Pa
     assert all(plan["selection_source"] == "procedural_fallback" for plan in payload["building_placements"])
     assert summary["building_summary"]["fallback_count"] == len(payload["building_placements"])
     assert summary["building_generation_mode"] == "grid_growth"
+    assert summary["frontage_parcel_count"] == len(payload["generated_lots"])
 
 
 def test_osm_bus_stop_anchor_relaxes_when_exact_anchor_is_blocked(tmp_path: Path, monkeypatch):

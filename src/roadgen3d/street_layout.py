@@ -96,6 +96,7 @@ from .theme_buildings import (
     build_zoning_grid_preview,
     building_query,
     collect_building_footprints,
+    generate_frontage_infill_footprints,
     generate_grid_growth_lots,
     infer_theme_segments,
     rerank_building_candidates,
@@ -224,6 +225,25 @@ def _yaw_for_asset_category(category: str, facing_yaw_deg: float) -> float:
     return float(yaw_deg)
 
 
+def _placement_asset_source_key(
+    row: Mapping[str, object] | None,
+    *,
+    selection_source: str = "",
+) -> str:
+    """Return a stable provenance/source key for one placed asset."""
+
+    if row is not None:
+        source = str(row.get("source", "") or "").strip().lower()
+        if source:
+            return source
+        generator = asset_generator_type(row)
+        if generator:
+            return str(generator).strip().lower()
+    if str(selection_source).strip().lower() == "procedural_fallback":
+        return "procedural_fallback"
+    return "unknown"
+
+
 def _validate_config(config: StreetComposeConfig) -> None:
     if not config.query.strip():
         raise ValueError("query cannot be empty")
@@ -298,6 +318,17 @@ def _validate_config(config: StreetComposeConfig) -> None:
         raise ValueError("building_search_topk must be >= 1")
     if str(getattr(config, "surrounding_building_mode", "footprint_based")).strip().lower() not in {"footprint_based", "grid_growth"}:
         raise ValueError("surrounding_building_mode must be 'footprint_based' or 'grid_growth'")
+    if str(getattr(config, "zoning_granularity", "balanced")).strip().lower() not in {"coarse", "balanced", "fine"}:
+        raise ValueError("zoning_granularity must be 'coarse', 'balanced' or 'fine'")
+    if not 0.0 <= float(getattr(config, "streetwall_continuity", 0.85)) <= 1.0:
+        raise ValueError("streetwall_continuity must be in [0.0, 1.0]")
+    if str(getattr(config, "infill_policy", "large_gap_only")).strip().lower() not in {
+        "off",
+        "large_gap_only",
+        "balanced",
+        "aggressive",
+    }:
+        raise ValueError("infill_policy must be 'off', 'large_gap_only', 'balanced' or 'aggressive'")
     if str(getattr(config, "theme_inference_mode", "deterministic_auto")).strip().lower() not in {"deterministic_auto"}:
         raise ValueError("theme_inference_mode must be 'deterministic_auto'")
     if str(getattr(config, "theme_vocab_name", "fixed_v1")).strip().lower() not in {"fixed_v1"}:
@@ -3133,6 +3164,15 @@ def _place_surrounding_buildings(
     road_type = _dominant_building_road_type(road_segment_graph, resolved_program)
     building_footprints: Tuple[BuildingFootprint, ...] = tuple()
     generated_lots: Tuple[GeneratedLot, ...] = tuple()
+    zoning_granularity = str(getattr(config, "zoning_granularity", "balanced") or "balanced")
+    streetwall_continuity = float(getattr(config, "streetwall_continuity", 0.85) or 0.85)
+    infill_policy = str(getattr(config, "infill_policy", "large_gap_only") or "large_gap_only")
+    footprint_frontage_summary: Dict[str, object] = {
+        "real_footprint_count": 0,
+        "infill_footprint_count": 0,
+        "frontage_coverage_by_side": {"left": {}, "right": {}},
+        "frontage_gap_stats_by_side": {"left": {}, "right": {}},
+    }
 
     if mode == "footprint_based":
         asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.35)
@@ -3153,6 +3193,8 @@ def _place_surrounding_buildings(
                 left_right_bias=float(0.0 if bias_raw is None else bias_raw),
                 front_setback_min_m=float(1.0 if setback_min_raw is None else setback_min_raw),
                 front_setback_max_m=float(2.0 if setback_max_raw is None else setback_max_raw),
+                zoning_granularity=zoning_granularity,
+                streetwall_continuity=streetwall_continuity,
             )
         )
 
@@ -3166,6 +3208,32 @@ def _place_surrounding_buildings(
     )
     zoning_grid = zoning_grid_base
     lot_generation_summary: Dict[str, object] = {"lot_count": 0}
+    if mode == "footprint_based":
+        setback_min_raw = getattr(config, "building_front_setback_min_m", 1.0)
+        setback_max_raw = getattr(config, "building_front_setback_max_m", 2.0)
+        infill_footprints, footprint_frontage_summary = generate_frontage_infill_footprints(
+            zoning_grid_base,
+            building_footprints,
+            seed=int(getattr(config, "seed", 0) or 0),
+            height_mode=str(getattr(config, "building_height_mode", "theme_random") or "theme_random"),
+            height_profile=str(getattr(config, "building_height_profile", "urban_default_v1") or "urban_default_v1"),
+            zoning_granularity=zoning_granularity,
+            streetwall_continuity=streetwall_continuity,
+            infill_policy=infill_policy,
+            front_setback_min_m=float(1.0 if setback_min_raw is None else setback_min_raw),
+            front_setback_max_m=float(2.0 if setback_max_raw is None else setback_max_raw),
+        )
+        if infill_footprints:
+            building_footprints = tuple(list(building_footprints) + list(infill_footprints))
+            zoning_grid_base, zoning_preview_summary = build_zoning_grid_preview(
+                config=config,
+                placement_context=placement_ctx,
+                road_segment_graph=road_segment_graph,
+                theme_segments=theme_segments,
+                building_footprints=building_footprints,
+                road_buffer_m=35.0,
+            )
+            zoning_grid = zoning_grid_base
     if mode == "grid_growth":
         setback_min_raw = getattr(config, "building_front_setback_min_m", 1.0)
         setback_max_raw = getattr(config, "building_front_setback_max_m", 2.0)
@@ -3177,6 +3245,8 @@ def _place_surrounding_buildings(
             height_profile=str(getattr(config, "building_height_profile", "urban_default_v1") or "urban_default_v1"),
             front_setback_min_m=float(1.0 if setback_min_raw is None else setback_min_raw),
             front_setback_max_m=float(2.0 if setback_max_raw is None else setback_max_raw),
+            zoning_granularity=zoning_granularity,
+            streetwall_continuity=streetwall_continuity,
         )
     land_use_summary = summarize_land_use_grid(zoning_grid)
 
@@ -3211,11 +3281,17 @@ def _place_surrounding_buildings(
         **dict(zoning_preview_summary),
         "occupied_building_cells": int(occupied_building_cells),
         "generated_lot_count": int(len(generated_lots)),
+        "frontage_parcel_count": int(
+            lot_generation_summary.get("frontage_parcel_count", len(generated_lots))
+            if mode == "grid_growth"
+            else 0
+        ),
     }
     asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.35)
     bias_raw = getattr(config, "left_right_bias", 0.0)
     setback_min_raw = getattr(config, "building_front_setback_min_m", 1.0)
     setback_max_raw = getattr(config, "building_front_setback_max_m", 2.0)
+    frontage_metrics_source = footprint_frontage_summary if mode == "footprint_based" else lot_generation_summary
     building_summary = {
         **dict(placement_summary),
         "enabled": True,
@@ -3227,6 +3303,18 @@ def _place_surrounding_buildings(
         "left_right_bias": float(0.0 if bias_raw is None else bias_raw),
         "building_front_setback_min_m": float(1.0 if setback_min_raw is None else setback_min_raw),
         "building_front_setback_max_m": float(2.0 if setback_max_raw is None else setback_max_raw),
+        "zoning_granularity": str(zoning_granularity),
+        "streetwall_continuity": float(streetwall_continuity),
+        "infill_policy": str(infill_policy),
+        "frontage_parcel_count": int(
+            lot_generation_summary.get("frontage_parcel_count", len(generated_lots))
+            if mode == "grid_growth"
+            else 0
+        ),
+        "real_footprint_count": int(footprint_frontage_summary.get("real_footprint_count", 0) or 0),
+        "infill_footprint_count": int(footprint_frontage_summary.get("infill_footprint_count", 0) or 0),
+        "frontage_coverage_by_side": dict(frontage_metrics_source.get("frontage_coverage_by_side", {}) or {}),
+        "frontage_gap_stats_by_side": dict(frontage_metrics_source.get("frontage_gap_stats_by_side", {}) or {}),
     }
     # Attach continuous height stats when available
     _all_heights: list[float] = []
@@ -4063,6 +4151,10 @@ def compose_street_scene(
     }
     selection_source_counts: Dict[str, int] = {}
     asset_generator_type_counts: Dict[str, int] = {}
+    asset_source_counts: Dict[str, int] = {}
+    asset_source_unique_assets: Dict[str, set[str]] = {}
+    asset_source_categories: Dict[str, set[str]] = {}
+    asset_source_generator_types: Dict[str, set[str]] = {}
     parametric_instance_count = 0
     for placement in placements:
         selection_source_counts[placement.selection_source] = selection_source_counts.get(placement.selection_source, 0) + 1
@@ -4071,7 +4163,15 @@ def compose_street_scene(
             if placement.asset_id in asset_by_id
             else "procedural_fallback" if placement.selection_source == "procedural_fallback" else "unknown"
         )
+        source_key = _placement_asset_source_key(
+            asset_by_id.get(placement.asset_id),
+            selection_source=placement.selection_source,
+        )
         asset_generator_type_counts[generator_key] = asset_generator_type_counts.get(generator_key, 0) + 1
+        asset_source_counts[source_key] = asset_source_counts.get(source_key, 0) + 1
+        asset_source_unique_assets.setdefault(source_key, set()).add(placement.asset_id)
+        asset_source_categories.setdefault(source_key, set()).add(str(placement.category))
+        asset_source_generator_types.setdefault(source_key, set()).add(str(generator_key))
         if generator_key == "parametric":
             parametric_instance_count += 1
     asset_library_scene_instances = sum(
@@ -4126,6 +4226,9 @@ def compose_street_scene(
     bias_raw = getattr(config, "left_right_bias", 0.0)
     setback_min_raw = getattr(config, "building_front_setback_min_m", 1.0)
     setback_max_raw = getattr(config, "building_front_setback_max_m", 2.0)
+    zoning_granularity_raw = getattr(config, "zoning_granularity", "balanced")
+    streetwall_continuity_raw = getattr(config, "streetwall_continuity", 0.85)
+    infill_policy_raw = getattr(config, "infill_policy", "large_gap_only")
     summary_payload = {
         "instance_count": len(placements),
         "dropped_slots": int(dropped_slots),
@@ -4140,6 +4243,29 @@ def compose_street_scene(
         "per_category_unique": per_category_unique,
         "selection_source_counts": selection_source_counts,
         "asset_generator_type_counts": asset_generator_type_counts,
+        "asset_source_counts": asset_source_counts,
+        "asset_source_unique_counts": {
+            source_key: int(len(asset_ids))
+            for source_key, asset_ids in asset_source_unique_assets.items()
+        },
+        "asset_usage_by_source": [
+            {
+                "source": str(source_key),
+                "instance_count": int(asset_source_counts.get(source_key, 0)),
+                "unique_asset_count": int(len(asset_source_unique_assets.get(source_key, set()))),
+                "categories": sorted(category for category in asset_source_categories.get(source_key, set()) if category),
+                "generator_types": sorted(
+                    generator_type
+                    for generator_type in asset_source_generator_types.get(source_key, set())
+                    if generator_type
+                ),
+                "asset_ids": sorted(asset_source_unique_assets.get(source_key, set())),
+            }
+            for source_key in sorted(
+                asset_source_counts,
+                key=lambda key: (-int(asset_source_counts.get(key, 0)), str(key)),
+            )
+        ],
         "parametric_instance_count": int(parametric_instance_count),
         "asset_library_scene_instances": int(asset_library_scene_instances),
         "production_step_count": int(len(production_steps)),
@@ -4241,6 +4367,7 @@ def compose_street_scene(
         "parametric_tree_fallback_count": int(parametric_tree_count),
         "scene_debug_overlays_enabled": bool(debug_scene_overlays_enabled),
         "theme_segments": [segment.to_dict() for segment in theme_segments],
+        "theme_segment_count": int(len(theme_segments)),
         "theme_diagnostics": {
             "theme_inference_mode": str(getattr(config, "theme_inference_mode", "deterministic_auto")),
             "theme_vocab_name": str(getattr(config, "theme_vocab_name", "fixed_v1")),
@@ -4268,6 +4395,13 @@ def compose_street_scene(
         "left_right_bias": float(0.0 if bias_raw is None else bias_raw),
         "building_front_setback_min_m": float(1.0 if setback_min_raw is None else setback_min_raw),
         "building_front_setback_max_m": float(2.0 if setback_max_raw is None else setback_max_raw),
+        "zoning_granularity": str("balanced" if zoning_granularity_raw is None else zoning_granularity_raw),
+        "streetwall_continuity": float(0.85 if streetwall_continuity_raw is None else streetwall_continuity_raw),
+        "infill_policy": str("large_gap_only" if infill_policy_raw is None else infill_policy_raw),
+        "frontage_parcel_count": int(lot_generation_summary.get("frontage_parcel_count", len(generated_lots)) or 0),
+        "infill_footprint_count": int(building_summary.get("infill_footprint_count", 0) or 0),
+        "frontage_coverage_by_side": dict(building_summary.get("frontage_coverage_by_side", {}) or {}),
+        "frontage_gap_stats_by_side": dict(building_summary.get("frontage_gap_stats_by_side", {}) or {}),
         "building_summary": dict(building_summary),
         "land_use_summary": dict(land_use_summary),
         "lot_generation_summary": dict(lot_generation_summary),
@@ -4279,6 +4413,8 @@ def compose_street_scene(
             "placed_count": int(building_summary.get("placed_count", 0)),
             "asset_count": int(building_summary.get("asset_count", 0)),
             "fallback_count": int(building_summary.get("fallback_count", 0)),
+            "real_footprint_count": int(building_summary.get("real_footprint_count", 0)),
+            "infill_footprint_count": int(building_summary.get("infill_footprint_count", 0)),
         },
         "zoning_preview_summary": dict(zoning_preview_summary),
         "composition_report": {

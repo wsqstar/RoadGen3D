@@ -60,17 +60,34 @@ _THEME_POI_BONUSES: Dict[str, Dict[str, float]] = {
 }
 _GRID_LOT_RULES: Dict[str, Dict[str, float]] = {
     "residential": {
-        "target_frontage_m": 12.0,
-        "min_frontage_m": 8.0,
+        "target_frontage_m": 7.0,
+        "min_frontage_m": 5.0,
+        "max_frontage_m": 10.0,
+        "gap_threshold_m": 14.0,
     },
     "commercial": {
-        "target_frontage_m": 18.0,
-        "min_frontage_m": 12.0,
+        "target_frontage_m": 6.0,
+        "min_frontage_m": 4.5,
+        "max_frontage_m": 8.0,
+        "gap_threshold_m": 12.0,
     },
     "transit": {
-        "target_frontage_m": 24.0,
-        "min_frontage_m": 16.0,
+        "target_frontage_m": 10.0,
+        "min_frontage_m": 7.0,
+        "max_frontage_m": 14.0,
+        "gap_threshold_m": 18.0,
     },
+}
+_ZONING_GRANULARITY_MULTIPLIERS: Dict[str, float] = {
+    "coarse": 1.5,
+    "balanced": 1.0,
+    "fine": 0.7,
+}
+_INFILL_POLICY_MULTIPLIERS: Dict[str, float] = {
+    "off": float("inf"),
+    "large_gap_only": 1.0,
+    "balanced": 0.75,
+    "aggressive": 0.55,
 }
 
 
@@ -270,6 +287,8 @@ def collect_building_footprints(
     left_right_bias: float = 0.0,
     front_setback_min_m: float = 1.0,
     front_setback_max_m: float = 2.0,
+    zoning_granularity: str = "balanced",
+    streetwall_continuity: float = 0.85,
 ) -> Tuple[BuildingFootprint, ...]:
     """Collect nearby OSM building footprints or fallback proxy footprints."""
 
@@ -343,6 +362,8 @@ def collect_building_footprints(
         left_right_bias=left_right_bias,
         front_setback_min_m=front_setback_min_m,
         front_setback_max_m=front_setback_max_m,
+        zoning_granularity=zoning_granularity,
+        streetwall_continuity=streetwall_continuity,
     ))
 
 
@@ -635,6 +656,364 @@ def _resolve_frontage_placement(
     return placement_xz, float(building_depth), placement_strategy
 
 
+def _normalize_zoning_granularity(value: str) -> str:
+    key = str(value or "balanced").strip().lower()
+    return key if key in _ZONING_GRANULARITY_MULTIPLIERS else "balanced"
+
+
+def _normalize_infill_policy(value: str) -> str:
+    key = str(value or "large_gap_only").strip().lower()
+    return key if key in _INFILL_POLICY_MULTIPLIERS else "large_gap_only"
+
+
+def _frontage_rule(
+    land_use_type: str,
+    *,
+    zoning_granularity: str,
+) -> Dict[str, float]:
+    base_rule = _GRID_LOT_RULES.get(str(land_use_type or "").strip().lower(), _GRID_LOT_RULES["commercial"])
+    multiplier = _ZONING_GRANULARITY_MULTIPLIERS[_normalize_zoning_granularity(zoning_granularity)]
+    return {
+        "target_frontage_m": float(base_rule["target_frontage_m"]) * multiplier,
+        "min_frontage_m": float(base_rule["min_frontage_m"]) * multiplier,
+        "max_frontage_m": float(base_rule["max_frontage_m"]) * multiplier,
+        "gap_threshold_m": float(base_rule["gap_threshold_m"]),
+    }
+
+
+def _frontage_intervals_for_length(
+    total_frontage_m: float,
+    *,
+    land_use_type: str,
+    zoning_granularity: str,
+    streetwall_continuity: float,
+) -> Tuple[Tuple[float, float], ...]:
+    total = float(max(total_frontage_m, 0.0))
+    if total <= 1e-6:
+        return tuple()
+    rule = _frontage_rule(land_use_type, zoning_granularity=zoning_granularity)
+    continuity = _clamp(float(streetwall_continuity), 0.0, 1.0)
+    usable_frontage = min(
+        total,
+        max(
+            min(float(rule["min_frontage_m"]), total),
+            total * max(0.35, continuity),
+        ),
+    )
+    edge_gap = max(0.0, (total - usable_frontage) / 2.0)
+    return tuple(
+        (float(start) + edge_gap, float(end) + edge_gap)
+        for start, end in _partition_frontage_interval(
+            usable_frontage,
+            target_frontage_m=float(rule["target_frontage_m"]),
+            min_frontage_m=float(rule["min_frontage_m"]),
+            max_frontage_m=float(rule["max_frontage_m"]),
+        )
+    )
+
+
+def _large_gap_threshold_m(
+    land_use_type: str,
+    *,
+    infill_policy: str,
+    streetwall_continuity: float,
+) -> float:
+    policy = _normalize_infill_policy(infill_policy)
+    if policy == "off":
+        return float("inf")
+    base = float(_GRID_LOT_RULES.get(str(land_use_type or "").strip().lower(), _GRID_LOT_RULES["commercial"]).get("gap_threshold_m", 12.0))
+    continuity = _clamp(float(streetwall_continuity), 0.0, 1.0)
+    continuity_multiplier = 1.15 - 0.35 * continuity
+    return max(3.0, base * _INFILL_POLICY_MULTIPLIERS[policy] * continuity_multiplier)
+
+
+def _lerp_point(a: Tuple[float, float], b: Tuple[float, float], t: float) -> Tuple[float, float]:
+    return (
+        float(a[0]) + (float(b[0]) - float(a[0])) * float(t),
+        float(a[1]) + (float(b[1]) - float(a[1])) * float(t),
+    )
+
+
+def _cell_frontage_edges(
+    cell: Mapping[str, Any],
+) -> Tuple[Tuple[float, float], Tuple[float, float], Tuple[float, float], Tuple[float, float]] | None:
+    polygon = [
+        (float(point[0]), float(point[1]))
+        for point in cell.get("polygon_xz", []) or []
+        if len(point) >= 2
+    ]
+    if len(polygon) < 4:
+        return None
+    side = _cell_side(cell)
+    if side == "right":
+        street_a = polygon[3]
+        street_b = polygon[2]
+        far_a = polygon[0]
+        far_b = polygon[1]
+    else:
+        street_a = polygon[0]
+        street_b = polygon[1]
+        far_a = polygon[3]
+        far_b = polygon[2]
+    return street_a, street_b, far_a, far_b
+
+
+def _parcel_polygon_from_cell_interval(
+    cell: Mapping[str, Any],
+    *,
+    start_m: float,
+    end_m: float,
+) -> Tuple[Tuple[float, float], ...]:
+    edge_payload = _cell_frontage_edges(cell)
+    if edge_payload is None:
+        return tuple()
+    street_a, street_b, far_a, far_b = edge_payload
+    frontage_m, _depth_m = _cell_frontage_depth(cell)
+    if frontage_m <= 1e-6:
+        return tuple()
+    t0 = _clamp(float(start_m) / frontage_m, 0.0, 1.0)
+    t1 = _clamp(float(end_m) / frontage_m, 0.0, 1.0)
+    if t1 - t0 <= 1e-6:
+        return tuple()
+    far_0 = _lerp_point(far_a, far_b, t0)
+    far_1 = _lerp_point(far_a, far_b, t1)
+    street_1 = _lerp_point(street_a, street_b, t1)
+    street_0 = _lerp_point(street_a, street_b, t0)
+    return (far_0, far_1, street_1, street_0, far_0)
+
+
+def _street_edge_midpoint_for_interval(
+    cell: Mapping[str, Any],
+    *,
+    start_m: float,
+    end_m: float,
+) -> Tuple[float, float]:
+    edge_payload = _cell_frontage_edges(cell)
+    if edge_payload is None:
+        return (0.0, 0.0)
+    street_a, street_b, _far_a, _far_b = edge_payload
+    frontage_m, _depth_m = _cell_frontage_depth(cell)
+    if frontage_m <= 1e-6:
+        return _average_points((street_a, street_b))
+    t0 = _clamp(float(start_m) / frontage_m, 0.0, 1.0)
+    t1 = _clamp(float(end_m) / frontage_m, 0.0, 1.0)
+    return _average_points((_lerp_point(street_a, street_b, t0), _lerp_point(street_a, street_b, t1)))
+
+
+def _partition_frontage_interval(
+    total_frontage_m: float,
+    *,
+    target_frontage_m: float,
+    min_frontage_m: float,
+    max_frontage_m: float,
+) -> Tuple[Tuple[float, float], ...]:
+    total = float(max(total_frontage_m, 0.0))
+    if total <= 1e-6:
+        return tuple()
+    target = max(float(target_frontage_m), 1.0)
+    min_frontage = max(float(min_frontage_m), 1.0)
+    max_frontage = max(float(max_frontage_m), min_frontage)
+    count = max(1, int(round(total / target)))
+    while total / count > max_frontage + 1e-6:
+        count += 1
+    while count > 1 and total / count < min_frontage - 1e-6:
+        count -= 1
+    width = total / count
+    if width > max_frontage + 1e-6:
+        count = max(count, int(math.ceil(total / max_frontage)))
+        width = total / count
+    if width < min_frontage - 1e-6 and count > 1:
+        count = max(1, int(math.floor(total / min_frontage)))
+        width = total / max(count, 1)
+    intervals: List[Tuple[float, float]] = []
+    cursor = 0.0
+    for idx in range(max(count, 1)):
+        next_cursor = total if idx == count - 1 else min(total, cursor + width)
+        intervals.append((float(cursor), float(next_cursor)))
+        cursor = float(next_cursor)
+    return tuple(intervals)
+
+
+def _merge_intervals(
+    intervals: Sequence[Tuple[float, float]],
+    *,
+    minimum_width_m: float = 0.0,
+) -> Tuple[Tuple[float, float], ...]:
+    cleaned = sorted(
+        (
+            (float(start), float(end))
+            for start, end in intervals
+            if float(end) - float(start) > max(float(minimum_width_m), 1e-6)
+        ),
+        key=lambda item: (item[0], item[1]),
+    )
+    if not cleaned:
+        return tuple()
+    merged: List[List[float]] = [[cleaned[0][0], cleaned[0][1]]]
+    for start, end in cleaned[1:]:
+        last = merged[-1]
+        if start <= last[1] + 1e-6:
+            last[1] = max(last[1], end)
+        else:
+            merged.append([start, end])
+    return tuple((float(start), float(end)) for start, end in merged)
+
+
+def _invert_intervals(
+    total_frontage_m: float,
+    intervals: Sequence[Tuple[float, float]],
+) -> Tuple[Tuple[float, float], ...]:
+    total = float(max(total_frontage_m, 0.0))
+    if total <= 1e-6:
+        return tuple()
+    merged = _merge_intervals(intervals)
+    if not merged:
+        return ((0.0, total),)
+    gaps: List[Tuple[float, float]] = []
+    cursor = 0.0
+    for start, end in merged:
+        if start - cursor > 1e-6:
+            gaps.append((float(cursor), float(start)))
+        cursor = max(cursor, float(end))
+    if total - cursor > 1e-6:
+        gaps.append((float(cursor), float(total)))
+    return tuple(gaps)
+
+
+def _project_polygon_to_cell_frontage_interval(
+    cell: Mapping[str, Any],
+    polygon_xz: Sequence[Tuple[float, float]],
+) -> Tuple[float, float] | None:
+    edge_payload = _cell_frontage_edges(cell)
+    if edge_payload is None:
+        return None
+    street_a, street_b, _far_a, _far_b = edge_payload
+    direction = (
+        float(street_b[0]) - float(street_a[0]),
+        float(street_b[1]) - float(street_a[1]),
+    )
+    frontage_m = math.hypot(direction[0], direction[1])
+    if frontage_m <= 1e-6:
+        return None
+    unit = (direction[0] / frontage_m, direction[1] / frontage_m)
+    values = []
+    for x, z in polygon_xz:
+        offset = (float(x) - float(street_a[0]), float(z) - float(street_a[1]))
+        values.append(offset[0] * unit[0] + offset[1] * unit[1])
+    if not values:
+        return None
+    start = _clamp(min(values), 0.0, frontage_m)
+    end = _clamp(max(values), 0.0, frontage_m)
+    if end - start <= 0.25:
+        return None
+    return (float(start), float(end))
+
+
+def _frontage_gap_stats(
+    total_frontage_m: float,
+    intervals: Sequence[Tuple[float, float]],
+) -> Dict[str, float]:
+    gaps = _invert_intervals(total_frontage_m, intervals)
+    lengths = [float(end) - float(start) for start, end in gaps if float(end) - float(start) > 1e-6]
+    if not lengths:
+        return {
+            "gap_count": 0,
+            "max_gap_m": 0.0,
+            "mean_gap_m": 0.0,
+            "uncovered_length_m": 0.0,
+        }
+    uncovered = sum(lengths)
+    return {
+        "gap_count": int(len(lengths)),
+        "max_gap_m": round(max(lengths), 3),
+        "mean_gap_m": round(uncovered / len(lengths), 3),
+        "uncovered_length_m": round(uncovered, 3),
+    }
+
+
+def summarize_frontage_coverage(
+    zoning_grid: Sequence[Mapping[str, Any]],
+    coverage_items: Sequence[Mapping[str, Any]],
+) -> Dict[str, Dict[str, float]]:
+    buildable_cells: List[Dict[str, Any]] = []
+    for cell in zoning_grid:
+        if not bool(cell.get("buildable", False)):
+            continue
+        if "building_buffer" not in str(cell.get("lane_role", "") or ""):
+            continue
+        polygon = [
+            (float(point[0]), float(point[1]))
+            for point in cell.get("polygon_xz", []) or []
+            if len(point) >= 2
+        ]
+        if len(polygon) < 4:
+            continue
+        buildable_cells.append(
+            {
+                "cell": cell,
+                "cell_id": str(cell.get("cell_id", "") or ""),
+                "side": _cell_side(cell),
+                "frontage_m": _cell_frontage_depth(cell)[0],
+                "bbox": _polygon_bbox(polygon),
+            }
+        )
+
+    intervals_by_cell: Dict[str, List[Tuple[float, float]]] = {
+        entry["cell_id"]: [] for entry in buildable_cells if entry["cell_id"]
+    }
+    for item in coverage_items:
+        polygon = [
+            (float(point[0]), float(point[1]))
+            for point in item.get("polygon_xz", []) or []
+            if len(point) >= 2
+        ]
+        if len(polygon) < 4:
+            continue
+        side_hint = str(item.get("side", "") or "")
+        bbox = _polygon_bbox(polygon)
+        for entry in buildable_cells:
+            if side_hint and side_hint != entry["side"]:
+                continue
+            if not _bbox_intersects(entry["bbox"], bbox):
+                continue
+            interval = _project_polygon_to_cell_frontage_interval(entry["cell"], polygon)
+            if interval is None:
+                continue
+            intervals_by_cell.setdefault(entry["cell_id"], []).append(interval)
+
+    coverage_by_side: Dict[str, Dict[str, float]] = {}
+    gap_stats_by_side: Dict[str, Dict[str, float]] = {}
+    for side_name in ("left", "right"):
+        side_cells = [entry for entry in buildable_cells if entry["side"] == side_name]
+        total_length = sum(float(entry["frontage_m"]) for entry in side_cells)
+        covered_length = 0.0
+        gap_count = 0
+        max_gap = 0.0
+        uncovered_total = 0.0
+        for entry in side_cells:
+            merged = _merge_intervals(intervals_by_cell.get(entry["cell_id"], ()))
+            covered_length += sum(float(end) - float(start) for start, end in merged)
+            gap_stats = _frontage_gap_stats(float(entry["frontage_m"]), merged)
+            gap_count += int(gap_stats.get("gap_count", 0) or 0)
+            max_gap = max(max_gap, float(gap_stats.get("max_gap_m", 0.0) or 0.0))
+            uncovered_total += float(gap_stats.get("uncovered_length_m", 0.0) or 0.0)
+        coverage_by_side[side_name] = {
+            "covered_length_m": round(covered_length, 3),
+            "total_length_m": round(total_length, 3),
+            "coverage_ratio": round(covered_length / total_length, 3) if total_length > 1e-6 else 0.0,
+        }
+        gap_stats_by_side[side_name] = {
+            "gap_count": int(gap_count),
+            "max_gap_m": round(max_gap, 3),
+            "mean_gap_m": round(uncovered_total / gap_count, 3) if gap_count > 0 else 0.0,
+            "uncovered_length_m": round(uncovered_total, 3),
+        }
+    return {
+        "frontage_coverage_by_side": coverage_by_side,
+        "frontage_gap_stats_by_side": gap_stats_by_side,
+    }
+
+
 def infer_grid_height_class(land_use_type: str, *, road_type: str = "") -> str:
     road_type_lc = str(road_type).strip().lower()
     major_road = road_type_lc in {"primary", "secondary"} or any(
@@ -771,6 +1150,8 @@ def generate_grid_growth_lots(
     height_profile: str = "urban_default_v1",
     front_setback_min_m: float = 1.0,
     front_setback_max_m: float = 2.0,
+    zoning_granularity: str = "balanced",
+    streetwall_continuity: float = 0.85,
 ) -> Tuple[Tuple[Dict[str, Any], ...], Tuple[GeneratedLot, ...], Dict[str, Any]]:
     annotated_cells: List[Dict[str, Any]] = []
     for cell in zoning_grid:
@@ -778,8 +1159,10 @@ def generate_grid_growth_lots(
         payload.setdefault("land_use_type", "")
         payload.setdefault("buildable", False)
         payload.setdefault("lot_id", "")
+        payload.setdefault("lot_ids", [])
         annotated_cells.append(payload)
-
+    normalized_granularity = _normalize_zoning_granularity(zoning_granularity)
+    continuity = _clamp(float(streetwall_continuity), 0.0, 1.0)
     candidate_cells = sorted(
         [
             cell
@@ -790,136 +1173,90 @@ def generate_grid_growth_lots(
         ],
         key=lambda cell: (
             _cell_side(cell),
-            str(cell.get("theme_id", "") or ""),
-            str(cell.get("land_use_type", "") or ""),
             float((cell.get("station_range_m", [0.0, 0.0]) or [0.0, 0.0])[0]),
             str(cell.get("cell_id", "") or ""),
         ),
     )
-    strips: List[List[Dict[str, Any]]] = []
-    for cell in candidate_cells:
-        if not strips:
-            strips.append([cell])
-            continue
-        prev = strips[-1][-1]
-        prev_range = prev.get("station_range_m", [0.0, 0.0]) or [0.0, 0.0]
-        current_range = cell.get("station_range_m", [0.0, 0.0]) or [0.0, 0.0]
-        contiguous = abs(float(prev_range[1]) - float(current_range[0])) <= 1e-3
-        same_strip = (
-            _cell_side(prev) == _cell_side(cell)
-            and str(prev.get("theme_id", "") or "") == str(cell.get("theme_id", "") or "")
-            and str(prev.get("land_use_type", "") or "") == str(cell.get("land_use_type", "") or "")
-            and contiguous
-        )
-        if same_strip:
-            strips[-1].append(cell)
-        else:
-            strips.append([cell])
 
     lots: List[GeneratedLot] = []
-    lot_by_cell_id: Dict[str, str] = {}
-    for strip in strips:
-        if not strip:
+    for cell in candidate_cells:
+        land_use_type = str(cell.get("land_use_type", "") or "")
+        parcel_frontage_intervals = _frontage_intervals_for_length(
+            _cell_frontage_depth(cell)[0],
+            land_use_type=land_use_type,
+            zoning_granularity=normalized_granularity,
+            streetwall_continuity=continuity,
+        )
+        if not parcel_frontage_intervals:
             continue
-        land_use_type = str(strip[0].get("land_use_type", "") or "")
-        rule = _GRID_LOT_RULES.get(land_use_type, _GRID_LOT_RULES["commercial"])
-        frontage_lengths = [_cell_frontage_depth(cell)[0] for cell in strip]
-        avg_frontage = sum(frontage_lengths) / max(len(frontage_lengths), 1)
-        cells_per_lot = max(1, int(round(float(rule["target_frontage_m"]) / max(avg_frontage, 1.0))))
-        strip_frontage_total = sum(frontage_lengths)
-        cursor = 0
-        while cursor < len(strip):
-            next_cursor = min(len(strip), cursor + cells_per_lot)
-            remaining_frontage = sum(frontage_lengths[next_cursor:])
-            if next_cursor < len(strip) and remaining_frontage < float(rule["min_frontage_m"]):
-                next_cursor = len(strip)
-            lot_cells = strip[cursor:next_cursor]
-            if not lot_cells:
-                break
-            lot_polygons = [
-                [
-                    (float(point[0]), float(point[1]))
-                    for point in cell.get("polygon_xz", []) or []
-                    if len(point) >= 2
-                ]
-                for cell in lot_cells
-            ]
-            merged_polygon = _merge_polygons(lot_polygons)
-            center_xz = _polygon_center(merged_polygon)
-            frontage_width_m = sum(_cell_frontage_depth(cell)[0] for cell in lot_cells)
-            depth_m = max(_cell_frontage_depth(cell)[1] for cell in lot_cells)
+        cell_lot_ids: List[str] = []
+        side = _cell_side(cell)
+        yaw_deg = _cell_yaw_deg(cell)
+        theme_id = str(cell.get("theme_id", "") or "")
+        cell_id = str(cell.get("cell_id", "") or "")
+        segment_ids = tuple(str(segment_id) for segment_id in (cell.get("segment_ids", []) or []) if str(segment_id))
+        parcel_depth_m = _cell_frontage_depth(cell)[1]
+        for start_m, end_m in parcel_frontage_intervals:
+            polygon_xz = _parcel_polygon_from_cell_interval(
+                cell,
+                start_m=float(start_m),
+                end_m=float(end_m),
+            )
+            if len(polygon_xz) < 4:
+                continue
             lot_id = f"lot_{len(lots):03d}"
-            yaw_deg = _cell_yaw_deg(lot_cells[0])
-            street_edge_points = [
-                (float(edge[0]), float(edge[1]))
-                for cell in lot_cells
-                for edge in [cell.get("street_edge_xz", ()) or ()]
-                if len(edge) >= 2
-            ]
-            street_edge_xz = _average_points(street_edge_points) if street_edge_points else (float(center_xz[0]), float(center_xz[1]))
+            cell_lot_ids.append(lot_id)
+            center_xz = _polygon_center(polygon_xz)
+            street_edge_xz = _street_edge_midpoint_for_interval(
+                cell,
+                start_m=float(start_m),
+                end_m=float(end_m),
+            )
+            frontage_width_m = float(max(float(end_m) - float(start_m), 3.0))
             front_setback_m = _sample_front_setback_m(
                 seed=seed,
                 target_id=lot_id,
                 minimum_m=front_setback_min_m,
                 maximum_m=front_setback_max_m,
             )
-            if street_edge_points:
-                placement_xz, building_depth_m, placement_strategy = _resolve_frontage_placement(
-                    street_edge_xz=street_edge_xz,
-                    side=_cell_side(lot_cells[0]),
-                    yaw_deg=float(yaw_deg),
-                    parcel_depth_m=float(depth_m),
-                    front_setback_m=float(front_setback_m),
-                )
-            else:
-                placement_xz = (float(center_xz[0]), float(center_xz[1]))
-                building_depth_m = float(max(depth_m, 4.0))
-                placement_strategy = "lot_center"
-                front_setback_m = 0.0
-            _fw = float(max(frontage_width_m, 4.0))
-            _sample_depth_m = float(max(building_depth_m, 4.0))
+            placement_xz, building_depth_m, placement_strategy = _resolve_frontage_placement(
+                street_edge_xz=street_edge_xz,
+                side=side,
+                yaw_deg=float(yaw_deg),
+                parcel_depth_m=float(parcel_depth_m),
+                front_setback_m=float(front_setback_m),
+            )
             if height_mode == "theme_random":
-                _th = sample_building_target_height(
+                target_height_m = sample_building_target_height(
                     seed=seed,
                     target_id=lot_id,
+                    theme_name=str(cell.get("theme_name", "") or ""),
                     land_use_type=land_use_type,
-                    frontage_width_m=_fw,
-                    depth_m=_sample_depth_m,
+                    frontage_width_m=float(frontage_width_m),
+                    depth_m=float(max(building_depth_m, 4.0)),
                     source="grid_growth",
                     height_profile=height_profile,
                 )
-                _hc = height_class_from_height_m(_th)
+                height_class = height_class_from_height_m(target_height_m)
             else:
-                _th = 0.0
-                _hc = str(infer_grid_height_class(land_use_type, road_type=road_type) or "midrise")
-            for cell in lot_cells:
-                cell["lot_id"] = lot_id
-                lot_by_cell_id[str(cell.get("cell_id", "") or "")] = lot_id
+                target_height_m = 0.0
+                height_class = str(infer_grid_height_class(land_use_type, road_type=road_type) or "midrise")
             lots.append(
                 GeneratedLot(
                     lot_id=lot_id,
-                    polygon_xz=merged_polygon,
+                    polygon_xz=tuple((float(x), float(z)) for x, z in polygon_xz),
                     center_xz=(float(center_xz[0]), float(center_xz[1])),
-                    side=_cell_side(lot_cells[0]),
+                    side=side,
                     land_use_type=land_use_type,
-                    theme_id=str(lot_cells[0].get("theme_id", "") or ""),
-                    frontage_width_m=_fw,
-                    depth_m=float(max(depth_m, 4.0)),
-                    height_class=_hc,
-                    target_height_m=_th,
+                    theme_id=theme_id,
+                    frontage_width_m=float(frontage_width_m),
+                    depth_m=float(max(parcel_depth_m, 4.0)),
+                    height_class=height_class,
+                    target_height_m=float(target_height_m),
                     yaw_deg=float(yaw_deg),
                     source="grid_growth",
-                    cell_ids=tuple(str(cell.get("cell_id", "") or "") for cell in lot_cells),
-                    segment_ids=tuple(
-                        sorted(
-                            {
-                                str(segment_id)
-                                for cell in lot_cells
-                                for segment_id in (cell.get("segment_ids", []) or [])
-                                if str(segment_id)
-                            }
-                        )
-                    ),
+                    cell_ids=(cell_id,) if cell_id else (),
+                    segment_ids=segment_ids,
                     street_edge_xz=(float(street_edge_xz[0]), float(street_edge_xz[1])),
                     placement_xz=(float(placement_xz[0]), float(placement_xz[1])),
                     front_setback_m=float(front_setback_m),
@@ -927,17 +1264,18 @@ def generate_grid_growth_lots(
                     building_depth_m=float(building_depth_m),
                 )
             )
-            cursor = next_cursor
-
-    for cell in annotated_cells:
-        cell_id = str(cell.get("cell_id", "") or "")
-        if cell_id and cell_id in lot_by_cell_id:
-            cell["lot_id"] = lot_by_cell_id[cell_id]
+        cell["lot_ids"] = list(cell_lot_ids)
+        cell["lot_id"] = str(cell_lot_ids[0]) if cell_lot_ids else ""
 
     lot_counts = Counter(lot.land_use_type for lot in lots)
     height_counts = Counter(lot.height_class for lot in lots)
+    frontage_metrics = summarize_frontage_coverage(
+        annotated_cells,
+        tuple({"polygon_xz": lot.polygon_xz, "side": lot.side} for lot in lots),
+    )
     summary = {
         "lot_count": int(len(lots)),
+        "frontage_parcel_count": int(len(lots)),
         "lot_counts": {key: int(value) for key, value in sorted(lot_counts.items())},
         "height_class_counts": {key: int(value) for key, value in sorted(height_counts.items())},
         "buildable_cell_count": int(sum(1 for cell in annotated_cells if bool(cell.get("buildable", False)))),
@@ -945,13 +1283,17 @@ def generate_grid_growth_lots(
             sum(
                 1
                 for cell in annotated_cells
-                if "building_buffer" in str(cell.get("lane_role", "") or "") and str(cell.get("lot_id", "") or "")
+                if "building_buffer" in str(cell.get("lane_role", "") or "")
+                and (((cell.get("lot_ids", []) or [])) or str(cell.get("lot_id", "") or ""))
             )
         ),
         "placement_strategy_counts": {
             key: int(value)
             for key, value in sorted(Counter(lot.placement_strategy for lot in lots).items())
         },
+        "zoning_granularity": normalized_granularity,
+        "streetwall_continuity": float(round(continuity, 3)),
+        **frontage_metrics,
     }
     _front_setbacks = [lot.front_setback_m for lot in lots if lot.front_setback_m > 0.0]
     if _front_setbacks:
@@ -983,6 +1325,8 @@ def _fallback_building_footprints(
     left_right_bias: float = 0.0,
     front_setback_min_m: float = 1.0,
     front_setback_max_m: float = 2.0,
+    zoning_granularity: str = "balanced",
+    streetwall_continuity: float = 0.85,
 ) -> List[BuildingFootprint]:
     footprints: List[BuildingFootprint] = []
     carriageway_width_m = float(
@@ -1005,6 +1349,8 @@ def _fallback_building_footprints(
         str(getattr(node, "segment_id", "")): node
         for node in getattr(road_segment_graph, "nodes", ()) or ()
     }
+    normalized_granularity = _normalize_zoning_granularity(zoning_granularity)
+    continuity = _clamp(float(streetwall_continuity), 0.0, 1.0)
     for theme_segment in theme_segments:
         nodes = [nodes_by_id[segment_id] for segment_id in theme_segment.segment_ids if segment_id in nodes_by_id]
         if nodes:
@@ -1037,82 +1383,273 @@ def _fallback_building_footprints(
         base_frontage_m = min(max(theme_segment.length_m * 0.55, 12.0), 24.0)
         for side_name in ("left", "right"):
             land_use_type = str(profile[f"{side_name}_land_use_type"])
+            if land_use_type == "green":
+                continue
             width_multiplier = float(profile[f"{side_name}_width_multiplier"])
-            frontage_scale = 1.0 + (0.12 * float(asymmetry_strength) if side_name == str(profile.get("active_side", "")) else -0.08 * float(asymmetry_strength))
-            frontage_m = max(8.0, base_frontage_m * max(frontage_scale, 0.7))
             base_depth_m = 12.0 if land_use_type in {"commercial", "transit"} else 10.0
             parcel_depth_m = max(8.0, base_depth_m * max(width_multiplier, 0.65))
             if side_name == "left":
-                street_edge_xz = _segment_offset_midpoint(
+                sidewalk_outer_offset_m = float(carriageway_half + left_sidewalk_width_m)
+                polygon_xz = _band_polygon_from_segment(
                     start_xy,
                     end_xy,
-                    offset_m=float(carriageway_half + left_sidewalk_width_m),
+                    inner_offset_m=sidewalk_outer_offset_m,
+                    outer_offset_m=sidewalk_outer_offset_m + float(parcel_depth_m),
                 )
             else:
-                street_edge_xz = _segment_offset_midpoint(
+                sidewalk_outer_offset_m = -float(carriageway_half + right_sidewalk_width_m)
+                polygon_xz = _band_polygon_from_segment(
                     start_xy,
                     end_xy,
-                    offset_m=-float(carriageway_half + right_sidewalk_width_m),
+                    inner_offset_m=sidewalk_outer_offset_m - float(parcel_depth_m),
+                    outer_offset_m=sidewalk_outer_offset_m,
                 )
-            fid = f"{theme_segment.theme_id}_{side_name}"
-            front_setback_m = _sample_front_setback_m(
-                seed=seed,
-                target_id=fid,
-                minimum_m=front_setback_min_m,
-                maximum_m=front_setback_max_m,
+            if len(polygon_xz) < 4:
+                continue
+            pseudo_cell = {
+                "cell_id": f"{theme_segment.theme_id}_{side_name}_fallback_strip",
+                "polygon_xz": [[float(x), float(z)] for x, z in polygon_xz],
+                "lane_role": f"{side_name}_building_buffer",
+                "station_range_m": [0.0, float(theme_segment.length_m)],
+                "theme_id": theme_segment.theme_id,
+                "theme_name": theme_segment.theme_name,
+                "land_use_type": land_use_type,
+                "buildable": True,
+            }
+            frontage_intervals = _frontage_intervals_for_length(
+                _cell_frontage_depth(pseudo_cell)[0],
+                land_use_type=land_use_type,
+                zoning_granularity=normalized_granularity,
+                streetwall_continuity=continuity,
             )
-            placement_xz, building_depth_m, placement_strategy = _resolve_frontage_placement(
-                street_edge_xz=street_edge_xz,
-                side=side_name,
-                yaw_deg=float(yaw_deg),
-                parcel_depth_m=float(parcel_depth_m),
-                front_setback_m=float(front_setback_m),
-            )
-            if height_mode == "theme_random":
-                _th = sample_building_target_height(
+            for interval_idx, (start_m, end_m) in enumerate(frontage_intervals):
+                footprint_id = f"{theme_segment.theme_id}_{side_name}_{interval_idx:02d}"
+                street_edge_xz = _street_edge_midpoint_for_interval(
+                    pseudo_cell,
+                    start_m=float(start_m),
+                    end_m=float(end_m),
+                )
+                frontage_m = float(max(float(end_m) - float(start_m), 3.0))
+                front_setback_m = _sample_front_setback_m(
                     seed=seed,
-                    target_id=fid,
-                    theme_name=theme_segment.theme_name,
-                    land_use_type=land_use_type,
-                    frontage_width_m=float(frontage_m),
-                    depth_m=float(building_depth_m),
-                    source="fallback",
-                    height_profile=height_profile,
+                    target_id=footprint_id,
+                    minimum_m=front_setback_min_m,
+                    maximum_m=front_setback_max_m,
                 )
-                _hc = height_class_from_height_m(_th)
-            else:
-                _th = 0.0
-                _hc = str(infer_grid_height_class(land_use_type) or "midrise")
-            footprints.append(
-                BuildingFootprint(
-                    footprint_id=fid,
-                    source="fallback",
-                    polygon_xz=oriented_rectangle_points(
-                        center_x=float(placement_xz[0]),
-                        center_z=float(placement_xz[1]),
-                        yaw_deg=float(yaw_deg),
-                        length_m=float(frontage_m),
-                        depth_m=float(building_depth_m),
-                    ),
-                    centroid_xz=(float(placement_xz[0]), float(placement_xz[1])),
-                    frontage_width_m=float(frontage_m),
-                    depth_m=float(building_depth_m),
-                    yaw_deg=float(yaw_deg),
-                    theme_id=theme_segment.theme_id,
-                    land_use_type=land_use_type,
+                placement_xz, building_depth_m, placement_strategy = _resolve_frontage_placement(
+                    street_edge_xz=street_edge_xz,
                     side=side_name,
-                    height_class=_hc,
-                    target_height_m=_th,
-                    anchor_geom_id=f"{theme_segment.theme_id}:{side_name}",
-                    size_class=_size_class(frontage_m, building_depth_m),
-                    street_edge_xz=(float(street_edge_xz[0]), float(street_edge_xz[1])),
-                    placement_xz=(float(placement_xz[0]), float(placement_xz[1])),
+                    yaw_deg=float(yaw_deg),
+                    parcel_depth_m=float(parcel_depth_m),
                     front_setback_m=float(front_setback_m),
-                    placement_strategy=str(placement_strategy),
-                    building_depth_m=float(building_depth_m),
                 )
-            )
+                if height_mode == "theme_random":
+                    target_height_m = sample_building_target_height(
+                        seed=seed,
+                        target_id=footprint_id,
+                        theme_name=theme_segment.theme_name,
+                        land_use_type=land_use_type,
+                        frontage_width_m=float(frontage_m),
+                        depth_m=float(building_depth_m),
+                        source="fallback",
+                        height_profile=height_profile,
+                    )
+                    height_class = height_class_from_height_m(target_height_m)
+                else:
+                    target_height_m = 0.0
+                    height_class = str(infer_grid_height_class(land_use_type) or "midrise")
+                footprints.append(
+                    BuildingFootprint(
+                        footprint_id=footprint_id,
+                        source="fallback",
+                        polygon_xz=oriented_rectangle_points(
+                            center_x=float(placement_xz[0]),
+                            center_z=float(placement_xz[1]),
+                            yaw_deg=float(yaw_deg),
+                            length_m=float(frontage_m),
+                            depth_m=float(building_depth_m),
+                        ),
+                        centroid_xz=(float(placement_xz[0]), float(placement_xz[1])),
+                        frontage_width_m=float(frontage_m),
+                        depth_m=float(building_depth_m),
+                        yaw_deg=float(yaw_deg),
+                        theme_id=theme_segment.theme_id,
+                        land_use_type=land_use_type,
+                        side=side_name,
+                        height_class=height_class,
+                        target_height_m=float(target_height_m),
+                        anchor_geom_id=f"{theme_segment.theme_id}:{side_name}:{interval_idx}",
+                        size_class=_size_class(frontage_m, building_depth_m),
+                        street_edge_xz=(float(street_edge_xz[0]), float(street_edge_xz[1])),
+                        placement_xz=(float(placement_xz[0]), float(placement_xz[1])),
+                        front_setback_m=float(front_setback_m),
+                        placement_strategy=str(placement_strategy),
+                        building_depth_m=float(building_depth_m),
+                    )
+                )
     return footprints
+
+
+def generate_frontage_infill_footprints(
+    zoning_grid: Sequence[Mapping[str, Any]],
+    existing_footprints: Sequence[BuildingFootprint],
+    *,
+    seed: int = 0,
+    height_mode: str = "theme_random",
+    height_profile: str = "urban_default_v1",
+    zoning_granularity: str = "balanced",
+    streetwall_continuity: float = 0.85,
+    infill_policy: str = "large_gap_only",
+    front_setback_min_m: float = 1.0,
+    front_setback_max_m: float = 2.0,
+) -> Tuple[Tuple[BuildingFootprint, ...], Dict[str, Any]]:
+    normalized_granularity = _normalize_zoning_granularity(zoning_granularity)
+    normalized_policy = _normalize_infill_policy(infill_policy)
+    continuity = _clamp(float(streetwall_continuity), 0.0, 1.0)
+    real_footprints = tuple(footprint for footprint in existing_footprints if str(footprint.source) == "osm")
+    existing_items = tuple(
+        {
+            "footprint_id": str(footprint.footprint_id),
+            "polygon_xz": tuple((float(x), float(z)) for x, z in footprint.polygon_xz),
+            "side": str(footprint.side or ""),
+        }
+        for footprint in existing_footprints
+    )
+    if not real_footprints or normalized_policy == "off":
+        coverage_summary = summarize_frontage_coverage(zoning_grid, existing_items)
+        return tuple(), {
+            "real_footprint_count": int(len(real_footprints)),
+            "infill_footprint_count": 0,
+            "infill_policy": normalized_policy,
+            **coverage_summary,
+        }
+
+    infill_footprints: List[BuildingFootprint] = []
+    for cell in zoning_grid:
+        if not bool(cell.get("buildable", False)):
+            continue
+        if "building_buffer" not in str(cell.get("lane_role", "") or ""):
+            continue
+        land_use_type = str(cell.get("land_use_type", "") or "")
+        if land_use_type not in {"residential", "commercial", "transit"}:
+            continue
+        cell_polygon = [
+            (float(point[0]), float(point[1]))
+            for point in cell.get("polygon_xz", []) or []
+            if len(point) >= 2
+        ]
+        if len(cell_polygon) < 4:
+            continue
+        cell_bbox = _polygon_bbox(cell_polygon)
+        frontage_m, parcel_depth_m = _cell_frontage_depth(cell)
+        occupied_intervals: List[Tuple[float, float]] = []
+        for footprint in existing_footprints:
+            footprint_polygon = tuple((float(x), float(z)) for x, z in footprint.polygon_xz)
+            if len(footprint_polygon) < 4:
+                continue
+            if not _bbox_intersects(cell_bbox, _polygon_bbox(footprint_polygon)):
+                continue
+            interval = _project_polygon_to_cell_frontage_interval(cell, footprint_polygon)
+            if interval is not None:
+                occupied_intervals.append(interval)
+        gaps = _invert_intervals(frontage_m, occupied_intervals)
+        threshold_m = _large_gap_threshold_m(
+            land_use_type,
+            infill_policy=normalized_policy,
+            streetwall_continuity=continuity,
+        )
+        if not math.isfinite(threshold_m):
+            continue
+        side = _cell_side(cell)
+        yaw_deg = _cell_yaw_deg(cell)
+        theme_id = str(cell.get("theme_id", "") or "")
+        theme_name = str(cell.get("theme_name", "") or "")
+        for gap_idx, (gap_start_m, gap_end_m) in enumerate(gaps):
+            gap_length_m = float(gap_end_m) - float(gap_start_m)
+            if gap_length_m < threshold_m:
+                continue
+            gap_intervals = _frontage_intervals_for_length(
+                gap_length_m,
+                land_use_type=land_use_type,
+                zoning_granularity=normalized_granularity,
+                streetwall_continuity=continuity,
+            )
+            for interval_idx, (local_start_m, local_end_m) in enumerate(gap_intervals):
+                start_m = float(gap_start_m) + float(local_start_m)
+                end_m = float(gap_start_m) + float(local_end_m)
+                polygon_xz = _parcel_polygon_from_cell_interval(cell, start_m=start_m, end_m=end_m)
+                if len(polygon_xz) < 4:
+                    continue
+                footprint_id = f"infill_{len(infill_footprints):03d}"
+                street_edge_xz = _street_edge_midpoint_for_interval(cell, start_m=start_m, end_m=end_m)
+                frontage_width_m = float(max(end_m - start_m, 3.0))
+                front_setback_m = _sample_front_setback_m(
+                    seed=seed,
+                    target_id=footprint_id,
+                    minimum_m=front_setback_min_m,
+                    maximum_m=front_setback_max_m,
+                )
+                placement_xz, building_depth_m, placement_strategy = _resolve_frontage_placement(
+                    street_edge_xz=street_edge_xz,
+                    side=side,
+                    yaw_deg=float(yaw_deg),
+                    parcel_depth_m=float(parcel_depth_m),
+                    front_setback_m=float(front_setback_m),
+                )
+                if height_mode == "theme_random":
+                    target_height_m = sample_building_target_height(
+                        seed=seed,
+                        target_id=footprint_id,
+                        theme_name=theme_name,
+                        land_use_type=land_use_type,
+                        frontage_width_m=float(frontage_width_m),
+                        depth_m=float(max(building_depth_m, 4.0)),
+                        source="infill",
+                        height_profile=height_profile,
+                    )
+                    height_class = height_class_from_height_m(target_height_m)
+                else:
+                    target_height_m = 0.0
+                    height_class = str(infer_grid_height_class(land_use_type) or "midrise")
+                infill_footprints.append(
+                    BuildingFootprint(
+                        footprint_id=footprint_id,
+                        source="infill",
+                        polygon_xz=tuple((float(x), float(z)) for x, z in polygon_xz),
+                        centroid_xz=(float(placement_xz[0]), float(placement_xz[1])),
+                        frontage_width_m=float(frontage_width_m),
+                        depth_m=float(building_depth_m),
+                        yaw_deg=float(yaw_deg),
+                        theme_id=theme_id,
+                        land_use_type=land_use_type,
+                        side=side,
+                        height_class=height_class,
+                        target_height_m=float(target_height_m),
+                        anchor_geom_id=f"{theme_id}:{side}:{gap_idx}:{interval_idx}",
+                        size_class=_size_class(frontage_width_m, building_depth_m),
+                        street_edge_xz=(float(street_edge_xz[0]), float(street_edge_xz[1])),
+                        placement_xz=(float(placement_xz[0]), float(placement_xz[1])),
+                        front_setback_m=float(front_setback_m),
+                        placement_strategy=str(placement_strategy),
+                        building_depth_m=float(building_depth_m),
+                    )
+                )
+
+    combined_items = existing_items + tuple(
+        {
+            "footprint_id": str(footprint.footprint_id),
+            "polygon_xz": tuple((float(x), float(z)) for x, z in footprint.polygon_xz),
+            "side": str(footprint.side or ""),
+        }
+        for footprint in infill_footprints
+    )
+    coverage_summary = summarize_frontage_coverage(zoning_grid, combined_items)
+    return tuple(infill_footprints), {
+        "real_footprint_count": int(len(real_footprints)),
+        "infill_footprint_count": int(len(infill_footprints)),
+        "infill_policy": normalized_policy,
+        **coverage_summary,
+    }
 
 
 def _segment_tangent_normal(
@@ -1498,6 +2035,7 @@ def build_zoning_grid_preview(
                     "land_use_type": land_use_type,
                     "buildable": bool(buildable),
                     "lot_id": "",
+                    "lot_ids": [],
                     "segment_ids": segment_ids,
                     "footprint_ids": footprint_ids,
                     "footprint_count": int(len(footprint_ids)),
