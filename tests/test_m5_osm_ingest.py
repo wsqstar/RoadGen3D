@@ -163,6 +163,23 @@ def test_parse_osm_features_with_width_tag():
     assert features.roads[0].width_m == pytest.approx(10.5)
 
 
+def test_parse_osm_features_unclassified_default_width():
+    data = {
+        "elements": [
+            {"type": "node", "id": 1, "lon": 0.0, "lat": 0.0},
+            {"type": "node", "id": 2, "lon": 0.001, "lat": 0.0},
+            {
+                "type": "way",
+                "id": 201,
+                "nodes": [1, 2],
+                "tags": {"highway": "unclassified"},
+            },
+        ]
+    }
+    features = parse_osm_features(data)
+    assert features.roads[0].width_m == pytest.approx(6.0)
+
+
 def test_parse_osm_features_empty():
     features = parse_osm_features({"elements": []})
     assert len(features.roads) == 0

@@ -29,8 +29,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--local-files-only", action="store_true")
     parser.add_argument("--device", default="cpu")
     parser.add_argument("--length-m", type=float, default=80.0)
-    parser.add_argument("--road-width-m", type=float, default=8.0)
-    parser.add_argument("--sidewalk-width-m", type=float, default=2.5)
+    parser.add_argument("--road-width-m", type=float, default=7.0)
+    parser.add_argument("--sidewalk-width-m", type=float, default=2.4)
     parser.add_argument("--lane-count", type=int, default=2)
     parser.add_argument("--density", type=float, default=1.0)
     parser.add_argument("--seed", type=int, default=42)
@@ -69,6 +69,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--vehicle-demand-level", choices=["low", "medium", "high"], default="medium")
     parser.add_argument("--no-solver-fallback", action="store_true")
     parser.add_argument("--segment-length-m", type=float, default=12.0)
+    parser.add_argument(
+        "--road-selection",
+        choices=["walkable_neighborhood", "primary_road", "longest", "all"],
+        default="walkable_neighborhood",
+    )
+    parser.add_argument(
+        "--asset-scale-mode",
+        choices=["canonical_v1", "native_raw"],
+        default="canonical_v1",
+    )
     return parser.parse_args()
 
 
@@ -103,6 +113,8 @@ def main() -> int:
         vehicle_demand_level=args.vehicle_demand_level,
         allow_solver_fallback=not bool(args.no_solver_fallback),
         segment_length_m=float(args.segment_length_m),
+        road_selection=args.road_selection,
+        asset_scale_mode=args.asset_scale_mode,
     )
     try:
         result = compose_street_scene(

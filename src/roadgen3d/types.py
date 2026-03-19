@@ -62,7 +62,7 @@ class StreetComposeConfig:
     constraint_weight: float = 0.45
     constraint_veto_threshold: float = 0.95
     poi_rule_set: str = "entrance_fire_bus_stop_v1"
-    road_selection: str = "primary_road"  # "all" | "primary_road" | "longest"
+    road_selection: str = "walkable_neighborhood"  # "all" | "primary_road" | "longest" | "walkable_neighborhood"
     selected_road_osm_id: Optional[int] = None
     selected_road_discovered_poi_count: Optional[int] = None
     selected_road_discovered_poi_score: Optional[float] = None
@@ -78,6 +78,7 @@ class StreetComposeConfig:
     scene_texture_mode: str = "topdown_tiles_v1"  # "topdown_tiles_v1" | "solid_color_legacy"
     topdown_canvas_px: int = 2048
     asset_curation_mode: str = "scene_ready_first"
+    asset_scale_mode: str = "canonical_v1"  # "canonical_v1" | "native_raw"
 
     # -- Neuralsymbolic v1 fields --
     program_generator: str = "heuristic_v1"
@@ -715,6 +716,10 @@ class StreetPlacement:
     placement_status: str = ""
     anchor_geom_id: str = ""
     scale_xyz: List[float] = field(default_factory=list)
+    native_size_m: Dict[str, float] = field(default_factory=dict)
+    canonical_target: Dict[str, float] = field(default_factory=dict)
+    asset_scale_mode: str = ""
+    scale_fallback_used: bool = False
 
     # -- M5 constraint fields --
     constraint_penalty: float = 0.0

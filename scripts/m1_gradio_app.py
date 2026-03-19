@@ -52,6 +52,7 @@ from roadgen3d.osm_ingest import fetch_osm_data, parse_osm_features, project_to_
 from roadgen3d.placement_zones import (
     EFFECTIVE_POI_EVALUATOR_VERSION,
     evaluate_projected_road_context,
+    is_walkable_neighborhood_highway,
 )
 from roadgen3d.poi_taxonomy import (
     core_poi_count,
@@ -1208,6 +1209,16 @@ def _select_auto_discovered_road(
     )
     rng = random.Random(int(seed))
     rng.shuffle(ordered_rows)
+    if str(road_selection).strip().lower() == "walkable_neighborhood":
+        preferred_rows = [
+            row for row in ordered_rows
+            if is_walkable_neighborhood_highway(str(row.get("highway_type", "") or ""))
+        ]
+        fallback_rows = [
+            row for row in ordered_rows
+            if not is_walkable_neighborhood_highway(str(row.get("highway_type", "") or ""))
+        ]
+        ordered_rows = preferred_rows + fallback_rows
     for row in ordered_rows:
         effective_counts = _probe_discovered_road_effective_poi_counts(
             row,
@@ -1434,6 +1445,10 @@ def _extract_program_summary(layout_json_text: str) -> str:
         "selected_road_discovered_poi_count": runtime_summary.get("selected_road_discovered_poi_count"),
         "selected_road_discovered_poi_score": runtime_summary.get("selected_road_discovered_poi_score"),
         "selected_road_discovered_core_poi_count": runtime_summary.get("selected_road_discovered_core_poi_count"),
+        "selected_highway_type": runtime_summary.get("selected_highway_type", ""),
+        "road_selection_requested": runtime_summary.get("road_selection_requested", ""),
+        "road_selection_used": runtime_summary.get("road_selection_used", ""),
+        "road_selection_fallback_reason": runtime_summary.get("road_selection_fallback_reason", ""),
         "selected_road_effective_poi_count": runtime_summary.get("selected_road_effective_poi_count", sum(poi_counts_all.values())),
         "selected_road_effective_poi_score": runtime_summary.get("selected_road_effective_poi_score", poi_weighted_score(poi_counts_all)),
         "selected_road_core_poi_count": runtime_summary.get("selected_road_core_poi_count", core_poi_count(poi_counts_all)),
@@ -1579,6 +1594,25 @@ def _extract_asset_usage_summary(layout_json_text: str) -> tuple[str, list[list[
     return json.dumps(result, indent=2, ensure_ascii=True), table_rows
 
 
+def _extract_street_scale_summary(layout_json_text: str) -> str:
+    if not layout_json_text.strip():
+        return "{}"
+    payload = json.loads(layout_json_text)
+    summary = payload.get("summary", {}) or {}
+    result = {
+        "asset_scale_mode": str(summary.get("asset_scale_mode", "")),
+        "selected_highway_type": str(summary.get("selected_highway_type", "")),
+        "road_selection_requested": str(summary.get("road_selection_requested", "")),
+        "road_selection_used": str(summary.get("road_selection_used", "")),
+        "road_selection_fallback_reason": str(summary.get("road_selection_fallback_reason", "")),
+        "road_width_m": float(summary.get("road_width_m", 0.0) or 0.0),
+        "sidewalk_width_m": float(summary.get("sidewalk_width_m", 0.0) or 0.0),
+        "carriageway_width_m": float(summary.get("carriageway_width_m", 0.0) or 0.0),
+        "asset_scale_summary": dict(summary.get("asset_scale_summary", {}) or {}),
+    }
+    return json.dumps(result, indent=2, ensure_ascii=True)
+
+
 def _extract_solver_summary(layout_json_text: str) -> str:
     if not layout_json_text.strip():
         return "{}"
@@ -1591,6 +1625,10 @@ def _extract_solver_summary(layout_json_text: str) -> str:
         "backend_requested": solver.get("backend_requested", summary.get("solver_backend_requested", "")),
         "backend_used": solver.get("backend_used", summary.get("solver_backend_used", "")),
         "objective_profile": solver.get("objective_profile", summary.get("objective_profile", "balanced")),
+        "selected_highway_type": summary.get("selected_highway_type", ""),
+        "road_selection_requested": summary.get("road_selection_requested", ""),
+        "road_selection_used": summary.get("road_selection_used", ""),
+        "road_selection_fallback_reason": summary.get("road_selection_fallback_reason", ""),
         "rule_satisfaction_rate": summary.get("rule_satisfaction_rate", 0.0),
         "topology_validity": summary.get("topology_validity", 0.0),
         "cross_section_feasibility": summary.get("cross_section_feasibility", 0.0),
@@ -2156,8 +2194,8 @@ def run_street_compose(
     local_files_only: bool = True,
     device: str = "auto",
     street_length_m: float = 80.0,
-    street_road_width_m: float = 8.0,
-    street_sidewalk_width_m: float = 2.5,
+    street_road_width_m: float = 7.0,
+    street_sidewalk_width_m: float = 2.4,
     street_lane_count: int = 2,
     street_density: float = 1.0,
     street_seed: int = 42,
@@ -2189,13 +2227,14 @@ def run_street_compose(
     target_street_type: str = "mixed_use",
     allow_solver_fallback: bool = True,
     segment_length_m: float = 12.0,
-    road_selection: str = "primary_road",
+    road_selection: str = "walkable_neighborhood",
     style_preset: str = "civic_clean_v1",
     beauty_mode: str = "presentation_v1",
     render_preset: str = "jury_default_v1",
     topdown_render_mode: str = "design_tiles_v1",
     topdown_canvas_px: int = 2048,
     asset_curation_mode: str = "scene_ready_first",
+    asset_scale_mode: str = "canonical_v1",
     enable_surrounding_buildings: bool = True,
     building_search_topk: int = 5,
     land_use_asymmetry_strength: float = 0.35,
@@ -2301,6 +2340,7 @@ def run_street_compose(
             topdown_render_mode=str(topdown_render_mode).strip(),
             topdown_canvas_px=int(topdown_canvas_px),
             asset_curation_mode=str(asset_curation_mode).strip(),
+            asset_scale_mode=str(asset_scale_mode).strip(),
             enable_surrounding_buildings=bool(enable_surrounding_buildings),
             surrounding_building_mode=str(surrounding_building_mode).strip(),
             building_search_topk=int(building_search_topk),
@@ -2379,6 +2419,7 @@ def run_street_compose(
             f"- cross_section_type: {layout_summary.get('cross_section_type', '')}\n"
             f"- style_preset: {layout_summary.get('style_preset', style_preset)}\n"
             f"- asset_curation_mode: {layout_summary.get('asset_curation_mode', asset_curation_mode)}\n"
+            f"- asset_scale_mode: {layout_summary.get('asset_scale_mode', asset_scale_mode)}\n"
             f"- parametric_instance_count: {int(layout_summary.get('parametric_instance_count', 0) or 0)}\n"
             f"- production_step_count: {int(layout_summary.get('production_step_count', 0) or 0)}\n"
             f"- presentation_score: {float(layout_summary.get('presentation_score', 0.0) or 0.0):.3f}\n"
@@ -2403,6 +2444,18 @@ def run_street_compose(
                 f"{int(layout_summary.get('selected_road_core_poi_count', 0) or 0)}"
             )
             summary += (
+                f"\n- selected_highway_type: "
+                f"{str(layout_summary.get('selected_highway_type', ''))}"
+            )
+            summary += (
+                f"\n- road_selection_requested: "
+                f"{str(layout_summary.get('road_selection_requested', road_selection))}"
+            )
+            summary += (
+                f"\n- road_selection_used: "
+                f"{str(layout_summary.get('road_selection_used', road_selection))}"
+            )
+            summary += (
                 f"\n- selected_road_required_left_width_m: "
                 f"{float(layout_summary.get('selected_road_required_left_width_m', selected_required_left_width_m) or 0.0):.2f}"
             )
@@ -2418,6 +2471,32 @@ def run_street_compose(
                 f"\n- poi_fit_feasible: "
                 f"{bool(layout_summary.get('poi_fit_feasible', True))}"
             )
+            if str(layout_summary.get("road_selection_fallback_reason", "") or "").strip():
+                summary += (
+                    f"\n- road_selection_fallback_reason: "
+                    f"{str(layout_summary.get('road_selection_fallback_reason', ''))}"
+                )
+        elif (
+            str(layout_summary.get("selected_highway_type", "") or "").strip()
+            or str(layout_summary.get("road_selection_requested", "") or "").strip()
+        ):
+            summary += (
+                f"\n- selected_highway_type: "
+                f"{str(layout_summary.get('selected_highway_type', ''))}"
+            )
+            summary += (
+                f"\n- road_selection_requested: "
+                f"{str(layout_summary.get('road_selection_requested', road_selection))}"
+            )
+            summary += (
+                f"\n- road_selection_used: "
+                f"{str(layout_summary.get('road_selection_used', road_selection))}"
+            )
+            if str(layout_summary.get("road_selection_fallback_reason", "") or "").strip():
+                summary += (
+                    f"\n- road_selection_fallback_reason: "
+                    f"{str(layout_summary.get('road_selection_fallback_reason', ''))}"
+                )
         if effective_bbox is not None:
             summary += f"\n- road_bbox: ({effective_bbox[0]:.4f}, {effective_bbox[1]:.4f}, {effective_bbox[2]:.4f}, {effective_bbox[3]:.4f})"
         if road_source:
@@ -2462,6 +2541,13 @@ def run_street_compose(
                 )
             )
             summary += f"\n- asset_source_unique_counts: {unique_count_text}"
+        asset_scale_summary = dict(layout_summary.get("asset_scale_summary", {}) or {})
+        if asset_scale_summary:
+            scale_text = ", ".join(
+                f"{category}={float(stats.get('median_scale', 1.0) or 1.0):.2f}x"
+                for category, stats in sorted(asset_scale_summary.items())
+            )
+            summary += f"\n- street_scale_summary: {scale_text}"
         summary += f"\n- theme_segment_count: {len(layout_summary.get('theme_segments', []) or [])}"
         summary += f"\n- surrounding_buildings_enabled: {bool(enable_surrounding_buildings)}"
         summary += f"\n- building_generation_mode: {layout_summary.get('building_generation_mode', surrounding_building_mode)}"
@@ -2872,8 +2958,8 @@ def run_best_model_street(
     local_files_only: bool = True,
     device: str = "auto",
     street_length_m: float = 80.0,
-    street_road_width_m: float = 8.0,
-    street_sidewalk_width_m: float = 2.5,
+    street_road_width_m: float = 7.0,
+    street_sidewalk_width_m: float = 2.4,
     street_lane_count: int = 2,
     street_density: float = 1.0,
     street_seed: int = 42,
@@ -2905,13 +2991,14 @@ def run_best_model_street(
     allow_solver_fallback: bool = True,
     segment_length_m: float = 12.0,
     research_target: str = "layout_policy",
-    road_selection: str = "primary_road",
+    road_selection: str = "walkable_neighborhood",
     style_preset: str = "civic_clean_v1",
     beauty_mode: str = "presentation_v1",
     render_preset: str = "jury_default_v1",
     topdown_render_mode: str = "design_tiles_v1",
     topdown_canvas_px: int = 2048,
     asset_curation_mode: str = "scene_ready_first",
+    asset_scale_mode: str = "canonical_v1",
     enable_surrounding_buildings: bool = True,
     building_search_topk: int = 5,
     land_use_asymmetry_strength: float = 0.35,
@@ -2979,6 +3066,7 @@ def run_best_model_street(
         topdown_render_mode=topdown_render_mode,
         topdown_canvas_px=topdown_canvas_px,
         asset_curation_mode=asset_curation_mode,
+        asset_scale_mode=asset_scale_mode,
         enable_surrounding_buildings=enable_surrounding_buildings,
         surrounding_building_mode=surrounding_building_mode,
         building_search_topk=building_search_topk,
@@ -3963,13 +4051,13 @@ def build_demo() -> gr.Blocks:
                         m5_bbox_max_lat = gr.Number(label="AOI Max Lat", value=23.1325)
                         road_selection = gr.Dropdown(
                             label="道路筛选 (Road Selection)",
-                            choices=["primary_road", "longest", "all"],
-                            value="primary_road",
+                            choices=["walkable_neighborhood", "primary_road", "longest", "all"],
+                            value="walkable_neighborhood",
                         )
                     with gr.Row():
                         street_length_m = gr.Number(label="Street Length (m)", value=80.0)
-                        street_road_width_m = gr.Number(label="Road Width (m)", value=8.0)
-                        street_sidewalk_width_m = gr.Number(label="Sidewalk Width (m)", value=2.5)
+                        street_road_width_m = gr.Number(label="Road Width (m)", value=7.0)
+                        street_sidewalk_width_m = gr.Number(label="Sidewalk Width (m)", value=2.4)
                         street_lane_count = gr.Slider(label="Lane Count", minimum=1, maximum=4, step=1, value=2)
                         street_density = gr.Slider(label="Density", minimum=0.2, maximum=2.0, step=0.1, value=1.0)
                     with gr.Row():
@@ -4045,6 +4133,11 @@ def build_demo() -> gr.Blocks:
                             label="Asset Curation",
                             choices=["scene_ready_first", "parametric_first", "curated_first", "legacy"],
                             value="scene_ready_first",
+                        )
+                        asset_scale_mode = gr.Dropdown(
+                            label="Asset Scale Mode",
+                            choices=["canonical_v1", "native_raw"],
+                            value="canonical_v1",
                         )
                     with gr.Row():
                         enable_surrounding_buildings = gr.Checkbox(label="Enable Surrounding Buildings", value=True)
@@ -4133,6 +4226,8 @@ def build_demo() -> gr.Blocks:
                             col_count=(7, "fixed"),
                             label="Asset Usage By Source",
                         )
+                    with gr.Accordion("Street Scale Summary", open=False):
+                        street_scale_summary_json = gr.Code(label="Street Scale Summary", language="json")
                     with gr.Accordion("Cross-Section Preview", open=False):
                         cross_section_preview_plot = gr.Plot(label="Cross-Section Preview")
                         cross_section_preview_summary = gr.Code(label="Cross-Section Summary", language="json")
@@ -4467,6 +4562,7 @@ def build_demo() -> gr.Blocks:
                 topdown_render_mode,
                 topdown_canvas_px,
                 asset_curation_mode,
+                asset_scale_mode,
                 enable_surrounding_buildings,
                 building_search_topk,
                 land_use_asymmetry_strength,
@@ -4515,6 +4611,10 @@ def build_demo() -> gr.Blocks:
             inputs=[street_layout_json],
             outputs=[asset_usage_summary_json, asset_usage_table],
         ).then(
+            fn=_extract_street_scale_summary,
+            inputs=[street_layout_json],
+            outputs=[street_scale_summary_json],
+        ).then(
             fn=_extract_cross_section_preview,
             inputs=[street_layout_json],
             outputs=[cross_section_preview_plot, cross_section_preview_summary],
@@ -4546,6 +4646,14 @@ def build_demo() -> gr.Blocks:
             fn=_render_poi_overview,
             inputs=[street_layout_json],
             outputs=[poi_overview_plot],
+        ).then(
+            fn=_extract_asset_usage_summary,
+            inputs=[street_layout_json],
+            outputs=[asset_usage_summary_json, asset_usage_table],
+        ).then(
+            fn=_extract_street_scale_summary,
+            inputs=[street_layout_json],
+            outputs=[street_scale_summary_json],
         ).then(
             fn=_extract_presentation_views,
             inputs=[street_layout_json],
@@ -4748,6 +4856,7 @@ def build_demo() -> gr.Blocks:
                 topdown_render_mode,
                 topdown_canvas_px,
                 asset_curation_mode,
+                asset_scale_mode,
                 enable_surrounding_buildings,
                 building_search_topk,
                 land_use_asymmetry_strength,

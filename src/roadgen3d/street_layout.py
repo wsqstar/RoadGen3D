@@ -25,6 +25,7 @@ from .beauty import (
     style_palette,
     surface_roughness,
 )
+from .asset_scale import VALID_ASSET_SCALE_MODES, compute_asset_scale, summarize_asset_scales
 from .design_rules import load_constraint_set
 from .embedder import ClipTextEmbedder
 from .entrance_analysis import (
@@ -244,6 +245,30 @@ def _placement_asset_source_key(
     return "unknown"
 
 
+def _native_size_for_entry(entry: _MeshCacheEntry) -> Dict[str, float]:
+    return {
+        "width_m": float(max(entry.half_x * 2.0, 0.0)),
+        "depth_m": float(max(entry.half_z * 2.0, 0.0)),
+        "height_m": float(max(entry.native_height_y, 0.0)),
+    }
+
+
+def _street_furniture_scale_info(
+    *,
+    category: str,
+    entry: _MeshCacheEntry,
+    config: StreetComposeConfig,
+) -> Dict[str, Any]:
+    native_size = _native_size_for_entry(entry)
+    return compute_asset_scale(
+        category=category,
+        width_m=float(native_size["width_m"]),
+        depth_m=float(native_size["depth_m"]),
+        height_m=float(native_size["height_m"]),
+        mode=str(getattr(config, "asset_scale_mode", "canonical_v1")),
+    )
+
+
 def _validate_config(config: StreetComposeConfig) -> None:
     if not config.query.strip():
         raise ValueError("query cannot be empty")
@@ -314,6 +339,15 @@ def _validate_config(config: StreetComposeConfig) -> None:
         "legacy",
     }:
         raise ValueError("asset_curation_mode must be 'scene_ready_first', 'parametric_first', 'curated_first' or 'legacy'")
+    if str(getattr(config, "asset_scale_mode", "canonical_v1")).strip().lower() not in VALID_ASSET_SCALE_MODES:
+        raise ValueError("asset_scale_mode must be 'canonical_v1' or 'native_raw'")
+    if str(getattr(config, "road_selection", "walkable_neighborhood")).strip().lower() not in {
+        "all",
+        "primary_road",
+        "longest",
+        "walkable_neighborhood",
+    }:
+        raise ValueError("road_selection must be 'all', 'primary_road', 'longest' or 'walkable_neighborhood'")
     if int(getattr(config, "building_search_topk", 1)) <= 0:
         raise ValueError("building_search_topk must be >= 1")
     if str(getattr(config, "surrounding_building_mode", "footprint_based")).strip().lower() not in {"footprint_based", "grid_growth"}:
@@ -2690,6 +2724,7 @@ def _evaluate_slot_candidate(
     category: str,
     band_width_m: float,
     entry: _MeshCacheEntry,
+    scale_info: Mapping[str, object],
     placements: Sequence[StreetPlacement],
     spatial_hash: UniformSpatialHash,
     existing_bboxes: Sequence[Tuple[float, float, float, float]],
@@ -2726,7 +2761,7 @@ def _evaluate_slot_candidate(
         yaw_deg=float(candidate["yaw_deg"]),
         half_x=entry.half_x,
         half_z=entry.half_z,
-        scale=1.0,
+        scale=float(scale_info.get("applied_scale", 1.0) or 1.0),
         clearance=0.2,
     )
     neighbor_bbox_indices = spatial_hash.query_bbox(bbox)
@@ -2803,6 +2838,11 @@ def _evaluate_slot_candidate(
             "z": float(point_xz[1]),
             "yaw_deg": float(candidate["yaw_deg"]),
             "bbox": bbox,
+            "scale": float(scale_info.get("applied_scale", 1.0) or 1.0),
+            "native_size_m": dict(scale_info.get("native_size_m", {}) or {}),
+            "canonical_target": dict(scale_info.get("canonical_target", {}) or {}),
+            "asset_scale_mode": str(scale_info.get("asset_scale_mode", "")),
+            "scale_fallback_used": bool(scale_info.get("scale_fallback_used", False)),
             "constraint_penalty": float(constraint_penalty),
             "feasibility_score": float(feasibility_score),
             "violated_rules": tuple(violated_rules),
@@ -3835,6 +3875,11 @@ def compose_street_scene(
             continue
 
         entry = mesh_cache[row["asset_id"]]
+        scale_info = _street_furniture_scale_info(
+            category=category,
+            entry=entry,
+            config=config,
+        )
         segment_node = slot_segment_lookup.get(str(slot.slot_id))
         candidate_groups = _iter_slot_candidate_groups(
             slot=slot,
@@ -3872,6 +3917,7 @@ def compose_street_scene(
                     category=category,
                     band_width_m=float(getattr(band, "width_m", 1.0)),
                     entry=entry,
+                    scale_info=scale_info,
                     placements=placements,
                     spatial_hash=spatial_hash,
                     existing_bboxes=existing_bboxes,
@@ -3912,6 +3958,7 @@ def compose_street_scene(
             bpenalty = float(chosen_candidate["constraint_penalty"])
             bfeas = float(chosen_candidate["feasibility_score"])
             bviolated = tuple(chosen_candidate["violated_rules"])
+            bscale = float(chosen_candidate.get("scale", 1.0) or 1.0)
             anchor_distance_m = (
                 float(chosen_candidate["anchor_distance_m"])
                 if chosen_candidate.get("anchor_distance_m") is not None
@@ -3919,7 +3966,7 @@ def compose_street_scene(
             )
             existing_bboxes.append(bbbox)
             spatial_hash.insert(bbbox, len(existing_bboxes) - 1)
-            y = -entry.min_y
+            y = -entry.min_y * bscale
             placement_status = _placement_status(
                 anchor_distance_m,
                 required=bool(getattr(slot, "required", False)) or str(getattr(slot, "anchor_poi_type", "") or "").strip() != "",
@@ -3933,7 +3980,7 @@ def compose_street_scene(
                     score=float(score),
                     position_xyz=[float(bx), float(y), float(bz)],
                     yaw_deg=float(byaw),
-                    scale=1.0,
+                    scale=float(bscale),
                     bbox_xz=[float(bbbox[0]), float(bbbox[1]), float(bbbox[2]), float(bbbox[3])],
                     selection_source=source,
                     slot_id=str(slot.slot_id),
@@ -3948,6 +3995,10 @@ def compose_street_scene(
                     anchor_distance_m=float(anchor_distance_m) if anchor_distance_m is not None else -1.0,
                     placement_energy=float(chosen_candidate["placement_energy"]),
                     placement_status=placement_status,
+                    native_size_m=dict(chosen_candidate.get("native_size_m", {}) or {}),
+                    canonical_target=dict(chosen_candidate.get("canonical_target", {}) or {}),
+                    asset_scale_mode=str(chosen_candidate.get("asset_scale_mode", "")),
+                    scale_fallback_used=bool(chosen_candidate.get("scale_fallback_used", False)),
                     constraint_penalty=float(bpenalty),
                     feasibility_score=float(bfeas),
                     violated_rules=bviolated,
@@ -4222,6 +4273,16 @@ def compose_street_scene(
 
     program_fallback_reason = " | ".join(dict.fromkeys(reason for reason in program_fallback_reasons if reason))
     layout_path = (out_dir / "scene_layout.json").resolve()
+    selected_highway_type = ""
+    if projected is not None and getattr(projected, "roads", None):
+        selected_highway_type = str(getattr(projected.roads[0], "highway_type", "") or "").strip().lower()
+    from .placement_zones import summarize_road_selection
+
+    road_selection_summary = summarize_road_selection(
+        strategy=str(getattr(config, "road_selection", "walkable_neighborhood")),
+        selected_highway_type=selected_highway_type,
+    )
+    asset_scale_summary = summarize_asset_scales([placement.to_dict() for placement in placements])
     asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.35)
     bias_raw = getattr(config, "left_right_bias", 0.0)
     setback_min_raw = getattr(config, "building_front_setback_min_m", 1.0)
@@ -4248,6 +4309,8 @@ def compose_street_scene(
             source_key: int(len(asset_ids))
             for source_key, asset_ids in asset_source_unique_assets.items()
         },
+        "asset_scale_mode": str(getattr(config, "asset_scale_mode", "canonical_v1")),
+        "asset_scale_summary": asset_scale_summary,
         "asset_usage_by_source": [
             {
                 "source": str(source_key),
@@ -4296,6 +4359,10 @@ def compose_street_scene(
         "program_generator_used": str(program_used),
         "layout_solver_requested": str(config.layout_solver),
         "layout_solver_used": str(solver_result.backend_used),
+        "selected_highway_type": road_selection_summary["selected_highway_type"],
+        "road_selection_requested": road_selection_summary["road_selection_requested"],
+        "road_selection_used": road_selection_summary["road_selection_used"],
+        "road_selection_fallback_reason": road_selection_summary["road_selection_fallback_reason"],
         "solver_backend_requested": str(solver_result.backend_requested),
         "solver_backend_used": str(solver_result.backend_used),
         "cross_section_type": str(resolved_program.cross_section_type),

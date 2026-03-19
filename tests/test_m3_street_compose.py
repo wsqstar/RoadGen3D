@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import inspect
 import json
 import random
 import sys
@@ -17,6 +18,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from roadgen3d.types import RetrievalHit, StreetComposeConfig, StreetComposeResult, StreetPlacement
+from roadgen3d.asset_scale import compute_asset_scale
 from roadgen3d.street_layout import compose_street_scene
 import roadgen3d.street_layout as street_layout
 from roadgen3d.poi_rules import PoiContext
@@ -350,6 +352,33 @@ def test_apply_default_scene_texture_uses_world_space_uv_continuity():
     assert left_samples[(0.0, 0.08, 0.5)] & right_samples[(0.0, 0.08, 0.5)]
 
 
+def test_compute_asset_scale_canonical_tree_uses_height_target():
+    scale_info = compute_asset_scale(
+        category="tree",
+        width_m=1.0,
+        depth_m=1.0,
+        height_m=1.5,
+        mode="canonical_v1",
+    )
+
+    assert scale_info["applied_scale"] == pytest.approx(4.5, rel=1e-3)
+    assert scale_info["canonical_target"]["height_m"] == pytest.approx(7.0)
+    assert scale_info["scale_fallback_used"] is False
+
+
+def test_compute_asset_scale_native_raw_keeps_identity():
+    scale_info = compute_asset_scale(
+        category="bench",
+        width_m=0.8,
+        depth_m=0.5,
+        height_m=0.5,
+        mode="native_raw",
+    )
+
+    assert scale_info["applied_scale"] == pytest.approx(1.0)
+    assert scale_info["asset_scale_mode"] == "native_raw"
+
+
 class _UnitFakeEmbedder:
     def encode_texts(self, texts):
         return np.ones((len(texts), 8), dtype=np.float32)
@@ -442,6 +471,92 @@ def test_street_compose_outputs_created(tmp_path: Path, monkeypatch):
     assert summary["scene_graph_edge_count"] == len(layout_payload["scene_graph"]["edges"])
     assert summary["scene_graph_available_categories"]
     assert all("slot_id" in placement for placement in layout_payload.get("placements", []))
+
+
+def test_street_compose_records_asset_scale_summary_and_scaled_instances(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    rows = _build_real_rows(tmp_path / "data")
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+
+    config = StreetComposeConfig(
+        query="tree lined walkable street",
+        length_m=60.0,
+        road_width_m=7.0,
+        sidewalk_width_m=2.4,
+        lane_count=2,
+        density=1.0,
+        seed=7,
+        topk_per_category=20,
+        max_trials_per_slot=30,
+        asset_scale_mode="canonical_v1",
+    )
+    result = compose_street_scene(
+        config=config,
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        model_name="openai/clip-vit-base-patch32",
+        model_dir=None,
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+    layout_payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    summary = layout_payload.get("summary", {})
+    scaled_placements = [
+        placement
+        for placement in layout_payload.get("placements", [])
+        if str(placement.get("category", "")) in {"bench", "lamp", "tree"}
+    ]
+
+    assert summary["asset_scale_mode"] == "canonical_v1"
+    assert summary["asset_scale_summary"]
+    assert scaled_placements
+    assert any(float(placement.get("scale", 1.0) or 1.0) > 1.0 for placement in scaled_placements)
+    assert any((placement.get("canonical_target", {}) or {}) for placement in scaled_placements)
+
+
+def test_street_compose_native_raw_preserves_identity_asset_scale(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    rows = _build_real_rows(tmp_path / "data")
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+
+    config = StreetComposeConfig(
+        query="street furniture",
+        length_m=60.0,
+        road_width_m=7.0,
+        sidewalk_width_m=2.4,
+        lane_count=2,
+        density=1.0,
+        seed=9,
+        topk_per_category=20,
+        max_trials_per_slot=30,
+        asset_scale_mode="native_raw",
+    )
+    result = compose_street_scene(
+        config=config,
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        model_name="openai/clip-vit-base-patch32",
+        model_dir=None,
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+    layout_payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    placements = [
+        placement
+        for placement in layout_payload.get("placements", [])
+        if str(placement.get("category", "")) in {"bench", "lamp", "tree"}
+    ]
+
+    assert placements
+    assert all(float(placement.get("scale", 1.0) or 1.0) == pytest.approx(1.0) for placement in placements)
 
 
 def test_load_mesh_cache_preserves_multi_geometry_scene_assets(tmp_path: Path):
@@ -747,6 +862,18 @@ def test_street_compose_gradio_callback_returns_model_path(tmp_path: Path, monke
     assert any(str(path).endswith("scene_layout.json") for path in files)
 
 
+def test_run_street_compose_defaults_shift_to_walkable_narrow_street():
+    pytest.importorskip("gradio")
+    import scripts.m1_gradio_app as app
+
+    signature = inspect.signature(app.run_street_compose)
+
+    assert signature.parameters["street_road_width_m"].default == pytest.approx(7.0)
+    assert signature.parameters["street_sidewalk_width_m"].default == pytest.approx(2.4)
+    assert signature.parameters["road_selection"].default == "walkable_neighborhood"
+    assert signature.parameters["asset_scale_mode"].default == "canonical_v1"
+
+
 def test_street_compose_gradio_callback_propagates_objective_and_demand_controls(tmp_path: Path, monkeypatch):
     pytest.importorskip("gradio")
     import scripts.m1_gradio_app as app
@@ -769,6 +896,10 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
             "cross_section_type": "complete_street",
             "style_preset": "civic_clean_v1",
             "asset_curation_mode": "scene_ready_first",
+            "asset_scale_mode": "native_raw",
+            "selected_highway_type": "tertiary",
+            "road_selection_requested": "walkable_neighborhood",
+            "road_selection_used": "walkable_neighborhood",
             "parametric_instance_count": 0,
             "production_step_count": 4,
             "presentation_score": 0.42,
@@ -793,6 +924,7 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
         captured_config["bike_demand_level"] = config.bike_demand_level
         captured_config["transit_demand_level"] = config.transit_demand_level
         captured_config["vehicle_demand_level"] = config.vehicle_demand_level
+        captured_config["asset_scale_mode"] = config.asset_scale_mode
         captured_config["land_use_asymmetry_strength"] = config.land_use_asymmetry_strength
         captured_config["left_right_bias"] = config.left_right_bias
         captured_config["building_front_setback_min_m"] = config.building_front_setback_min_m
@@ -843,6 +975,7 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
         bike_demand_level="medium",
         transit_demand_level="low",
         vehicle_demand_level="medium",
+        asset_scale_mode="native_raw",
         land_use_asymmetry_strength=0.55,
         left_right_bias=-0.25,
         building_front_setback_min_m=1.1,
@@ -858,6 +991,7 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
         "bike_demand_level": "medium",
         "transit_demand_level": "low",
         "vehicle_demand_level": "medium",
+        "asset_scale_mode": "native_raw",
         "land_use_asymmetry_strength": 0.55,
         "left_right_bias": -0.25,
         "building_front_setback_min_m": 1.1,
@@ -870,6 +1004,8 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
     assert "demand_levels: ped=high, bike=medium, transit=low, vehicle=medium" in summary
     assert "solver_backend_requested: hybrid_milp_v1" in summary
     assert "solver_backend_used: hybrid_milp_v1" in summary
+    assert "asset_scale_mode: native_raw" in summary
+    assert "selected_highway_type: tertiary" in summary
     assert "land_use_asymmetry_strength: 0.55" in summary
     assert "left_right_bias: -0.25" in summary
     assert "building_front_setback_range_m: 1.10-1.90" in summary
@@ -960,6 +1096,35 @@ def test_extract_solver_diagnostics_aggregates_osm_band_view():
     assert summary["overall_throughput_satisfied"] is False
     assert summary["throughput_feasibility"]["by_mode"]["ped_clear_path"]["satisfied"] is False
     assert fig is not None
+
+
+def test_extract_street_scale_summary_reports_scale_and_road_selection():
+    pytest.importorskip("gradio")
+    import scripts.m1_gradio_app as app
+
+    summary_json = app._extract_street_scale_summary(
+        json.dumps(
+            {
+                "summary": {
+                    "asset_scale_mode": "canonical_v1",
+                    "selected_highway_type": "tertiary",
+                    "road_selection_requested": "walkable_neighborhood",
+                    "road_selection_used": "walkable_neighborhood",
+                    "road_width_m": 7.0,
+                    "sidewalk_width_m": 2.4,
+                    "carriageway_width_m": 7.0,
+                    "asset_scale_summary": {"tree": {"count": 2, "median_scale": 3.5}},
+                }
+            },
+            ensure_ascii=True,
+        )
+    )
+
+    payload = json.loads(summary_json)
+    assert payload["asset_scale_mode"] == "canonical_v1"
+    assert payload["selected_highway_type"] == "tertiary"
+    assert payload["road_selection_requested"] == "walkable_neighborhood"
+    assert payload["asset_scale_summary"]["tree"]["median_scale"] == 3.5
 
 
 def test_extract_cross_section_preview_builds_template_cross_section():

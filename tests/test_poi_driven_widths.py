@@ -178,3 +178,70 @@ def test_auto_discovered_road_selection_skips_poi_fit_infeasible_candidate(tmp_p
     assert auto_discovered is False
     assert int(selected["osm_id"]) == 202
     assert probe_metrics["poi_fit_feasible"] is True
+
+
+def test_auto_discovered_road_selection_prefers_walkable_neighborhood_types(tmp_path: Path, monkeypatch):
+    artifacts_dir = tmp_path / "artifacts"
+    artifacts_dir.mkdir(parents=True, exist_ok=True)
+    discovered_path = artifacts_dir.parent / "m5" / "discovered_poi_roads.jsonl"
+    discovered_path.parent.mkdir(parents=True, exist_ok=True)
+    discovered_path.write_text(
+        "\n".join(
+            [
+                json.dumps(
+                    {
+                        "osm_id": 101,
+                        "bbox": [113.0, 23.0, 113.01, 23.01],
+                        "highway_type": "secondary",
+                        "road_length_m": 120.0,
+                        "poi_count": 3,
+                        "poi_score": 3.2,
+                        "core_poi_count": 2,
+                        "poi_types": {"entrance": 2, "bus_stop": 1},
+                    }
+                ),
+                json.dumps(
+                    {
+                        "osm_id": 202,
+                        "bbox": [113.1, 23.1, 113.11, 23.11],
+                        "highway_type": "tertiary",
+                        "road_length_m": 110.0,
+                        "poi_count": 3,
+                        "poi_score": 3.0,
+                        "core_poi_count": 2,
+                        "poi_types": {"entrance": 2, "bus_stop": 1},
+                    }
+                ),
+            ]
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(app, "_discovered_cache_matches", lambda *args, **kwargs: True)
+    monkeypatch.setattr(
+        app,
+        "_probe_discovered_road_context_metrics",
+        lambda row, **kwargs: {
+            "poi_counts": {"entrance": 2, "bus_stop": 1},
+            "poi_fit_feasible": True,
+            "poi_fit_report": {"road": int(row["osm_id"])},
+            "required_left_width_m": 2.8,
+            "required_right_width_m": 2.6,
+            "row_width_m": 14.0,
+        },
+    )
+
+    selected, auto_discovered, probe_metrics = app._select_auto_discovered_road(
+        artifacts_dir=artifacts_dir,
+        osm_cache_dir=tmp_path / "osm_cache",
+        aoi_bbox=(113.0, 23.0, 113.2, 23.2),
+        seed=7,
+        road_width_m=7.0,
+        sidewalk_width_m=2.4,
+        lane_count=2,
+        road_selection="walkable_neighborhood",
+    )
+
+    assert auto_discovered is False
+    assert int(selected["osm_id"]) == 202
+    assert str(selected["highway_type"]) == "tertiary"
+    assert probe_metrics["poi_fit_feasible"] is True

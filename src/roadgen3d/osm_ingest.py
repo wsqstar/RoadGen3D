@@ -28,7 +28,7 @@ _DEFAULT_WIDTH_M: Dict[str, float] = {
     "residential": 6.0,
     "service": 4.0,
     "living_street": 4.0,
-    "unclassified": 5.0,
+    "unclassified": 6.0,
 }
 
 # Highway types we query from Overpass.

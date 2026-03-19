@@ -236,6 +236,35 @@ _HIERARCHY_RANK: Dict[str, int] = {
     "living_street": 6,
 }
 
+WALKABLE_NEIGHBORHOOD_HIGHWAY_TYPES: Tuple[str, ...] = ("tertiary", "unclassified", "residential")
+
+
+def is_walkable_neighborhood_highway(highway_type: str) -> bool:
+    return str(highway_type or "").strip().lower() in WALKABLE_NEIGHBORHOOD_HIGHWAY_TYPES
+
+
+def summarize_road_selection(
+    *,
+    strategy: str,
+    selected_highway_type: str,
+) -> Dict[str, str]:
+    requested = str(strategy or "primary_road").strip().lower()
+    highway_type = str(selected_highway_type or "").strip().lower()
+    used = requested
+    fallback_reason = ""
+    if requested == "walkable_neighborhood" and highway_type and not is_walkable_neighborhood_highway(highway_type):
+        used = "walkable_neighborhood_fallback"
+        fallback_reason = (
+            "no tertiary/unclassified/residential candidate survived selection; "
+            f"fell back to {highway_type or 'unknown'}"
+        )
+    return {
+        "road_selection_requested": requested,
+        "road_selection_used": used,
+        "selected_highway_type": highway_type,
+        "road_selection_fallback_reason": fallback_reason,
+    }
+
 
 def select_primary_road(
     roads: list,
@@ -249,6 +278,7 @@ def select_primary_road(
     ----------
     ``"all"``          – return all roads unchanged.
     ``"primary_road"`` – pick the highest-hierarchy road closest to AOI centre.
+    ``"walkable_neighborhood"`` – prefer tertiary/unclassified/residential before broader hierarchy fallback.
     ``"longest"``      – pick the longest road regardless of hierarchy.
     ``selected_osm_id`` – if provided, prefer the exact road match.
     """
@@ -284,7 +314,6 @@ def select_primary_road(
         )
         return [best]
 
-    # strategy == "primary_road"
     def _sort_key(road):
         rank = _HIERARCHY_RANK.get(road.highway_type, 99)
         dist = (
@@ -295,6 +324,42 @@ def select_primary_road(
         length = _road_length(road)
         return (rank, dist, -length)
 
+    if strategy == "walkable_neighborhood":
+        preferred_roads = [
+            road
+            for road in roads
+            if is_walkable_neighborhood_highway(str(getattr(road, "highway_type", "") or ""))
+        ]
+
+        def _walkable_sort_key(road):
+            highway_type = str(getattr(road, "highway_type", "") or "").strip().lower()
+            pref_rank = (
+                WALKABLE_NEIGHBORHOOD_HIGHWAY_TYPES.index(highway_type)
+                if highway_type in WALKABLE_NEIGHBORHOOD_HIGHWAY_TYPES
+                else 99
+            )
+            dist = (
+                LineString(road.coords).distance(center_pt)
+                if len(road.coords) >= 2
+                else 9999.0
+            )
+            length = _road_length(road)
+            return (pref_rank, dist, -length)
+
+        candidate_roads = preferred_roads if preferred_roads else list(roads)
+        sorted_roads = sorted(candidate_roads, key=_walkable_sort_key if preferred_roads else _sort_key)
+        best = sorted_roads[0]
+        logger.info(
+            "Road selection (walkable_neighborhood): %d roads -> osm_id=%d (%s, %.0fm)%s",
+            len(roads),
+            best.osm_id,
+            best.highway_type,
+            _road_length(best),
+            "" if preferred_roads else " [fallback]",
+        )
+        return [best]
+
+    # strategy == "primary_road"
     sorted_roads = sorted(roads, key=_sort_key)
     best = sorted_roads[0]
     logger.info(
@@ -308,7 +373,7 @@ def apply_road_selection(projected_features: Any, config: Any) -> Any:
     """Return a copy of *projected_features* with roads filtered by config.road_selection."""
     from .osm_ingest import ProjectedFeatures
 
-    strategy = str(getattr(config, "road_selection", "primary_road"))
+    strategy = str(getattr(config, "road_selection", "walkable_neighborhood"))
     selected_osm_id = getattr(config, "selected_road_osm_id", None)
     if strategy == "all" and selected_osm_id is None:
         return projected_features
