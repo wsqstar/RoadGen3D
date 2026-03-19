@@ -46,7 +46,7 @@ def _graph_for_theme(*, highway_type: str, poi_types: tuple[str, ...]) -> RoadSe
     )
 
 
-def _zoning_config(*, seed: int = 42, asymmetry_strength: float = 0.35, left_right_bias: float = 0.0) -> StreetComposeConfig:
+def _zoning_config(*, seed: int = 42, asymmetry_strength: float = 0.0, left_right_bias: float = 0.0) -> StreetComposeConfig:
     return StreetComposeConfig(
         query="commercial boulevard",
         length_m=40.0,
@@ -159,7 +159,7 @@ def test_infer_theme_segments_merges_adjacent_equal_themes():
     assert segments[1].theme_name == "transit"
 
 
-def test_build_zoning_grid_preview_defaults_to_side_specific_land_use_and_widths():
+def test_build_zoning_grid_preview_defaults_to_balanced_land_use_and_widths():
     graph = _graph_for_theme(highway_type="tertiary", poi_types=("entrance",))
     placement_context = SimpleNamespace(
         carriageway_width_m=8.0,
@@ -181,14 +181,16 @@ def test_build_zoning_grid_preview_defaults_to_side_specific_land_use_and_widths
     left_cell = next(cell for cell in zoning_grid if cell["lane_role"] == "left_building_buffer")
     right_cell = next(cell for cell in zoning_grid if cell["lane_role"] == "right_building_buffer")
 
-    assert left_cell["land_use_type"] != right_cell["land_use_type"]
-    assert left_cell["building_buffer_width_m"] != right_cell["building_buffer_width_m"]
+    assert left_cell["land_use_type"] == right_cell["land_use_type"] == "commercial"
+    assert left_cell["building_buffer_width_m"] == pytest.approx(right_cell["building_buffer_width_m"])
     assert summary["side_land_use_counts"]["left"]
     assert summary["side_land_use_counts"]["right"]
-    assert summary["asymmetry_strength"] == pytest.approx(0.35)
-    assert summary["active_side_counts"]
+    assert summary["asymmetry_strength"] == pytest.approx(0.0)
+    assert summary["active_side_counts"] == {}
     assert summary["zoning_preview_mode"] == "parcel_first"
     assert summary["frontage_cell_count"] >= 2
+    assert summary["buildable_frontage_by_side"]["left"] > 0.0
+    assert summary["buildable_frontage_by_side"]["right"] > 0.0
 
 
 def test_build_zoning_grid_preview_is_parcel_first_even_when_theme_segments_are_few():
@@ -277,7 +279,7 @@ def test_build_zoning_grid_preview_respects_left_right_bias(bias: float, expecte
     )
 
     zoning_grid, summary = build_zoning_grid_preview(
-        config=_zoning_config(seed=11, left_right_bias=bias),
+        config=_zoning_config(seed=11, asymmetry_strength=0.35, left_right_bias=bias),
         placement_context=placement_context,
         road_segment_graph=graph,
         theme_segments=_single_theme_segment("commercial"),
@@ -397,6 +399,11 @@ def test_generate_grid_growth_lots_respects_land_use_side_and_height_rules():
     assert summary["frontage_parcel_count"] == len(generated_lots)
     assert summary["occupied_lot_cells"] == 3
     assert sum(summary["placement_strategy_counts"].values()) == len(generated_lots)
+    assert summary["building_balance_policy"] == "balanced_default"
+    assert summary["building_balance_ok"] is True
+    assert summary["frontage_balance_gap"] <= 0.20
+    assert summary["buildable_frontage_by_side"]["left"] > 0.0
+    assert summary["buildable_frontage_by_side"]["right"] > 0.0
     assert 1.0 <= summary["front_setback_stats"]["min_m"] <= 2.0
     assert 1.0 <= summary["front_setback_stats"]["max_m"] <= 2.0
     assert summary["frontage_coverage_by_side"]["left"]["coverage_ratio"] > 0.7
@@ -519,6 +526,47 @@ def test_generate_frontage_infill_footprints_only_fills_large_gaps():
     assert summary["infill_footprint_count"] == len(infill)
     assert summary["frontage_coverage_by_side"]["left"]["coverage_ratio"] > 0.7
     assert summary["frontage_coverage_by_side"]["right"]["coverage_ratio"] == 0.0
+
+
+def test_generate_grid_growth_lots_reports_one_sided_geometry_reason():
+    zoning_grid = [
+        {
+            "cell_id": "left_only",
+            "polygon_xz": [[0.0, 5.0], [18.0, 5.0], [18.0, 10.0], [0.0, 10.0], [0.0, 5.0]],
+            "center_xz": [9.0, 7.5],
+            "street_edge_xz": [9.0, 5.0],
+            "lane_role": "left_building_buffer",
+            "theme_id": "theme_left",
+            "theme_name": "commercial",
+            "land_use_type": "commercial",
+            "buildable": True,
+            "lot_id": "",
+            "segment_ids": ["seg_left"],
+            "station_range_m": [0.0, 18.0],
+        },
+        {
+            "cell_id": "right_green",
+            "polygon_xz": [[0.0, -10.0], [18.0, -10.0], [18.0, -5.0], [0.0, -5.0], [0.0, -10.0]],
+            "center_xz": [9.0, -7.5],
+            "street_edge_xz": [9.0, -5.0],
+            "lane_role": "right_building_buffer",
+            "theme_id": "theme_right",
+            "theme_name": "green",
+            "land_use_type": "green",
+            "buildable": False,
+            "lot_id": "",
+            "segment_ids": ["seg_right"],
+            "station_range_m": [0.0, 18.0],
+        },
+    ]
+
+    _, lots, summary = generate_grid_growth_lots(zoning_grid, road_type="tertiary", height_mode="class_only")
+
+    assert lots
+    assert summary["building_balance_ok"] is False
+    assert summary["building_balance_reason"] == "no buildable right frontage"
+    assert summary["buildable_frontage_by_side"]["left"] > 0.0
+    assert summary["buildable_frontage_by_side"]["right"] == 0.0
 
 
 def test_height_class_from_height_m_thresholds():

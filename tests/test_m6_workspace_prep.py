@@ -258,7 +258,7 @@ def test_build_demo_exposes_asymmetry_and_setback_controls_with_defaults():
     slider_props = _typed_props_by_label(config, "slider")
     number_props = _typed_props_by_label(config, "number")
 
-    assert slider_props["Land-Use Asymmetry Strength"]["value"] == 0.35
+    assert slider_props["Land-Use Asymmetry Strength"]["value"] == 0.0
     assert slider_props["Land-Use Asymmetry Strength"]["minimum"] == 0.0
     assert slider_props["Land-Use Asymmetry Strength"]["maximum"] == 1.0
     assert slider_props["Left/Right Bias"]["value"] == 0.0

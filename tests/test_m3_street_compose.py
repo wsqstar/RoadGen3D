@@ -227,7 +227,7 @@ def _build_osm_config(
     *,
     seed: int = 42,
     surrounding_building_mode: str = "grid_growth",
-    land_use_asymmetry_strength: float = 0.35,
+    land_use_asymmetry_strength: float = 0.0,
     left_right_bias: float = 0.0,
     building_front_setback_min_m: float = 1.0,
     building_front_setback_max_m: float = 2.0,
@@ -711,6 +711,9 @@ def test_template_scene_layout_contains_simplified_production_steps(tmp_path: Pa
     assert all(bool(step["textured_base_enabled"]) for step in steps)
     assert steps[0]["counts"]["street_furniture_count"] == 0
     assert steps[1]["counts"]["visible_instance_count"] <= steps[2]["counts"]["visible_instance_count"]
+    assert summary["street_furniture_side_counts"]["left"] > 0
+    assert summary["street_furniture_side_counts"]["right"] > 0
+    assert summary["street_furniture_balance_ok"] is True
     loaded_scene = trimesh.load(Path(result.outputs["scene_glb"]), force="scene")
     assert _has_embedded_texture(loaded_scene) is True
     loaded_step = trimesh.load(Path(steps[0]["glb_path"]), force="scene")
@@ -2593,12 +2596,20 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
     assert all(placement.asset_id in {"building_01", "building_02"} for placement in building_group)
     assert all(placement.selection_source == "building_asset" for placement in building_group)
     assert summary["building_generation_mode"] == "grid_growth"
-    assert summary["land_use_asymmetry_strength"] == pytest.approx(0.35)
+    assert summary["land_use_asymmetry_strength"] == pytest.approx(0.0)
     assert summary["building_front_setback_min_m"] == pytest.approx(1.0)
     assert summary["building_front_setback_max_m"] == pytest.approx(2.0)
     assert summary["zoning_granularity"] == "fine"
     assert summary["streetwall_continuity"] == pytest.approx(0.95)
     assert summary["infill_policy"] == "aggressive"
+    assert summary["building_balance_policy"] == "balanced_default"
+    assert summary["building_balance_ok"] is True
+    assert summary["frontage_balance_gap"] <= 0.20
+    assert summary["buildable_frontage_by_side"]["left"] > 0.0
+    assert summary["buildable_frontage_by_side"]["right"] > 0.0
+    assert summary["street_furniture_side_counts"]["left"] > 0
+    assert summary["street_furniture_side_counts"]["right"] > 0
+    assert summary["street_furniture_balance_ok"] is True
     assert summary["zoning_preview_mode"] == "parcel_first"
     assert summary["frontage_cell_count"] > len(summary["theme_segments"])
     assert summary["building_retrieval_coverage"]["footprint_count"] == 0
@@ -2617,7 +2628,8 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
     assert summary["infill_footprint_count"] == 0
     assert summary["building_summary"]["real_footprint_count"] == 0
     assert summary["building_summary"]["infill_footprint_count"] == 0
-    assert summary["frontage_coverage_by_side"]["left"]["coverage_ratio"] >= 0.0
+    assert summary["frontage_coverage_by_side"]["left"]["coverage_ratio"] >= 0.65
+    assert summary["frontage_coverage_by_side"]["right"]["coverage_ratio"] >= 0.65
     assert summary["frontage_gap_stats_by_side"]["left"]["gap_count"] >= 0
     assert len(payload["generated_lots"]) >= summary["land_use_summary"]["buildable_cell_count"]
     assert summary["building_summary"]["frontage_cell_count"] == summary["frontage_cell_count"]
@@ -2742,6 +2754,8 @@ def test_osm_compose_building_fallback_survives_missing_assets_and_footprints(tm
     assert summary["building_generation_mode"] == "grid_growth"
     assert summary["building_summary"]["real_footprint_count"] == 0
     assert summary["building_summary"]["infill_footprint_count"] == 0
+    assert summary["building_balance_ok"] is True
+    assert summary["street_furniture_balance_ok"] is True
     assert any(plan["selection_source"] == "procedural_fallback" for plan in building_plans)
     assert payload["zoning_grid"]
     assert payload["generated_lots"]
@@ -2801,7 +2815,10 @@ def test_osm_compose_grid_growth_generates_lots_and_lot_based_buildings(tmp_path
     assert all(lot["placement_strategy"] in {"frontage_setback", "frontage_clamped"} for lot in payload["generated_lots"])
     assert all(1.0 <= float(lot["front_setback_m"]) <= 2.0 for lot in payload["generated_lots"])
     assert any(lot["placement_xz"] != lot["center_xz"] for lot in payload["generated_lots"])
-    assert summary["frontage_coverage_by_side"]["left"]["coverage_ratio"] > 0.5
+    assert summary["building_balance_ok"] is True
+    assert summary["frontage_coverage_by_side"]["left"]["coverage_ratio"] >= 0.65
+    assert summary["frontage_coverage_by_side"]["right"]["coverage_ratio"] >= 0.65
+    assert summary["frontage_balance_gap"] <= 0.20
 
 
 def test_osm_compose_grid_growth_falls_back_without_building_assets(tmp_path: Path, monkeypatch):

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections import Counter
 from dataclasses import replace
 from typing import Any, Dict, Iterable, List, Mapping, Sequence, Set, Tuple
 
@@ -30,6 +31,11 @@ try:
     import pulp
 except ImportError:
     pulp = None
+
+
+_BALANCED_FURNITURE_CATEGORIES = {
+    category for category, side_pref in SIDE_PREF.items() if str(side_pref) == "both"
+}
 
 
 def _rule_parameter(rule: DesignRuleSpec, key: str, default: object = None) -> object:
@@ -861,6 +867,95 @@ def _resolve_allowed_bands(
     return []
 
 
+def _balanced_band_sequence(
+    *,
+    category: str,
+    allowed_bands: Sequence[StreetBand],
+    remaining_count: int,
+    bilateral_side_counts: Mapping[str, int],
+) -> List[StreetBand]:
+    if (
+        str(SIDE_PREF.get(category, "both")) != "both"
+        or remaining_count <= 0
+    ):
+        return [allowed_bands[idx % len(allowed_bands)] for idx in range(max(remaining_count, 0))]
+    left_bands = [band for band in allowed_bands if band.side == "left"]
+    right_bands = [band for band in allowed_bands if band.side == "right"]
+    if not left_bands or not right_bands:
+        return [allowed_bands[idx % len(allowed_bands)] for idx in range(max(remaining_count, 0))]
+    side_counts = {
+        "left": int(bilateral_side_counts.get("left", 0) or 0),
+        "right": int(bilateral_side_counts.get("right", 0) or 0),
+    }
+    side_indices = {"left": 0, "right": 0}
+    ordered: List[StreetBand] = []
+    for _idx in range(int(remaining_count)):
+        preferred_side = "left" if side_counts["left"] <= side_counts["right"] else "right"
+        side_pool = left_bands if preferred_side == "left" else right_bands
+        side_index = side_indices[preferred_side] % len(side_pool)
+        band = side_pool[side_index]
+        ordered.append(band)
+        side_indices[preferred_side] += 1
+        side_counts[preferred_side] += 1
+    return ordered
+
+
+def _repair_bilateral_slot_plans(
+    slot_plans: Sequence[LayoutSlotPlan],
+    *,
+    allowed_bands_by_category: Mapping[str, Sequence[StreetBand]],
+) -> Tuple[LayoutSlotPlan, ...]:
+    bilateral_slots = [
+        slot
+        for slot in slot_plans
+        if str(slot.category) in _BALANCED_FURNITURE_CATEGORIES and str(slot.side) in {"left", "right"}
+    ]
+    side_counts = Counter(str(slot.side) for slot in bilateral_slots)
+    if side_counts.get("left", 0) > 0 and side_counts.get("right", 0) > 0:
+        return tuple(slot_plans)
+    compatible_sides = {
+        str(band.side)
+        for category, bands in allowed_bands_by_category.items()
+        if str(category) in _BALANCED_FURNITURE_CATEGORIES
+        for band in bands
+        if str(band.side) in {"left", "right"}
+    }
+    if not {"left", "right"} <= compatible_sides:
+        return tuple(slot_plans)
+    missing_side = "left" if side_counts.get("left", 0) == 0 else "right"
+    source_side = "right" if missing_side == "left" else "left"
+    candidates = sorted(
+        (
+            (idx, slot)
+            for idx, slot in enumerate(slot_plans)
+            if str(slot.category) in _BALANCED_FURNITURE_CATEGORIES
+            and str(slot.side) == source_side
+            and not bool(slot.anchor_poi_type)
+        ),
+        key=lambda item: (bool(item[1].required), float(item[1].priority), float(item[1].x_center_m)),
+    )
+    repaired = list(slot_plans)
+    for idx, slot in candidates:
+        replacement_band = next(
+            (
+                band
+                for band in allowed_bands_by_category.get(str(slot.category), ())
+                if str(band.side) == missing_side
+            ),
+            None,
+        )
+        if replacement_band is None:
+            continue
+        repaired[idx] = replace(
+            slot,
+            band_name=str(replacement_band.name),
+            z_center_m=float(replacement_band.z_center_m),
+            side=str(replacement_band.side),
+        )
+        break
+    return tuple(repaired)
+
+
 def _build_slot_plans(
     solver_input: LayoutSolverInput,
     resolved_program: StreetProgram,
@@ -871,6 +966,8 @@ def _build_slot_plans(
     slot_plans: List[LayoutSlotPlan] = []
     required_categories = _required_categories(solver_input.constraint_set)
     placement_context = solver_input.placement_context
+    bilateral_side_counts: Dict[str, int] = {"left": 0, "right": 0}
+    allowed_bands_by_category: Dict[str, Tuple[StreetBand, ...]] = {}
 
     def _poi_anchor_data(category: str) -> List[Tuple[str, List[Tuple[float, float]]]]:
         if placement_context is None:
@@ -913,6 +1010,7 @@ def _build_slot_plans(
         )
         if not allowed_bands:
             continue
+        allowed_bands_by_category[str(category)] = tuple(allowed_bands)
         anchor_entries = _poi_anchor_data(category)
         anchor_slot_count = 0
         for poi_type, anchor_points in anchor_entries:
@@ -939,13 +1037,20 @@ def _build_slot_plans(
                     )
                 )
                 anchor_slot_count += 1
+                if str(category) in _BALANCED_FURNITURE_CATEGORIES and str(band.side) in {"left", "right"}:
+                    bilateral_side_counts[str(band.side)] = bilateral_side_counts.get(str(band.side), 0) + 1
 
         remaining_count = max(0, count - anchor_slot_count)
         if remaining_count <= 0:
             continue
         segment = float(solver_input.config.length_m) / float(max(remaining_count, 1))
-        for idx in range(remaining_count):
-            band = allowed_bands[idx % len(allowed_bands)]
+        ordered_bands = _balanced_band_sequence(
+            category=str(category),
+            allowed_bands=allowed_bands,
+            remaining_count=remaining_count,
+            bilateral_side_counts=bilateral_side_counts,
+        )
+        for idx, band in enumerate(ordered_bands):
             slot_plans.append(
                 LayoutSlotPlan(
                     slot_id=f"{category}_{idx:03d}",
@@ -959,9 +1064,17 @@ def _build_slot_plans(
                     required=category in required_categories,
                 )
             )
+            if str(category) in _BALANCED_FURNITURE_CATEGORIES and str(band.side) in {"left", "right"}:
+                bilateral_side_counts[str(band.side)] = bilateral_side_counts.get(str(band.side), 0) + 1
 
-    slot_plans.sort(key=lambda slot: (slot.category, slot.x_center_m, slot.z_center_m))
-    return tuple(slot_plans)
+    repaired_slot_plans = list(
+        _repair_bilateral_slot_plans(
+            slot_plans,
+            allowed_bands_by_category=allowed_bands_by_category,
+        )
+    )
+    repaired_slot_plans.sort(key=lambda slot: (slot.category, slot.x_center_m, slot.z_center_m))
+    return tuple(repaired_slot_plans)
 
 
 def _evaluate_rule(

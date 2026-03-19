@@ -100,7 +100,7 @@ class StreetComposeConfig:
     theme_vocab_name: str = "fixed_v1"
     building_height_mode: str = "theme_random"  # "class_only" | "theme_random"
     building_height_profile: str = "urban_default_v1"
-    land_use_asymmetry_strength: float = 0.35
+    land_use_asymmetry_strength: float = 0.0
     left_right_bias: float = 0.0
     building_front_setback_min_m: float = 1.0
     building_front_setback_max_m: float = 2.0

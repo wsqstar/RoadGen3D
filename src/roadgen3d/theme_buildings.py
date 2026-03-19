@@ -78,6 +78,8 @@ _GRID_LOT_RULES: Dict[str, Dict[str, float]] = {
         "gap_threshold_m": 18.0,
     },
 }
+_DEFAULT_MIN_SIDE_FRONTAGE_COVERAGE_RATIO = 0.65
+_DEFAULT_MAX_LEFT_RIGHT_COVERAGE_GAP = 0.20
 _ZONING_GRANULARITY_MULTIPLIERS: Dict[str, float] = {
     "coarse": 1.5,
     "balanced": 1.0,
@@ -283,7 +285,7 @@ def collect_building_footprints(
     seed: int = 0,
     height_mode: str = "theme_random",
     height_profile: str = "urban_default_v1",
-    asymmetry_strength: float = 0.35,
+    asymmetry_strength: float = 0.0,
     left_right_bias: float = 0.0,
     front_setback_min_m: float = 1.0,
     front_setback_max_m: float = 2.0,
@@ -1043,6 +1045,150 @@ def summarize_frontage_coverage(
     }
 
 
+def _buildable_building_cells(
+    zoning_grid: Sequence[Mapping[str, Any]],
+    *,
+    side: str = "",
+) -> List[Dict[str, Any]]:
+    requested_side = str(side or "").strip().lower()
+    results: List[Dict[str, Any]] = []
+    for cell in zoning_grid:
+        if not bool(cell.get("buildable", False)):
+            continue
+        if "building_buffer" not in str(cell.get("lane_role", "") or ""):
+            continue
+        cell_side = _cell_side(cell)
+        if requested_side and cell_side != requested_side:
+            continue
+        results.append(cell if isinstance(cell, dict) else dict(cell))
+    return results
+
+
+def _buildable_frontage_by_side(
+    zoning_grid: Sequence[Mapping[str, Any]],
+) -> Dict[str, float]:
+    frontage_by_side = {"left": 0.0, "right": 0.0}
+    for cell in _buildable_building_cells(zoning_grid):
+        side = _cell_side(cell)
+        if side not in frontage_by_side:
+            continue
+        frontage_by_side[side] += float(_cell_frontage_depth(cell)[0])
+    return {
+        side: round(float(frontage_m), 3)
+        for side, frontage_m in frontage_by_side.items()
+    }
+
+
+def _summarize_building_balance(
+    *,
+    zoning_grid: Sequence[Mapping[str, Any]],
+    frontage_metrics: Mapping[str, Any],
+    min_side_frontage_coverage_ratio: float = _DEFAULT_MIN_SIDE_FRONTAGE_COVERAGE_RATIO,
+    max_left_right_coverage_gap: float = _DEFAULT_MAX_LEFT_RIGHT_COVERAGE_GAP,
+) -> Dict[str, Any]:
+    buildable_frontage_by_side = _buildable_frontage_by_side(zoning_grid)
+    coverage_by_side = dict(frontage_metrics.get("frontage_coverage_by_side", {}) or {})
+    left_total = float(buildable_frontage_by_side.get("left", 0.0) or 0.0)
+    right_total = float(buildable_frontage_by_side.get("right", 0.0) or 0.0)
+    left_ratio = float((coverage_by_side.get("left", {}) or {}).get("coverage_ratio", 0.0) or 0.0)
+    right_ratio = float((coverage_by_side.get("right", {}) or {}).get("coverage_ratio", 0.0) or 0.0)
+    balance_gap = abs(left_ratio - right_ratio)
+    reason = ""
+    balance_ok = False
+    if left_total <= 1e-6 and right_total <= 1e-6:
+        reason = "no buildable frontage"
+    elif left_total <= 1e-6:
+        reason = "no buildable left frontage"
+    elif right_total <= 1e-6:
+        reason = "no buildable right frontage"
+    else:
+        balance_ok = (
+            left_ratio >= float(min_side_frontage_coverage_ratio)
+            and right_ratio >= float(min_side_frontage_coverage_ratio)
+            and balance_gap <= float(max_left_right_coverage_gap)
+        )
+        if not balance_ok:
+            reason = (
+                f"coverage targets unmet: left={left_ratio:.2f}, "
+                f"right={right_ratio:.2f}, gap={balance_gap:.2f}"
+            )
+    return {
+        "building_balance_policy": "balanced_default",
+        "building_balance_ok": bool(balance_ok),
+        "building_balance_reason": str(reason),
+        "frontage_balance_gap": round(float(balance_gap), 3),
+        "buildable_frontage_by_side": buildable_frontage_by_side,
+        "min_side_frontage_coverage_ratio": float(round(float(min_side_frontage_coverage_ratio), 3)),
+        "max_left_right_coverage_gap": float(round(float(max_left_right_coverage_gap), 3)),
+    }
+
+
+def _coverage_gaps_by_buildable_cell(
+    zoning_grid: Sequence[Mapping[str, Any]],
+    coverage_items: Sequence[Mapping[str, Any]],
+    *,
+    side: str,
+) -> List[Tuple[Dict[str, Any], Tuple[Tuple[float, float], ...]]]:
+    buildable_cells = _buildable_building_cells(zoning_grid, side=side)
+    if not buildable_cells:
+        return []
+    cell_entries: List[Dict[str, Any]] = []
+    for cell in buildable_cells:
+        polygon = [
+            (float(point[0]), float(point[1]))
+            for point in cell.get("polygon_xz", []) or []
+            if len(point) >= 2
+        ]
+        if len(polygon) < 4:
+            continue
+        cell_entries.append(
+            {
+                "cell": cell,
+                "cell_id": str(cell.get("cell_id", "") or ""),
+                "bbox": _polygon_bbox(polygon),
+                "frontage_m": float(_cell_frontage_depth(cell)[0]),
+            }
+        )
+    intervals_by_cell: Dict[str, List[Tuple[float, float]]] = {
+        entry["cell_id"]: [] for entry in cell_entries if entry["cell_id"]
+    }
+    for item in coverage_items:
+        polygon = [
+            (float(point[0]), float(point[1]))
+            for point in item.get("polygon_xz", []) or []
+            if len(point) >= 2
+        ]
+        if len(polygon) < 4:
+            continue
+        item_side = str(item.get("side", "") or "")
+        if item_side and item_side != side:
+            continue
+        bbox = _polygon_bbox(polygon)
+        for entry in cell_entries:
+            if not _bbox_intersects(entry["bbox"], bbox):
+                continue
+            interval = _project_polygon_to_cell_frontage_interval(entry["cell"], polygon)
+            if interval is None:
+                continue
+            intervals_by_cell.setdefault(entry["cell_id"], []).append(interval)
+    results: List[Tuple[Dict[str, Any], Tuple[Tuple[float, float], ...]]] = []
+    for entry in cell_entries:
+        merged = _merge_intervals(intervals_by_cell.get(entry["cell_id"], ()))
+        gaps = _invert_intervals(float(entry["frontage_m"]), merged)
+        useful_gaps = tuple(
+            (float(start), float(end))
+            for start, end in gaps
+            if float(end) - float(start) > 0.35
+        )
+        if useful_gaps:
+            results.append((entry["cell"], useful_gaps))
+    results.sort(
+        key=lambda item: max(float(end) - float(start) for start, end in item[1]),
+        reverse=True,
+    )
+    return results
+
+
 def infer_grid_height_class(land_use_type: str, *, road_type: str = "") -> str:
     road_type_lc = str(road_type).strip().lower()
     major_road = road_type_lc in {"primary", "secondary"} or any(
@@ -1170,6 +1316,187 @@ def _merge_polygons(
     return tuple((float(x), float(y)) for x, y in tuple(merged.exterior.coords))
 
 
+def _generate_lot_from_cell_interval(
+    cell: Mapping[str, Any],
+    *,
+    lot_id: str,
+    start_m: float,
+    end_m: float,
+    road_type: str,
+    seed: int,
+    height_mode: str,
+    height_profile: str,
+    front_setback_min_m: float,
+    front_setback_max_m: float,
+) -> GeneratedLot | None:
+    polygon_xz = _parcel_polygon_from_cell_interval(
+        cell,
+        start_m=float(start_m),
+        end_m=float(end_m),
+    )
+    if len(polygon_xz) < 4:
+        return None
+    center_xz = _polygon_center(polygon_xz)
+    side = _cell_side(cell)
+    yaw_deg = _cell_yaw_deg(cell)
+    theme_id = str(cell.get("theme_id", "") or "")
+    theme_name = str(cell.get("theme_name", "") or "")
+    cell_id = str(cell.get("cell_id", "") or "")
+    land_use_type = str(cell.get("land_use_type", "") or "")
+    segment_ids = tuple(str(segment_id) for segment_id in (cell.get("segment_ids", []) or []) if str(segment_id))
+    parcel_depth_m = _cell_frontage_depth(cell)[1]
+    street_edge_xz = _street_edge_midpoint_for_interval(
+        cell,
+        start_m=float(start_m),
+        end_m=float(end_m),
+    )
+    frontage_width_m = float(max(float(end_m) - float(start_m), 3.0))
+    front_setback_m = _sample_front_setback_m(
+        seed=seed,
+        target_id=lot_id,
+        minimum_m=front_setback_min_m,
+        maximum_m=front_setback_max_m,
+    )
+    placement_xz, building_depth_m, placement_strategy = _resolve_frontage_placement(
+        street_edge_xz=street_edge_xz,
+        side=side,
+        yaw_deg=float(yaw_deg),
+        parcel_depth_m=float(parcel_depth_m),
+        front_setback_m=float(front_setback_m),
+    )
+    if height_mode == "theme_random":
+        target_height_m = sample_building_target_height(
+            seed=seed,
+            target_id=lot_id,
+            theme_name=theme_name,
+            land_use_type=land_use_type,
+            frontage_width_m=float(frontage_width_m),
+            depth_m=float(max(building_depth_m, 4.0)),
+            source="grid_growth",
+            height_profile=height_profile,
+        )
+        height_class = height_class_from_height_m(target_height_m)
+    else:
+        target_height_m = 0.0
+        height_class = str(infer_grid_height_class(land_use_type, road_type=road_type) or "midrise")
+    return GeneratedLot(
+        lot_id=lot_id,
+        polygon_xz=tuple((float(x), float(z)) for x, z in polygon_xz),
+        center_xz=(float(center_xz[0]), float(center_xz[1])),
+        side=side,
+        land_use_type=land_use_type,
+        theme_id=theme_id,
+        frontage_width_m=float(frontage_width_m),
+        depth_m=float(max(parcel_depth_m, 4.0)),
+        height_class=height_class,
+        target_height_m=float(target_height_m),
+        yaw_deg=float(yaw_deg),
+        source="grid_growth",
+        cell_ids=(cell_id,) if cell_id else (),
+        segment_ids=segment_ids,
+        street_edge_xz=(float(street_edge_xz[0]), float(street_edge_xz[1])),
+        placement_xz=(float(placement_xz[0]), float(placement_xz[1])),
+        front_setback_m=float(front_setback_m),
+        placement_strategy=str(placement_strategy),
+        building_depth_m=float(building_depth_m),
+    )
+
+
+def _append_generated_lot_to_cell(cell: Dict[str, Any], lot: GeneratedLot) -> None:
+    lot_ids = [str(value) for value in (cell.get("lot_ids", []) or []) if str(value)]
+    if lot.lot_id not in lot_ids:
+        lot_ids.append(str(lot.lot_id))
+    cell["lot_ids"] = lot_ids
+    cell["lot_id"] = str(lot_ids[0]) if lot_ids else ""
+
+
+def _apply_building_balance_pass(
+    annotated_cells: Sequence[Dict[str, Any]],
+    lots: Sequence[GeneratedLot],
+    *,
+    road_type: str,
+    seed: int,
+    height_mode: str,
+    height_profile: str,
+    front_setback_min_m: float,
+    front_setback_max_m: float,
+    zoning_granularity: str,
+    min_side_frontage_coverage_ratio: float = _DEFAULT_MIN_SIDE_FRONTAGE_COVERAGE_RATIO,
+    max_left_right_coverage_gap: float = _DEFAULT_MAX_LEFT_RIGHT_COVERAGE_GAP,
+) -> Tuple[Tuple[GeneratedLot, ...], Dict[str, Any]]:
+    lot_list = list(lots)
+    coverage_items = tuple({"polygon_xz": lot.polygon_xz, "side": lot.side} for lot in lot_list)
+    frontage_metrics = summarize_frontage_coverage(annotated_cells, coverage_items)
+    balance_summary = _summarize_building_balance(
+        zoning_grid=annotated_cells,
+        frontage_metrics=frontage_metrics,
+        min_side_frontage_coverage_ratio=min_side_frontage_coverage_ratio,
+        max_left_right_coverage_gap=max_left_right_coverage_gap,
+    )
+    buildable_frontage_by_side = dict(balance_summary.get("buildable_frontage_by_side", {}) or {})
+    if (
+        float(buildable_frontage_by_side.get("left", 0.0) or 0.0) <= 1e-6
+        or float(buildable_frontage_by_side.get("right", 0.0) or 0.0) <= 1e-6
+        or bool(balance_summary.get("building_balance_ok", False))
+    ):
+        return tuple(lot_list), {**frontage_metrics, **balance_summary}
+
+    coverage_by_side = dict(frontage_metrics.get("frontage_coverage_by_side", {}) or {})
+    left_ratio = float((coverage_by_side.get("left", {}) or {}).get("coverage_ratio", 0.0) or 0.0)
+    right_ratio = float((coverage_by_side.get("right", {}) or {}).get("coverage_ratio", 0.0) or 0.0)
+    target_side = "left" if left_ratio <= right_ratio else "right"
+    gap_entries = _coverage_gaps_by_buildable_cell(annotated_cells, coverage_items, side=target_side)
+    next_lot_index = len(lot_list)
+    for cell, gaps in gap_entries:
+        if bool(balance_summary.get("building_balance_ok", False)):
+            break
+        normalized_land_use = str(cell.get("land_use_type", "") or "")
+        for gap_start_m, gap_end_m in gaps:
+            gap_length_m = float(gap_end_m) - float(gap_start_m)
+            if gap_length_m <= 0.35:
+                continue
+            supplemental_intervals = _frontage_intervals_for_length(
+                gap_length_m,
+                land_use_type=normalized_land_use,
+                zoning_granularity=zoning_granularity,
+                streetwall_continuity=1.0,
+            )
+            if not supplemental_intervals:
+                supplemental_intervals = ((0.0, float(gap_length_m)),)
+            for local_start_m, local_end_m in supplemental_intervals:
+                lot_id = f"lot_{next_lot_index:03d}"
+                lot = _generate_lot_from_cell_interval(
+                    cell,
+                    lot_id=lot_id,
+                    start_m=float(gap_start_m) + float(local_start_m),
+                    end_m=float(gap_start_m) + float(local_end_m),
+                    road_type=road_type,
+                    seed=seed,
+                    height_mode=height_mode,
+                    height_profile=height_profile,
+                    front_setback_min_m=front_setback_min_m,
+                    front_setback_max_m=front_setback_max_m,
+                )
+                if lot is None:
+                    continue
+                lot_list.append(lot)
+                next_lot_index += 1
+                _append_generated_lot_to_cell(cell, lot)
+                coverage_items = tuple({"polygon_xz": item.polygon_xz, "side": item.side} for item in lot_list)
+                frontage_metrics = summarize_frontage_coverage(annotated_cells, coverage_items)
+                balance_summary = _summarize_building_balance(
+                    zoning_grid=annotated_cells,
+                    frontage_metrics=frontage_metrics,
+                    min_side_frontage_coverage_ratio=min_side_frontage_coverage_ratio,
+                    max_left_right_coverage_gap=max_left_right_coverage_gap,
+                )
+                if bool(balance_summary.get("building_balance_ok", False)):
+                    break
+            if bool(balance_summary.get("building_balance_ok", False)):
+                break
+    return tuple(lot_list), {**frontage_metrics, **balance_summary}
+
+
 def generate_grid_growth_lots(
     zoning_grid: Sequence[Mapping[str, Any]],
     *,
@@ -1182,6 +1509,8 @@ def generate_grid_growth_lots(
     zoning_granularity: str = "fine",
     streetwall_continuity: float = 0.95,
 ) -> Tuple[Tuple[Dict[str, Any], ...], Tuple[GeneratedLot, ...], Dict[str, Any]]:
+    min_side_frontage_coverage_ratio = _DEFAULT_MIN_SIDE_FRONTAGE_COVERAGE_RATIO
+    max_left_right_coverage_gap = _DEFAULT_MAX_LEFT_RIGHT_COVERAGE_GAP
     annotated_cells: List[Dict[str, Any]] = []
     for cell in zoning_grid:
         payload = dict(cell)
@@ -1220,88 +1549,48 @@ def generate_grid_growth_lots(
             continue
         cell_lot_ids: List[str] = []
         side = _cell_side(cell)
-        yaw_deg = _cell_yaw_deg(cell)
-        theme_id = str(cell.get("theme_id", "") or "")
-        cell_id = str(cell.get("cell_id", "") or "")
-        segment_ids = tuple(str(segment_id) for segment_id in (cell.get("segment_ids", []) or []) if str(segment_id))
-        parcel_depth_m = _cell_frontage_depth(cell)[1]
         for start_m, end_m in parcel_frontage_intervals:
-            polygon_xz = _parcel_polygon_from_cell_interval(
-                cell,
-                start_m=float(start_m),
-                end_m=float(end_m),
-            )
-            if len(polygon_xz) < 4:
-                continue
             lot_id = f"lot_{len(lots):03d}"
-            cell_lot_ids.append(lot_id)
-            center_xz = _polygon_center(polygon_xz)
-            street_edge_xz = _street_edge_midpoint_for_interval(
+            lot = _generate_lot_from_cell_interval(
                 cell,
+                lot_id=lot_id,
                 start_m=float(start_m),
                 end_m=float(end_m),
-            )
-            frontage_width_m = float(max(float(end_m) - float(start_m), 3.0))
-            front_setback_m = _sample_front_setback_m(
+                road_type=road_type,
                 seed=seed,
-                target_id=lot_id,
-                minimum_m=front_setback_min_m,
-                maximum_m=front_setback_max_m,
+                height_mode=height_mode,
+                height_profile=height_profile,
+                front_setback_min_m=front_setback_min_m,
+                front_setback_max_m=front_setback_max_m,
             )
-            placement_xz, building_depth_m, placement_strategy = _resolve_frontage_placement(
-                street_edge_xz=street_edge_xz,
-                side=side,
-                yaw_deg=float(yaw_deg),
-                parcel_depth_m=float(parcel_depth_m),
-                front_setback_m=float(front_setback_m),
-            )
-            if height_mode == "theme_random":
-                target_height_m = sample_building_target_height(
-                    seed=seed,
-                    target_id=lot_id,
-                    theme_name=str(cell.get("theme_name", "") or ""),
-                    land_use_type=land_use_type,
-                    frontage_width_m=float(frontage_width_m),
-                    depth_m=float(max(building_depth_m, 4.0)),
-                    source="grid_growth",
-                    height_profile=height_profile,
-                )
-                height_class = height_class_from_height_m(target_height_m)
-            else:
-                target_height_m = 0.0
-                height_class = str(infer_grid_height_class(land_use_type, road_type=road_type) or "midrise")
-            lots.append(
-                GeneratedLot(
-                    lot_id=lot_id,
-                    polygon_xz=tuple((float(x), float(z)) for x, z in polygon_xz),
-                    center_xz=(float(center_xz[0]), float(center_xz[1])),
-                    side=side,
-                    land_use_type=land_use_type,
-                    theme_id=theme_id,
-                    frontage_width_m=float(frontage_width_m),
-                    depth_m=float(max(parcel_depth_m, 4.0)),
-                    height_class=height_class,
-                    target_height_m=float(target_height_m),
-                    yaw_deg=float(yaw_deg),
-                    source="grid_growth",
-                    cell_ids=(cell_id,) if cell_id else (),
-                    segment_ids=segment_ids,
-                    street_edge_xz=(float(street_edge_xz[0]), float(street_edge_xz[1])),
-                    placement_xz=(float(placement_xz[0]), float(placement_xz[1])),
-                    front_setback_m=float(front_setback_m),
-                    placement_strategy=str(placement_strategy),
-                    building_depth_m=float(building_depth_m),
-                )
-            )
+            if lot is None:
+                continue
+            cell_lot_ids.append(lot_id)
+            lots.append(lot)
         cell["lot_ids"] = list(cell_lot_ids)
         cell["lot_id"] = str(cell_lot_ids[0]) if cell_lot_ids else ""
 
+    balanced_lots, balance_metrics = _apply_building_balance_pass(
+        annotated_cells,
+        tuple(lots),
+        road_type=road_type,
+        seed=seed,
+        height_mode=height_mode,
+        height_profile=height_profile,
+        front_setback_min_m=front_setback_min_m,
+        front_setback_max_m=front_setback_max_m,
+        zoning_granularity=normalized_granularity,
+        min_side_frontage_coverage_ratio=min_side_frontage_coverage_ratio,
+        max_left_right_coverage_gap=max_left_right_coverage_gap,
+    )
+    lots = list(balanced_lots)
+
     lot_counts = Counter(lot.land_use_type for lot in lots)
     height_counts = Counter(lot.height_class for lot in lots)
-    frontage_metrics = summarize_frontage_coverage(
-        annotated_cells,
-        tuple({"polygon_xz": lot.polygon_xz, "side": lot.side} for lot in lots),
-    )
+    frontage_metrics = {
+        "frontage_coverage_by_side": dict(balance_metrics.get("frontage_coverage_by_side", {}) or {}),
+        "frontage_gap_stats_by_side": dict(balance_metrics.get("frontage_gap_stats_by_side", {}) or {}),
+    }
     summary = {
         "lot_count": int(len(lots)),
         "frontage_parcel_count": int(len(lots)),
@@ -1323,6 +1612,17 @@ def generate_grid_growth_lots(
         "zoning_granularity": normalized_granularity,
         "streetwall_continuity": float(round(continuity, 3)),
         **frontage_metrics,
+        "building_balance_policy": str(balance_metrics.get("building_balance_policy", "balanced_default") or "balanced_default"),
+        "building_balance_ok": bool(balance_metrics.get("building_balance_ok", False)),
+        "building_balance_reason": str(balance_metrics.get("building_balance_reason", "") or ""),
+        "frontage_balance_gap": float(balance_metrics.get("frontage_balance_gap", 0.0) or 0.0),
+        "buildable_frontage_by_side": dict(balance_metrics.get("buildable_frontage_by_side", {}) or {}),
+        "min_side_frontage_coverage_ratio": float(
+            balance_metrics.get("min_side_frontage_coverage_ratio", min_side_frontage_coverage_ratio) or min_side_frontage_coverage_ratio
+        ),
+        "max_left_right_coverage_gap": float(
+            balance_metrics.get("max_left_right_coverage_gap", max_left_right_coverage_gap) or max_left_right_coverage_gap
+        ),
     }
     _front_setbacks = [lot.front_setback_m for lot in lots if lot.front_setback_m > 0.0]
     if _front_setbacks:
@@ -1350,7 +1650,7 @@ def _fallback_building_footprints(
     seed: int = 0,
     height_mode: str = "theme_random",
     height_profile: str = "urban_default_v1",
-    asymmetry_strength: float = 0.35,
+    asymmetry_strength: float = 0.0,
     left_right_bias: float = 0.0,
     front_setback_min_m: float = 1.0,
     front_setback_max_m: float = 2.0,
@@ -1864,11 +2164,11 @@ def build_zoning_grid_preview(
     building_footprints: Sequence[BuildingFootprint],
     road_buffer_m: float = 35.0,
 ) -> Tuple[Tuple[Dict[str, Any], ...], Dict[str, Any]]:
-    asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.35)
+    asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.0)
     bias_raw = getattr(config, "left_right_bias", 0.0)
     zoning_granularity_raw = getattr(config, "zoning_granularity", "fine")
     streetwall_continuity_raw = getattr(config, "streetwall_continuity", 0.95)
-    asymmetry_strength = _clamp(float(0.35 if asymmetry_raw is None else asymmetry_raw), 0.0, 1.0)
+    asymmetry_strength = _clamp(float(0.0 if asymmetry_raw is None else asymmetry_raw), 0.0, 1.0)
     left_right_bias = _clamp(float(0.0 if bias_raw is None else bias_raw), -1.0, 1.0)
     normalized_granularity = _normalize_zoning_granularity(
         str("fine" if zoning_granularity_raw is None else zoning_granularity_raw)
@@ -1940,6 +2240,7 @@ def build_zoning_grid_preview(
             "zoning_preview_mode": "parcel_first",
             "frontage_cell_count": 0,
             "theme_segment_count": int(len(theme_segments)),
+            "buildable_frontage_by_side": {"left": 0.0, "right": 0.0},
         }
 
     try:
@@ -2161,6 +2462,7 @@ def build_zoning_grid_preview(
             sum(1 for cell in cells if "building_buffer" in str(cell.get("lane_role", "") or ""))
         ),
         "theme_segment_count": int(len(theme_segments)),
+        "buildable_frontage_by_side": _buildable_frontage_by_side(cells),
     }
     return tuple(cells), summary
 

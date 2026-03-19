@@ -3124,7 +3124,7 @@ def _place_surrounding_buildings(
     }
 
     if mode == "footprint_based":
-        asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.35)
+        asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.0)
         bias_raw = getattr(config, "left_right_bias", 0.0)
         setback_min_raw = getattr(config, "building_front_setback_min_m", 1.0)
         setback_max_raw = getattr(config, "building_front_setback_max_m", 2.0)
@@ -3138,7 +3138,7 @@ def _place_surrounding_buildings(
                 seed=int(getattr(config, "seed", 0) or 0),
                 height_mode=str(getattr(config, "building_height_mode", "theme_random") or "theme_random"),
                 height_profile=str(getattr(config, "building_height_profile", "urban_default_v1") or "urban_default_v1"),
-                asymmetry_strength=float(0.35 if asymmetry_raw is None else asymmetry_raw),
+                asymmetry_strength=float(0.0 if asymmetry_raw is None else asymmetry_raw),
                 left_right_bias=float(0.0 if bias_raw is None else bias_raw),
                 front_setback_min_m=float(1.0 if setback_min_raw is None else setback_min_raw),
                 front_setback_max_m=float(2.0 if setback_max_raw is None else setback_max_raw),
@@ -3239,7 +3239,7 @@ def _place_surrounding_buildings(
             else 0
         ),
     }
-    asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.35)
+    asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.0)
     bias_raw = getattr(config, "left_right_bias", 0.0)
     setback_min_raw = getattr(config, "building_front_setback_min_m", 1.0)
     setback_max_raw = getattr(config, "building_front_setback_max_m", 2.0)
@@ -3251,13 +3251,36 @@ def _place_surrounding_buildings(
         "footprint_count": int(len(building_footprints)),
         "lot_count": int(len(generated_lots)),
         "target_type": "lot" if mode == "grid_growth" else "footprint",
-        "land_use_asymmetry_strength": float(0.35 if asymmetry_raw is None else asymmetry_raw),
+        "land_use_asymmetry_strength": float(0.0 if asymmetry_raw is None else asymmetry_raw),
         "left_right_bias": float(0.0 if bias_raw is None else bias_raw),
         "building_front_setback_min_m": float(1.0 if setback_min_raw is None else setback_min_raw),
         "building_front_setback_max_m": float(2.0 if setback_max_raw is None else setback_max_raw),
         "zoning_granularity": str(zoning_granularity),
         "streetwall_continuity": float(streetwall_continuity),
         "infill_policy": str(infill_policy),
+        "building_balance_policy": str(
+            lot_generation_summary.get("building_balance_policy", "balanced_default")
+            if mode == "grid_growth"
+            else "manual_realistic_mode"
+        ),
+        "building_balance_ok": bool(
+            lot_generation_summary.get("building_balance_ok", False) if mode == "grid_growth" else False
+        ),
+        "building_balance_reason": str(
+            lot_generation_summary.get("building_balance_reason", "") if mode == "grid_growth" else "footprint_based mode"
+        ),
+        "frontage_balance_gap": float(
+            lot_generation_summary.get("frontage_balance_gap", 0.0)
+            if mode == "grid_growth"
+            else 0.0
+        ),
+        "buildable_frontage_by_side": dict(
+            lot_generation_summary.get(
+                "buildable_frontage_by_side",
+                zoning_preview_summary.get("buildable_frontage_by_side", {}),
+            )
+            or {}
+        ),
         "frontage_parcel_count": int(
             lot_generation_summary.get("frontage_parcel_count", len(generated_lots))
             if mode == "grid_growth"
@@ -4102,6 +4125,40 @@ def compose_street_scene(
     spacing_uniformity = compute_spacing_uniformity(furniture_dicts)
     style_consistency = compute_style_consistency(furniture_dicts)
     balance_score = compute_balance_score(furniture_dicts)
+    slot_side_by_id = {
+        str(slot.slot_id): str(getattr(slot, "side", "") or "")
+        for slot in slot_plans
+        if str(getattr(slot, "slot_id", "") or "")
+    }
+    street_furniture_side_counts = {"left": 0, "right": 0}
+    street_furniture_core_side_counts = {"left": 0, "right": 0}
+    for placement in furniture_placements:
+        side = str(slot_side_by_id.get(str(placement.slot_id), "") or "")
+        if side not in {"left", "right"}:
+            side = "left" if float(placement.position_xyz[2]) >= 0.0 else "right"
+        street_furniture_side_counts[side] = street_furniture_side_counts.get(side, 0) + 1
+        if str(placement.category) in {category for category, side_pref in SIDE_PREF.items() if str(side_pref) == "both"}:
+            street_furniture_core_side_counts[side] = street_furniture_core_side_counts.get(side, 0) + 1
+    compatible_furnishing_sides = {
+        str(slot.side)
+        for slot in slot_plans
+        if str(slot.category) in {category for category, side_pref in SIDE_PREF.items() if str(side_pref) == "both"}
+        and str(slot.side) in {"left", "right"}
+    }
+    if not {"left", "right"} <= compatible_furnishing_sides:
+        missing_side = "left" if "left" not in compatible_furnishing_sides else "right"
+        street_furniture_balance_ok = False
+        street_furniture_balance_reason = f"no compatible {missing_side} furnishing band"
+    elif street_furniture_core_side_counts["left"] > 0 and street_furniture_core_side_counts["right"] > 0:
+        street_furniture_balance_ok = True
+        street_furniture_balance_reason = ""
+    elif sum(street_furniture_core_side_counts.values()) <= 0:
+        street_furniture_balance_ok = False
+        street_furniture_balance_reason = "no placed bilateral street furniture"
+    else:
+        missing_side = "left" if street_furniture_core_side_counts["left"] <= 0 else "right"
+        street_furniture_balance_ok = False
+        street_furniture_balance_reason = f"no placed core street furniture on {missing_side} side"
     per_category_unique = {
         category: len({placement.asset_id for placement in placements if placement.category == category})
         for category in sorted({placement.category for placement in placements})
@@ -4190,7 +4247,7 @@ def compose_street_scene(
         selected_highway_type=selected_highway_type,
     )
     asset_scale_summary = summarize_asset_scales([placement.to_dict() for placement in placements])
-    asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.35)
+    asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.0)
     bias_raw = getattr(config, "left_right_bias", 0.0)
     setback_min_raw = getattr(config, "building_front_setback_min_m", 1.0)
     setback_max_raw = getattr(config, "building_front_setback_max_m", 2.0)
@@ -4365,19 +4422,28 @@ def compose_street_scene(
         ),
         "unplaced_required_slot_count": int(anchor_resolution_summary["unplaced_required"]),
         "building_generation_mode": str(getattr(config, "surrounding_building_mode", "grid_growth")),
-        "land_use_asymmetry_strength": float(0.35 if asymmetry_raw is None else asymmetry_raw),
+        "land_use_asymmetry_strength": float(0.0 if asymmetry_raw is None else asymmetry_raw),
         "left_right_bias": float(0.0 if bias_raw is None else bias_raw),
         "building_front_setback_min_m": float(1.0 if setback_min_raw is None else setback_min_raw),
         "building_front_setback_max_m": float(2.0 if setback_max_raw is None else setback_max_raw),
         "zoning_granularity": str("fine" if zoning_granularity_raw is None else zoning_granularity_raw),
         "streetwall_continuity": float(0.95 if streetwall_continuity_raw is None else streetwall_continuity_raw),
         "infill_policy": str("aggressive" if infill_policy_raw is None else infill_policy_raw),
+        "building_balance_policy": str(building_summary.get("building_balance_policy", "")),
+        "building_balance_ok": bool(building_summary.get("building_balance_ok", False)),
+        "building_balance_reason": str(building_summary.get("building_balance_reason", "") or ""),
+        "frontage_balance_gap": float(building_summary.get("frontage_balance_gap", 0.0) or 0.0),
+        "buildable_frontage_by_side": dict(building_summary.get("buildable_frontage_by_side", {}) or {}),
         "zoning_preview_mode": str(zoning_preview_summary.get("zoning_preview_mode", "parcel_first") or "parcel_first"),
         "frontage_cell_count": int(zoning_preview_summary.get("frontage_cell_count", 0) or 0),
         "frontage_parcel_count": int(lot_generation_summary.get("frontage_parcel_count", len(generated_lots)) or 0),
         "infill_footprint_count": int(building_summary.get("infill_footprint_count", 0) or 0),
         "frontage_coverage_by_side": dict(building_summary.get("frontage_coverage_by_side", {}) or {}),
         "frontage_gap_stats_by_side": dict(building_summary.get("frontage_gap_stats_by_side", {}) or {}),
+        "street_furniture_side_counts": dict(street_furniture_side_counts),
+        "street_furniture_core_side_counts": dict(street_furniture_core_side_counts),
+        "street_furniture_balance_ok": bool(street_furniture_balance_ok),
+        "street_furniture_balance_reason": str(street_furniture_balance_reason),
         "building_summary": dict(building_summary),
         "land_use_summary": dict(land_use_summary),
         "lot_generation_summary": dict(lot_generation_summary),

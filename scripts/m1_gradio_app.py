@@ -1504,19 +1504,28 @@ def _extract_building_summary(layout_json_text: str) -> str:
     summary = payload.get("summary", {}) or {}
     result = {
         "building_generation_mode": summary.get("building_generation_mode", "grid_growth"),
-        "land_use_asymmetry_strength": summary.get("land_use_asymmetry_strength", 0.35),
+        "land_use_asymmetry_strength": summary.get("land_use_asymmetry_strength", 0.0),
         "left_right_bias": summary.get("left_right_bias", 0.0),
         "building_front_setback_min_m": summary.get("building_front_setback_min_m", 1.0),
         "building_front_setback_max_m": summary.get("building_front_setback_max_m", 2.0),
         "zoning_granularity": summary.get("zoning_granularity", "fine"),
         "streetwall_continuity": summary.get("streetwall_continuity", 0.95),
         "infill_policy": summary.get("infill_policy", "aggressive"),
+        "building_balance_policy": summary.get("building_balance_policy", "balanced_default"),
+        "building_balance_ok": summary.get("building_balance_ok", False),
+        "building_balance_reason": summary.get("building_balance_reason", ""),
+        "frontage_balance_gap": summary.get("frontage_balance_gap", 0.0),
+        "buildable_frontage_by_side": summary.get("buildable_frontage_by_side", {}),
         "zoning_preview_mode": summary.get("zoning_preview_mode", "parcel_first"),
         "frontage_cell_count": summary.get("frontage_cell_count", 0),
         "frontage_parcel_count": summary.get("frontage_parcel_count", 0),
         "infill_footprint_count": summary.get("infill_footprint_count", 0),
         "frontage_coverage_by_side": summary.get("frontage_coverage_by_side", {}),
         "frontage_gap_stats_by_side": summary.get("frontage_gap_stats_by_side", {}),
+        "street_furniture_side_counts": summary.get("street_furniture_side_counts", {}),
+        "street_furniture_core_side_counts": summary.get("street_furniture_core_side_counts", {}),
+        "street_furniture_balance_ok": summary.get("street_furniture_balance_ok", False),
+        "street_furniture_balance_reason": summary.get("street_furniture_balance_reason", ""),
         "building_summary": summary.get("building_summary", {}),
         "land_use_summary": summary.get("land_use_summary", {}),
         "lot_generation_summary": summary.get("lot_generation_summary", {}),
@@ -2239,7 +2248,7 @@ def run_street_compose(
     asset_scale_mode: str = "canonical_v1",
     enable_surrounding_buildings: bool = True,
     building_search_topk: int = 5,
-    land_use_asymmetry_strength: float = 0.35,
+    land_use_asymmetry_strength: float = 0.0,
     left_right_bias: float = 0.0,
     building_front_setback_min_m: float = 1.0,
     building_front_setback_max_m: float = 2.0,
@@ -2350,7 +2359,7 @@ def run_street_compose(
             theme_vocab_name=str(theme_vocab_name).strip(),
             building_height_mode=str(building_height_mode).strip(),
             building_height_profile=str(building_height_profile).strip(),
-            land_use_asymmetry_strength=float(0.35 if land_use_asymmetry_strength is None else land_use_asymmetry_strength),
+            land_use_asymmetry_strength=float(0.0 if land_use_asymmetry_strength is None else land_use_asymmetry_strength),
             left_right_bias=float(0.0 if left_right_bias is None else left_right_bias),
             building_front_setback_min_m=float(1.0 if building_front_setback_min_m is None else building_front_setback_min_m),
             building_front_setback_max_m=float(2.0 if building_front_setback_max_m is None else building_front_setback_max_m),
@@ -2594,6 +2603,36 @@ def run_street_compose(
             f"\n- building_placed_count: "
             f"{int((layout_summary.get('building_retrieval_coverage', {}) or {}).get('placed_count', 0) or 0)}"
         )
+        summary += (
+            f"\n- buildable_frontage_by_side: "
+            f"{json.dumps(layout_summary.get('buildable_frontage_by_side', {}), ensure_ascii=True)}"
+        )
+        summary += (
+            f"\n- frontage_coverage_by_side: "
+            f"{json.dumps(layout_summary.get('frontage_coverage_by_side', {}), ensure_ascii=True)}"
+        )
+        summary += (
+            f"\n- building_balance_ok: "
+            f"{bool(layout_summary.get('building_balance_ok', False))}"
+        )
+        if str(layout_summary.get("building_balance_reason", "") or "").strip():
+            summary += (
+                f"\n- building_balance_reason: "
+                f"{str(layout_summary.get('building_balance_reason', ''))}"
+            )
+        summary += (
+            f"\n- street_furniture_side_counts: "
+            f"{json.dumps(layout_summary.get('street_furniture_side_counts', {}), ensure_ascii=True)}"
+        )
+        summary += (
+            f"\n- street_furniture_balance_ok: "
+            f"{bool(layout_summary.get('street_furniture_balance_ok', False))}"
+        )
+        if str(layout_summary.get("street_furniture_balance_reason", "") or "").strip():
+            summary += (
+                f"\n- street_furniture_balance_reason: "
+                f"{str(layout_summary.get('street_furniture_balance_reason', ''))}"
+            )
         summary += (
             f"\n- zoning_cell_count: "
             f"{int((layout_summary.get('zoning_preview_summary', {}) or {}).get('cell_count', 0) or 0)}"
@@ -3005,7 +3044,7 @@ def run_best_model_street(
     asset_scale_mode: str = "canonical_v1",
     enable_surrounding_buildings: bool = True,
     building_search_topk: int = 5,
-    land_use_asymmetry_strength: float = 0.35,
+    land_use_asymmetry_strength: float = 0.0,
     left_right_bias: float = 0.0,
     building_front_setback_min_m: float = 1.0,
     building_front_setback_max_m: float = 2.0,
@@ -4157,7 +4196,7 @@ def build_demo() -> gr.Blocks:
                             minimum=0.0,
                             maximum=1.0,
                             step=0.05,
-                            value=0.35,
+                            value=0.0,
                         )
                         left_right_bias = gr.Slider(
                             label="Left/Right Bias",
