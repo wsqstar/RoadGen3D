@@ -80,7 +80,14 @@ from roadgen3d.spatial_viz import (
     plot_scene_with_markers,
     plot_zoning_grid_preview,
 )
-from roadgen3d.types import PrepareWorkspaceResult, StepResult, StreetComposeConfig, WorkspaceReadiness
+from roadgen3d.types import (
+    DEFAULT_BUILDING_FRONT_SETBACK_MAX_M,
+    DEFAULT_BUILDING_FRONT_SETBACK_MIN_M,
+    PrepareWorkspaceResult,
+    StepResult,
+    StreetComposeConfig,
+    WorkspaceReadiness,
+)
 from scripts.m1_01_seed_assets import seed_assets
 from scripts.m2_11_encode_shapee_latents import encode_latents as encode_shapee_latents
 from scripts.m4_01_collect_policy_data import collect_policy_data
@@ -1506,8 +1513,8 @@ def _extract_building_summary(layout_json_text: str) -> str:
         "building_generation_mode": summary.get("building_generation_mode", "grid_growth"),
         "land_use_asymmetry_strength": summary.get("land_use_asymmetry_strength", 0.0),
         "left_right_bias": summary.get("left_right_bias", 0.0),
-        "building_front_setback_min_m": summary.get("building_front_setback_min_m", 1.0),
-        "building_front_setback_max_m": summary.get("building_front_setback_max_m", 2.0),
+        "building_front_setback_min_m": summary.get("building_front_setback_min_m", DEFAULT_BUILDING_FRONT_SETBACK_MIN_M),
+        "building_front_setback_max_m": summary.get("building_front_setback_max_m", DEFAULT_BUILDING_FRONT_SETBACK_MAX_M),
         "zoning_granularity": summary.get("zoning_granularity", "fine"),
         "streetwall_continuity": summary.get("streetwall_continuity", 0.95),
         "infill_policy": summary.get("infill_policy", "aggressive"),
@@ -2275,8 +2282,8 @@ def run_street_compose(
     building_search_topk: int = 5,
     land_use_asymmetry_strength: float = 0.0,
     left_right_bias: float = 0.0,
-    building_front_setback_min_m: float = 1.0,
-    building_front_setback_max_m: float = 2.0,
+    building_front_setback_min_m: float = DEFAULT_BUILDING_FRONT_SETBACK_MIN_M,
+    building_front_setback_max_m: float = DEFAULT_BUILDING_FRONT_SETBACK_MAX_M,
     zoning_granularity: str = "fine",
     streetwall_continuity: float = 0.95,
     infill_policy: str = "aggressive",
@@ -2389,8 +2396,8 @@ def run_street_compose(
             building_height_profile=str(building_height_profile).strip(),
             land_use_asymmetry_strength=float(0.0 if land_use_asymmetry_strength is None else land_use_asymmetry_strength),
             left_right_bias=float(0.0 if left_right_bias is None else left_right_bias),
-            building_front_setback_min_m=float(1.0 if building_front_setback_min_m is None else building_front_setback_min_m),
-            building_front_setback_max_m=float(2.0 if building_front_setback_max_m is None else building_front_setback_max_m),
+            building_front_setback_min_m=float(DEFAULT_BUILDING_FRONT_SETBACK_MIN_M if building_front_setback_min_m is None else building_front_setback_min_m),
+            building_front_setback_max_m=float(DEFAULT_BUILDING_FRONT_SETBACK_MAX_M if building_front_setback_max_m is None else building_front_setback_max_m),
             zoning_granularity=str(zoning_granularity).strip(),
             streetwall_continuity=float(0.95 if streetwall_continuity is None else streetwall_continuity),
             infill_policy=str(infill_policy).strip(),
@@ -3108,8 +3115,8 @@ def run_best_model_street(
     building_search_topk: int = 5,
     land_use_asymmetry_strength: float = 0.0,
     left_right_bias: float = 0.0,
-    building_front_setback_min_m: float = 1.0,
-    building_front_setback_max_m: float = 2.0,
+    building_front_setback_min_m: float = DEFAULT_BUILDING_FRONT_SETBACK_MIN_M,
+    building_front_setback_max_m: float = DEFAULT_BUILDING_FRONT_SETBACK_MAX_M,
     zoning_granularity: str = "fine",
     streetwall_continuity: float = 0.95,
     infill_policy: str = "aggressive",
@@ -4291,12 +4298,12 @@ def build_demo() -> gr.Blocks:
                         )
                         building_front_setback_min_m = gr.Number(
                             label="Front Setback Min (m)",
-                            value=1.0,
+                            value=DEFAULT_BUILDING_FRONT_SETBACK_MIN_M,
                             precision=2,
                         )
                         building_front_setback_max_m = gr.Number(
                             label="Front Setback Max (m)",
-                            value=2.0,
+                            value=DEFAULT_BUILDING_FRONT_SETBACK_MAX_M,
                             precision=2,
                         )
                     with gr.Row():

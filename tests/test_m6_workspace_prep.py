@@ -15,6 +15,10 @@ if str(SRC) not in sys.path:
 
 pytest.importorskip("gradio")
 import scripts.m1_gradio_app as app
+from roadgen3d.types import (
+    DEFAULT_BUILDING_FRONT_SETBACK_MAX_M,
+    DEFAULT_BUILDING_FRONT_SETBACK_MIN_M,
+)
 
 
 def _labels_by_component_type(config: dict, component_type: str) -> list[str]:
@@ -267,8 +271,8 @@ def test_build_demo_exposes_asymmetry_and_setback_controls_with_defaults():
     assert slider_props["Streetwall Continuity"]["value"] == 0.95
     assert slider_props["Streetwall Continuity"]["minimum"] == 0.0
     assert slider_props["Streetwall Continuity"]["maximum"] == 1.0
-    assert number_props["Front Setback Min (m)"]["value"] == 1.0
-    assert number_props["Front Setback Max (m)"]["value"] == 2.0
+    assert number_props["Front Setback Min (m)"]["value"] == DEFAULT_BUILDING_FRONT_SETBACK_MIN_M
+    assert number_props["Front Setback Max (m)"]["value"] == DEFAULT_BUILDING_FRONT_SETBACK_MAX_M
 
 
 def test_build_demo_exposes_zoning_and_infill_controls_with_defaults():

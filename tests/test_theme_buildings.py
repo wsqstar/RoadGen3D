@@ -21,7 +21,15 @@ from roadgen3d.theme_buildings import (
     infer_theme_segments,
     sample_building_target_height,
 )
-from roadgen3d.types import BuildingFootprint, RoadSegmentGraph, RoadSegmentNode, StreetComposeConfig, ThemeSegment
+from roadgen3d.types import (
+    DEFAULT_BUILDING_FRONT_SETBACK_MAX_M,
+    DEFAULT_BUILDING_FRONT_SETBACK_MIN_M,
+    BuildingFootprint,
+    RoadSegmentGraph,
+    RoadSegmentNode,
+    StreetComposeConfig,
+    ThemeSegment,
+)
 
 
 def _graph_for_theme(*, highway_type: str, poi_types: tuple[str, ...]) -> RoadSegmentGraph:
@@ -183,6 +191,8 @@ def test_build_zoning_grid_preview_defaults_to_balanced_land_use_and_widths():
 
     assert left_cell["land_use_type"] == right_cell["land_use_type"] == "commercial"
     assert left_cell["building_buffer_width_m"] == pytest.approx(right_cell["building_buffer_width_m"])
+    assert summary["building_buffer_gap_ratio"] <= 0.10
+    assert summary["streetwall_reference_gap_ratio"] <= 0.10
     assert summary["side_land_use_counts"]["left"]
     assert summary["side_land_use_counts"]["right"]
     assert summary["asymmetry_strength"] == pytest.approx(0.0)
@@ -325,7 +335,36 @@ def test_build_zoning_grid_preview_asymmetry_strength_zero_restores_symmetric_ba
 
     assert left_cell["land_use_type"] == right_cell["land_use_type"] == "commercial"
     assert left_cell["building_buffer_width_m"] == pytest.approx(right_cell["building_buffer_width_m"])
+    assert summary["building_buffer_gap_ratio"] <= 0.10
+    assert summary["streetwall_reference_gap_ratio"] <= 0.10
     assert summary["active_side_counts"] == {}
+
+
+def test_build_zoning_grid_preview_caps_overwide_streetwall_reference_widths():
+    graph = _graph_for_theme(highway_type="tertiary", poi_types=("entrance", "bus_stop"))
+    placement_context = SimpleNamespace(
+        carriageway_width_m=6.0,
+        left_clear_path_width_m=4.5,
+        left_furnishing_width_m=4.989093382834189,
+        right_clear_path_width_m=4.5,
+        right_furnishing_width_m=3.2,
+    )
+
+    zoning_grid, summary = build_zoning_grid_preview(
+        config=_zoning_config(seed=13),
+        placement_context=placement_context,
+        road_segment_graph=graph,
+        theme_segments=_single_theme_segment("commercial"),
+        building_footprints=(),
+        road_buffer_m=35.0,
+    )
+
+    assert zoning_grid
+    assert summary["streetwall_reference_width_m"]["left"] <= 5.0
+    assert summary["streetwall_reference_width_m"]["right"] <= 5.0
+    assert summary["streetwall_reference_gap_ratio"] <= 0.10
+    assert summary["streetwall_reference_raw_width_m"]["left"] > summary["streetwall_reference_width_m"]["left"]
+    assert summary["streetwall_reference_raw_width_m"]["right"] > summary["streetwall_reference_width_m"]["right"]
 
 
 def test_build_zoning_grid_preview_green_theme_keeps_streetwall_baseline_in_grid_growth():
@@ -431,11 +470,11 @@ def test_generate_grid_growth_lots_respects_land_use_side_and_height_rules():
     assert sum(summary["placement_strategy_counts"].values()) == len(generated_lots)
     assert summary["building_balance_policy"] == "balanced_default"
     assert summary["building_balance_ok"] is True
-    assert summary["frontage_balance_gap"] <= 0.20
+    assert summary["frontage_balance_gap"] <= 0.10
     assert summary["buildable_frontage_by_side"]["left"] > 0.0
     assert summary["buildable_frontage_by_side"]["right"] > 0.0
-    assert 1.0 <= summary["front_setback_stats"]["min_m"] <= 2.0
-    assert 1.0 <= summary["front_setback_stats"]["max_m"] <= 2.0
+    assert DEFAULT_BUILDING_FRONT_SETBACK_MIN_M <= summary["front_setback_stats"]["min_m"] <= DEFAULT_BUILDING_FRONT_SETBACK_MAX_M
+    assert DEFAULT_BUILDING_FRONT_SETBACK_MIN_M <= summary["front_setback_stats"]["max_m"] <= DEFAULT_BUILDING_FRONT_SETBACK_MAX_M
     assert summary["frontage_coverage_by_side"]["left"]["coverage_ratio"] > 0.7
     assert summary["frontage_coverage_by_side"]["right"]["coverage_ratio"] > 0.7
     lot_ids = {lot.lot_id for lot in generated_lots}
@@ -446,7 +485,7 @@ def test_generate_grid_growth_lots_respects_land_use_side_and_height_rules():
     } <= lot_ids
     for lot in generated_lots:
         assert lot.placement_strategy in {"frontage_setback", "frontage_clamped"}
-        assert 1.0 <= lot.front_setback_m <= 2.0
+        assert DEFAULT_BUILDING_FRONT_SETBACK_MIN_M <= lot.front_setback_m <= DEFAULT_BUILDING_FRONT_SETBACK_MAX_M
         if lot.side == "left":
             front_edge_z = lot.placement_xz[1] - lot.building_depth_m / 2.0
             assert front_edge_z == pytest.approx(lot.street_edge_xz[1] + lot.front_setback_m, abs=1e-6)

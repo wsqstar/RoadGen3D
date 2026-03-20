@@ -7,7 +7,14 @@ import hashlib
 from collections import Counter
 from typing import Any, Dict, Iterable, List, Mapping, Sequence, Tuple
 
-from .types import BuildingFootprint, GeneratedLot, StreetComposeConfig, ThemeSegment
+from .types import (
+    DEFAULT_BUILDING_FRONT_SETBACK_MAX_M,
+    DEFAULT_BUILDING_FRONT_SETBACK_MIN_M,
+    BuildingFootprint,
+    GeneratedLot,
+    StreetComposeConfig,
+    ThemeSegment,
+)
 
 THEME_VOCAB: Tuple[str, ...] = ("residential", "commercial", "transit", "green")
 THEME_PROFILE_STYLE_MAP: Dict[str, Dict[str, str]] = {
@@ -79,7 +86,9 @@ _GRID_LOT_RULES: Dict[str, Dict[str, float]] = {
     },
 }
 _DEFAULT_MIN_SIDE_FRONTAGE_COVERAGE_RATIO = 0.65
-_DEFAULT_MAX_LEFT_RIGHT_COVERAGE_GAP = 0.20
+_DEFAULT_MAX_LEFT_RIGHT_COVERAGE_GAP = 0.10
+_DEFAULT_MAX_BUFFER_WIDTH_GAP_RATIO = 0.10
+_DEFAULT_MAX_STREETWALL_REFERENCE_GAP_RATIO = 0.10
 _ZONING_GRANULARITY_MULTIPLIERS: Dict[str, float] = {
     "coarse": 1.5,
     "balanced": 1.0,
@@ -287,8 +296,8 @@ def collect_building_footprints(
     height_profile: str = "urban_default_v1",
     asymmetry_strength: float = 0.0,
     left_right_bias: float = 0.0,
-    front_setback_min_m: float = 1.0,
-    front_setback_max_m: float = 2.0,
+    front_setback_min_m: float = DEFAULT_BUILDING_FRONT_SETBACK_MIN_M,
+    front_setback_max_m: float = DEFAULT_BUILDING_FRONT_SETBACK_MAX_M,
     zoning_granularity: str = "fine",
     streetwall_continuity: float = 0.95,
 ) -> Tuple[BuildingFootprint, ...]:
@@ -629,7 +638,7 @@ def _sample_front_setback_m(
     hi = max(lo, float(maximum_m))
     if hi - lo <= 1e-6:
         return round(lo, 3)
-    u = _hash_to_unit(f"{seed}:front_setback:{target_id}")
+    u = _hash_to_unit(f"{seed}:front_setback:{target_id}") ** 1.75
     return round(lo + (hi - lo) * u, 3)
 
 
@@ -1516,8 +1525,8 @@ def generate_grid_growth_lots(
     seed: int = 0,
     height_mode: str = "theme_random",
     height_profile: str = "urban_default_v1",
-    front_setback_min_m: float = 1.0,
-    front_setback_max_m: float = 2.0,
+    front_setback_min_m: float = DEFAULT_BUILDING_FRONT_SETBACK_MIN_M,
+    front_setback_max_m: float = DEFAULT_BUILDING_FRONT_SETBACK_MAX_M,
     zoning_granularity: str = "fine",
     streetwall_continuity: float = 0.95,
 ) -> Tuple[Tuple[Dict[str, Any], ...], Tuple[GeneratedLot, ...], Dict[str, Any]]:
@@ -1664,28 +1673,31 @@ def _fallback_building_footprints(
     height_profile: str = "urban_default_v1",
     asymmetry_strength: float = 0.0,
     left_right_bias: float = 0.0,
-    front_setback_min_m: float = 1.0,
-    front_setback_max_m: float = 2.0,
+    front_setback_min_m: float = DEFAULT_BUILDING_FRONT_SETBACK_MIN_M,
+    front_setback_max_m: float = DEFAULT_BUILDING_FRONT_SETBACK_MAX_M,
     zoning_granularity: str = "fine",
     streetwall_continuity: float = 0.95,
 ) -> List[BuildingFootprint]:
     footprints: List[BuildingFootprint] = []
+    force_streetwall_baseline = True
     carriageway_width_m = float(
         getattr(placement_context, "carriageway_width_m", 0.0)
         or getattr(placement_context, "road_width_m", 0.0)
         or 8.0
     )
     carriageway_half = carriageway_width_m / 2.0
-    left_sidewalk_width_m = float(
-        (getattr(placement_context, "left_clear_path_width_m", 0.0) or 0.0)
-        + (getattr(placement_context, "left_furnishing_width_m", 0.0) or 0.0)
-        or 2.5
+    streetwall_reference = _streetwall_reference_widths(
+        design_rule_profile=str(
+            getattr(placement_context, "design_rule_profile", "balanced_complete_street_v1")
+            or "balanced_complete_street_v1"
+        ),
+        sidewalk_seed_width_m=2.5,
+        placement_context=placement_context,
+        asymmetry_strength=float(asymmetry_strength),
+        force_streetwall_baseline=bool(force_streetwall_baseline),
     )
-    right_sidewalk_width_m = float(
-        (getattr(placement_context, "right_clear_path_width_m", 0.0) or 0.0)
-        + (getattr(placement_context, "right_furnishing_width_m", 0.0) or 0.0)
-        or 2.5
-    )
+    left_sidewalk_width_m = float(streetwall_reference["left_total_m"])
+    right_sidewalk_width_m = float(streetwall_reference["right_total_m"])
     nodes_by_id = {
         str(getattr(node, "segment_id", "")): node
         for node in getattr(road_segment_graph, "nodes", ()) or ()
@@ -1841,8 +1853,8 @@ def generate_frontage_infill_footprints(
     zoning_granularity: str = "fine",
     streetwall_continuity: float = 0.95,
     infill_policy: str = "aggressive",
-    front_setback_min_m: float = 1.0,
-    front_setback_max_m: float = 2.0,
+    front_setback_min_m: float = DEFAULT_BUILDING_FRONT_SETBACK_MIN_M,
+    front_setback_max_m: float = DEFAULT_BUILDING_FRONT_SETBACK_MAX_M,
 ) -> Tuple[Tuple[BuildingFootprint, ...], Dict[str, Any]]:
     normalized_granularity = _normalize_zoning_granularity(zoning_granularity)
     normalized_policy = _normalize_infill_policy(infill_policy)
@@ -2097,7 +2109,7 @@ def _estimate_building_buffer_widths(
     right_sidewalk_width_m: float,
     road_buffer_m: float,
 ) -> Tuple[float, float]:
-    default_width = min(float(road_buffer_m), max(float(left_sidewalk_width_m), float(right_sidewalk_width_m), 10.0))
+    default_width = min(float(road_buffer_m), max(float(left_sidewalk_width_m), float(right_sidewalk_width_m), 8.0))
     nodes = list(getattr(road_segment_graph, "nodes", ()) or ())
     if not nodes or not building_footprints:
         return float(default_width), float(default_width)
@@ -2132,6 +2144,140 @@ def _estimate_building_buffer_widths(
         else:
             right_buffer = max(right_buffer, min(float(road_buffer_m), float(needed)))
     return float(left_buffer), float(right_buffer)
+
+
+def _rebalance_building_buffer_widths(
+    *,
+    left_width_m: float,
+    right_width_m: float,
+    road_buffer_m: float,
+    default_width_m: float,
+    asymmetry_strength: float,
+    force_streetwall_baseline: bool,
+    max_gap_ratio: float = _DEFAULT_MAX_BUFFER_WIDTH_GAP_RATIO,
+) -> Tuple[float, float]:
+    left = _clamp(float(left_width_m), 8.0, float(road_buffer_m))
+    right = _clamp(float(right_width_m), 8.0, float(road_buffer_m))
+    baseline = _clamp(float(default_width_m), 8.0, float(road_buffer_m))
+
+    if bool(force_streetwall_baseline) and float(asymmetry_strength) <= 1e-6:
+        return float(baseline), float(baseline)
+
+    max_gap = max(0.0, float(max_gap_ratio)) * max(left, right, 1e-6)
+    current_gap = abs(left - right)
+    if current_gap <= max_gap + 1e-6:
+        return float(left), float(right)
+
+    mean_width = (left + right) / 2.0
+    half_gap = max_gap / 2.0
+    if left >= right:
+        left = mean_width + half_gap
+        right = mean_width - half_gap
+    else:
+        left = mean_width - half_gap
+        right = mean_width + half_gap
+    return (
+        _clamp(float(left), 8.0, float(road_buffer_m)),
+        _clamp(float(right), 8.0, float(road_buffer_m)),
+    )
+
+
+def _streetwall_reference_caps(
+    *,
+    design_rule_profile: str,
+    sidewalk_seed_width_m: float,
+) -> Tuple[float, float]:
+    profile_name = str(design_rule_profile or "balanced_complete_street_v1").strip().lower()
+    clear_cap = max(float(sidewalk_seed_width_m), 3.0)
+    edge_cap = 2.0
+    if profile_name == "pedestrian_priority_v1":
+        clear_cap = max(clear_cap, 3.6)
+        edge_cap = 2.2
+    elif profile_name == "transit_priority_v1":
+        clear_cap = max(clear_cap, 3.0)
+        edge_cap = 2.2
+    return float(clear_cap), float(edge_cap)
+
+
+def _rebalance_gap_ratio(
+    *,
+    left_value: float,
+    right_value: float,
+    lower_bound: float,
+    upper_bound: float,
+    max_gap_ratio: float,
+    force_equal: bool,
+) -> Tuple[float, float]:
+    left = _clamp(float(left_value), float(lower_bound), float(upper_bound))
+    right = _clamp(float(right_value), float(lower_bound), float(upper_bound))
+    if bool(force_equal):
+        mean_value = _clamp((left + right) / 2.0, float(lower_bound), float(upper_bound))
+        return float(mean_value), float(mean_value)
+
+    max_gap = max(0.0, float(max_gap_ratio)) * max(left, right, 1e-6)
+    current_gap = abs(left - right)
+    if current_gap <= max_gap + 1e-6:
+        return float(left), float(right)
+
+    mean_value = (left + right) / 2.0
+    half_gap = max_gap / 2.0
+    if left >= right:
+        left = mean_value + half_gap
+        right = mean_value - half_gap
+    else:
+        left = mean_value - half_gap
+        right = mean_value + half_gap
+    return (
+        _clamp(float(left), float(lower_bound), float(upper_bound)),
+        _clamp(float(right), float(lower_bound), float(upper_bound)),
+    )
+
+
+def _streetwall_reference_widths(
+    *,
+    design_rule_profile: str,
+    sidewalk_seed_width_m: float,
+    placement_context: object | None,
+    asymmetry_strength: float,
+    force_streetwall_baseline: bool,
+) -> Dict[str, float]:
+    raw_left_clear = float(getattr(placement_context, "left_clear_path_width_m", 0.0) or 0.0)
+    raw_right_clear = float(getattr(placement_context, "right_clear_path_width_m", 0.0) or 0.0)
+    raw_left_edge = float(getattr(placement_context, "left_furnishing_width_m", 0.0) or 0.0)
+    raw_right_edge = float(getattr(placement_context, "right_furnishing_width_m", 0.0) or 0.0)
+    if raw_left_clear <= 0.0:
+        raw_left_clear = float(sidewalk_seed_width_m)
+    if raw_right_clear <= 0.0:
+        raw_right_clear = float(sidewalk_seed_width_m)
+
+    clear_cap_m, edge_cap_m = _streetwall_reference_caps(
+        design_rule_profile=str(design_rule_profile),
+        sidewalk_seed_width_m=float(sidewalk_seed_width_m),
+    )
+    min_clear_m = min(float(clear_cap_m), max(float(sidewalk_seed_width_m), 2.2))
+    min_edge_m = 0.8
+    left_clear = _clamp(float(raw_left_clear), float(min_clear_m), float(clear_cap_m))
+    right_clear = _clamp(float(raw_right_clear), float(min_clear_m), float(clear_cap_m))
+    left_edge = _clamp(float(raw_left_edge if raw_left_edge > 0.0 else min_edge_m), float(min_edge_m), float(edge_cap_m))
+    right_edge = _clamp(float(raw_right_edge if raw_right_edge > 0.0 else min_edge_m), float(min_edge_m), float(edge_cap_m))
+
+    force_equal = bool(force_streetwall_baseline) and float(asymmetry_strength) <= 1e-6
+    left_total, right_total = _rebalance_gap_ratio(
+        left_value=float(left_clear + left_edge),
+        right_value=float(right_clear + right_edge),
+        lower_bound=float(min_clear_m + min_edge_m),
+        upper_bound=float(clear_cap_m + edge_cap_m),
+        max_gap_ratio=_DEFAULT_MAX_STREETWALL_REFERENCE_GAP_RATIO,
+        force_equal=force_equal,
+    )
+    return {
+        "raw_left_total_m": float(raw_left_clear + raw_left_edge),
+        "raw_right_total_m": float(raw_right_clear + raw_right_edge),
+        "left_total_m": float(left_total),
+        "right_total_m": float(right_total),
+        "clear_cap_m": float(clear_cap_m),
+        "edge_cap_m": float(edge_cap_m),
+    }
 
 
 def _fallback_zoning_segments(
@@ -2198,16 +2344,15 @@ def build_zoning_grid_preview(
         getattr(placement_context, "carriageway_width_m", 0.0)
         or float(config.road_width_m)
     )
-    left_sidewalk_width_m = float(
-        (getattr(placement_context, "left_clear_path_width_m", 0.0) or 0.0)
-        + (getattr(placement_context, "left_furnishing_width_m", 0.0) or 0.0)
-        or float(config.sidewalk_width_m)
+    streetwall_reference = _streetwall_reference_widths(
+        design_rule_profile=str(getattr(config, "design_rule_profile", "balanced_complete_street_v1") or "balanced_complete_street_v1"),
+        sidewalk_seed_width_m=float(getattr(config, "sidewalk_width_m", 2.4) or 2.4),
+        placement_context=placement_context,
+        asymmetry_strength=float(asymmetry_strength),
+        force_streetwall_baseline=bool(force_streetwall_baseline),
     )
-    right_sidewalk_width_m = float(
-        (getattr(placement_context, "right_clear_path_width_m", 0.0) or 0.0)
-        + (getattr(placement_context, "right_furnishing_width_m", 0.0) or 0.0)
-        or float(config.sidewalk_width_m)
-    )
+    left_sidewalk_width_m = float(streetwall_reference["left_total_m"])
+    right_sidewalk_width_m = float(streetwall_reference["right_total_m"])
     left_building_buffer_m, right_building_buffer_m = _estimate_building_buffer_widths(
         building_footprints=building_footprints,
         road_segment_graph=road_segment_graph,
@@ -2215,6 +2360,18 @@ def build_zoning_grid_preview(
         left_sidewalk_width_m=left_sidewalk_width_m,
         right_sidewalk_width_m=right_sidewalk_width_m,
         road_buffer_m=float(road_buffer_m),
+    )
+    default_buffer_width_m = min(
+        float(road_buffer_m),
+        max(float(left_sidewalk_width_m), float(right_sidewalk_width_m), 8.0),
+    )
+    left_building_buffer_m, right_building_buffer_m = _rebalance_building_buffer_widths(
+        left_width_m=float(left_building_buffer_m),
+        right_width_m=float(right_building_buffer_m),
+        road_buffer_m=float(road_buffer_m),
+        default_width_m=float(default_buffer_width_m),
+        asymmetry_strength=float(asymmetry_strength),
+        force_streetwall_baseline=bool(force_streetwall_baseline),
     )
 
     raw_segments: List[Dict[str, Any]] = []
@@ -2250,6 +2407,8 @@ def build_zoning_grid_preview(
             "side_land_use_counts": {"left": {}, "right": {}},
             "active_side_counts": {},
             "building_buffer_width_m": {"left": 0.0, "right": 0.0},
+            "streetwall_reference_width_m": {"left": 0.0, "right": 0.0},
+            "streetwall_reference_gap_ratio": 0.0,
             "asymmetry_strength": float(asymmetry_strength),
             "left_right_bias": float(left_right_bias),
             "zoning_preview_mode": "parcel_first",
@@ -2455,6 +2614,19 @@ def build_zoning_grid_preview(
                 )
                 theme_cell_counts[theme_name] = theme_cell_counts.get(theme_name, 0) + 1
 
+    mean_left_buffer = round(sum(buffer_width_accum["left"]) / len(buffer_width_accum["left"]), 3) if buffer_width_accum["left"] else 0.0
+    mean_right_buffer = round(sum(buffer_width_accum["right"]) / len(buffer_width_accum["right"]), 3) if buffer_width_accum["right"] else 0.0
+    buffer_gap_ratio = (
+        abs(float(mean_left_buffer) - float(mean_right_buffer)) / max(float(mean_left_buffer), float(mean_right_buffer), 1e-6)
+        if float(mean_left_buffer) > 0.0 or float(mean_right_buffer) > 0.0
+        else 0.0
+    )
+    streetwall_gap_ratio = (
+        abs(float(left_sidewalk_width_m) - float(right_sidewalk_width_m))
+        / max(float(left_sidewalk_width_m), float(right_sidewalk_width_m), 1e-6)
+        if float(left_sidewalk_width_m) > 0.0 or float(right_sidewalk_width_m) > 0.0
+        else 0.0
+    )
     summary = {
         "enabled": True,
         "cell_count": int(len(cells)),
@@ -2463,8 +2635,18 @@ def build_zoning_grid_preview(
         "occupied_building_cells": int(occupied_building_cells),
         "buildable_cell_count": int(sum(1 for cell in cells if bool(cell.get("buildable", False)))),
         "building_buffer_width_m": {
-            "left": round(sum(buffer_width_accum["left"]) / len(buffer_width_accum["left"]), 3) if buffer_width_accum["left"] else 0.0,
-            "right": round(sum(buffer_width_accum["right"]) / len(buffer_width_accum["right"]), 3) if buffer_width_accum["right"] else 0.0,
+            "left": float(mean_left_buffer),
+            "right": float(mean_right_buffer),
+        },
+        "building_buffer_gap_ratio": round(float(buffer_gap_ratio), 3),
+        "streetwall_reference_width_m": {
+            "left": round(float(left_sidewalk_width_m), 3),
+            "right": round(float(right_sidewalk_width_m), 3),
+        },
+        "streetwall_reference_gap_ratio": round(float(streetwall_gap_ratio), 3),
+        "streetwall_reference_raw_width_m": {
+            "left": round(float(streetwall_reference["raw_left_total_m"]), 3),
+            "right": round(float(streetwall_reference["raw_right_total_m"]), 3),
         },
         "side_land_use_counts": {
             side: {key: int(value) for key, value in sorted(counts.items())}

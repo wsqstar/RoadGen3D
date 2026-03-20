@@ -18,7 +18,15 @@ if str(ROOT) not in sys.path:
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from roadgen3d.types import LayoutSlotPlan, RetrievalHit, StreetComposeConfig, StreetComposeResult, StreetPlacement
+from roadgen3d.types import (
+    DEFAULT_BUILDING_FRONT_SETBACK_MAX_M,
+    DEFAULT_BUILDING_FRONT_SETBACK_MIN_M,
+    LayoutSlotPlan,
+    RetrievalHit,
+    StreetComposeConfig,
+    StreetComposeResult,
+    StreetPlacement,
+)
 from roadgen3d.asset_scale import compute_asset_scale
 from roadgen3d.street_layout import compose_street_scene
 import roadgen3d.street_layout as street_layout
@@ -230,8 +238,8 @@ def _build_osm_config(
     surrounding_building_mode: str = "grid_growth",
     land_use_asymmetry_strength: float = 0.0,
     left_right_bias: float = 0.0,
-    building_front_setback_min_m: float = 1.0,
-    building_front_setback_max_m: float = 2.0,
+    building_front_setback_min_m: float = DEFAULT_BUILDING_FRONT_SETBACK_MIN_M,
+    building_front_setback_max_m: float = DEFAULT_BUILDING_FRONT_SETBACK_MAX_M,
     zoning_granularity: str = "fine",
     streetwall_continuity: float = 0.95,
     infill_policy: str = "aggressive",
@@ -2773,14 +2781,14 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
     assert all(placement.selection_source == "building_asset" for placement in building_group)
     assert summary["building_generation_mode"] == "grid_growth"
     assert summary["land_use_asymmetry_strength"] == pytest.approx(0.0)
-    assert summary["building_front_setback_min_m"] == pytest.approx(1.0)
-    assert summary["building_front_setback_max_m"] == pytest.approx(2.0)
+    assert summary["building_front_setback_min_m"] == pytest.approx(DEFAULT_BUILDING_FRONT_SETBACK_MIN_M)
+    assert summary["building_front_setback_max_m"] == pytest.approx(DEFAULT_BUILDING_FRONT_SETBACK_MAX_M)
     assert summary["zoning_granularity"] == "fine"
     assert summary["streetwall_continuity"] == pytest.approx(0.95)
     assert summary["infill_policy"] == "aggressive"
     assert summary["building_balance_policy"] == "balanced_default"
     assert summary["building_balance_ok"] is True
-    assert summary["frontage_balance_gap"] <= 0.20
+    assert summary["frontage_balance_gap"] <= 0.10
     assert summary["buildable_frontage_by_side"]["left"] > 0.0
     assert summary["buildable_frontage_by_side"]["right"] > 0.0
     assert summary["street_furniture_side_counts"]["left"] > 0
@@ -2793,6 +2801,8 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
     assert summary["zoning_preview_summary"]["cell_count"] == len(payload["zoning_grid"])
     assert summary["zoning_preview_summary"]["zoning_preview_mode"] == "parcel_first"
     assert summary["zoning_preview_summary"]["frontage_cell_count"] > len(summary["theme_segments"])
+    assert summary["zoning_preview_summary"]["building_buffer_gap_ratio"] <= 0.10
+    assert summary["zoning_preview_summary"]["streetwall_reference_gap_ratio"] <= 0.10
     assert summary["zoning_preview_summary"]["side_land_use_counts"]["left"]
     assert summary["zoning_preview_summary"]["side_land_use_counts"]["right"]
     assert {"left_building_buffer", "left_sidewalk", "carriageway", "right_sidewalk", "right_building_buffer"} <= {
@@ -2987,14 +2997,14 @@ def test_osm_compose_grid_growth_generates_lots_and_lot_based_buildings(tmp_path
     assert any(str(cell.get("lot_id", "") or "") for cell in payload["zoning_grid"] if bool(cell.get("buildable", False)))
     assert all("building_buffer" in cell["lane_role"] for cell in payload["zoning_grid"] if str(cell.get("lot_id", "") or ""))
     assert all(plan["placement_strategy"] in {"frontage_setback", "frontage_clamped"} for plan in payload["building_placements"])
-    assert all(1.0 <= float(plan["front_setback_m"]) <= 2.0 for plan in payload["building_placements"])
+    assert all(DEFAULT_BUILDING_FRONT_SETBACK_MIN_M <= float(plan["front_setback_m"]) <= DEFAULT_BUILDING_FRONT_SETBACK_MAX_M for plan in payload["building_placements"])
     assert all(lot["placement_strategy"] in {"frontage_setback", "frontage_clamped"} for lot in payload["generated_lots"])
-    assert all(1.0 <= float(lot["front_setback_m"]) <= 2.0 for lot in payload["generated_lots"])
+    assert all(DEFAULT_BUILDING_FRONT_SETBACK_MIN_M <= float(lot["front_setback_m"]) <= DEFAULT_BUILDING_FRONT_SETBACK_MAX_M for lot in payload["generated_lots"])
     assert any(lot["placement_xz"] != lot["center_xz"] for lot in payload["generated_lots"])
     assert summary["building_balance_ok"] is True
     assert summary["frontage_coverage_by_side"]["left"]["coverage_ratio"] >= 0.65
     assert summary["frontage_coverage_by_side"]["right"]["coverage_ratio"] >= 0.65
-    assert summary["frontage_balance_gap"] <= 0.20
+    assert summary["frontage_balance_gap"] <= 0.10
 
 
 def test_osm_compose_grid_growth_falls_back_without_building_assets(tmp_path: Path, monkeypatch):

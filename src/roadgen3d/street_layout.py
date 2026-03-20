@@ -106,6 +106,8 @@ from .theme_buildings import (
     theme_profile_style,
 )
 from .types import (
+    DEFAULT_BUILDING_FRONT_SETBACK_MAX_M,
+    DEFAULT_BUILDING_FRONT_SETBACK_MIN_M,
     BuildingFootprint,
     BuildingPlacementPlan,
     GeneratedLot,
@@ -3272,8 +3274,8 @@ def _place_surrounding_buildings(
     if mode == "footprint_based":
         asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.0)
         bias_raw = getattr(config, "left_right_bias", 0.0)
-        setback_min_raw = getattr(config, "building_front_setback_min_m", 1.0)
-        setback_max_raw = getattr(config, "building_front_setback_max_m", 2.0)
+        setback_min_raw = getattr(config, "building_front_setback_min_m", DEFAULT_BUILDING_FRONT_SETBACK_MIN_M)
+        setback_max_raw = getattr(config, "building_front_setback_max_m", DEFAULT_BUILDING_FRONT_SETBACK_MAX_M)
         building_footprints = tuple(
             collect_building_footprints(
                 projected_features,
@@ -3286,8 +3288,8 @@ def _place_surrounding_buildings(
                 height_profile=str(getattr(config, "building_height_profile", "urban_default_v1") or "urban_default_v1"),
                 asymmetry_strength=float(0.0 if asymmetry_raw is None else asymmetry_raw),
                 left_right_bias=float(0.0 if bias_raw is None else bias_raw),
-                front_setback_min_m=float(1.0 if setback_min_raw is None else setback_min_raw),
-                front_setback_max_m=float(2.0 if setback_max_raw is None else setback_max_raw),
+                front_setback_min_m=float(DEFAULT_BUILDING_FRONT_SETBACK_MIN_M if setback_min_raw is None else setback_min_raw),
+                front_setback_max_m=float(DEFAULT_BUILDING_FRONT_SETBACK_MAX_M if setback_max_raw is None else setback_max_raw),
                 zoning_granularity=zoning_granularity,
                 streetwall_continuity=streetwall_continuity,
             )
@@ -3304,8 +3306,8 @@ def _place_surrounding_buildings(
     zoning_grid = zoning_grid_base
     lot_generation_summary: Dict[str, object] = {"lot_count": 0}
     if mode == "footprint_based":
-        setback_min_raw = getattr(config, "building_front_setback_min_m", 1.0)
-        setback_max_raw = getattr(config, "building_front_setback_max_m", 2.0)
+        setback_min_raw = getattr(config, "building_front_setback_min_m", DEFAULT_BUILDING_FRONT_SETBACK_MIN_M)
+        setback_max_raw = getattr(config, "building_front_setback_max_m", DEFAULT_BUILDING_FRONT_SETBACK_MAX_M)
         infill_footprints, footprint_frontage_summary = generate_frontage_infill_footprints(
             zoning_grid_base,
             building_footprints,
@@ -3315,8 +3317,8 @@ def _place_surrounding_buildings(
             zoning_granularity=zoning_granularity,
             streetwall_continuity=streetwall_continuity,
             infill_policy=infill_policy,
-            front_setback_min_m=float(1.0 if setback_min_raw is None else setback_min_raw),
-            front_setback_max_m=float(2.0 if setback_max_raw is None else setback_max_raw),
+            front_setback_min_m=float(DEFAULT_BUILDING_FRONT_SETBACK_MIN_M if setback_min_raw is None else setback_min_raw),
+            front_setback_max_m=float(DEFAULT_BUILDING_FRONT_SETBACK_MAX_M if setback_max_raw is None else setback_max_raw),
         )
         if infill_footprints:
             building_footprints = tuple(list(building_footprints) + list(infill_footprints))
@@ -3330,16 +3332,16 @@ def _place_surrounding_buildings(
             )
             zoning_grid = zoning_grid_base
     if mode == "grid_growth":
-        setback_min_raw = getattr(config, "building_front_setback_min_m", 1.0)
-        setback_max_raw = getattr(config, "building_front_setback_max_m", 2.0)
+        setback_min_raw = getattr(config, "building_front_setback_min_m", DEFAULT_BUILDING_FRONT_SETBACK_MIN_M)
+        setback_max_raw = getattr(config, "building_front_setback_max_m", DEFAULT_BUILDING_FRONT_SETBACK_MAX_M)
         zoning_grid, generated_lots, lot_generation_summary = generate_grid_growth_lots(
             zoning_grid_base,
             road_type=road_type,
             seed=int(getattr(config, "seed", 0) or 0),
             height_mode=str(getattr(config, "building_height_mode", "theme_random") or "theme_random"),
             height_profile=str(getattr(config, "building_height_profile", "urban_default_v1") or "urban_default_v1"),
-            front_setback_min_m=float(1.0 if setback_min_raw is None else setback_min_raw),
-            front_setback_max_m=float(2.0 if setback_max_raw is None else setback_max_raw),
+            front_setback_min_m=float(DEFAULT_BUILDING_FRONT_SETBACK_MIN_M if setback_min_raw is None else setback_min_raw),
+            front_setback_max_m=float(DEFAULT_BUILDING_FRONT_SETBACK_MAX_M if setback_max_raw is None else setback_max_raw),
             zoning_granularity=zoning_granularity,
             streetwall_continuity=streetwall_continuity,
         )
@@ -3387,8 +3389,8 @@ def _place_surrounding_buildings(
     }
     asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.0)
     bias_raw = getattr(config, "left_right_bias", 0.0)
-    setback_min_raw = getattr(config, "building_front_setback_min_m", 1.0)
-    setback_max_raw = getattr(config, "building_front_setback_max_m", 2.0)
+    setback_min_raw = getattr(config, "building_front_setback_min_m", DEFAULT_BUILDING_FRONT_SETBACK_MIN_M)
+    setback_max_raw = getattr(config, "building_front_setback_max_m", DEFAULT_BUILDING_FRONT_SETBACK_MAX_M)
     frontage_metrics_source = footprint_frontage_summary if mode == "footprint_based" else lot_generation_summary
     building_summary = {
         **dict(placement_summary),
@@ -3399,8 +3401,8 @@ def _place_surrounding_buildings(
         "target_type": "lot" if mode == "grid_growth" else "footprint",
         "land_use_asymmetry_strength": float(0.0 if asymmetry_raw is None else asymmetry_raw),
         "left_right_bias": float(0.0 if bias_raw is None else bias_raw),
-        "building_front_setback_min_m": float(1.0 if setback_min_raw is None else setback_min_raw),
-        "building_front_setback_max_m": float(2.0 if setback_max_raw is None else setback_max_raw),
+        "building_front_setback_min_m": float(DEFAULT_BUILDING_FRONT_SETBACK_MIN_M if setback_min_raw is None else setback_min_raw),
+        "building_front_setback_max_m": float(DEFAULT_BUILDING_FRONT_SETBACK_MAX_M if setback_max_raw is None else setback_max_raw),
         "zoning_granularity": str(zoning_granularity),
         "streetwall_continuity": float(streetwall_continuity),
         "infill_policy": str(infill_policy),
@@ -5239,8 +5241,8 @@ def compose_street_scene(
         placement_log_path = str(placement_log_file)
     asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.0)
     bias_raw = getattr(config, "left_right_bias", 0.0)
-    setback_min_raw = getattr(config, "building_front_setback_min_m", 1.0)
-    setback_max_raw = getattr(config, "building_front_setback_max_m", 2.0)
+    setback_min_raw = getattr(config, "building_front_setback_min_m", DEFAULT_BUILDING_FRONT_SETBACK_MIN_M)
+    setback_max_raw = getattr(config, "building_front_setback_max_m", DEFAULT_BUILDING_FRONT_SETBACK_MAX_M)
     zoning_granularity_raw = getattr(config, "zoning_granularity", "fine")
     streetwall_continuity_raw = getattr(config, "streetwall_continuity", 0.95)
     infill_policy_raw = getattr(config, "infill_policy", "aggressive")
@@ -5423,8 +5425,8 @@ def compose_street_scene(
         "building_generation_mode": str(getattr(config, "surrounding_building_mode", "grid_growth")),
         "land_use_asymmetry_strength": float(0.0 if asymmetry_raw is None else asymmetry_raw),
         "left_right_bias": float(0.0 if bias_raw is None else bias_raw),
-        "building_front_setback_min_m": float(1.0 if setback_min_raw is None else setback_min_raw),
-        "building_front_setback_max_m": float(2.0 if setback_max_raw is None else setback_max_raw),
+        "building_front_setback_min_m": float(DEFAULT_BUILDING_FRONT_SETBACK_MIN_M if setback_min_raw is None else setback_min_raw),
+        "building_front_setback_max_m": float(DEFAULT_BUILDING_FRONT_SETBACK_MAX_M if setback_max_raw is None else setback_max_raw),
         "zoning_granularity": str("fine" if zoning_granularity_raw is None else zoning_granularity_raw),
         "streetwall_continuity": float(0.95 if streetwall_continuity_raw is None else streetwall_continuity_raw),
         "infill_policy": str("aggressive" if infill_policy_raw is None else infill_policy_raw),
