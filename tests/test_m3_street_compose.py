@@ -1878,6 +1878,41 @@ def test_osm_beauty_scene_proxies_skip_linear_road_overlays():
     assert not any(name.startswith("crossing_patch_") for name in node_names)
 
 
+def test_base_scene_adds_centerline_markings():
+    pytest.importorskip("trimesh")
+
+    scene = street_layout._build_base_scene(
+        length_m=60.0,
+        road_width_m=8.0,
+        left_side_width_m=2.5,
+        right_side_width_m=2.5,
+        street_program=SimpleNamespace(lane_count=2),
+    )
+
+    node_names = set(scene.graph.nodes_geometry)
+    assert any(name.startswith("centerline_mark_") for name in node_names)
+
+
+def test_centerline_markings_render_for_width_based_roads():
+    trimesh = pytest.importorskip("trimesh")
+
+    scene = trimesh.Scene()
+    street_layout._add_centerline_markings(
+        scene,
+        road_length_m=60.0,
+        road_width_m=6.0,
+        road_center_x_m=0.0,
+        road_center_z_m=0.0,
+        road_yaw_deg=0.0,
+        lane_count=None,
+        color=(245, 245, 245, 255),
+        roughness=0.30,
+    )
+
+    node_names = set(scene.graph.nodes_geometry)
+    assert any(name.startswith("centerline_mark_") for name in node_names)
+
+
 def test_run_street_compose_auto_selects_stable_poi_rich_road_by_seed(tmp_path: Path, monkeypatch):
     pytest.importorskip("gradio")
     import scripts.m1_gradio_app as app

@@ -1094,6 +1094,21 @@ def _build_base_scene(
         )
         scene.add_geometry(curb, node_name=f"curb_{side_name}")
 
+    lane_count = int(max(1, int(getattr(street_program, "lane_count", 2) or 2))) if street_program is not None else 2
+    _add_centerline_markings(
+        scene,
+        road_length_m=float(length_m),
+        road_width_m=float(road_width_m),
+        road_center_x_m=0.0,
+        road_center_z_m=0.0,
+        road_yaw_deg=0.0,
+        lane_count=lane_count,
+        color=colors.get("lane_mark", (245, 245, 245, 255)),
+        roughness=(roughness or {}).get("lane_mark", 0.30),
+        texture_mode=texture_mode,
+        texture_tracker=texture_tracker,
+    )
+
     return scene
 
 
@@ -1197,6 +1212,58 @@ def _add_road_box(
     scene.add_geometry(mesh, node_name=node_name)
 
 
+def _should_render_centerline_marking(*, carriageway_width_m: float, lane_count: int | None = None) -> bool:
+    if lane_count is not None and int(lane_count) > 1:
+        return True
+    return float(carriageway_width_m) >= 5.5
+
+
+def _add_centerline_markings(
+    scene,
+    *,
+    road_length_m: float,
+    road_width_m: float,
+    road_center_x_m: float,
+    road_center_z_m: float,
+    road_yaw_deg: float,
+    lane_count: int | None,
+    color: Sequence[int],
+    roughness: float,
+    texture_mode: str = "topdown_tiles_v1",
+    texture_tracker=None,
+) -> None:
+    if not _should_render_centerline_marking(
+        carriageway_width_m=float(road_width_m),
+        lane_count=lane_count,
+    ):
+        return
+    dash_length_m = 2.4
+    dash_gap_m = 3.6
+    dash_x = -float(road_length_m) / 2.0 + 2.4
+    dash_idx = 0
+    while dash_x < float(road_length_m) / 2.0 - 1.6:
+        _add_road_box(
+            scene,
+            length_m=dash_length_m,
+            width_m=0.14,
+            height_m=0.01,
+            local_x_m=dash_x,
+            local_z_m=0.0,
+            road_center_x_m=road_center_x_m,
+            road_center_z_m=road_center_z_m,
+            road_yaw_deg=road_yaw_deg,
+            y_min_m=0.004,
+            color=color,
+            surface_role="lane_mark",
+            node_name=f"centerline_mark_{dash_idx}",
+            roughness=roughness,
+            texture_mode=texture_mode,
+            texture_tracker=texture_tracker,
+        )
+        dash_idx += 1
+        dash_x += dash_length_m + dash_gap_m
+
+
 def _add_beauty_scene_proxies(
     scene,
     *,
@@ -1228,6 +1295,8 @@ def _add_beauty_scene_proxies(
             while dash_x < road_length_m / 2.0 - 1.5:
                 for lane_idx in range(1, lane_count):
                     lane_z = -road_width_m / 2.0 + lane_width_m * float(lane_idx)
+                    if abs(float(lane_z)) <= 1e-6:
+                        continue
                     _add_road_box(
                         scene,
                         length_m=dash_length_m,
@@ -2064,6 +2133,31 @@ def _build_osm_base_scene(
                 )
         except Exception:
             logger.debug("Skipping curb geometry in OSM base scene")
+
+    fallback_length_m = 20.0
+    if scene_bounds:
+        fallback_length_m = max(
+            max(bounds[2] - bounds[0] for bounds in scene_bounds),
+            max(bounds[3] - bounds[1] for bounds in scene_bounds),
+            20.0,
+        )
+    road_center_x_m, road_center_z_m, road_yaw_deg, road_length_m = _road_pose_from_context(
+        placement_ctx,
+        float(fallback_length_m),
+    )
+    _add_centerline_markings(
+        scene,
+        road_length_m=float(road_length_m),
+        road_width_m=float(getattr(placement_ctx, "carriageway_width_m", 0.0) or 0.0),
+        road_center_x_m=float(road_center_x_m),
+        road_center_z_m=float(road_center_z_m),
+        road_yaw_deg=float(road_yaw_deg),
+        lane_count=None,
+        color=colors.get("lane_mark", (245, 245, 245, 255)),
+        roughness=(roughness or {}).get("lane_mark", 0.30),
+        texture_mode=texture_mode,
+        texture_tracker=texture_tracker,
+    )
 
     return scene
 
