@@ -7,6 +7,7 @@ import logging
 import math
 import random
 import time
+from collections import Counter
 from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
@@ -109,6 +110,7 @@ from .types import (
     BuildingPlacementPlan,
     GeneratedLot,
     InventorySummary,
+    LayoutSlotPlan,
     LayoutSolverInput,
     LayoutSolverResult,
     ProductionStepRecord,
@@ -363,6 +365,22 @@ def _validate_config(config: StreetComposeConfig) -> None:
         "aggressive",
     }:
         raise ValueError("infill_policy must be 'off', 'large_gap_only', 'balanced' or 'aggressive'")
+    if str(getattr(config, "tree_species_policy", "per_theme_single_species")).strip().lower() not in {
+        "per_theme_single_species",
+        "free_mixed",
+    }:
+        raise ValueError("tree_species_policy must be 'per_theme_single_species' or 'free_mixed'")
+    if str(getattr(config, "furniture_balance_policy", "overall_balanced")).strip().lower() not in {
+        "overall_balanced",
+        "side_biased_legacy",
+    }:
+        raise ValueError("furniture_balance_policy must be 'overall_balanced' or 'side_biased_legacy'")
+    if str(getattr(config, "placement_logging_mode", "full_with_ui_summary")).strip().lower() not in {
+        "off",
+        "summary_only",
+        "full_with_ui_summary",
+    }:
+        raise ValueError("placement_logging_mode must be 'off', 'summary_only' or 'full_with_ui_summary'")
     if str(getattr(config, "theme_inference_mode", "deterministic_auto")).strip().lower() not in {"deterministic_auto"}:
         raise ValueError("theme_inference_mode must be 'deterministic_auto'")
     if str(getattr(config, "theme_vocab_name", "fixed_v1")).strip().lower() not in {"fixed_v1"}:
@@ -829,6 +847,7 @@ def _pick_category_candidate(
     policy_temperature: float = SOFTMAX_TEMPERATURE,
     feature_context: Optional[PolicyFeatureContext] = None,
     return_details: bool = False,
+    asset_id_whitelist: Optional[set[str]] = None,
 ) -> Tuple[Dict[str, object], float, str] | Tuple[Dict[str, object], float, str, Dict[str, object]]:
     def _pick_weighted(
         candidates: List[Tuple[Dict[str, object], float]],
@@ -864,6 +883,8 @@ def _pick_category_candidate(
     matching_hits: List[Tuple[Dict[str, object], float]] = []
     all_hits: List[Dict[str, object]] = []
     for hit in hits:
+        if asset_id_whitelist is not None and hit.asset_id not in asset_id_whitelist:
+            continue
         row = asset_by_id.get(hit.asset_id)
         if row is not None:
             all_hits.append(
@@ -2251,6 +2272,131 @@ def _placement_status(anchor_distance_m: Optional[float], *, required: bool, pla
             return "anchored_exact"
         return "anchored_relaxed"
     return "placed"
+
+
+def _slot_side_for_placement(
+    placement: StreetPlacement,
+    *,
+    slot_side_by_id: Mapping[str, str],
+) -> str:
+    side = str(slot_side_by_id.get(str(placement.slot_id), "") or "")
+    if side not in {"left", "right"}:
+        side = "left" if float(placement.position_xyz[2]) >= 0.0 else "right"
+    return side
+
+
+def _street_furniture_balance_state(
+    placements: Sequence[StreetPlacement],
+    *,
+    slot_side_by_id: Mapping[str, str],
+) -> Dict[str, Any]:
+    core_categories = {
+        category
+        for category, side_pref in SIDE_PREF.items()
+        if str(side_pref) == "both"
+    }
+    street_furniture_side_counts = {"left": 0, "right": 0}
+    street_furniture_core_side_counts = {"left": 0, "right": 0}
+    street_furniture_core_categories_by_side: Dict[str, set[str]] = {
+        "left": set(),
+        "right": set(),
+    }
+    for placement in placements:
+        if str(placement.placement_group) != "street_furniture":
+            continue
+        side = _slot_side_for_placement(placement, slot_side_by_id=slot_side_by_id)
+        street_furniture_side_counts[side] = street_furniture_side_counts.get(side, 0) + 1
+        if str(placement.category) in core_categories:
+            street_furniture_core_side_counts[side] = street_furniture_core_side_counts.get(side, 0) + 1
+            street_furniture_core_categories_by_side.setdefault(side, set()).add(str(placement.category))
+    return {
+        "street_furniture_side_counts": dict(street_furniture_side_counts),
+        "street_furniture_core_side_counts": dict(street_furniture_core_side_counts),
+        "street_furniture_core_categories_by_side": {
+            side: sorted(categories)
+            for side, categories in street_furniture_core_categories_by_side.items()
+        },
+        "street_furniture_core_category_count_by_side": {
+            side: int(len(categories))
+            for side, categories in street_furniture_core_categories_by_side.items()
+        },
+        "core_total_count": int(sum(street_furniture_core_side_counts.values())),
+    }
+
+
+def _append_placement_decision_event(
+    events: List[Dict[str, Any]],
+    *,
+    event_type: str,
+    slot_id: str = "",
+    category: str = "",
+    theme_id: str = "",
+    side: str = "",
+    band_name: str = "",
+    reason_code: str = "",
+    reason_detail: str = "",
+    candidate_asset_id: str = "",
+    anchor_poi_type: str = "",
+    placement_energy: Optional[float] = None,
+    feasibility_score: Optional[float] = None,
+    violated_rules: Sequence[str] = (),
+    blocked_reason: str = "",
+    search_tier: str = "",
+    extra: Optional[Mapping[str, Any]] = None,
+) -> None:
+    payload: Dict[str, Any] = {
+        "slot_id": str(slot_id),
+        "category": str(category),
+        "theme_id": str(theme_id),
+        "side": str(side),
+        "band_name": str(band_name),
+        "event_type": str(event_type),
+        "reason_code": str(reason_code),
+        "reason_detail": str(reason_detail),
+        "candidate_asset_id": str(candidate_asset_id),
+        "anchor_poi_type": str(anchor_poi_type),
+        "placement_energy": None if placement_energy is None else float(placement_energy),
+        "feasibility_score": None if feasibility_score is None else float(feasibility_score),
+        "violated_rules": [str(rule) for rule in violated_rules if str(rule)],
+        "blocked_reason": str(blocked_reason),
+        "search_tier": str(search_tier),
+    }
+    if extra:
+        for key, value in extra.items():
+            if isinstance(value, tuple):
+                payload[str(key)] = list(value)
+            elif isinstance(value, set):
+                payload[str(key)] = sorted(str(item) for item in value)
+            else:
+                payload[str(key)] = value
+    events.append(payload)
+
+
+def _summarize_placement_decision_events(events: Sequence[Mapping[str, Any]]) -> Dict[str, Any]:
+    event_counts = Counter(str(item.get("event_type", "") or "") for item in events if str(item.get("event_type", "") or ""))
+    reason_counts = Counter(
+        str(item.get("reason_code", "") or item.get("blocked_reason", "") or "")
+        for item in events
+        if str(item.get("reason_code", "") or item.get("blocked_reason", "") or "")
+    )
+    return {
+        "event_count": int(len(events)),
+        "event_counts": dict(event_counts),
+        "reason_counts": dict(reason_counts),
+        "selected_count": int(event_counts.get("placement_selected", 0)),
+        "skipped_count": int(event_counts.get("placement_skipped", 0)),
+        "rejected_count": int(event_counts.get("candidate_rejected", 0)),
+        "repair_attempt_count": int(event_counts.get("balance_repair_attempt", 0)),
+        "repair_success_count": int(event_counts.get("balance_repair_selected", 0)),
+        "repair_failure_count": int(event_counts.get("balance_repair_failed", 0)),
+    }
+
+
+def _write_placement_decision_log(log_path: Path, events: Sequence[Mapping[str, Any]]) -> None:
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    with log_path.open("w", encoding="utf-8") as handle:
+        for event in events:
+            handle.write(json.dumps(dict(event), ensure_ascii=True) + "\n")
 
 
 def _point_in_zone(zone: object | None, point_xz: Tuple[float, float], *, tolerance_m: float = 0.05) -> bool:
@@ -3708,49 +3854,174 @@ def compose_street_scene(
         "unplaced_required": 0,
     }
     unplaced_slot_diagnostics: List[Dict[str, object]] = []
-
+    placement_logging_mode = str(getattr(config, "placement_logging_mode", "full_with_ui_summary") or "full_with_ui_summary").strip().lower()
+    tree_species_policy = str(getattr(config, "tree_species_policy", "per_theme_single_species") or "per_theme_single_species").strip().lower()
+    furniture_balance_policy = str(getattr(config, "furniture_balance_policy", "overall_balanced") or "overall_balanced").strip().lower()
+    core_furniture_categories = {
+        category
+        for category, side_pref in SIDE_PREF.items()
+        if str(side_pref) == "both"
+    }
+    slot_side_by_id = {
+        str(slot.slot_id): str(getattr(slot, "side", "") or "")
+        for slot in ordered_slot_plans
+        if str(getattr(slot, "slot_id", "") or "")
+    }
+    available_core_categories_by_side: Dict[str, set[str]] = {
+        "left": set(),
+        "right": set(),
+    }
+    core_band_candidates_by_side: Dict[str, List[object]] = {
+        "left": [],
+        "right": [],
+    }
+    seen_core_band_keys: set[Tuple[str, str, str, int]] = set()
+    for band in list(slot_band_lookup.values()) + list(getattr(resolved_program, "bands", ())):
+        if band is None:
+            continue
+        side = str(getattr(band, "side", "") or "")
+        if side not in {"left", "right"}:
+            continue
+        allowed_categories = tuple(
+            str(category)
+            for category in tuple(getattr(band, "allowed_categories", ()) or ())
+            if str(category)
+        )
+        band_kind = str(getattr(band, "kind", "") or "")
+        if allowed_categories:
+            compatible_categories = {
+                category
+                for category in allowed_categories
+                if category in core_furniture_categories
+            }
+            if not compatible_categories:
+                continue
+            available_core_categories_by_side.setdefault(side, set()).update(compatible_categories)
+        elif band_kind not in {"furnishing", "transit_edge"}:
+            continue
+        band_key = (
+            side,
+            str(getattr(band, "name", "") or ""),
+            band_kind,
+            int(round(float(getattr(band, "z_center_m", 0.0) or 0.0) * 1000.0)),
+        )
+        if band_key in seen_core_band_keys:
+            continue
+        seen_core_band_keys.add(band_key)
+        core_band_candidates_by_side.setdefault(side, []).append(band)
     for slot in ordered_slot_plans:
-        category = slot.category
+        category = str(getattr(slot, "category", "") or "")
+        side = str(getattr(slot, "side", "") or "")
+        if category in core_furniture_categories and side in {"left", "right"}:
+            available_core_categories_by_side.setdefault(side, set()).add(category)
+    compatible_core_sides = {
+        side
+        for side, categories in available_core_categories_by_side.items()
+        if categories or core_band_candidates_by_side.get(side)
+    }
+    available_core_categories_global = set(available_core_categories_by_side.get("left", set()))
+    available_core_categories_global.update(available_core_categories_by_side.get("right", set()))
+    decision_events: List[Dict[str, Any]] = []
+    theme_tree_asset_lock: Dict[str, str] = {}
+    theme_tree_attempted_assets: Dict[str, List[str]] = {}
+    tree_theme_reselection_count = 0
+    synthetic_repair_slot_counter = 0
+    slot_attempt_records: Dict[str, Dict[str, Any]] = {}
+    balance_repair_summary: Dict[str, Any] = {
+        "attempt_count": 0,
+        "success_count": 0,
+        "failure_count": 0,
+        "attempted_slot_ids": [],
+        "successful_slot_ids": [],
+        "failed_slot_ids": [],
+        "target_sides": [],
+        "synthetic_slot_count": 0,
+        "reason": "",
+    }
+
+    def _attempt_place_slot(
+        slot: object,
+        *,
+        repair_phase: bool = False,
+        excluded_asset_ids: Optional[set[str]] = None,
+    ) -> Dict[str, Any]:
+        nonlocal instance_counter, tree_theme_reselection_count
+        category = str(getattr(slot, "category", "") or "")
+        theme_id = str(getattr(slot, "theme_id", "") or "")
+        anchor_poi_type = str(getattr(slot, "anchor_poi_type", "") or "")
+        required_like = bool(getattr(slot, "required", False)) or bool(anchor_poi_type)
+        band = slot_band_lookup.get(str(getattr(slot, "slot_id", "")))
+        side = str(getattr(slot, "side", "") or (getattr(band, "side", "") if band is not None else ""))
+        band_name = str(getattr(slot, "band_name", "") or (getattr(band, "name", "") if band is not None else ""))
         pool = category_to_rows.get(category, [])
         if not pool:
-            dropped_slots += 1
-            if bool(getattr(slot, "required", False)) or str(getattr(slot, "anchor_poi_type", "") or "").strip():
-                anchor_resolution_summary["unplaced_required"] += 1
-                unplaced_slot_diagnostics.append(
-                    {
-                        "slot_id": str(getattr(slot, "slot_id", "")),
-                        "category": str(category),
-                        "theme_id": str(getattr(slot, "theme_id", "") or ""),
-                        "anchor_poi_type": str(getattr(slot, "anchor_poi_type", "") or ""),
-                        "search_tier_reached": "tier_optional_sampling",
-                        "best_anchor_distance_m": -1.0,
-                        "failure_reason": "no_candidate_after_search",
-                        "blocked_reason_counts": {},
-                    }
-                )
-            continue
-        theme_segment = theme_by_id.get(str(getattr(slot, "theme_id", "")))
+            _append_placement_decision_event(
+                decision_events,
+                event_type="placement_skipped",
+                slot_id=str(getattr(slot, "slot_id", "")),
+                category=category,
+                theme_id=theme_id,
+                side=side,
+                band_name=band_name,
+                reason_code="no_candidate_after_search",
+                reason_detail="category pool empty",
+                anchor_poi_type=anchor_poi_type,
+                extra={"repair_phase": bool(repair_phase)},
+            )
+            return {
+                "placed": False,
+                "required_like": bool(required_like),
+                "failure_reason": "no_candidate_after_search",
+                "blocked_reason_counts": {},
+                "search_tier_reached": "tier_optional_sampling",
+                "best_anchor_distance_m": -1.0,
+                "side": side,
+                "band_name": band_name,
+                "theme_id": theme_id,
+                "anchor_poi_type": anchor_poi_type,
+                "placement_status": _placement_status(None, required=bool(required_like), placed=False),
+                "asset_id": "",
+            }
+
+        theme_segment = theme_by_id.get(theme_id)
         slot_query = (
             f"{config.query}, {theme_segment.theme_name} streetscape"
             if theme_segment is not None
             else config.query
         )
+        asset_id_whitelist: Optional[set[str]] = None
+        if category == "tree" and tree_species_policy == "per_theme_single_species" and theme_id:
+            locked_asset_id = str(theme_tree_asset_lock.get(theme_id, "") or "")
+            if locked_asset_id:
+                asset_id_whitelist = {locked_asset_id}
+        filtered_pool = (
+            [row for row in pool if row["asset_id"] in asset_id_whitelist]
+            if asset_id_whitelist
+            else list(pool)
+        )
+        if not filtered_pool:
+            filtered_pool = list(pool)
+
+        used_asset_ids_for_pick = set(used_asset_ids_by_category.setdefault(category, set()))
+        if excluded_asset_ids:
+            used_asset_ids_for_pick.update(str(asset_id) for asset_id in excluded_asset_ids if str(asset_id))
+
         feature_ctx = PolicyFeatureContext(
             query=slot_query,
             category=category,
             slot_idx=int(slot_index_by_category.get(category, 0)),
-            slot_x=float(slot.x_center_m),
-            slot_z=float(slot.z_center_m),
+            slot_x=float(getattr(slot, "x_center_m", 0.0) or 0.0),
+            slot_z=float(getattr(slot, "z_center_m", 0.0) or 0.0),
             length_m=float(config.length_m),
             road_width_m=float(resolved_program.road_width_m),
             sidewalk_width_m=float(resolved_program.sidewalk_width_m),
             lane_count=int(resolved_program.lane_count),
             density=float(config.density),
             topk=int(config.topk_per_category),
-            used_asset_ids=set(used_asset_ids_by_category.setdefault(category, set())),
+            used_asset_ids=used_asset_ids_for_pick,
             placed_count_in_category=placed_counts.get(category, 0),
             total_slots_in_category=category_slot_counts.get(category, 1),
-            category_pool_size=len(pool),
+            category_pool_size=len(filtered_pool),
             mean_score_placed=(
                 placed_score_sums[category] / placed_counts[category]
                 if placed_counts.get(category, 0) > 0
@@ -3759,23 +4030,54 @@ def compose_street_scene(
             total_slots_in_scene=total_scene_slots,
             **_slot_spatial_kwargs(slot, spatial_ctx),
         )
-        row, score, source, decision_details = _pick_category_candidate(
-            query=slot_query,
-            category=category,
-            topk=config.topk_per_category,
-            embedder=embedder,
-            index_store=index_store,
-            asset_by_id=asset_by_id,
-            category_pool=pool,
-            used_asset_ids=used_asset_ids_by_category.setdefault(category, set()),
-            rng=rng,
-            config=config,
-            placement_policy=policy_used,
-            policy_runtime=policy_runtime,
-            policy_temperature=policy_temperature,
-            feature_context=feature_ctx,
-            return_details=True,
-        )
+        try:
+            row, score, source, decision_details = _pick_category_candidate(
+                query=slot_query,
+                category=category,
+                topk=config.topk_per_category,
+                embedder=embedder,
+                index_store=index_store,
+                asset_by_id=asset_by_id,
+                category_pool=filtered_pool,
+                used_asset_ids=used_asset_ids_for_pick,
+                rng=rng,
+                config=config,
+                placement_policy=policy_used,
+                policy_runtime=policy_runtime,
+                policy_temperature=policy_temperature,
+                feature_context=feature_ctx,
+                return_details=True,
+                asset_id_whitelist=asset_id_whitelist,
+            )
+        except RuntimeError:
+            _append_placement_decision_event(
+                decision_events,
+                event_type="placement_skipped",
+                slot_id=str(getattr(slot, "slot_id", "")),
+                category=category,
+                theme_id=theme_id,
+                side=side,
+                band_name=band_name,
+                reason_code="no_candidate_after_search",
+                reason_detail="candidate retrieval failed",
+                anchor_poi_type=anchor_poi_type,
+                extra={"repair_phase": bool(repair_phase)},
+            )
+            return {
+                "placed": False,
+                "required_like": bool(required_like),
+                "failure_reason": "no_candidate_after_search",
+                "blocked_reason_counts": {},
+                "search_tier_reached": "tier_optional_sampling",
+                "best_anchor_distance_m": -1.0,
+                "side": side,
+                "band_name": band_name,
+                "theme_id": theme_id,
+                "anchor_poi_type": anchor_poi_type,
+                "placement_status": _placement_status(None, required=bool(required_like), placed=False),
+                "asset_id": "",
+            }
+
         retrieval_predictions.append(
             {
                 "target_category": category,
@@ -3783,26 +4085,61 @@ def compose_street_scene(
                 "hits": decision_details.get("candidates", []),
             }
         )
+        _append_placement_decision_event(
+            decision_events,
+            event_type="candidate_retrieved",
+            slot_id=str(getattr(slot, "slot_id", "")),
+            category=category,
+            theme_id=theme_id,
+            side=side,
+            band_name=band_name,
+            reason_code=str(source),
+            reason_detail=f"candidate_count={len(decision_details.get('candidates', []))}",
+            candidate_asset_id=str(row["asset_id"]),
+            anchor_poi_type=anchor_poi_type,
+            extra={
+                "repair_phase": bool(repair_phase),
+                "top3_hit": bool(decision_details.get("top3_hit", False)),
+                "tree_locked_asset_id": (
+                    str(next(iter(asset_id_whitelist))) if asset_id_whitelist else ""
+                ),
+            },
+        )
 
-        band = slot_band_lookup.get(str(slot.slot_id))
+        if category == "tree" and theme_id:
+            attempted_assets = theme_tree_attempted_assets.setdefault(theme_id, [])
+            if str(row["asset_id"]) not in attempted_assets:
+                attempted_assets.append(str(row["asset_id"]))
+
         if band is None:
-            dropped_slots += 1
-            if bool(getattr(slot, "required", False)) or str(getattr(slot, "anchor_poi_type", "") or "").strip():
-                anchor_resolution_summary["unplaced_required"] += 1
-                unplaced_slot_diagnostics.append(
-                    {
-                        "slot_id": str(getattr(slot, "slot_id", "")),
-                        "category": str(category),
-                        "theme_id": str(getattr(slot, "theme_id", "") or ""),
-                        "anchor_poi_type": str(getattr(slot, "anchor_poi_type", "") or ""),
-                        "search_tier_reached": "tier_optional_sampling",
-                        "best_anchor_distance_m": -1.0,
-                        "failure_reason": "no_candidate_after_search",
-                        "blocked_reason_counts": {},
-                    }
-                )
-            slot_index_by_category[category] = slot_index_by_category.get(category, 0) + 1
-            continue
+            _append_placement_decision_event(
+                decision_events,
+                event_type="placement_skipped",
+                slot_id=str(getattr(slot, "slot_id", "")),
+                category=category,
+                theme_id=theme_id,
+                side=side,
+                band_name=band_name,
+                reason_code="no_candidate_after_search",
+                reason_detail="slot band missing",
+                candidate_asset_id=str(row["asset_id"]),
+                anchor_poi_type=anchor_poi_type,
+                extra={"repair_phase": bool(repair_phase)},
+            )
+            return {
+                "placed": False,
+                "required_like": bool(required_like),
+                "failure_reason": "no_candidate_after_search",
+                "blocked_reason_counts": {},
+                "search_tier_reached": "tier_optional_sampling",
+                "best_anchor_distance_m": -1.0,
+                "side": side,
+                "band_name": band_name,
+                "theme_id": theme_id,
+                "anchor_poi_type": anchor_poi_type,
+                "placement_status": _placement_status(None, required=bool(required_like), placed=False),
+                "asset_id": str(row["asset_id"]),
+            }
 
         entry = mesh_cache[row["asset_id"]]
         scale_info = _street_furniture_scale_info(
@@ -3810,7 +4147,7 @@ def compose_street_scene(
             entry=entry,
             config=config,
         )
-        segment_node = slot_segment_lookup.get(str(slot.slot_id))
+        segment_node = slot_segment_lookup.get(str(getattr(slot, "slot_id", "")))
         candidate_groups = _iter_slot_candidate_groups(
             slot=slot,
             category=category,
@@ -3854,7 +4191,7 @@ def compose_street_scene(
                     placement_ctx=placement_ctx,
                     theme_segment=theme_segment,
                     road_segment_graph=road_segment_graph,
-                    theme_poi_points=theme_poi_cache.get(str(getattr(slot, "theme_id", "") or ""), {}),
+                    theme_poi_points=theme_poi_cache.get(theme_id, {}),
                     poi_ctx=poi_ctx,
                     rule_set=rule_set,
                     config=config,
@@ -3864,6 +4201,22 @@ def compose_street_scene(
                 )
                 if blocked_reason is not None:
                     blocked_reason_counts[blocked_reason] = blocked_reason_counts.get(blocked_reason, 0) + 1
+                    _append_placement_decision_event(
+                        decision_events,
+                        event_type="candidate_rejected",
+                        slot_id=str(getattr(slot, "slot_id", "")),
+                        category=category,
+                        theme_id=theme_id,
+                        side=side,
+                        band_name=band_name,
+                        reason_code=str(blocked_reason),
+                        reason_detail="candidate pose rejected",
+                        candidate_asset_id=str(row["asset_id"]),
+                        anchor_poi_type=anchor_poi_type,
+                        blocked_reason=str(blocked_reason),
+                        search_tier=search_tier_reached,
+                        extra={"repair_phase": bool(repair_phase)},
+                    )
                     continue
                 assert resolved_candidate is not None
                 feasible_candidates.append(resolved_candidate)
@@ -3879,109 +4232,704 @@ def compose_street_scene(
                 )
                 break
 
-        placed = False
-        if chosen_candidate is not None:
-            bx = float(chosen_candidate["x"])
-            bz = float(chosen_candidate["z"])
-            byaw = float(chosen_candidate["yaw_deg"])
-            bbbox = tuple(float(value) for value in chosen_candidate["bbox"])
-            bpenalty = float(chosen_candidate["constraint_penalty"])
-            bfeas = float(chosen_candidate["feasibility_score"])
-            bviolated = tuple(chosen_candidate["violated_rules"])
-            bscale = float(chosen_candidate.get("scale", 1.0) or 1.0)
-            anchor_distance_m = (
-                float(chosen_candidate["anchor_distance_m"])
-                if chosen_candidate.get("anchor_distance_m") is not None
-                else None
+        if chosen_candidate is None:
+            blocked_nonzero = {
+                key: int(value)
+                for key, value in blocked_reason_counts.items()
+                if int(value) > 0
+            }
+            failure_reason = (
+                sorted(
+                    blocked_nonzero.items(),
+                    key=lambda item: (-int(item[1]), item[0]),
+                )[0][0]
+                if blocked_nonzero
+                else "no_candidate_after_search"
             )
-            existing_bboxes.append(bbbox)
-            spatial_hash.insert(bbbox, len(existing_bboxes) - 1)
-            y = -entry.min_y * bscale
-            placement_status = _placement_status(
-                anchor_distance_m,
-                required=bool(getattr(slot, "required", False)) or str(getattr(slot, "anchor_poi_type", "") or "").strip() != "",
-                placed=True,
-            )
-            placements.append(
-                StreetPlacement(
-                    instance_id=f"inst_{instance_counter:04d}",
-                    asset_id=row["asset_id"],
-                    category=category,
-                    score=float(score),
-                    position_xyz=[float(bx), float(y), float(bz)],
-                    yaw_deg=float(byaw),
-                    scale=float(bscale),
-                    bbox_xz=[float(bbbox[0]), float(bbbox[1]), float(bbbox[2]), float(bbbox[3])],
-                    selection_source=source,
-                    slot_id=str(slot.slot_id),
-                    required=bool(getattr(slot, "required", False)),
-                    theme_id=str(getattr(slot, "theme_id", "")),
-                    anchor_poi_type=str(getattr(slot, "anchor_poi_type", "") or ""),
-                    anchor_target_xz=(
-                        tuple(float(v) for v in getattr(slot, "anchor_position_xz"))
-                        if getattr(slot, "anchor_position_xz", None) is not None
-                        else None
-                    ),
-                    anchor_distance_m=float(anchor_distance_m) if anchor_distance_m is not None else -1.0,
-                    placement_energy=float(chosen_candidate["placement_energy"]),
-                    placement_status=placement_status,
-                    native_size_m=dict(chosen_candidate.get("native_size_m", {}) or {}),
-                    canonical_target=dict(chosen_candidate.get("canonical_target", {}) or {}),
-                    asset_scale_mode=str(chosen_candidate.get("asset_scale_mode", "")),
-                    scale_fallback_used=bool(chosen_candidate.get("scale_fallback_used", False)),
-                    constraint_penalty=float(bpenalty),
-                    feasibility_score=float(bfeas),
-                    violated_rules=bviolated,
-                    **_slot_spatial_kwargs(slot, spatial_ctx),
-                )
-            )
-            used_asset_ids_by_category.setdefault(category, set()).add(row["asset_id"])
-            placed_score_sums[category] = placed_score_sums.get(category, 0.0) + float(score)
-            placed_counts[category] = placed_counts.get(category, 0) + 1
-            instance_counter += 1
-            placed = True
-            entrance_registry.add(
-                position_xz=(float(bx), float(bz)),
+            _append_placement_decision_event(
+                decision_events,
+                event_type="placement_skipped",
+                slot_id=str(getattr(slot, "slot_id", "")),
                 category=category,
-                bbox_xz=(float(bbbox[0]), float(bbbox[1]), float(bbbox[2]), float(bbbox[3])),
+                theme_id=theme_id,
+                side=side,
+                band_name=band_name,
+                reason_code=str(failure_reason),
+                reason_detail="no feasible candidate survived evaluation",
+                candidate_asset_id=str(row["asset_id"]),
+                anchor_poi_type=anchor_poi_type,
+                blocked_reason=str(failure_reason),
+                search_tier=search_tier_reached or "tier_optional_sampling",
+                extra={
+                    "repair_phase": bool(repair_phase),
+                    "blocked_reason_counts": blocked_nonzero,
+                },
             )
-            if bool(getattr(slot, "required", False)) or str(getattr(slot, "anchor_poi_type", "") or "").strip():
-                realized_required_slots += 1
-            if placement_status == "anchored_exact":
-                anchor_resolution_summary["anchored_exact"] += 1
-            elif placement_status == "anchored_relaxed":
-                anchor_resolution_summary["anchored_relaxed"] += 1
+            return {
+                "placed": False,
+                "required_like": bool(required_like),
+                "failure_reason": str(failure_reason),
+                "blocked_reason_counts": blocked_nonzero,
+                "search_tier_reached": search_tier_reached or "tier_optional_sampling",
+                "best_anchor_distance_m": float(best_anchor_distance_m) if math.isfinite(best_anchor_distance_m) else -1.0,
+                "side": side,
+                "band_name": band_name,
+                "theme_id": theme_id,
+                "anchor_poi_type": anchor_poi_type,
+                "placement_status": _placement_status(None, required=bool(required_like), placed=False),
+                "asset_id": str(row["asset_id"]),
+            }
 
-        if not placed:
+        bx = float(chosen_candidate["x"])
+        bz = float(chosen_candidate["z"])
+        byaw = float(chosen_candidate["yaw_deg"])
+        bbbox = tuple(float(value) for value in chosen_candidate["bbox"])
+        bpenalty = float(chosen_candidate["constraint_penalty"])
+        bfeas = float(chosen_candidate["feasibility_score"])
+        bviolated = tuple(chosen_candidate["violated_rules"])
+        bscale = float(chosen_candidate.get("scale", 1.0) or 1.0)
+        anchor_distance_m = (
+            float(chosen_candidate["anchor_distance_m"])
+            if chosen_candidate.get("anchor_distance_m") is not None
+            else None
+        )
+        existing_bboxes.append(bbbox)
+        spatial_hash.insert(bbbox, len(existing_bboxes) - 1)
+        y = -entry.min_y * bscale
+        placement_status = _placement_status(
+            anchor_distance_m,
+            required=bool(required_like),
+            placed=True,
+        )
+        placement = StreetPlacement(
+            instance_id=f"inst_{instance_counter:04d}",
+            asset_id=row["asset_id"],
+            category=category,
+            score=float(score),
+            position_xyz=[float(bx), float(y), float(bz)],
+            yaw_deg=float(byaw),
+            scale=float(bscale),
+            bbox_xz=[float(bbbox[0]), float(bbbox[1]), float(bbbox[2]), float(bbbox[3])],
+            selection_source=source,
+            slot_id=str(getattr(slot, "slot_id", "")),
+            required=bool(getattr(slot, "required", False)),
+            theme_id=theme_id,
+            anchor_poi_type=anchor_poi_type,
+            anchor_target_xz=(
+                tuple(float(v) for v in getattr(slot, "anchor_position_xz"))
+                if getattr(slot, "anchor_position_xz", None) is not None
+                else None
+            ),
+            anchor_distance_m=float(anchor_distance_m) if anchor_distance_m is not None else -1.0,
+            placement_energy=float(chosen_candidate["placement_energy"]),
+            placement_status=placement_status,
+            native_size_m=dict(chosen_candidate.get("native_size_m", {}) or {}),
+            canonical_target=dict(chosen_candidate.get("canonical_target", {}) or {}),
+            asset_scale_mode=str(chosen_candidate.get("asset_scale_mode", "")),
+            scale_fallback_used=bool(chosen_candidate.get("scale_fallback_used", False)),
+            constraint_penalty=float(bpenalty),
+            feasibility_score=float(bfeas),
+            violated_rules=bviolated,
+            **_slot_spatial_kwargs(slot, spatial_ctx),
+        )
+        placements.append(placement)
+        used_asset_ids_by_category.setdefault(category, set()).add(row["asset_id"])
+        placed_score_sums[category] = placed_score_sums.get(category, 0.0) + float(score)
+        placed_counts[category] = placed_counts.get(category, 0) + 1
+        instance_counter += 1
+        entrance_registry.add(
+            position_xz=(float(bx), float(bz)),
+            category=category,
+            bbox_xz=(float(bbbox[0]), float(bbbox[1]), float(bbbox[2]), float(bbbox[3])),
+        )
+        if category == "tree" and theme_id and tree_species_policy == "per_theme_single_species":
+            if theme_id not in theme_tree_asset_lock:
+                first_attempt = theme_tree_attempted_assets.get(theme_id, [str(row["asset_id"])])[0]
+                theme_tree_asset_lock[theme_id] = str(row["asset_id"])
+                if str(first_attempt) != str(row["asset_id"]):
+                    tree_theme_reselection_count += 1
+                    _append_placement_decision_event(
+                        decision_events,
+                        event_type="tree_theme_lock_reselected",
+                        slot_id=str(getattr(slot, "slot_id", "")),
+                        category=category,
+                        theme_id=theme_id,
+                        side=side,
+                        band_name=band_name,
+                        reason_code="per_theme_single_species",
+                        reason_detail=f"theme tree lock reselected to {row['asset_id']}",
+                        candidate_asset_id=str(row["asset_id"]),
+                        anchor_poi_type=anchor_poi_type,
+                    )
+                else:
+                    _append_placement_decision_event(
+                        decision_events,
+                        event_type="tree_theme_lock_created",
+                        slot_id=str(getattr(slot, "slot_id", "")),
+                        category=category,
+                        theme_id=theme_id,
+                        side=side,
+                        band_name=band_name,
+                        reason_code="per_theme_single_species",
+                        reason_detail=f"theme tree lock created for {row['asset_id']}",
+                        candidate_asset_id=str(row["asset_id"]),
+                        anchor_poi_type=anchor_poi_type,
+                    )
+        _append_placement_decision_event(
+            decision_events,
+            event_type="placement_selected",
+            slot_id=str(getattr(slot, "slot_id", "")),
+            category=category,
+            theme_id=theme_id,
+            side=side,
+            band_name=band_name,
+            reason_code="feasible_candidate_selected",
+            reason_detail=str(placement_status),
+            candidate_asset_id=str(row["asset_id"]),
+            anchor_poi_type=anchor_poi_type,
+            placement_energy=float(chosen_candidate["placement_energy"]),
+            feasibility_score=float(bfeas),
+            violated_rules=bviolated,
+            search_tier=search_tier_reached,
+            extra={"repair_phase": bool(repair_phase)},
+        )
+        return {
+            "placed": True,
+            "required_like": bool(required_like),
+            "failure_reason": "",
+            "blocked_reason_counts": {},
+            "search_tier_reached": search_tier_reached,
+            "best_anchor_distance_m": float(best_anchor_distance_m) if math.isfinite(best_anchor_distance_m) else -1.0,
+            "side": side,
+            "band_name": band_name,
+            "theme_id": theme_id,
+            "anchor_poi_type": anchor_poi_type,
+            "placement_status": str(placement_status),
+            "placement": placement,
+            "asset_id": str(row["asset_id"]),
+        }
+
+    def _repair_band_for_side(
+        category: str,
+        target_side: str,
+        *,
+        source_slot: object | None = None,
+    ) -> object | None:
+        source_band = None
+        if source_slot is not None:
+            source_band = slot_band_lookup.get(str(getattr(source_slot, "slot_id", "") or ""))
+        candidates: List[Tuple[Tuple[int, float, float, str], object]] = []
+        for band in core_band_candidates_by_side.get(str(target_side), []):
+            allowed_categories = {
+                str(value)
+                for value in tuple(getattr(band, "allowed_categories", ()) or ())
+                if str(value)
+            }
+            if allowed_categories and str(category) not in allowed_categories:
+                continue
+            band_kind = str(getattr(band, "kind", "") or "")
+            source_kind = str(getattr(source_band, "kind", "") or "")
+            z_distance = abs(
+                abs(float(getattr(band, "z_center_m", 0.0) or 0.0))
+                - abs(float(getattr(source_slot, "z_center_m", 0.0) or 0.0))
+            )
+            candidates.append(
+                (
+                    (
+                        0 if source_kind and band_kind == source_kind else 1,
+                        float(z_distance),
+                        abs(float(getattr(band, "width_m", 1.0) or 1.0) - float(getattr(source_band, "width_m", 1.0) or 1.0)),
+                        str(getattr(band, "name", "") or ""),
+                    ),
+                    band,
+                )
+            )
+        if not candidates:
+            return None
+        candidates.sort(key=lambda item: item[0])
+        return candidates[0][1]
+
+    def _repair_x_center_for_side(target_side: str, preferred_x: float) -> float:
+        existing_x = [
+            float(placement.position_xyz[0])
+            for placement in placements
+            if str(placement.placement_group) == "street_furniture"
+            and _slot_side_for_placement(placement, slot_side_by_id=slot_side_by_id) == str(target_side)
+        ]
+        length_m = float(config.length_m)
+        candidate_xs = {float(preferred_x)}
+        grid_count = max(10, len(existing_x) + 6)
+        step = length_m / float(max(grid_count, 1))
+        for idx in range(grid_count):
+            candidate_xs.add(-length_m / 2.0 + (idx + 0.5) * step)
+        return max(
+            candidate_xs,
+            key=lambda value: (
+                min(abs(float(value) - item) for item in existing_x) if existing_x else float("inf"),
+                min(float(value) + length_m / 2.0, length_m / 2.0 - float(value)),
+                -abs(float(value) - float(preferred_x)),
+            ),
+        )
+
+    def _make_synthetic_repair_record(
+        source_record: Mapping[str, Any],
+        *,
+        target_side: str,
+        category_override: Optional[str] = None,
+    ) -> Optional[Dict[str, Any]]:
+        nonlocal synthetic_repair_slot_counter
+        source_slot = source_record.get("slot")
+        if source_slot is None:
+            return None
+        category = str(category_override or source_record.get("category", "") or "")
+        if category not in core_furniture_categories:
+            return None
+        if str(source_record.get("anchor_poi_type", "") or "").strip():
+            return None
+        target_band = _repair_band_for_side(category, str(target_side), source_slot=source_slot)
+        if target_band is None:
+            return None
+        synthetic_repair_slot_counter += 1
+        source_slot_id = str(source_record.get("slot_id", "") or getattr(source_slot, "slot_id", ""))
+        synthetic_slot_id = (
+            f"{source_slot_id}__side_swap_{target_side}_{synthetic_repair_slot_counter:03d}"
+        )
+        repair_x_center = _repair_x_center_for_side(
+            str(target_side),
+            float(getattr(source_slot, "x_center_m", 0.0) or 0.0),
+        )
+        synthetic_slot = LayoutSlotPlan(
+            slot_id=synthetic_slot_id,
+            category=category,
+            band_name=str(getattr(target_band, "name", "") or ""),
+            x_center_m=float(repair_x_center),
+            z_center_m=float(getattr(target_band, "z_center_m", 0.0) or 0.0),
+            spacing_m=float(getattr(source_slot, "spacing_m", 1.0) or 1.0),
+            side=str(target_side),
+            priority=float(getattr(source_slot, "priority", 0.0) or 0.0),
+            required=False,
+            anchor_poi_type="",
+            anchor_position_xz=None,
+            theme_id=str(getattr(source_slot, "theme_id", "") or source_record.get("theme_id", "") or ""),
+        )
+        slot_band_lookup[synthetic_slot_id] = target_band
+        slot_side_by_id[synthetic_slot_id] = str(target_side)
+        if source_slot_id in slot_segment_lookup:
+            slot_segment_lookup[synthetic_slot_id] = slot_segment_lookup[source_slot_id]
+        synthetic_record: Dict[str, Any] = {
+            "slot": synthetic_slot,
+            "slot_id": synthetic_slot_id,
+            "category": category,
+            "theme_id": str(getattr(synthetic_slot, "theme_id", "") or ""),
+            "side": str(target_side),
+            "band_name": str(getattr(target_band, "name", "") or ""),
+            "anchor_poi_type": "",
+            "required_like": False,
+            "placed": False,
+            "placement_status": "",
+            "failure_reason": "",
+            "blocked_reason_counts": {},
+            "search_tier_reached": "",
+            "best_anchor_distance_m": -1.0,
+            "attempted_asset_ids": set(),
+            "required_failure_counted": False,
+            "unplaced_diagnostic": None,
+        }
+        slot_attempt_records[synthetic_slot_id] = synthetic_record
+        balance_repair_summary["synthetic_slot_count"] = int(balance_repair_summary.get("synthetic_slot_count", 0)) + 1
+        _append_placement_decision_event(
+            decision_events,
+            event_type="slot_repaired_side_swap",
+            slot_id=synthetic_slot_id,
+            category=category,
+            theme_id=str(getattr(synthetic_slot, "theme_id", "") or ""),
+            side=str(target_side),
+            band_name=str(getattr(target_band, "name", "") or ""),
+            reason_code="overall_balanced",
+            reason_detail=f"mirrored from {source_slot_id} to {target_side}",
+            extra={
+                "source_slot_id": source_slot_id,
+                "source_side": str(source_record.get("side", "") or ""),
+                "source_band_name": str(source_record.get("band_name", "") or ""),
+                "repair_x_center_m": float(repair_x_center),
+            },
+        )
+        return synthetic_record
+
+    for slot in ordered_slot_plans:
+        _append_placement_decision_event(
+            decision_events,
+            event_type="slot_generated",
+            slot_id=str(getattr(slot, "slot_id", "")),
+            category=str(getattr(slot, "category", "") or ""),
+            theme_id=str(getattr(slot, "theme_id", "") or ""),
+            side=str(getattr(slot, "side", "") or ""),
+            band_name=str(getattr(slot, "band_name", "") or ""),
+            reason_code="solver_slot_plan",
+            reason_detail="slot emitted by layout solver",
+            anchor_poi_type=str(getattr(slot, "anchor_poi_type", "") or ""),
+            extra={
+                "priority": float(getattr(slot, "priority", 0.0) or 0.0),
+                "required": bool(getattr(slot, "required", False)),
+            },
+        )
+        result = _attempt_place_slot(slot)
+        category = str(getattr(slot, "category", "") or "")
+        required_like = bool(result.get("required_like", False))
+        if bool(result.get("placed", False)):
+            if required_like:
+                realized_required_slots += 1
+            if str(result.get("placement_status", "")) == "anchored_exact":
+                anchor_resolution_summary["anchored_exact"] += 1
+            elif str(result.get("placement_status", "")) == "anchored_relaxed":
+                anchor_resolution_summary["anchored_relaxed"] += 1
+        else:
             dropped_slots += 1
-            if bool(getattr(slot, "required", False)) or str(getattr(slot, "anchor_poi_type", "") or "").strip():
-                blocked_nonzero = {
-                    key: int(value)
-                    for key, value in blocked_reason_counts.items()
-                    if int(value) > 0
-                }
-                failure_reason = (
-                    sorted(
-                        blocked_nonzero.items(),
-                        key=lambda item: (-int(item[1]), item[0]),
-                    )[0][0]
-                    if blocked_nonzero
-                    else "no_candidate_after_search"
-                )
-                anchor_resolution_summary["unplaced_required"] += 1
-                unplaced_slot_diagnostics.append(
-                    {
-                        "slot_id": str(getattr(slot, "slot_id", "")),
-                        "category": str(category),
-                        "theme_id": str(getattr(slot, "theme_id", "") or ""),
-                        "anchor_poi_type": str(getattr(slot, "anchor_poi_type", "") or ""),
-                        "search_tier_reached": search_tier_reached or "tier_optional_sampling",
-                        "best_anchor_distance_m": float(best_anchor_distance_m) if math.isfinite(best_anchor_distance_m) else -1.0,
-                        "failure_reason": failure_reason,
-                        "blocked_reason_counts": blocked_nonzero,
-                    }
-                )
+        attempt_record: Dict[str, Any] = {
+            "slot": slot,
+            "slot_id": str(getattr(slot, "slot_id", "")),
+            "category": category,
+            "theme_id": str(result.get("theme_id", getattr(slot, "theme_id", "") or "")),
+            "side": str(result.get("side", getattr(slot, "side", "") or "")),
+            "band_name": str(result.get("band_name", getattr(slot, "band_name", "") or "")),
+            "anchor_poi_type": str(result.get("anchor_poi_type", getattr(slot, "anchor_poi_type", "") or "")),
+            "required_like": bool(required_like),
+            "placed": bool(result.get("placed", False)),
+            "placement_status": str(result.get("placement_status", "")),
+            "failure_reason": str(result.get("failure_reason", "") or ""),
+            "blocked_reason_counts": dict(result.get("blocked_reason_counts", {}) or {}),
+            "search_tier_reached": str(result.get("search_tier_reached", "") or ""),
+            "best_anchor_distance_m": float(result.get("best_anchor_distance_m", -1.0) or -1.0),
+            "attempted_asset_ids": set(
+                [str(result.get("asset_id", ""))]
+                if str(result.get("asset_id", "")).strip()
+                else []
+            ),
+            "required_failure_counted": False,
+            "unplaced_diagnostic": None,
+        }
+        if not bool(result.get("placed", False)) and required_like:
+            blocked_nonzero = {
+                key: int(value)
+                for key, value in dict(result.get("blocked_reason_counts", {}) or {}).items()
+                if int(value) > 0
+            }
+            anchor_resolution_summary["unplaced_required"] += 1
+            attempt_record["required_failure_counted"] = True
+            attempt_record["unplaced_diagnostic"] = {
+                "slot_id": str(getattr(slot, "slot_id", "")),
+                "category": str(category),
+                "theme_id": str(getattr(slot, "theme_id", "") or ""),
+                "anchor_poi_type": str(getattr(slot, "anchor_poi_type", "") or ""),
+                "search_tier_reached": str(result.get("search_tier_reached", "") or "tier_optional_sampling"),
+                "best_anchor_distance_m": float(result.get("best_anchor_distance_m", -1.0) or -1.0),
+                "failure_reason": str(result.get("failure_reason", "no_candidate_after_search") or "no_candidate_after_search"),
+                "blocked_reason_counts": blocked_nonzero,
+            }
+        slot_attempt_records[str(getattr(slot, "slot_id", ""))] = attempt_record
         slot_index_by_category[category] = slot_index_by_category.get(category, 0) + 1
+
+    def _balance_targets_met() -> bool:
+        if furniture_balance_policy != "overall_balanced":
+            return True
+        if not {"left", "right"} <= compatible_core_sides:
+            return True
+        balance_state = _street_furniture_balance_state(placements, slot_side_by_id=slot_side_by_id)
+        counts = balance_state["street_furniture_core_side_counts"]
+        category_counts = balance_state["street_furniture_core_category_count_by_side"]
+        total = int(balance_state["core_total_count"])
+        diff = abs(int(counts.get("left", 0)) - int(counts.get("right", 0)))
+        global_categories = set(balance_state["street_furniture_core_categories_by_side"].get("left", []))
+        global_categories.update(balance_state["street_furniture_core_categories_by_side"].get("right", []))
+        global_target = min(3, len(available_core_categories_global), total)
+        left_target = min(
+            2,
+            len(available_core_categories_by_side.get("left", set())),
+            int(counts.get("left", 0)),
+        )
+        right_target = min(
+            2,
+            len(available_core_categories_by_side.get("right", set())),
+            int(counts.get("right", 0)),
+        )
+        if int(counts.get("left", 0)) <= 0 or int(counts.get("right", 0)) <= 0:
+            return False
+        if total >= 4 and diff > 2:
+            return False
+        if total >= 6 and (diff / max(total, 1)) > 0.25:
+            return False
+        if global_target >= 3 and len(global_categories) < global_target:
+            return False
+        if left_target >= 2 and int(category_counts.get("left", 0)) < left_target:
+            return False
+        if right_target >= 2 and int(category_counts.get("right", 0)) < right_target:
+            return False
+        return True
+
+    def _target_repair_side() -> str:
+        balance_state = _street_furniture_balance_state(placements, slot_side_by_id=slot_side_by_id)
+        counts = balance_state["street_furniture_core_side_counts"]
+        category_counts = balance_state["street_furniture_core_category_count_by_side"]
+        left_count = int(counts.get("left", 0))
+        right_count = int(counts.get("right", 0))
+        if left_count <= 0:
+            return "left"
+        if right_count <= 0:
+            return "right"
+        if left_count != right_count:
+            return "left" if left_count < right_count else "right"
+        return "left" if int(category_counts.get("left", 0)) < int(category_counts.get("right", 0)) else "right"
+
+    if furniture_balance_policy == "overall_balanced" and {"left", "right"} <= compatible_core_sides:
+        core_slot_total = sum(
+            1
+            for slot in ordered_slot_plans
+            if str(getattr(slot, "category", "") or "") in core_furniture_categories
+            and str(getattr(slot, "side", "") or "") in {"left", "right"}
+        )
+        max_repair_rounds = max(
+            6,
+            len(
+                [
+                    record
+                    for record in slot_attempt_records.values()
+                    if not bool(record.get("placed", False))
+                    and str(record.get("category", "")) in core_furniture_categories
+                    and str(record.get("side", "")) in {"left", "right"}
+                    and not str(record.get("anchor_poi_type", "")).strip()
+                ]
+            ),
+            min(24, int(core_slot_total)),
+        )
+        for _ in range(max_repair_rounds):
+            if _balance_targets_met():
+                break
+            target_side = _target_repair_side()
+            dense_side = "left" if str(target_side) == "right" else "right"
+            balance_repair_summary["target_sides"].append(str(target_side))
+            balance_state = _street_furniture_balance_state(placements, slot_side_by_id=slot_side_by_id)
+            global_missing_categories = [
+                category
+                for category in ("lamp", "tree", "bench", "trash", "bollard")
+                if category in available_core_categories_global
+                and category
+                not in (
+                    set(balance_state["street_furniture_core_categories_by_side"].get("left", []))
+                    | set(balance_state["street_furniture_core_categories_by_side"].get("right", []))
+                )
+            ]
+            missing_categories = [
+                category
+                for category in ("lamp", "tree", "bench", "trash", "bollard")
+                if category in available_core_categories_by_side.get(target_side, set())
+                and category not in balance_state["street_furniture_core_categories_by_side"].get(target_side, [])
+            ]
+            candidate_records = [
+                record
+                for record in slot_attempt_records.values()
+                if not bool(record.get("placed", False))
+                and str(record.get("category", "")) in core_furniture_categories
+                and str(record.get("side", "")) == str(target_side)
+                and not str(record.get("anchor_poi_type", "")).strip()
+                and "__side_swap_" not in str(record.get("slot_id", ""))
+            ]
+            candidate_records.sort(
+                key=lambda record: (
+                    0
+                    if str(record.get("category", "")) in global_missing_categories
+                    else 1,
+                    0
+                    if str(record.get("category", "")) in missing_categories
+                    else 1,
+                    {
+                        "lamp": 0,
+                        "tree": 1,
+                        "bench": 2,
+                        "trash": 3,
+                        "bollard": 4,
+                    }.get(str(record.get("category", "")), 99),
+                    float(getattr(record.get("slot"), "x_center_m", 0.0) or 0.0),
+                )
+            )
+            synthetic_candidates: List[Dict[str, Any]] = []
+            synthetic_source_records = [
+                record
+                for record in slot_attempt_records.values()
+                if str(record.get("category", "")) in core_furniture_categories
+                and str(record.get("side", "")) == str(dense_side)
+                and not str(record.get("anchor_poi_type", "")).strip()
+            ]
+            synthetic_source_records.extend(
+                [
+                    record
+                    for record in slot_attempt_records.values()
+                    if str(record.get("category", "")) in global_missing_categories
+                    and str(record.get("side", "")) in {"left", "right"}
+                    and not str(record.get("anchor_poi_type", "")).strip()
+                ]
+            )
+            synthetic_source_records.sort(
+                key=lambda record: (
+                    0 if str(record.get("category", "")) in global_missing_categories else 1,
+                    0 if str(record.get("category", "")) in missing_categories else 1,
+                    0 if str(record.get("side", "")) == str(dense_side) else 1,
+                    0 if bool(record.get("placed", False)) else 1,
+                    {
+                        "lamp": 0,
+                        "tree": 1,
+                        "bench": 2,
+                        "trash": 3,
+                        "bollard": 4,
+                    }.get(str(record.get("category", "")), 99),
+                    float(getattr(record.get("slot"), "x_center_m", 0.0) or 0.0),
+                )
+            )
+            synthetic_budget = max(2, min(10, len(missing_categories) + 4))
+            for source_record in synthetic_source_records:
+                if len(synthetic_candidates) >= synthetic_budget:
+                    break
+                synthetic_record = _make_synthetic_repair_record(
+                    source_record,
+                    target_side=str(target_side),
+                )
+                if synthetic_record is None:
+                    continue
+                synthetic_candidates.append(synthetic_record)
+            dense_reference_records = [
+                record
+                for record in slot_attempt_records.values()
+                if bool(record.get("placed", False))
+                and str(record.get("side", "")) == str(dense_side)
+                and not str(record.get("anchor_poi_type", "")).strip()
+            ]
+            dense_reference_records.sort(
+                key=lambda record: (
+                    0 if str(record.get("category", "")) in {"lamp", "tree", "bench", "trash", "bollard"} else 1,
+                    float(getattr(record.get("slot"), "x_center_m", 0.0) or 0.0),
+                )
+            )
+            for missing_category in global_missing_categories:
+                if missing_category not in available_core_categories_by_side.get(target_side, set()):
+                    continue
+                if len(synthetic_candidates) >= synthetic_budget:
+                    break
+                reference_record = next(iter(dense_reference_records), None)
+                if reference_record is None:
+                    break
+                synthetic_record = _make_synthetic_repair_record(
+                    reference_record,
+                    target_side=str(target_side),
+                    category_override=str(missing_category),
+                )
+                if synthetic_record is None:
+                    continue
+                synthetic_candidates.append(synthetic_record)
+            candidate_records.extend(synthetic_candidates)
+            candidate_records.sort(
+                key=lambda record: (
+                    0
+                    if str(record.get("category", "")) in global_missing_categories
+                    else 1,
+                    0
+                    if str(record.get("category", "")) in missing_categories
+                    else 1,
+                    0 if "__side_swap_" in str(record.get("slot_id", "")) else 1,
+                    {
+                        "lamp": 0,
+                        "tree": 1,
+                        "bench": 2,
+                        "trash": 3,
+                        "bollard": 4,
+                    }.get(str(record.get("category", "")), 99),
+                    float(getattr(record.get("slot"), "x_center_m", 0.0) or 0.0),
+                )
+            )
+            if not candidate_records:
+                balance_repair_summary["reason"] = f"all repair candidates blocked on {target_side}"
+                break
+            made_progress = False
+            for record in candidate_records:
+                balance_repair_summary["attempt_count"] += 1
+                balance_repair_summary["attempted_slot_ids"].append(str(record.get("slot_id", "")))
+                _append_placement_decision_event(
+                    decision_events,
+                    event_type="balance_repair_attempt",
+                    slot_id=str(record.get("slot_id", "")),
+                    category=str(record.get("category", "")),
+                    theme_id=str(record.get("theme_id", "")),
+                    side=str(record.get("side", "")),
+                    band_name=str(record.get("band_name", "")),
+                    reason_code="overall_balanced",
+                    reason_detail=f"attempt repair on {target_side}",
+                    anchor_poi_type=str(record.get("anchor_poi_type", "")),
+                )
+                repair_result = _attempt_place_slot(
+                    record["slot"],
+                    repair_phase=True,
+                    excluded_asset_ids=set(record.get("attempted_asset_ids", set()) or set()),
+                )
+                asset_id = str(repair_result.get("asset_id", "") or "")
+                if asset_id:
+                    record.setdefault("attempted_asset_ids", set()).add(asset_id)
+                record["failure_reason"] = str(repair_result.get("failure_reason", "") or "")
+                record["blocked_reason_counts"] = dict(repair_result.get("blocked_reason_counts", {}) or {})
+                record["search_tier_reached"] = str(repair_result.get("search_tier_reached", "") or "")
+                record["best_anchor_distance_m"] = float(repair_result.get("best_anchor_distance_m", -1.0) or -1.0)
+                if bool(repair_result.get("placed", False)):
+                    record["placed"] = True
+                    record["placement_status"] = str(repair_result.get("placement_status", ""))
+                    record["unplaced_diagnostic"] = None
+                    if dropped_slots > 0:
+                        dropped_slots -= 1
+                    if bool(record.get("required_failure_counted", False)):
+                        anchor_resolution_summary["unplaced_required"] = max(
+                            0,
+                            int(anchor_resolution_summary["unplaced_required"]) - 1,
+                        )
+                        realized_required_slots += 1
+                        record["required_failure_counted"] = False
+                    balance_repair_summary["success_count"] += 1
+                    balance_repair_summary["successful_slot_ids"].append(str(record.get("slot_id", "")))
+                    _append_placement_decision_event(
+                        decision_events,
+                        event_type="balance_repair_selected",
+                        slot_id=str(record.get("slot_id", "")),
+                        category=str(record.get("category", "")),
+                        theme_id=str(record.get("theme_id", "")),
+                        side=str(record.get("side", "")),
+                        band_name=str(record.get("band_name", "")),
+                        reason_code="overall_balanced",
+                        reason_detail=f"repair succeeded on {target_side}",
+                        candidate_asset_id=str(asset_id),
+                        anchor_poi_type=str(record.get("anchor_poi_type", "")),
+                    )
+                    made_progress = True
+                    break
+                balance_repair_summary["failure_count"] += 1
+                balance_repair_summary["failed_slot_ids"].append(str(record.get("slot_id", "")))
+                _append_placement_decision_event(
+                    decision_events,
+                    event_type="balance_repair_failed",
+                    slot_id=str(record.get("slot_id", "")),
+                    category=str(record.get("category", "")),
+                    theme_id=str(record.get("theme_id", "")),
+                    side=str(record.get("side", "")),
+                    band_name=str(record.get("band_name", "")),
+                    reason_code=str(repair_result.get("failure_reason", "no_candidate_after_search") or "no_candidate_after_search"),
+                    reason_detail=f"repair failed on {target_side}",
+                    candidate_asset_id=str(asset_id),
+                    anchor_poi_type=str(record.get("anchor_poi_type", "")),
+                )
+            if not made_progress:
+                if not str(balance_repair_summary.get("reason", "") or "").strip():
+                    balance_repair_summary["reason"] = f"all repair candidates blocked on {target_side}"
+                break
+
+    unplaced_slot_diagnostics = [
+        dict(record["unplaced_diagnostic"])
+        for record in slot_attempt_records.values()
+        if record.get("unplaced_diagnostic")
+    ]
 
     if not placements:
         raise RuntimeError(
@@ -4125,40 +5073,76 @@ def compose_street_scene(
     spacing_uniformity = compute_spacing_uniformity(furniture_dicts)
     style_consistency = compute_style_consistency(furniture_dicts)
     balance_score = compute_balance_score(furniture_dicts)
-    slot_side_by_id = {
-        str(slot.slot_id): str(getattr(slot, "side", "") or "")
-        for slot in slot_plans
-        if str(getattr(slot, "slot_id", "") or "")
-    }
-    street_furniture_side_counts = {"left": 0, "right": 0}
-    street_furniture_core_side_counts = {"left": 0, "right": 0}
-    for placement in furniture_placements:
-        side = str(slot_side_by_id.get(str(placement.slot_id), "") or "")
-        if side not in {"left", "right"}:
-            side = "left" if float(placement.position_xyz[2]) >= 0.0 else "right"
-        street_furniture_side_counts[side] = street_furniture_side_counts.get(side, 0) + 1
-        if str(placement.category) in {category for category, side_pref in SIDE_PREF.items() if str(side_pref) == "both"}:
-            street_furniture_core_side_counts[side] = street_furniture_core_side_counts.get(side, 0) + 1
-    compatible_furnishing_sides = {
-        str(slot.side)
-        for slot in slot_plans
-        if str(slot.category) in {category for category, side_pref in SIDE_PREF.items() if str(side_pref) == "both"}
-        and str(slot.side) in {"left", "right"}
-    }
-    if not {"left", "right"} <= compatible_furnishing_sides:
+    furniture_balance_state = _street_furniture_balance_state(
+        furniture_placements,
+        slot_side_by_id=slot_side_by_id,
+    )
+    street_furniture_side_counts = dict(furniture_balance_state["street_furniture_side_counts"])
+    street_furniture_core_side_counts = dict(furniture_balance_state["street_furniture_core_side_counts"])
+    street_furniture_core_categories_by_side = dict(furniture_balance_state["street_furniture_core_categories_by_side"])
+    street_furniture_core_category_count_by_side = dict(
+        furniture_balance_state["street_furniture_core_category_count_by_side"]
+    )
+    compatible_furnishing_sides = set(compatible_core_sides)
+    core_total_count = int(furniture_balance_state["core_total_count"])
+    core_diff = abs(
+        int(street_furniture_core_side_counts.get("left", 0))
+        - int(street_furniture_core_side_counts.get("right", 0))
+    )
+    core_global_categories = set(street_furniture_core_categories_by_side.get("left", []))
+    core_global_categories.update(street_furniture_core_categories_by_side.get("right", []))
+    core_global_target = min(3, len(available_core_categories_global), core_total_count)
+    core_left_target = min(
+        2,
+        len(available_core_categories_by_side.get("left", set())),
+        int(street_furniture_core_side_counts.get("left", 0)),
+    )
+    core_right_target = min(
+        2,
+        len(available_core_categories_by_side.get("right", set())),
+        int(street_furniture_core_side_counts.get("right", 0)),
+    )
+    if furniture_balance_policy != "overall_balanced":
+        street_furniture_balance_ok = True
+        street_furniture_balance_reason = "manual side-biased mode"
+    elif not {"left", "right"} <= compatible_furnishing_sides:
         missing_side = "left" if "left" not in compatible_furnishing_sides else "right"
         street_furniture_balance_ok = False
         street_furniture_balance_reason = f"no compatible {missing_side} furnishing band"
-    elif street_furniture_core_side_counts["left"] > 0 and street_furniture_core_side_counts["right"] > 0:
-        street_furniture_balance_ok = True
-        street_furniture_balance_reason = ""
-    elif sum(street_furniture_core_side_counts.values()) <= 0:
+    elif core_total_count <= 0:
         street_furniture_balance_ok = False
-        street_furniture_balance_reason = "no placed bilateral street furniture"
+        street_furniture_balance_reason = "anchor-only constraints dominated placement"
     else:
-        missing_side = "left" if street_furniture_core_side_counts["left"] <= 0 else "right"
-        street_furniture_balance_ok = False
-        street_furniture_balance_reason = f"no placed core street furniture on {missing_side} side"
+        street_furniture_balance_ok = True
+        if int(street_furniture_core_side_counts.get("left", 0)) <= 0 or int(street_furniture_core_side_counts.get("right", 0)) <= 0:
+            street_furniture_balance_ok = False
+        if core_total_count >= 4 and core_diff > 2:
+            street_furniture_balance_ok = False
+        if core_total_count >= 6 and (core_diff / max(core_total_count, 1)) > 0.25:
+            street_furniture_balance_ok = False
+        if core_global_target >= 3 and len(core_global_categories) < core_global_target:
+            street_furniture_balance_ok = False
+        if (
+            core_left_target >= 2
+            and int(street_furniture_core_category_count_by_side.get("left", 0)) < core_left_target
+        ):
+            street_furniture_balance_ok = False
+        if (
+            core_right_target >= 2
+            and int(street_furniture_core_category_count_by_side.get("right", 0)) < core_right_target
+        ):
+            street_furniture_balance_ok = False
+        if street_furniture_balance_ok:
+            street_furniture_balance_reason = ""
+        elif str(balance_repair_summary.get("reason", "") or "").strip():
+            street_furniture_balance_reason = str(balance_repair_summary["reason"])
+        elif int(street_furniture_core_side_counts.get("left", 0)) <= 0:
+            street_furniture_balance_reason = "all repair candidates blocked on left"
+        elif int(street_furniture_core_side_counts.get("right", 0)) <= 0:
+            street_furniture_balance_reason = "all repair candidates blocked on right"
+        else:
+            sparse_side = "left" if int(street_furniture_core_side_counts.get("left", 0)) < int(street_furniture_core_side_counts.get("right", 0)) else "right"
+            street_furniture_balance_reason = f"all repair candidates blocked on {sparse_side}"
     per_category_unique = {
         category: len({placement.asset_id for placement in placements if placement.category == category})
         for category in sorted({placement.category for placement in placements})
@@ -4247,6 +5231,12 @@ def compose_street_scene(
         selected_highway_type=selected_highway_type,
     )
     asset_scale_summary = summarize_asset_scales([placement.to_dict() for placement in placements])
+    placement_log_summary = _summarize_placement_decision_events(decision_events)
+    placement_log_path = ""
+    if placement_logging_mode == "full_with_ui_summary":
+        placement_log_file = (out_dir / "placement_decisions.jsonl").resolve()
+        _write_placement_decision_log(placement_log_file, decision_events)
+        placement_log_path = str(placement_log_file)
     asymmetry_raw = getattr(config, "land_use_asymmetry_strength", 0.0)
     bias_raw = getattr(config, "left_right_bias", 0.0)
     setback_min_raw = getattr(config, "building_front_setback_min_m", 1.0)
@@ -4275,6 +5265,15 @@ def compose_street_scene(
         },
         "asset_scale_mode": str(getattr(config, "asset_scale_mode", "canonical_v1")),
         "asset_scale_summary": asset_scale_summary,
+        "tree_species_policy": str(getattr(config, "tree_species_policy", "per_theme_single_species")),
+        "furniture_balance_policy": str(getattr(config, "furniture_balance_policy", "overall_balanced")),
+        "placement_logging_mode": str(getattr(config, "placement_logging_mode", "full_with_ui_summary")),
+        "tree_asset_by_theme": dict(theme_tree_asset_lock),
+        "tree_theme_reselection_count": int(tree_theme_reselection_count),
+        "placement_log_path": str(placement_log_path),
+        "placement_log_summary": dict(placement_log_summary),
+        "placement_log_reason_counts": dict(placement_log_summary.get("reason_counts", {})),
+        "balance_repair_summary": dict(balance_repair_summary),
         "asset_usage_by_source": [
             {
                 "source": str(source_key),
@@ -4442,6 +5441,8 @@ def compose_street_scene(
         "frontage_gap_stats_by_side": dict(building_summary.get("frontage_gap_stats_by_side", {}) or {}),
         "street_furniture_side_counts": dict(street_furniture_side_counts),
         "street_furniture_core_side_counts": dict(street_furniture_core_side_counts),
+        "street_furniture_core_categories_by_side": dict(street_furniture_core_categories_by_side),
+        "street_furniture_core_category_count_by_side": dict(street_furniture_core_category_count_by_side),
         "street_furniture_balance_ok": bool(street_furniture_balance_ok),
         "street_furniture_balance_reason": str(street_furniture_balance_reason),
         "building_summary": dict(building_summary),
@@ -4519,6 +5520,10 @@ def compose_street_scene(
         "zoning_grid": list(zoning_grid),
         "production_steps": [record.to_dict() for record in production_steps],
         "unplaced_slot_diagnostics": list(unplaced_slot_diagnostics),
+        "placement_decision_log": {
+            "path": str(placement_log_path),
+            "summary": dict(placement_log_summary),
+        },
         "outputs": outputs,
         "supervision_sample": {
             "inputs": {
@@ -4553,6 +5558,8 @@ def compose_street_scene(
     layout_path.write_text(json.dumps(layout_payload, indent=2, ensure_ascii=True), encoding="utf-8")
 
     outputs["scene_layout"] = str(layout_path)
+    if placement_log_path:
+        outputs["placement_decisions"] = str(placement_log_path)
     outputs["policy_used"] = policy_used
     outputs["design_rule_profile"] = str(config.design_rule_profile)
     outputs["objective_profile"] = str(getattr(config, "objective_profile", "balanced"))

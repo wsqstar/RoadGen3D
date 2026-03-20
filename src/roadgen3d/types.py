@@ -107,6 +107,9 @@ class StreetComposeConfig:
     zoning_granularity: str = "fine"  # "coarse" | "balanced" | "fine"
     streetwall_continuity: float = 0.95
     infill_policy: str = "aggressive"  # "off" | "large_gap_only" | "balanced" | "aggressive"
+    tree_species_policy: str = "per_theme_single_species"  # "per_theme_single_species" | "free_mixed"
+    furniture_balance_policy: str = "overall_balanced"  # "overall_balanced" | "side_biased_legacy"
+    placement_logging_mode: str = "full_with_ui_summary"  # "off" | "summary_only" | "full_with_ui_summary"
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)

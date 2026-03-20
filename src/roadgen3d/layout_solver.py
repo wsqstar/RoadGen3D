@@ -956,6 +956,167 @@ def _repair_bilateral_slot_plans(
     return tuple(repaired)
 
 
+def _replacement_band_for_side(
+    *,
+    category: str,
+    side: str,
+    allowed_bands_by_category: Mapping[str, Sequence[StreetBand]],
+) -> StreetBand | None:
+    preferred = [
+        band
+        for band in allowed_bands_by_category.get(str(category), ())
+        if str(band.side) == str(side)
+    ]
+    if preferred:
+        return preferred[0]
+    fallback = list(allowed_bands_by_category.get(str(category), ()))
+    return fallback[0] if fallback else None
+
+
+def _retarget_slot_category(
+    slot: LayoutSlotPlan,
+    *,
+    new_category: str,
+    allowed_bands_by_category: Mapping[str, Sequence[StreetBand]],
+    target_side: str | None = None,
+) -> LayoutSlotPlan | None:
+    replacement_band = _replacement_band_for_side(
+        category=str(new_category),
+        side=str(target_side or slot.side),
+        allowed_bands_by_category=allowed_bands_by_category,
+    )
+    if replacement_band is None:
+        return None
+    return replace(
+        slot,
+        category=str(new_category),
+        band_name=str(replacement_band.name),
+        z_center_m=float(replacement_band.z_center_m),
+        side=str(replacement_band.side),
+    )
+
+
+def _enrich_balanced_slot_plans(
+    slot_plans: Sequence[LayoutSlotPlan],
+    *,
+    allowed_bands_by_category: Mapping[str, Sequence[StreetBand]],
+    available_categories: Sequence[str],
+    edits: List[LayoutEdit],
+) -> Tuple[LayoutSlotPlan, ...]:
+    balanced_available = [
+        category
+        for category in sorted(_BALANCED_FURNITURE_CATEGORIES)
+        if str(category) in set(str(item) for item in available_categories)
+        and str(category) in allowed_bands_by_category
+    ]
+    if not balanced_available:
+        return tuple(slot_plans)
+
+    updated = list(slot_plans)
+
+    def _core_slots() -> List[Tuple[int, LayoutSlotPlan]]:
+        return [
+            (idx, slot)
+            for idx, slot in enumerate(updated)
+            if str(slot.category) in balanced_available
+            and str(slot.side) in {"left", "right"}
+        ]
+
+    def _replace_candidate(
+        *,
+        source_side: str | None,
+        missing_categories: Sequence[str],
+        min_unique_target: int,
+    ) -> None:
+        if not missing_categories:
+            return
+        current_core = _core_slots()
+        side_counts = Counter(str(slot.side) for _idx, slot in current_core)
+        if source_side is not None and side_counts.get(str(source_side), 0) < int(min_unique_target):
+            return
+        category_counts = Counter(str(slot.category) for _idx, slot in current_core)
+        side_category_counts = Counter(
+            (str(slot.side), str(slot.category))
+            for _idx, slot in current_core
+        )
+        candidates = [
+            (idx, slot)
+            for idx, slot in current_core
+            if not bool(slot.anchor_poi_type)
+            and (source_side is None or str(slot.side) == str(source_side))
+            and category_counts.get(str(slot.category), 0) > 1
+            and (source_side is None or side_category_counts.get((str(slot.side), str(slot.category)), 0) > 1)
+        ]
+        candidates.sort(
+            key=lambda item: (
+                bool(item[1].required),
+                float(item[1].priority),
+                float(item[1].x_center_m),
+                str(item[1].slot_id),
+            )
+        )
+        for missing_category in missing_categories:
+            for idx, slot in candidates:
+                replacement = _retarget_slot_category(
+                    slot,
+                    new_category=str(missing_category),
+                    allowed_bands_by_category=allowed_bands_by_category,
+                    target_side=str(source_side or slot.side),
+                )
+                if replacement is None:
+                    continue
+                updated[idx] = replacement
+                edits.append(
+                    LayoutEdit(
+                        action="rebalance_core_slot_mix",
+                        target=str(slot.slot_id),
+                        before=str(slot.category),
+                        after=str(missing_category),
+                        reason=(
+                            f"enforced richer bilateral core furniture mix"
+                            if source_side is None
+                            else f"enforced richer {source_side} core furniture mix"
+                        ),
+                    )
+                )
+                return
+
+    current_core = _core_slots()
+    global_target = min(3, len(balanced_available), len(current_core))
+    unique_global = {str(slot.category) for _idx, slot in current_core}
+    while len(unique_global) < global_target:
+        missing = [category for category in balanced_available if category not in unique_global]
+        if not missing:
+            break
+        before = len(unique_global)
+        _replace_candidate(source_side=None, missing_categories=missing, min_unique_target=0)
+        unique_global = {str(slot.category) for _idx, slot in _core_slots()}
+        if len(unique_global) == before:
+            break
+
+    for side in ("left", "right"):
+        current_core = _core_slots()
+        side_slots = [slot for _idx, slot in current_core if str(slot.side) == side]
+        side_available = [
+            category
+            for category in balanced_available
+            if any(str(band.side) == side for band in allowed_bands_by_category.get(str(category), ()))
+        ]
+        side_target = min(2, len(side_available), len(side_slots))
+        side_unique = {str(slot.category) for slot in side_slots}
+        while len(side_unique) < side_target:
+            missing = [category for category in side_available if category not in side_unique]
+            if not missing:
+                break
+            before = len(side_unique)
+            _replace_candidate(source_side=side, missing_categories=missing, min_unique_target=side_target)
+            side_slots = [slot for _idx, slot in _core_slots() if str(slot.side) == side]
+            side_unique = {str(slot.category) for slot in side_slots}
+            if len(side_unique) == before:
+                break
+    return tuple(updated)
+
+
 def _build_slot_plans(
     solver_input: LayoutSolverInput,
     resolved_program: StreetProgram,
@@ -1071,6 +1232,14 @@ def _build_slot_plans(
         _repair_bilateral_slot_plans(
             slot_plans,
             allowed_bands_by_category=allowed_bands_by_category,
+        )
+    )
+    repaired_slot_plans = list(
+        _enrich_balanced_slot_plans(
+            repaired_slot_plans,
+            allowed_bands_by_category=allowed_bands_by_category,
+            available_categories=solver_input.available_categories,
+            edits=edits,
         )
     )
     repaired_slot_plans.sort(key=lambda slot: (slot.category, slot.x_center_m, slot.z_center_m))

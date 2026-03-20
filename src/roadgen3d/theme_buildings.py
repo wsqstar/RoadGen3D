@@ -512,6 +512,13 @@ def _quiet_land_use_for_theme(theme_name: str) -> str:
     return "residential"
 
 
+def _streetwall_base_land_use_for_theme(theme_name: str) -> str:
+    base = land_use_for_theme(theme_name)
+    if base == "green":
+        return "residential"
+    return base
+
+
 def _resolve_active_side(
     *,
     seed: int,
@@ -535,9 +542,14 @@ def _resolve_side_zoning_profile(
     theme_name: str,
     asymmetry_strength: float,
     left_right_bias: float,
+    force_streetwall_baseline: bool = False,
 ) -> Dict[str, object]:
     strength = _clamp(float(asymmetry_strength), 0.0, 1.0)
-    base_land_use = land_use_for_theme(theme_name)
+    base_land_use = (
+        _streetwall_base_land_use_for_theme(theme_name)
+        if bool(force_streetwall_baseline)
+        else land_use_for_theme(theme_name)
+    )
     quiet_land_use = _quiet_land_use_for_theme(theme_name)
     if strength <= 1e-6:
         return {
@@ -2174,6 +2186,9 @@ def build_zoning_grid_preview(
         str("fine" if zoning_granularity_raw is None else zoning_granularity_raw)
     )
     continuity = _clamp(float(0.95 if streetwall_continuity_raw is None else streetwall_continuity_raw), 0.0, 1.0)
+    force_streetwall_baseline = str(
+        getattr(config, "surrounding_building_mode", "grid_growth") or "grid_growth"
+    ).strip().lower() == "grid_growth"
     theme_by_segment_id = {
         segment_id: theme_segment
         for theme_segment in theme_segments
@@ -2282,6 +2297,7 @@ def build_zoning_grid_preview(
             theme_name=theme_name,
             asymmetry_strength=asymmetry_strength,
             left_right_bias=left_right_bias,
+            force_streetwall_baseline=force_streetwall_baseline,
         )
         if str(side_profile.get("active_side", "") or ""):
             active_side = str(side_profile["active_side"])

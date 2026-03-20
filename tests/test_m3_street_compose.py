@@ -4,6 +4,7 @@ import inspect
 import json
 import random
 import sys
+from dataclasses import replace
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -17,7 +18,7 @@ if str(ROOT) not in sys.path:
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from roadgen3d.types import RetrievalHit, StreetComposeConfig, StreetComposeResult, StreetPlacement
+from roadgen3d.types import LayoutSlotPlan, RetrievalHit, StreetComposeConfig, StreetComposeResult, StreetPlacement
 from roadgen3d.asset_scale import compute_asset_scale
 from roadgen3d.street_layout import compose_street_scene
 import roadgen3d.street_layout as street_layout
@@ -756,6 +757,112 @@ def test_street_compose_seed_deterministic(tmp_path: Path, monkeypatch):
     assert sig_a == sig_b
 
 
+def test_street_compose_writes_placement_log_and_locks_tree_species_per_theme(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    rows = _build_real_rows(tmp_path / "data")
+    for row in rows:
+        if str(row.get("category", "")) == "tree":
+            row["source"] = "objaverse_import"
+            row["quality_notes"] = ["tree_upright_validated"]
+    extra_tree_mesh = tmp_path / "data" / "meshes" / "tree_02.glb"
+    _make_mesh(extra_tree_mesh, kind="cylinder")
+    rows.append(
+        {
+            "asset_id": "tree_02",
+            "category": "tree",
+            "text_desc": "a second roadside tree",
+            "mesh_path": str(extra_tree_mesh),
+            "latent_path": str(tmp_path / "data" / "latents" / "tree_02.pt"),
+            "license": "cc-by",
+            "source": "objaverse_import",
+            "split": "train",
+            "quality_notes": ["tree_upright_validated"],
+        }
+    )
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+    monkeypatch.setattr(street_layout, "render_presentation_views", lambda *args, **kwargs: [])
+
+    original_solve = street_layout.LayoutSolverRuntime.solve
+
+    def fake_solve(self, solver_input):
+        result = original_solve(self, solver_input)
+        left_band = next(
+            band
+            for band in result.resolved_program.bands
+            if str(getattr(band, "side", "")) == "left" and str(getattr(band, "kind", "")) in {"furnishing", "transit_edge"}
+        )
+        right_band = next(
+            band
+            for band in result.resolved_program.bands
+            if str(getattr(band, "side", "")) == "right" and str(getattr(band, "kind", "")) in {"furnishing", "transit_edge"}
+        )
+        boosted_slots = tuple(result.slot_plans) + (
+            LayoutSlotPlan(
+                slot_id="tree_boost_left",
+                category="tree",
+                band_name=str(left_band.name),
+                x_center_m=-12.0,
+                z_center_m=float(left_band.z_center_m),
+                spacing_m=18.0,
+                side="left",
+                priority=1.0,
+            ),
+            LayoutSlotPlan(
+                slot_id="tree_boost_right",
+                category="tree",
+                band_name=str(right_band.name),
+                x_center_m=12.0,
+                z_center_m=float(right_band.z_center_m),
+                spacing_m=18.0,
+                side="right",
+                priority=1.0,
+            ),
+        )
+        return replace(result, slot_plans=boosted_slots)
+
+    monkeypatch.setattr(street_layout.LayoutSolverRuntime, "solve", fake_solve)
+
+    result = compose_street_scene(
+        config=_build_config(seed=11),
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+
+    payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    summary = payload["summary"]
+    placement_log_path = Path(summary["placement_log_path"])
+    tree_placements = [
+        placement
+        for placement in payload["placements"]
+        if placement["category"] == "tree"
+    ]
+
+    assert summary["placement_logging_mode"] == "full_with_ui_summary"
+    assert placement_log_path.exists()
+    assert payload["placement_decision_log"]["path"] == str(placement_log_path)
+    assert summary["placement_log_summary"]["event_count"] > 0
+    log_lines = [
+        json.loads(line)
+        for line in placement_log_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    assert any(line["event_type"] == "slot_generated" for line in log_lines)
+    assert any(line["event_type"] == "placement_selected" for line in log_lines)
+    assert summary["tree_species_policy"] == "per_theme_single_species"
+    assert tree_placements
+    asset_ids_by_theme: dict[str, set[str]] = {}
+    for placement in tree_placements:
+        asset_ids_by_theme.setdefault(str(placement.get("theme_id", "") or ""), set()).add(str(placement["asset_id"]))
+    assert all(len(asset_ids) == 1 for asset_ids in asset_ids_by_theme.values())
+    assert summary["tree_asset_by_theme"]
+
+
 def test_street_compose_real_manifest_required(tmp_path: Path):
     pytest.importorskip("trimesh")
     mesh_path = tmp_path / "mesh.glb"
@@ -875,6 +982,9 @@ def test_run_street_compose_defaults_shift_to_walkable_narrow_street():
     assert signature.parameters["street_sidewalk_width_m"].default == pytest.approx(2.4)
     assert signature.parameters["road_selection"].default == "walkable_neighborhood"
     assert signature.parameters["asset_scale_mode"].default == "canonical_v1"
+    assert signature.parameters["tree_species_policy"].default == "per_theme_single_species"
+    assert signature.parameters["furniture_balance_policy"].default == "overall_balanced"
+    assert signature.parameters["placement_logging_mode"].default == "full_with_ui_summary"
 
 
 def test_street_compose_gradio_callback_propagates_objective_and_demand_controls(tmp_path: Path, monkeypatch):
@@ -883,7 +993,9 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
 
     glb_path = (tmp_path / "scene.glb").resolve()
     layout_path = (tmp_path / "scene_layout.json").resolve()
+    placement_log_path = (tmp_path / "placement_decisions.jsonl").resolve()
     glb_path.write_bytes(b"glb")
+    placement_log_path.write_text("{}", encoding="utf-8")
     captured_config: dict[str, object] = {}
     layout_payload = {
         "summary": {
@@ -915,6 +1027,17 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
             "infill_policy": "balanced",
             "frontage_parcel_count": 12,
             "infill_footprint_count": 3,
+            "tree_species_policy": "per_theme_single_species",
+            "furniture_balance_policy": "overall_balanced",
+            "placement_logging_mode": "full_with_ui_summary",
+            "tree_asset_by_theme": {"theme_000": "tree_02"},
+            "street_furniture_core_side_counts": {"left": 2, "right": 2},
+            "street_furniture_core_categories_by_side": {
+                "left": ["lamp", "tree"],
+                "right": ["bench", "tree"],
+            },
+            "placement_log_path": str(placement_log_path),
+            "placement_log_reason_counts": {"feasible_candidate_selected": 4},
         },
         "placements": [],
     }
@@ -935,6 +1058,9 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
         captured_config["zoning_granularity"] = config.zoning_granularity
         captured_config["streetwall_continuity"] = config.streetwall_continuity
         captured_config["infill_policy"] = config.infill_policy
+        captured_config["tree_species_policy"] = config.tree_species_policy
+        captured_config["furniture_balance_policy"] = config.furniture_balance_policy
+        captured_config["placement_logging_mode"] = config.placement_logging_mode
         return StreetComposeResult(
             query="urban street",
             instance_count=1,
@@ -943,6 +1069,7 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
             outputs={
                 "scene_glb": str(glb_path),
                 "scene_layout": str(layout_path),
+                "placement_decisions": str(placement_log_path),
                 "layout_solver_requested": "hybrid_milp_v1",
                 "layout_solver_used": "hybrid_milp_v1",
             },
@@ -986,6 +1113,9 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
         zoning_granularity="fine",
         streetwall_continuity=0.9,
         infill_policy="balanced",
+        tree_species_policy="per_theme_single_species",
+        furniture_balance_policy="overall_balanced",
+        placement_logging_mode="full_with_ui_summary",
     )
 
     assert captured_config == {
@@ -1002,6 +1132,9 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
         "zoning_granularity": "fine",
         "streetwall_continuity": 0.9,
         "infill_policy": "balanced",
+        "tree_species_policy": "per_theme_single_species",
+        "furniture_balance_policy": "overall_balanced",
+        "placement_logging_mode": "full_with_ui_summary",
     }
     assert "objective_profile: commerce" in summary
     assert "demand_levels: ped=high, bike=medium, transit=low, vehicle=medium" in summary
@@ -1015,12 +1148,18 @@ def test_street_compose_gradio_callback_propagates_objective_and_demand_controls
     assert "zoning_granularity: fine" in summary
     assert "streetwall_continuity: 0.90" in summary
     assert "infill_policy: balanced" in summary
+    assert "tree_species_policy: per_theme_single_species" in summary
+    assert 'tree_asset_by_theme: {"theme_000": "tree_02"}' in summary
+    assert "furniture_balance_policy: overall_balanced" in summary
+    assert "placement_logging_mode: full_with_ui_summary" in summary
+    assert f"placement_log_path: {placement_log_path}" in summary
     assert "frontage_parcel_count: 12" in summary
     assert "infill_footprint_count: 3" in summary
     assert rows == []
     assert layout_json
     assert model_path == str(glb_path)
     assert str(layout_path) in files
+    assert str(placement_log_path) in files
 
 
 def test_extract_solver_diagnostics_aggregates_osm_band_view():
@@ -1099,6 +1238,43 @@ def test_extract_solver_diagnostics_aggregates_osm_band_view():
     assert summary["overall_throughput_satisfied"] is False
     assert summary["throughput_feasibility"]["by_mode"]["ped_clear_path"]["satisfied"] is False
     assert fig is not None
+
+
+def test_extract_placement_decision_summary_reads_new_fields():
+    pytest.importorskip("gradio")
+    import scripts.m1_gradio_app as app
+
+    payload = {
+        "summary": {
+            "tree_species_policy": "per_theme_single_species",
+            "tree_asset_by_theme": {"theme_000": "tree_02"},
+            "tree_theme_reselection_count": 1,
+            "furniture_balance_policy": "overall_balanced",
+            "street_furniture_side_counts": {"left": 4, "right": 5},
+            "street_furniture_core_side_counts": {"left": 2, "right": 3},
+            "street_furniture_core_categories_by_side": {
+                "left": ["lamp", "tree"],
+                "right": ["bench", "tree"],
+            },
+            "street_furniture_core_category_count_by_side": {"left": 2, "right": 2},
+            "street_furniture_balance_ok": True,
+            "street_furniture_balance_reason": "",
+            "balance_repair_summary": {"attempt_count": 2, "success_count": 1},
+            "placement_logging_mode": "full_with_ui_summary",
+            "placement_log_path": "/tmp/placement_decisions.jsonl",
+            "placement_log_summary": {"event_count": 12},
+            "placement_log_reason_counts": {"feasible_candidate_selected": 5},
+        }
+    }
+
+    summary = json.loads(app._extract_placement_decision_summary(json.dumps(payload)))
+
+    assert summary["tree_species_policy"] == "per_theme_single_species"
+    assert summary["tree_asset_by_theme"]["theme_000"] == "tree_02"
+    assert summary["street_furniture_core_side_counts"]["left"] == 2
+    assert summary["street_furniture_core_categories_by_side"]["right"] == ["bench", "tree"]
+    assert summary["placement_log_path"] == "/tmp/placement_decisions.jsonl"
+    assert summary["placement_log_reason_counts"]["feasible_candidate_selected"] == 5
 
 
 def test_extract_street_scale_summary_reports_scale_and_road_selection():

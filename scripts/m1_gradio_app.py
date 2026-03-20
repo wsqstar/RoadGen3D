@@ -1624,6 +1624,31 @@ def _extract_street_scale_summary(layout_json_text: str) -> str:
     return json.dumps(result, indent=2, ensure_ascii=True)
 
 
+def _extract_placement_decision_summary(layout_json_text: str) -> str:
+    if not layout_json_text.strip():
+        return "{}"
+    payload = json.loads(layout_json_text)
+    summary = payload.get("summary", {}) or {}
+    result = {
+        "tree_species_policy": str(summary.get("tree_species_policy", "per_theme_single_species")),
+        "tree_asset_by_theme": dict(summary.get("tree_asset_by_theme", {}) or {}),
+        "tree_theme_reselection_count": int(summary.get("tree_theme_reselection_count", 0) or 0),
+        "furniture_balance_policy": str(summary.get("furniture_balance_policy", "overall_balanced")),
+        "street_furniture_side_counts": dict(summary.get("street_furniture_side_counts", {}) or {}),
+        "street_furniture_core_side_counts": dict(summary.get("street_furniture_core_side_counts", {}) or {}),
+        "street_furniture_core_categories_by_side": dict(summary.get("street_furniture_core_categories_by_side", {}) or {}),
+        "street_furniture_core_category_count_by_side": dict(summary.get("street_furniture_core_category_count_by_side", {}) or {}),
+        "street_furniture_balance_ok": bool(summary.get("street_furniture_balance_ok", False)),
+        "street_furniture_balance_reason": str(summary.get("street_furniture_balance_reason", "") or ""),
+        "balance_repair_summary": dict(summary.get("balance_repair_summary", {}) or {}),
+        "placement_logging_mode": str(summary.get("placement_logging_mode", "full_with_ui_summary")),
+        "placement_log_path": str(summary.get("placement_log_path", "") or ""),
+        "placement_log_summary": dict(summary.get("placement_log_summary", {}) or {}),
+        "placement_log_reason_counts": dict(summary.get("placement_log_reason_counts", {}) or {}),
+    }
+    return json.dumps(result, indent=2, ensure_ascii=True)
+
+
 def _extract_solver_summary(layout_json_text: str) -> str:
     if not layout_json_text.strip():
         return "{}"
@@ -2260,6 +2285,9 @@ def run_street_compose(
     surrounding_building_mode: str = "grid_growth",
     building_height_mode: str = "theme_random",
     building_height_profile: str = "urban_default_v1",
+    tree_species_policy: str = "per_theme_single_species",
+    furniture_balance_policy: str = "overall_balanced",
+    placement_logging_mode: str = "full_with_ui_summary",
 ) -> Tuple[str, List[List[str]], str, str | None, List[str]]:
     try:
         profile = dataset_profile.strip().lower()
@@ -2366,6 +2394,9 @@ def run_street_compose(
             zoning_granularity=str(zoning_granularity).strip(),
             streetwall_continuity=float(0.95 if streetwall_continuity is None else streetwall_continuity),
             infill_policy=str(infill_policy).strip(),
+            tree_species_policy=str(tree_species_policy).strip(),
+            furniture_balance_policy=str(furniture_balance_policy).strip(),
+            placement_logging_mode=str(placement_logging_mode).strip(),
         )
         result = compose_street_scene(
             config=config,
@@ -2625,6 +2656,14 @@ def run_street_compose(
             f"{json.dumps(layout_summary.get('street_furniture_side_counts', {}), ensure_ascii=True)}"
         )
         summary += (
+            f"\n- street_furniture_core_side_counts: "
+            f"{json.dumps(layout_summary.get('street_furniture_core_side_counts', {}), ensure_ascii=True)}"
+        )
+        summary += (
+            f"\n- street_furniture_core_categories_by_side: "
+            f"{json.dumps(layout_summary.get('street_furniture_core_categories_by_side', {}), ensure_ascii=True)}"
+        )
+        summary += (
             f"\n- street_furniture_balance_ok: "
             f"{bool(layout_summary.get('street_furniture_balance_ok', False))}"
         )
@@ -2632,6 +2671,27 @@ def run_street_compose(
             summary += (
                 f"\n- street_furniture_balance_reason: "
                 f"{str(layout_summary.get('street_furniture_balance_reason', ''))}"
+            )
+        summary += (
+            f"\n- tree_species_policy: "
+            f"{str(layout_summary.get('tree_species_policy', tree_species_policy))}"
+        )
+        summary += (
+            f"\n- tree_asset_by_theme: "
+            f"{json.dumps(layout_summary.get('tree_asset_by_theme', {}), ensure_ascii=True)}"
+        )
+        summary += (
+            f"\n- furniture_balance_policy: "
+            f"{str(layout_summary.get('furniture_balance_policy', furniture_balance_policy))}"
+        )
+        summary += (
+            f"\n- placement_logging_mode: "
+            f"{str(layout_summary.get('placement_logging_mode', placement_logging_mode))}"
+        )
+        if str(layout_summary.get("placement_log_path", "") or "").strip():
+            summary += (
+                f"\n- placement_log_path: "
+                f"{str(layout_summary.get('placement_log_path', ''))}"
             )
         summary += (
             f"\n- zoning_cell_count: "
@@ -2649,6 +2709,8 @@ def run_street_compose(
             files.append(result.outputs["scene_ply"])
         if result.outputs.get("scene_layout"):
             files.append(result.outputs["scene_layout"])
+        if result.outputs.get("placement_decisions"):
+            files.append(result.outputs["placement_decisions"])
         for item in layout_summary.get("render_views", []) or []:
             path = str(item.get("path", "")).strip()
             if path:
@@ -3056,6 +3118,9 @@ def run_best_model_street(
     surrounding_building_mode: str = "grid_growth",
     building_height_mode: str = "theme_random",
     building_height_profile: str = "urban_default_v1",
+    tree_species_policy: str = "per_theme_single_species",
+    furniture_balance_policy: str = "overall_balanced",
+    placement_logging_mode: str = "full_with_ui_summary",
 ) -> Tuple[str, List[List[str]], str, str | None, List[str], str, str, str | None, List[str]]:
     if str(research_target).strip().lower() == "program_generator":
         program_generator = "learned_v1"
@@ -3124,6 +3189,9 @@ def run_best_model_street(
         zoning_granularity=zoning_granularity,
         streetwall_continuity=streetwall_continuity,
         infill_policy=infill_policy,
+        tree_species_policy=tree_species_policy,
+        furniture_balance_policy=furniture_balance_policy,
+        placement_logging_mode=placement_logging_mode,
     )
     best_log = (
         "Best model run done.\n"
@@ -4183,6 +4251,22 @@ def build_demo() -> gr.Blocks:
                             value="canonical_v1",
                         )
                     with gr.Row():
+                        tree_species_policy = gr.Dropdown(
+                            label="Tree Species Policy",
+                            choices=["per_theme_single_species", "free_mixed"],
+                            value="per_theme_single_species",
+                        )
+                        furniture_balance_policy = gr.Dropdown(
+                            label="Furniture Balance Policy",
+                            choices=["overall_balanced", "side_biased_legacy"],
+                            value="overall_balanced",
+                        )
+                        placement_logging_mode = gr.Dropdown(
+                            label="Placement Logging",
+                            choices=["full_with_ui_summary", "summary_only", "off"],
+                            value="full_with_ui_summary",
+                        )
+                    with gr.Row():
                         enable_surrounding_buildings = gr.Checkbox(label="Enable Surrounding Buildings", value=True)
                         surrounding_building_mode = gr.Dropdown(
                             label="Surrounding Building Mode",
@@ -4271,6 +4355,8 @@ def build_demo() -> gr.Blocks:
                         )
                     with gr.Accordion("Street Scale Summary", open=False):
                         street_scale_summary_json = gr.Code(label="Street Scale Summary", language="json")
+                    with gr.Accordion("Placement Decision Summary", open=False):
+                        placement_decision_summary_json = gr.Code(label="Placement Decision Summary", language="json")
                     with gr.Accordion("Cross-Section Preview", open=False):
                         cross_section_preview_plot = gr.Plot(label="Cross-Section Preview")
                         cross_section_preview_summary = gr.Code(label="Cross-Section Summary", language="json")
@@ -4620,6 +4706,9 @@ def build_demo() -> gr.Blocks:
                 surrounding_building_mode,
                 building_height_mode,
                 building_height_profile,
+                tree_species_policy,
+                furniture_balance_policy,
+                placement_logging_mode,
             ],
             outputs=[
                 street_summary,
@@ -4657,6 +4746,10 @@ def build_demo() -> gr.Blocks:
             fn=_extract_street_scale_summary,
             inputs=[street_layout_json],
             outputs=[street_scale_summary_json],
+        ).then(
+            fn=_extract_placement_decision_summary,
+            inputs=[street_layout_json],
+            outputs=[placement_decision_summary_json],
         ).then(
             fn=_extract_cross_section_preview,
             inputs=[street_layout_json],
@@ -4914,6 +5007,9 @@ def build_demo() -> gr.Blocks:
                 surrounding_building_mode,
                 building_height_mode,
                 building_height_profile,
+                tree_species_policy,
+                furniture_balance_policy,
+                placement_logging_mode,
             ],
             outputs=[
                 street_summary,
@@ -4947,6 +5043,10 @@ def build_demo() -> gr.Blocks:
             fn=_extract_cross_section_preview,
             inputs=[street_layout_json],
             outputs=[cross_section_preview_plot, cross_section_preview_summary],
+        ).then(
+            fn=_extract_placement_decision_summary,
+            inputs=[street_layout_json],
+            outputs=[placement_decision_summary_json],
         ).then(
             fn=_extract_solver_diagnostics,
             inputs=[street_layout_json],

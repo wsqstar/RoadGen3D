@@ -372,6 +372,10 @@ def test_build_demo_street_defaults_are_procedural_first():
     assert dropdown_props["Bike Demand"]["value"] == "low"
     assert dropdown_props["Transit Demand"]["value"] == "medium"
     assert dropdown_props["Vehicle Demand"]["value"] == "medium"
+    assert dropdown_props["Tree Species Policy"]["value"] == "per_theme_single_species"
+    assert dropdown_props["Furniture Balance Policy"]["value"] == "overall_balanced"
+    assert dropdown_props["Placement Logging"]["value"] == "full_with_ui_summary"
+    assert "Placement Decision Summary" in code_labels
     assert "Cross-Section Preview" in plot_labels
     assert "Cross-Section Summary" in code_labels
     assert "Solver Diagnostics" in plot_labels

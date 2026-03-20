@@ -328,6 +328,36 @@ def test_build_zoning_grid_preview_asymmetry_strength_zero_restores_symmetric_ba
     assert summary["active_side_counts"] == {}
 
 
+def test_build_zoning_grid_preview_green_theme_keeps_streetwall_baseline_in_grid_growth():
+    graph = _graph_for_theme(highway_type="residential", poi_types=())
+    placement_context = SimpleNamespace(
+        carriageway_width_m=8.0,
+        left_clear_path_width_m=1.8,
+        left_furnishing_width_m=0.7,
+        right_clear_path_width_m=1.8,
+        right_furnishing_width_m=0.7,
+    )
+
+    zoning_grid, summary = build_zoning_grid_preview(
+        config=_zoning_config(seed=11, asymmetry_strength=0.0),
+        placement_context=placement_context,
+        road_segment_graph=graph,
+        theme_segments=_single_theme_segment("green"),
+        building_footprints=(),
+        road_buffer_m=35.0,
+    )
+
+    left_cell = next(cell for cell in zoning_grid if cell["lane_role"] == "left_building_buffer")
+    right_cell = next(cell for cell in zoning_grid if cell["lane_role"] == "right_building_buffer")
+
+    assert left_cell["land_use_type"] == "residential"
+    assert right_cell["land_use_type"] == "residential"
+    assert left_cell["buildable"] is True
+    assert right_cell["buildable"] is True
+    assert summary["buildable_frontage_by_side"]["left"] > 0.0
+    assert summary["buildable_frontage_by_side"]["right"] > 0.0
+
+
 def test_generate_grid_growth_lots_respects_land_use_side_and_height_rules():
     zoning_grid = [
         {
