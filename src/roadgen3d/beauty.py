@@ -789,6 +789,940 @@ def _require_matplotlib():
     return plt
 
 
+def _require_pillow():
+    try:
+        from PIL import Image, ImageChops, ImageEnhance, ImageFilter, ImageOps
+    except Exception:
+        return None
+    return Image, ImageChops, ImageEnhance, ImageFilter, ImageOps
+
+
+@dataclass(frozen=True)
+class AxonometricBoardStyle:
+    background: str
+    board_fill: str
+    board_shadow: Tuple[float, float, float, float]
+    carriageway_fill: str
+    lane_mark_fill: str
+    sidewalk_fill: str
+    furnishing_fill: str
+    activity_fill: str
+    green_fill: str
+    roof_fill: str
+    facade_fill: str
+    facade_shadow_fill: str
+    outline: str
+    accent_edge: str
+    window_fill: str
+    tree_fill: str
+    tree_shadow_fill: str
+    tree_trunk_fill: str
+    person_fill: str
+    vehicle_fill: str
+    bus_fill: str
+    furniture_fill: str
+    outline_lw: float = 1.0
+    detail_lw: float = 0.7
+    glyph_lw: float = 0.8
+    shadow_offset_x: float = 0.75
+    shadow_offset_y: float = -0.5
+    shadow_alpha: float = 0.18
+
+
+_AXONOMETRIC_BOARD_STYLE = AxonometricBoardStyle(
+    background="#fbfaf7",
+    board_fill="#efede8",
+    board_shadow=(0.84, 0.82, 0.79, 0.42),
+    carriageway_fill="#4c5660",
+    lane_mark_fill="#ecefdf",
+    sidewalk_fill="#fbefe8",
+    furnishing_fill="#f9dfe4",
+    activity_fill="#ef9cb0",
+    green_fill="#dfeee1",
+    roof_fill="#c7dfc2",
+    facade_fill="#fbfaf4",
+    facade_shadow_fill="#ece6dd",
+    outline="#758186",
+    accent_edge="#de738f",
+    window_fill="#d3e8d7",
+    tree_fill="#c9dde1",
+    tree_shadow_fill="#b4cdd3",
+    tree_trunk_fill="#85756a",
+    person_fill="#355468",
+    vehicle_fill="#efc455",
+    bus_fill="#8ba8d4",
+    furniture_fill="#856773",
+)
+
+
+def _world_surface_polygons(layout_payload: Mapping[str, Any]) -> Dict[str, List[List[Tuple[float, float]]]]:
+    summary = dict(layout_payload.get("summary", {}) or {})
+    osm_geometry = dict(summary.get("osm_geometry", {}) or {})
+    result: Dict[str, List[List[Tuple[float, float]]]] = {
+        "carriageway": [],
+        "sidewalk": [],
+        "left_sidewalk": [],
+        "right_sidewalk": [],
+    }
+    if osm_geometry.get("carriageway_rings"):
+        for ring in osm_geometry.get("carriageway_rings", []) or []:
+            polygon = [(float(point[0]), float(point[1])) for point in ring if len(point) >= 2]
+            if len(polygon) >= 3:
+                result["carriageway"].append(polygon)
+        for ring in osm_geometry.get("sidewalk_rings", []) or []:
+            polygon = [(float(point[0]), float(point[1])) for point in ring if len(point) >= 2]
+            if len(polygon) >= 3:
+                result["sidewalk"].append(polygon)
+        for ring in osm_geometry.get("left_sidewalk_rings", []) or []:
+            polygon = [(float(point[0]), float(point[1])) for point in ring if len(point) >= 2]
+            if len(polygon) >= 3:
+                result["left_sidewalk"].append(polygon)
+        for ring in osm_geometry.get("right_sidewalk_rings", []) or []:
+            polygon = [(float(point[0]), float(point[1])) for point in ring if len(point) >= 2]
+            if len(polygon) >= 3:
+                result["right_sidewalk"].append(polygon)
+        return result
+
+    bounds = _layout_bounds(layout_payload)
+    road_width = float(summary.get("road_width_m", 8.0))
+    sidewalk_width = float(summary.get("sidewalk_width_m", 2.5))
+    result["carriageway"].append(
+        [
+            (bounds[0], -road_width / 2.0),
+            (bounds[2], -road_width / 2.0),
+            (bounds[2], road_width / 2.0),
+            (bounds[0], road_width / 2.0),
+        ]
+    )
+    left_polygon = [
+        (bounds[0], road_width / 2.0),
+        (bounds[2], road_width / 2.0),
+        (bounds[2], road_width / 2.0 + sidewalk_width),
+        (bounds[0], road_width / 2.0 + sidewalk_width),
+    ]
+    right_polygon = [
+        (bounds[0], -road_width / 2.0 - sidewalk_width),
+        (bounds[2], -road_width / 2.0 - sidewalk_width),
+        (bounds[2], -road_width / 2.0),
+        (bounds[0], -road_width / 2.0),
+    ]
+    result["sidewalk"].append(left_polygon)
+    result["sidewalk"].append(right_polygon)
+    result["left_sidewalk"].append(left_polygon)
+    result["right_sidewalk"].append(right_polygon)
+    return result
+
+
+def _world_zone_polygons(layout_payload: Mapping[str, Any]) -> Dict[str, List[List[Tuple[float, float]]]]:
+    polygons_by_role: Dict[str, List[List[Tuple[float, float]]]] = {}
+    for cell in layout_payload.get("zoning_grid", []) or []:
+        polygon = [
+            (float(point[0]), float(point[1]))
+            for point in (cell.get("polygon_xz", []) or [])
+            if len(point) >= 2
+        ]
+        if len(polygon) < 3:
+            continue
+        lane_role = str(cell.get("lane_role", "") or "")
+        land_use_type = str(cell.get("land_use_type", "") or "")
+        if lane_role:
+            polygons_by_role.setdefault(lane_role, []).append(polygon)
+        if land_use_type == "green":
+            polygons_by_role.setdefault("green_land_use", []).append(polygon)
+    return polygons_by_role
+
+
+def _scene_origin(layout_payload: Mapping[str, Any]) -> Tuple[float, float]:
+    min_x, min_z, max_x, max_z = _layout_bounds(layout_payload)
+    return ((min_x + max_x) / 2.0, (min_z + max_z) / 2.0)
+
+
+def _principal_axis_angle(points: Sequence[Tuple[float, float]]) -> float:
+    if len(points) < 2:
+        return 0.0
+    mean_x = sum(float(point[0]) for point in points) / float(len(points))
+    mean_z = sum(float(point[1]) for point in points) / float(len(points))
+    cov_xx = sum((float(point[0]) - mean_x) ** 2 for point in points)
+    cov_zz = sum((float(point[1]) - mean_z) ** 2 for point in points)
+    cov_xz = sum((float(point[0]) - mean_x) * (float(point[1]) - mean_z) for point in points)
+    if abs(cov_xx - cov_zz) <= 1e-9 and abs(cov_xz) <= 1e-9:
+        return 0.0
+    return 0.5 * math.atan2(2.0 * cov_xz, cov_xx - cov_zz)
+
+
+def _street_axis_angle(layout_payload: Mapping[str, Any]) -> float:
+    surface_polygons = _world_surface_polygons(layout_payload)
+    road_points = [point for polygon in surface_polygons.get("carriageway", []) for point in polygon]
+    if len(road_points) >= 2:
+        return _principal_axis_angle(road_points)
+    building_points = [
+        point
+        for polygon, _height in _building_polygons_with_height(layout_payload)
+        for point in polygon
+    ]
+    if len(building_points) >= 2:
+        return _principal_axis_angle(building_points)
+    placement_points = []
+    for placement in layout_payload.get("placements", []) or []:
+        pos = placement.get("position_xyz", []) or []
+        if len(pos) >= 3:
+            placement_points.append((float(pos[0]), float(pos[2])))
+    if len(placement_points) >= 2:
+        return _principal_axis_angle(placement_points)
+    return 0.0
+
+
+def _localize_point(
+    point_xz: Tuple[float, float],
+    *,
+    origin_xz: Tuple[float, float],
+    axis_angle_rad: float,
+) -> Tuple[float, float]:
+    dx = float(point_xz[0]) - float(origin_xz[0])
+    dz = float(point_xz[1]) - float(origin_xz[1])
+    cos_a = math.cos(-float(axis_angle_rad))
+    sin_a = math.sin(-float(axis_angle_rad))
+    return (
+        dx * cos_a - dz * sin_a,
+        dx * sin_a + dz * cos_a,
+    )
+
+
+def _localize_polygon(
+    polygon_xz: Sequence[Tuple[float, float]],
+    *,
+    origin_xz: Tuple[float, float],
+    axis_angle_rad: float,
+) -> List[Tuple[float, float]]:
+    return [
+        _localize_point((float(x), float(z)), origin_xz=origin_xz, axis_angle_rad=axis_angle_rad)
+        for x, z in polygon_xz
+    ]
+
+
+def _project_plan_point(u: float, v: float, *, angle_rad: float) -> Tuple[float, float]:
+    cos_a = math.cos(float(angle_rad))
+    sin_a = math.sin(float(angle_rad))
+    return (
+        float(u) * cos_a - float(v) * sin_a,
+        float(u) * sin_a + float(v) * cos_a,
+    )
+
+
+def _project_plan_polygon(
+    polygon_uv: Sequence[Tuple[float, float]],
+    *,
+    angle_rad: float,
+) -> List[Tuple[float, float]]:
+    return [_project_plan_point(float(u), float(v), angle_rad=angle_rad) for u, v in polygon_uv]
+
+
+def _project_oblique_point(u: float, v: float, h: float) -> Tuple[float, float]:
+    return (
+        float(u) - 0.88 * float(v),
+        -0.56 * float(u) - 0.24 * float(v) + float(h),
+    )
+
+
+def _project_oblique_polygon(
+    polygon_uv: Sequence[Tuple[float, float]],
+    *,
+    h: float,
+) -> List[Tuple[float, float]]:
+    return [_project_oblique_point(float(u), float(v), float(h)) for u, v in polygon_uv]
+
+
+def _bbox_from_points(points: Sequence[Tuple[float, float]]) -> Tuple[float, float, float, float]:
+    if not points:
+        return (-1.0, -1.0, 1.0, 1.0)
+    xs = [float(point[0]) for point in points]
+    ys = [float(point[1]) for point in points]
+    return (min(xs), min(ys), max(xs), max(ys))
+
+
+def _bounds_from_polygons(polygons: Sequence[Sequence[Tuple[float, float]]]) -> Tuple[float, float, float, float]:
+    points = [point for polygon in polygons for point in polygon]
+    return _bbox_from_points(points)
+
+
+def _local_building_boxes(
+    layout_payload: Mapping[str, Any],
+    *,
+    origin_xz: Tuple[float, float],
+    axis_angle_rad: float,
+) -> List[Dict[str, float]]:
+    boxes: List[Dict[str, float]] = []
+    for polygon_xz, target_height_m in _building_polygons_with_height(layout_payload):
+        localized = _localize_polygon(polygon_xz, origin_xz=origin_xz, axis_angle_rad=axis_angle_rad)
+        if len(localized) < 3:
+            continue
+        min_u, min_v, max_u, max_v = _bbox_from_points(localized)
+        if max_u - min_u < 1e-3 or max_v - min_v < 1e-3:
+            continue
+        boxes.append(
+            {
+                "min_u": float(min_u),
+                "max_u": float(max_u),
+                "min_v": float(min_v),
+                "max_v": float(max_v),
+                "height_m": float(target_height_m),
+            }
+        )
+    return boxes
+
+
+def _crossing_world_polygons(layout_payload: Mapping[str, Any]) -> List[List[Tuple[float, float]]]:
+    summary = dict(layout_payload.get("summary", {}) or {})
+    spatial_context = dict(summary.get("spatial_context", {}) or {})
+    crossing_points = nonempty_poi_points(spatial_context.get("poi_points_by_type_xz", {}) or {}).get("crossing", ())
+    if not crossing_points:
+        return []
+    road_width = float(summary.get("road_width_m", 8.0))
+    sidewalk_width = float(summary.get("sidewalk_width_m", 2.5))
+    axis_angle = _street_axis_angle(layout_payload)
+    dir_x = math.cos(axis_angle)
+    dir_z = math.sin(axis_angle)
+    perp_x = -dir_z
+    perp_z = dir_x
+    half_length = max(1.8, min(3.0, road_width * 0.34))
+    half_width = road_width / 2.0 + sidewalk_width * 1.08
+    polygons: List[List[Tuple[float, float]]] = []
+    for point in crossing_points:
+        cx = float(point[0])
+        cz = float(point[1])
+        polygon = [
+            (cx - dir_x * half_length - perp_x * half_width, cz - dir_z * half_length - perp_z * half_width),
+            (cx + dir_x * half_length - perp_x * half_width, cz + dir_z * half_length - perp_z * half_width),
+            (cx + dir_x * half_length + perp_x * half_width, cz + dir_z * half_length + perp_z * half_width),
+            (cx - dir_x * half_length + perp_x * half_width, cz - dir_z * half_length + perp_z * half_width),
+        ]
+        polygons.append(polygon)
+    return polygons
+
+
+def _centerline_bounds(local_carriageway_polygons: Sequence[Sequence[Tuple[float, float]]]) -> Tuple[float, float]:
+    if not local_carriageway_polygons:
+        return (-10.0, 10.0)
+    min_u, _min_v, max_u, _max_v = _bounds_from_polygons(local_carriageway_polygons)
+    return (float(min_u), float(max_u))
+
+
+def _ambient_vehicle_specs(
+    *,
+    u_min: float,
+    u_max: float,
+    road_width_m: float,
+    lane_count: int,
+    include_bus: bool,
+) -> List[Dict[str, float | str]]:
+    if u_max - u_min <= 6.0:
+        return []
+    usable_min = u_min + 0.12 * (u_max - u_min)
+    usable_max = u_max - 0.12 * (u_max - u_min)
+    samples = [0.18, 0.42, 0.68, 0.84]
+    lane_offsets: List[float] = [0.0]
+    if int(lane_count) >= 2:
+        lane_offsets = [-road_width_m * 0.18, road_width_m * 0.18]
+    specs: List[Dict[str, float | str]] = []
+    for idx, t in enumerate(samples):
+        u = usable_min + (usable_max - usable_min) * t
+        lane_offset = lane_offsets[idx % len(lane_offsets)]
+        specs.append(
+            {
+                "u": float(u),
+                "v": float(lane_offset),
+                "length_m": 3.6 if idx % 3 else 4.2,
+                "width_m": 1.7,
+                "kind": "car",
+            }
+        )
+    if include_bus:
+        specs.append(
+            {
+                "u": float(usable_min + 0.55 * (usable_max - usable_min)),
+                "v": float(-road_width_m * 0.22 if lane_offsets else 0.0),
+                "length_m": 8.4,
+                "width_m": 2.3,
+                "kind": "bus",
+            }
+        )
+    return specs
+
+
+def _ambient_people_points(
+    *,
+    poi_points_local: Mapping[str, Sequence[Tuple[float, float]]],
+    u_min: float,
+    u_max: float,
+    road_width_m: float,
+    sidewalk_width_m: float,
+) -> List[Tuple[float, float]]:
+    points: List[Tuple[float, float]] = []
+    offsets_by_type: Dict[str, Tuple[Tuple[float, float], ...]] = {
+        "entrance": ((-0.55, 0.95), (0.55, 1.15)),
+        "bus_stop": ((-0.75, 1.15), (0.0, 1.45), (0.75, 1.05)),
+        "crossing": ((-0.45, 0.95), (0.45, -0.95)),
+    }
+    for poi_type, offsets in offsets_by_type.items():
+        for base_u, base_v in poi_points_local.get(poi_type, ()):
+            for du, dv in offsets:
+                points.append((float(base_u) + float(du), float(base_v) + float(dv)))
+    if points:
+        return points[:18]
+    sidewalk_v = road_width_m / 2.0 + max(0.7, sidewalk_width_m * 0.45)
+    fractions = [0.14, 0.29, 0.48, 0.66, 0.82]
+    for t in fractions:
+        u = float(u_min + (u_max - u_min) * t)
+        points.append((u, sidewalk_v))
+        points.append((u + 0.4, -sidewalk_v))
+    return points[:12]
+
+
+def _draw_polygon_patch(ax: Any, polygon_xy: Sequence[Tuple[float, float]], *, facecolor: Any, edgecolor: Any = "none", linewidth: float = 0.0, alpha: float = 1.0, zorder: float = 0.0) -> None:
+    if len(polygon_xy) < 3:
+        return
+    from matplotlib.patches import Polygon as MplPolygon
+
+    ax.add_patch(
+        MplPolygon(
+            polygon_xy,
+            closed=True,
+            facecolor=facecolor,
+            edgecolor=edgecolor,
+            linewidth=linewidth,
+            alpha=alpha,
+            joinstyle="round",
+            zorder=zorder,
+        )
+    )
+
+
+def _draw_plan_tree(ax: Any, x: float, y: float, *, style: AxonometricBoardStyle) -> None:
+    from matplotlib.patches import Circle
+
+    ax.add_patch(Circle((x + 0.18, y - 0.14), radius=0.52, facecolor=style.tree_shadow_fill, edgecolor="none", alpha=0.45, zorder=7.2))
+    ax.add_patch(Circle((x, y), radius=0.52, facecolor=style.tree_fill, edgecolor=style.outline, linewidth=style.detail_lw, zorder=7.5))
+    ax.add_patch(Circle((x, y), radius=0.16, facecolor=style.tree_trunk_fill, edgecolor="none", alpha=0.9, zorder=7.6))
+
+
+def _draw_plan_person(ax: Any, x: float, y: float, *, style: AxonometricBoardStyle) -> None:
+    from matplotlib.patches import Circle
+
+    ax.plot([x, x], [y - 0.2, y + 0.14], color=style.person_fill, linewidth=style.glyph_lw, solid_capstyle="round", zorder=8.5)
+    ax.plot([x, x - 0.1], [y - 0.2, y - 0.34], color=style.person_fill, linewidth=style.glyph_lw * 0.85, solid_capstyle="round", zorder=8.5)
+    ax.plot([x, x + 0.1], [y - 0.2, y - 0.34], color=style.person_fill, linewidth=style.glyph_lw * 0.85, solid_capstyle="round", zorder=8.5)
+    ax.add_patch(Circle((x, y + 0.22), radius=0.06, facecolor=style.person_fill, edgecolor="none", zorder=8.6))
+
+
+def _draw_plan_vehicle(ax: Any, u: float, v: float, *, length_m: float, width_m: float, plan_angle_rad: float, facecolor: str, style: AxonometricBoardStyle) -> None:
+    half_l = float(length_m) / 2.0
+    half_w = float(width_m) / 2.0
+    polygon = [
+        _project_plan_point(u - half_l, v - half_w, angle_rad=plan_angle_rad),
+        _project_plan_point(u + half_l, v - half_w, angle_rad=plan_angle_rad),
+        _project_plan_point(u + half_l, v + half_w, angle_rad=plan_angle_rad),
+        _project_plan_point(u - half_l, v + half_w, angle_rad=plan_angle_rad),
+    ]
+    shadow = [(x + 0.18, y - 0.12) for x, y in polygon]
+    _draw_polygon_patch(ax, shadow, facecolor=(0.0, 0.0, 0.0, 0.10), zorder=7.8)
+    _draw_polygon_patch(ax, polygon, facecolor=facecolor, edgecolor="white", linewidth=style.detail_lw, zorder=8.0)
+
+
+def _draw_plan_furniture(ax: Any, u: float, v: float, *, category: str, plan_angle_rad: float, style: AxonometricBoardStyle) -> None:
+    from matplotlib.patches import Circle, Rectangle
+
+    x, y = _project_plan_point(u, v, angle_rad=plan_angle_rad)
+    if category == "tree":
+        _draw_plan_tree(ax, x, y, style=style)
+        return
+    if category == "lamp":
+        ax.plot([x, x], [y - 0.22, y + 0.26], color=style.furniture_fill, linewidth=style.glyph_lw, zorder=8.1)
+        ax.add_patch(Circle((x, y + 0.28), radius=0.08, facecolor=style.activity_fill, edgecolor="white", linewidth=0.5, zorder=8.2))
+        return
+    if category == "bench":
+        ax.add_patch(Rectangle((x - 0.22, y - 0.08), 0.44, 0.16, angle=32.0, facecolor=style.furniture_fill, edgecolor="white", linewidth=0.5, zorder=8.1))
+        return
+    if category == "bus_stop":
+        ax.add_patch(Rectangle((x - 0.36, y - 0.12), 0.72, 0.24, angle=32.0, facecolor=style.bus_fill, edgecolor="white", linewidth=0.5, zorder=8.1))
+        return
+    ax.add_patch(Circle((x, y), radius=0.11, facecolor=style.furniture_fill, edgecolor="white", linewidth=0.45, zorder=8.1))
+
+
+def _draw_oblique_tree(ax: Any, u: float, v: float, *, style: AxonometricBoardStyle) -> None:
+    ground = _project_oblique_point(u, v, 0.0)
+    canopy = _project_oblique_point(u, v, 1.45)
+    ax.plot([ground[0], canopy[0]], [ground[1], canopy[1]], color=style.tree_trunk_fill, linewidth=1.0, zorder=8.2)
+    ax.scatter([canopy[0] + 0.12], [canopy[1] - 0.1], s=420, color=style.tree_shadow_fill, alpha=0.42, zorder=8.25)
+    ax.scatter([canopy[0]], [canopy[1]], s=420, color=style.tree_fill, edgecolors=style.outline, linewidths=0.6, zorder=8.3)
+
+
+def _draw_oblique_person(ax: Any, u: float, v: float, *, style: AxonometricBoardStyle) -> None:
+    foot = _project_oblique_point(u, v, 0.0)
+    torso = _project_oblique_point(u, v, 0.55)
+    head = _project_oblique_point(u, v, 0.78)
+    ax.plot([foot[0], torso[0]], [foot[1], torso[1]], color=style.person_fill, linewidth=0.95, solid_capstyle="round", zorder=8.9)
+    ax.plot([foot[0], foot[0] - 0.06], [foot[1], foot[1] - 0.12], color=style.person_fill, linewidth=0.75, solid_capstyle="round", zorder=8.9)
+    ax.plot([foot[0], foot[0] + 0.06], [foot[1], foot[1] - 0.12], color=style.person_fill, linewidth=0.75, solid_capstyle="round", zorder=8.9)
+    ax.scatter([head[0]], [head[1]], s=14, color=style.person_fill, zorder=9.0)
+
+
+def _draw_oblique_vehicle(ax: Any, u: float, v: float, *, length_m: float, width_m: float, facecolor: str, style: AxonometricBoardStyle) -> None:
+    half_l = float(length_m) / 2.0
+    half_w = float(width_m) / 2.0
+    top = _project_oblique_polygon(
+        [
+            (u - half_l, v - half_w),
+            (u + half_l, v - half_w),
+            (u + half_l, v + half_w),
+            (u - half_l, v + half_w),
+        ],
+        h=0.26,
+    )
+    shadow = [(x + 0.18, y - 0.12) for x, y in top]
+    _draw_polygon_patch(ax, shadow, facecolor=(0.0, 0.0, 0.0, 0.10), zorder=7.7)
+    _draw_polygon_patch(ax, top, facecolor=facecolor, edgecolor="white", linewidth=style.detail_lw, zorder=8.0)
+
+
+def _draw_oblique_furniture(ax: Any, u: float, v: float, *, category: str, style: AxonometricBoardStyle) -> None:
+    if category == "tree":
+        _draw_oblique_tree(ax, u, v, style=style)
+        return
+    ground = _project_oblique_point(u, v, 0.0)
+    if category == "lamp":
+        top = _project_oblique_point(u, v, 2.1)
+        ax.plot([ground[0], top[0]], [ground[1], top[1]], color=style.furniture_fill, linewidth=1.1, zorder=8.3)
+        ax.scatter([top[0]], [top[1]], s=22, color=style.activity_fill, edgecolors="white", linewidths=0.5, zorder=8.4)
+        return
+    if category == "bench":
+        seat = _project_oblique_polygon(
+            [(u - 0.55, v - 0.12), (u + 0.55, v - 0.12), (u + 0.55, v + 0.12), (u - 0.55, v + 0.12)],
+            h=0.38,
+        )
+        _draw_polygon_patch(ax, seat, facecolor=style.furniture_fill, edgecolor="white", linewidth=0.5, zorder=8.35)
+        return
+    if category == "bus_stop":
+        canopy = _project_oblique_polygon(
+            [(u - 1.2, v - 0.28), (u + 1.2, v - 0.28), (u + 1.2, v + 0.28), (u - 1.2, v + 0.28)],
+            h=1.15,
+        )
+        _draw_polygon_patch(ax, canopy, facecolor=style.bus_fill, edgecolor="white", linewidth=0.55, zorder=8.4)
+        return
+    ax.scatter([ground[0]], [ground[1]], s=18, color=style.furniture_fill, edgecolors="white", linewidths=0.45, zorder=8.2)
+
+
+def _draw_building_windows(
+    ax: Any,
+    left_bottom: Tuple[float, float],
+    right_bottom: Tuple[float, float],
+    left_top: Tuple[float, float],
+    right_top: Tuple[float, float],
+    *,
+    style: AxonometricBoardStyle,
+    floor_count: int,
+    column_count: int,
+) -> None:
+    for row_idx in range(1, max(1, int(floor_count))):
+        t = float(row_idx) / float(max(1, int(floor_count)))
+        start = (
+            left_bottom[0] + (left_top[0] - left_bottom[0]) * t,
+            left_bottom[1] + (left_top[1] - left_bottom[1]) * t,
+        )
+        end = (
+            right_bottom[0] + (right_top[0] - right_bottom[0]) * t,
+            right_bottom[1] + (right_top[1] - right_bottom[1]) * t,
+        )
+        ax.plot([start[0], end[0]], [start[1], end[1]], color=style.window_fill, linewidth=0.5, alpha=0.9, zorder=8.75)
+    for col_idx in range(1, max(1, int(column_count))):
+        t = float(col_idx) / float(max(1, int(column_count)))
+        bottom = (
+            left_bottom[0] + (right_bottom[0] - left_bottom[0]) * t,
+            left_bottom[1] + (right_bottom[1] - left_bottom[1]) * t,
+        )
+        top = (
+            left_top[0] + (right_top[0] - left_top[0]) * t,
+            left_top[1] + (right_top[1] - left_top[1]) * t,
+        )
+        ax.plot([bottom[0], top[0]], [bottom[1], top[1]], color=style.window_fill, linewidth=0.42, alpha=0.72, zorder=8.75)
+
+
+def _render_axonometric_plan_view(
+    layout_payload: Mapping[str, Any],
+    *,
+    out_path: Path,
+    config: StreetComposeConfig,
+) -> Dict[str, str]:
+    plt = _require_matplotlib()
+    if plt is None:
+        return {}
+    style = _AXONOMETRIC_BOARD_STYLE
+    origin_xz = _scene_origin(layout_payload)
+    axis_angle = _street_axis_angle(layout_payload)
+    plan_angle = math.radians(32.0)
+    surface_world = _world_surface_polygons(layout_payload)
+    zone_world = _world_zone_polygons(layout_payload)
+    local_surface = {
+        role: [_localize_polygon(polygon, origin_xz=origin_xz, axis_angle_rad=axis_angle) for polygon in polygons]
+        for role, polygons in surface_world.items()
+    }
+    local_zone = {
+        role: [_localize_polygon(polygon, origin_xz=origin_xz, axis_angle_rad=axis_angle) for polygon in polygons]
+        for role, polygons in zone_world.items()
+    }
+    local_crossings = [
+        _localize_polygon(polygon, origin_xz=origin_xz, axis_angle_rad=axis_angle)
+        for polygon in _crossing_world_polygons(layout_payload)
+    ]
+    building_boxes = _local_building_boxes(layout_payload, origin_xz=origin_xz, axis_angle_rad=axis_angle)
+    local_poi_points = {
+        poi_type: [
+            _localize_point((float(point[0]), float(point[1])), origin_xz=origin_xz, axis_angle_rad=axis_angle)
+            for point in points
+        ]
+        for poi_type, points in nonempty_poi_points(
+            ((layout_payload.get("summary", {}) or {}).get("spatial_context", {}) or {}).get("poi_points_by_type_xz", {}) or {}
+        ).items()
+    }
+    localized_placements = []
+    for placement in layout_payload.get("placements", []) or []:
+        pos = placement.get("position_xyz", []) or []
+        if len(pos) < 3:
+            continue
+        u, v = _localize_point((float(pos[0]), float(pos[2])), origin_xz=origin_xz, axis_angle_rad=axis_angle)
+        localized_placements.append({"category": str(placement.get("category", "") or ""), "u": u, "v": v})
+
+    projected_points: List[Tuple[float, float]] = []
+    for polygons in list(local_surface.values()) + list(local_zone.values()) + [local_crossings]:
+        for polygon in polygons:
+            projected_points.extend(_project_plan_polygon(polygon, angle_rad=plan_angle))
+    for box in building_boxes:
+        projected_points.extend(
+            _project_plan_polygon(
+                [
+                    (box["min_u"], box["min_v"]),
+                    (box["max_u"], box["min_v"]),
+                    (box["max_u"], box["max_v"]),
+                    (box["min_u"], box["max_v"]),
+                ],
+                angle_rad=plan_angle,
+            )
+        )
+    if not projected_points:
+        projected_points = [(-8.0, -4.0), (8.0, 4.0)]
+    min_x, min_y, max_x, max_y = _bbox_from_points(projected_points)
+    margin_x = max(4.0, (max_x - min_x) * 0.14)
+    margin_y = max(4.0, (max_y - min_y) * 0.18)
+
+    fig, ax = plt.subplots(figsize=(10.4, 6.6))
+    ax.set_facecolor(style.background)
+
+    board = [
+        (min_x - margin_x * 0.55, min_y - margin_y * 0.45),
+        (max_x + margin_x * 0.35, min_y - margin_y * 0.45),
+        (max_x + margin_x * 0.35, max_y + margin_y * 0.3),
+        (min_x - margin_x * 0.55, max_y + margin_y * 0.3),
+    ]
+    board_shadow = [(x + style.shadow_offset_x, y + style.shadow_offset_y) for x, y in board]
+    _draw_polygon_patch(ax, board_shadow, facecolor=style.board_shadow, zorder=0.1)
+    _draw_polygon_patch(ax, board, facecolor=style.board_fill, zorder=0.2)
+
+    for polygon in local_zone.get("green_land_use", []):
+        _draw_polygon_patch(ax, _project_plan_polygon(polygon, angle_rad=plan_angle), facecolor=style.green_fill, edgecolor="none", alpha=0.9, zorder=1.0)
+    for polygon in local_surface.get("sidewalk", []):
+        _draw_polygon_patch(ax, _project_plan_polygon(polygon, angle_rad=plan_angle), facecolor=style.sidewalk_fill, edgecolor="none", zorder=1.5)
+    for role in ("left_furnishing", "right_furnishing", "left_transit_edge", "right_transit_edge"):
+        for polygon in local_zone.get(role, []):
+            _draw_polygon_patch(ax, _project_plan_polygon(polygon, angle_rad=plan_angle), facecolor=style.furnishing_fill, edgecolor="none", alpha=0.92, zorder=1.6)
+    for polygon in local_crossings:
+        _draw_polygon_patch(ax, _project_plan_polygon(polygon, angle_rad=plan_angle), facecolor=style.activity_fill, edgecolor=style.accent_edge, linewidth=style.detail_lw, alpha=0.95, zorder=2.0)
+    for polygon in local_surface.get("carriageway", []):
+        _draw_polygon_patch(ax, _project_plan_polygon(polygon, angle_rad=plan_angle), facecolor=style.carriageway_fill, edgecolor="none", zorder=2.2)
+
+    centerline_u_min, centerline_u_max = _centerline_bounds(local_surface.get("carriageway", []))
+    dash_length = max(2.6, min(5.0, (centerline_u_max - centerline_u_min) / 14.0))
+    gap_length = dash_length * 0.72
+    cursor = centerline_u_min + dash_length * 0.5
+    while cursor < centerline_u_max - dash_length * 0.5:
+        start = _project_plan_point(cursor - dash_length * 0.5, 0.0, angle_rad=plan_angle)
+        end = _project_plan_point(cursor + dash_length * 0.5, 0.0, angle_rad=plan_angle)
+        ax.plot([start[0], end[0]], [start[1], end[1]], color=style.lane_mark_fill, linewidth=1.55, solid_capstyle="round", zorder=2.5)
+        cursor += dash_length + gap_length
+
+    for box in building_boxes:
+        polygon = [
+            _project_plan_point(box["min_u"], box["min_v"], angle_rad=plan_angle),
+            _project_plan_point(box["max_u"], box["min_v"], angle_rad=plan_angle),
+            _project_plan_point(box["max_u"], box["max_v"], angle_rad=plan_angle),
+            _project_plan_point(box["min_u"], box["max_v"], angle_rad=plan_angle),
+        ]
+        shadow = [(x + style.shadow_offset_x * 0.55, y + style.shadow_offset_y * 0.45) for x, y in polygon]
+        _draw_polygon_patch(ax, shadow, facecolor=(0.0, 0.0, 0.0, 0.08), zorder=3.0)
+        _draw_polygon_patch(ax, polygon, facecolor=style.facade_fill, edgecolor=style.outline, linewidth=style.outline_lw, zorder=3.2)
+        center_u = (box["min_u"] + box["max_u"]) / 2.0
+        center_v = (box["min_v"] + box["max_v"]) / 2.0
+        inset_u = max(0.45, (box["max_u"] - box["min_u"]) * 0.11)
+        inset_v = max(0.28, (box["max_v"] - box["min_v"]) * 0.14)
+        roof_strip = [
+            _project_plan_point(box["min_u"] + inset_u, box["min_v"] + inset_v, angle_rad=plan_angle),
+            _project_plan_point(box["max_u"] - inset_u, box["min_v"] + inset_v, angle_rad=plan_angle),
+            _project_plan_point(box["max_u"] - inset_u, box["max_v"] - inset_v, angle_rad=plan_angle),
+            _project_plan_point(box["min_u"] + inset_u, box["max_v"] - inset_v, angle_rad=plan_angle),
+        ]
+        _draw_polygon_patch(ax, roof_strip, facecolor=style.roof_fill, edgecolor="none", alpha=0.8, zorder=3.3)
+
+    summary = dict(layout_payload.get("summary", {}) or {})
+    road_width = float(summary.get("road_width_m", 8.0))
+    sidewalk_width = float(summary.get("sidewalk_width_m", 2.5))
+    vehicle_specs = _ambient_vehicle_specs(
+        u_min=centerline_u_min,
+        u_max=centerline_u_max,
+        road_width_m=road_width,
+        lane_count=int(getattr(config, "lane_count", 2) or 2),
+        include_bus=bool(local_poi_points.get("bus_stop")),
+    )
+    for spec in vehicle_specs:
+        _draw_plan_vehicle(
+            ax,
+            float(spec["u"]),
+            float(spec["v"]),
+            length_m=float(spec["length_m"]),
+            width_m=float(spec["width_m"]),
+            plan_angle_rad=plan_angle,
+            facecolor=style.bus_fill if str(spec.get("kind", "car")) == "bus" else style.vehicle_fill,
+            style=style,
+        )
+
+    people_points = _ambient_people_points(
+        poi_points_local=local_poi_points,
+        u_min=centerline_u_min,
+        u_max=centerline_u_max,
+        road_width_m=road_width,
+        sidewalk_width_m=sidewalk_width,
+    )
+    for u, v in people_points:
+        x, y = _project_plan_point(u, v, angle_rad=plan_angle)
+        _draw_plan_person(ax, x, y, style=style)
+
+    for placement in localized_placements:
+        _draw_plan_furniture(
+            ax,
+            float(placement["u"]),
+            float(placement["v"]),
+            category=str(placement["category"]),
+            plan_angle_rad=plan_angle,
+            style=style,
+        )
+
+    ax.set_xlim(min_x - margin_x, max_x + margin_x)
+    ax.set_ylim(min_y - margin_y, max_y + margin_y)
+    ax.set_aspect("equal")
+    ax.set_xticks([])
+    ax.set_yticks([])
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+    fig.subplots_adjust(left=0, right=1, top=1, bottom=0)
+    _save_fig_to_path(fig, out_path, dpi=220, facecolor=style.background)
+    plt.close(fig)
+    return {"name": "final_plan_axonometric", "title": "Final Plan Axonometric", "path": str(Path(out_path).resolve())}
+
+
+def _render_axonometric_oblique_view(
+    layout_payload: Mapping[str, Any],
+    *,
+    out_path: Path,
+    config: StreetComposeConfig,
+) -> Dict[str, str]:
+    plt = _require_matplotlib()
+    if plt is None:
+        return {}
+    style = _AXONOMETRIC_BOARD_STYLE
+    origin_xz = _scene_origin(layout_payload)
+    axis_angle = _street_axis_angle(layout_payload)
+    surface_world = _world_surface_polygons(layout_payload)
+    zone_world = _world_zone_polygons(layout_payload)
+    local_surface = {
+        role: [_localize_polygon(polygon, origin_xz=origin_xz, axis_angle_rad=axis_angle) for polygon in polygons]
+        for role, polygons in surface_world.items()
+    }
+    local_zone = {
+        role: [_localize_polygon(polygon, origin_xz=origin_xz, axis_angle_rad=axis_angle) for polygon in polygons]
+        for role, polygons in zone_world.items()
+    }
+    local_crossings = [
+        _localize_polygon(polygon, origin_xz=origin_xz, axis_angle_rad=axis_angle)
+        for polygon in _crossing_world_polygons(layout_payload)
+    ]
+    building_boxes = _local_building_boxes(layout_payload, origin_xz=origin_xz, axis_angle_rad=axis_angle)
+    localized_placements = []
+    for placement in layout_payload.get("placements", []) or []:
+        pos = placement.get("position_xyz", []) or []
+        if len(pos) < 3:
+            continue
+        u, v = _localize_point((float(pos[0]), float(pos[2])), origin_xz=origin_xz, axis_angle_rad=axis_angle)
+        localized_placements.append({"category": str(placement.get("category", "") or ""), "u": u, "v": v})
+    local_poi_points = {
+        poi_type: [
+            _localize_point((float(point[0]), float(point[1])), origin_xz=origin_xz, axis_angle_rad=axis_angle)
+            for point in points
+        ]
+        for poi_type, points in nonempty_poi_points(
+            ((layout_payload.get("summary", {}) or {}).get("spatial_context", {}) or {}).get("poi_points_by_type_xz", {}) or {}
+        ).items()
+    }
+
+    projected_points: List[Tuple[float, float]] = []
+    for polygons in list(local_surface.values()) + list(local_zone.values()) + [local_crossings]:
+        for polygon in polygons:
+            projected_points.extend(_project_oblique_polygon(polygon, h=0.0))
+    for box in building_boxes:
+        projected_points.extend(
+            _project_oblique_polygon(
+                [
+                    (box["min_u"], box["min_v"]),
+                    (box["max_u"], box["min_v"]),
+                    (box["max_u"], box["max_v"]),
+                    (box["min_u"], box["max_v"]),
+                ],
+                h=min(max(float(box["height_m"]) * 0.12, 2.8), 6.6),
+            )
+        )
+    if not projected_points:
+        projected_points = [(-8.0, -4.0), (8.0, 4.0)]
+    min_x, min_y, max_x, max_y = _bbox_from_points(projected_points)
+    margin_x = max(5.0, (max_x - min_x) * 0.18)
+    margin_y = max(3.8, (max_y - min_y) * 0.22)
+
+    fig, ax = plt.subplots(figsize=(10.8, 6.8))
+    ax.set_facecolor(style.background)
+
+    board_uv = [
+        (min(point[0] for polygon in local_surface.get("sidewalk", []) + local_surface.get("carriageway", []) for point in polygon) - 4.0,
+         min(point[1] for polygon in local_surface.get("sidewalk", []) + local_surface.get("carriageway", []) for point in polygon) - 4.0),
+        (max(point[0] for polygon in local_surface.get("sidewalk", []) + local_surface.get("carriageway", []) for point in polygon) + 4.0,
+         min(point[1] for polygon in local_surface.get("sidewalk", []) + local_surface.get("carriageway", []) for point in polygon) - 4.0),
+        (max(point[0] for polygon in local_surface.get("sidewalk", []) + local_surface.get("carriageway", []) for point in polygon) + 4.0,
+         max(point[1] for polygon in local_surface.get("sidewalk", []) + local_surface.get("carriageway", []) for point in polygon) + 4.5),
+        (min(point[0] for polygon in local_surface.get("sidewalk", []) + local_surface.get("carriageway", []) for point in polygon) - 4.0,
+         max(point[1] for polygon in local_surface.get("sidewalk", []) + local_surface.get("carriageway", []) for point in polygon) + 4.5),
+    ] if (local_surface.get("sidewalk") or local_surface.get("carriageway")) else [(-20.0, -8.0), (20.0, -8.0), (20.0, 8.0), (-20.0, 8.0)]
+    board = _project_oblique_polygon(board_uv, h=-0.15)
+    board_shadow = [(x + style.shadow_offset_x, y + style.shadow_offset_y) for x, y in board]
+    _draw_polygon_patch(ax, board_shadow, facecolor=style.board_shadow, zorder=0.1)
+    _draw_polygon_patch(ax, board, facecolor=style.board_fill, zorder=0.2)
+
+    for polygon in local_zone.get("green_land_use", []):
+        _draw_polygon_patch(ax, _project_oblique_polygon(polygon, h=0.0), facecolor=style.green_fill, edgecolor="none", alpha=0.92, zorder=1.0)
+    for polygon in local_surface.get("sidewalk", []):
+        _draw_polygon_patch(ax, _project_oblique_polygon(polygon, h=0.0), facecolor=style.sidewalk_fill, edgecolor="none", zorder=1.4)
+    for role in ("left_furnishing", "right_furnishing", "left_transit_edge", "right_transit_edge"):
+        for polygon in local_zone.get(role, []):
+            _draw_polygon_patch(ax, _project_oblique_polygon(polygon, h=0.01), facecolor=style.furnishing_fill, edgecolor="none", alpha=0.96, zorder=1.6)
+    for polygon in local_crossings:
+        _draw_polygon_patch(ax, _project_oblique_polygon(polygon, h=0.02), facecolor=style.activity_fill, edgecolor=style.accent_edge, linewidth=style.detail_lw, alpha=0.95, zorder=1.8)
+    for polygon in local_surface.get("carriageway", []):
+        _draw_polygon_patch(ax, _project_oblique_polygon(polygon, h=0.0), facecolor=style.carriageway_fill, edgecolor="none", zorder=2.0)
+
+    centerline_u_min, centerline_u_max = _centerline_bounds(local_surface.get("carriageway", []))
+    dash_length = max(2.6, min(5.0, (centerline_u_max - centerline_u_min) / 14.0))
+    gap_length = dash_length * 0.72
+    cursor = centerline_u_min + dash_length * 0.5
+    while cursor < centerline_u_max - dash_length * 0.5:
+        start = _project_oblique_point(cursor - dash_length * 0.5, 0.0, 0.03)
+        end = _project_oblique_point(cursor + dash_length * 0.5, 0.0, 0.03)
+        ax.plot([start[0], end[0]], [start[1], end[1]], color=style.lane_mark_fill, linewidth=1.4, solid_capstyle="round", zorder=2.3)
+        cursor += dash_length + gap_length
+
+    building_boxes = sorted(building_boxes, key=lambda item: (item["min_u"] + item["max_u"]) / 2.0, reverse=True)
+    for box in building_boxes:
+        min_u = float(box["min_u"])
+        max_u = float(box["max_u"])
+        min_v = float(box["min_v"])
+        max_v = float(box["max_v"])
+        display_h = min(max(float(box["height_m"]) * 0.12, 2.8), 6.6)
+        roof = _project_oblique_polygon(
+            [(min_u, min_v), (max_u, min_v), (max_u, max_v), (min_u, max_v)],
+            h=display_h,
+        )
+        street_face_v = min_v if ((min_v + max_v) / 2.0) >= 0.0 else max_v
+        street_face = _project_oblique_polygon(
+            [(min_u, street_face_v), (max_u, street_face_v), (max_u, street_face_v), (min_u, street_face_v)],
+            h=0.0,
+        )
+        street_face_top = _project_oblique_polygon(
+            [(min_u, street_face_v), (max_u, street_face_v), (max_u, street_face_v), (min_u, street_face_v)],
+            h=display_h,
+        )
+        near_end = _project_oblique_polygon(
+            [(min_u, min_v), (min_u, max_v), (min_u, max_v), (min_u, min_v)],
+            h=0.0,
+        )
+        near_end_top = _project_oblique_polygon(
+            [(min_u, min_v), (min_u, max_v), (min_u, max_v), (min_u, min_v)],
+            h=display_h,
+        )
+        street_quad = [street_face[0], street_face[1], street_face_top[1], street_face_top[0]]
+        end_quad = [near_end[0], near_end[1], near_end_top[1], near_end_top[0]]
+        _draw_polygon_patch(ax, end_quad, facecolor=style.facade_shadow_fill, edgecolor=style.outline, linewidth=style.detail_lw, zorder=4.0)
+        _draw_polygon_patch(ax, street_quad, facecolor=style.facade_fill, edgecolor=style.outline, linewidth=style.detail_lw, zorder=4.1)
+        _draw_polygon_patch(ax, roof, facecolor=style.roof_fill, edgecolor=style.outline, linewidth=style.detail_lw, zorder=4.2)
+        floor_count = max(2, min(7, int(round(display_h / 0.9))))
+        facade_cols = max(3, min(9, int(round((max_u - min_u) / 2.0))))
+        end_cols = max(2, min(4, int(round(abs(max_v - min_v) / 2.0))))
+        _draw_building_windows(ax, street_quad[0], street_quad[1], street_quad[3], street_quad[2], style=style, floor_count=floor_count, column_count=facade_cols)
+        _draw_building_windows(ax, end_quad[0], end_quad[1], end_quad[3], end_quad[2], style=style, floor_count=floor_count, column_count=end_cols)
+
+    summary = dict(layout_payload.get("summary", {}) or {})
+    road_width = float(summary.get("road_width_m", 8.0))
+    sidewalk_width = float(summary.get("sidewalk_width_m", 2.5))
+    vehicle_specs = _ambient_vehicle_specs(
+        u_min=centerline_u_min,
+        u_max=centerline_u_max,
+        road_width_m=road_width,
+        lane_count=int(getattr(config, "lane_count", 2) or 2),
+        include_bus=bool(local_poi_points.get("bus_stop")),
+    )
+    for spec in vehicle_specs:
+        _draw_oblique_vehicle(
+            ax,
+            float(spec["u"]),
+            float(spec["v"]),
+            length_m=float(spec["length_m"]),
+            width_m=float(spec["width_m"]),
+            facecolor=style.bus_fill if str(spec.get("kind", "car")) == "bus" else style.vehicle_fill,
+            style=style,
+        )
+
+    people_points = _ambient_people_points(
+        poi_points_local=local_poi_points,
+        u_min=centerline_u_min,
+        u_max=centerline_u_max,
+        road_width_m=road_width,
+        sidewalk_width_m=sidewalk_width,
+    )
+    for u, v in people_points:
+        _draw_oblique_person(ax, u, v, style=style)
+
+    for placement in localized_placements:
+        _draw_oblique_furniture(
+            ax,
+            float(placement["u"]),
+            float(placement["v"]),
+            category=str(placement["category"]),
+            style=style,
+        )
+
+    ax.set_xlim(min_x - margin_x, max_x + margin_x)
+    ax.set_ylim(min_y - margin_y, max_y + margin_y)
+    ax.set_aspect("equal")
+    ax.set_xticks([])
+    ax.set_yticks([])
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+    fig.subplots_adjust(left=0, right=1, top=1, bottom=0)
+    _save_fig_to_path(fig, out_path, dpi=220, facecolor=style.background)
+    plt.close(fig)
+    return {"name": "final_oblique_45_axonometric", "title": "Final Oblique 45 Axonometric", "path": str(Path(out_path).resolve())}
+
+
 def _layout_bounds(layout_payload: Mapping[str, Any]) -> Tuple[float, float, float, float]:
     summary = dict(layout_payload.get("summary", {}) or {})
     osm_geometry = dict(summary.get("osm_geometry", {}) or {})
@@ -808,6 +1742,98 @@ def _layout_bounds(layout_payload: Mapping[str, Any]) -> Tuple[float, float, flo
     road_width_m = float(summary.get("road_width_m", 8.0))
     sidewalk_width_m = float(summary.get("sidewalk_width_m", 2.5))
     return (-length_m / 2.0 - 4.0, -(road_width_m / 2.0 + sidewalk_width_m + 4.0), length_m / 2.0 + 4.0, road_width_m / 2.0 + sidewalk_width_m + 4.0)
+
+
+def _building_polygons_with_height(layout_payload: Mapping[str, Any]) -> List[Tuple[Tuple[Tuple[float, float], ...], float]]:
+    polygons: List[Tuple[Tuple[Tuple[float, float], ...], float]] = []
+    for item in layout_payload.get("building_footprints", []) or []:
+        polygon = tuple(
+            (float(point[0]), float(point[1]))
+            for point in (item.get("polygon_xz", []) or [])
+            if len(point) >= 2
+        )
+        if len(polygon) >= 4:
+            polygons.append((polygon, float(item.get("target_height_m", 18.0) or 18.0)))
+    if polygons:
+        return polygons
+    for item in layout_payload.get("generated_lots", []) or []:
+        polygon = tuple(
+            (float(point[0]), float(point[1]))
+            for point in (item.get("polygon_xz", []) or [])
+            if len(point) >= 2
+        )
+        if len(polygon) >= 4:
+            polygons.append((polygon, float(item.get("target_height_m", 16.0) or 16.0)))
+    return polygons
+
+
+def _save_fig_to_path(fig, out_path: Path, *, dpi: int = 180, facecolor: str = "white") -> None:
+    out_path = Path(out_path).resolve()
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(out_path, dpi=dpi, bbox_inches="tight", facecolor=facecolor)
+
+
+def _watercolorize_image(
+    source_path: Path,
+    *,
+    out_path: Path,
+    paper_rgb: Tuple[int, int, int] = (246, 241, 232),
+    blur_radius: float = 1.4,
+    posterize_bits: int = 5,
+    paper_noise: float = 10.0,
+    paper_blend: float = 0.82,
+    edge_blur_radius: float = 0.9,
+    edge_strength: float = 0.28,
+    bloom_radius: float = 1.8,
+    bloom_blend: float = 0.18,
+    color_boost: float = 0.82,
+    contrast_boost: float = 0.96,
+    vignette_strength: float = 0.12,
+    ink_rgb: Tuple[int, int, int] = (78, 69, 58),
+) -> bool:
+    pillow = _require_pillow()
+    if pillow is None:
+        return False
+    Image, ImageChops, ImageEnhance, ImageFilter, ImageOps = pillow
+    try:
+        image = Image.open(Path(source_path).resolve()).convert("RGBA")
+    except Exception:
+        return False
+    rgb = image.convert("RGB")
+    wash = rgb.filter(ImageFilter.SMOOTH_MORE).filter(ImageFilter.GaussianBlur(radius=float(blur_radius)))
+    wash = ImageOps.posterize(wash, int(posterize_bits))
+    wash = wash.filter(ImageFilter.ModeFilter(size=3))
+
+    noise = Image.effect_noise(image.size, float(paper_noise)).convert("L")
+    noise = ImageOps.autocontrast(noise)
+    paper = ImageOps.colorize(
+        noise,
+        black=tuple(max(0, channel - 18) for channel in paper_rgb),
+        white=paper_rgb,
+    ).convert("RGBA")
+    blended = Image.blend(paper, wash.convert("RGBA"), float(paper_blend))
+
+    edges = wash.convert("L").filter(ImageFilter.FIND_EDGES).filter(ImageFilter.GaussianBlur(radius=float(edge_blur_radius)))
+    edge_alpha = ImageOps.invert(edges).point(lambda value: int(max(0, min(255, (255 - value) * float(edge_strength)))))
+    ink = Image.new("RGBA", image.size, (int(ink_rgb[0]), int(ink_rgb[1]), int(ink_rgb[2]), 0))
+    ink.putalpha(edge_alpha)
+    blended.alpha_composite(ink)
+
+    bloom = blended.filter(ImageFilter.GaussianBlur(radius=float(bloom_radius)))
+    blended = Image.blend(blended, bloom, float(bloom_blend))
+    toned = ImageEnhance.Color(blended.convert("RGB")).enhance(float(color_boost)).convert("RGBA")
+    toned = ImageEnhance.Contrast(toned.convert("RGB")).enhance(float(contrast_boost)).convert("RGBA")
+
+    vignette = Image.radial_gradient("L").resize(image.size)
+    vignette = ImageOps.invert(vignette).point(lambda value: int(value * float(vignette_strength)))
+    vignette_layer = Image.new("RGBA", image.size, (255, 249, 240, 0))
+    vignette_layer.putalpha(vignette)
+    toned.alpha_composite(vignette_layer)
+
+    out_path = Path(out_path).resolve()
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    toned.save(out_path)
+    return True
 
 
 def _draw_ground(ax: Any, layout_payload: Mapping[str, Any], palette: Mapping[str, Tuple[int, int, int, int]]) -> None:
@@ -925,6 +1951,138 @@ def _plot_hero_view(fig, ax: Any, layout_payload: Mapping[str, Any], palette: Ma
     fig.tight_layout()
 
 
+def _project_polygon_iso(
+    polygon_xz: Sequence[Tuple[float, float]],
+    *,
+    h: float,
+    view_sign: float,
+) -> List[Tuple[float, float]]:
+    return [_project_iso(float(x), float(z), float(h), float(view_sign)) for x, z in polygon_xz]
+
+
+def _plot_watercolor_oblique_view(
+    fig,
+    ax: Any,
+    layout_payload: Mapping[str, Any],
+    palette: Mapping[str, Tuple[int, int, int, int]],
+    *,
+    title: str,
+    view_sign: float = 1.0,
+) -> None:
+    from matplotlib.patches import Polygon as MplPolygon
+
+    summary = dict(layout_payload.get("summary", {}) or {})
+    bounds = _layout_bounds(layout_payload)
+    osm_geometry = dict(summary.get("osm_geometry", {}) or {})
+    paper_rgb = (246 / 255.0, 241 / 255.0, 232 / 255.0)
+    ax.set_facecolor(paper_rgb)
+
+    if osm_geometry.get("carriageway_rings"):
+        for ring in osm_geometry.get("sidewalk_rings", []) or []:
+            projected = _project_polygon_iso(tuple((float(x), float(z)) for x, z in ring), h=0.0, view_sign=view_sign)
+            if len(projected) >= 3:
+                ax.add_patch(MplPolygon(projected, closed=True, facecolor=[c / 255.0 for c in palette["sidewalk"][:3]], edgecolor="none", alpha=0.90))
+        for ring in osm_geometry.get("carriageway_rings", []) or []:
+            projected = _project_polygon_iso(tuple((float(x), float(z)) for x, z in ring), h=0.0, view_sign=view_sign)
+            if len(projected) >= 3:
+                ax.add_patch(MplPolygon(projected, closed=True, facecolor=[c / 255.0 for c in palette["carriageway"][:3]], edgecolor="none", alpha=0.95))
+    else:
+        road_width = float(summary.get("road_width_m", 8.0))
+        sidewalk_width = float(summary.get("sidewalk_width_m", 2.5))
+        surfaces = [
+            (
+                [
+                    (bounds[0], -road_width / 2.0 - sidewalk_width),
+                    (bounds[2], -road_width / 2.0 - sidewalk_width),
+                    (bounds[2], -road_width / 2.0),
+                    (bounds[0], -road_width / 2.0),
+                ],
+                palette["sidewalk"],
+                0.88,
+            ),
+            (
+                [
+                    (bounds[0], -road_width / 2.0),
+                    (bounds[2], -road_width / 2.0),
+                    (bounds[2], road_width / 2.0),
+                    (bounds[0], road_width / 2.0),
+                ],
+                palette["carriageway"],
+                0.95,
+            ),
+            (
+                [
+                    (bounds[0], road_width / 2.0),
+                    (bounds[2], road_width / 2.0),
+                    (bounds[2], road_width / 2.0 + sidewalk_width),
+                    (bounds[0], road_width / 2.0 + sidewalk_width),
+                ],
+                palette["sidewalk"],
+                0.90,
+            ),
+        ]
+        for polygon, color, alpha in surfaces:
+            projected = _project_polygon_iso(tuple((float(x), float(z)) for x, z in polygon), h=0.0, view_sign=view_sign)
+            ax.add_patch(MplPolygon(projected, closed=True, facecolor=[c / 255.0 for c in color[:3]], edgecolor="none", alpha=alpha))
+
+    buildings = sorted(
+        _building_polygons_with_height(layout_payload),
+        key=lambda item: sum(point[1] for point in item[0]) / max(len(item[0]), 1),
+        reverse=view_sign < 0,
+    )
+    for polygon_xz, target_height_m in buildings:
+        base = _project_polygon_iso(polygon_xz, h=0.0, view_sign=view_sign)
+        display_height = min(max(float(target_height_m) * 0.18, 2.8), 11.0)
+        roof = _project_polygon_iso(polygon_xz, h=display_height, view_sign=view_sign)
+        if len(base) < 3 or len(roof) < 3:
+            continue
+        wall_fill = (214 / 255.0, 203 / 255.0, 190 / 255.0)
+        wall_shadow = (185 / 255.0, 172 / 255.0, 158 / 255.0)
+        roof_fill = (240 / 255.0, 234 / 255.0, 226 / 255.0)
+        for idx in range(len(base) - 1):
+            quad = [base[idx], base[idx + 1], roof[idx + 1], roof[idx]]
+            avg_z = (polygon_xz[idx][1] + polygon_xz[idx + 1][1]) / 2.0
+            alpha = 0.62 if avg_z * view_sign <= 0.0 else 0.48
+            face = wall_fill if avg_z * view_sign <= 0.0 else wall_shadow
+            ax.add_patch(MplPolygon(quad, closed=True, facecolor=face, edgecolor="none", alpha=alpha))
+        ax.add_patch(MplPolygon(roof, closed=True, facecolor=roof_fill, edgecolor=(0.56, 0.52, 0.48, 0.35), linewidth=0.6, alpha=0.92))
+
+    placements = sorted(
+        layout_payload.get("placements", []) or [],
+        key=lambda placement: float((placement.get("position_xyz") or [0.0, 0.0, 0.0])[2]),
+        reverse=view_sign < 0,
+    )
+    category_colors = {
+        "bench": "#a76a3c",
+        "lamp": "#d9b14c",
+        "trash": "#596954",
+        "tree": "#5c8c47",
+        "bus_stop": "#5b82bf",
+        "mailbox": "#9165b7",
+        "hydrant": "#d96b3b",
+        "bollard": "#575757",
+    }
+    for placement in placements:
+        pos = placement.get("position_xyz", []) or []
+        if len(pos) < 3:
+            continue
+        category = str(placement.get("category", "") or "")
+        color = category_colors.get(category, "#777777")
+        h = _PRESENTATION_HEIGHTS.get(category, 1.2)
+        base = _project_iso(float(pos[0]), float(pos[2]), 0.0, view_sign)
+        top = _project_iso(float(pos[0]), float(pos[2]), min(float(h), 5.0), view_sign)
+        ax.plot([base[0], top[0]], [base[1], top[1]], color=color, linewidth=2.2, alpha=0.78)
+        ax.scatter([top[0]], [top[1]], s=70 + h * 18.0, color=color, edgecolors="white", linewidths=0.7, alpha=0.88, zorder=6)
+
+    ax.set_title(title)
+    ax.set_xticks([])
+    ax.set_yticks([])
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+    ax.set_aspect("equal")
+    fig.tight_layout()
+
+
 def render_presentation_views(
     layout_payload: Mapping[str, Any],
     *,
@@ -933,6 +2091,8 @@ def render_presentation_views(
 ) -> List[Dict[str, str]]:
     preset = load_style_preset(getattr(config, "style_preset", None))
     palette = preset.scene_colors
+    pillow = _require_pillow()
+    render_preset = str(getattr(config, "render_preset", "axonometric_board_v1") or "axonometric_board_v1").strip().lower()
     out_dir = Path(out_dir).resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
     view_dir = out_dir / "presentation_views"
@@ -948,6 +2108,7 @@ def render_presentation_views(
         hero_anchor_x = 0.0
 
     topdown_mode = str(getattr(config, "topdown_render_mode", "design_tiles_v1")).strip().lower()
+    plan_base_path: Optional[Path] = None
     if topdown_mode == "design_tiles_v1":
         try:
             from .topdown_render import render_design_topdown
@@ -962,6 +2123,7 @@ def render_presentation_views(
             design_view = None
         if design_view is not None:
             views.append(design_view)
+            plan_base_path = Path(str(design_view["path"])).resolve()
 
     plt = _require_matplotlib()
     if topdown_mode == "legacy_vector" or not views:
@@ -970,24 +2132,101 @@ def render_presentation_views(
         overview_path = view_dir / "overview_top.png"
         fig, ax = plt.subplots(figsize=(7.2, 4.6))
         _plot_top_view(fig, ax, layout_payload, palette, title=f"{preset.display_name} Overview")
-        fig.savefig(overview_path, dpi=180, bbox_inches="tight", facecolor="white")
+        _save_fig_to_path(fig, overview_path, dpi=180, facecolor="white")
         plt.close(fig)
         views.append({"name": "overview_top", "title": "Overview Top", "path": str(overview_path)})
+        plan_base_path = overview_path.resolve()
 
     if plt is None:
         return views
 
+    final_views: List[Dict[str, str]] = []
+    if render_preset == "axonometric_board_v1":
+        final_plan = _render_axonometric_plan_view(
+            layout_payload,
+            out_path=(view_dir / "final_plan_axonometric.png").resolve(),
+            config=config,
+        )
+        if final_plan:
+            final_views.append(final_plan)
+        final_oblique = _render_axonometric_oblique_view(
+            layout_payload,
+            out_path=(view_dir / "final_oblique_45_axonometric.png").resolve(),
+            config=config,
+        )
+        if final_oblique:
+            final_views.append(final_oblique)
+    elif pillow is not None:
+        if plan_base_path is None:
+            plan_base_path = (view_dir / "watercolor_plan_base.png").resolve()
+            fig, ax = plt.subplots(figsize=(8.4, 8.4))
+            _plot_top_view(fig, ax, layout_payload, palette, title=f"{preset.display_name} Watercolor Plan")
+            _save_fig_to_path(fig, plan_base_path, dpi=210, facecolor="white")
+            plt.close(fig)
+        watercolor_plan_path = (view_dir / "final_plan_watercolor.png").resolve()
+        if _watercolorize_image(
+            plan_base_path,
+            out_path=watercolor_plan_path,
+            paper_rgb=(246, 241, 232),
+            blur_radius=1.4,
+            paper_noise=10.0,
+            paper_blend=0.82,
+            edge_blur_radius=0.9,
+            edge_strength=0.28,
+            bloom_radius=1.8,
+            bloom_blend=0.18,
+            color_boost=0.82,
+            contrast_boost=0.96,
+            vignette_strength=0.12,
+            ink_rgb=(78, 69, 58),
+        ):
+            final_views.append({"name": "final_plan_watercolor", "title": "Final Plan Watercolor", "path": str(watercolor_plan_path)})
+
+        oblique_base_path = (view_dir / "watercolor_oblique_45_base.png").resolve()
+        fig, ax = plt.subplots(figsize=(8.8, 5.8))
+        _plot_watercolor_oblique_view(
+            fig,
+            ax,
+            layout_payload,
+            palette,
+            title=f"{preset.display_name} Oblique 45",
+            view_sign=1.0,
+        )
+        _save_fig_to_path(fig, oblique_base_path, dpi=210, facecolor="white")
+        plt.close(fig)
+        watercolor_oblique_path = (view_dir / "final_oblique_45_watercolor.png").resolve()
+        if _watercolorize_image(
+            oblique_base_path,
+            out_path=watercolor_oblique_path,
+            paper_rgb=(245, 239, 231),
+            blur_radius=1.2,
+            paper_noise=9.0,
+            paper_blend=0.80,
+            edge_blur_radius=0.8,
+            edge_strength=0.24,
+            bloom_radius=1.5,
+            bloom_blend=0.16,
+            color_boost=0.80,
+            contrast_boost=0.97,
+            vignette_strength=0.10,
+            ink_rgb=(86, 74, 62),
+        ):
+            final_views.append({"name": "final_oblique_45_watercolor", "title": "Final Oblique 45 Watercolor", "path": str(watercolor_oblique_path)})
+
+    if final_views:
+        views = final_views + views
+
     hero_left_path = view_dir / "hero_left.png"
     fig, ax = plt.subplots(figsize=(7.2, 4.6))
     _plot_hero_view(fig, ax, layout_payload, palette, focus_x=hero_anchor_x - 6.0, view_sign=-1.0, title=f"{preset.display_name} Hero Left")
-    fig.savefig(hero_left_path, dpi=180, bbox_inches="tight", facecolor="white")
+    _save_fig_to_path(fig, hero_left_path, dpi=180, facecolor="white")
     plt.close(fig)
     views.append({"name": "hero_left", "title": "Hero Left", "path": str(hero_left_path)})
 
     hero_right_path = view_dir / "hero_right.png"
     fig, ax = plt.subplots(figsize=(7.2, 4.6))
     _plot_hero_view(fig, ax, layout_payload, palette, focus_x=hero_anchor_x + 6.0, view_sign=1.0, title=f"{preset.display_name} Hero Right")
-    fig.savefig(hero_right_path, dpi=180, bbox_inches="tight", facecolor="white")
+    _save_fig_to_path(fig, hero_right_path, dpi=180, facecolor="white")
     plt.close(fig)
     views.append({"name": "hero_right", "title": "Hero Right", "path": str(hero_right_path)})
 
@@ -1002,7 +2241,7 @@ def render_presentation_views(
         zoom = None
     fig, ax = plt.subplots(figsize=(7.2, 4.6))
     _plot_top_view(fig, ax, layout_payload, palette, zoom=zoom, title="POI / Furniture Focus")
-    fig.savefig(poi_focus_path, dpi=180, bbox_inches="tight", facecolor="white")
+    _save_fig_to_path(fig, poi_focus_path, dpi=180, facecolor="white")
     plt.close(fig)
     views.append({"name": "poi_focus", "title": "POI Focus", "path": str(poi_focus_path)})
     return views

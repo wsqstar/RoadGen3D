@@ -1727,6 +1727,9 @@ def _extract_presentation_views(layout_json_text: str):
             "style_preset": summary.get("style_preset", ""),
             "beauty_mode": summary.get("beauty_mode", ""),
             "render_preset": summary.get("render_preset", ""),
+            "render_preset_used": summary.get("render_preset_used", summary.get("render_preset", "")),
+            "final_render_style": summary.get("final_render_style", ""),
+            "final_render_views": summary.get("final_render_views", []),
             "presentation_score": summary.get("presentation_score", 0.0),
             "style_coherence": summary.get("style_coherence", 0.0),
             "visual_clutter": summary.get("visual_clutter", 0.0),
@@ -2273,7 +2276,7 @@ def run_street_compose(
     road_selection: str = "walkable_neighborhood",
     style_preset: str = "civic_clean_v1",
     beauty_mode: str = "presentation_v1",
-    render_preset: str = "jury_default_v1",
+    render_preset: str = "axonometric_board_v1",
     topdown_render_mode: str = "design_tiles_v1",
     topdown_canvas_px: int = 2048,
     asset_curation_mode: str = "scene_ready_first",
@@ -3106,7 +3109,7 @@ def run_best_model_street(
     road_selection: str = "walkable_neighborhood",
     style_preset: str = "civic_clean_v1",
     beauty_mode: str = "presentation_v1",
-    render_preset: str = "jury_default_v1",
+    render_preset: str = "axonometric_board_v1",
     topdown_render_mode: str = "design_tiles_v1",
     topdown_canvas_px: int = 2048,
     asset_curation_mode: str = "scene_ready_first",
@@ -4231,8 +4234,8 @@ def build_demo() -> gr.Blocks:
                         )
                         render_preset = gr.Dropdown(
                             label="Render Preset",
-                            choices=["jury_default_v1"],
-                            value="jury_default_v1",
+                            choices=["axonometric_board_v1", "jury_default_v1"],
+                            value="axonometric_board_v1",
                         )
                         topdown_render_mode = gr.Dropdown(
                             label="Top-Down Render Mode",

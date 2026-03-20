@@ -325,8 +325,11 @@ def _validate_config(config: StreetComposeConfig) -> None:
         raise ValueError("base_lane_width_m must be > 0 when provided")
     if str(getattr(config, "beauty_mode", "presentation_v1")).strip().lower() not in {"presentation_v1"}:
         raise ValueError("beauty_mode must be 'presentation_v1'")
-    if str(getattr(config, "render_preset", "jury_default_v1")).strip().lower() not in {"jury_default_v1"}:
-        raise ValueError("render_preset must be 'jury_default_v1'")
+    if str(getattr(config, "render_preset", "axonometric_board_v1")).strip().lower() not in {
+        "axonometric_board_v1",
+        "jury_default_v1",
+    }:
+        raise ValueError("render_preset must be 'axonometric_board_v1' or 'jury_default_v1'")
     if str(getattr(config, "topdown_render_mode", "design_tiles_v1")).strip().lower() not in {
         "legacy_vector",
         "design_tiles_v1",
@@ -1103,6 +1106,7 @@ def _build_base_scene(
         road_center_z_m=0.0,
         road_yaw_deg=0.0,
         lane_count=lane_count,
+        road_coords=_road_reference_coords(street_program) if street_program is not None else (),
         color=colors.get("lane_mark", (245, 245, 245, 255)),
         roughness=(roughness or {}).get("lane_mark", 0.30),
         texture_mode=texture_mode,
@@ -1178,6 +1182,55 @@ def _road_pose_from_context(placement_ctx: object | None, fallback_length_m: flo
     return (0.0, 0.0, 0.0, float(fallback_length_m))
 
 
+def _road_reference_coords(source: object | None) -> Tuple[Tuple[float, float], ...]:
+    road_reference = getattr(source, "road_reference", None)
+    coords = tuple(
+        (float(point[0]), float(point[1]))
+        for point in (getattr(road_reference, "coords", []) or [])
+        if len(point) >= 2
+    )
+    if len(coords) >= 2:
+        return coords
+    return tuple()
+
+
+def _polyline_length_m(coords: Sequence[Tuple[float, float]]) -> float:
+    total = 0.0
+    for start, end in zip(coords, coords[1:]):
+        total += math.hypot(float(end[0]) - float(start[0]), float(end[1]) - float(start[1]))
+    return float(total)
+
+
+def _polyline_pose_at_distance(
+    coords: Sequence[Tuple[float, float]],
+    distance_m: float,
+) -> Tuple[float, float, float]:
+    clamped_distance = max(float(distance_m), 0.0)
+    traversed = 0.0
+    for start, end in zip(coords, coords[1:]):
+        dx = float(end[0]) - float(start[0])
+        dz = float(end[1]) - float(start[1])
+        segment_length = math.hypot(dx, dz)
+        if segment_length <= 1e-6:
+            continue
+        if traversed + segment_length >= clamped_distance:
+            local_t = (clamped_distance - traversed) / segment_length
+            x_m = float(start[0]) + dx * local_t
+            z_m = float(start[1]) + dz * local_t
+            yaw_deg = math.degrees(math.atan2(dz, dx))
+            return float(x_m), float(z_m), float(yaw_deg)
+        traversed += segment_length
+    if len(coords) >= 2:
+        start = coords[-2]
+        end = coords[-1]
+        return (
+            float(end[0]),
+            float(end[1]),
+            float(math.degrees(math.atan2(float(end[1]) - float(start[1]), float(end[0]) - float(start[0])))),
+        )
+    return (0.0, 0.0, 0.0)
+
+
 def _add_road_box(
     scene,
     *,
@@ -1227,6 +1280,7 @@ def _add_centerline_markings(
     road_center_z_m: float,
     road_yaw_deg: float,
     lane_count: int | None,
+    road_coords: Sequence[Tuple[float, float]] | None = None,
     color: Sequence[int],
     roughness: float,
     texture_mode: str = "topdown_tiles_v1",
@@ -1239,6 +1293,35 @@ def _add_centerline_markings(
         return
     dash_length_m = 2.4
     dash_gap_m = 3.6
+    coords = tuple((float(point[0]), float(point[1])) for point in (road_coords or ()))
+    if len(coords) >= 2:
+        road_length_m = max(float(road_length_m), _polyline_length_m(coords))
+        dash_distance = 2.4
+        dash_idx = 0
+        while dash_distance < float(road_length_m) - 1.6:
+            center_distance = dash_distance + dash_length_m / 2.0
+            center_x_m, center_z_m, yaw_deg = _polyline_pose_at_distance(coords, center_distance)
+            _add_road_box(
+                scene,
+                length_m=dash_length_m,
+                width_m=0.14,
+                height_m=0.01,
+                local_x_m=0.0,
+                local_z_m=0.0,
+                road_center_x_m=center_x_m,
+                road_center_z_m=center_z_m,
+                road_yaw_deg=yaw_deg,
+                y_min_m=0.004,
+                color=color,
+                surface_role="lane_mark",
+                node_name=f"centerline_mark_{dash_idx}",
+                roughness=roughness,
+                texture_mode=texture_mode,
+                texture_tracker=texture_tracker,
+            )
+            dash_idx += 1
+            dash_distance += dash_length_m + dash_gap_m
+        return
     dash_x = -float(road_length_m) / 2.0 + 2.4
     dash_idx = 0
     while dash_x < float(road_length_m) / 2.0 - 1.6:
@@ -1963,6 +2046,22 @@ def _build_production_steps(
     return tuple(records)
 
 
+def _preferred_final_render_companion_path(render_views: Sequence[Mapping[str, Any]]) -> str:
+    preferred_names = (
+        "final_oblique_45_axonometric",
+        "final_plan_axonometric",
+        "final_oblique_45_watercolor",
+        "final_plan_watercolor",
+    )
+    for name in preferred_names:
+        for view in render_views:
+            view_name = str(view.get("name", "") or "").strip()
+            view_path = str(view.get("path", "") or "").strip()
+            if view_name == name and view_path:
+                return view_path
+    return ""
+
+
 # ---------------------------------------------------------------------------
 # M5: OSM pose sampling and scene building
 # ---------------------------------------------------------------------------
@@ -2153,6 +2252,7 @@ def _build_osm_base_scene(
         road_center_z_m=float(road_center_z_m),
         road_yaw_deg=float(road_yaw_deg),
         lane_count=None,
+        road_coords=_road_reference_coords(placement_ctx),
         color=colors.get("lane_mark", (245, 245, 245, 255)),
         roughness=(roughness or {}).get("lane_mark", 0.30),
         texture_mode=texture_mode,
@@ -5485,7 +5585,7 @@ def compose_street_scene(
             resolved_program.context_conditions.get("style_preset", getattr(config, "style_preset", "civic_clean_v1"))
         ),
         "beauty_mode": str(getattr(config, "beauty_mode", "presentation_v1")),
-        "render_preset": str(getattr(config, "render_preset", "jury_default_v1")),
+        "render_preset": str(getattr(config, "render_preset", "axonometric_board_v1")),
         "asset_curation_mode": str(getattr(config, "asset_curation_mode", "scene_ready_first")),
         "tree_assets_unavailable": bool(tree_assets_unavailable),
         "tree_inventory_raw_count": int(raw_tree_inventory_count),
@@ -5647,6 +5747,37 @@ def compose_street_scene(
     )
     render_views = render_presentation_views(layout_payload, out_dir=out_dir, config=config)
     layout_payload["summary"]["render_views"] = render_views
+    render_preset_used = str(getattr(config, "render_preset", "axonometric_board_v1") or "axonometric_board_v1")
+    final_render_views = [
+        {
+            "name": str(view.get("name", "") or ""),
+            "title": str(view.get("title", "") or ""),
+            "path": str(view.get("path", "") or ""),
+        }
+        for view in render_views
+        if str(view.get("name", "") or "").startswith("final_")
+    ]
+    layout_payload["summary"]["render_preset_used"] = render_preset_used
+    layout_payload["summary"]["final_render_views"] = final_render_views
+    layout_payload["summary"]["final_render_style"] = (
+        "axonometric_board"
+        if render_preset_used.strip().lower() == "axonometric_board_v1"
+        else "jury_default"
+    )
+    preferred_final_companion_path = _preferred_final_render_companion_path(render_views)
+    if preferred_final_companion_path:
+        production_steps = tuple(
+            replace(record, companion_path=preferred_final_companion_path)
+            if str(record.step_id).strip() == "scene_preview"
+            else record
+            for record in production_steps
+        )
+        layout_payload["production_steps"] = [record.to_dict() for record in production_steps]
+        if production_steps_manifest.exists():
+            production_steps_manifest.write_text(
+                json.dumps([record.to_dict() for record in production_steps], indent=2, ensure_ascii=True),
+                encoding="utf-8",
+            )
     for view in render_views:
         if str(view.get("path", "")).strip():
             outputs[f"presentation_{view.get('name', 'view')}"] = str(view["path"])

@@ -37,7 +37,7 @@ def _config(**overrides) -> StreetComposeConfig:
         "max_trials_per_slot": 20,
         "style_preset": "transit_modern_v1",
         "beauty_mode": "presentation_v1",
-        "render_preset": "jury_default_v1",
+        "render_preset": "axonometric_board_v1",
         "asset_curation_mode": "curated_first",
     }
     base.update(overrides)
@@ -160,16 +160,57 @@ def test_render_presentation_views_outputs_expected_pngs(tmp_path: Path):
         ],
     }
     views = render_presentation_views(payload, out_dir=tmp_path, config=_config(style_preset="civic_clean_v1"))
-    assert len(views) == 4
+    assert len(views) == 6
+    assert [view["name"] for view in views[:2]] == [
+        "final_plan_axonometric",
+        "final_oblique_45_axonometric",
+    ]
     for view in views:
         assert Path(view["path"]).exists()
         assert Path(view["path"]).suffix == ".png"
+    final_plan_view = next(view for view in views if view["name"] == "final_plan_axonometric")
+    final_oblique_view = next(view for view in views if view["name"] == "final_oblique_45_axonometric")
     design_view = next(view for view in views if view["name"] == "overview_top_design")
     from PIL import Image
+
+    final_plan_image = Image.open(final_plan_view["path"]).convert("RGBA")
+    assert final_plan_image.size[0] > 500
+    assert final_plan_image.size[1] > 500
+    assert len(final_plan_image.getcolors(maxcolors=1_000_000) or []) > 32
+
+    final_oblique_image = Image.open(final_oblique_view["path"]).convert("RGBA")
+    assert final_oblique_image.size[0] > 500
+    assert final_oblique_image.size[1] > 300
+    assert len(final_oblique_image.getcolors(maxcolors=1_000_000) or []) > 32
 
     image = Image.open(design_view["path"]).convert("RGBA")
     assert image.size == (2048, 2048)
     assert len(image.getcolors(maxcolors=1_000_000) or []) > 32
+
+
+def test_render_presentation_views_jury_default_keeps_watercolor_final_views(tmp_path: Path):
+    pytest.importorskip("matplotlib")
+    pytest.importorskip("PIL")
+    payload = {
+        "summary": {
+            "style_preset": "civic_clean_v1",
+            "road_width_m": 8.0,
+            "sidewalk_width_m": 2.5,
+        },
+        "placements": [
+            {"instance_id": "inst_1", "category": "tree", "position_xyz": [1.0, 0.0, 4.4]},
+            {"instance_id": "inst_2", "category": "lamp", "position_xyz": [8.0, 0.0, -4.4]},
+        ],
+    }
+    views = render_presentation_views(
+        payload,
+        out_dir=tmp_path,
+        config=_config(style_preset="civic_clean_v1", render_preset="jury_default_v1"),
+    )
+    assert [view["name"] for view in views[:2]] == [
+        "final_plan_watercolor",
+        "final_oblique_45_watercolor",
+    ]
 
 
 def test_render_presentation_views_legacy_mode_falls_back_to_vector_overview(tmp_path: Path):

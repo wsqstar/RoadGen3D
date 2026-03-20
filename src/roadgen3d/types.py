@@ -76,7 +76,7 @@ class StreetComposeConfig:
     base_lane_width_m: Optional[float] = None
     beauty_mode: str = "presentation_v1"
     style_preset: str = "civic_clean_v1"
-    render_preset: str = "jury_default_v1"
+    render_preset: str = "axonometric_board_v1"
     topdown_render_mode: str = "design_tiles_v1"  # "legacy_vector" | "design_tiles_v1"
     scene_texture_mode: str = "topdown_tiles_v1"  # "topdown_tiles_v1" | "solid_color_legacy"
     topdown_canvas_px: int = 2048

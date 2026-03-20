@@ -376,6 +376,8 @@ def test_build_demo_street_defaults_are_procedural_first():
     assert dropdown_props["Bike Demand"]["value"] == "low"
     assert dropdown_props["Transit Demand"]["value"] == "medium"
     assert dropdown_props["Vehicle Demand"]["value"] == "medium"
+    assert dropdown_props["Render Preset"]["value"] == "axonometric_board_v1"
+    assert ("jury_default_v1", "jury_default_v1") in dropdown_props["Render Preset"]["choices"]
     assert dropdown_props["Tree Species Policy"]["value"] == "per_theme_single_species"
     assert dropdown_props["Furniture Balance Policy"]["value"] == "overall_balanced"
     assert dropdown_props["Placement Logging"]["value"] == "full_with_ui_summary"
@@ -717,7 +719,10 @@ def test_extract_presentation_views_returns_gallery_and_report(tmp_path: Path):
         "summary": {
             "style_preset": "civic_clean_v1",
             "beauty_mode": "presentation_v1",
-            "render_preset": "jury_default_v1",
+            "render_preset": "axonometric_board_v1",
+            "render_preset_used": "axonometric_board_v1",
+            "final_render_style": "axonometric_board",
+            "final_render_views": [],
             "presentation_score": 0.82,
             "style_coherence": 0.78,
             "visual_clutter": 0.16,
@@ -739,4 +744,6 @@ def test_extract_presentation_views_returns_gallery_and_report(tmp_path: Path):
     assert gallery == [(str(overview_path), "Overview Top")]
     report = json.loads(report_json)
     assert report["style_preset"] == "civic_clean_v1"
+    assert report["render_preset_used"] == "axonometric_board_v1"
+    assert report["final_render_style"] == "axonometric_board"
     assert report["presentation_score"] == 0.82

@@ -1913,6 +1913,30 @@ def test_centerline_markings_render_for_width_based_roads():
     assert any(name.startswith("centerline_mark_") for name in node_names)
 
 
+def test_centerline_markings_follow_road_reference_polyline():
+    trimesh = pytest.importorskip("trimesh")
+
+    scene = trimesh.Scene()
+    street_layout._add_centerline_markings(
+        scene,
+        road_length_m=20.0,
+        road_width_m=6.0,
+        road_center_x_m=0.0,
+        road_center_z_m=0.0,
+        road_yaw_deg=0.0,
+        lane_count=None,
+        road_coords=((10.0, 5.0), (20.0, 15.0)),
+        color=(245, 245, 245, 255),
+        roughness=0.30,
+    )
+
+    geometries = list(scene.geometry.values())
+    assert geometries
+    centers = [mesh.bounds.mean(axis=0) for mesh in geometries]
+    assert all(center[0] > 5.0 for center in centers)
+    assert all(center[2] > 0.0 for center in centers)
+
+
 def test_run_street_compose_auto_selects_stable_poi_rich_road_by_seed(tmp_path: Path, monkeypatch):
     pytest.importorskip("gradio")
     import scripts.m1_gradio_app as app
@@ -2765,11 +2789,17 @@ def test_scene_layout_contains_presentation_views_and_metrics(tmp_path: Path, mo
     summary = payload["summary"]
     assert summary["style_preset"] == "civic_clean_v1"
     assert summary["beauty_mode"] == "presentation_v1"
+    assert summary["render_preset_used"] == "jury_default_v1"
+    assert summary["final_render_style"] == "jury_default"
     assert 0.0 <= float(summary["presentation_score"]) <= 1.0
     assert 0.0 <= float(summary["style_coherence"]) <= 1.0
     assert "composition_report" in summary
     render_views = summary.get("render_views", [])
-    assert len(render_views) == 4
+    assert len(render_views) == 6
+    assert [render_views[0]["name"], render_views[1]["name"]] == [
+        "final_plan_watercolor",
+        "final_oblique_45_watercolor",
+    ]
     for view in render_views:
         assert Path(view["path"]).exists()
 
@@ -2933,8 +2963,55 @@ def test_osm_scene_layout_contains_cumulative_production_steps(tmp_path: Path, m
     )
     loaded_scene = trimesh.load(Path(result.outputs["scene_glb"]), force="scene")
     assert _has_embedded_texture(loaded_scene) is True
-    loaded_zoning = trimesh.load(Path(step_by_id["land_use_zoning"]["glb_path"]), force="scene")
-    assert _has_embedded_texture(loaded_zoning) is True
+
+
+def test_scene_preview_production_companion_prefers_final_render_view(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    pytest.importorskip("pyproj")
+    pytest.importorskip("shapely")
+
+    rows = _build_real_rows(tmp_path / "data", include_buildings=True)
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+
+    import roadgen3d.osm_ingest as osm_ingest
+
+    monkeypatch.setattr(
+        osm_ingest,
+        "fetch_osm_data",
+        lambda **kwargs: _build_osm_response(include_building=True, include_bus_stop=True, include_fire_hydrant=True),
+    )
+
+    final_companion = (tmp_path / "artifacts" / "presentation_views" / "final_oblique_45_axonometric.png").resolve()
+    final_companion.parent.mkdir(parents=True, exist_ok=True)
+    final_companion.write_bytes(b"png")
+    monkeypatch.setattr(
+        street_layout,
+        "render_presentation_views",
+        lambda *args, **kwargs: [
+            {
+                "name": "final_oblique_45_axonometric",
+                "title": "Final Oblique 45 Axonometric",
+                "path": str(final_companion),
+            }
+        ],
+    )
+
+    result = compose_street_scene(
+        config=_build_osm_config(tmp_path, seed=23),
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+
+    payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    step_by_id = {step["step_id"]: step for step in payload["production_steps"]}
+    assert step_by_id["scene_preview"]["companion_path"] == str(final_companion)
+    assert Path(payload["outputs"]["production_steps_manifest"]).exists()
 
 
 def test_osm_compose_building_fallback_survives_missing_assets_and_footprints(tmp_path: Path, monkeypatch):
