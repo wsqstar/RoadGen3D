@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import math
+import os
 from dataclasses import dataclass, field, replace
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
 
@@ -797,6 +799,28 @@ def _require_pillow():
     return Image, ImageChops, ImageEnhance, ImageFilter, ImageOps
 
 
+def _ensure_homebrew_cairo_path() -> None:
+    homebrew_lib = Path("/opt/homebrew/lib")
+    if not homebrew_lib.exists():
+        return
+    existing = str(os.environ.get("DYLD_FALLBACK_LIBRARY_PATH", "") or "").strip()
+    if existing:
+        parts = [part for part in existing.split(":") if part]
+        if str(homebrew_lib) not in parts:
+            os.environ["DYLD_FALLBACK_LIBRARY_PATH"] = f"{homebrew_lib}:{existing}"
+    else:
+        os.environ["DYLD_FALLBACK_LIBRARY_PATH"] = str(homebrew_lib)
+
+
+def _require_cairosvg():
+    try:
+        _ensure_homebrew_cairo_path()
+        import cairosvg
+    except Exception:
+        return None
+    return cairosvg
+
+
 @dataclass(frozen=True)
 class AxonometricBoardStyle:
     background: str
@@ -853,6 +877,89 @@ _AXONOMETRIC_BOARD_STYLE = AxonometricBoardStyle(
     bus_fill="#8ba8d4",
     furniture_fill="#856773",
 )
+
+_AXONOMETRIC_SPRITE_FILES: Dict[str, str] = {
+    "bench": "bench_axonometric_01.svg",
+    "bus_stop": "bus_stop_axonometric_01.svg",
+    "lamp": "lamp_axonometric_01.svg",
+    "mailbox": "mailbox_axonometric_01.svg",
+    "trash": "trash_axonometric_01.svg",
+    "tree": "tree_axonometric_01.svg",
+}
+
+_AXONOMETRIC_SPRITE_HEIGHT_UNITS: Dict[str, float] = {
+    "bench": 2.1,
+    "bus_stop": 4.3,
+    "lamp": 5.4,
+    "mailbox": 2.2,
+    "trash": 1.9,
+    "tree": 8.0,
+}
+
+
+def _axonometric_sprite_dir() -> Path:
+    return (Path(__file__).resolve().parents[2] / "assets" / "axonometric" / "sprites").resolve()
+
+
+def _axonometric_sprite_path(category: str) -> Optional[Path]:
+    sprite_name = _AXONOMETRIC_SPRITE_FILES.get(str(category).strip().lower())
+    if not sprite_name:
+        return None
+    sprite_path = _axonometric_sprite_dir() / sprite_name
+    if not sprite_path.exists():
+        return None
+    return sprite_path
+
+
+@lru_cache(maxsize=64)
+def _load_axonometric_sprite_rgba(category: str) -> Optional[Tuple[Any, float]]:
+    cairosvg = _require_cairosvg()
+    pillow = _require_pillow()
+    sprite_path = _axonometric_sprite_path(category)
+    if cairosvg is None or pillow is None or sprite_path is None:
+        return None
+    Image, *_rest = pillow
+    try:
+        import io
+        import numpy as np
+
+        png_bytes = cairosvg.svg2png(url=str(sprite_path))
+        image = Image.open(io.BytesIO(png_bytes)).convert("RGBA")
+        width_px, height_px = image.size
+        if width_px <= 0 or height_px <= 0:
+            return None
+        return np.asarray(image), float(width_px) / float(height_px)
+    except Exception:
+        return None
+
+
+def _draw_oblique_sprite(
+    ax: Any,
+    u: float,
+    v: float,
+    *,
+    category: str,
+    zorder: float,
+) -> bool:
+    loaded = _load_axonometric_sprite_rgba(str(category).strip().lower())
+    if loaded is None:
+        return False
+    image_rgba, aspect_ratio = loaded
+    height_units = float(_AXONOMETRIC_SPRITE_HEIGHT_UNITS.get(str(category).strip().lower(), 1.2))
+    width_units = height_units * float(aspect_ratio)
+    anchor_x, anchor_y = _project_oblique_point(u, v, 0.0)
+    ax.imshow(
+        image_rgba,
+        extent=(
+            anchor_x - width_units / 2.0,
+            anchor_x + width_units / 2.0,
+            anchor_y,
+            anchor_y + height_units,
+        ),
+        interpolation="bilinear",
+        zorder=zorder,
+    )
+    return True
 
 
 def _world_surface_polygons(layout_payload: Mapping[str, Any]) -> Dict[str, List[List[Tuple[float, float]]]]:
@@ -1065,10 +1172,40 @@ def _local_building_boxes(
                 "max_u": float(max_u),
                 "min_v": float(min_v),
                 "max_v": float(max_v),
+                "center_u": float((min_u + max_u) / 2.0),
+                "center_v": float((min_v + max_v) / 2.0),
                 "height_m": float(target_height_m),
             }
         )
     return boxes
+
+
+def _visible_oblique_building_boxes(
+    boxes: Sequence[Mapping[str, float]],
+) -> List[Dict[str, float]]:
+    normalized = [dict(item) for item in boxes]
+    if not normalized:
+        return []
+    near_side: List[Dict[str, float]] = []
+    far_side: List[Dict[str, float]] = []
+    for item in normalized:
+        center_v = float(item.get("center_v", (float(item.get("min_v", 0.0)) + float(item.get("max_v", 0.0))) / 2.0))
+        projected_y = _project_oblique_point(
+            float(item.get("center_u", 0.0)),
+            center_v,
+            0.0,
+        )[1]
+        enriched = {**item, "projected_ground_y": float(projected_y)}
+        if center_v < 0.0:
+            far_side.append(enriched)
+        else:
+            near_side.append(enriched)
+    if not near_side or not far_side:
+        return normalized
+    # In our orthographic oblique projection the near-screen side sits at
+    # positive local-v values. We suppress that edge so the road and furniture
+    # remain visible, and only keep the far-side building massing.
+    return far_side
 
 
 def _crossing_world_polygons(layout_payload: Mapping[str, Any]) -> List[List[Tuple[float, float]]]:
@@ -1200,9 +1337,9 @@ def _draw_polygon_patch(ax: Any, polygon_xy: Sequence[Tuple[float, float]], *, f
 def _draw_plan_tree(ax: Any, x: float, y: float, *, style: AxonometricBoardStyle) -> None:
     from matplotlib.patches import Circle
 
-    ax.add_patch(Circle((x + 0.18, y - 0.14), radius=0.52, facecolor=style.tree_shadow_fill, edgecolor="none", alpha=0.45, zorder=7.2))
-    ax.add_patch(Circle((x, y), radius=0.52, facecolor=style.tree_fill, edgecolor=style.outline, linewidth=style.detail_lw, zorder=7.5))
-    ax.add_patch(Circle((x, y), radius=0.16, facecolor=style.tree_trunk_fill, edgecolor="none", alpha=0.9, zorder=7.6))
+    ax.add_patch(Circle((x + 0.24, y - 0.18), radius=0.62, facecolor=style.tree_shadow_fill, edgecolor="none", alpha=0.38, zorder=7.2))
+    ax.add_patch(Circle((x, y + 0.02), radius=0.48, facecolor=style.tree_fill, edgecolor=style.outline, linewidth=style.detail_lw, zorder=7.5))
+    ax.add_patch(Circle((x, y - 0.38), radius=0.09, facecolor=style.tree_trunk_fill, edgecolor="none", alpha=0.95, zorder=7.6))
 
 
 def _draw_plan_person(ax: Any, x: float, y: float, *, style: AxonometricBoardStyle) -> None:
@@ -1236,24 +1373,37 @@ def _draw_plan_furniture(ax: Any, u: float, v: float, *, category: str, plan_ang
         _draw_plan_tree(ax, x, y, style=style)
         return
     if category == "lamp":
-        ax.plot([x, x], [y - 0.22, y + 0.26], color=style.furniture_fill, linewidth=style.glyph_lw, zorder=8.1)
-        ax.add_patch(Circle((x, y + 0.28), radius=0.08, facecolor=style.activity_fill, edgecolor="white", linewidth=0.5, zorder=8.2))
+        ax.plot([x, x], [y - 0.28, y + 0.36], color=style.furniture_fill, linewidth=style.glyph_lw, zorder=8.1)
+        ax.add_patch(Circle((x, y + 0.38), radius=0.11, facecolor=style.activity_fill, edgecolor="white", linewidth=0.45, zorder=8.2))
+        ax.add_patch(Circle((x, y + 0.38), radius=0.2, facecolor=style.activity_fill, edgecolor="none", alpha=0.18, zorder=8.16))
         return
     if category == "bench":
-        ax.add_patch(Rectangle((x - 0.22, y - 0.08), 0.44, 0.16, angle=32.0, facecolor=style.furniture_fill, edgecolor="white", linewidth=0.5, zorder=8.1))
+        ax.add_patch(Rectangle((x - 0.26, y - 0.08), 0.52, 0.16, angle=32.0, facecolor=style.furniture_fill, edgecolor="white", linewidth=0.5, zorder=8.1))
         return
     if category == "bus_stop":
         ax.add_patch(Rectangle((x - 0.36, y - 0.12), 0.72, 0.24, angle=32.0, facecolor=style.bus_fill, edgecolor="white", linewidth=0.5, zorder=8.1))
+        return
+    if category == "bollard":
+        ax.add_patch(Circle((x, y), radius=0.09, facecolor=style.furniture_fill, edgecolor="white", linewidth=0.45, zorder=8.1))
+        return
+    if category == "trash":
+        ax.add_patch(Rectangle((x - 0.09, y - 0.11), 0.18, 0.22, angle=32.0, facecolor=style.furniture_fill, edgecolor="white", linewidth=0.45, zorder=8.1))
+        return
+    if category == "mailbox":
+        ax.add_patch(Rectangle((x - 0.1, y - 0.12), 0.2, 0.24, angle=32.0, facecolor=style.furniture_fill, edgecolor="white", linewidth=0.45, zorder=8.1))
+        return
+    if category == "hydrant":
+        ax.add_patch(Circle((x, y), radius=0.11, facecolor=style.activity_fill, edgecolor="white", linewidth=0.45, zorder=8.1))
         return
     ax.add_patch(Circle((x, y), radius=0.11, facecolor=style.furniture_fill, edgecolor="white", linewidth=0.45, zorder=8.1))
 
 
 def _draw_oblique_tree(ax: Any, u: float, v: float, *, style: AxonometricBoardStyle) -> None:
     ground = _project_oblique_point(u, v, 0.0)
-    canopy = _project_oblique_point(u, v, 1.45)
-    ax.plot([ground[0], canopy[0]], [ground[1], canopy[1]], color=style.tree_trunk_fill, linewidth=1.0, zorder=8.2)
-    ax.scatter([canopy[0] + 0.12], [canopy[1] - 0.1], s=420, color=style.tree_shadow_fill, alpha=0.42, zorder=8.25)
-    ax.scatter([canopy[0]], [canopy[1]], s=420, color=style.tree_fill, edgecolors=style.outline, linewidths=0.6, zorder=8.3)
+    canopy = _project_oblique_point(u, v, 2.25)
+    ax.plot([ground[0], canopy[0]], [ground[1], canopy[1] - 0.24], color=style.tree_trunk_fill, linewidth=1.2, zorder=8.2)
+    ax.scatter([canopy[0] + 0.18], [canopy[1] - 0.16], s=460, color=style.tree_shadow_fill, alpha=0.28, zorder=8.23)
+    ax.scatter([canopy[0]], [canopy[1]], s=520, color=style.tree_fill, edgecolors=style.outline, linewidths=0.62, zorder=8.3)
 
 
 def _draw_oblique_person(ax: Any, u: float, v: float, *, style: AxonometricBoardStyle) -> None:
@@ -1284,21 +1434,31 @@ def _draw_oblique_vehicle(ax: Any, u: float, v: float, *, length_m: float, width
 
 
 def _draw_oblique_furniture(ax: Any, u: float, v: float, *, category: str, style: AxonometricBoardStyle) -> None:
+    if _draw_oblique_sprite(ax, u, v, category=category, zorder=8.34 if str(category).strip().lower() == "tree" else 8.32):
+        return
     if category == "tree":
         _draw_oblique_tree(ax, u, v, style=style)
         return
     ground = _project_oblique_point(u, v, 0.0)
     if category == "lamp":
-        top = _project_oblique_point(u, v, 2.1)
-        ax.plot([ground[0], top[0]], [ground[1], top[1]], color=style.furniture_fill, linewidth=1.1, zorder=8.3)
-        ax.scatter([top[0]], [top[1]], s=22, color=style.activity_fill, edgecolors="white", linewidths=0.5, zorder=8.4)
+        top = _project_oblique_point(u, v, 2.7)
+        lamp_head = _project_oblique_point(u + 0.14, v, 2.58)
+        ax.plot([ground[0], top[0]], [ground[1], top[1]], color=style.furniture_fill, linewidth=1.15, zorder=8.3)
+        ax.plot([top[0], lamp_head[0]], [top[1], lamp_head[1]], color=style.furniture_fill, linewidth=0.92, zorder=8.31)
+        ax.scatter([lamp_head[0]], [lamp_head[1]], s=26, color=style.activity_fill, edgecolors="white", linewidths=0.5, zorder=8.4)
+        ax.scatter([lamp_head[0]], [lamp_head[1]], s=86, color=style.activity_fill, alpha=0.16, zorder=8.35)
         return
     if category == "bench":
         seat = _project_oblique_polygon(
-            [(u - 0.55, v - 0.12), (u + 0.55, v - 0.12), (u + 0.55, v + 0.12), (u - 0.55, v + 0.12)],
-            h=0.38,
+            [(u - 0.58, v - 0.12), (u + 0.58, v - 0.12), (u + 0.58, v + 0.12), (u - 0.58, v + 0.12)],
+            h=0.42,
         )
         _draw_polygon_patch(ax, seat, facecolor=style.furniture_fill, edgecolor="white", linewidth=0.5, zorder=8.35)
+        back = _project_oblique_polygon(
+            [(u - 0.58, v + 0.06), (u + 0.58, v + 0.06), (u + 0.58, v + 0.12), (u - 0.58, v + 0.12)],
+            h=0.92,
+        )
+        _draw_polygon_patch(ax, back, facecolor=style.furniture_fill, edgecolor="white", linewidth=0.45, zorder=8.36)
         return
     if category == "bus_stop":
         canopy = _project_oblique_polygon(
@@ -1306,6 +1466,29 @@ def _draw_oblique_furniture(ax: Any, u: float, v: float, *, category: str, style
             h=1.15,
         )
         _draw_polygon_patch(ax, canopy, facecolor=style.bus_fill, edgecolor="white", linewidth=0.55, zorder=8.4)
+        return
+    if category == "trash":
+        bin_top = _project_oblique_polygon(
+            [(u - 0.12, v - 0.12), (u + 0.12, v - 0.12), (u + 0.12, v + 0.12), (u - 0.12, v + 0.12)],
+            h=0.56,
+        )
+        _draw_polygon_patch(ax, bin_top, facecolor=style.furniture_fill, edgecolor="white", linewidth=0.45, zorder=8.25)
+        return
+    if category == "mailbox":
+        box_top = _project_oblique_polygon(
+            [(u - 0.13, v - 0.1), (u + 0.13, v - 0.1), (u + 0.13, v + 0.1), (u - 0.13, v + 0.1)],
+            h=0.82,
+        )
+        _draw_polygon_patch(ax, box_top, facecolor=style.furniture_fill, edgecolor="white", linewidth=0.45, zorder=8.25)
+        return
+    if category == "hydrant":
+        top = _project_oblique_point(u, v, 0.66)
+        ax.plot([ground[0], top[0]], [ground[1], top[1]], color=style.activity_fill, linewidth=1.2, zorder=8.28)
+        ax.scatter([top[0]], [top[1]], s=18, color=style.activity_fill, edgecolors="white", linewidths=0.4, zorder=8.29)
+        return
+    if category == "bollard":
+        top = _project_oblique_point(u, v, 0.58)
+        ax.plot([ground[0], top[0]], [ground[1], top[1]], color=style.furniture_fill, linewidth=1.05, zorder=8.23)
         return
     ax.scatter([ground[0]], [ground[1]], s=18, color=style.furniture_fill, edgecolors="white", linewidths=0.45, zorder=8.2)
 
@@ -1373,6 +1556,7 @@ def _render_axonometric_plan_view(
         for polygon in _crossing_world_polygons(layout_payload)
     ]
     building_boxes = _local_building_boxes(layout_payload, origin_xz=origin_xz, axis_angle_rad=axis_angle)
+    visible_building_boxes = _visible_oblique_building_boxes(building_boxes)
     local_poi_points = {
         poi_type: [
             _localize_point((float(point[0]), float(point[1])), origin_xz=origin_xz, axis_angle_rad=axis_angle)
@@ -1552,6 +1736,7 @@ def _render_axonometric_oblique_view(
         for polygon in _crossing_world_polygons(layout_payload)
     ]
     building_boxes = _local_building_boxes(layout_payload, origin_xz=origin_xz, axis_angle_rad=axis_angle)
+    visible_building_boxes = _visible_oblique_building_boxes(building_boxes)
     localized_placements = []
     for placement in layout_payload.get("placements", []) or []:
         pos = placement.get("position_xyz", []) or []
@@ -1573,7 +1758,7 @@ def _render_axonometric_oblique_view(
     for polygons in list(local_surface.values()) + list(local_zone.values()) + [local_crossings]:
         for polygon in polygons:
             projected_points.extend(_project_oblique_polygon(polygon, h=0.0))
-    for box in building_boxes:
+    for box in visible_building_boxes:
         projected_points.extend(
             _project_oblique_polygon(
                 [
@@ -1582,7 +1767,7 @@ def _render_axonometric_oblique_view(
                     (box["max_u"], box["max_v"]),
                     (box["min_u"], box["max_v"]),
                 ],
-                h=min(max(float(box["height_m"]) * 0.12, 2.8), 6.6),
+                h=max(float(box["height_m"]), 3.6),
             )
         )
     if not projected_points:
@@ -1631,13 +1816,17 @@ def _render_axonometric_oblique_view(
         ax.plot([start[0], end[0]], [start[1], end[1]], color=style.lane_mark_fill, linewidth=1.4, solid_capstyle="round", zorder=2.3)
         cursor += dash_length + gap_length
 
-    building_boxes = sorted(building_boxes, key=lambda item: (item["min_u"] + item["max_u"]) / 2.0, reverse=True)
-    for box in building_boxes:
+    visible_building_boxes = sorted(
+        visible_building_boxes,
+        key=lambda item: float(item.get("center_u", 0.0)),
+        reverse=True,
+    )
+    for box in visible_building_boxes:
         min_u = float(box["min_u"])
         max_u = float(box["max_u"])
         min_v = float(box["min_v"])
         max_v = float(box["max_v"])
-        display_h = min(max(float(box["height_m"]) * 0.12, 2.8), 6.6)
+        display_h = max(float(box["height_m"]), 3.6)
         roof = _project_oblique_polygon(
             [(min_u, min_v), (max_u, min_v), (max_u, max_v), (min_u, max_v)],
             h=display_h,
@@ -1664,7 +1853,7 @@ def _render_axonometric_oblique_view(
         _draw_polygon_patch(ax, end_quad, facecolor=style.facade_shadow_fill, edgecolor=style.outline, linewidth=style.detail_lw, zorder=4.0)
         _draw_polygon_patch(ax, street_quad, facecolor=style.facade_fill, edgecolor=style.outline, linewidth=style.detail_lw, zorder=4.1)
         _draw_polygon_patch(ax, roof, facecolor=style.roof_fill, edgecolor=style.outline, linewidth=style.detail_lw, zorder=4.2)
-        floor_count = max(2, min(7, int(round(display_h / 0.9))))
+        floor_count = max(2, min(18, int(round(display_h / 3.4))))
         facade_cols = max(3, min(9, int(round((max_u - min_u) / 2.0))))
         end_cols = max(2, min(4, int(round(abs(max_v - min_v) / 2.0))))
         _draw_building_windows(ax, street_quad[0], street_quad[1], street_quad[3], street_quad[2], style=style, floor_count=floor_count, column_count=facade_cols)

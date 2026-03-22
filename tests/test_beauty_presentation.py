@@ -14,6 +14,9 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from roadgen3d.beauty import (
+    _axonometric_sprite_path,
+    _load_axonometric_sprite_rgba,
+    _visible_oblique_building_boxes,
     apply_composition_pass,
     curate_candidates,
     render_presentation_views,
@@ -211,6 +214,32 @@ def test_render_presentation_views_jury_default_keeps_watercolor_final_views(tmp
         "final_plan_watercolor",
         "final_oblique_45_watercolor",
     ]
+
+
+def test_visible_oblique_building_boxes_keeps_far_side_and_preserves_heights():
+    boxes = [
+        {"min_u": -8.0, "max_u": -2.0, "min_v": 2.0, "max_v": 6.0, "center_u": -5.0, "center_v": 4.0, "height_m": 18.0},
+        {"min_u": 2.0, "max_u": 8.0, "min_v": -6.0, "max_v": -2.0, "center_u": 5.0, "center_v": -4.0, "height_m": 27.0},
+    ]
+    visible = _visible_oblique_building_boxes(boxes)
+    assert len(visible) == 1
+    assert float(visible[0]["center_v"]) < 0.0
+    assert float(visible[0]["height_m"]) == 27.0
+
+
+def test_axonometric_sprite_assets_are_discoverable():
+    sprite_path = _axonometric_sprite_path("tree")
+    assert sprite_path is not None
+    assert sprite_path.exists()
+
+
+def test_axonometric_sprite_can_rasterize():
+    loaded = _load_axonometric_sprite_rgba("tree")
+    assert loaded is not None
+    image_rgba, aspect_ratio = loaded
+    assert image_rgba.shape[0] > 0
+    assert image_rgba.shape[1] > 0
+    assert aspect_ratio > 0.0
 
 
 def test_render_presentation_views_legacy_mode_falls_back_to_vector_overview(tmp_path: Path):

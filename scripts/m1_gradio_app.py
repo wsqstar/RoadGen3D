@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import html
 import json
 import os
 import queue
@@ -39,6 +40,8 @@ except Exception as exc:  # pragma: no cover - runtime guard
         "gradio is not installed. Run: "
         ".venv/bin/python -m pip install gradio>=5,<6"
     ) from exc
+
+from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse, RedirectResponse
 
 from roadgen3d.decoder import PlaceholderVoxelDecoder
 from roadgen3d.decoder_shapee import ShapeEDecoder
@@ -87,6 +90,15 @@ from roadgen3d.types import (
     StepResult,
     StreetComposeConfig,
     WorkspaceReadiness,
+)
+from roadgen3d.web_viewer_dev import (
+    WebViewerError,
+    build_layout_manifest,
+    build_web_viewer_url,
+    content_type_for,
+    ensure_web_viewer_assets,
+    resolve_repo_path,
+    viewer_asset_path,
 )
 from scripts.m1_01_seed_assets import seed_assets
 from scripts.m2_11_encode_shapee_latents import encode_latents as encode_shapee_latents
@@ -274,6 +286,121 @@ _PARAMETRIC_STYLE_CHOICES = [
 
 def _to_path(path_text: str) -> Path:
     return Path(path_text.strip()).expanduser().resolve()
+
+
+def _find_scene_layout_in_files(files: List[str] | None) -> Path | None:
+    for value in files or []:
+        candidate = str(value).strip()
+        if candidate.endswith("scene_layout.json"):
+            try:
+                return Path(candidate).expanduser().resolve()
+            except Exception:
+                return None
+    return None
+
+
+def _web_viewer_link_html(url: str, error_message: str = "") -> str:
+    if str(url).strip():
+        safe_url = html.escape(str(url).strip(), quote=True)
+        return (
+            '<a href="'
+            + safe_url
+            + '" target="_blank" rel="noopener noreferrer" '
+            + 'style="display:inline-block;padding:0.7rem 1rem;border-radius:0.65rem;'
+            + 'background:#1f4ed8;color:#ffffff;text-decoration:none;font-weight:600;'
+            + 'box-shadow:0 6px 18px rgba(31,78,216,0.18);">'
+            + "Open Web Viewer"
+            + "</a>"
+        )
+    message = html.escape(str(error_message).strip() or "Web Viewer unavailable for this result.", quote=False)
+    return (
+        '<div style="padding:0.7rem 1rem;border:1px solid #d4d4d8;border-radius:0.65rem;'
+        + 'background:#fafafa;color:#52525b;">'
+        + message
+        + "</div>"
+    )
+
+
+def _prepare_web_viewer_outputs(
+    summary_text: str,
+    layout_json_text: str,
+    files: List[str] | None,
+) -> Tuple[str, str, str, str]:
+    summary = str(summary_text or "")
+    layout_json = str(layout_json_text or "")
+    viewer_url = ""
+    viewer_html = _web_viewer_link_html("", "Open Web Viewer will appear after a successful run.")
+    layout_path = _find_scene_layout_in_files(files)
+    if layout_path is None:
+        return summary, layout_json, viewer_url, viewer_html
+    try:
+        viewer_url = build_web_viewer_url(layout_path)
+        viewer_html = _web_viewer_link_html(viewer_url)
+        if f"web_viewer_url: {viewer_url}" not in summary:
+            summary = summary.rstrip() + ("\n" if summary.strip() else "") + f"- web_viewer_url: {viewer_url}"
+        if layout_json.strip():
+            try:
+                payload = json.loads(layout_json)
+                payload.setdefault("summary", {})["web_viewer_url"] = viewer_url
+                payload.setdefault("outputs", {})["web_viewer_url"] = viewer_url
+                updated_layout_json = json.dumps(payload, indent=2, ensure_ascii=True)
+                layout_json = updated_layout_json
+                layout_path.write_text(updated_layout_json, encoding="utf-8")
+            except Exception:
+                pass
+    except Exception as exc:
+        error_message = str(exc).strip()
+        viewer_html = _web_viewer_link_html("", error_message)
+        marker = f"- web_viewer_error: {error_message}"
+        if error_message and marker not in summary:
+            summary = summary.rstrip() + ("\n" if summary.strip() else "") + marker
+    return summary, layout_json, viewer_url, viewer_html
+
+
+def _register_web_viewer_routes(demo: gr.Blocks) -> None:
+    if getattr(demo, "_roadgen_web_viewer_routes_registered", False):
+        return
+
+    @demo.app.get("/web-viewer", include_in_schema=False, response_model=None)
+    async def _web_viewer_redirect():
+        return RedirectResponse(url="/web-viewer/")
+
+    @demo.app.get("/web-viewer/", include_in_schema=False, response_model=None)
+    async def _web_viewer_index():
+        try:
+            index_path = ensure_web_viewer_assets()
+        except WebViewerError as exc:
+            return PlainTextResponse(str(exc), status_code=500)
+        return FileResponse(index_path, media_type="text/html")
+
+    @demo.app.get("/web-viewer/assets/{asset_path:path}", include_in_schema=False, response_model=None)
+    async def _web_viewer_asset(asset_path: str):
+        try:
+            asset_file = viewer_asset_path(Path("assets") / asset_path)
+        except WebViewerError as exc:
+            return PlainTextResponse(str(exc), status_code=404)
+        return FileResponse(asset_file, media_type=content_type_for(asset_file))
+
+    @demo.app.get("/web-viewer/api/layout", include_in_schema=False, response_model=None)
+    async def _web_viewer_layout(path: str):
+        try:
+            return JSONResponse(build_layout_manifest(path))
+        except WebViewerError as exc:
+            return JSONResponse({"error": str(exc)}, status_code=400)
+        except Exception as exc:
+            return JSONResponse({"error": str(exc)}, status_code=500)
+
+    @demo.app.get("/web-viewer/api/file", include_in_schema=False, response_model=None)
+    async def _web_viewer_file(path: str):
+        try:
+            file_path = resolve_repo_path(path)
+            if not file_path.exists() or not file_path.is_file():
+                raise WebViewerError(f"File not found: {file_path}")
+        except WebViewerError as exc:
+            return PlainTextResponse(str(exc), status_code=404)
+        return FileResponse(file_path, media_type=content_type_for(file_path))
+
+    setattr(demo, "_roadgen_web_viewer_routes_registered", True)
 
 
 def _spatial_context_poi_points(spatial_ctx: Dict[str, Any]) -> Dict[str, Tuple[Tuple[float, float], ...]]:
@@ -4130,6 +4257,9 @@ def build_demo() -> gr.Blocks:
                     with gr.Row():
                         production_step_summary = gr.Textbox(label="Production Step Summary", lines=10)
                         street_summary = gr.Textbox(label="Scene Summary", lines=10)
+                    with gr.Row():
+                        web_viewer_link = gr.HTML(value=_web_viewer_link_html("", "Open Web Viewer will appear after a successful run."))
+                        web_viewer_url = gr.Textbox(label="Web Viewer URL", lines=1, interactive=False)
                     production_step_downloads = gr.Files(label="Production Step Downloads")
                 with gr.Accordion("高级设置", open=False):
                     with gr.Row():
@@ -4728,6 +4858,10 @@ def build_demo() -> gr.Blocks:
                 street_files,
             ],
         ).then(
+            fn=_prepare_web_viewer_outputs,
+            inputs=[street_summary, street_layout_json, street_files],
+            outputs=[street_summary, street_layout_json, web_viewer_url, web_viewer_link],
+        ).then(
             fn=_load_production_steps,
             inputs=[street_layout_json],
             outputs=[
@@ -5078,6 +5212,7 @@ def build_demo() -> gr.Blocks:
             inputs=[run_best_layout_json],
             outputs=[run_best_building_summary],
         )
+    _register_web_viewer_routes(demo)
     return demo
 
 

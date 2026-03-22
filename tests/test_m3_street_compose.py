@@ -980,6 +980,35 @@ def test_street_compose_gradio_callback_returns_model_path(tmp_path: Path, monke
     assert any(str(path).endswith("scene_layout.json") for path in files)
 
 
+def test_prepare_web_viewer_outputs_adds_url_and_updates_layout(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+    pytest.importorskip("gradio")
+    import scripts.m1_gradio_app as app
+
+    layout_path = (tmp_path / "scene_layout.json").resolve()
+    layout_path.write_text(json.dumps({"summary": {}, "outputs": {}}, ensure_ascii=True), encoding="utf-8")
+
+    monkeypatch.setattr(
+        app,
+        "build_web_viewer_url",
+        lambda path: f"http://127.0.0.1:4173/?layout={Path(path).name}",
+    )
+
+    summary, layout_json, viewer_url, viewer_html = app._prepare_web_viewer_outputs(
+        "Street compose done.",
+        layout_path.read_text(encoding="utf-8"),
+        [str(layout_path)],
+    )
+
+    assert "web_viewer_url: http://127.0.0.1:4173/?layout=scene_layout.json" in summary
+    assert viewer_url == "http://127.0.0.1:4173/?layout=scene_layout.json"
+    assert "Open Web Viewer" in viewer_html
+    payload = json.loads(layout_json)
+    assert payload["summary"]["web_viewer_url"] == viewer_url
+    assert payload["outputs"]["web_viewer_url"] == viewer_url
+    persisted = json.loads(layout_path.read_text(encoding="utf-8"))
+    assert persisted["summary"]["web_viewer_url"] == viewer_url
+
+
 def test_run_street_compose_defaults_shift_to_walkable_narrow_street():
     pytest.importorskip("gradio")
     import scripts.m1_gradio_app as app

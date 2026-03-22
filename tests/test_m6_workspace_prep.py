@@ -388,6 +388,16 @@ def test_build_demo_street_defaults_are_procedural_first():
     assert "Solver Diagnostics Summary" in code_labels
 
 
+def test_build_demo_exposes_web_viewer_outputs():
+    pytest.importorskip("gradio")
+
+    demo = app.build_demo()
+    config = demo.get_config_file()
+    textbox_labels = _labels_by_component_type(config, "textbox")
+
+    assert "Web Viewer URL" in textbox_labels
+
+
 def test_production_step_helpers_select_stage_outputs(tmp_path: Path):
     stage0_glb = tmp_path / "00_road_base.glb"
     stage1_glb = tmp_path / "01_poi_context.glb"
