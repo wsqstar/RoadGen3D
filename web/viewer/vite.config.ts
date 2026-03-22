@@ -7,6 +7,7 @@ import { defineConfig, type Plugin } from "vite";
 const viewerRoot = fileURLToPath(new URL(".", import.meta.url));
 const repoRoot = path.resolve(viewerRoot, "..", "..");
 const RECENT_LAYOUT_LIMIT = 20;
+const ASSET_MANIFEST_PATH = path.resolve(repoRoot, "data", "real", "real_assets_manifest.jsonl");
 const IGNORED_DISCOVERY_DIRS = new Set([
   ".git",
   ".venv",
@@ -15,6 +16,19 @@ const IGNORED_DISCOVERY_DIRS = new Set([
   "node_modules",
   "dist",
 ]);
+
+type JsonRecord = Record<string, unknown>;
+
+type StaticObjectDescription = {
+  match: "exact" | "prefix";
+  title: string;
+  category: string;
+  source: string;
+  intro: string;
+  design_note: string;
+};
+
+let cachedAssetDescriptionIndex: Map<string, JsonRecord> | null = null;
 
 function allowedRoots(): string[] {
   const roots = [repoRoot];
@@ -120,6 +134,299 @@ function buildRecentLayoutsPayload(limit: number): { results: Array<Record<strin
 
 function asNumber(value: unknown, fallback: number): number {
   return Number.isFinite(value) ? Number(value) : fallback;
+}
+
+function asFiniteNumberOrNull(value: unknown): number | null {
+  return Number.isFinite(value) ? Number(value) : null;
+}
+
+function asTriplet(value: unknown): [number, number, number] | null {
+  if (!Array.isArray(value) || value.length !== 3) {
+    return null;
+  }
+  const items = value.map((entry) => asFiniteNumberOrNull(entry));
+  if (items.some((entry) => entry === null)) {
+    return null;
+  }
+  return [items[0] ?? 0, items[1] ?? 0, items[2] ?? 0];
+}
+
+function asQuad(value: unknown): [number, number, number, number] | null {
+  if (!Array.isArray(value) || value.length !== 4) {
+    return null;
+  }
+  const items = value.map((entry) => asFiniteNumberOrNull(entry));
+  if (items.some((entry) => entry === null)) {
+    return null;
+  }
+  return [items[0] ?? 0, items[1] ?? 0, items[2] ?? 0, items[3] ?? 0];
+}
+
+function cleanForJson(value: unknown): unknown {
+  if (typeof value === "number") {
+    return Number.isFinite(value) ? value : null;
+  }
+  if (Array.isArray(value)) {
+    return value.map((entry) => cleanForJson(entry));
+  }
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>).map(([key, entry]) => [key, cleanForJson(entry)]),
+    );
+  }
+  return value;
+}
+
+function loadAssetDescriptionIndex(): Map<string, JsonRecord> {
+  if (cachedAssetDescriptionIndex) {
+    return cachedAssetDescriptionIndex;
+  }
+  const index = new Map<string, JsonRecord>();
+  if (!fs.existsSync(ASSET_MANIFEST_PATH)) {
+    cachedAssetDescriptionIndex = index;
+    return index;
+  }
+  const lines = fs.readFileSync(ASSET_MANIFEST_PATH, "utf-8").split(/\r?\n/);
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed) {
+      continue;
+    }
+    try {
+      const parsed = JSON.parse(trimmed) as JsonRecord;
+      const assetId = String(parsed.asset_id ?? "").trim();
+      if (assetId) {
+        index.set(assetId, parsed);
+      }
+    } catch {
+      continue;
+    }
+  }
+  cachedAssetDescriptionIndex = index;
+  return index;
+}
+
+function fallbackAssetDescription(assetId: string, category: string): JsonRecord {
+  return {
+    asset_id: assetId,
+    category,
+    text_desc: `${category || "street_object"} · ${assetId}`,
+    source: "scene_generated",
+  };
+}
+
+function buildAssetDescriptions(layoutPayload: JsonRecord): Record<string, JsonRecord> {
+  const placements = Array.isArray(layoutPayload.placements) ? layoutPayload.placements : [];
+  const assetIds = new Set<string>();
+  for (const placement of placements) {
+    if (!placement || typeof placement !== "object") {
+      continue;
+    }
+    const assetId = String((placement as JsonRecord).asset_id ?? "").trim();
+    if (assetId) {
+      assetIds.add(assetId);
+    }
+  }
+  const index = loadAssetDescriptionIndex();
+  const descriptions: Record<string, JsonRecord> = {};
+  for (const assetId of assetIds) {
+    const manifestRow = index.get(assetId);
+    if (manifestRow) {
+      descriptions[assetId] = cleanForJson({
+        asset_id: assetId,
+        category: String(manifestRow.category ?? "").trim(),
+        text_desc: String(manifestRow.text_desc ?? "").trim(),
+        source: String(manifestRow.source ?? "").trim(),
+        asset_role: String(manifestRow.asset_role ?? "").trim(),
+      }) as JsonRecord;
+      continue;
+    }
+    const placement = placements.find(
+      (entry) =>
+        entry &&
+        typeof entry === "object" &&
+        String((entry as JsonRecord).asset_id ?? "").trim() === assetId,
+    ) as JsonRecord | undefined;
+    descriptions[assetId] = cleanForJson(
+      fallbackAssetDescription(assetId, String(placement?.category ?? "").trim()),
+    ) as JsonRecord;
+  }
+  return descriptions;
+}
+
+function buildInstancePayloads(layoutPayload: JsonRecord): Record<string, JsonRecord> {
+  const placements = Array.isArray(layoutPayload.placements) ? layoutPayload.placements : [];
+  const instances: Record<string, JsonRecord> = {};
+  for (const placement of placements) {
+    if (!placement || typeof placement !== "object") {
+      continue;
+    }
+    const row = placement as JsonRecord;
+    const instanceId = String(row.instance_id ?? "").trim();
+    if (!instanceId) {
+      continue;
+    }
+    const positionXyz = asTriplet(row.position_xyz);
+    const bboxXz = asQuad(row.bbox_xz);
+    instances[instanceId] = cleanForJson({
+      instance_id: instanceId,
+      asset_id: String(row.asset_id ?? "").trim(),
+      category: String(row.category ?? "").trim(),
+      placement_group: String(row.placement_group ?? "").trim(),
+      theme_id: String(row.theme_id ?? "").trim(),
+      selection_source: String(row.selection_source ?? "").trim(),
+      position_xyz: positionXyz,
+      bbox_xz: bboxXz,
+      anchor_poi_type: String(row.anchor_poi_type ?? "").trim(),
+      anchor_distance_m: asFiniteNumberOrNull(row.anchor_distance_m),
+      feasibility_score: asFiniteNumberOrNull(row.feasibility_score),
+      constraint_penalty: asFiniteNumberOrNull(row.constraint_penalty),
+      dist_to_road_edge_m: asFiniteNumberOrNull(row.dist_to_road_edge_m),
+      dist_to_nearest_junction_m: asFiniteNumberOrNull(row.dist_to_nearest_junction_m),
+      dist_to_nearest_entrance_m: asFiniteNumberOrNull(row.dist_to_nearest_entrance_m),
+    }) as JsonRecord;
+  }
+  return instances;
+}
+
+function buildStaticObjectDescriptions(): Record<string, StaticObjectDescription> {
+  return {
+    road_slab: {
+      match: "exact",
+      title: "机动车道",
+      category: "roadway",
+      source: "system",
+      intro: "这是街道中的机动车道铺装面。",
+      design_note: "承担机动车连续通行，并作为道路中心线与车道组织的依附基底。",
+    },
+    sidewalk_: {
+      match: "prefix",
+      title: "人行道铺装",
+      category: "sidewalk",
+      source: "system",
+      intro: "这是街道的人行活动界面。",
+      design_note: "为步行、停留和沿街活动提供连续可达的基础空间。",
+    },
+    curb_: {
+      match: "prefix",
+      title: "路缘石",
+      category: "landscape",
+      source: "system",
+      intro: "这是车行与步行空间之间的边界构件。",
+      design_note: "用于强化空间边界、组织排水，并提升行人与车辆分隔的可读性。",
+    },
+    centerline_mark_: {
+      match: "prefix",
+      title: "道路中心线",
+      category: "marking",
+      source: "system",
+      intro: "这是机动车道的中心虚线标记。",
+      design_note: "用于组织双向行驶秩序并强化道路方向识别。",
+    },
+    lane_mark_: {
+      match: "prefix",
+      title: "车道标线",
+      category: "marking",
+      source: "system",
+      intro: "这是机动车道内的辅助标线。",
+      design_note: "用于强化车道组织与行驶边界，提升整体交通可读性。",
+    },
+    crossing_patch_: {
+      match: "prefix",
+      title: "过街区",
+      category: "crossing",
+      source: "system",
+      intro: "这是街道中的过街铺装区。",
+      design_note: "用于提示行人过街位置，并在交叉口或重点界面提升可达性。",
+    },
+    tree_pit_: {
+      match: "prefix",
+      title: "树池",
+      category: "landscape",
+      source: "system",
+      intro: "这是街树的种植基底。",
+      design_note: "为树木生长提供透水与根系空间，同时构成街道绿化节奏。",
+    },
+    transit_pad_: {
+      match: "prefix",
+      title: "公交停靠面",
+      category: "transit",
+      source: "system",
+      intro: "这是公交候车或停靠相关的铺装面。",
+      design_note: "用于组织公交换乘与停靠，保障候车与上下车的空间清晰度。",
+    },
+    zoning_proxy_: {
+      match: "prefix",
+      title: "用地界面体块",
+      category: "scene_object",
+      source: "system",
+      intro: "这是用于表达沿街用地和建筑界面的代理体块。",
+      design_note: "用于在设计预览中快速表现街墙连续性和空间围合关系。",
+    },
+  };
+}
+
+function buildSceneBounds(layoutPayload: JsonRecord): JsonRecord {
+  const placements = Array.isArray(layoutPayload.placements) ? layoutPayload.placements : [];
+  const summary = (layoutPayload.summary ?? {}) as JsonRecord;
+  const spatialContext = (summary.spatial_context ?? {}) as JsonRecord;
+
+  let minX = Number.POSITIVE_INFINITY;
+  let maxX = Number.NEGATIVE_INFINITY;
+  let minZ = Number.POSITIVE_INFINITY;
+  let maxZ = Number.NEGATIVE_INFINITY;
+  let maxY = 0;
+
+  const includeXz = (x: number, z: number, padding = 0) => {
+    minX = Math.min(minX, x - padding);
+    maxX = Math.max(maxX, x + padding);
+    minZ = Math.min(minZ, z - padding);
+    maxZ = Math.max(maxZ, z + padding);
+  };
+
+  for (const placement of placements) {
+    if (!placement || typeof placement !== "object") {
+      continue;
+    }
+    const row = placement as JsonRecord;
+    const bbox = asQuad(row.bbox_xz);
+    if (bbox) {
+      minX = Math.min(minX, bbox[0]);
+      minZ = Math.min(minZ, bbox[1]);
+      maxX = Math.max(maxX, bbox[2]);
+      maxZ = Math.max(maxZ, bbox[3]);
+    } else {
+      const position = asTriplet(row.position_xyz);
+      if (position) {
+        includeXz(position[0], position[2], 0.75);
+        maxY = Math.max(maxY, position[1]);
+      }
+    }
+    const scaleY = asTriplet(row.scale_xyz)?.[1];
+    if (scaleY !== null && scaleY !== undefined) {
+      maxY = Math.max(maxY, scaleY);
+    }
+  }
+
+  const roadHalfWidth = Math.max(3, asNumber(spatialContext.road_half_width_m, 6));
+  const lengthM = Math.max(24, asNumber(spatialContext.length_m, asNumber(summary.length_m, 80)));
+  if (!Number.isFinite(minX) || !Number.isFinite(maxX) || !Number.isFinite(minZ) || !Number.isFinite(maxZ)) {
+    minX = -lengthM * 0.5;
+    maxX = lengthM * 0.5;
+    minZ = -roadHalfWidth * 3.5;
+    maxZ = roadHalfWidth * 3.5;
+  }
+
+  const sizeX = Math.max(1, maxX - minX);
+  const sizeZ = Math.max(1, maxZ - minZ);
+  const sizeY = Math.max(12, maxY + 10);
+  const roadAxis: [number, number, number] = sizeX >= sizeZ ? [1, 0, 0] : [0, 0, 1];
+
+  return cleanForJson({
+    center: [(minX + maxX) * 0.5, sizeY * 0.5, (minZ + maxZ) * 0.5],
+    size: [sizeX, sizeY, sizeZ],
+    road_axis: roadAxis,
+  }) as JsonRecord;
 }
 
 function buildSpawnPayload(layoutPayload: Record<string, any>): {
@@ -229,6 +536,10 @@ function viewerApiPlugin(): Plugin {
                   .filter(Boolean)
               : [];
             const spawnPayload = buildSpawnPayload(layoutPayload);
+            const sceneBounds = buildSceneBounds(layoutPayload);
+            const instances = buildInstancePayloads(layoutPayload);
+            const assetDescriptions = buildAssetDescriptions(layoutPayload);
+            const staticObjectDescriptions = buildStaticObjectDescriptions();
             jsonResponse(res, 200, {
               layout_path: layoutPath,
               final_scene: {
@@ -239,6 +550,10 @@ function viewerApiPlugin(): Plugin {
               default_selection: "final_scene",
               spawn_point: spawnPayload.spawn_point,
               forward_vector: spawnPayload.forward_vector,
+              scene_bounds: sceneBounds,
+              instances,
+              asset_descriptions: assetDescriptions,
+              static_object_descriptions: staticObjectDescriptions,
             });
             return;
           } catch (error) {
