@@ -19,6 +19,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from roadgen3d.types import (
+    BuildingPlacementPlan,
     DEFAULT_BUILDING_FRONT_SETBACK_MAX_M,
     DEFAULT_BUILDING_FRONT_SETBACK_MIN_M,
     LayoutSlotPlan,
@@ -639,6 +640,122 @@ def test_load_real_manifest_preserves_scene_ready_fields(tmp_path: Path):
     assert rows[0]["scene_eligible"] is True
     assert rows[0]["mesh_face_count"] == 1234
     assert rows[0]["quality_notes"] == ["scene_ready", "high_face_count"]
+
+
+def test_add_instance_meshes_adds_attached_building_door_geometry(tmp_path: Path):
+    trimesh = pytest.importorskip("trimesh")
+    mesh_path = tmp_path / "building_asset.glb"
+    building_mesh = trimesh.creation.box(extents=(10.0, 12.0, 8.0))
+    mesh_path.parent.mkdir(parents=True, exist_ok=True)
+    building_mesh.export(mesh_path)
+
+    cache = street_layout._load_mesh_cache(
+        [
+            {
+                "asset_id": "building_asset",
+                "mesh_path": str(mesh_path),
+                "category": "building",
+                "text_desc": "street-side building asset",
+                "latent_path": str(tmp_path / "latent.pt"),
+            }
+        ]
+    )
+    entry = cache["building_asset"]
+    placement_y = -float(entry.min_y)
+    placement = StreetPlacement(
+        instance_id="inst_bldg_0001",
+        asset_id="building_asset",
+        category="building",
+        score=1.0,
+        position_xyz=[0.0, placement_y, 0.0],
+        yaw_deg=0.0,
+        scale=1.0,
+        bbox_xz=[-5.0, 5.0, -4.0, 4.0],
+        selection_source="building_asset",
+        placement_group="building",
+        scale_xyz=[1.0, 1.0, 1.0],
+    )
+    building_plan = BuildingPlacementPlan(
+        instance_id="inst_bldg_0001",
+        footprint_id="lot_001",
+        theme_id="theme_000",
+        asset_id="building_asset",
+        selection_source="building_asset",
+        position_xyz=[0.0, placement_y, 0.0],
+        yaw_deg=0.0,
+        scale=1.0,
+        scale_xyz=[1.0, 1.0, 1.0],
+        bbox_xz=[-5.0, 5.0, -4.0, 4.0],
+        frontage_width_m=10.0,
+        depth_m=8.0,
+        side="left",
+        land_use_type="commercial",
+        street_edge_xz=(0.0, -4.0),
+        placement_xz=(0.0, 0.0),
+        anchor_geom_id="lot_001",
+        door_added=True,
+        door_facing="front",
+        door_center_local_x=0.0,
+        door_width_m=1.2,
+        door_height_m=2.4,
+        door_dims_m={"width_m": 1.2, "height_m": 2.4, "thickness_m": 0.08},
+        door_center_world_xyz=[0.0, 1.2, -4.055],
+    )
+
+    scene = trimesh.Scene()
+    street_layout._add_instance_meshes(
+        scene=scene,
+        placements=[placement],
+        mesh_cache=cache,
+        building_plans_by_instance={building_plan.instance_id: building_plan},
+    )
+
+    node_names = set(scene.graph.nodes_geometry)
+    assert any(node_name.startswith("inst_bldg_0001") for node_name in node_names)
+    assert any(node_name.startswith("inst_bldg_0001_door_") for node_name in node_names)
+    assert len(scene.geometry) >= 4
+
+
+def test_building_door_local_pose_selects_facade_nearest_road():
+    entry = street_layout._MeshCacheEntry(
+        mesh=object(),
+        half_x=4.0,
+        half_z=3.0,
+        min_y=0.0,
+        native_height_y=8.0,
+        center_x=1.25,
+        center_z=-0.5,
+    )
+
+    right_pose = street_layout._building_door_local_pose(
+        street_edge_xz=(0.0, 8.0),
+        placement_xz=(0.0, 0.0),
+        yaw_deg=0.0,
+        side="right",
+        entry=entry,
+        scale_xyz=[1.0, 1.0, 1.0],
+        facade_offset_m=0.055,
+    )
+    assert right_pose is not None
+    (right_local_x, right_local_z), right_facing = right_pose
+    assert right_facing == "back"
+    assert right_local_x == pytest.approx(1.25)
+    assert right_local_z == pytest.approx(-0.5 + 3.0 + 0.055)
+
+    left_pose = street_layout._building_door_local_pose(
+        street_edge_xz=(0.0, -8.0),
+        placement_xz=(0.0, 0.0),
+        yaw_deg=0.0,
+        side="left",
+        entry=entry,
+        scale_xyz=[1.0, 1.0, 1.0],
+        facade_offset_m=0.055,
+    )
+    assert left_pose is not None
+    (left_local_x, left_local_z), left_facing = left_pose
+    assert left_facing == "front"
+    assert left_local_x == pytest.approx(1.25)
+    assert left_local_z == pytest.approx(-0.5 - 3.0 - 0.055)
 
 
 def test_street_compose_no_overlap_aabb(tmp_path: Path, monkeypatch):
@@ -2988,11 +3105,24 @@ def test_osm_compose_outputs_theme_segments_and_surrounding_buildings(tmp_path: 
     assert summary["infill_footprint_count"] == 0
     assert summary["building_summary"]["real_footprint_count"] == 0
     assert summary["building_summary"]["infill_footprint_count"] == 0
+    assert summary["door_enabled"] is True
+    assert summary["door_strategy"] == "attached_3d_v1"
+    assert summary["door_count"] == len(payload["building_placements"])
+    assert summary["building_summary"]["door_count"] == len(payload["building_placements"])
+    assert summary["door_count_by_side"]["left"] > 0
+    assert summary["door_count_by_side"]["right"] > 0
+    assert summary["door_missing_building_count"] == 0
+    assert summary["building_summary"]["door_missing_reason_counts"] == {}
     assert summary["frontage_coverage_by_side"]["left"]["coverage_ratio"] >= 0.65
     assert summary["frontage_coverage_by_side"]["right"]["coverage_ratio"] >= 0.65
     assert summary["frontage_gap_stats_by_side"]["left"]["gap_count"] >= 0
     assert len(payload["generated_lots"]) >= summary["land_use_summary"]["buildable_cell_count"]
     assert summary["building_summary"]["frontage_cell_count"] == summary["frontage_cell_count"]
+    assert all(bool(plan["door_added"]) for plan in payload["building_placements"])
+    assert all(str(plan["door_facing"]) in {"front", "back", "left", "right"} for plan in payload["building_placements"])
+    assert all(float((plan.get("door_dims_m", {}) or {}).get("width_m", 0.0)) >= 1.0 for plan in payload["building_placements"])
+    assert all(float((plan.get("door_dims_m", {}) or {}).get("height_m", 0.0)) >= 2.2 for plan in payload["building_placements"])
+    assert all(len(plan.get("door_center_world_xyz", []) or []) == 3 for plan in payload["building_placements"])
 
 
 def test_osm_scene_layout_contains_cumulative_production_steps(tmp_path: Path, monkeypatch):
@@ -3161,9 +3291,12 @@ def test_osm_compose_building_fallback_survives_missing_assets_and_footprints(tm
     assert summary["building_generation_mode"] == "grid_growth"
     assert summary["building_summary"]["real_footprint_count"] == 0
     assert summary["building_summary"]["infill_footprint_count"] == 0
+    assert summary["building_summary"]["door_count"] == len(payload["building_placements"])
+    assert summary["building_summary"]["door_missing_building_count"] == 0
     assert summary["building_balance_ok"] is True
     assert summary["street_furniture_balance_ok"] is True
     assert any(plan["selection_source"] == "procedural_fallback" for plan in building_plans)
+    assert all(bool(plan["door_added"]) for plan in building_plans)
     assert payload["zoning_grid"]
     assert payload["generated_lots"]
     assert summary["zoning_preview_summary"]["occupied_building_cells"] > 0

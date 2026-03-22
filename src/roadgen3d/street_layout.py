@@ -134,6 +134,8 @@ class _MeshCacheEntry:
     half_x: float
     half_z: float
     min_y: float
+    center_x: float = 0.0
+    center_z: float = 0.0
     is_scene: bool = False
     native_height_y: float = 0.0
 
@@ -478,6 +480,8 @@ def _load_mesh_cache(rows: List[Dict[str, str]]) -> Dict[str, _MeshCacheEntry]:
             half_x=float(max(span[0] / 2.0, 1e-3)),
             half_z=float(max(span[2] / 2.0, 1e-3)),
             min_y=float(bounds[0][1]),
+            center_x=float((bounds[0][0] + bounds[1][0]) / 2.0),
+            center_z=float((bounds[0][2] + bounds[1][2]) / 2.0),
             is_scene=bool(is_scene),
             native_height_y=float(max(span[1], 1e-3)),
         )
@@ -832,8 +836,330 @@ def _placeholder_building_entry(
         half_x=float(max(span[0] / 2.0, 1e-3)),
         half_z=float(max(span[2] / 2.0, 1e-3)),
         min_y=float(bounds[0][1]),
+        center_x=float((bounds[0][0] + bounds[1][0]) / 2.0),
+        center_z=float((bounds[0][2] + bounds[1][2]) / 2.0),
         native_height_y=float(max(span[1], 1e-3)),
     )
+
+
+def _rotate_world_xz_to_local(dx: float, dz: float, yaw_deg: float) -> Tuple[float, float]:
+    yaw_rad = math.radians(float(yaw_deg))
+    cos_y = math.cos(yaw_rad)
+    sin_y = math.sin(yaw_rad)
+    return (
+        float(dx * cos_y + dz * sin_y),
+        float(-dx * sin_y + dz * cos_y),
+    )
+
+
+def _rotate_local_xz_to_world(local_x: float, local_z: float, yaw_deg: float) -> Tuple[float, float]:
+    yaw_rad = math.radians(float(yaw_deg))
+    cos_y = math.cos(yaw_rad)
+    sin_y = math.sin(yaw_rad)
+    return (
+        float(local_x * cos_y - local_z * sin_y),
+        float(local_x * sin_y + local_z * cos_y),
+    )
+
+
+def _building_door_local_pose(
+    *,
+    street_edge_xz: Optional[Tuple[float, float]],
+    placement_xz: Tuple[float, float],
+    yaw_deg: float,
+    side: str,
+    entry: _MeshCacheEntry,
+    scale_xyz: Sequence[float],
+    facade_offset_m: float,
+) -> Tuple[Tuple[float, float], str] | None:
+    scale_x = float(scale_xyz[0]) if len(scale_xyz) >= 1 else 1.0
+    scale_z = float(scale_xyz[2]) if len(scale_xyz) >= 3 else scale_x
+    center_x = float(entry.center_x) * scale_x
+    center_z = float(entry.center_z) * scale_z
+    half_x = max(float(entry.half_x) * scale_x, 1e-3)
+    half_z = max(float(entry.half_z) * scale_z, 1e-3)
+    candidate_faces = (
+        ("front", (float(center_x), float(center_z - half_z - facade_offset_m))),
+        ("back", (float(center_x), float(center_z + half_z + facade_offset_m))),
+        ("left", (float(center_x - half_x - facade_offset_m), float(center_z))),
+        ("right", (float(center_x + half_x + facade_offset_m), float(center_z))),
+    )
+
+    if street_edge_xz is not None:
+        sx = float(street_edge_xz[0])
+        sz = float(street_edge_xz[1])
+        if abs(sx - float(placement_xz[0])) + abs(sz - float(placement_xz[1])) > 1e-6:
+            best: Tuple[float, str, Tuple[float, float]] | None = None
+            for facing, (local_x, local_z) in candidate_faces:
+                world_dx, world_dz = _rotate_local_xz_to_world(local_x, local_z, yaw_deg)
+                wx = float(placement_xz[0]) + float(world_dx)
+                wz = float(placement_xz[1]) + float(world_dz)
+                distance_sq = (wx - sx) ** 2 + (wz - sz) ** 2
+                if best is None or distance_sq < best[0]:
+                    best = (float(distance_sq), str(facing), (float(local_x), float(local_z)))
+            if best is not None:
+                return best[2], best[1]
+
+    side_lc = str(side).strip().lower()
+    if side_lc == "left":
+        return candidate_faces[0][1], candidate_faces[0][0]
+    if side_lc == "right":
+        return candidate_faces[1][1], candidate_faces[1][0]
+    return None
+
+
+def _resolve_building_door_spec(
+    *,
+    target: Mapping[str, object],
+    entry: _MeshCacheEntry,
+    scale_xyz: Sequence[float],
+) -> Dict[str, object]:
+    frontage_width_m = float(target.get("frontage_width_m", 0.0) or 0.0)
+    depth_m = float(target.get("depth_m", 0.0) or 0.0)
+    yaw_deg = float(target.get("yaw_deg", 0.0) or 0.0)
+    placement_xz_raw = target.get("placement_xz", target.get("center_xz", (0.0, 0.0))) or (0.0, 0.0)
+    street_edge_xz_raw = target.get("street_edge_xz", ()) or ()
+    side = str(target.get("side", "") or "").strip().lower()
+    if frontage_width_m < 1.2 or depth_m < 1.0:
+        return {
+            "door_added": False,
+            "door_facing": "",
+            "door_center_local_x": 0.0,
+            "door_width_m": 0.0,
+            "door_height_m": 0.0,
+            "door_dims_m": {},
+            "door_center_world_xyz": [],
+            "door_missing_reason": "mesh_too_small_for_door",
+        }
+
+    placement_xz = (
+        float(placement_xz_raw[0]) if len(placement_xz_raw) >= 2 else 0.0,
+        float(placement_xz_raw[1]) if len(placement_xz_raw) >= 2 else 0.0,
+    )
+    street_edge_xz: Optional[Tuple[float, float]] = None
+    if len(street_edge_xz_raw) >= 2:
+        street_edge_xz = (float(street_edge_xz_raw[0]), float(street_edge_xz_raw[1]))
+
+    if street_edge_xz is not None:
+        dx = float(street_edge_xz[0] - placement_xz[0])
+        dz = float(street_edge_xz[1] - placement_xz[1])
+        if abs(dx) + abs(dz) <= 1e-6:
+            street_edge_xz = None
+        else:
+            local_dir_x, local_dir_z = _rotate_world_xz_to_local(dx, dz, yaw_deg)
+    if street_edge_xz is None:
+        if side == "left":
+            local_dir_x, local_dir_z = 0.0, -1.0
+        elif side == "right":
+            local_dir_x, local_dir_z = 0.0, 1.0
+        else:
+            return {
+                "door_added": False,
+                "door_facing": "",
+                "door_center_local_x": 0.0,
+                "door_width_m": 0.0,
+                "door_height_m": 0.0,
+                "door_dims_m": {},
+                "door_center_world_xyz": [],
+                "door_missing_reason": "no_street_facing_side_resolved",
+            }
+
+    if abs(local_dir_x) >= abs(local_dir_z):
+        door_facing = "right" if local_dir_x > 0.0 else "left"
+    else:
+        door_facing = "back" if local_dir_z > 0.0 else "front"
+
+    building_height_m = float(target.get("target_height_m", 0.0) or 0.0)
+    if building_height_m <= 0.0:
+        scale_y = float(scale_xyz[1]) if len(scale_xyz) >= 2 else 1.0
+        building_height_m = float(max(entry.native_height_y * scale_y, 4.0))
+    if building_height_m <= 2.0:
+        return {
+            "door_added": False,
+            "door_facing": "",
+            "door_center_local_x": 0.0,
+            "door_width_m": 0.0,
+            "door_height_m": 0.0,
+            "door_dims_m": {},
+            "door_center_world_xyz": [],
+            "door_missing_reason": "mesh_too_small_for_door",
+        }
+
+    door_width_m = float(min(1.6, max(1.0, frontage_width_m * 0.12)))
+    door_height_m = float(min(3.2, max(2.2, building_height_m * 0.18)))
+    door_thickness_m = 0.08
+    facade_offset_m = door_thickness_m / 2.0 + 0.015
+    local_pose = _building_door_local_pose(
+        street_edge_xz=street_edge_xz,
+        placement_xz=placement_xz,
+        yaw_deg=yaw_deg,
+        side=side,
+        entry=entry,
+        scale_xyz=scale_xyz,
+        facade_offset_m=facade_offset_m,
+    )
+    if local_pose is None:
+        return {
+            "door_added": False,
+            "door_facing": "",
+            "door_center_local_x": 0.0,
+            "door_width_m": 0.0,
+            "door_height_m": 0.0,
+            "door_dims_m": {},
+            "door_center_world_xyz": [],
+            "door_missing_reason": "no_street_facing_side_resolved",
+        }
+    (local_door_x, local_door_z), door_facing = local_pose
+
+    world_dx, world_dz = _rotate_local_xz_to_world(local_door_x, local_door_z, yaw_deg)
+    return {
+        "door_added": True,
+        "door_facing": str(door_facing),
+        "door_center_local_x": float(local_door_x - (float(entry.center_x) * (float(scale_xyz[0]) if len(scale_xyz) >= 1 else 1.0))),
+        "door_width_m": float(door_width_m),
+        "door_height_m": float(door_height_m),
+        "door_dims_m": {
+            "width_m": float(door_width_m),
+            "height_m": float(door_height_m),
+            "thickness_m": float(door_thickness_m),
+        },
+        "door_center_world_xyz": [
+            float(placement_xz[0] + world_dx),
+            float(door_height_m / 2.0),
+            float(placement_xz[1] + world_dz),
+        ],
+        "door_missing_reason": "",
+    }
+
+
+def _door_colors_for_land_use(land_use_type: str) -> Dict[str, Tuple[int, int, int, int]]:
+    land_use_key = str(land_use_type or "").strip().lower()
+    if land_use_key in {"commercial", "transit"}:
+        return {
+            "panel": (132, 159, 184, 228),
+            "frame": (235, 236, 238, 255),
+            "canopy": (233, 216, 200, 238),
+        }
+    return {
+        "panel": (114, 84, 63, 255),
+        "frame": (224, 214, 204, 255),
+        "canopy": (208, 196, 184, 230),
+    }
+
+
+def _create_attached_building_door_meshes(
+    *,
+    plan: BuildingPlacementPlan,
+    entry: _MeshCacheEntry,
+) -> List[object]:
+    trimesh = _require_trimesh()
+    if not bool(plan.door_added):
+        return []
+    door_dims = dict(plan.door_dims_m or {})
+    door_width_m = float(door_dims.get("width_m", plan.door_width_m) or 0.0)
+    door_height_m = float(door_dims.get("height_m", plan.door_height_m) or 0.0)
+    door_thickness_m = float(door_dims.get("thickness_m", 0.08) or 0.08)
+    if door_width_m <= 0.0 or door_height_m <= 0.0:
+        return []
+
+    scale_y = float(plan.scale_xyz[1]) if len(plan.scale_xyz) >= 2 else 1.0
+    local_ground_y = float(entry.min_y) * scale_y
+    panel_center_y = local_ground_y + door_height_m / 2.0
+    facade_offset_m = door_thickness_m / 2.0 + 0.015
+    local_pose = _building_door_local_pose(
+        street_edge_xz=tuple(plan.street_edge_xz) if tuple(plan.street_edge_xz) else None,
+        placement_xz=tuple(plan.placement_xz),
+        yaw_deg=float(plan.yaw_deg),
+        side=str(plan.side),
+        entry=entry,
+        scale_xyz=plan.scale_xyz,
+        facade_offset_m=facade_offset_m,
+    )
+    if local_pose is None:
+        return []
+    (local_center_x, local_center_z), door_facing = local_pose
+
+    if str(door_facing) == "front":
+        local_center = (local_center_x, panel_center_y, local_center_z)
+        panel_extents = (door_width_m, door_height_m, door_thickness_m)
+        frame_span_extents = (0.08, door_height_m + 0.14, door_thickness_m * 1.2)
+        lintel_extents = (door_width_m + 0.18, 0.08, door_thickness_m * 1.2)
+        frame_offsets = [(-door_width_m / 2.0 - 0.05, 0.0, 0.0), (door_width_m / 2.0 + 0.05, 0.0, 0.0)]
+        lintel_offset = (0.0, door_height_m / 2.0 + 0.05, 0.0)
+        canopy_extents = (door_width_m + 0.45, 0.05, 0.45)
+        canopy_offset = (0.0, door_height_m / 2.0 + 0.3, -0.2)
+    elif str(door_facing) == "back":
+        local_center = (local_center_x, panel_center_y, local_center_z)
+        panel_extents = (door_width_m, door_height_m, door_thickness_m)
+        frame_span_extents = (0.08, door_height_m + 0.14, door_thickness_m * 1.2)
+        lintel_extents = (door_width_m + 0.18, 0.08, door_thickness_m * 1.2)
+        frame_offsets = [(-door_width_m / 2.0 - 0.05, 0.0, 0.0), (door_width_m / 2.0 + 0.05, 0.0, 0.0)]
+        lintel_offset = (0.0, door_height_m / 2.0 + 0.05, 0.0)
+        canopy_extents = (door_width_m + 0.45, 0.05, 0.45)
+        canopy_offset = (0.0, door_height_m / 2.0 + 0.3, 0.2)
+    elif str(door_facing) == "left":
+        local_center = (local_center_x, panel_center_y, local_center_z)
+        panel_extents = (door_thickness_m, door_height_m, door_width_m)
+        frame_span_extents = (door_thickness_m * 1.2, door_height_m + 0.14, 0.08)
+        lintel_extents = (door_thickness_m * 1.2, 0.08, door_width_m + 0.18)
+        frame_offsets = [(0.0, 0.0, -door_width_m / 2.0 - 0.05), (0.0, 0.0, door_width_m / 2.0 + 0.05)]
+        lintel_offset = (0.0, door_height_m / 2.0 + 0.05, 0.0)
+        canopy_extents = (0.45, 0.05, door_width_m + 0.45)
+        canopy_offset = (-0.2, door_height_m / 2.0 + 0.3, 0.0)
+    else:
+        local_center = (local_center_x, panel_center_y, local_center_z)
+        panel_extents = (door_thickness_m, door_height_m, door_width_m)
+        frame_span_extents = (door_thickness_m * 1.2, door_height_m + 0.14, 0.08)
+        lintel_extents = (door_thickness_m * 1.2, 0.08, door_width_m + 0.18)
+        frame_offsets = [(0.0, 0.0, -door_width_m / 2.0 - 0.05), (0.0, 0.0, door_width_m / 2.0 + 0.05)]
+        lintel_offset = (0.0, door_height_m / 2.0 + 0.05, 0.0)
+        canopy_extents = (0.45, 0.05, door_width_m + 0.45)
+        canopy_offset = (0.2, door_height_m / 2.0 + 0.3, 0.0)
+
+    colors = _door_colors_for_land_use(plan.land_use_type)
+    meshes: List[object] = []
+
+    panel = trimesh.creation.box(extents=panel_extents)
+    panel.visual.face_colors = list(colors["panel"])
+    panel.apply_translation(local_center)
+    meshes.append(panel)
+
+    for offset in frame_offsets:
+        frame = trimesh.creation.box(extents=frame_span_extents)
+        frame.visual.face_colors = list(colors["frame"])
+        frame.apply_translation(
+            [
+                float(local_center[0] + offset[0]),
+                float(local_center[1] + offset[1]),
+                float(local_center[2] + offset[2]),
+            ]
+        )
+        meshes.append(frame)
+
+    lintel = trimesh.creation.box(extents=lintel_extents)
+    lintel.visual.face_colors = list(colors["frame"])
+    lintel.apply_translation(
+        [
+            float(local_center[0] + lintel_offset[0]),
+            float(local_center[1] + lintel_offset[1]),
+            float(local_center[2] + lintel_offset[2]),
+        ]
+    )
+    meshes.append(lintel)
+
+    if str(plan.land_use_type).strip().lower() in {"commercial", "transit"}:
+        canopy = trimesh.creation.box(extents=canopy_extents)
+        canopy.visual.face_colors = list(colors["canopy"])
+        canopy.apply_translation(
+            [
+                float(local_center[0] + canopy_offset[0]),
+                float(local_center[1] + canopy_offset[1]),
+                float(local_center[2] + canopy_offset[2]),
+            ]
+        )
+        meshes.append(canopy)
+
+    return meshes
 
 
 def _pick_category_candidate(
@@ -1472,6 +1798,7 @@ def _add_instance_meshes(
     scene,
     placements: List[StreetPlacement],
     mesh_cache: Dict[str, _MeshCacheEntry],
+    building_plans_by_instance: Optional[Mapping[str, BuildingPlacementPlan]] = None,
 ) -> None:
     trimesh = _require_trimesh()
     for placement in placements:
@@ -1494,6 +1821,11 @@ def _add_instance_meshes(
                 float(placement.position_xyz[1]) + y_offset,
                 float(placement.position_xyz[2]),
             ]
+        )
+        building_plan = (
+            building_plans_by_instance.get(placement.instance_id)
+            if building_plans_by_instance is not None and placement.placement_group == "building"
+            else None
         )
         if isinstance(mesh_or_scene, trimesh.Scene):
             # Scene-type entries (e.g. parametric trees with PBR materials):
@@ -1518,6 +1850,13 @@ def _add_instance_meshes(
             mesh_or_scene.apply_transform(rotation)
             mesh_or_scene.apply_transform(translation)
             scene.add_geometry(mesh_or_scene, node_name=placement.instance_id)
+        if building_plan is not None and bool(building_plan.door_added):
+            door_meshes = _create_attached_building_door_meshes(plan=building_plan, entry=entry)
+            for didx, door_mesh in enumerate(door_meshes):
+                placed_door = door_mesh.copy()
+                placed_door.apply_transform(rotation)
+                placed_door.apply_transform(translation)
+                scene.add_geometry(placed_door, node_name=f"{placement.instance_id}_door_{didx}")
 
 
 def _export_scene(scene, out_dir: Path, export_format: str) -> Dict[str, str]:
@@ -1968,7 +2307,15 @@ def _build_production_steps(
                 texture_tracker=step_texture_tracker,
             )
         if visible_placements:
-            _add_instance_meshes(scene=scene, placements=list(visible_placements), mesh_cache=dict(mesh_cache))
+            _add_instance_meshes(
+                scene=scene,
+                placements=list(visible_placements),
+                mesh_cache=dict(mesh_cache),
+                building_plans_by_instance={
+                    str(plan.instance_id): plan
+                    for plan in building_plans
+                },
+            )
         if include_poi_overlays:
             _add_poi_markers_and_zones(scene, extract_poi_points_by_type(poi_ctx, suffix="xz") if poi_ctx is not None else {}, exclusion_zones)
 
@@ -3266,6 +3613,8 @@ def _place_building_targets(
     source_counts: Dict[str, int] = {}
     placement_strategy_counts: Dict[str, int] = {}
     front_setbacks: List[float] = []
+    door_count_by_side: Dict[str, int] = {}
+    door_missing_reason_counts: Dict[str, int] = {}
 
     for target_idx, target in enumerate(targets):
         theme_id = str(target.get("theme_id", "") or "")
@@ -3357,8 +3706,23 @@ def _place_building_targets(
             clearance=0.15,
         )
         y = -entry.min_y * float(scale_xyz[1])
+        instance_id = f"inst_{instance_index:04d}"
+        door_spec = _resolve_building_door_spec(target=target, entry=entry, scale_xyz=scale_xyz)
+        if bool(door_spec.get("door_added")):
+            side_key = str(target.get("side", "") or "").strip().lower() or "unknown"
+            door_count_by_side[side_key] = door_count_by_side.get(side_key, 0) + 1
+        else:
+            reason_key = str(door_spec.get("door_missing_reason", "") or "").strip()
+            if reason_key:
+                door_missing_reason_counts[reason_key] = door_missing_reason_counts.get(reason_key, 0) + 1
+        street_edge_xz_raw = target.get("street_edge_xz", ()) or ()
+        if len(street_edge_xz_raw) >= 2:
+            street_edge_xz = (float(street_edge_xz_raw[0]), float(street_edge_xz_raw[1]))
+        else:
+            street_edge_xz = (float(center_xz[0]), float(center_xz[1]))
         plans.append(
             BuildingPlacementPlan(
+                instance_id=instance_id,
                 footprint_id=str(target.get("target_id", "") or ""),
                 theme_id=theme_id,
                 asset_id=asset_id,
@@ -3370,17 +3734,29 @@ def _place_building_targets(
                 bbox_xz=[float(value) for value in bbox],
                 frontage_width_m=frontage_width_m,
                 depth_m=depth_m,
+                side=str(target.get("side", "") or ""),
+                land_use_type=str(target.get("land_use_type", "") or ""),
+                street_edge_xz=street_edge_xz,
+                placement_xz=(float(center_xz[0]), float(center_xz[1])),
                 anchor_geom_id=str(target.get("anchor_geom_id", "") or ""),
                 retrieval_score=float(score),
                 fallback_reason=fallback_reason,
                 target_height_m=_target_height_m,
                 placement_strategy=placement_strategy,
                 front_setback_m=front_setback_m,
+                door_added=bool(door_spec.get("door_added", False)),
+                door_facing=str(door_spec.get("door_facing", "") or ""),
+                door_center_local_x=float(door_spec.get("door_center_local_x", 0.0) or 0.0),
+                door_width_m=float(door_spec.get("door_width_m", 0.0) or 0.0),
+                door_height_m=float(door_spec.get("door_height_m", 0.0) or 0.0),
+                door_dims_m=dict(door_spec.get("door_dims_m", {}) or {}),
+                door_center_world_xyz=[float(value) for value in (door_spec.get("door_center_world_xyz", []) or [])],
+                door_missing_reason=str(door_spec.get("door_missing_reason", "") or ""),
             )
         )
         placements.append(
             StreetPlacement(
-                instance_id=f"inst_{instance_index:04d}",
+                instance_id=instance_id,
                 asset_id=asset_id,
                 category="building",
                 score=float(score),
@@ -3411,6 +3787,12 @@ def _place_building_targets(
         "fallback_count": int(fallback_count),
         "sources": source_counts,
         "placement_strategy_counts": placement_strategy_counts,
+        "door_enabled": True,
+        "door_strategy": "attached_3d_v1",
+        "door_count": int(sum(1 for plan in plans if bool(plan.door_added))),
+        "door_count_by_side": dict(door_count_by_side),
+        "door_missing_building_count": int(sum(1 for plan in plans if not bool(plan.door_added))),
+        "door_missing_reason_counts": dict(door_missing_reason_counts),
     }
     if front_setbacks:
         summary["front_setback_stats"] = {
@@ -3443,7 +3825,19 @@ def _place_surrounding_buildings(
             placements=tuple(),
             plans=tuple(),
             retrieval_predictions=tuple(),
-            building_summary={"enabled": False, "footprint_count": 0, "lot_count": 0, "placed_count": 0, "fallback_count": 0},
+            building_summary={
+                "enabled": False,
+                "footprint_count": 0,
+                "lot_count": 0,
+                "placed_count": 0,
+                "fallback_count": 0,
+                "door_enabled": True,
+                "door_count": 0,
+                "door_count_by_side": {},
+                "door_strategy": "attached_3d_v1",
+                "door_missing_building_count": 0,
+                "door_missing_reason_counts": {},
+            },
             land_use_summary={},
             lot_generation_summary={"lot_count": 0},
             zoning_grid=tuple(),
@@ -5209,7 +5603,15 @@ def compose_street_scene(
         texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
         texture_tracker=scene_texture_tracker,
     )
-    _add_instance_meshes(scene=scene, placements=placements, mesh_cache=mesh_cache)
+    _add_instance_meshes(
+        scene=scene,
+        placements=placements,
+        mesh_cache=mesh_cache,
+        building_plans_by_instance={
+            str(plan.instance_id): plan
+            for plan in building_plans
+        },
+    )
 
     exclusion_zones: tuple = ()
     debug_scene_overlays_enabled = _should_embed_debug_scene_overlays(config)
@@ -5629,6 +6031,12 @@ def compose_street_scene(
         "building_balance_reason": str(building_summary.get("building_balance_reason", "") or ""),
         "frontage_balance_gap": float(building_summary.get("frontage_balance_gap", 0.0) or 0.0),
         "buildable_frontage_by_side": dict(building_summary.get("buildable_frontage_by_side", {}) or {}),
+        "door_enabled": bool(building_summary.get("door_enabled", True)),
+        "door_count": int(building_summary.get("door_count", 0) or 0),
+        "door_count_by_side": dict(building_summary.get("door_count_by_side", {}) or {}),
+        "door_strategy": str(building_summary.get("door_strategy", "attached_3d_v1") or "attached_3d_v1"),
+        "door_missing_building_count": int(building_summary.get("door_missing_building_count", 0) or 0),
+        "door_missing_reason_counts": dict(building_summary.get("door_missing_reason_counts", {}) or {}),
         "zoning_preview_mode": str(zoning_preview_summary.get("zoning_preview_mode", "parcel_first") or "parcel_first"),
         "frontage_cell_count": int(zoning_preview_summary.get("frontage_cell_count", 0) or 0),
         "frontage_parcel_count": int(lot_generation_summary.get("frontage_parcel_count", len(generated_lots)) or 0),

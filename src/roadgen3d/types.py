@@ -627,6 +627,7 @@ class GeneratedLot:
 class BuildingPlacementPlan:
     """Resolved building placement derived from a footprint and retrieval result."""
 
+    instance_id: str
     footprint_id: str
     theme_id: str
     asset_id: str
@@ -638,15 +639,30 @@ class BuildingPlacementPlan:
     bbox_xz: List[float]
     frontage_width_m: float
     depth_m: float
+    side: str = ""
+    land_use_type: str = ""
+    street_edge_xz: Tuple[float, float] = (0.0, 0.0)
+    placement_xz: Tuple[float, float] = (0.0, 0.0)
     anchor_geom_id: str = ""
     retrieval_score: float = 0.0
     fallback_reason: str = ""
     target_height_m: float = 0.0
     placement_strategy: str = ""
     front_setback_m: float = 0.0
+    door_added: bool = False
+    door_facing: str = ""
+    door_center_local_x: float = 0.0
+    door_width_m: float = 0.0
+    door_height_m: float = 0.0
+    door_dims_m: Dict[str, float] = field(default_factory=dict)
+    door_center_world_xyz: List[float] = field(default_factory=list)
+    door_missing_reason: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
-        return asdict(self)
+        payload = asdict(self)
+        payload["street_edge_xz"] = list(self.street_edge_xz)
+        payload["placement_xz"] = list(self.placement_xz)
+        return payload
 
 
 @dataclass(frozen=True)

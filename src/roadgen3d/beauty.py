@@ -1180,6 +1180,50 @@ def _local_building_boxes(
     return boxes
 
 
+def _local_building_doors(
+    layout_payload: Mapping[str, Any],
+    *,
+    origin_xz: Tuple[float, float],
+    axis_angle_rad: float,
+) -> List[Dict[str, float]]:
+    doors: List[Dict[str, float]] = []
+    axis_angle_deg = math.degrees(float(axis_angle_rad))
+    for plan in layout_payload.get("building_placements", []) or []:
+        if not bool(plan.get("door_added", False)):
+            continue
+        door_center_world = plan.get("door_center_world_xyz", []) or []
+        if len(door_center_world) < 3:
+            continue
+        door_dims = dict(plan.get("door_dims_m", {}) or {})
+        door_width_m = float(door_dims.get("width_m", plan.get("door_width_m", 0.0)) or 0.0)
+        door_height_m = float(door_dims.get("height_m", plan.get("door_height_m", 0.0)) or 0.0)
+        if door_width_m <= 0.0 or door_height_m <= 0.0:
+            continue
+        facing = str(plan.get("door_facing", "") or "").strip().lower()
+        yaw_local_rad = math.radians(float(plan.get("yaw_deg", 0.0) or 0.0) - axis_angle_deg)
+        if facing in {"front", "back"}:
+            width_dir = (math.cos(yaw_local_rad), math.sin(yaw_local_rad))
+        else:
+            width_dir = (-math.sin(yaw_local_rad), math.cos(yaw_local_rad))
+        center_u, center_v = _localize_point(
+            (float(door_center_world[0]), float(door_center_world[2])),
+            origin_xz=origin_xz,
+            axis_angle_rad=axis_angle_rad,
+        )
+        half_width = door_width_m / 2.0
+        doors.append(
+            {
+                "left_u": float(center_u - width_dir[0] * half_width),
+                "left_v": float(center_v - width_dir[1] * half_width),
+                "right_u": float(center_u + width_dir[0] * half_width),
+                "right_v": float(center_v + width_dir[1] * half_width),
+                "center_v": float(center_v),
+                "height_m": float(door_height_m),
+            }
+        )
+    return doors
+
+
 def _visible_oblique_building_boxes(
     boxes: Sequence[Mapping[str, float]],
 ) -> List[Dict[str, float]]:
@@ -1737,6 +1781,7 @@ def _render_axonometric_oblique_view(
     ]
     building_boxes = _local_building_boxes(layout_payload, origin_xz=origin_xz, axis_angle_rad=axis_angle)
     visible_building_boxes = _visible_oblique_building_boxes(building_boxes)
+    local_building_doors = _local_building_doors(layout_payload, origin_xz=origin_xz, axis_angle_rad=axis_angle)
     localized_placements = []
     for placement in layout_payload.get("placements", []) or []:
         pos = placement.get("position_xyz", []) or []
@@ -1858,6 +1903,23 @@ def _render_axonometric_oblique_view(
         end_cols = max(2, min(4, int(round(abs(max_v - min_v) / 2.0))))
         _draw_building_windows(ax, street_quad[0], street_quad[1], street_quad[3], street_quad[2], style=style, floor_count=floor_count, column_count=facade_cols)
         _draw_building_windows(ax, end_quad[0], end_quad[1], end_quad[3], end_quad[2], style=style, floor_count=floor_count, column_count=end_cols)
+
+    for door in local_building_doors:
+        if float(door.get("center_v", 0.0)) >= 0.0:
+            continue
+        left_bottom = _project_oblique_point(float(door["left_u"]), float(door["left_v"]), 0.02)
+        right_bottom = _project_oblique_point(float(door["right_u"]), float(door["right_v"]), 0.02)
+        left_top = _project_oblique_point(float(door["left_u"]), float(door["left_v"]), float(door["height_m"]))
+        right_top = _project_oblique_point(float(door["right_u"]), float(door["right_v"]), float(door["height_m"]))
+        _draw_polygon_patch(
+            ax,
+            [left_bottom, right_bottom, right_top, left_top],
+            facecolor=style.activity_fill,
+            edgecolor="white",
+            linewidth=0.45,
+            alpha=0.95,
+            zorder=4.25,
+        )
 
     summary = dict(layout_payload.get("summary", {}) or {})
     road_width = float(summary.get("road_width_m", 8.0))
