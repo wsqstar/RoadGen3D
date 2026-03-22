@@ -847,8 +847,8 @@ def _rotate_world_xz_to_local(dx: float, dz: float, yaw_deg: float) -> Tuple[flo
     cos_y = math.cos(yaw_rad)
     sin_y = math.sin(yaw_rad)
     return (
-        float(dx * cos_y + dz * sin_y),
-        float(-dx * sin_y + dz * cos_y),
+        float(dx * cos_y - dz * sin_y),
+        float(dx * sin_y + dz * cos_y),
     )
 
 
@@ -857,8 +857,8 @@ def _rotate_local_xz_to_world(local_x: float, local_z: float, yaw_deg: float) ->
     cos_y = math.cos(yaw_rad)
     sin_y = math.sin(yaw_rad)
     return (
-        float(local_x * cos_y - local_z * sin_y),
-        float(local_x * sin_y + local_z * cos_y),
+        float(local_x * cos_y + local_z * sin_y),
+        float(-local_x * sin_y + local_z * cos_y),
     )
 
 

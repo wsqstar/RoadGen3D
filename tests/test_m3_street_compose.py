@@ -758,6 +758,17 @@ def test_building_door_local_pose_selects_facade_nearest_road():
     assert left_local_z == pytest.approx(-0.5 - 3.0 - 0.055)
 
 
+def test_building_door_rotation_helpers_match_yaw_transform_convention():
+    local_x, local_z = 0.0, 2.0
+    world_x, world_z = street_layout._rotate_local_xz_to_world(local_x, local_z, 90.0)
+    assert world_x == pytest.approx(2.0)
+    assert world_z == pytest.approx(0.0, abs=1e-6)
+
+    roundtrip_x, roundtrip_z = street_layout._rotate_world_xz_to_local(world_x, world_z, 90.0)
+    assert roundtrip_x == pytest.approx(local_x, abs=1e-6)
+    assert roundtrip_z == pytest.approx(local_z, abs=1e-6)
+
+
 def test_street_compose_no_overlap_aabb(tmp_path: Path, monkeypatch):
     pytest.importorskip("trimesh")
     rows = _build_real_rows(tmp_path / "data")
