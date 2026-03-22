@@ -41,8 +41,6 @@ except Exception as exc:  # pragma: no cover - runtime guard
         ".venv/bin/python -m pip install gradio>=5,<6"
     ) from exc
 
-from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse, RedirectResponse
-
 from roadgen3d.decoder import PlaceholderVoxelDecoder
 from roadgen3d.decoder_shapee import ShapeEDecoder
 from roadgen3d.embedder import ClipTextEmbedder, ModelLoadError
@@ -92,13 +90,10 @@ from roadgen3d.types import (
     WorkspaceReadiness,
 )
 from roadgen3d.web_viewer_dev import (
-    WebViewerError,
-    build_layout_manifest,
+    build_web_viewer_dev_command,
+    cache_scene_layout_for_viewer,
     build_web_viewer_url,
-    content_type_for,
-    ensure_web_viewer_assets,
-    resolve_repo_path,
-    viewer_asset_path,
+    make_json_safe,
 )
 from scripts.m1_01_seed_assets import seed_assets
 from scripts.m2_11_encode_shapee_latents import encode_latents as encode_shapee_latents
@@ -321,31 +316,78 @@ def _web_viewer_link_html(url: str, error_message: str = "") -> str:
     )
 
 
+def _web_viewer_copy_button_html(command_elem_id: str = "web-viewer-command-textbox") -> str:
+    safe_elem_id = html.escape(command_elem_id, quote=True)
+    return (
+        '<div style="display:flex;align-items:center;gap:0.65rem;justify-content:flex-start;">'
+        + '<button type="button" '
+        + 'style="padding:0.65rem 0.95rem;border:none;border-radius:0.65rem;'
+        + 'background:#111827;color:#ffffff;font-weight:600;cursor:pointer;" '
+        + 'onclick="(async()=>{'
+        + f"const root=document.getElementById('{safe_elem_id}');"
+        + "const field=root && (root.querySelector('textarea') || root.querySelector('input'));"
+        + "const status=document.getElementById('web-viewer-copy-status');"
+        + "if(!field || !field.value || !String(field.value).trim()){if(status){status.textContent='No command yet';}return;}"
+        + "try{await navigator.clipboard.writeText(String(field.value));if(status){status.textContent='Copied';}}"
+        + "catch(err){"
+        + "try{field.focus();if(field.select){field.select();}if(field.setSelectionRange){field.setSelectionRange(0, String(field.value).length);}document.execCommand('copy');if(status){status.textContent='Copied';}}"
+        + "catch(copyErr){if(status){status.textContent='Copy failed';}}"
+        + "}"
+        + "if(status){window.clearTimeout(window.__roadgenViewerCopyTimer||0);window.__roadgenViewerCopyTimer=window.setTimeout(()=>{status.textContent='';},1800);}"
+        + '})()">'
+        + "Copy Web Viewer Command"
+        + "</button>"
+        + '<span id="web-viewer-copy-status" style="font-size:0.92rem;color:#52525b;"></span>'
+        + "</div>"
+    )
+
+
 def _prepare_web_viewer_outputs(
     summary_text: str,
     layout_json_text: str,
     files: List[str] | None,
-) -> Tuple[str, str, str, str]:
+) -> Tuple[str, str, str, str, str]:
     summary = str(summary_text or "")
     layout_json = str(layout_json_text or "")
     viewer_url = ""
+    viewer_command = ""
     viewer_html = _web_viewer_link_html("", "Open Web Viewer will appear after a successful run.")
     layout_path = _find_scene_layout_in_files(files)
     if layout_path is None:
-        return summary, layout_json, viewer_url, viewer_html
+        return summary, layout_json, viewer_url, viewer_command, viewer_html
     try:
-        viewer_url = build_web_viewer_url(layout_path)
-        viewer_html = _web_viewer_link_html(viewer_url)
+        viewer_layout_path = cache_scene_layout_for_viewer(layout_path, layout_json)
+        viewer_command = build_web_viewer_dev_command(viewer_layout_path)
+        if f"web_viewer_command: {viewer_command}" not in summary:
+            summary = summary.rstrip() + ("\n" if summary.strip() else "") + f"- web_viewer_command: {viewer_command}"
+        viewer_url = build_web_viewer_url(viewer_layout_path)
+        viewer_html = _web_viewer_link_html(
+            viewer_url,
+            "Run the Web Viewer command below if the Vite viewer is not already running.",
+        )
         if f"web_viewer_url: {viewer_url}" not in summary:
             summary = summary.rstrip() + ("\n" if summary.strip() else "") + f"- web_viewer_url: {viewer_url}"
+        if f"web_viewer_layout_path: {viewer_layout_path}" not in summary:
+            summary = summary.rstrip() + ("\n" if summary.strip() else "") + f"- web_viewer_layout_path: {viewer_layout_path}"
         if layout_json.strip():
             try:
                 payload = json.loads(layout_json)
                 payload.setdefault("summary", {})["web_viewer_url"] = viewer_url
+                payload.setdefault("summary", {})["web_viewer_command"] = viewer_command
+                payload.setdefault("summary", {})["web_viewer_layout_path"] = str(viewer_layout_path)
                 payload.setdefault("outputs", {})["web_viewer_url"] = viewer_url
-                updated_layout_json = json.dumps(payload, indent=2, ensure_ascii=True)
+                payload.setdefault("outputs", {})["web_viewer_command"] = viewer_command
+                payload.setdefault("outputs", {})["web_viewer_layout_path"] = str(viewer_layout_path)
+                updated_layout_json = json.dumps(
+                    make_json_safe(payload),
+                    indent=2,
+                    ensure_ascii=True,
+                    allow_nan=False,
+                )
                 layout_json = updated_layout_json
                 layout_path.write_text(updated_layout_json, encoding="utf-8")
+                if viewer_layout_path != layout_path:
+                    viewer_layout_path.write_text(updated_layout_json, encoding="utf-8")
             except Exception:
                 pass
     except Exception as exc:
@@ -354,53 +396,7 @@ def _prepare_web_viewer_outputs(
         marker = f"- web_viewer_error: {error_message}"
         if error_message and marker not in summary:
             summary = summary.rstrip() + ("\n" if summary.strip() else "") + marker
-    return summary, layout_json, viewer_url, viewer_html
-
-
-def _register_web_viewer_routes(demo: gr.Blocks) -> None:
-    if getattr(demo, "_roadgen_web_viewer_routes_registered", False):
-        return
-
-    @demo.app.get("/web-viewer", include_in_schema=False, response_model=None)
-    async def _web_viewer_redirect():
-        return RedirectResponse(url="/web-viewer/")
-
-    @demo.app.get("/web-viewer/", include_in_schema=False, response_model=None)
-    async def _web_viewer_index():
-        try:
-            index_path = ensure_web_viewer_assets()
-        except WebViewerError as exc:
-            return PlainTextResponse(str(exc), status_code=500)
-        return FileResponse(index_path, media_type="text/html")
-
-    @demo.app.get("/web-viewer/assets/{asset_path:path}", include_in_schema=False, response_model=None)
-    async def _web_viewer_asset(asset_path: str):
-        try:
-            asset_file = viewer_asset_path(Path("assets") / asset_path)
-        except WebViewerError as exc:
-            return PlainTextResponse(str(exc), status_code=404)
-        return FileResponse(asset_file, media_type=content_type_for(asset_file))
-
-    @demo.app.get("/web-viewer/api/layout", include_in_schema=False, response_model=None)
-    async def _web_viewer_layout(path: str):
-        try:
-            return JSONResponse(build_layout_manifest(path))
-        except WebViewerError as exc:
-            return JSONResponse({"error": str(exc)}, status_code=400)
-        except Exception as exc:
-            return JSONResponse({"error": str(exc)}, status_code=500)
-
-    @demo.app.get("/web-viewer/api/file", include_in_schema=False, response_model=None)
-    async def _web_viewer_file(path: str):
-        try:
-            file_path = resolve_repo_path(path)
-            if not file_path.exists() or not file_path.is_file():
-                raise WebViewerError(f"File not found: {file_path}")
-        except WebViewerError as exc:
-            return PlainTextResponse(str(exc), status_code=404)
-        return FileResponse(file_path, media_type=content_type_for(file_path))
-
-    setattr(demo, "_roadgen_web_viewer_routes_registered", True)
+    return summary, layout_json, viewer_url, viewer_command, viewer_html
 
 
 def _spatial_context_poi_points(spatial_ctx: Dict[str, Any]) -> Dict[str, Tuple[Tuple[float, float], ...]]:
@@ -4260,6 +4256,16 @@ def build_demo() -> gr.Blocks:
                     with gr.Row():
                         web_viewer_link = gr.HTML(value=_web_viewer_link_html("", "Open Web Viewer will appear after a successful run."))
                         web_viewer_url = gr.Textbox(label="Web Viewer URL", lines=1, interactive=False)
+                    web_viewer_command = gr.Textbox(
+                        label="Web Viewer Command",
+                        lines=2,
+                        interactive=False,
+                        elem_id="web-viewer-command-textbox",
+                    )
+                    web_viewer_copy_button = gr.HTML(
+                        value=_web_viewer_copy_button_html(),
+                        padding=False,
+                    )
                     production_step_downloads = gr.Files(label="Production Step Downloads")
                 with gr.Accordion("高级设置", open=False):
                     with gr.Row():
@@ -4860,7 +4866,7 @@ def build_demo() -> gr.Blocks:
         ).then(
             fn=_prepare_web_viewer_outputs,
             inputs=[street_summary, street_layout_json, street_files],
-            outputs=[street_summary, street_layout_json, web_viewer_url, web_viewer_link],
+            outputs=[street_summary, street_layout_json, web_viewer_url, web_viewer_command, web_viewer_link],
         ).then(
             fn=_load_production_steps,
             inputs=[street_layout_json],
@@ -5212,7 +5218,6 @@ def build_demo() -> gr.Blocks:
             inputs=[run_best_layout_json],
             outputs=[run_best_building_summary],
         )
-    _register_web_viewer_routes(demo)
     return demo
 
 

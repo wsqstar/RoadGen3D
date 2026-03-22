@@ -8,6 +8,19 @@ type SceneOption = {
   glbUrl: string;
 };
 
+type RecentLayout = {
+  layout_path: string;
+  label: string;
+  relative_path?: string;
+  updated_at?: string;
+  mtime_ms?: number;
+};
+
+type RecentLayoutsPayload = {
+  results?: RecentLayout[];
+  error?: string;
+};
+
 type ViewerManifest = {
   layout_path: string;
   final_scene: {
@@ -76,6 +89,13 @@ function makeSceneOptions(manifest: ViewerManifest): SceneOption[] {
   return options;
 }
 
+function makeDirectLayoutLabel(layoutPath: string): string {
+  const normalized = layoutPath.replace(/\\/g, "/");
+  const parts = normalized.split("/").filter(Boolean);
+  const tail = parts.slice(-2).join("/");
+  return `Direct Layout · ${tail || normalized}`;
+}
+
 function disposeObject(root: THREE.Object3D): void {
   root.traverse((child: THREE.Object3D) => {
     const mesh = child as THREE.Mesh;
@@ -131,13 +151,10 @@ function inferSpawnFromBbox(
   };
 }
 
-function parseQueryLayoutPath(): string {
+function parseQueryLayoutPath(): string | null {
   const search = new URLSearchParams(window.location.search);
   const layoutPath = search.get("layout") ?? "";
-  if (!layoutPath.trim()) {
-    throw new Error("Missing ?layout=/abs/path/to/scene_layout.json query parameter.");
-  }
-  return layoutPath;
+  return layoutPath.trim() || null;
 }
 
 async function loadManifest(layoutPath: string): Promise<ViewerManifest> {
@@ -149,13 +166,34 @@ async function loadManifest(layoutPath: string): Promise<ViewerManifest> {
   return payload as ViewerManifest;
 }
 
+async function loadRecentLayouts(limit = 20): Promise<RecentLayout[]> {
+  const response = await fetch(`./api/recent-layouts?limit=${encodeURIComponent(String(limit))}`);
+  const payload = (await response.json()) as RecentLayoutsPayload;
+  if (!response.ok) {
+    throw new Error(String(payload?.error ?? "Failed to discover recent scene layouts."));
+  }
+  return Array.isArray(payload?.results) ? payload.results : [];
+}
+
+function updateQueryLayout(layoutPath: string): void {
+  const nextUrl = new URL(window.location.href);
+  nextUrl.searchParams.set("layout", layoutPath);
+  window.history.replaceState({}, "", nextUrl.toString());
+}
+
 export async function mountViewer(root: HTMLElement): Promise<void> {
   root.innerHTML = `
     <div class="viewer-shell">
       <div class="viewer-topbar">
-        <div class="viewer-controls">
+        <div class="viewer-controls-group">
+          <div class="viewer-controls">
+            <label class="viewer-label" for="layout-select">Recent Result</label>
+            <select id="layout-select" class="viewer-select"></select>
+          </div>
+          <div class="viewer-controls">
           <label class="viewer-label" for="scene-select">Scene</label>
           <select id="scene-select" class="viewer-select"></select>
+        </div>
         </div>
         <div class="viewer-help">
           Click to capture mouse · WASD move · Shift sprint · Esc unlock · R reset
@@ -172,6 +210,7 @@ export async function mountViewer(root: HTMLElement): Promise<void> {
   const statusEl = requireElement<HTMLElement>(root, "#viewer-status");
   const overlayEl = requireElement<HTMLElement>(root, "#viewer-overlay");
   const errorEl = requireElement<HTMLElement>(root, "#viewer-error");
+  const layoutSelectEl = requireElement<HTMLSelectElement>(root, "#layout-select");
   const selectEl = requireElement<HTMLSelectElement>(root, "#scene-select");
 
   const scene = new THREE.Scene();
@@ -206,9 +245,11 @@ export async function mountViewer(root: HTMLElement): Promise<void> {
 
   let currentRoot: THREE.Object3D | null = null;
   let currentManifest: ViewerManifest | null = null;
+  let currentLayoutPath = "";
   let currentSpawn = new THREE.Vector3(0, 1.65, 0);
   let currentForward = new THREE.Vector3(1, 0, 0);
   const optionsByKey = new Map<string, SceneOption>();
+  const recentLayoutsByPath = new Map<string, RecentLayout>();
 
   function resizeRenderer(): void {
     const width = Math.max(1, canvasHost.clientWidth);
@@ -287,6 +328,60 @@ export async function mountViewer(root: HTMLElement): Promise<void> {
     statusEl.textContent = `Viewing ${option.label}`;
   }
 
+  function populateRecentLayoutOptions(layouts: RecentLayout[], selectedPath: string): void {
+    recentLayoutsByPath.clear();
+    layoutSelectEl.innerHTML = "";
+    for (const layout of layouts) {
+      recentLayoutsByPath.set(layout.layout_path, layout);
+      const optionEl = document.createElement("option");
+      optionEl.value = layout.layout_path;
+      optionEl.textContent = layout.label;
+      layoutSelectEl.appendChild(optionEl);
+    }
+    if (selectedPath && !recentLayoutsByPath.has(selectedPath)) {
+      const optionEl = document.createElement("option");
+      optionEl.value = selectedPath;
+      optionEl.textContent = makeDirectLayoutLabel(selectedPath);
+      layoutSelectEl.appendChild(optionEl);
+    }
+    layoutSelectEl.disabled = layoutSelectEl.options.length === 0;
+    if (selectedPath) {
+      layoutSelectEl.value = selectedPath;
+    }
+  }
+
+  function populateSceneOptions(manifest: ViewerManifest): SceneOption[] {
+    optionsByKey.clear();
+    selectEl.innerHTML = "";
+    const options = makeSceneOptions(manifest);
+    for (const option of options) {
+      optionsByKey.set(option.key, option);
+      const optionEl = document.createElement("option");
+      optionEl.value = option.key;
+      optionEl.textContent = option.label;
+      selectEl.appendChild(optionEl);
+    }
+    selectEl.disabled = options.length === 0;
+    return options;
+  }
+
+  async function loadLayoutSelection(layoutPath: string): Promise<void> {
+    clearError(errorEl);
+    statusEl.textContent = "Loading scene set…";
+    currentLayoutPath = layoutPath;
+    currentManifest = await loadManifest(layoutPath);
+    const options = populateSceneOptions(currentManifest);
+    if (options.length === 0) {
+      throw new Error("No viewable GLB entries were found in this scene layout.");
+    }
+    const defaultKey = optionsByKey.has(currentManifest.default_selection)
+      ? currentManifest.default_selection
+      : options[0]?.key ?? "";
+    selectEl.value = defaultKey;
+    updateQueryLayout(layoutPath);
+    await loadScene(optionsByKey.get(defaultKey) ?? options[0]);
+  }
+
   renderer.domElement.addEventListener("click", () => {
     if (!controls.isLocked) {
       controls.lock();
@@ -298,6 +393,32 @@ export async function mountViewer(root: HTMLElement): Promise<void> {
   window.addEventListener("resize", resizeRenderer);
   window.addEventListener("keydown", (event) => handleKey(event, true));
   window.addEventListener("keyup", (event) => handleKey(event, false));
+  layoutSelectEl.addEventListener("change", async () => {
+    const nextLayoutPath = layoutSelectEl.value.trim();
+    if (!nextLayoutPath || nextLayoutPath === currentLayoutPath) {
+      return;
+    }
+    try {
+      await loadLayoutSelection(nextLayoutPath);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Failed to load scene layout.";
+      setError(errorEl, message);
+      statusEl.textContent = "Scene layout load failed";
+    }
+  });
+  selectEl.addEventListener("change", async () => {
+    const nextOption = optionsByKey.get(selectEl.value);
+    if (!nextOption) {
+      return;
+    }
+    try {
+      await loadScene(nextOption);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Failed to load GLB.";
+      setError(errorEl, message);
+      statusEl.textContent = "Scene load failed";
+    }
+  });
 
   function animate(): void {
     const delta = clock.getDelta();
@@ -318,39 +439,17 @@ export async function mountViewer(root: HTMLElement): Promise<void> {
   }
 
   try {
-    const layoutPath = parseQueryLayoutPath();
-    const manifest = await loadManifest(layoutPath);
-    currentManifest = manifest;
-    const options = makeSceneOptions(manifest);
-    for (const option of options) {
-      optionsByKey.set(option.key, option);
-      const optionEl = document.createElement("option");
-      optionEl.value = option.key;
-      optionEl.textContent = option.label;
-      selectEl.appendChild(optionEl);
+    const requestedLayoutPath = parseQueryLayoutPath();
+    const recentLayouts = await loadRecentLayouts();
+    const initialLayoutPath = requestedLayoutPath ?? recentLayouts[0]?.layout_path ?? "";
+    if (!initialLayoutPath) {
+      throw new Error(
+        "No recent scene layouts were found. Generate a scene first or open the viewer with ?layout=/abs/path/to/scene_layout.json.",
+      );
     }
-    const defaultKey = optionsByKey.has(manifest.default_selection)
-      ? manifest.default_selection
-      : options[0]?.key ?? "";
-    selectEl.value = defaultKey;
-    selectEl.addEventListener("change", async () => {
-      const nextOption = optionsByKey.get(selectEl.value);
-      if (!nextOption) {
-        return;
-      }
-      try {
-        await loadScene(nextOption);
-      } catch (error) {
-        const message = error instanceof Error ? error.message : "Failed to load GLB.";
-        setError(errorEl, message);
-        statusEl.textContent = "Scene load failed";
-      }
-    });
+    populateRecentLayoutOptions(recentLayouts, initialLayoutPath);
     resizeRenderer();
-    if (options.length === 0) {
-      throw new Error("No viewable GLB entries were found in this scene layout.");
-    }
-    await loadScene(optionsByKey.get(defaultKey) ?? options[0]);
+    await loadLayoutSelection(initialLayoutPath);
     animate();
     updateOverlay();
   } catch (error) {

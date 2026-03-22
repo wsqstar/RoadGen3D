@@ -3,14 +3,29 @@
 from __future__ import annotations
 
 import json
+import math
 import mimetypes
+import os
+import shlex
+from datetime import datetime, timezone
+from hashlib import sha1
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any, Dict, Iterable, List
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[2]
 VIEWER_DIR = (ROOT / "web" / "viewer").resolve()
 VIEWER_DIST_DIR = (VIEWER_DIR / "dist").resolve()
+VIEWER_LAYOUTS_DIR = (ROOT / "artifacts" / "web_viewer_layouts").resolve()
+RECENT_LAYOUT_LIMIT = 20
+IGNORED_DISCOVERY_DIRS = {
+    ".git",
+    ".venv",
+    ".pytest_cache",
+    "__pycache__",
+    "node_modules",
+    "dist",
+}
 
 
 class WebViewerError(RuntimeError):
@@ -33,10 +48,18 @@ def resolve_repo_path(path_text: str | Path) -> Path:
 
 
 def resolve_scene_layout_path(layout_path: str | Path) -> Path:
-    resolved = resolve_repo_path(layout_path)
+    resolved = Path(layout_path).expanduser().resolve()
     if not resolved.exists():
         raise WebViewerError(f"Scene layout does not exist: {resolved}")
     return resolved
+
+
+def is_repo_local_path(path_text: str | Path) -> bool:
+    try:
+        resolve_repo_path(path_text)
+        return True
+    except WebViewerError:
+        return False
 
 
 def ensure_web_viewer_assets() -> Path:
@@ -82,6 +105,126 @@ def infer_spawn_payload(layout_payload: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
+def _iter_scene_layout_paths(search_roots: Iterable[Path]) -> Iterable[Path]:
+    seen: set[Path] = set()
+    for root in search_roots:
+        resolved_root = Path(root).expanduser().resolve()
+        if not resolved_root.exists() or not resolved_root.is_dir():
+            continue
+        for current_root, dirnames, filenames in os.walk(resolved_root):
+            dirnames[:] = [
+                dirname
+                for dirname in dirnames
+                if dirname not in IGNORED_DISCOVERY_DIRS
+                and not dirname.startswith(".mypy_cache")
+            ]
+            if "scene_layout.json" not in filenames:
+                continue
+            candidate = (Path(current_root) / "scene_layout.json").resolve()
+            if candidate in seen:
+                continue
+            seen.add(candidate)
+            yield candidate
+
+
+def _display_path_for(candidate: Path, roots: Iterable[Path]) -> str:
+    for root in roots:
+        resolved_root = Path(root).expanduser().resolve()
+        try:
+            return str(candidate.relative_to(resolved_root))
+        except ValueError:
+            continue
+    return str(candidate.name)
+
+
+def _recent_layout_entry(candidate: Path, roots: Iterable[Path]) -> Dict[str, Any]:
+    stats = candidate.stat()
+    updated_at = datetime.fromtimestamp(stats.st_mtime, tz=timezone.utc).astimezone()
+    relative_path = _display_path_for(candidate, roots)
+    label = f"{candidate.parent.name} · {relative_path}"
+    return {
+        "layout_path": str(candidate),
+        "label": label,
+        "relative_path": relative_path,
+        "updated_at": updated_at.isoformat(timespec="seconds"),
+        "mtime_ms": int(stats.st_mtime * 1000),
+    }
+
+
+def discover_recent_scene_layouts(
+    search_roots: Iterable[str | Path] | None = None,
+    *,
+    limit: int = RECENT_LAYOUT_LIMIT,
+) -> List[Dict[str, Any]]:
+    roots = [
+        Path(root).expanduser().resolve()
+        for root in (search_roots or [ROOT])
+    ]
+    entries = []
+    for candidate in _iter_scene_layout_paths(roots):
+        try:
+            entries.append(_recent_layout_entry(candidate, roots))
+        except Exception:
+            continue
+    entries.sort(key=lambda item: int(item.get("mtime_ms", 0)), reverse=True)
+    safe_limit = max(1, int(limit or RECENT_LAYOUT_LIMIT))
+    return entries[:safe_limit]
+
+
+def build_recent_layouts_payload(
+    search_roots: Iterable[str | Path] | None = None,
+    *,
+    limit: int = RECENT_LAYOUT_LIMIT,
+) -> Dict[str, Any]:
+    return {
+        "results": discover_recent_scene_layouts(search_roots, limit=limit),
+    }
+
+
+def make_json_safe(value: Any) -> Any:
+    if isinstance(value, float):
+        return value if math.isfinite(value) else None
+    if isinstance(value, dict):
+        return {str(key): make_json_safe(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [make_json_safe(item) for item in value]
+    if isinstance(value, tuple):
+        return [make_json_safe(item) for item in value]
+    return value
+
+
+def _stable_layout_cache_dir(source_layout: Path) -> Path:
+    source_id = source_layout.parent.name or source_layout.stem or "scene"
+    source_hash = sha1(str(source_layout).encode("utf-8")).hexdigest()[:10]
+    safe_id = "".join(ch if ch.isalnum() or ch in {"-", "_"} else "_" for ch in source_id).strip("_") or "scene"
+    return (VIEWER_LAYOUTS_DIR / f"{safe_id}_{source_hash}").resolve()
+
+
+def cache_scene_layout_for_viewer(
+    layout_path: str | Path,
+    layout_json_text: str | None = None,
+) -> Path:
+    resolved_layout = resolve_scene_layout_path(layout_path)
+    if _is_within_root(resolved_layout):
+        return resolved_layout
+
+    payload_text = str(layout_json_text or "").strip()
+    if payload_text:
+        try:
+            payload = json.loads(payload_text)
+        except Exception:
+            payload = json.loads(resolved_layout.read_text(encoding="utf-8"))
+    else:
+        payload = json.loads(resolved_layout.read_text(encoding="utf-8"))
+
+    cache_dir = _stable_layout_cache_dir(resolved_layout)
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    cached_layout = (cache_dir / "scene_layout.json").resolve()
+    cached_payload = json.dumps(make_json_safe(payload), indent=2, ensure_ascii=True, allow_nan=False)
+    cached_layout.write_text(cached_payload, encoding="utf-8")
+    return cached_layout
+
+
 def build_layout_manifest(layout_path: str | Path) -> Dict[str, Any]:
     resolved_layout = resolve_scene_layout_path(layout_path)
     payload = json.loads(resolved_layout.read_text(encoding="utf-8"))
@@ -125,6 +268,45 @@ def build_layout_manifest(layout_path: str | Path) -> Dict[str, Any]:
 
 
 def build_web_viewer_url(layout_path: str | Path) -> str:
-    resolve_scene_layout_path(layout_path)
-    ensure_web_viewer_assets()
-    return f"/web-viewer/?layout={quote(str(Path(layout_path).expanduser().resolve()), safe='')}"
+    resolved_layout = resolve_scene_layout_path(layout_path)
+    return f"http://127.0.0.1:4173/?layout={quote(str(resolved_layout), safe='')}"
+
+
+def build_web_viewer_dev_url(
+    layout_path: str | Path,
+    *,
+    host: str = "127.0.0.1",
+    port: int = 4173,
+) -> str:
+    resolved_layout = resolve_scene_layout_path(layout_path)
+    return f"http://{host}:{int(port)}/?layout={quote(str(resolved_layout), safe='')}"
+
+
+def build_web_viewer_dev_command(
+    layout_path: str | Path,
+    *,
+    host: str = "127.0.0.1",
+    port: int = 4173,
+) -> str:
+    resolved_layout = resolve_scene_layout_path(layout_path)
+    allowed_roots = [str(ROOT.resolve()), str(resolved_layout.parent.resolve())]
+    env_value = os.pathsep.join(dict.fromkeys(allowed_roots))
+    open_target = f"/?layout={quote(str(resolved_layout), safe='')}"
+    return " ".join(
+        [
+            f"ROADGEN_VIEWER_ALLOWED_ROOTS={shlex.quote(env_value)}",
+            "npm",
+            "--prefix",
+            shlex.quote(str(VIEWER_DIR)),
+            "run",
+            "dev",
+            "--",
+            "--host",
+            shlex.quote(str(host)),
+            "--port",
+            shlex.quote(str(int(port))),
+            "--strictPort",
+            "--open",
+            shlex.quote(open_target),
+        ]
+    )

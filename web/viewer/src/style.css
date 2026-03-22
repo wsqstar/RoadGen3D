@@ -44,6 +44,13 @@ body {
   backdrop-filter: blur(10px);
 }
 
+.viewer-controls-group {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
 .viewer-controls {
   display: flex;
   align-items: center;
@@ -133,6 +140,11 @@ body {
 
 @media (max-width: 960px) {
   .viewer-topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .viewer-controls-group {
     flex-direction: column;
     align-items: stretch;
   }

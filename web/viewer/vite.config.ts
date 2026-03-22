@@ -6,8 +6,32 @@ import { defineConfig, type Plugin } from "vite";
 
 const viewerRoot = fileURLToPath(new URL(".", import.meta.url));
 const repoRoot = path.resolve(viewerRoot, "..", "..");
+const RECENT_LAYOUT_LIMIT = 20;
+const IGNORED_DISCOVERY_DIRS = new Set([
+  ".git",
+  ".venv",
+  ".pytest_cache",
+  "__pycache__",
+  "node_modules",
+  "dist",
+]);
 
-function resolveRepoPath(rawPath: string | null): string | null {
+function allowedRoots(): string[] {
+  const roots = [repoRoot];
+  const extra = (process.env.ROADGEN_VIEWER_ALLOWED_ROOTS ?? "")
+    .split(path.delimiter)
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .map((item) => path.resolve(item));
+  for (const root of extra) {
+    if (!roots.includes(root)) {
+      roots.push(root);
+    }
+  }
+  return roots;
+}
+
+function resolveAllowedPath(rawPath: string | null): string | null {
   if (!rawPath) {
     return null;
   }
@@ -16,11 +40,82 @@ function resolveRepoPath(rawPath: string | null): string | null {
     return null;
   }
   const resolved = path.resolve(candidate);
-  const relative = path.relative(repoRoot, resolved);
-  if (relative === "" || (!relative.startsWith("..") && !path.isAbsolute(relative))) {
-    return resolved;
+  for (const root of allowedRoots()) {
+    const relative = path.relative(root, resolved);
+    if (relative === "" || (!relative.startsWith("..") && !path.isAbsolute(relative))) {
+      return resolved;
+    }
   }
   return null;
+}
+
+function discoverSceneLayoutPaths(roots: string[]): string[] {
+  const seen = new Set<string>();
+  const results: string[] = [];
+  for (const root of roots) {
+    if (!fs.existsSync(root) || !fs.statSync(root).isDirectory()) {
+      continue;
+    }
+    const stack = [root];
+    while (stack.length > 0) {
+      const current = stack.pop() ?? "";
+      let entries: fs.Dirent[] = [];
+      try {
+        entries = fs.readdirSync(current, { withFileTypes: true });
+      } catch {
+        continue;
+      }
+      for (const entry of entries) {
+        const fullPath = path.join(current, entry.name);
+        if (entry.isDirectory()) {
+          if (!IGNORED_DISCOVERY_DIRS.has(entry.name)) {
+            stack.push(fullPath);
+          }
+          continue;
+        }
+        if (!entry.isFile() || entry.name !== "scene_layout.json") {
+          continue;
+        }
+        const resolved = path.resolve(fullPath);
+        if (seen.has(resolved)) {
+          continue;
+        }
+        seen.add(resolved);
+        results.push(resolved);
+      }
+    }
+  }
+  return results;
+}
+
+function displayPathFor(filePath: string, roots: string[]): string {
+  for (const root of roots) {
+    const relative = path.relative(root, filePath);
+    if (relative === "" || (!relative.startsWith("..") && !path.isAbsolute(relative))) {
+      return relative || path.basename(filePath);
+    }
+  }
+  return path.basename(filePath);
+}
+
+function buildRecentLayoutsPayload(limit: number): { results: Array<Record<string, unknown>> } {
+  const roots = allowedRoots();
+  const safeLimit = Math.max(1, Number.isFinite(limit) ? Math.trunc(limit) : RECENT_LAYOUT_LIMIT);
+  const results = discoverSceneLayoutPaths(roots)
+    .map((layoutPath) => {
+      const stats = fs.statSync(layoutPath);
+      const relativePath = displayPathFor(layoutPath, roots);
+      return {
+        layout_path: layoutPath,
+        label: `${path.basename(path.dirname(layoutPath))} · ${relativePath}`,
+        relative_path: relativePath,
+        updated_at: new Date(stats.mtimeMs).toISOString(),
+        mtime_ms: Math.trunc(stats.mtimeMs),
+      };
+    })
+    .sort((left, right) => Number(right.mtime_ms) - Number(left.mtime_ms))
+    .slice(0, safeLimit);
+  return { results };
 }
 
 function asNumber(value: unknown, fallback: number): number {
@@ -83,11 +178,24 @@ function viewerApiPlugin(): Plugin {
         }
 
         const requestUrl = new URL(req.url, "http://127.0.0.1:4173");
-        if (requestUrl.pathname === "/api/layout") {
+        const isLayoutRoute =
+          requestUrl.pathname === "/api/layout" ||
+          requestUrl.pathname === "/web-viewer/api/layout";
+        const isRecentLayoutsRoute =
+          requestUrl.pathname === "/api/recent-layouts" ||
+          requestUrl.pathname === "/web-viewer/api/recent-layouts";
+        const isFileRoute =
+          requestUrl.pathname === "/api/file" ||
+          requestUrl.pathname === "/web-viewer/api/file";
+        const apiPrefix = requestUrl.pathname.startsWith("/web-viewer/")
+          ? "/web-viewer/api"
+          : "/api";
+
+        if (isLayoutRoute) {
           const rawLayoutPath = requestUrl.searchParams.get("path");
-          const layoutPath = resolveRepoPath(rawLayoutPath);
+          const layoutPath = resolveAllowedPath(rawLayoutPath);
           if (!layoutPath) {
-            jsonResponse(res, 403, { error: "Layout path must stay inside repo root." });
+            jsonResponse(res, 403, { error: "Layout path must stay inside an allowed root." });
             return;
           }
           if (!fs.existsSync(layoutPath)) {
@@ -97,7 +205,7 @@ function viewerApiPlugin(): Plugin {
           try {
             const layoutPayload = JSON.parse(fs.readFileSync(layoutPath, "utf-8"));
             const outputs = layoutPayload.outputs ?? {};
-            const finalScenePath = resolveRepoPath(String(outputs.scene_glb ?? ""));
+            const finalScenePath = resolveAllowedPath(String(outputs.scene_glb ?? ""));
             if (!finalScenePath || !fs.existsSync(finalScenePath)) {
               jsonResponse(res, 400, {
                 error: "scene_layout.json does not point to a valid final scene GLB.",
@@ -108,14 +216,14 @@ function viewerApiPlugin(): Plugin {
             const productionSteps = Array.isArray(layoutPayload.production_steps)
               ? layoutPayload.production_steps
                   .map((step: Record<string, any>) => {
-                    const glbPath = resolveRepoPath(String(step.glb_path ?? ""));
+                    const glbPath = resolveAllowedPath(String(step.glb_path ?? ""));
                     if (!glbPath || !fs.existsSync(glbPath)) {
                       return null;
                     }
                     return {
                       step_id: String(step.step_id ?? ""),
                       title: String(step.title ?? step.step_id ?? "Production Step"),
-                      glb_url: `/api/file?path=${encodeURIComponent(glbPath)}`,
+                      glb_url: `${apiPrefix}/file?path=${encodeURIComponent(glbPath)}`,
                     };
                   })
                   .filter(Boolean)
@@ -125,7 +233,7 @@ function viewerApiPlugin(): Plugin {
               layout_path: layoutPath,
               final_scene: {
                 label: "Final Scene",
-                glb_url: `/api/file?path=${encodeURIComponent(finalScenePath)}`,
+                glb_url: `${apiPrefix}/file?path=${encodeURIComponent(finalScenePath)}`,
               },
               production_steps: productionSteps,
               default_selection: "final_scene",
@@ -141,11 +249,17 @@ function viewerApiPlugin(): Plugin {
           }
         }
 
-        if (requestUrl.pathname === "/api/file") {
+        if (isRecentLayoutsRoute) {
+          const requestedLimit = Number.parseInt(requestUrl.searchParams.get("limit") ?? "", 10);
+          jsonResponse(res, 200, buildRecentLayoutsPayload(requestedLimit));
+          return;
+        }
+
+        if (isFileRoute) {
           const rawFilePath = requestUrl.searchParams.get("path");
-          const filePath = resolveRepoPath(rawFilePath);
+          const filePath = resolveAllowedPath(rawFilePath);
           if (!filePath) {
-            textResponse(res, 403, "Requested file must stay inside repo root.");
+            textResponse(res, 403, "Requested file must stay inside an allowed root.");
             return;
           }
           if (!fs.existsSync(filePath)) {
@@ -171,6 +285,6 @@ function viewerApiPlugin(): Plugin {
 }
 
 export default defineConfig({
-  base: "/web-viewer/",
+  base: "/",
   plugins: [viewerApiPlugin()],
 });

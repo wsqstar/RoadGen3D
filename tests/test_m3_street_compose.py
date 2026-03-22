@@ -992,21 +992,101 @@ def test_prepare_web_viewer_outputs_adds_url_and_updates_layout(tmp_path: Path, 
         "build_web_viewer_url",
         lambda path: f"http://127.0.0.1:4173/?layout={Path(path).name}",
     )
+    monkeypatch.setattr(
+        app,
+        "build_web_viewer_dev_command",
+        lambda path: f"npm --prefix web/viewer run dev -- --open '/?layout={Path(path).name}'",
+    )
+    monkeypatch.setattr(app, "cache_scene_layout_for_viewer", lambda path, layout_json_text="": Path(path))
 
-    summary, layout_json, viewer_url, viewer_html = app._prepare_web_viewer_outputs(
+    summary, layout_json, viewer_url, viewer_command, viewer_html = app._prepare_web_viewer_outputs(
         "Street compose done.",
         layout_path.read_text(encoding="utf-8"),
         [str(layout_path)],
     )
 
     assert "web_viewer_url: http://127.0.0.1:4173/?layout=scene_layout.json" in summary
+    assert "web_viewer_command: npm --prefix web/viewer run dev -- --open '/?layout=scene_layout.json'" in summary
+    assert f"web_viewer_layout_path: {layout_path}" in summary
     assert viewer_url == "http://127.0.0.1:4173/?layout=scene_layout.json"
+    assert viewer_command == "npm --prefix web/viewer run dev -- --open '/?layout=scene_layout.json'"
     assert "Open Web Viewer" in viewer_html
     payload = json.loads(layout_json)
     assert payload["summary"]["web_viewer_url"] == viewer_url
+    assert payload["summary"]["web_viewer_command"] == viewer_command
+    assert payload["summary"]["web_viewer_layout_path"] == str(layout_path)
     assert payload["outputs"]["web_viewer_url"] == viewer_url
+    assert payload["outputs"]["web_viewer_command"] == viewer_command
+    assert payload["outputs"]["web_viewer_layout_path"] == str(layout_path)
     persisted = json.loads(layout_path.read_text(encoding="utf-8"))
     assert persisted["summary"]["web_viewer_url"] == viewer_url
+
+
+def test_prepare_web_viewer_outputs_mirrors_external_layout_into_repo_and_uses_standalone_viewer(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+    pytest.importorskip("gradio")
+    import scripts.m1_gradio_app as app
+
+    layout_path = (tmp_path / "scene_layout.json").resolve()
+    layout_path.write_text(json.dumps({"summary": {}, "outputs": {}}, ensure_ascii=True), encoding="utf-8")
+
+    mirrored_layout = (tmp_path / "repo" / "artifacts" / "web_viewer_layouts" / "cached" / "scene_layout.json").resolve()
+    mirrored_layout.parent.mkdir(parents=True, exist_ok=True)
+    mirrored_layout.write_text(layout_path.read_text(encoding="utf-8"), encoding="utf-8")
+
+    monkeypatch.setattr(
+        app,
+        "cache_scene_layout_for_viewer",
+        lambda path, layout_json_text="": mirrored_layout,
+    )
+    monkeypatch.setattr(
+        app,
+        "build_web_viewer_url",
+        lambda path: f"http://127.0.0.1:4173/?layout={Path(path).name}",
+    )
+    monkeypatch.setattr(
+        app,
+        "build_web_viewer_dev_command",
+        lambda path: f"ROADGEN_VIEWER_ALLOWED_ROOTS=/tmp npm --prefix web/viewer run dev -- --open '/?layout={Path(path).name}'",
+    )
+
+    summary, layout_json, viewer_url, viewer_command, viewer_html = app._prepare_web_viewer_outputs(
+        "Street compose done.",
+        layout_path.read_text(encoding="utf-8"),
+        [str(layout_path)],
+    )
+
+    assert viewer_url == "http://127.0.0.1:4173/?layout=scene_layout.json"
+    assert "ROADGEN_VIEWER_ALLOWED_ROOTS=/tmp" in viewer_command
+    assert "Open Web Viewer" in viewer_html
+    payload = json.loads(layout_json)
+    assert payload["summary"]["web_viewer_command"] == viewer_command
+    assert payload["summary"]["web_viewer_layout_path"] == str(mirrored_layout)
+
+
+def test_prepare_web_viewer_outputs_sanitizes_infinity_before_persisting(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+    pytest.importorskip("gradio")
+    import scripts.m1_gradio_app as app
+
+    layout_path = (tmp_path / "scene_layout.json").resolve()
+    layout_path.write_text('{"summary":{"clearance_m": Infinity},"outputs":{}}', encoding="utf-8")
+
+    monkeypatch.setattr(app, "cache_scene_layout_for_viewer", lambda path, layout_json_text="": Path(path))
+    monkeypatch.setattr(app, "build_web_viewer_url", lambda path: f"http://127.0.0.1:4173/?layout={Path(path).name}")
+    monkeypatch.setattr(
+        app,
+        "build_web_viewer_dev_command",
+        lambda path: f"npm --prefix web/viewer run dev -- --open '/?layout={Path(path).name}'",
+    )
+
+    summary, layout_json, viewer_url, viewer_command, viewer_html = app._prepare_web_viewer_outputs(
+        "Street compose done.",
+        layout_path.read_text(encoding="utf-8"),
+        [str(layout_path)],
+    )
+
+    assert "Infinity" not in layout_json
+    assert json.loads(layout_json)["summary"]["clearance_m"] is None
+    assert "Open Web Viewer" in viewer_html
 
 
 def test_run_street_compose_defaults_shift_to_walkable_narrow_street():

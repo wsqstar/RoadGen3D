@@ -396,6 +396,7 @@ def test_build_demo_exposes_web_viewer_outputs():
     textbox_labels = _labels_by_component_type(config, "textbox")
 
     assert "Web Viewer URL" in textbox_labels
+    assert "Web Viewer Command" in textbox_labels
 
 
 def test_production_step_helpers_select_stage_outputs(tmp_path: Path):
