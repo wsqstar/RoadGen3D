@@ -1,0 +1,161 @@
+#!/usr/bin/env python3
+"""Compose a real street scene with multi-asset placement (M3 MVP)."""
+
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+SRC = ROOT / "src"
+if str(SRC) not in sys.path:
+    sys.path.insert(0, str(SRC))
+
+from roadgen3d.embedder import ModelLoadError  # noqa: E402
+from roadgen3d.street_layout import compose_street_scene  # noqa: E402
+from roadgen3d.types import StreetComposeConfig  # noqa: E402
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Compose a street scene from real assets.")
+    parser.add_argument("--query", required=True, help="Scene-level text query.")
+    parser.add_argument("--manifest", type=Path, default=Path("data/real/real_assets_manifest.jsonl"))
+    parser.add_argument("--artifacts", type=Path, default=Path("artifacts/real"))
+    parser.add_argument("--out-dir", type=Path, default=Path("artifacts/real"))
+    parser.add_argument("--model-name", default="openai/clip-vit-base-patch32")
+    parser.add_argument("--model-dir", type=Path, default=None)
+    parser.add_argument("--local-files-only", action="store_true")
+    parser.add_argument("--device", default="cpu")
+    parser.add_argument("--length-m", type=float, default=80.0)
+    parser.add_argument("--road-width-m", type=float, default=7.0)
+    parser.add_argument("--sidewalk-width-m", type=float, default=2.4)
+    parser.add_argument("--lane-count", type=int, default=2)
+    parser.add_argument("--density", type=float, default=1.0)
+    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--topk-per-category", type=int, default=20)
+    parser.add_argument("--max-trials-per-slot", type=int, default=30)
+    parser.add_argument("--export-format", choices=["glb", "ply", "both"], default="both")
+    parser.add_argument("--placement-policy", choices=["rule", "learned"], default="rule")
+    parser.add_argument("--policy-ckpt", type=Path, default=None)
+    parser.add_argument("--program-generator", choices=["heuristic_v1", "learned_v1"], default="heuristic_v1")
+    parser.add_argument("--program-ckpt", type=Path, default=None)
+    parser.add_argument("--policy-temperature", type=float, default=0.12)
+    # -- M5 arguments --
+    parser.add_argument("--layout-mode", choices=["template", "osm"], default="template",
+                        help="Layout mode: template (straight road) or osm (real OSM geometry).")
+    parser.add_argument("--constraint-mode", choices=["off", "soft"], default="soft",
+                        help="Constraint mode: off or soft (POI penalty scoring).")
+    parser.add_argument("--aoi-bbox", nargs=4, type=float, default=None,
+                        metavar=("MIN_LON", "MIN_LAT", "MAX_LON", "MAX_LAT"),
+                        help="AOI bounding box for OSM mode.")
+    parser.add_argument("--osm-cache-dir", type=str, default="artifacts/m5/osm_cache")
+    parser.add_argument("--constraint-weight", type=float, default=0.45)
+    parser.add_argument("--constraint-veto-threshold", type=float, default=0.95)
+    parser.add_argument("--poi-rule-set", type=str, default="entrance_fire_bus_stop_v1")
+    parser.add_argument(
+        "--design-rule-profile",
+        choices=["balanced_complete_street_v1", "pedestrian_priority_v1", "transit_priority_v1"],
+        default="balanced_complete_street_v1",
+    )
+    parser.add_argument("--city-context", type=str, default="generic_city")
+    parser.add_argument("--target-street-type", type=str, default="mixed_use")
+    parser.add_argument("--layout-solver", choices=["hybrid_milp_v1", "milp_template_v1", "banded"], default="hybrid_milp_v1")
+    parser.add_argument("--objective-profile", choices=["balanced", "greening", "commerce", "transit"], default="balanced")
+    parser.add_argument("--ped-demand-level", choices=["low", "medium", "high"], default="medium")
+    parser.add_argument("--bike-demand-level", choices=["low", "medium", "high"], default="low")
+    parser.add_argument("--transit-demand-level", choices=["low", "medium", "high"], default="medium")
+    parser.add_argument("--vehicle-demand-level", choices=["low", "medium", "high"], default="medium")
+    parser.add_argument("--no-solver-fallback", action="store_true")
+    parser.add_argument("--segment-length-m", type=float, default=12.0)
+    parser.add_argument(
+        "--road-selection",
+        choices=["walkable_neighborhood", "primary_road", "longest", "all"],
+        default="walkable_neighborhood",
+    )
+    parser.add_argument(
+        "--asset-scale-mode",
+        choices=["canonical_v1", "native_raw"],
+        default="canonical_v1",
+    )
+    return parser.parse_args()
+
+
+def main() -> int:
+    args = parse_args()
+    config = StreetComposeConfig(
+        query=args.query,
+        length_m=float(args.length_m),
+        road_width_m=float(args.road_width_m),
+        sidewalk_width_m=float(args.sidewalk_width_m),
+        lane_count=int(args.lane_count),
+        density=float(args.density),
+        seed=int(args.seed),
+        topk_per_category=int(args.topk_per_category),
+        max_trials_per_slot=int(args.max_trials_per_slot),
+        layout_mode=args.layout_mode,
+        constraint_mode=args.constraint_mode,
+        aoi_bbox=tuple(args.aoi_bbox) if args.aoi_bbox else None,
+        osm_cache_dir=args.osm_cache_dir,
+        constraint_weight=float(args.constraint_weight),
+        constraint_veto_threshold=float(args.constraint_veto_threshold),
+        poi_rule_set=args.poi_rule_set,
+        program_generator=args.program_generator,
+        design_rule_profile=args.design_rule_profile,
+        city_context=args.city_context,
+        target_street_type=args.target_street_type,
+        layout_solver=args.layout_solver,
+        objective_profile=args.objective_profile,
+        ped_demand_level=args.ped_demand_level,
+        bike_demand_level=args.bike_demand_level,
+        transit_demand_level=args.transit_demand_level,
+        vehicle_demand_level=args.vehicle_demand_level,
+        allow_solver_fallback=not bool(args.no_solver_fallback),
+        segment_length_m=float(args.segment_length_m),
+        road_selection=args.road_selection,
+        asset_scale_mode=args.asset_scale_mode,
+    )
+    try:
+        result = compose_street_scene(
+            config=config,
+            manifest_path=args.manifest,
+            artifacts_dir=args.artifacts,
+            model_name=args.model_name,
+            model_dir=args.model_dir,
+            local_files_only=bool(args.local_files_only),
+            device=args.device,
+            export_format=args.export_format,
+            out_dir=args.out_dir,
+            placement_policy=args.placement_policy,
+            policy_ckpt=args.policy_ckpt,
+            program_ckpt=args.program_ckpt,
+            policy_temperature=float(args.policy_temperature),
+        )
+    except ModelLoadError as exc:
+        print(str(exc), file=sys.stderr)
+        return 2
+    except Exception as exc:
+        print(f"Street compose failed: {exc}", file=sys.stderr)
+        return 1
+
+    layout_path = result.outputs.get("scene_layout", "")
+    if layout_path:
+        try:
+            payload = json.loads(Path(layout_path).read_text(encoding="utf-8"))
+            print(json.dumps(payload["summary"], indent=2, ensure_ascii=True))
+        except Exception:
+            pass
+    print(f"Instances: {result.instance_count}")
+    print(f"Dropped slots: {result.dropped_slots}")
+    if result.outputs.get("scene_glb"):
+        print(f"Scene GLB: {result.outputs['scene_glb']}")
+    if result.outputs.get("scene_ply"):
+        print(f"Scene PLY: {result.outputs['scene_ply']}")
+    if result.outputs.get("scene_layout"):
+        print(f"Scene Layout: {result.outputs['scene_layout']}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
