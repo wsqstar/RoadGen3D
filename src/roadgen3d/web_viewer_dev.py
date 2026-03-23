@@ -98,10 +98,8 @@ def content_type_for(path: Path) -> str:
 
 
 def infer_spawn_payload(layout_payload: Dict[str, Any]) -> Dict[str, Any]:
-    summary = layout_payload.get("summary", {}) or {}
-    length_m = float(summary.get("length_m", 80.0) or 80.0)
     return {
-        "spawn_point": [-(max(24.0, length_m) * 0.35), 1.65, 0.0],
+        "spawn_point": [0.0, 1.65, 0.0],
         "forward_vector": [1.0, 0.0, 0.0],
     }
 

@@ -13,9 +13,11 @@ from ..web_viewer_dev import build_web_viewer_url, cache_scene_layout_for_viewer
 from .design_types import (
     DEFAULT_COMPOSE_CONFIG_PATCH_VALUES,
     DesignDraft,
+    SceneContext,
     SceneGenerationOptions,
     SceneGenerationResult,
     sanitize_compose_config_patch,
+    sanitize_scene_context,
 )
 from .scene_backends import (
     DEFAULT_GROUND_MATERIAL_MANIFEST_PATH,
@@ -25,6 +27,7 @@ from .scene_backends import (
     ManifestObjectAssetBackend,
     ManifestSkyBackend,
 )
+from .scene_context_service import ResolvedSceneContext, resolve_scene_context
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -136,11 +139,51 @@ def normalize_scene_generation_options(
     )
 
 
+def _build_runtime_compose_config(
+    base_config: StreetComposeConfig,
+    *,
+    resolved_scene_context: ResolvedSceneContext,
+) -> StreetComposeConfig:
+    payload = dict(base_config.to_dict())
+    if resolved_scene_context.scene_context.layout_mode == "osm":
+        payload.update({
+            "layout_mode": "osm",
+            "aoi_bbox": resolved_scene_context.effective_aoi_bbox,
+            "osm_cache_dir": str(resolved_scene_context.osm_cache_dir),
+            "road_selection": str(resolved_scene_context.road_selection),
+            "selected_road_osm_id": resolved_scene_context.selected_road_osm_id,
+            "selected_road_discovered_poi_count": resolved_scene_context.selected_road_discovered_poi_count,
+            "selected_road_discovered_poi_score": resolved_scene_context.selected_road_discovered_poi_score,
+            "selected_road_discovered_core_poi_count": resolved_scene_context.selected_road_discovered_core_poi_count,
+        })
+    else:
+        payload.update({
+            "layout_mode": "template",
+            "aoi_bbox": None,
+        })
+    return StreetComposeConfig(**payload)
+
+
+def _augment_layout_summary(layout_path: str | Path, extra_summary: Mapping[str, Any]) -> None:
+    path = Path(layout_path)
+    if not path.exists() or not extra_summary:
+        return
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return
+    summary = dict(payload.get("summary", {}) or {})
+    summary.update(dict(make_json_safe(extra_summary)))
+    payload["summary"] = summary
+    path.write_text(json.dumps(make_json_safe(payload), ensure_ascii=True, indent=2), encoding="utf-8")
+
+
 def generate_scene_from_draft(
     draft: DesignDraft,
     *,
     patch_overrides: Mapping[str, Any] | None = None,
     generation_options: Mapping[str, Any] | SceneGenerationOptions | None = None,
+    scene_context: Mapping[str, Any] | SceneContext | None = None,
 ) -> SceneGenerationResult:
     """Run the existing scene pipeline using a confirmed design draft."""
 
@@ -149,7 +192,16 @@ def generate_scene_from_draft(
         if isinstance(generation_options, SceneGenerationOptions)
         else normalize_scene_generation_options(generation_options)
     )
-    config = build_compose_config_from_draft(draft, patch_overrides=patch_overrides)
+    base_config = build_compose_config_from_draft(draft, patch_overrides=patch_overrides)
+    resolved_scene_context = resolve_scene_context(
+        sanitize_scene_context(scene_context),
+        config=base_config,
+        artifacts_dir=options.artifacts_dir,
+    )
+    config = _build_runtime_compose_config(
+        base_config,
+        resolved_scene_context=resolved_scene_context,
+    )
     object_backend = ManifestObjectAssetBackend(
         manifest_path=options.manifest_path,
         manifest_v2_path=options.object_manifest_v2_path,
@@ -185,7 +237,10 @@ def generate_scene_from_draft(
         "dropped_slots": int(result.dropped_slots),
     }
     if scene_layout_path:
+        scene_context_summary = resolved_scene_context.to_summary_metadata()
+        _augment_layout_summary(scene_layout_path, scene_context_summary)
         cached_layout = cache_scene_layout_for_viewer(scene_layout_path)
+        _augment_layout_summary(cached_layout, scene_context_summary)
         viewer_url = build_web_viewer_url(cached_layout)
         try:
             payload = json.loads(Path(cached_layout).read_text(encoding="utf-8"))

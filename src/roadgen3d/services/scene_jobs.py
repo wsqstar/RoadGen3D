@@ -13,6 +13,7 @@ from .design_runtime import generate_scene_from_draft
 from .design_types import (
     DesignDraft,
     SceneGenerationResult,
+    SceneContext,
     SceneJobCreateResponse,
     SceneJobStatusResponse,
     SceneRecord,
@@ -29,6 +30,7 @@ class _SceneJobState:
     draft: DesignDraft
     patch_overrides: Dict[str, Any]
     generation_options: Dict[str, Any]
+    scene_context: SceneContext | None = None
     status: str = "queued"
     created_at: str = ""
     started_at: str = ""
@@ -58,6 +60,7 @@ class SceneJobService:
         draft: DesignDraft,
         patch_overrides: Mapping[str, Any] | None = None,
         generation_options: Mapping[str, Any] | None = None,
+        scene_context: SceneContext | None = None,
     ) -> SceneJobCreateResponse:
         self._ensure_worker()
         job_id = uuid4().hex
@@ -66,6 +69,7 @@ class SceneJobService:
             draft=draft,
             patch_overrides=dict(patch_overrides or {}),
             generation_options=dict(generation_options or {}),
+            scene_context=scene_context,
             created_at=_utc_now(),
         )
         with self._condition:
@@ -114,11 +118,13 @@ class SceneJobService:
         draft: DesignDraft,
         patch_overrides: Mapping[str, Any] | None = None,
         generation_options: Mapping[str, Any] | None = None,
+        scene_context: SceneContext | None = None,
     ) -> SceneGenerationResult:
         created = self.submit_job(
             draft=draft,
             patch_overrides=patch_overrides,
             generation_options=generation_options,
+            scene_context=scene_context,
         )
         status = self.wait_for_job(created.job_id)
         if status is None:
@@ -151,6 +157,7 @@ class SceneJobService:
                     state.draft,
                     patch_overrides=state.patch_overrides,
                     generation_options=state.generation_options,
+                    scene_context=state.scene_context,
                 )
             except Exception as exc:
                 with self._condition:

@@ -352,17 +352,10 @@ function inferSpawnFromBbox(
     };
   }
 
-  const size = bbox.getSize(new THREE.Vector3());
   const center = bbox.getCenter(new THREE.Vector3());
-  if (size.x >= size.z) {
-    return {
-      position: new THREE.Vector3(center.x - size.x * 0.35, 1.65, center.z),
-      forward: new THREE.Vector3(1, 0, 0),
-    };
-  }
   return {
-    position: new THREE.Vector3(center.x, 1.65, center.z - size.z * 0.35),
-    forward: new THREE.Vector3(0, 0, 1),
+    position: new THREE.Vector3(center.x, 1.65, center.z),
+    forward: new THREE.Vector3(1, 0, 0),
   };
 }
 
@@ -420,6 +413,20 @@ function formatMetric(value: number | null | undefined, unit: string, digits = 1
   return `${value.toFixed(digits)}${unit}`;
 }
 
+function collectInstanceMetrics(instanceInfo: InstanceInfo): Array<[string, string]> {
+  const metrics: Array<[string, string]> = [
+    ["asset_id", String(instanceInfo.asset_id || "").trim()],
+    ["placement_group", String(instanceInfo.placement_group || "").trim()],
+    ["theme_id", String(instanceInfo.theme_id || "").trim()],
+    ["距道路边缘", formatMetric(finiteOrNull(instanceInfo.dist_to_road_edge_m), "m")],
+    ["距最近路口", formatMetric(finiteOrNull(instanceInfo.dist_to_nearest_junction_m), "m")],
+    ["距最近出入口", formatMetric(finiteOrNull(instanceInfo.dist_to_nearest_entrance_m), "m")],
+    ["可行性", formatMetric(finiteOrNull(instanceInfo.feasibility_score), "", 2)],
+    ["约束惩罚", formatMetric(finiteOrNull(instanceInfo.constraint_penalty), "", 3)],
+  ];
+  return metrics.filter((entry) => entry[1] && entry[1] !== "未记录");
+}
+
 function buildPlacementReason(instanceInfo: InstanceInfo, category: string): string {
   const anchorPoiType = String(instanceInfo.anchor_poi_type || "").trim();
   const anchorDistance = finiteOrNull(instanceInfo.anchor_distance_m);
@@ -447,16 +454,7 @@ function composeInstanceInfoHtml(
   const intro = String(assetDescription?.text_desc || "").trim()
     || FALLBACK_CATEGORY_INTRO[category]
     || "这是场景中的自动生成对象。";
-  const metrics = [
-    ["asset_id", String(instanceInfo.asset_id || "").trim()],
-    ["placement_group", String(instanceInfo.placement_group || "").trim()],
-    ["theme_id", String(instanceInfo.theme_id || "").trim()],
-    ["距道路边缘", formatMetric(finiteOrNull(instanceInfo.dist_to_road_edge_m), "m")],
-    ["距最近路口", formatMetric(finiteOrNull(instanceInfo.dist_to_nearest_junction_m), "m")],
-    ["距最近出入口", formatMetric(finiteOrNull(instanceInfo.dist_to_nearest_entrance_m), "m")],
-    ["可行性", formatMetric(finiteOrNull(instanceInfo.feasibility_score), "", 2)],
-    ["约束惩罚", formatMetric(finiteOrNull(instanceInfo.constraint_penalty), "", 3)],
-  ].filter((entry) => entry[1] && entry[1] !== "未记录");
+  const metrics = collectInstanceMetrics(instanceInfo);
 
   return `
     <div class="viewer-card-title">${escapeHtml(title)}</div>
@@ -472,6 +470,31 @@ function composeInstanceInfoHtml(
         .join("")}
     </dl>
   `;
+}
+
+function composeInstanceInfoText(
+  nodeName: string,
+  instanceInfo: InstanceInfo,
+  assetDescription?: AssetDescription,
+): string {
+  const category = String(instanceInfo.category || "").trim().toLowerCase();
+  const title = categoryLabel(category);
+  const subtitleParts = [
+    category ? `类别：${categoryLabel(category)}` : "",
+    assetDescription?.source ? `来源：${prettifySource(assetDescription.source)}` : "",
+  ].filter(Boolean);
+  const subtitle = subtitleParts.join(" · ") || `节点：${nodeName}`;
+  const intro = String(assetDescription?.text_desc || "").trim()
+    || FALLBACK_CATEGORY_INTRO[category]
+    || "这是场景中的自动生成对象。";
+  const metrics = collectInstanceMetrics(instanceInfo);
+  return [
+    title,
+    subtitle,
+    intro,
+    buildPlacementReason(instanceInfo, category),
+    ...metrics.map(([label, value]) => `${label}: ${value}`),
+  ].filter(Boolean).join("\n");
 }
 
 function composeStaticInfoHtml(nodeName: string, description: StaticObjectDescription): string {
@@ -490,6 +513,20 @@ function composeStaticInfoHtml(nodeName: string, description: StaticObjectDescri
   `;
 }
 
+function composeStaticInfoText(nodeName: string, description: StaticObjectDescription): string {
+  const subtitle = [
+    `类别：${categoryLabel(description.category)}`,
+    description.source ? `来源：${prettifySource(description.source)}` : "来源：系统构件",
+  ].join(" · ");
+  return [
+    description.title,
+    subtitle,
+    description.intro || "这是场景中的基础构件。",
+    description.design_note || "用于支撑街道空间组织与交通可读性。",
+    `node: ${nodeName}`,
+  ].filter(Boolean).join("\n");
+}
+
 function composeGenericInfoHtml(nodeName: string): string {
   return `
     <div class="viewer-card-title">场景对象</div>
@@ -499,6 +536,75 @@ function composeGenericInfoHtml(nodeName: string): string {
       <div><dt>node</dt><dd>${escapeHtml(nodeName)}</dd></div>
     </dl>
   `;
+}
+
+function composeGenericInfoText(nodeName: string): string {
+  return [
+    "场景对象",
+    "未命名规则对象",
+    "当前对象没有更详细的街道说明元数据。",
+    `node: ${nodeName}`,
+  ].join("\n");
+}
+
+function buildHitDescriptorContent(descriptor: HitDescriptor): { html: string; text: string } {
+  if (descriptor.kind === "instance") {
+    return {
+      html: composeInstanceInfoHtml(
+        descriptor.nodeName,
+        descriptor.instanceInfo,
+        descriptor.assetDescription,
+      ),
+      text: composeInstanceInfoText(
+        descriptor.nodeName,
+        descriptor.instanceInfo,
+        descriptor.assetDescription,
+      ),
+    };
+  }
+  if (descriptor.kind === "static") {
+    return {
+      html: composeStaticInfoHtml(descriptor.nodeName, descriptor.staticDescription),
+      text: composeStaticInfoText(descriptor.nodeName, descriptor.staticDescription),
+    };
+  }
+  return {
+    html: composeGenericInfoHtml(descriptor.nodeName),
+    text: composeGenericInfoText(descriptor.nodeName),
+  };
+}
+
+async function writeTextToClipboard(text: string): Promise<void> {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "true");
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+  textarea.style.pointerEvents = "none";
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+  const copied = document.execCommand("copy");
+  document.body.removeChild(textarea);
+  if (!copied) {
+    throw new Error("Clipboard copy is unavailable in this browser.");
+  }
+}
+
+function isEditableTarget(target: EventTarget | null): boolean {
+  if (!(target instanceof HTMLElement)) {
+    return false;
+  }
+  if (target.isContentEditable) {
+    return true;
+  }
+  return target instanceof HTMLInputElement
+    || target instanceof HTMLTextAreaElement
+    || target instanceof HTMLSelectElement;
 }
 
 function resolveInstanceIdFromName(name: string): string | null {
@@ -590,7 +696,7 @@ async function mountViewerImpl(root: HTMLElement): Promise<void> {
         </div>
         <div class="viewer-actions">
           <div class="viewer-help">
-            Click to capture mouse · WASD move · Shift sprint · Esc unlock · R reset · P panel
+            Click to capture mouse · WASD move · Shift sprint · Esc unlock · R reset · P panel · Ctrl/Cmd+C copy target
           </div>
           <button id="viewer-settings-toggle" class="viewer-settings-toggle" type="button" aria-expanded="false">
             Settings
@@ -789,14 +895,36 @@ async function mountViewerImpl(root: HTMLElement): Promise<void> {
   let currentCameraMode: CameraMode = "first_person";
   let currentSceneBounds: MinimapBounds | null = null;
   let currentLaserHitPoint: THREE.Vector3 | null = null;
+  let currentLaserCopyText = "";
   let settingsOpen = false;
   let resumeRoamAfterSettingsClose = false;
+  let statusResetHandle: number | null = null;
   const optionsByKey = new Map<string, SceneOption>();
   const recentLayoutsByPath = new Map<string, RecentLayout>();
 
   const lightingState: LightingState = {
     ...DEFAULT_LIGHTING_STATE,
   };
+
+  function setStatus(message: string): void {
+    if (statusResetHandle !== null) {
+      window.clearTimeout(statusResetHandle);
+      statusResetHandle = null;
+    }
+    statusEl.textContent = message;
+  }
+
+  function flashStatus(message: string, durationMs = 1800): void {
+    const restoreText = statusEl.textContent || "";
+    if (statusResetHandle !== null) {
+      window.clearTimeout(statusResetHandle);
+    }
+    statusEl.textContent = message;
+    statusResetHandle = window.setTimeout(() => {
+      statusEl.textContent = restoreText;
+      statusResetHandle = null;
+    }, durationMs);
+  }
 
   function applyLightingState(): void {
     const warmthT = clamp((lightingState.warmth + 1) * 0.5, 0, 1);
@@ -935,6 +1063,7 @@ async function mountViewerImpl(root: HTMLElement): Promise<void> {
   function clearInfoCard(): void {
     infoCardEl.innerHTML = "";
     infoCardEl.hidden = true;
+    currentLaserCopyText = "";
   }
 
   function setInfoCardContent(htmlContent: string): void {
@@ -942,7 +1071,39 @@ async function mountViewerImpl(root: HTMLElement): Promise<void> {
     infoCardEl.hidden = false;
   }
 
+  async function copyCurrentLaserTargetDetails(): Promise<void> {
+    if (!laserToggleEl.checked) {
+      flashStatus("Laser pointer is off.");
+      return;
+    }
+    const text = currentLaserCopyText.trim();
+    if (!text) {
+      flashStatus("No laser target to copy.");
+      return;
+    }
+    try {
+      await writeTextToClipboard(text);
+      flashStatus("Copied laser target details.");
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Clipboard copy failed.";
+      flashStatus(message);
+    }
+  }
+
   function handleKey(event: KeyboardEvent, active: boolean): void {
+    if (
+      active
+      && !event.repeat
+      && event.code === "KeyC"
+      && (event.ctrlKey || event.metaKey)
+      && !event.altKey
+      && !isEditableTarget(event.target)
+      && laserToggleEl.checked
+    ) {
+      event.preventDefault();
+      void copyCurrentLaserTargetDetails();
+      return;
+    }
     switch (event.code) {
       case "KeyW":
         moveState.forward = active;
@@ -1239,26 +1400,14 @@ async function mountViewerImpl(root: HTMLElement): Promise<void> {
       clearInfoCard();
       return;
     }
-    if (descriptor.kind === "instance") {
-      setInfoCardContent(
-        composeInstanceInfoHtml(
-          descriptor.nodeName,
-          descriptor.instanceInfo,
-          descriptor.assetDescription,
-        ),
-      );
-      return;
-    }
-    if (descriptor.kind === "static") {
-      setInfoCardContent(composeStaticInfoHtml(descriptor.nodeName, descriptor.staticDescription));
-      return;
-    }
-    setInfoCardContent(composeGenericInfoHtml(descriptor.nodeName));
+    const content = buildHitDescriptorContent(descriptor);
+    currentLaserCopyText = content.text;
+    setInfoCardContent(content.html);
   }
 
   async function loadScene(option: SceneOption): Promise<void> {
     clearError(errorEl);
-    statusEl.textContent = `Loading ${option.label}…`;
+    setStatus(`Loading ${option.label}…`);
     if (controls.isLocked) {
       controls.unlock();
     }
@@ -1290,7 +1439,7 @@ async function mountViewerImpl(root: HTMLElement): Promise<void> {
     updateMinimapCamera(sceneBoundsFromManifest(bbox, currentManifest), bbox);
     resetView();
     applyLightingState();
-    statusEl.textContent = `Viewing ${option.label}`;
+    setStatus(`Viewing ${option.label}`);
   }
 
   function populateRecentLayoutOptions(layouts: RecentLayout[], selectedPath: string): void {
@@ -1332,7 +1481,7 @@ async function mountViewerImpl(root: HTMLElement): Promise<void> {
 
   async function loadLayoutSelection(layoutPath: string): Promise<void> {
     clearError(errorEl);
-    statusEl.textContent = "Loading scene set…";
+    setStatus("Loading scene set…");
     currentLayoutPath = layoutPath;
     currentManifest = await loadManifest(layoutPath);
     const options = populateSceneOptions(currentManifest);
@@ -1446,7 +1595,7 @@ async function mountViewerImpl(root: HTMLElement): Promise<void> {
     } catch (error) {
       const message = error instanceof Error ? error.message : "Failed to load scene layout.";
       setError(errorEl, message);
-      statusEl.textContent = "Scene layout load failed";
+      setStatus("Scene layout load failed");
     }
   });
   selectEl.addEventListener("change", async () => {
@@ -1459,7 +1608,7 @@ async function mountViewerImpl(root: HTMLElement): Promise<void> {
     } catch (error) {
       const message = error instanceof Error ? error.message : "Failed to load GLB.";
       setError(errorEl, message);
-      statusEl.textContent = "Scene load failed";
+      setStatus("Scene load failed");
     }
   });
 
@@ -1504,7 +1653,7 @@ async function mountViewerImpl(root: HTMLElement): Promise<void> {
   } catch (error) {
     const message = error instanceof Error ? error.message : "Failed to initialize viewer.";
     setError(errorEl, message);
-    statusEl.textContent = "Viewer unavailable";
+    setStatus("Viewer unavailable");
   }
 }
 

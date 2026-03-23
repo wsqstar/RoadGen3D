@@ -5,6 +5,10 @@ ARTIFACTS := artifacts/real
 M4_DIR := artifacts/m4
 UI_API_HOST := 127.0.0.1
 UI_API_PORT := 8010
+WORKBENCH_WEB_HOST := 127.0.0.1
+WORKBENCH_WEB_PORT := 4174
+VIEWER_HOST := 127.0.0.1
+VIEWER_PORT := 4173
 
 .PHONY: dev gradio-dev ui-api workbench-api workbench-web workbench-install viewer-web viewer-install ui-web ui-install knowledge-build train collect eval help
 
@@ -33,12 +37,20 @@ gradio-dev:
 	$(PYTHON) scripts/m1_gradio_app.py --host 127.0.0.1 --port 7860 --inbrowser
 
 workbench-api:
-	$(PYTHON) -m uvicorn web.api.main:app --host $(UI_API_HOST) --port $(UI_API_PORT) --reload
+	@if lsof -nP -iTCP:$(UI_API_PORT) -sTCP:LISTEN >/dev/null 2>&1; then \
+		echo "Workbench API already available at http://$(UI_API_HOST):$(UI_API_PORT)"; \
+	else \
+		MPLCONFIGDIR=/tmp/mpl-roadgen $(PYTHON) -m uvicorn web.api.main:app --host $(UI_API_HOST) --port $(UI_API_PORT); \
+	fi
 
 ui-api: workbench-api
 
 workbench-web:
-	npm --prefix web/workbench run dev
+	@if lsof -nP -iTCP:$(WORKBENCH_WEB_PORT) -sTCP:LISTEN >/dev/null 2>&1; then \
+		echo "Workbench web already available at http://$(WORKBENCH_WEB_HOST):$(WORKBENCH_WEB_PORT)"; \
+	else \
+		npm --prefix web/workbench run dev; \
+	fi
 
 ui-web: workbench-web
 
@@ -48,7 +60,11 @@ workbench-install:
 ui-install: workbench-install
 
 viewer-web:
-	npm --prefix web/viewer run dev
+	@if lsof -nP -iTCP:$(VIEWER_PORT) -sTCP:LISTEN >/dev/null 2>&1; then \
+		echo "Viewer already available at http://$(VIEWER_HOST):$(VIEWER_PORT)"; \
+	else \
+		npm --prefix web/viewer run dev; \
+	fi
 
 viewer-install:
 	npm --prefix web/viewer install

@@ -33,6 +33,13 @@ def test_build_web_viewer_url_accepts_repo_layout_and_encodes_query(tmp_path: Pa
     assert "scene_layout.json" in url
 
 
+def test_infer_spawn_payload_defaults_to_street_center():
+    payload = viewer.infer_spawn_payload({"summary": {"length_m": 120.0}})
+
+    assert payload["spawn_point"] == [0.0, 1.65, 0.0]
+    assert payload["forward_vector"] == [1.0, 0.0, 0.0]
+
+
 def test_build_web_viewer_dev_command_allows_external_layout_parent(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
     repo_root = (tmp_path / "repo").resolve()
     viewer_dir = repo_root / "web" / "viewer"

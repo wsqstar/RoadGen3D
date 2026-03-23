@@ -33,6 +33,23 @@ type DesignDraft = {
   parameter_sources_by_field: Record<string, string>;
 };
 
+type SceneContext = {
+  layout_mode: "template" | "osm";
+  aoi_bbox: [number, number, number, number] | null;
+  city_name_en: string | null;
+};
+
+type ChinaCity = {
+  name_zh: string;
+  name_en: string;
+  province: string;
+  bbox: [number, number, number, number];
+};
+
+type ChinaCityResponse = {
+  items: ChinaCity[];
+};
+
 type DraftResponse = {
   intent: DesignIntent;
   evidence: RagEvidence[];
@@ -96,6 +113,19 @@ const API_BASE = (import.meta.env.VITE_ROADGEN_API_BASE as string | undefined) |
 const VIEWER_BASE = (import.meta.env.VITE_ROADGEN_VIEWER_BASE as string | undefined) || "http://127.0.0.1:4173";
 const POLL_INTERVAL_MS = 1200;
 const TERMINAL_JOB_STATES = new Set(["succeeded", "failed"]);
+const DEFAULT_WORKBENCH_CITY = "guangzhou";
+const SUMMARY_OMIT_KEYS = new Set([
+  "spatial_context",
+  "poi_exclusion_zones",
+  "poi_conflict_assets",
+  "scene_graph_available_categories",
+  "scene_graph_node_count",
+  "scene_graph_edge_count",
+  "scene_graph",
+  "render_views",
+  "theme_segments",
+  "road_segment_graph_summary",
+]);
 
 const FIELD_CONFIGS: FieldConfig[] = [
   { key: "query", label: "Scene Query", type: "text" },
@@ -126,6 +156,13 @@ export function mountWorkbench(app: HTMLDivElement): void {
     lastGeneration: null as GenerationResponse | null,
     currentJob: null as SceneJobStatusResponse | null,
     recentScenes: [] as SceneRecord[],
+    cities: [] as ChinaCity[],
+    sceneContext: {
+      layout_mode: "osm",
+      aoi_bbox: null,
+      city_name_en: null,
+    } as SceneContext,
+    bboxDirty: false,
   };
 
   app.innerHTML = `
@@ -146,9 +183,9 @@ export function mountWorkbench(app: HTMLDivElement): void {
         </div>
       </section>
 
-      <div class="layout">
-        <div class="stack">
-          <section class="panel">
+	      <div class="layout">
+	        <div class="stack">
+	          <section class="panel">
             <div class="panel-head">
               <h2>Conversation</h2>
               <div class="intent-row">
@@ -166,11 +203,55 @@ export function mountWorkbench(app: HTMLDivElement): void {
                 </div>
                 <div id="status-box" class="status-box">等待输入。</div>
               </div>
-            </div>
-          </section>
+	            </div>
+	          </section>
 
-          <section class="panel">
-            <div class="panel-head">
+	          <section class="panel">
+	            <div class="panel-head">
+	              <h2>Scene Setup</h2>
+	            </div>
+	            <div class="panel-body">
+	              <div class="scene-setup-grid">
+	                <div class="field">
+	                  <label for="scene-layout-mode">Layout Mode</label>
+	                  <select id="scene-layout-mode">
+	                    <option value="osm" selected>osm</option>
+	                    <option value="template">template</option>
+	                  </select>
+	                </div>
+	                <div id="scene-city-field" class="field">
+	                  <label for="scene-city">City</label>
+	                  <select id="scene-city">
+	                    <option value="">Loading cities...</option>
+	                  </select>
+	                </div>
+	              </div>
+	              <div id="osm-scene-fields" class="scene-setup-stack">
+	                <div class="scene-setup-grid bbox-grid">
+	                  <div class="field">
+	                    <label for="bbox-min-lon">AOI Min Lon</label>
+	                    <input id="bbox-min-lon" type="number" step="0.0001" />
+	                  </div>
+	                  <div class="field">
+	                    <label for="bbox-min-lat">AOI Min Lat</label>
+	                    <input id="bbox-min-lat" type="number" step="0.0001" />
+	                  </div>
+	                  <div class="field">
+	                    <label for="bbox-max-lon">AOI Max Lon</label>
+	                    <input id="bbox-max-lon" type="number" step="0.0001" />
+	                  </div>
+	                  <div class="field">
+	                    <label for="bbox-max-lat">AOI Max Lat</label>
+	                    <input id="bbox-max-lat" type="number" step="0.0001" />
+	                  </div>
+	                </div>
+	              </div>
+	              <div id="scene-setup-summary" class="summary-box">OSM 模式会在 AOI 中自动挑一条普通可步行街道，并启用周边建筑链路。</div>
+	            </div>
+	          </section>
+
+	          <section class="panel">
+	            <div class="panel-head">
               <h2>Evidence</h2>
             </div>
             <div class="panel-body">
@@ -212,6 +293,15 @@ export function mountWorkbench(app: HTMLDivElement): void {
   const draftBtn = requireElement<HTMLButtonElement>(app, "#draft-btn");
   const rebuildBtn = requireElement<HTMLButtonElement>(app, "#rebuild-btn");
   const statusBox = requireElement<HTMLDivElement>(app, "#status-box");
+  const sceneLayoutMode = requireElement<HTMLSelectElement>(app, "#scene-layout-mode");
+  const sceneCity = requireElement<HTMLSelectElement>(app, "#scene-city");
+  const sceneCityField = requireElement<HTMLDivElement>(app, "#scene-city-field");
+  const osmSceneFields = requireElement<HTMLDivElement>(app, "#osm-scene-fields");
+  const bboxMinLon = requireElement<HTMLInputElement>(app, "#bbox-min-lon");
+  const bboxMinLat = requireElement<HTMLInputElement>(app, "#bbox-min-lat");
+  const bboxMaxLon = requireElement<HTMLInputElement>(app, "#bbox-max-lon");
+  const bboxMaxLat = requireElement<HTMLInputElement>(app, "#bbox-max-lat");
+  const sceneSetupSummary = requireElement<HTMLDivElement>(app, "#scene-setup-summary");
   const intentBox = requireElement<HTMLDivElement>(app, "#intent-box");
   const evidenceList = requireElement<HTMLDivElement>(app, "#evidence-list");
   const draftSummary = requireElement<HTMLDivElement>(app, "#draft-summary");
@@ -221,8 +311,28 @@ export function mountWorkbench(app: HTMLDivElement): void {
 
   renderTimeline();
   renderParameterForm({});
+  renderSceneSetup();
   renderJobPanel();
   void bootstrap();
+
+  sceneLayoutMode.addEventListener("change", () => {
+    renderSceneSetup();
+  });
+
+  sceneCity.addEventListener("change", () => {
+    const city = state.cities.find((item) => item.name_en === sceneCity.value);
+    if (city && !state.bboxDirty) {
+      setBboxInputs(city.bbox);
+    }
+    renderSceneSetup();
+  });
+
+  [bboxMinLon, bboxMinLat, bboxMaxLon, bboxMaxLat].forEach((input) => {
+    input.addEventListener("input", () => {
+      state.bboxDirty = true;
+      renderSceneSetup();
+    });
+  });
 
   draftBtn.addEventListener("click", async () => {
     const prompt = promptInput.value.trim();
@@ -278,8 +388,13 @@ export function mountWorkbench(app: HTMLDivElement): void {
     setStatus("正在创建场景生成任务...");
     try {
       const draft = buildDraftFromForm(state.lastDraft.draft, parameterForm);
+      const sceneContext = buildSceneContextFromForm();
+      if (sceneContext.layout_mode === "osm" && !sceneContext.aoi_bbox) {
+        throw new Error("OSM 模式需要有效的 AOI bbox。");
+      }
       const created = await postJson<SceneJobCreateResponse>("/api/scene/jobs", {
         draft,
+        scene_context: sceneContext,
         patch_overrides: {},
         generation_options: {},
       });
@@ -303,6 +418,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
 
   async function bootstrap(): Promise<void> {
     try {
+      await loadChinaCities();
       await refreshRecentScenes();
       const jobs = await getJson<SceneJobListResponse>("/api/scene/jobs");
       if (jobs.items.length) {
@@ -321,6 +437,26 @@ export function mountWorkbench(app: HTMLDivElement): void {
     } catch (_error) {
       // Workbench should still render even if the API is not up yet.
     }
+  }
+
+  async function loadChinaCities(): Promise<void> {
+    const payload = await getJson<ChinaCityResponse>("/api/geo/china-cities");
+    state.cities = payload.items;
+    sceneCity.innerHTML = state.cities
+      .map((item) => `<option value="${escapeHtml(item.name_en)}">${escapeHtml(`${item.name_zh} ${item.name_en}`)}</option>`)
+      .join("");
+    const defaultCity = state.cities.find((item) => item.name_en === DEFAULT_WORKBENCH_CITY) || state.cities[0];
+    if (defaultCity) {
+      sceneCity.value = defaultCity.name_en;
+      setBboxInputs(defaultCity.bbox);
+      state.bboxDirty = false;
+      state.sceneContext = {
+        layout_mode: "osm",
+        aoi_bbox: defaultCity.bbox,
+        city_name_en: defaultCity.name_en,
+      };
+    }
+    renderSceneSetup();
   }
 
   async function pollSceneJob(jobId: string): Promise<void> {
@@ -449,6 +585,27 @@ export function mountWorkbench(app: HTMLDivElement): void {
     }).join("");
   }
 
+  function renderSceneSetup(): void {
+    const sceneContext = buildSceneContextFromForm();
+    state.sceneContext = sceneContext;
+    const isOsm = sceneContext.layout_mode === "osm";
+    sceneCityField.style.display = isOsm ? "" : "none";
+    osmSceneFields.style.display = isOsm ? "" : "none";
+    if (!isOsm) {
+      sceneSetupSummary.textContent =
+        "Template 模式会生成参数化直街模板，不会启用 OSM 走廊、自动选路或周边建筑链路。";
+      return;
+    }
+    const city = state.cities.find((item) => item.name_en === sceneContext.city_name_en);
+    const cityLabel = city ? `${city.name_zh} ${city.name_en}` : sceneContext.city_name_en || "manual";
+    const bboxLabel = sceneContext.aoi_bbox ? formatBbox(sceneContext.aoi_bbox) : "invalid bbox";
+    sceneSetupSummary.textContent =
+      `OSM 模式将在 ${cityLabel} 的 AOI 中自动挑一条普通可步行街道。`
+      + `\nAOI: ${bboxLabel}`
+      + `\nBBox source: ${state.bboxDirty ? "manual override" : "city preset"}`
+      + "\nPOI 只用于选路与道路两侧用地/规则推断，不作为 workbench 主显示对象。";
+  }
+
   function renderJobPanel(): void {
     const currentJob = state.currentJob;
     const currentJobHtml = currentJob
@@ -472,7 +629,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
       ? state.recentScenes
           .map((item) => {
             const viewerHref = item.viewer_url || VIEWER_BASE;
-            const summary = JSON.stringify(item.summary || {}, null, 2);
+            const summary = JSON.stringify(compactSceneSummary(item.summary || {}), null, 2);
             return `
               <article class="scene-card">
                 <div class="result-head">
@@ -483,6 +640,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
                 <div class="actions">
                   <a class="hero-link scene-link" href="${escapeHtml(viewerHref)}" target="_blank" rel="noreferrer">Open Viewer</a>
                 </div>
+                ${renderSceneSummaryHighlights(item.summary || {})}
                 ${item.scene_layout_path ? `<div class="mono">layout: ${escapeHtml(item.scene_layout_path)}</div>` : ""}
                 <pre class="mono scene-summary">${escapeHtml(summary)}</pre>
               </article>
@@ -518,6 +676,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
 
   function renderGenerationCard(result: GenerationResponse): string {
     const viewerHref = result.viewer_url || VIEWER_BASE;
+    const summary = compactSceneSummary(result.summary);
     const links = [
       `<div><a href="${escapeHtml(viewerHref)}" target="_blank" rel="noreferrer">Open Viewer</a></div>`,
       result.scene_layout_path ? `<div class="mono">layout: ${escapeHtml(result.scene_layout_path)}</div>` : "",
@@ -528,7 +687,8 @@ export function mountWorkbench(app: HTMLDivElement): void {
     return `
       <div class="summary-box">
         <div><strong>Summary</strong></div>
-        <pre class="mono scene-summary">${escapeHtml(JSON.stringify(result.summary, null, 2))}</pre>
+        ${renderSceneSummaryHighlights(result.summary)}
+        <pre class="mono scene-summary">${escapeHtml(JSON.stringify(summary, null, 2))}</pre>
         ${links}
       </div>
     `;
@@ -584,11 +744,96 @@ function buildDraftFromForm(baseDraft: DesignDraft, parameterForm: HTMLDivElemen
   };
 }
 
+function buildSceneContextFromForm(): SceneContext {
+  const layoutModeEl = requireElement<HTMLSelectElement>(document, "#scene-layout-mode");
+  const cityEl = requireElement<HTMLSelectElement>(document, "#scene-city");
+  const bboxFields = [
+    requireElement<HTMLInputElement>(document, "#bbox-min-lon"),
+    requireElement<HTMLInputElement>(document, "#bbox-min-lat"),
+    requireElement<HTMLInputElement>(document, "#bbox-max-lon"),
+    requireElement<HTMLInputElement>(document, "#bbox-max-lat"),
+  ];
+  const layoutMode = layoutModeEl.value === "template" ? "template" : "osm";
+  if (layoutMode === "template") {
+    return {
+      layout_mode: "template",
+      aoi_bbox: null,
+      city_name_en: cityEl.value || null,
+    };
+  }
+  const bbox = bboxFields.map((field) => Number(field.value.trim()));
+  const isValid =
+    bbox.every((value) => Number.isFinite(value))
+    && bbox[0] < bbox[2]
+    && bbox[1] < bbox[3];
+  return {
+    layout_mode: "osm",
+    aoi_bbox: isValid ? (bbox as [number, number, number, number]) : null,
+    city_name_en: cityEl.value || null,
+  };
+}
+
 function formatDraftSummary(draft: DesignDraft): string {
   return [
     draft.design_summary || "No summary returned.",
     draft.risk_notes.length ? `\nRisk Notes:\n- ${draft.risk_notes.join("\n- ")}` : "",
   ].join("");
+}
+
+function setBboxInputs(bbox: [number, number, number, number]): void {
+  requireElement<HTMLInputElement>(document, "#bbox-min-lon").value = String(bbox[0]);
+  requireElement<HTMLInputElement>(document, "#bbox-min-lat").value = String(bbox[1]);
+  requireElement<HTMLInputElement>(document, "#bbox-max-lon").value = String(bbox[2]);
+  requireElement<HTMLInputElement>(document, "#bbox-max-lat").value = String(bbox[3]);
+}
+
+function formatBbox(bbox: [number, number, number, number]): string {
+  return `(${bbox.map((value) => value.toFixed(4)).join(", ")})`;
+}
+
+function compactSceneSummary(summary: Record<string, unknown>): Record<string, unknown> {
+  return Object.fromEntries(
+    Object.entries(summary || {}).filter(([key]) => !SUMMARY_OMIT_KEYS.has(key)),
+  );
+}
+
+function renderSceneSummaryHighlights(summary: Record<string, unknown>): string {
+  const rows: string[] = [];
+  const layoutMode = String(summary.layout_mode || "");
+  if (layoutMode) {
+    rows.push(`<div><strong>layout_mode</strong>: ${escapeHtml(layoutMode)}</div>`);
+  }
+  const requestedAoi = formatUnknownBbox(summary.requested_aoi_bbox);
+  if (requestedAoi) {
+    rows.push(`<div><strong>requested_aoi_bbox</strong>: ${escapeHtml(requestedAoi)}</div>`);
+  }
+  const effectiveAoi = formatUnknownBbox(summary.effective_aoi_bbox || summary.aoi_bbox);
+  if (effectiveAoi) {
+    rows.push(`<div><strong>effective_aoi_bbox</strong>: ${escapeHtml(effectiveAoi)}</div>`);
+  }
+  if (summary.selected_road_osm_id !== undefined && summary.selected_road_osm_id !== null) {
+    rows.push(`<div><strong>selected_road_osm_id</strong>: ${escapeHtml(String(summary.selected_road_osm_id))}</div>`);
+  }
+  if (summary.selected_highway_type) {
+    rows.push(`<div><strong>selected_highway_type</strong>: ${escapeHtml(String(summary.selected_highway_type))}</div>`);
+  }
+  if (summary.building_footprint_count !== undefined) {
+    rows.push(`<div><strong>building_footprint_count</strong>: ${escapeHtml(String(summary.building_footprint_count))}</div>`);
+  }
+  if (summary.infill_footprint_count !== undefined) {
+    rows.push(`<div><strong>infill_footprint_count</strong>: ${escapeHtml(String(summary.infill_footprint_count))}</div>`);
+  }
+  if (!rows.length) {
+    return "";
+  }
+  return `<div class="summary-list">${rows.join("")}</div>`;
+}
+
+function formatUnknownBbox(value: unknown): string {
+  if (!Array.isArray(value) || value.length !== 4 || value.some((item) => typeof item !== "number" || !Number.isFinite(item))) {
+    return "";
+  }
+  return `(${value.map((item) => Number(item).toFixed(4)).join(", ")})`;
 }
 
 function renderTagRow(items: string[]): string {

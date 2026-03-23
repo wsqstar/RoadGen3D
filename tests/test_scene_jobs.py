@@ -10,7 +10,7 @@ if str(ROOT) not in sys.path:
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from roadgen3d.services.design_types import DesignDraft, SceneGenerationResult  # noqa: E402
+from roadgen3d.services.design_types import DesignDraft, SceneContext, SceneGenerationResult  # noqa: E402
 from roadgen3d.services.scene_jobs import SceneJobService  # noqa: E402
 
 
@@ -24,8 +24,11 @@ def _draft() -> DesignDraft:
 
 
 def test_scene_job_service_runs_sync_generation():
-    service = SceneJobService(
-        generator=lambda draft, **kwargs: SceneGenerationResult(
+    captured = {}
+
+    def _generator(draft, **kwargs):
+        captured["scene_context"] = kwargs.get("scene_context")
+        return SceneGenerationResult(
             compose_config=draft.compose_config_patch,
             summary={"instance_count": 7},
             scene_layout_path="/tmp/layout.json",
@@ -33,11 +36,22 @@ def test_scene_job_service_runs_sync_generation():
             scene_ply_path="/tmp/scene.ply",
             viewer_url="http://127.0.0.1:4173/?layout=demo",
         )
+
+    service = SceneJobService(
+        generator=_generator
     )
 
-    result = service.run_job_sync(draft=_draft())
+    result = service.run_job_sync(
+        draft=_draft(),
+        scene_context=SceneContext(
+            layout_mode="osm",
+            aoi_bbox=(113.2660, 23.1280, 113.2710, 23.1325),
+            city_name_en="guangzhou",
+        ),
+    )
 
     assert result.summary["instance_count"] == 7
+    assert captured["scene_context"].layout_mode == "osm"
     recent = service.list_recent_scenes(limit=1)
     assert recent[0].job_id
     assert recent[0].viewer_url.startswith("http://127.0.0.1:4173/")

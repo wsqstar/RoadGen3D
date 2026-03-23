@@ -13,7 +13,8 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from roadgen3d.services.design_runtime import build_compose_config_from_draft, generate_scene_from_draft
-from roadgen3d.services.design_types import DesignDraft
+from roadgen3d.services.design_types import DesignDraft, SceneContext
+from roadgen3d.services.scene_context_service import ResolvedSceneContext
 import roadgen3d.services.design_runtime as runtime
 
 
@@ -101,3 +102,86 @@ def test_generate_scene_from_draft_uses_sanitized_cached_layout_summary(tmp_path
 
     assert result.summary["instance_count"] == 8
     assert result.summary["clearance_m"] is None
+
+
+def test_generate_scene_from_draft_applies_osm_scene_context(tmp_path: Path, monkeypatch):
+    captured: dict[str, object] = {}
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(json.dumps({"summary": {"instance_count": 4, "building_footprint_count": 12}}), encoding="utf-8")
+
+    def _fake_compose(**kwargs):
+        captured["config"] = kwargs["config"]
+        return SimpleNamespace(
+            instance_count=4,
+            dropped_slots=0,
+            outputs={
+                "scene_layout": str(layout_path),
+                "scene_glb": str(tmp_path / "scene.glb"),
+                "scene_ply": str(tmp_path / "scene.ply"),
+            },
+        )
+
+    monkeypatch.setattr(
+        runtime,
+        "compose_street_scene",
+        _fake_compose,
+    )
+    monkeypatch.setattr(runtime, "cache_scene_layout_for_viewer", lambda layout: Path(layout))
+    monkeypatch.setattr(runtime, "build_web_viewer_url", lambda _layout: "http://127.0.0.1:4173/?layout=demo")
+    monkeypatch.setattr(
+        runtime,
+        "resolve_scene_context",
+        lambda scene_context, *, config, artifacts_dir: ResolvedSceneContext(
+            scene_context=scene_context,
+            requested_aoi_bbox=(113.2660, 23.1280, 113.2710, 23.1325),
+            effective_aoi_bbox=(113.2670, 23.1290, 113.2700, 23.1320),
+            city_name_en="guangzhou",
+            selected_road_osm_id=202,
+            selected_road_discovered_poi_count=5,
+            selected_road_discovered_poi_score=4.2,
+            selected_road_discovered_core_poi_count=2,
+            selected_road_source="cached_discovery",
+            probe_metrics={"row_width_m": 13.2},
+        ),
+    )
+
+    draft = DesignDraft(
+        normalized_scene_query="safe complete street",
+        compose_config_patch={"road_width_m": 6.5, "sidewalk_width_m": 4.0},
+        citations_by_field={},
+        design_summary="summary",
+    )
+    result = generate_scene_from_draft(
+        draft,
+        scene_context=SceneContext(
+            layout_mode="osm",
+            aoi_bbox=(113.2660, 23.1280, 113.2710, 23.1325),
+            city_name_en="guangzhou",
+        ),
+    )
+
+    config = captured["config"]
+    assert config.layout_mode == "osm"
+    assert config.aoi_bbox == (113.2670, 23.1290, 113.2700, 23.1320)
+    assert config.selected_road_osm_id == 202
+    assert result.summary["requested_aoi_bbox"] == [113.266, 23.128, 113.271, 23.1325]
+    assert result.summary["city_name_en"] == "guangzhou"
+
+
+def test_generate_scene_from_draft_requires_bbox_for_osm_scene_context():
+    draft = DesignDraft(
+        normalized_scene_query="safe complete street",
+        compose_config_patch={"road_width_m": 6.5, "sidewalk_width_m": 4.0},
+        citations_by_field={},
+        design_summary="summary",
+    )
+
+    try:
+        generate_scene_from_draft(
+            draft,
+            scene_context={"layout_mode": "osm"},
+        )
+    except RuntimeError as exc:
+        assert "AOI bbox" in str(exc)
+    else:
+        raise AssertionError("Expected missing OSM bbox to raise RuntimeError")

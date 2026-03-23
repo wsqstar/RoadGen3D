@@ -64,6 +64,15 @@ from roadgen3d.poi_taxonomy import (
     qualifies_poi_counts,
 )
 from roadgen3d.road_discovery import discover_poi_roads, write_discovered_roads_jsonl
+from roadgen3d.services.scene_context_service import (
+    bbox_hash as _service_bbox_hash,
+    discovered_cache_matches as _service_discovered_cache_matches,
+    discovered_metadata_path as _service_discovered_metadata_path,
+    load_discovered_roads_metadata as _service_load_discovered_roads_metadata,
+    probe_discovered_road_context_metrics as _service_probe_discovered_road_context_metrics,
+    select_auto_discovered_road as _service_select_auto_discovered_road,
+    write_discovered_roads_metadata as _service_write_discovered_roads_metadata,
+)
 from roadgen3d.pipeline import M1Pipeline
 from roadgen3d.program_generator import ProgramTrainConfig
 from roadgen3d.scene_graph_viz import (
@@ -842,8 +851,7 @@ def _build_index_from_assets(
 
 
 def _bbox_hash(bbox: Tuple[float, float, float, float]) -> str:
-    key = f"{bbox[0]:.6f},{bbox[1]:.6f},{bbox[2]:.6f},{bbox[3]:.6f}"
-    return hashlib.md5(key.encode("utf-8")).hexdigest()[:12]
+    return _service_bbox_hash(bbox)
 
 
 def inspect_workspace_readiness(
@@ -1159,7 +1167,7 @@ def _load_discovered_road_records(discovered_path: Path) -> List[Dict[str, Any]]
 
 
 def _discovered_metadata_path(discovered_path: Path) -> Path:
-    return discovered_path.with_suffix(".meta.json")
+    return _service_discovered_metadata_path(discovered_path)
 
 
 def _write_discovered_roads_metadata(
@@ -1171,22 +1179,18 @@ def _write_discovered_roads_metadata(
     min_poi_score: float = 2.0,
     min_core_poi_count: int = 1,
 ) -> None:
-    metadata = {
-        "aoi_bbox": [float(value) for value in aoi_bbox],
-        "min_poi_count": int(min_poi_count),
-        "min_road_length_m": float(min_road_length_m),
-        "min_poi_score": float(min_poi_score),
-        "min_core_poi_count": int(min_core_poi_count),
-        "poi_evaluator_version": EFFECTIVE_POI_EVALUATOR_VERSION,
-    }
-    metadata_path.parent.mkdir(parents=True, exist_ok=True)
-    metadata_path.write_text(json.dumps(metadata, indent=2, ensure_ascii=True), encoding="utf-8")
+    _service_write_discovered_roads_metadata(
+        metadata_path,
+        aoi_bbox,
+        min_poi_count=min_poi_count,
+        min_road_length_m=min_road_length_m,
+        min_poi_score=min_poi_score,
+        min_core_poi_count=min_core_poi_count,
+    )
 
 
 def _load_discovered_roads_metadata(metadata_path: Path) -> Dict[str, Any]:
-    if not metadata_path.exists():
-        return {}
-    return json.loads(metadata_path.read_text(encoding="utf-8"))
+    return _service_load_discovered_roads_metadata(metadata_path)
 
 
 def _discovered_cache_matches(
@@ -1198,18 +1202,13 @@ def _discovered_cache_matches(
     min_poi_score: float = 2.0,
     min_core_poi_count: int = 1,
 ) -> bool:
-    if aoi_bbox is None or not discovered_path.exists():
-        return False
-    metadata = _load_discovered_roads_metadata(_discovered_metadata_path(discovered_path))
-    if not metadata:
-        return False
-    return (
-        tuple(float(value) for value in metadata.get("aoi_bbox", ())) == tuple(float(value) for value in aoi_bbox)
-        and int(metadata.get("min_poi_count", -1)) == int(min_poi_count)
-        and float(metadata.get("min_road_length_m", -1.0)) == float(min_road_length_m)
-        and float(metadata.get("min_poi_score", -1.0)) == float(min_poi_score)
-        and int(metadata.get("min_core_poi_count", -1)) == int(min_core_poi_count)
-        and str(metadata.get("poi_evaluator_version", "")) == EFFECTIVE_POI_EVALUATOR_VERSION
+    return _service_discovered_cache_matches(
+        discovered_path,
+        aoi_bbox,
+        min_poi_count=min_poi_count,
+        min_road_length_m=min_road_length_m,
+        min_poi_score=min_poi_score,
+        min_core_poi_count=min_core_poi_count,
     )
 
 
@@ -1222,36 +1221,14 @@ def _probe_discovered_road_context_metrics(
     lane_count: int,
     road_selection: str,
 ) -> Dict[str, Any]:
-    candidate_bbox = tuple(float(value) for value in row["bbox"])
-    probe_config = StreetComposeConfig(
-        query="probe",
-        length_m=80.0,
-        road_width_m=float(road_width_m),
-        sidewalk_width_m=float(sidewalk_width_m),
-        lane_count=int(lane_count),
-        density=1.0,
-        seed=0,
-        topk_per_category=1,
-        max_trials_per_slot=1,
-        layout_mode="osm",
-        constraint_mode="off",
-        aoi_bbox=candidate_bbox,
-        osm_cache_dir=str(osm_cache_dir),
-        road_selection=str(road_selection),
-        selected_road_osm_id=int(row["osm_id"]),
+    return _service_probe_discovered_road_context_metrics(
+        row,
+        osm_cache_dir=osm_cache_dir,
+        road_width_m=road_width_m,
+        sidewalk_width_m=sidewalk_width_m,
+        lane_count=lane_count,
+        road_selection=road_selection,
     )
-    raw = fetch_osm_data(bbox=candidate_bbox, cache_dir=Path(osm_cache_dir))
-    features = parse_osm_features(raw)
-    projected = project_to_local(features, candidate_bbox)
-    _filtered, placement_ctx, poi_counts = evaluate_projected_road_context(projected, probe_config)
-    return {
-        "poi_counts": poi_counts,
-        "poi_fit_feasible": bool(getattr(placement_ctx, "poi_fit_feasible", True)),
-        "poi_fit_report": dict(getattr(placement_ctx, "poi_fit_report", {}) or {}),
-        "required_left_width_m": float(getattr(placement_ctx, "required_left_width_m", 0.0) or 0.0),
-        "required_right_width_m": float(getattr(placement_ctx, "required_right_width_m", 0.0) or 0.0),
-        "row_width_m": float(getattr(placement_ctx, "row_width_m", 0.0) or 0.0),
-    }
 
 
 def _probe_discovered_road_effective_poi_counts(
@@ -1291,98 +1268,15 @@ def _select_auto_discovered_road(
     lane_count: int,
     road_selection: str,
 ) -> Tuple[Dict[str, Any], bool, Dict[str, Any]]:
-    """Return one POI-rich road chosen deterministically from discovery results."""
-    discovered_path = artifacts_dir.parent / "m5" / "discovered_poi_roads.jsonl"
-    metadata_path = _discovered_metadata_path(discovered_path)
-    if not _discovered_cache_matches(discovered_path, aoi_bbox):
-        cached_rows = []
-    else:
-        cached_rows = [
-            row for row in _load_discovered_road_records(discovered_path)
-            if qualifies_poi_counts(row.get("poi_types", {}))
-        ]
-    auto_discovered = False
-
-    if not cached_rows:
-        if aoi_bbox is None:
-            raise RuntimeError("OSM mode requires an AOI bbox to auto-discover POI-rich roads.")
-
-        class _AdhocCity:
-            def __init__(self, bbox):
-                self.name_en = "adhoc"
-                self.name_zh = "adhoc"
-                self.province = ""
-                self.bbox = bbox
-
-        roads = discover_poi_roads(_AdhocCity(aoi_bbox), osm_cache_dir)
-        auto_discovered = True
-        write_discovered_roads_jsonl(roads, discovered_path)
-        _write_discovered_roads_metadata(metadata_path, aoi_bbox)
-        cached_rows = [
-            row for row in _load_discovered_road_records(discovered_path)
-            if qualifies_poi_counts(row.get("poi_types", {}))
-        ]
-
-    if not cached_rows:
-        raise RuntimeError(
-            "No POI-rich roads found for the current area "
-            "(requires weighted POI score >= 2.0 and at least 1 core POI)."
-        )
-
-    ordered_rows = sorted(
-        cached_rows,
-        key=lambda row: (
-            int(row.get("osm_id", 0)),
-            float(row.get("road_length_m", 0.0)),
-            tuple(float(v) for v in row.get("bbox", ())),
-        ),
-    )
-    rng = random.Random(int(seed))
-    rng.shuffle(ordered_rows)
-    if str(road_selection).strip().lower() == "walkable_neighborhood":
-        preferred_rows = [
-            row for row in ordered_rows
-            if is_walkable_neighborhood_highway(str(row.get("highway_type", "") or ""))
-        ]
-        fallback_rows = [
-            row for row in ordered_rows
-            if not is_walkable_neighborhood_highway(str(row.get("highway_type", "") or ""))
-        ]
-        ordered_rows = preferred_rows + fallback_rows
-    for row in ordered_rows:
-        effective_counts = _probe_discovered_road_effective_poi_counts(
-            row,
-            osm_cache_dir=osm_cache_dir,
-            road_width_m=float(road_width_m),
-            sidewalk_width_m=float(sidewalk_width_m),
-            lane_count=int(lane_count),
-            road_selection=str(road_selection),
-        )
-        if _probe_discovered_road_effective_poi_counts is _DEFAULT_EFFECTIVE_POI_COUNTS_PROBE:
-            probe_metrics = _probe_discovered_road_context_metrics(
-                row,
-                osm_cache_dir=osm_cache_dir,
-                road_width_m=float(road_width_m),
-                sidewalk_width_m=float(sidewalk_width_m),
-                lane_count=int(lane_count),
-                road_selection=str(road_selection),
-            )
-            probe_metrics["poi_counts"] = effective_counts
-        else:
-            probe_metrics = {
-                "poi_counts": effective_counts,
-                "poi_fit_feasible": True,
-                "poi_fit_report": {},
-                "required_left_width_m": 0.0,
-                "required_right_width_m": 0.0,
-                "row_width_m": 0.0,
-            }
-        if qualifies_poi_counts(effective_counts) and bool(probe_metrics.get("poi_fit_feasible", True)):
-            return row, auto_discovered, probe_metrics
-
-    raise RuntimeError(
-        "No discovered POI-rich roads remain valid after compose filtering "
-        "(requires weighted POI score >= 2.0, at least 1 core POI, and a feasible POI-driven cross-section)."
+    return _service_select_auto_discovered_road(
+        artifacts_dir=artifacts_dir,
+        osm_cache_dir=osm_cache_dir,
+        aoi_bbox=aoi_bbox,
+        seed=seed,
+        road_width_m=road_width_m,
+        sidewalk_width_m=sidewalk_width_m,
+        lane_count=lane_count,
+        road_selection=road_selection,
     )
 
 

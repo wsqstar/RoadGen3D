@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Dict, Mapping, Sequence, Tuple
@@ -106,6 +107,23 @@ def sanitize_citations_by_field(
     return result
 
 
+def _coerce_bbox_tuple(value: object) -> Tuple[float, float, float, float] | None:
+    if value is None:
+        return None
+    if not isinstance(value, (list, tuple)) or len(value) != 4:
+        return None
+    try:
+        bbox = tuple(float(item) for item in value)
+    except (TypeError, ValueError):
+        return None
+    if not all(math.isfinite(item) for item in bbox):
+        return None
+    min_lon, min_lat, max_lon, max_lat = bbox
+    if min_lon >= max_lon or min_lat >= max_lat:
+        return None
+    return bbox
+
+
 @dataclass(frozen=True)
 class ChatMessage:
     """One conversational turn passed to the design assistant."""
@@ -174,6 +192,39 @@ class DesignDraft:
             "risk_notes": list(self.risk_notes),
             "parameter_sources_by_field": dict(self.parameter_sources_by_field),
         }
+
+
+@dataclass(frozen=True)
+class SceneContext:
+    """Runtime-only scene setup that stays outside the LLM draft patch."""
+
+    layout_mode: str = "template"
+    aoi_bbox: Tuple[float, float, float, float] | None = None
+    city_name_en: str | None = None
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "layout_mode": self.layout_mode,
+            "aoi_bbox": list(self.aoi_bbox) if self.aoi_bbox is not None else None,
+            "city_name_en": self.city_name_en,
+        }
+
+
+def sanitize_scene_context(payload: Mapping[str, Any] | SceneContext | None) -> SceneContext:
+    """Normalize runtime scene context received from the API or UI."""
+
+    if isinstance(payload, SceneContext):
+        return payload
+    raw = dict(payload or {})
+    layout_mode = str(raw.get("layout_mode", "template") or "template").strip().lower()
+    if layout_mode not in {"template", "osm"}:
+        layout_mode = "template"
+    city_name_en = _clean_text(raw.get("city_name_en")) or None
+    return SceneContext(
+        layout_mode=layout_mode,
+        aoi_bbox=_coerce_bbox_tuple(raw.get("aoi_bbox")),
+        city_name_en=city_name_en,
+    )
 
 
 @dataclass(frozen=True)

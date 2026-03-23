@@ -28,6 +28,9 @@ class _FakeService:
     default_pdf_path = Path("/tmp/guide.pdf")
     default_artifact_dir = Path("/tmp/knowledge")
 
+    def __init__(self):
+        self.last_scene_context = None
+
     def draft_design(self, **kwargs):
         return DesignDraftBundle(
             intent=DesignIntent(
@@ -49,9 +52,18 @@ class _FakeService:
         )
 
     def generate_scene(self, draft, **kwargs):
+        scene_context = kwargs.get("scene_context")
+        self.last_scene_context = scene_context
+        if getattr(scene_context, "layout_mode", "") == "osm" and getattr(scene_context, "aoi_bbox", None) is None:
+            raise RuntimeError("OSM scene context requires an AOI bbox.")
         return {
             "compose_config": draft.compose_config_patch,
-            "summary": {"instance_count": 5, "clearance_m": float("inf")},
+            "summary": {
+                "instance_count": 5,
+                "clearance_m": float("inf"),
+                "layout_mode": getattr(scene_context, "layout_mode", "template"),
+                "requested_aoi_bbox": list(getattr(scene_context, "aoi_bbox", []) or []),
+            },
             "scene_layout_path": "/tmp/layout.json",
             "scene_glb_path": "/tmp/scene.glb",
             "scene_ply_path": "/tmp/scene.ply",
@@ -59,6 +71,10 @@ class _FakeService:
         }
 
     def create_scene_job(self, draft, **kwargs):
+        scene_context = kwargs.get("scene_context")
+        self.last_scene_context = scene_context
+        if getattr(scene_context, "layout_mode", "") == "osm" and getattr(scene_context, "aoi_bbox", None) is None:
+            raise RuntimeError("OSM scene context requires an AOI bbox.")
         return SceneJobCreateResponse(job_id="job-demo", status="queued", created_at="2026-03-23T00:00:00+00:00")
 
     def list_scene_jobs(self, *, limit=20):
@@ -103,9 +119,20 @@ class _FakeService:
     def rebuild_knowledge(self, **kwargs):
         return {"output_dir": "/tmp/knowledge", "chunk_count": 42}
 
+    def list_china_cities(self):
+        return [
+            {
+                "name_zh": "广州",
+                "name_en": "guangzhou",
+                "province": "广东省",
+                "bbox": [113.2660, 23.1280, 113.2710, 23.1325],
+            }
+        ]
+
 
 def test_design_api_endpoints_return_expected_shapes():
-    client = TestClient(create_app(design_service=_FakeService()))
+    service = _FakeService()
+    client = TestClient(create_app(design_service=service))
 
     draft_response = client.post(
         "/api/design/draft",
@@ -129,6 +156,11 @@ def test_design_api_endpoints_return_expected_shapes():
                 "design_summary": "summary",
                 "risk_notes": [],
             },
+            "scene_context": {
+                "layout_mode": "osm",
+                "aoi_bbox": [113.2660, 23.1280, 113.2710, 23.1325],
+                "city_name_en": "guangzhou",
+            },
             "patch_overrides": {},
             "generation_options": {},
         },
@@ -137,6 +169,8 @@ def test_design_api_endpoints_return_expected_shapes():
     assert generate_response.json()["viewer_url"].startswith("http://127.0.0.1:4173/")
     assert "Infinity" not in generate_response.text
     assert generate_response.json()["summary"]["clearance_m"] is None
+    assert service.last_scene_context is not None
+    assert service.last_scene_context.layout_mode == "osm"
 
     job_create_response = client.post(
         "/api/scene/jobs",
@@ -147,7 +181,12 @@ def test_design_api_endpoints_return_expected_shapes():
                 "citations_by_field": {},
                 "design_summary": "summary",
                 "risk_notes": [],
-            }
+            },
+            "scene_context": {
+                "layout_mode": "osm",
+                "aoi_bbox": [113.2660, 23.1280, 113.2710, 23.1325],
+                "city_name_en": "guangzhou",
+            },
         },
     )
     assert job_create_response.status_code == 200
@@ -172,3 +211,22 @@ def test_design_api_endpoints_return_expected_shapes():
     rebuild_response = client.post("/api/knowledge/rebuild", json={})
     assert rebuild_response.status_code == 200
     assert rebuild_response.json()["chunk_count"] == 42
+
+    geo_response = client.get("/api/geo/china-cities")
+    assert geo_response.status_code == 200
+    assert geo_response.json()["items"][0]["name_en"] == "guangzhou"
+
+    invalid_osm_response = client.post(
+        "/api/design/generate",
+        json={
+            "draft": {
+                "normalized_scene_query": "walkable street",
+                "compose_config_patch": {"sidewalk_width_m": 4.0},
+                "citations_by_field": {},
+                "design_summary": "summary",
+                "risk_notes": [],
+            },
+            "scene_context": {"layout_mode": "osm"},
+        },
+    )
+    assert invalid_osm_response.status_code == 400

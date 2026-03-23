@@ -7,6 +7,11 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Tuple
 
 
+_BLOCKED_ASSET_IDS = {
+    "objaverse_tree_7c97aea203b34df6bb615d0d3567d984",
+}
+
+
 def _require_trimesh():
     try:
         import trimesh
@@ -153,6 +158,9 @@ def _quality_tier(row: Mapping[str, Any], face_count: int) -> int:
 
 
 def _scene_eligible(row: Mapping[str, Any], face_count: int, quality_tier: int) -> bool:
+    asset_id = str(row.get("asset_id", "") or "").strip()
+    if asset_id in _BLOCKED_ASSET_IDS:
+        return False
     category = str(row.get("category", "") or "").strip().lower()
     if face_count <= 0:
         return False
@@ -175,6 +183,7 @@ def _custom_quality_notes(row: Mapping[str, Any]) -> List[str]:
     managed_exact = {
         "scene_ready",
         "scene_blocked",
+        "known_bad_asset_blocked",
         "low_poly_visual_asset",
         "preview_runtime",
         "preview_demoted_after_production_seed",
@@ -203,7 +212,10 @@ def _custom_quality_notes(row: Mapping[str, Any]) -> List[str]:
 def _quality_notes(row: Mapping[str, Any], face_count: int, quality_tier: int, scene_eligible: bool) -> List[str]:
     notes: List[str] = list(_custom_quality_notes(row))
     notes.extend((f"mesh_face_count={face_count}", f"quality_tier={quality_tier}"))
+    asset_id = str(row.get("asset_id", "") or "").strip()
     category = str(row.get("category", "") or "").strip().lower()
+    if asset_id in _BLOCKED_ASSET_IDS:
+        notes.append("known_bad_asset_blocked")
     if scene_eligible:
         notes.append("scene_ready")
     else:

@@ -25,12 +25,15 @@ from .design_types import (
     DesignDraftBundle,
     DesignIntent,
     RagEvidence,
+    SceneContext,
     SceneJobCreateResponse,
     SceneJobStatusResponse,
     SceneRecord,
     sanitize_citations_by_field,
     sanitize_compose_config_patch,
+    sanitize_scene_context,
 )
+from .scene_context_service import list_china_cities_payload
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -166,11 +169,13 @@ class DesignAssistantService:
         *,
         patch_overrides: Mapping[str, Any] | None = None,
         generation_options: Mapping[str, Any] | None = None,
+        scene_context: Mapping[str, Any] | SceneContext | None = None,
     ) -> Dict[str, Any]:
         return self.scene_job_service.run_job_sync(
             draft=draft,
             patch_overrides=patch_overrides,
             generation_options=generation_options,
+            scene_context=sanitize_scene_context(scene_context),
         ).to_dict()
 
     def create_scene_job(
@@ -179,11 +184,13 @@ class DesignAssistantService:
         *,
         patch_overrides: Mapping[str, Any] | None = None,
         generation_options: Mapping[str, Any] | None = None,
+        scene_context: Mapping[str, Any] | SceneContext | None = None,
     ) -> SceneJobCreateResponse:
         return self.scene_job_service.submit_job(
             draft=draft,
             patch_overrides=patch_overrides,
             generation_options=generation_options,
+            scene_context=sanitize_scene_context(scene_context),
         )
 
     def list_scene_jobs(self, *, limit: int = 20) -> List[SceneJobStatusResponse]:
@@ -194,6 +201,9 @@ class DesignAssistantService:
 
     def list_recent_scenes(self, *, limit: int = 20) -> List[SceneRecord]:
         return self.scene_job_service.list_recent_scenes(limit=limit)
+
+    def list_china_cities(self) -> List[Dict[str, Any]]:
+        return list_china_cities_payload()
 
     def _get_llm_client(self) -> GLMClient | Any:
         if self.llm_client is None:

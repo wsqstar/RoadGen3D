@@ -303,6 +303,21 @@ select {
   gap: 12px;
 }
 
+.scene-setup-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.scene-setup-stack {
+  display: grid;
+  gap: 12px;
+}
+
+.bbox-grid {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
 .field {
   display: grid;
   gap: 8px;
@@ -412,6 +427,14 @@ select {
   max-height: 240px;
   overflow: auto;
   white-space: pre-wrap;
+}
+
+.summary-list {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 10px;
+  font-size: 0.88rem;
+  color: rgba(23, 33, 29, 0.8);
 }
 
 .scene-link {

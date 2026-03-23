@@ -242,7 +242,15 @@ def _mesh_face_count(row: Mapping[str, Any]) -> int:
     return 0
 
 
+_BLOCKED_ASSET_IDS = {
+    "objaverse_tree_7c97aea203b34df6bb615d0d3567d984",
+}
+
+
 def _scene_eligible(row: Mapping[str, Any]) -> bool:
+    asset_id = str(row.get("asset_id", "") or "").strip()
+    if asset_id in _BLOCKED_ASSET_IDS:
+        return False
     if "scene_eligible" in row:
         return _coerce_bool(row.get("scene_eligible"), default=True)
     return _safe_int(row.get("quality_tier"), 0) >= 1

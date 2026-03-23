@@ -20,6 +20,7 @@ if str(SRC) not in sys.path:
 from roadgen3d.json_safe import make_json_safe  # noqa: E402
 from roadgen3d.llm import GLMConfigurationError, GLMResponseError  # noqa: E402
 from roadgen3d.services.design_assistant import DesignAssistantService, parse_design_draft  # noqa: E402
+from roadgen3d.services.design_types import sanitize_scene_context  # noqa: E402
 
 
 class ChatMessageModel(BaseModel):
@@ -36,12 +37,14 @@ class DraftRequestModel(BaseModel):
 
 class GenerateRequestModel(BaseModel):
     draft: Dict[str, Any]
+    scene_context: Dict[str, Any] = Field(default_factory=dict)
     patch_overrides: Dict[str, Any] = Field(default_factory=dict)
     generation_options: Dict[str, Any] = Field(default_factory=dict)
 
 
 class SceneJobCreateRequestModel(BaseModel):
     draft: Dict[str, Any]
+    scene_context: Dict[str, Any] = Field(default_factory=dict)
     patch_overrides: Dict[str, Any] = Field(default_factory=dict)
     generation_options: Dict[str, Any] = Field(default_factory=dict)
 
@@ -71,6 +74,11 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
             "default_artifact_dir": str(service.default_artifact_dir),
         })
 
+    @app.get("/api/geo/china-cities")
+    def list_china_cities() -> Dict[str, Any]:
+        service = app.state.design_service
+        return make_json_safe({"items": service.list_china_cities()})
+
     @app.post("/api/design/draft")
     def design_draft(request: DraftRequestModel) -> Dict[str, Any]:
         service = app.state.design_service
@@ -94,6 +102,7 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
         try:
             result = service.generate_scene(
                 draft=draft,
+                scene_context=sanitize_scene_context(request.scene_context),
                 patch_overrides=request.patch_overrides,
                 generation_options=request.generation_options,
             )
@@ -108,6 +117,7 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
         try:
             result = service.create_scene_job(
                 draft=draft,
+                scene_context=sanitize_scene_context(request.scene_context),
                 patch_overrides=request.patch_overrides,
                 generation_options=request.generation_options,
             )

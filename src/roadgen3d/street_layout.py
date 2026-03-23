@@ -176,7 +176,15 @@ def _resolve_path(path_text: object, base_dir: Path) -> str:
     return str(path)
 
 
+_BLOCKED_ASSET_IDS = {
+    "objaverse_tree_7c97aea203b34df6bb615d0d3567d984",
+}
+
+
 def _row_scene_eligible(row: Mapping[str, object]) -> bool:
+    asset_id = str(row.get("asset_id", "") or "").strip()
+    if asset_id in _BLOCKED_ASSET_IDS:
+        return False
     value = row.get("scene_eligible")
     if isinstance(value, bool):
         return value
@@ -647,6 +655,36 @@ def _load_mesh_cache(rows: List[Dict[str, str]]) -> Dict[str, _MeshCacheEntry]:
 
 def _bbox_intersects(a: Tuple[float, float, float, float], b: Tuple[float, float, float, float]) -> bool:
     return not (a[1] <= b[0] or b[1] <= a[0] or a[3] <= b[2] or b[3] <= a[2])
+
+
+def _bbox_intrudes_carriageway(
+    bbox: Tuple[float, float, float, float],
+    *,
+    placement_ctx: object | None,
+    config: StreetComposeConfig,
+) -> bool:
+    carriageway_geom = None
+    if placement_ctx is not None:
+        carriageway_geom = getattr(placement_ctx, "carriageway_polygon", None)
+        if carriageway_geom is None:
+            carriageway_geom = getattr(placement_ctx, "carriageway", None)
+    if carriageway_geom is not None and not getattr(carriageway_geom, "is_empty", False):
+        try:
+            from shapely.geometry import box as shapely_box
+        except Exception:
+            carriageway_geom = None
+        else:
+            intersection = carriageway_geom.intersection(
+                shapely_box(float(bbox[0]), float(bbox[2]), float(bbox[1]), float(bbox[3]))
+            )
+            return bool(float(getattr(intersection, "area", 0.0) or 0.0) > 1e-6)
+    carriageway_bbox = (
+        -float(config.length_m) / 2.0,
+        float(config.length_m) / 2.0,
+        -float(config.road_width_m) / 2.0,
+        float(config.road_width_m) / 2.0,
+    )
+    return _bbox_intersects(bbox, carriageway_bbox)
 
 
 def _compute_bbox(
@@ -3578,6 +3616,12 @@ def _evaluate_slot_candidate(
         scale=float(scale_info.get("applied_scale", 1.0) or 1.0),
         clearance=0.2,
     )
+    if _bbox_intrudes_carriageway(
+        bbox,
+        placement_ctx=placement_ctx,
+        config=config,
+    ):
+        return None, "intrudes_carriageway"
     neighbor_bbox_indices = spatial_hash.query_bbox(bbox)
     if any(_bbox_intersects(bbox, existing_bboxes[int(idx)]) for idx in neighbor_bbox_indices):
         return None, "overlap_blocked"
@@ -4999,6 +5043,7 @@ def compose_street_scene(
             rng=rng,
         )
         blocked_reason_counts = {
+            "intrudes_carriageway": 0,
             "overlap_blocked": 0,
             "constraint_vetoed": 0,
             "out_of_sidewalk": 0,
@@ -6172,6 +6217,9 @@ def compose_street_scene(
         "placement_log_path": str(placement_log_path),
         "placement_log_summary": dict(placement_log_summary),
         "placement_log_reason_counts": dict(placement_log_summary.get("reason_counts", {})),
+        "carriageway_intrusion_blocked_count": int(
+            (placement_log_summary.get("reason_counts", {}) or {}).get("intrudes_carriageway", 0) or 0
+        ),
         "balance_repair_summary": dict(balance_repair_summary),
         "asset_usage_by_source": [
             {
