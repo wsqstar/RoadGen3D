@@ -133,10 +133,13 @@ def test_design_assistant_service_builds_draft_bundle():
     assert all(field in bundle.draft.compose_config_patch for field in ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)
     assert bundle.draft.compose_config_patch["target_street_type"] == "mixed_use"
     assert bundle.draft.compose_config_patch["sidewalk_width_m"] == 4.2
+    assert bundle.draft.compose_config_patch["style_preset"] == "civic_clean_v1"
+    assert bundle.draft.compose_config_patch["beauty_mode"] == "presentation_v1"
     assert bundle.draft.citations_by_field["sidewalk_width_m"] == ("complete_streets_0001",)
     assert bundle.draft.citations_by_field["road_width_m"] == ("complete_streets_0003",)
     assert bundle.draft.parameter_sources_by_field["sidewalk_width_m"] == "rag"
     assert bundle.draft.parameter_sources_by_field["city_context"] == "llm_inferred"
+    assert bundle.draft.parameter_sources_by_field["style_preset"] == "system_default"
     assert "pedestrian-priority" in bundle.draft.design_summary
     assert service.llm_client.calls == 5
 

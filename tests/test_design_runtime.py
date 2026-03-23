@@ -31,7 +31,27 @@ def test_build_compose_config_from_draft_applies_defaults():
     assert config.query == "safe complete street"
     assert config.sidewalk_width_m == 4.5
     assert config.design_rule_profile == "pedestrian_priority_v1"
+    assert config.style_preset == "civic_clean_v1"
+    assert config.beauty_mode == "presentation_v1"
     assert config.lane_count == 2
+
+
+def test_build_compose_config_from_draft_applies_explicit_beauty_fields():
+    draft = DesignDraft(
+        normalized_scene_query="lush neighborhood street",
+        compose_config_patch={
+            "sidewalk_width_m": 4.0,
+            "style_preset": "lush_walkable_v1",
+            "beauty_mode": "presentation_v1",
+        },
+        citations_by_field={},
+        design_summary="summary",
+    )
+
+    config = build_compose_config_from_draft(draft)
+
+    assert config.style_preset == "lush_walkable_v1"
+    assert config.beauty_mode == "presentation_v1"
 
 
 def test_generate_scene_from_draft_wraps_existing_scene_pipeline(tmp_path: Path, monkeypatch):

@@ -78,6 +78,8 @@ def build_compose_config_from_draft(
         target_street_type=str(patch.get("target_street_type", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["target_street_type"])),
         objective_profile=str(patch.get("objective_profile", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["objective_profile"])),
         city_context=str(patch.get("city_context", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["city_context"])),
+        style_preset=str(patch.get("style_preset", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["style_preset"])),
+        beauty_mode=str(patch.get("beauty_mode", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["beauty_mode"])),
         ped_demand_level=str(patch.get("ped_demand_level", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["ped_demand_level"])),
         bike_demand_level=str(patch.get("bike_demand_level", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["bike_demand_level"])),
         transit_demand_level=str(patch.get("transit_demand_level", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["transit_demand_level"])),

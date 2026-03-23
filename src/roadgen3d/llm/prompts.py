@@ -140,6 +140,7 @@ def build_design_draft_messages(
         "`risk_notes`(string[])。"
         "compose_config_patch 只能使用这些字段："
         "query, design_rule_profile, target_street_type, objective_profile, city_context, "
+        "style_preset, beauty_mode, "
         "length_m, road_width_m, sidewalk_width_m, lane_count, density, "
         "ped_demand_level, bike_demand_level, transit_demand_level, vehicle_demand_level。"
         "compose_config_patch 必须尽量为这些允许字段都给出非空值，不要留空。"

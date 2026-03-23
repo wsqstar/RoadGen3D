@@ -154,6 +154,7 @@ LLM 基于：
 - 车道数建议
 - transit / bike / vehicle 需求等级
 - rule profile 建议
+- `style_preset` 与 `beauty_mode` 建议
 
 ### 3.5 第五步：CLIP 把语言转成资产候选
 
@@ -196,6 +197,12 @@ CLIP 负责说“库里哪一个最像它”
 也就是说，LLM + RAG 不是替代现有系统，而是给现有系统提供更高质量、
 更可解释的 `StreetComposeConfig` 输入与 style / asset retrieval 条件。
 
+其中美学相关输入不应只停留在 `style_preferences` 文本标签，
+而应尽量落成显式字段，例如：
+
+- `style_preset`
+- `beauty_mode`
+
 ## 4. 系统分层
 
 建议把整个系统明确拆成六层。
@@ -218,6 +225,9 @@ CLIP 负责说“库里哪一个最像它”
 
 - `ChatMessage`
 - `DesignIntent`
+
+这一层现在已经能抽取 `style_preferences`，下一步应继续把美学偏好沉淀为
+可执行配置，而不是只保留在自然语言摘要里。
 
 ### 4.2 规范知识层
 
