@@ -50,7 +50,7 @@ class _FakeService:
     def generate_scene(self, draft, **kwargs):
         return {
             "compose_config": draft.compose_config_patch,
-            "summary": {"instance_count": 5},
+            "summary": {"instance_count": 5, "clearance_m": float("inf")},
             "scene_layout_path": "/tmp/layout.json",
             "scene_glb_path": "/tmp/scene.glb",
             "scene_ply_path": "/tmp/scene.ply",
@@ -70,7 +70,7 @@ class _FakeService:
                 finished_at="2026-03-23T00:00:02+00:00",
                 result=SceneGenerationResult(
                     compose_config={"sidewalk_width_m": 4.0},
-                    summary={"instance_count": 5},
+                    summary={"instance_count": 5, "clearance_m": float("inf")},
                     scene_layout_path="/tmp/layout.json",
                     scene_glb_path="/tmp/scene.glb",
                     scene_ply_path="/tmp/scene.ply",
@@ -95,7 +95,7 @@ class _FakeService:
                 scene_glb_path="/tmp/scene.glb",
                 scene_ply_path="/tmp/scene.ply",
                 viewer_url="http://127.0.0.1:4173/?layout=demo",
-                summary={"instance_count": 5},
+                summary={"instance_count": 5, "clearance_m": float("inf")},
             )
         ][:limit]
 
@@ -133,6 +133,8 @@ def test_design_api_endpoints_return_expected_shapes():
     )
     assert generate_response.status_code == 200
     assert generate_response.json()["viewer_url"].startswith("http://127.0.0.1:4173/")
+    assert "Infinity" not in generate_response.text
+    assert generate_response.json()["summary"]["clearance_m"] is None
 
     job_create_response = client.post(
         "/api/scene/jobs",
@@ -156,10 +158,14 @@ def test_design_api_endpoints_return_expected_shapes():
     job_status_response = client.get("/api/scene/jobs/job-demo")
     assert job_status_response.status_code == 200
     assert job_status_response.json()["result"]["scene_layout_path"] == "/tmp/layout.json"
+    assert "Infinity" not in job_status_response.text
+    assert job_status_response.json()["result"]["summary"]["clearance_m"] is None
 
     recent_response = client.get("/api/scenes/recent")
     assert recent_response.status_code == 200
     assert recent_response.json()["items"][0]["viewer_url"].startswith("http://127.0.0.1:4173/")
+    assert "Infinity" not in recent_response.text
+    assert recent_response.json()["items"][0]["summary"]["clearance_m"] is None
 
     rebuild_response = client.post("/api/knowledge/rebuild", json={})
     assert rebuild_response.status_code == 200

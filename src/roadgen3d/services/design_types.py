@@ -6,6 +6,8 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Dict, Mapping, Sequence, Tuple
 
+from ..json_safe import make_json_safe
+
 
 ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS: Tuple[str, ...] = (
     "query",
@@ -226,7 +228,7 @@ class SceneGenerationResult:
     viewer_url: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
-        return asdict(self)
+        return dict(make_json_safe(asdict(self)))
 
 
 @dataclass(frozen=True)
@@ -244,7 +246,7 @@ class SceneRecord:
     summary: Dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        return asdict(self)
+        return dict(make_json_safe(asdict(self)))
 
 
 @dataclass(frozen=True)

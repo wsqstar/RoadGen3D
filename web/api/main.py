@@ -17,6 +17,7 @@ if str(ROOT) not in sys.path:
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
+from roadgen3d.json_safe import make_json_safe  # noqa: E402
 from roadgen3d.llm import GLMConfigurationError, GLMResponseError  # noqa: E402
 from roadgen3d.services.design_assistant import DesignAssistantService, parse_design_draft  # noqa: E402
 
@@ -64,11 +65,11 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
     @app.get("/api/health")
     def health() -> Dict[str, Any]:
         service = app.state.design_service
-        return {
+        return make_json_safe({
             "ok": True,
             "default_pdf_path": str(service.default_pdf_path),
             "default_artifact_dir": str(service.default_artifact_dir),
-        }
+        })
 
     @app.post("/api/design/draft")
     def design_draft(request: DraftRequestModel) -> Dict[str, Any]:
@@ -84,7 +85,7 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
             raise HTTPException(status_code=503, detail=str(exc)) from exc
         except RuntimeError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
-        return result.to_dict()
+        return make_json_safe(result.to_dict())
 
     @app.post("/api/design/generate")
     def design_generate(request: GenerateRequestModel) -> Dict[str, Any]:
@@ -98,7 +99,7 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
             )
         except RuntimeError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
-        return result
+        return make_json_safe(result)
 
     @app.post("/api/scene/jobs")
     def create_scene_job(request: SceneJobCreateRequestModel) -> Dict[str, Any]:
@@ -112,13 +113,13 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
             )
         except RuntimeError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
-        return result.to_dict()
+        return make_json_safe(result.to_dict())
 
     @app.get("/api/scene/jobs")
     def list_scene_jobs(limit: int = Query(default=20, ge=1, le=100)) -> Dict[str, Any]:
         service = app.state.design_service
         jobs = service.list_scene_jobs(limit=int(limit))
-        return {"items": [item.to_dict() for item in jobs]}
+        return make_json_safe({"items": [item.to_dict() for item in jobs]})
 
     @app.get("/api/scene/jobs/{job_id}")
     def get_scene_job(job_id: str) -> Dict[str, Any]:
@@ -126,22 +127,22 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
         result = service.get_scene_job(job_id)
         if result is None:
             raise HTTPException(status_code=404, detail=f"Scene job not found: {job_id}")
-        return result.to_dict()
+        return make_json_safe(result.to_dict())
 
     @app.get("/api/scenes/recent")
     def list_recent_scenes(limit: int = Query(default=12, ge=1, le=100)) -> Dict[str, Any]:
         service = app.state.design_service
         items = service.list_recent_scenes(limit=int(limit))
-        return {"items": [item.to_dict() for item in items]}
+        return make_json_safe({"items": [item.to_dict() for item in items]})
 
     @app.post("/api/knowledge/rebuild")
     def rebuild_knowledge(request: KnowledgeRebuildRequestModel) -> Dict[str, Any]:
         service = app.state.design_service
         try:
-            return service.rebuild_knowledge(
+            return make_json_safe(service.rebuild_knowledge(
                 pdf_path=request.pdf_path,
                 artifact_dir=request.artifact_dir,
-            )
+            ))
         except RuntimeError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
 

@@ -64,3 +64,40 @@ def test_generate_scene_from_draft_wraps_existing_scene_pipeline(tmp_path: Path,
     assert result.viewer_url.startswith("http://127.0.0.1:4173/")
     assert result.summary["instance_count"] == 8
     assert result.compose_config["road_width_m"] == 6.5
+
+
+def test_generate_scene_from_draft_uses_sanitized_cached_layout_summary(tmp_path: Path, monkeypatch):
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text('{"summary":{"instance_count": 8, "clearance_m": Infinity}}', encoding="utf-8")
+    cached_layout = tmp_path / "cached_scene_layout.json"
+    cached_layout.write_text(
+        json.dumps({"summary": {"instance_count": 8, "clearance_m": None}}, ensure_ascii=True),
+        encoding="utf-8",
+    )
+
+    monkeypatch.setattr(
+        runtime,
+        "compose_street_scene",
+        lambda **kwargs: SimpleNamespace(
+            instance_count=8,
+            dropped_slots=1,
+            outputs={
+                "scene_layout": str(layout_path),
+                "scene_glb": str(tmp_path / "scene.glb"),
+                "scene_ply": str(tmp_path / "scene.ply"),
+            },
+        ),
+    )
+    monkeypatch.setattr(runtime, "cache_scene_layout_for_viewer", lambda _layout: cached_layout)
+    monkeypatch.setattr(runtime, "build_web_viewer_url", lambda _layout: "http://127.0.0.1:4173/?layout=demo")
+
+    draft = DesignDraft(
+        normalized_scene_query="safe complete street",
+        compose_config_patch={"road_width_m": 6.5, "sidewalk_width_m": 4.0},
+        citations_by_field={},
+        design_summary="summary",
+    )
+    result = generate_scene_from_draft(draft)
+
+    assert result.summary["instance_count"] == 8
+    assert result.summary["clearance_m"] is None

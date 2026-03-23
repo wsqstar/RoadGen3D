@@ -168,3 +168,24 @@ def test_cache_scene_layout_for_viewer_sanitizes_infinity_values(
 
     assert "Infinity" not in cached_text
     assert json.loads(cached_text)["summary"]["dist_to_nearest_entrance_m"] is None
+
+
+def test_cache_scene_layout_for_viewer_sanitizes_repo_local_layouts_too(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    repo_root = (tmp_path / "repo").resolve()
+    layout_path = (repo_root / "artifacts" / "run_003" / "scene_layout.json").resolve()
+    layout_path.parent.mkdir(parents=True, exist_ok=True)
+    layout_path.write_text('{"summary":{"clearance_m": Infinity},"outputs":{}}', encoding="utf-8")
+
+    monkeypatch.setattr(viewer, "ROOT", repo_root)
+    monkeypatch.setattr(viewer, "VIEWER_LAYOUTS_DIR", (repo_root / "artifacts" / "web_viewer_layouts").resolve())
+
+    cached = viewer.cache_scene_layout_for_viewer(layout_path)
+    cached_text = cached.read_text(encoding="utf-8")
+
+    assert cached != layout_path
+    assert str(cached).startswith(str(viewer.VIEWER_LAYOUTS_DIR))
+    assert "Infinity" not in cached_text
+    assert json.loads(cached_text)["summary"]["clearance_m"] is None

@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import math
 import mimetypes
 import os
 import shlex
@@ -12,6 +11,8 @@ from hashlib import sha1
 from pathlib import Path
 from typing import Any, Dict, Iterable, List
 from urllib.parse import quote
+
+from .json_safe import make_json_safe
 
 ROOT = Path(__file__).resolve().parents[2]
 VIEWER_DIR = (ROOT / "web" / "viewer").resolve()
@@ -181,18 +182,6 @@ def build_recent_layouts_payload(
     }
 
 
-def make_json_safe(value: Any) -> Any:
-    if isinstance(value, float):
-        return value if math.isfinite(value) else None
-    if isinstance(value, dict):
-        return {str(key): make_json_safe(item) for key, item in value.items()}
-    if isinstance(value, list):
-        return [make_json_safe(item) for item in value]
-    if isinstance(value, tuple):
-        return [make_json_safe(item) for item in value]
-    return value
-
-
 def _stable_layout_cache_dir(source_layout: Path) -> Path:
     source_id = source_layout.parent.name or source_layout.stem or "scene"
     source_hash = sha1(str(source_layout).encode("utf-8")).hexdigest()[:10]
@@ -205,8 +194,6 @@ def cache_scene_layout_for_viewer(
     layout_json_text: str | None = None,
 ) -> Path:
     resolved_layout = resolve_scene_layout_path(layout_path)
-    if _is_within_root(resolved_layout):
-        return resolved_layout
 
     payload_text = str(layout_json_text or "").strip()
     if payload_text:
@@ -217,9 +204,14 @@ def cache_scene_layout_for_viewer(
     else:
         payload = json.loads(resolved_layout.read_text(encoding="utf-8"))
 
-    cache_dir = _stable_layout_cache_dir(resolved_layout)
-    cache_dir.mkdir(parents=True, exist_ok=True)
-    cached_layout = (cache_dir / "scene_layout.json").resolve()
+    try:
+        resolved_layout.relative_to(VIEWER_LAYOUTS_DIR)
+        cached_layout = resolved_layout
+        cached_layout.parent.mkdir(parents=True, exist_ok=True)
+    except ValueError:
+        cache_dir = _stable_layout_cache_dir(resolved_layout)
+        cache_dir.mkdir(parents=True, exist_ok=True)
+        cached_layout = (cache_dir / "scene_layout.json").resolve()
     cached_payload = json.dumps(make_json_safe(payload), indent=2, ensure_ascii=True, allow_nan=False)
     cached_layout.write_text(cached_payload, encoding="utf-8")
     return cached_layout

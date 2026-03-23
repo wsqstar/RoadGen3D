@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 from typing import Any, Dict, Mapping
 
+from ..json_safe import make_json_safe
 from ..street_layout import compose_street_scene
 from ..types import StreetComposeConfig
 from ..web_viewer_dev import build_web_viewer_url, cache_scene_layout_for_viewer
@@ -181,13 +182,13 @@ def generate_scene_from_draft(
         cached_layout = cache_scene_layout_for_viewer(scene_layout_path)
         viewer_url = build_web_viewer_url(cached_layout)
         try:
-            payload = json.loads(Path(scene_layout_path).read_text(encoding="utf-8"))
+            payload = json.loads(Path(cached_layout).read_text(encoding="utf-8"))
             summary = dict(payload.get("summary", {}) or summary)
         except Exception:
             pass
     return SceneGenerationResult(
-        compose_config=config.to_dict(),
-        summary=summary,
+        compose_config=dict(make_json_safe(config.to_dict())),
+        summary=dict(make_json_safe(summary)),
         scene_layout_path=scene_layout_path,
         scene_glb_path=str(result.outputs.get("scene_glb", "") or ""),
         scene_ply_path=str(result.outputs.get("scene_ply", "") or ""),
