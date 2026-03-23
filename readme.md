@@ -194,9 +194,9 @@ cd /Users/shiqi/Coding/github/GIStudio/RoadGen3D
   --export-format both
 ```
 
-## 5.5 Gradio
+## 5.5 Gradio（Legacy）
 ```bash
-.venv/bin/python scripts/m1_gradio_app.py --host 127.0.0.1 --port 7860 --inbrowser
+make dev
 ```
 
 ## 5.6 LLM + RAG Workbench
@@ -206,27 +206,35 @@ cd /Users/shiqi/Coding/github/GIStudio/RoadGen3D
 make knowledge-build
 ```
 
-启动新的后端 API：
+启动新的生成后端 API：
 
 ```bash
-make ui-api
+make workbench-api
 ```
 
-首次运行前安装新工作台前端依赖：
+首次运行前安装生成工作台前端依赖：
 
 ```bash
-make ui-install
+make workbench-install
 ```
 
-启动新的 Web 工作台：
+启动新的 Web 生成工作台：
 
 ```bash
-make ui-web
+make workbench-web
+```
+
+如果要单独启动 viewer：
+
+```bash
+make viewer-install
+make viewer-web
 ```
 
 默认地址：
 - API: `http://127.0.0.1:8010/api/health`
 - Workbench: `http://127.0.0.1:4174`
+- Viewer: `http://127.0.0.1:4173`
 
 ---
 
