@@ -10,7 +10,13 @@ from ..json_safe import make_json_safe
 from ..street_layout import compose_street_scene
 from ..types import StreetComposeConfig
 from ..web_viewer_dev import build_web_viewer_url, cache_scene_layout_for_viewer
-from .design_types import DesignDraft, SceneGenerationOptions, SceneGenerationResult, sanitize_compose_config_patch
+from .design_types import (
+    DEFAULT_COMPOSE_CONFIG_PATCH_VALUES,
+    DesignDraft,
+    SceneGenerationOptions,
+    SceneGenerationResult,
+    sanitize_compose_config_patch,
+)
 from .scene_backends import (
     DEFAULT_GROUND_MATERIAL_MANIFEST_PATH,
     DEFAULT_OBJECT_MANIFEST_V2_PATH,
@@ -57,22 +63,22 @@ def build_compose_config_from_draft(
     ).strip()
     return StreetComposeConfig(
         query=normalized_query,
-        length_m=float(patch.get("length_m", 80.0)),
-        road_width_m=float(patch.get("road_width_m", 7.0)),
-        sidewalk_width_m=float(patch.get("sidewalk_width_m", 2.4)),
-        lane_count=int(patch.get("lane_count", 2)),
-        density=float(patch.get("density", 1.0)),
+        length_m=float(patch.get("length_m", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["length_m"])),
+        road_width_m=float(patch.get("road_width_m", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["road_width_m"])),
+        sidewalk_width_m=float(patch.get("sidewalk_width_m", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["sidewalk_width_m"])),
+        lane_count=int(patch.get("lane_count", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["lane_count"])),
+        density=float(patch.get("density", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["density"])),
         seed=42,
         topk_per_category=20,
         max_trials_per_slot=30,
-        design_rule_profile=str(patch.get("design_rule_profile", "balanced_complete_street_v1")),
-        target_street_type=str(patch.get("target_street_type", "mixed_use")),
-        objective_profile=str(patch.get("objective_profile", "balanced")),
-        city_context=str(patch.get("city_context", "generic_city")),
-        ped_demand_level=str(patch.get("ped_demand_level", "medium")),
-        bike_demand_level=str(patch.get("bike_demand_level", "low")),
-        transit_demand_level=str(patch.get("transit_demand_level", "medium")),
-        vehicle_demand_level=str(patch.get("vehicle_demand_level", "medium")),
+        design_rule_profile=str(patch.get("design_rule_profile", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["design_rule_profile"])),
+        target_street_type=str(patch.get("target_street_type", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["target_street_type"])),
+        objective_profile=str(patch.get("objective_profile", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["objective_profile"])),
+        city_context=str(patch.get("city_context", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["city_context"])),
+        ped_demand_level=str(patch.get("ped_demand_level", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["ped_demand_level"])),
+        bike_demand_level=str(patch.get("bike_demand_level", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["bike_demand_level"])),
+        transit_demand_level=str(patch.get("transit_demand_level", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["transit_demand_level"])),
+        vehicle_demand_level=str(patch.get("vehicle_demand_level", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["vehicle_demand_level"])),
     )
 
 

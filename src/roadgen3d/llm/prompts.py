@@ -58,11 +58,50 @@ def build_rag_query_translation_messages(
     ]
 
 
+def build_parameter_followup_query_messages(
+    intent: DesignIntent,
+    missing_fields: Sequence[str],
+    evidence: Sequence[RagEvidence],
+    current_patch: Mapping[str, Any] | None,
+) -> list[Dict[str, str]]:
+    serialized_evidence = [
+        {
+            "chunk_id": item.chunk_id,
+            "section_title": item.section_title,
+            "page_start": item.page_start,
+            "page_end": item.page_end,
+            "parameter_hints": item.parameter_hints,
+        }
+        for item in evidence
+    ]
+    system_prompt = (
+        "你是 RoadGen3D 的街道参数检索规划器。"
+        "请针对仍然缺失的街道设计参数，生成适合英文 complete streets 设计指南检索的英文短查询。"
+        "你只能输出 JSON。"
+        "字段必须包含：`field_queries`(object<string,string[]>)。"
+        "只为值得从设计指南补证据的字段生成查询。"
+        "如果某个字段更适合根据用户目标直接推断，而不是查文档，就不要为它生成查询。"
+        "不要输出中文，不要输出完整段落，不要编造资产 ID。"
+    )
+    user_payload = {
+        "intent": intent.to_dict(),
+        "missing_fields": [str(item).strip() for item in missing_fields if str(item).strip()],
+        "current_patch": dict(current_patch or {}),
+        "evidence": serialized_evidence,
+        "instruction": "为缺失参数生成英文 follow-up RAG queries；没有必要查文档的字段可以省略。",
+    }
+    return [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": json.dumps(user_payload, ensure_ascii=False)},
+    ]
+
+
 def build_design_draft_messages(
     history: Sequence[ChatMessage],
     intent: DesignIntent,
     evidence: Sequence[RagEvidence],
     current_patch: Mapping[str, Any] | None,
+    missing_fields: Sequence[str] | None = None,
 ) -> list[Dict[str, str]]:
     serialized_evidence = [
         {
@@ -89,6 +128,9 @@ def build_design_draft_messages(
         "query, design_rule_profile, target_street_type, objective_profile, city_context, "
         "length_m, road_width_m, sidewalk_width_m, lane_count, density, "
         "ped_demand_level, bike_demand_level, transit_demand_level, vehicle_demand_level。"
+        "compose_config_patch 必须尽量为这些允许字段都给出非空值，不要留空。"
+        "如果某个字段能从 RAG 证据中得到支持，就在 citations_by_field 中给出 chunk_id。"
+        "如果某个字段缺少直接证据，也要根据用户目标与已有证据给出合理推断值，不要输出 None/null。"
         "引用必须使用证据中的 chunk_id。"
         "不要编造具体资产 ID。"
     )
@@ -100,6 +142,7 @@ def build_design_draft_messages(
         "intent": intent.to_dict(),
         "evidence": serialized_evidence,
         "current_patch": dict(current_patch or {}),
+        "missing_fields": [str(item).strip() for item in (missing_fields or []) if str(item).strip()],
         "instruction": "基于证据给出适合生成街道的参数草案，并明确把关键字段映射到引用。",
     }
     messages.append({"role": "user", "content": json.dumps(user_payload, ensure_ascii=False)})

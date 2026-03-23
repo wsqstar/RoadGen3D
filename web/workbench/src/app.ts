@@ -30,6 +30,7 @@ type DesignDraft = {
   citations_by_field: Record<string, string[]>;
   design_summary: string;
   risk_notes: string[];
+  parameter_sources_by_field: Record<string, string>;
 };
 
 type DraftResponse = {
@@ -354,7 +355,11 @@ export function mountWorkbench(app: HTMLDivElement): void {
     generateBtn.disabled = false;
     renderIntent(payload.intent);
     renderEvidence(payload.evidence, payload.draft.citations_by_field);
-    renderParameterForm(payload.draft.compose_config_patch, payload.draft.citations_by_field);
+    renderParameterForm(
+      payload.draft.compose_config_patch,
+      payload.draft.citations_by_field,
+      payload.draft.parameter_sources_by_field,
+    );
     draftSummary.textContent = formatDraftSummary(payload.draft);
   }
 
@@ -409,10 +414,13 @@ export function mountWorkbench(app: HTMLDivElement): void {
   function renderParameterForm(
     patch: Record<string, string | number>,
     citationsByField: Record<string, string[]> = {},
+    parameterSourcesByField: Record<string, string> = {},
   ): void {
     parameterForm.innerHTML = FIELD_CONFIGS.map((field) => {
       const value = patch[field.key] ?? "";
       const citations = (citationsByField[field.key] || []).join(", ");
+      const source = parameterSourcesByField[field.key] || "unknown";
+      const sourceLabel = formatParameterSourceLabel(source);
       if (field.type === "select") {
         const options = (field.options || [])
           .map((option) => `<option value="${escapeHtml(option)}" ${option === value ? "selected" : ""}>${escapeHtml(option)}</option>`)
@@ -421,6 +429,9 @@ export function mountWorkbench(app: HTMLDivElement): void {
           <div class="field">
             <label for="field-${field.key}">${escapeHtml(field.label)}</label>
             <select id="field-${field.key}" data-key="${escapeHtml(field.key)}">${options}</select>
+            <div class="tag-row">
+              <span class="tag source-tag ${escapeHtml(source)}">source: ${escapeHtml(sourceLabel)}</span>
+            </div>
             <div class="field-note">citations: ${escapeHtml(citations || "none")}</div>
           </div>
         `;
@@ -429,6 +440,9 @@ export function mountWorkbench(app: HTMLDivElement): void {
         <div class="field">
           <label for="field-${field.key}">${escapeHtml(field.label)}</label>
           <input id="field-${field.key}" data-key="${escapeHtml(field.key)}" type="${field.type}" value="${escapeHtml(String(value))}" />
+          <div class="tag-row">
+            <span class="tag source-tag ${escapeHtml(source)}">source: ${escapeHtml(sourceLabel)}</span>
+          </div>
           <div class="field-note">citations: ${escapeHtml(citations || "none")}</div>
         </div>
       `;
@@ -542,6 +556,8 @@ export function mountWorkbench(app: HTMLDivElement): void {
 
 function buildDraftFromForm(baseDraft: DesignDraft, parameterForm: HTMLDivElement): DesignDraft {
   const composeConfigPatch: Record<string, string | number> = {};
+  const citationsByField: Record<string, string[]> = { ...baseDraft.citations_by_field };
+  const parameterSourcesByField: Record<string, string> = { ...baseDraft.parameter_sources_by_field };
   FIELD_CONFIGS.forEach((field) => {
     const input = parameterForm.querySelector<HTMLInputElement | HTMLSelectElement>(`[data-key="${field.key}"]`);
     if (!input) {
@@ -551,12 +567,20 @@ function buildDraftFromForm(baseDraft: DesignDraft, parameterForm: HTMLDivElemen
     if (!raw) {
       return;
     }
-    composeConfigPatch[field.key] = field.type === "number" ? Number(raw) : raw;
+    const nextValue = field.type === "number" ? Number(raw) : raw;
+    composeConfigPatch[field.key] = nextValue;
+    const baseValue = baseDraft.compose_config_patch[field.key];
+    if (String(baseValue ?? "") !== String(nextValue)) {
+      parameterSourcesByField[field.key] = "user_override";
+      delete citationsByField[field.key];
+    }
   });
   return {
     ...baseDraft,
     normalized_scene_query: String(composeConfigPatch.query || baseDraft.normalized_scene_query),
     compose_config_patch: composeConfigPatch,
+    citations_by_field: citationsByField,
+    parameter_sources_by_field: parameterSourcesByField,
   };
 }
 
@@ -572,6 +596,21 @@ function renderTagRow(items: string[]): string {
     return `<div class="field-note">none</div>`;
   }
   return `<div class="tag-row">${items.map((item) => `<span class="tag">${escapeHtml(item)}</span>`).join("")}</div>`;
+}
+
+function formatParameterSourceLabel(source: string): string {
+  switch (source) {
+    case "rag":
+      return "RAG evidence";
+    case "llm_inferred":
+      return "LLM inference";
+    case "user_override":
+      return "User override";
+    case "system_default":
+      return "System default";
+    default:
+      return "Unknown";
+  }
 }
 
 function requireElement<T extends Element>(root: ParentNode, selector: string): T {

@@ -248,6 +248,27 @@ select {
   font-size: 0.84rem;
 }
 
+.source-tag.rag {
+  background: rgba(45, 74, 66, 0.14);
+  color: var(--forest);
+}
+
+.source-tag.llm_inferred {
+  background: rgba(182, 82, 47, 0.14);
+  color: var(--accent);
+}
+
+.source-tag.user_override {
+  background: rgba(23, 33, 29, 0.12);
+  color: var(--bg-ink);
+}
+
+.source-tag.system_default,
+.source-tag.unknown {
+  background: rgba(23, 33, 29, 0.08);
+  color: rgba(23, 33, 29, 0.74);
+}
+
 .evidence-list {
   display: grid;
   gap: 12px;

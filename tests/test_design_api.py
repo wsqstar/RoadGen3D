@@ -43,6 +43,7 @@ class _FakeService:
                 compose_config_patch={"sidewalk_width_m": 4.0},
                 citations_by_field={},
                 design_summary="summary",
+                parameter_sources_by_field={"sidewalk_width_m": "rag", "road_width_m": "llm_inferred"},
             ),
             warnings=(),
         )
@@ -116,6 +117,7 @@ def test_design_api_endpoints_return_expected_shapes():
     )
     assert draft_response.status_code == 200
     assert draft_response.json()["draft"]["compose_config_patch"]["sidewalk_width_m"] == 4.0
+    assert draft_response.json()["draft"]["parameter_sources_by_field"]["sidewalk_width_m"] == "rag"
 
     generate_response = client.post(
         "/api/design/generate",

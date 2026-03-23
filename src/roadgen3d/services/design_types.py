@@ -29,10 +29,28 @@ _PATCH_FIELD_SET = frozenset(ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)
 _FLOAT_FIELDS = frozenset({"length_m", "road_width_m", "sidewalk_width_m", "density"})
 _INT_FIELDS = frozenset({"lane_count"})
 _STRING_FIELDS = _PATCH_FIELD_SET - _FLOAT_FIELDS - _INT_FIELDS
+_EMPTY_TEXT_MARKERS = frozenset({"", "none", "null", "n/a", "na", "unspecified", "not specified"})
+
+DEFAULT_COMPOSE_CONFIG_PATCH_VALUES: Dict[str, Any] = {
+    "design_rule_profile": "balanced_complete_street_v1",
+    "target_street_type": "mixed_use",
+    "objective_profile": "balanced",
+    "city_context": "generic_city",
+    "length_m": 80.0,
+    "road_width_m": 7.0,
+    "sidewalk_width_m": 2.4,
+    "lane_count": 2,
+    "density": 1.0,
+    "ped_demand_level": "medium",
+    "bike_demand_level": "low",
+    "transit_demand_level": "medium",
+    "vehicle_demand_level": "medium",
+}
 
 
 def _clean_text(value: object) -> str:
-    return str(value or "").strip()
+    text = str(value or "").strip()
+    return "" if text.lower() in _EMPTY_TEXT_MARKERS else text
 
 
 def sanitize_compose_config_patch(payload: Mapping[str, Any] | None) -> Dict[str, Any]:
@@ -142,6 +160,7 @@ class DesignDraft:
     citations_by_field: Dict[str, Tuple[str, ...]]
     design_summary: str
     risk_notes: Tuple[str, ...] = ()
+    parameter_sources_by_field: Dict[str, str] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -153,6 +172,7 @@ class DesignDraft:
             },
             "design_summary": self.design_summary,
             "risk_notes": list(self.risk_notes),
+            "parameter_sources_by_field": dict(self.parameter_sources_by_field),
         }
 
 

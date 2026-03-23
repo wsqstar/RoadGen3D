@@ -11,6 +11,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from roadgen3d.knowledge.pdf_rag import KnowledgeChunk, KnowledgeSearchHit
+from roadgen3d.services.design_types import ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS
 from roadgen3d.services.design_assistant import DesignAssistantService
 
 
@@ -32,26 +33,71 @@ class _FakeLLM:
             return {
                 "english_queries": ["sidewalk width complete streets", "bus stop placement"],
             }
+        if self.calls == 3:
+            return {
+                "normalized_scene_query": "walkable all-age complete street with safe sidewalks",
+                "compose_config_patch": {
+                    "design_rule_profile": "pedestrian_priority_v1",
+                    "sidewalk_width_m": 4.2,
+                },
+                "citations_by_field": {
+                    "sidewalk_width_m": ["complete_streets_0001"],
+                    "design_rule_profile": ["complete_streets_0002"],
+                },
+                "design_summary": "Use a pedestrian-priority complete street with generous sidewalks.",
+                "risk_notes": ["Transit demand remains moderate and should be checked in context."],
+            }
+        if self.calls == 4:
+            return {
+                "field_queries": {
+                    "road_width_m": ["travel lane width complete streets"],
+                    "lane_count": ["lane allocation complete streets"],
+                    "transit_demand_level": ["bus stop placement"],
+                }
+            }
         return {
-            "normalized_scene_query": "walkable all-age complete street with safe sidewalks",
+            "normalized_scene_query": "walkable all-age complete street with safe sidewalks and moderate transit access",
             "compose_config_patch": {
                 "design_rule_profile": "pedestrian_priority_v1",
+                "target_street_type": "complete_streets",
+                "objective_profile": "balanced",
+                "city_context": "mixed_use urban corridor",
+                "length_m": 90.0,
+                "road_width_m": 7.2,
                 "sidewalk_width_m": 4.2,
                 "lane_count": 2,
+                "density": 1.1,
+                "ped_demand_level": "high",
+                "bike_demand_level": "medium",
+                "transit_demand_level": "medium",
+                "vehicle_demand_level": "low",
             },
             "citations_by_field": {
                 "sidewalk_width_m": ["complete_streets_0001"],
                 "design_rule_profile": ["complete_streets_0002"],
+                "road_width_m": ["complete_streets_0003"],
+                "lane_count": ["complete_streets_0003"],
+                "transit_demand_level": ["complete_streets_0002"],
             },
-            "design_summary": "Use a pedestrian-priority complete street with generous sidewalks.",
-            "risk_notes": ["Transit demand remains moderate and should be checked in context."],
+            "design_summary": "Use a pedestrian-priority complete street with generous sidewalks and modest carriageway width.",
+            "risk_notes": ["Vehicle access stays low to protect pedestrian safety."],
         }
 
 
 class _FakeRetriever:
     def search(self, query: str, topk: int = 5):
-        chunk_id = "complete_streets_0001" if "sidewalk" in query else "complete_streets_0002"
-        section = "Sidewalk Width Guidance" if "sidewalk" in query else "Transit Stop Placement"
+        if "sidewalk" in query:
+            chunk_id = "complete_streets_0001"
+            section = "Sidewalk Width Guidance"
+            score = 0.91
+        elif "lane" in query or "road" in query or "travel" in query:
+            chunk_id = "complete_streets_0003"
+            section = "Lane Allocation Guidance"
+            score = 0.89
+        else:
+            chunk_id = "complete_streets_0002"
+            section = "Transit Stop Placement"
+            score = 0.87
         return [
             KnowledgeSearchHit(
                 chunk=KnowledgeChunk(
@@ -63,7 +109,7 @@ class _FakeRetriever:
                     text=f"Evidence for {query}.",
                     source_path="/tmp/guide.pdf",
                 ),
-                score=0.91 if "sidewalk" in query else 0.87,
+                score=score,
             )
         ]
 
@@ -82,9 +128,13 @@ def test_design_assistant_service_builds_draft_bundle():
     )
 
     assert bundle.intent.safety_priorities == ("pedestrian safety",)
-    assert len(bundle.evidence) == 2
+    assert len(bundle.evidence) == 3
+    assert all(field in bundle.draft.compose_config_patch for field in ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)
     assert bundle.draft.compose_config_patch["target_street_type"] == "mixed_use"
     assert bundle.draft.compose_config_patch["sidewalk_width_m"] == 4.2
     assert bundle.draft.citations_by_field["sidewalk_width_m"] == ("complete_streets_0001",)
+    assert bundle.draft.citations_by_field["road_width_m"] == ("complete_streets_0003",)
+    assert bundle.draft.parameter_sources_by_field["sidewalk_width_m"] == "rag"
+    assert bundle.draft.parameter_sources_by_field["city_context"] == "llm_inferred"
     assert "pedestrian-priority" in bundle.draft.design_summary
-    assert service.llm_client.calls == 3
+    assert service.llm_client.calls == 5
