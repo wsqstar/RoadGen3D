@@ -231,16 +231,18 @@ def sanitize_scene_context(payload: Mapping[str, Any] | SceneContext | None) -> 
 class DesignDraftBundle:
     """Top-level response of the draft design workflow."""
 
+    stage: str
     intent: DesignIntent
     evidence: Tuple[RagEvidence, ...]
-    draft: DesignDraft
+    draft: DesignDraft | None
     warnings: Tuple[str, ...] = ()
 
     def to_dict(self) -> Dict[str, Any]:
         return {
+            "stage": self.stage,
             "intent": self.intent.to_dict(),
             "evidence": [item.to_dict() for item in self.evidence],
-            "draft": self.draft.to_dict(),
+            "draft": self.draft.to_dict() if self.draft is not None else None,
             "warnings": list(self.warnings),
         }
 

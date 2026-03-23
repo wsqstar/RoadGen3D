@@ -11,6 +11,7 @@ from ..services.design_types import ChatMessage, DesignIntent, RagEvidence
 def build_design_intent_messages(
     history: Sequence[ChatMessage],
     user_input: str,
+    current_patch: Mapping[str, Any] | None = None,
 ) -> list[Dict[str, str]]:
     conversation = [
         {
@@ -28,13 +29,26 @@ def build_design_intent_messages(
         "`user_goals`(string[])、`style_preferences`(string[])、"
         "`safety_priorities`(string[])、`follow_up_questions`(string[])、"
         "`rag_queries`(string[])。"
+        "`follow_up_questions` 只包含继续生成设计草案前必须确认的阻塞性问题。"
+        "如果当前对话和 current_patch 已经足够，就返回空数组。"
+        "不要重复询问历史里已经回答过的问题，最多返回 3 个问题。"
         "RAG 查询必须是适合从 complete streets 设计文档中检索规范建议的英文短句。"
         "即使用户使用中文，`rag_queries` 也必须输出英文。"
         "如果用户强调步行安全、全龄友好、慢行优先等，要明确写进 safety_priorities。"
     )
     messages: list[Dict[str, str]] = [{"role": "system", "content": system_prompt}]
     messages.extend(conversation)
-    messages.append({"role": "user", "content": str(user_input)})
+    messages.append({
+        "role": "user",
+        "content": json.dumps(
+            {
+                "latest_user_input": str(user_input),
+                "current_patch": dict(current_patch or {}),
+                "instruction": "如果还缺少阻塞性信息，请只在 follow_up_questions 中提出。否则返回空数组并继续给出 RAG queries。",
+            },
+            ensure_ascii=False,
+        ),
+    })
     return messages
 
 

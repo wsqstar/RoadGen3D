@@ -51,9 +51,10 @@ type ChinaCityResponse = {
 };
 
 type DraftResponse = {
+  stage: "clarification_required" | "draft_ready";
   intent: DesignIntent;
   evidence: RagEvidence[];
-  draft: DesignDraft;
+  draft: DesignDraft | null;
   warnings: string[];
 };
 
@@ -346,19 +347,29 @@ export function mountWorkbench(app: HTMLDivElement): void {
       const payload = await postJson<DraftResponse>("/api/design/draft", {
         messages: state.messages,
         user_input: prompt,
-        current_patch: state.lastDraft?.draft.compose_config_patch || {},
+        current_patch: state.lastDraft?.draft?.compose_config_patch || {},
         topk: 6,
       });
       state.messages.push({ role: "user", content: prompt });
-      state.messages.push({ role: "assistant", content: payload.draft.design_summary });
-      state.lastDraft = payload;
+      if (payload.stage === "clarification_required") {
+        const followUpMessage = buildClarificationAssistantMessage(payload.intent.follow_up_questions);
+        state.messages.push({ role: "assistant", content: followUpMessage });
+        state.lastDraft = null;
+      } else {
+        state.messages.push({ role: "assistant", content: payload.draft?.design_summary || "设计草案已生成。" });
+        state.lastDraft = payload;
+      }
       state.lastGeneration = null;
       state.currentJob = null;
       promptInput.value = "";
       renderTimeline();
-      renderDraft(payload);
+      renderDraftResponse(payload);
       renderJobPanel();
-      setStatus(payload.warnings.length ? payload.warnings.join("\n") : "设计草案已生成，请确认参数后创建生成任务。");
+      if (payload.stage === "clarification_required") {
+        setStatus(payload.warnings.length ? payload.warnings.join("\n") : "请先回答澄清问题，然后我再继续生成设计草案。");
+      } else {
+        setStatus(payload.warnings.length ? payload.warnings.join("\n") : "设计草案已生成，请确认参数后创建生成任务。");
+      }
     } catch (error) {
       setStatus(asErrorMessage(error));
     } finally {
@@ -380,7 +391,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
   });
 
   generateBtn.addEventListener("click", async () => {
-    if (!state.lastDraft) {
+    if (!state.lastDraft || !state.lastDraft.draft) {
       setStatus("请先生成设计草案。");
       return;
     }
@@ -487,7 +498,11 @@ export function mountWorkbench(app: HTMLDivElement): void {
     renderJobPanel();
   }
 
-  function renderDraft(payload: DraftResponse): void {
+  function renderDraftResponse(payload: DraftResponse): void {
+    if (payload.stage === "clarification_required" || !payload.draft) {
+      renderClarification(payload);
+      return;
+    }
     generateBtn.disabled = false;
     renderIntent(payload.intent);
     renderEvidence(payload.evidence, payload.draft.citations_by_field);
@@ -497,6 +512,17 @@ export function mountWorkbench(app: HTMLDivElement): void {
       payload.draft.parameter_sources_by_field,
     );
     draftSummary.textContent = formatDraftSummary(payload.draft);
+  }
+
+  function renderClarification(payload: DraftResponse): void {
+    generateBtn.disabled = true;
+    renderIntent(payload.intent);
+    evidenceList.innerHTML = `<div class="field-note">澄清轮次暂不执行 RAG 检索，请先回答问题。</div>`;
+    renderParameterForm({});
+    draftSummary.textContent = [
+      "需要先确认以下信息后，才能继续生成设计草案：",
+      ...payload.intent.follow_up_questions.map((item, index) => `${index + 1}. ${item}`),
+    ].join("\n");
   }
 
   function renderIntent(intent: DesignIntent): void {
@@ -778,6 +804,16 @@ function formatDraftSummary(draft: DesignDraft): string {
     draft.design_summary || "No summary returned.",
     draft.risk_notes.length ? `\nRisk Notes:\n- ${draft.risk_notes.join("\n- ")}` : "",
   ].join("");
+}
+
+function buildClarificationAssistantMessage(questions: string[]): string {
+  if (!questions.length) {
+    return "我还需要补充一些关键信息后，才能继续生成设计草案。";
+  }
+  return [
+    "继续生成设计草案前，我还需要确认这些关键信息：",
+    ...questions.map((question, index) => `${index + 1}. ${question}`),
+  ].join("\n");
 }
 
 function setBboxInputs(bbox: [number, number, number, number]): void {

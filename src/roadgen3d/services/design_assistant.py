@@ -98,8 +98,19 @@ class DesignAssistantService:
     ) -> DesignDraftBundle:
         chat_messages = normalize_chat_messages(messages)
         llm = self._get_llm_client()
-        intent_payload = llm.chat_json(build_design_intent_messages(chat_messages, user_input))
+        intent_payload = llm.chat_json(build_design_intent_messages(chat_messages, user_input, current_patch))
         intent = parse_design_intent(intent_payload, fallback_query=user_input)
+        if requires_user_clarification(intent):
+            warnings: List[str] = []
+            if intent.follow_up_questions:
+                warnings.append("Additional clarification is required before drafting a street design.")
+            return DesignDraftBundle(
+                stage="clarification_required",
+                intent=intent,
+                evidence=(),
+                draft=None,
+                warnings=tuple(warnings),
+            )
         retrieval_queries = self._prepare_retrieval_queries(
             llm=llm,
             intent=intent,
@@ -157,6 +168,7 @@ class DesignAssistantService:
                 + ", ".join(defaulted_fields)
             )
         return DesignDraftBundle(
+            stage="draft_ready",
             intent=intent,
             evidence=evidence,
             draft=draft,
@@ -352,6 +364,10 @@ def parse_design_intent(payload: Mapping[str, Any], *, fallback_query: str) -> D
         follow_up_questions=tuple(dict.fromkeys(_coerce_text_list(payload.get("follow_up_questions")))),
         rag_queries=queries,
     )
+
+
+def requires_user_clarification(intent: DesignIntent) -> bool:
+    return bool(intent.follow_up_questions)
 
 
 def parse_design_draft(

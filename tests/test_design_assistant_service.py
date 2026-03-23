@@ -127,6 +127,7 @@ def test_design_assistant_service_builds_draft_bundle():
         topk=4,
     )
 
+    assert bundle.stage == "draft_ready"
     assert bundle.intent.safety_priorities == ("pedestrian safety",)
     assert len(bundle.evidence) == 3
     assert all(field in bundle.draft.compose_config_patch for field in ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS)
@@ -138,3 +139,46 @@ def test_design_assistant_service_builds_draft_bundle():
     assert bundle.draft.parameter_sources_by_field["city_context"] == "llm_inferred"
     assert "pedestrian-priority" in bundle.draft.design_summary
     assert service.llm_client.calls == 5
+
+
+class _ClarificationFirstLLM:
+    def __init__(self):
+        self.calls = 0
+
+    def chat_json(self, _messages, *, temperature=0.2):
+        self.calls += 1
+        return {
+            "user_goals": ["walkable complete street"],
+            "style_preferences": ["all-age friendly"],
+            "safety_priorities": ["pedestrian safety"],
+            "follow_up_questions": [
+                "Which city or neighborhood context should this street fit into?",
+                "Should the street prioritize transit access or keep it secondary?",
+            ],
+            "rag_queries": ["complete streets pedestrian safety"],
+        }
+
+
+class _FailIfRetrieverRuns:
+    def search(self, query: str, topk: int = 5):
+        raise AssertionError(f"retriever should not run during clarification stage: {query} / {topk}")
+
+
+def test_design_assistant_service_returns_clarification_stage_before_rag():
+    service = DesignAssistantService(
+        llm_client=_ClarificationFirstLLM(),
+        knowledge_retriever=_FailIfRetrieverRuns(),
+    )
+
+    bundle = service.draft_design(
+        messages=[{"role": "user", "content": "我想做步行安全、全龄友好的街道。"}],
+        user_input="我想做步行安全、全龄友好的街道。",
+        current_patch={},
+        topk=4,
+    )
+
+    assert bundle.stage == "clarification_required"
+    assert bundle.draft is None
+    assert bundle.evidence == ()
+    assert len(bundle.intent.follow_up_questions) == 2
+    assert service.llm_client.calls == 1

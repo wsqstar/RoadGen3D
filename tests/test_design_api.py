@@ -33,6 +33,7 @@ class _FakeService:
 
     def draft_design(self, **kwargs):
         return DesignDraftBundle(
+            stage="draft_ready",
             intent=DesignIntent(
                 user_goals=("walkable street",),
                 style_preferences=("all-age friendly",),
@@ -143,6 +144,7 @@ def test_design_api_endpoints_return_expected_shapes():
         },
     )
     assert draft_response.status_code == 200
+    assert draft_response.json()["stage"] == "draft_ready"
     assert draft_response.json()["draft"]["compose_config_patch"]["sidewalk_width_m"] == 4.0
     assert draft_response.json()["draft"]["parameter_sources_by_field"]["sidewalk_width_m"] == "rag"
 
@@ -230,3 +232,37 @@ def test_design_api_endpoints_return_expected_shapes():
         },
     )
     assert invalid_osm_response.status_code == 400
+
+
+def test_design_api_supports_clarification_stage():
+    class _ClarificationService(_FakeService):
+        def draft_design(self, **kwargs):
+            return DesignDraftBundle(
+                stage="clarification_required",
+                intent=DesignIntent(
+                    user_goals=("walkable street",),
+                    style_preferences=("all-age friendly",),
+                    safety_priorities=("pedestrian safety",),
+                    follow_up_questions=("Which city should this street fit into?",),
+                    rag_queries=("complete streets pedestrian safety",),
+                ),
+                evidence=(),
+                draft=None,
+                warnings=("Additional clarification is required before drafting a street design.",),
+            )
+
+    client = TestClient(create_app(design_service=_ClarificationService()))
+    response = client.post(
+        "/api/design/draft",
+        json={
+            "messages": [{"role": "user", "content": "请做一条全龄友好的街道。"}],
+            "user_input": "请做一条全龄友好的街道。",
+            "current_patch": {},
+        },
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["stage"] == "clarification_required"
+    assert payload["draft"] is None
+    assert payload["intent"]["follow_up_questions"] == ["Which city should this street fit into?"]
