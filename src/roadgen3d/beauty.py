@@ -1428,7 +1428,37 @@ def _draw_plan_furniture(ax: Any, u: float, v: float, *, category: str, plan_ang
         ax.add_patch(Rectangle((x - 0.36, y - 0.12), 0.72, 0.24, angle=32.0, facecolor=style.bus_fill, edgecolor="white", linewidth=0.5, zorder=8.1))
         return
     if category == "bollard":
-        ax.add_patch(Circle((x, y), radius=0.09, facecolor=style.furniture_fill, edgecolor="white", linewidth=0.45, zorder=8.1))
+        left_base = _project_plan_point(u - 1.0, v, angle_rad=plan_angle_rad)
+        right_base = _project_plan_point(u + 1.0, v, angle_rad=plan_angle_rad)
+        post_dx = 0.08
+        post_dy = 0.24
+        for px, py in (left_base, right_base):
+            ax.add_patch(
+                Rectangle(
+                    (px - post_dx / 2.0, py - post_dy / 2.0),
+                    post_dx,
+                    post_dy,
+                    angle=32.0,
+                    facecolor=style.furniture_fill,
+                    edgecolor="white",
+                    linewidth=0.45,
+                    zorder=8.12,
+                )
+            )
+        ax.plot(
+            [left_base[0], right_base[0]],
+            [left_base[1] + 0.03, right_base[1] + 0.03],
+            color=style.furniture_fill,
+            linewidth=max(style.glyph_lw * 0.95, 1.0),
+            zorder=8.13,
+        )
+        ax.plot(
+            [left_base[0], right_base[0]],
+            [left_base[1] - 0.11, right_base[1] - 0.11],
+            color=style.furniture_fill,
+            linewidth=max(style.glyph_lw * 0.8, 0.9),
+            zorder=8.12,
+        )
         return
     if category == "trash":
         ax.add_patch(Rectangle((x - 0.09, y - 0.11), 0.18, 0.22, angle=32.0, facecolor=style.furniture_fill, edgecolor="white", linewidth=0.45, zorder=8.1))
@@ -1531,8 +1561,22 @@ def _draw_oblique_furniture(ax: Any, u: float, v: float, *, category: str, style
         ax.scatter([top[0]], [top[1]], s=18, color=style.activity_fill, edgecolors="white", linewidths=0.4, zorder=8.29)
         return
     if category == "bollard":
-        top = _project_oblique_point(u, v, 0.58)
-        ax.plot([ground[0], top[0]], [ground[1], top[1]], color=style.furniture_fill, linewidth=1.05, zorder=8.23)
+        post_left_ground = _project_oblique_point(u - 1.0, v, 0.0)
+        post_right_ground = _project_oblique_point(u + 1.0, v, 0.0)
+        post_left_top = _project_oblique_point(u - 1.0, v, 1.02)
+        post_right_top = _project_oblique_point(u + 1.0, v, 1.02)
+        rail_top = _project_oblique_polygon(
+            [(u - 1.0, v - 0.04), (u + 1.0, v - 0.04), (u + 1.0, v + 0.04), (u - 1.0, v + 0.04)],
+            h=0.88,
+        )
+        rail_mid = _project_oblique_polygon(
+            [(u - 1.0, v - 0.035), (u + 1.0, v - 0.035), (u + 1.0, v + 0.035), (u - 1.0, v + 0.035)],
+            h=0.56,
+        )
+        for start, end in ((post_left_ground, post_left_top), (post_right_ground, post_right_top)):
+            ax.plot([start[0], end[0]], [start[1], end[1]], color=style.furniture_fill, linewidth=1.05, zorder=8.23)
+        _draw_polygon_patch(ax, rail_mid, facecolor=style.furniture_fill, edgecolor="white", linewidth=0.4, zorder=8.24)
+        _draw_polygon_patch(ax, rail_top, facecolor=style.furniture_fill, edgecolor="white", linewidth=0.42, zorder=8.25)
         return
     ax.scatter([ground[0]], [ground[1]], s=18, color=style.furniture_fill, edgecolors="white", linewidths=0.45, zorder=8.2)
 

@@ -2594,6 +2594,7 @@ def run_street_compose(
             f"- cross_section_type: {layout_summary.get('cross_section_type', '')}\n"
             f"- style_preset: {layout_summary.get('style_preset', style_preset)}\n"
             f"- asset_curation_mode: {layout_summary.get('asset_curation_mode', asset_curation_mode)}\n"
+            f"- asset_lock_profile: {layout_summary.get('asset_lock_profile', 'fixed_hq_v1')}\n"
             f"- asset_scale_mode: {layout_summary.get('asset_scale_mode', asset_scale_mode)}\n"
             f"- parametric_instance_count: {int(layout_summary.get('parametric_instance_count', 0) or 0)}\n"
             f"- production_step_count: {int(layout_summary.get('production_step_count', 0) or 0)}\n"
@@ -2716,6 +2717,30 @@ def run_street_compose(
                 )
             )
             summary += f"\n- asset_source_unique_counts: {unique_count_text}"
+        locked_asset_ids = dict(layout_summary.get("locked_asset_ids", {}) or {})
+        locked_asset_selection_counts = dict(layout_summary.get("locked_asset_selection_counts", {}) or {})
+        asset_lock_fallback_violations = dict(layout_summary.get("asset_lock_fallback_violations", {}) or {})
+        if locked_asset_ids:
+            summary += (
+                "\n- locked_asset_ids: "
+                + ", ".join(f"{category}={asset_id}" for category, asset_id in sorted(locked_asset_ids.items()))
+            )
+        if locked_asset_selection_counts:
+            summary += (
+                "\n- locked_asset_selection_counts: "
+                + ", ".join(
+                    f"{category}={int(locked_asset_selection_counts.get(category, 0) or 0)}"
+                    for category in sorted(locked_asset_selection_counts)
+                )
+            )
+        if asset_lock_fallback_violations:
+            summary += (
+                "\n- asset_lock_fallback_violations: "
+                + ", ".join(
+                    f"{category}={int(asset_lock_fallback_violations.get(category, 0) or 0)}"
+                    for category in sorted(asset_lock_fallback_violations)
+                )
+            )
         asset_scale_summary = dict(layout_summary.get("asset_scale_summary", {}) or {})
         if asset_scale_summary:
             scale_text = ", ".join(

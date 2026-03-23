@@ -82,6 +82,7 @@ class StreetComposeConfig:
     topdown_canvas_px: int = 2048
     asset_curation_mode: str = "scene_ready_first"
     asset_scale_mode: str = "canonical_v1"  # "canonical_v1" | "native_raw"
+    curated_street_assets_profile: str = "fixed_hq_v1"  # "fixed_hq_v1" | "disabled"
 
     # -- Neuralsymbolic v1 fields --
     program_generator: str = "heuristic_v1"

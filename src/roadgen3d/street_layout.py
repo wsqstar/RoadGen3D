@@ -188,7 +188,156 @@ def _row_scene_eligible(row: Mapping[str, object]) -> bool:
     return True
 
 
-_PARALLEL_TO_CARRIAGEWAY_CATEGORIES = {"bench", "bus_stop"}
+_PARALLEL_TO_CARRIAGEWAY_CATEGORIES = {"bench", "bus_stop", "bollard"}
+_CURATED_STREET_ASSET_PROFILES = {"fixed_hq_v1", "disabled"}
+_CURATED_STREET_ASSET_IDS_FIXED_HQ = {
+    "lamp": "lamp_modern_production",
+    "trash": "objaverse_trash_f16b7d84113d4cba869412ee95769910",
+    "bollard": "curated_railing_module_v1",
+}
+
+
+def _normalize_curated_street_assets_profile(value: object) -> str:
+    key = str(value or "fixed_hq_v1").strip().lower()
+    return key if key in _CURATED_STREET_ASSET_PROFILES else "fixed_hq_v1"
+
+
+def _curated_locked_asset_ids_for_profile(profile: str) -> Dict[str, str]:
+    if _normalize_curated_street_assets_profile(profile) != "fixed_hq_v1":
+        return {}
+    return dict(_CURATED_STREET_ASSET_IDS_FIXED_HQ)
+
+
+def _curated_locked_asset_ids(config: StreetComposeConfig | None) -> Dict[str, str]:
+    if config is None:
+        return {}
+    profile = _normalize_curated_street_assets_profile(
+        getattr(config, "curated_street_assets_profile", "fixed_hq_v1")
+    )
+    return _curated_locked_asset_ids_for_profile(profile)
+
+
+def _create_curated_railing_entry(*, asset_id: str = "curated_railing_module_v1") -> Tuple[Dict[str, object], _MeshCacheEntry]:
+    trimesh = _require_trimesh()
+    scene = trimesh.Scene()
+
+    def _add_box(
+        extents: Tuple[float, float, float],
+        translation: Tuple[float, float, float],
+        color: Tuple[int, int, int, int],
+    ) -> None:
+        mesh = trimesh.creation.box(extents=extents)
+        mesh.visual.face_colors = list(color)
+        mesh.apply_translation(translation)
+        scene.add_geometry(mesh)
+
+    metal = (102, 110, 118, 255)
+    trim = (188, 194, 198, 255)
+    base = (86, 92, 98, 255)
+    module_length_m = 2.4
+    module_depth_m = 0.12
+    post_height_m = 1.08
+    rail_depth_m = 0.08
+    rail_width_m = 0.12
+    half_length = module_length_m / 2.0
+    post_offsets = (-half_length + 0.08, 0.0, half_length - 0.08)
+    for x_offset in post_offsets:
+        _add_box((0.09, post_height_m, 0.09), (x_offset, post_height_m / 2.0, 0.0), metal)
+        _add_box((0.16, 0.03, 0.16), (x_offset, 0.015, 0.0), base)
+    for rail_height in (0.34, 0.62, 0.9):
+        _add_box((module_length_m - 0.12, rail_width_m, rail_depth_m), (0.0, rail_height, 0.0), trim)
+    _add_box((module_length_m, 0.05, module_depth_m), (0.0, 1.02, 0.0), metal)
+
+    bounds = np.asarray(scene.bounds, dtype=np.float64)
+    span = bounds[1] - bounds[0]
+    row: Dict[str, object] = {
+        "asset_id": str(asset_id),
+        "category": "bollard",
+        "text_desc": "high-quality pedestrian safety railing module used in place of isolated bollards",
+        "asset_role": "street_furniture",
+        "source": "curated_virtual",
+        "generator_type": "virtual_curated_v1",
+        "theme_tags": ["transit", "civic", "walkable", "safety"],
+        "scene_eligible": True,
+        "quality_tier": 3,
+        "mesh_face_count": int(
+            sum(len(np.asarray(getattr(geom, "faces", []), dtype=np.int64)) for geom in scene.geometry.values())
+        ),
+        "quality_notes": [
+            "curated_asset_lock",
+            "railing_visual_replace",
+            "scene_ready",
+            "generator=virtual_curated_v1",
+        ],
+    }
+    entry = _MeshCacheEntry(
+        mesh=scene,
+        half_x=float(max(span[0] / 2.0, 1e-3)),
+        half_z=float(max(span[2] / 2.0, 1e-3)),
+        min_y=float(bounds[0][1]),
+        center_x=float((bounds[0][0] + bounds[1][0]) / 2.0),
+        center_z=float((bounds[0][2] + bounds[1][2]) / 2.0),
+        is_scene=True,
+        native_height_y=float(max(span[1], 1e-3)),
+    )
+    return row, entry
+
+
+def _inject_curated_virtual_assets(
+    rows: List[Dict[str, object]],
+    mesh_cache: Dict[str, _MeshCacheEntry],
+    *,
+    profile: str,
+) -> List[Dict[str, object]]:
+    normalized = _normalize_curated_street_assets_profile(profile)
+    if normalized == "disabled":
+        return rows
+    locked_asset_ids = _curated_locked_asset_ids_for_profile(normalized)
+    asset_ids_present = {str(row.get("asset_id", "")) for row in rows}
+    injected_rows = list(rows)
+    railing_asset_id = str(locked_asset_ids.get("bollard", "") or "")
+    if railing_asset_id and railing_asset_id not in asset_ids_present:
+        railing_row, railing_entry = _create_curated_railing_entry(asset_id=railing_asset_id)
+        injected_rows.append(railing_row)
+        mesh_cache[railing_asset_id] = railing_entry
+    return injected_rows
+
+
+def _validate_curated_locked_assets(
+    *,
+    asset_by_id: Mapping[str, Mapping[str, object]],
+    profile: str,
+) -> Dict[str, str]:
+    locked_asset_ids = _curated_locked_asset_ids_for_profile(profile)
+    for category, asset_id in locked_asset_ids.items():
+        row = asset_by_id.get(asset_id)
+        if row is None:
+            raise RuntimeError(
+                f"Curated asset lock '{profile}' requires {category} asset '{asset_id}', but it is unavailable."
+            )
+        if not _row_scene_eligible(row):
+            raise RuntimeError(
+                f"Curated asset lock '{profile}' requires {category} asset '{asset_id}', but it is not scene eligible."
+            )
+    return locked_asset_ids
+
+
+def _curated_locked_row_for_category(
+    *,
+    category: str,
+    asset_by_id: Mapping[str, Mapping[str, object]],
+    config: StreetComposeConfig | None,
+) -> Mapping[str, object] | None:
+    locked_asset_ids = _curated_locked_asset_ids(config)
+    asset_id = str(locked_asset_ids.get(str(category).strip().lower(), "") or "")
+    if not asset_id:
+        return None
+    row = asset_by_id.get(asset_id)
+    if row is None or not _row_scene_eligible(row):
+        raise RuntimeError(
+            f"Curated asset lock requires category '{category}' to use '{asset_id}', but that asset is unavailable."
+        )
+    return row
 
 
 def _row_quality_notes(row: Mapping[str, object]) -> Tuple[str, ...]:
@@ -288,6 +437,8 @@ def _validate_config(config: StreetComposeConfig) -> None:
         raise ValueError("lane_count must be >= 1")
     if config.density <= 0:
         raise ValueError("density must be > 0")
+    if str(getattr(config, "curated_street_assets_profile", "fixed_hq_v1") or "").strip().lower() not in _CURATED_STREET_ASSET_PROFILES:
+        raise ValueError("curated_street_assets_profile is invalid")
     if config.topk_per_category <= 0:
         raise ValueError("topk_per_category must be >= 1")
     if config.max_trials_per_slot <= 0:
@@ -1180,6 +1331,29 @@ def _pick_category_candidate(
     return_details: bool = False,
     asset_id_whitelist: Optional[set[str]] = None,
 ) -> Tuple[Dict[str, object], float, str] | Tuple[Dict[str, object], float, str, Dict[str, object]]:
+    locked_row = _curated_locked_row_for_category(
+        category=category,
+        asset_by_id=asset_by_id,
+        config=config,
+    )
+    if locked_row is not None:
+        decision_payload: Dict[str, object] = {
+            "candidates": [
+                {
+                    "asset_id": str(locked_row.get("asset_id", "")),
+                    "category": str(locked_row.get("category", "")),
+                    "score": 1.0,
+                }
+            ],
+            "chosen_index": 0,
+            "top3_hit": True,
+            "curated_asset_lock": True,
+            "locked_asset_id": str(locked_row.get("asset_id", "")),
+        }
+        if return_details:
+            return dict(locked_row), 1.0, "curated_asset_lock", decision_payload
+        return dict(locked_row), 1.0, "curated_asset_lock"
+
     def _pick_weighted(
         candidates: List[Tuple[Dict[str, object], float]],
         temperature: float,
@@ -4090,7 +4264,16 @@ def compose_street_scene(
         raise ValueError("placement_policy must be 'rule' or 'learned'")
 
     rows = _load_real_manifest(manifest_path)
+    mesh_cache = _load_mesh_cache(rows)
+    curated_asset_profile = _normalize_curated_street_assets_profile(
+        getattr(config, "curated_street_assets_profile", "fixed_hq_v1")
+    )
+    rows = _inject_curated_virtual_assets(rows, mesh_cache, profile=curated_asset_profile)
     asset_by_id = {row["asset_id"]: row for row in rows}
+    locked_asset_ids = _validate_curated_locked_assets(
+        asset_by_id=asset_by_id,
+        profile=curated_asset_profile,
+    )
 
     category_to_rows: Dict[str, List[Dict[str, str]]] = {category: [] for category in DEFAULT_CATEGORIES}
     raw_tree_inventory_count = sum(1 for row in rows if str(row.get("category", "")).strip().lower() == "tree")
@@ -4109,8 +4292,6 @@ def compose_street_scene(
             f"No supported categories found in manifest: {manifest_path}. "
             f"Expected at least one of {DEFAULT_CATEGORIES}."
         )
-
-    mesh_cache = _load_mesh_cache(rows)
 
     parametric_tree_count = 0
 
@@ -5829,6 +6010,31 @@ def compose_street_scene(
         selected_highway_type=selected_highway_type,
     )
     asset_scale_summary = summarize_asset_scales([placement.to_dict() for placement in placements])
+    locked_asset_selection_counts = {
+        category: int(
+            sum(
+                1
+                for placement in placements
+                if str(placement.category).strip().lower() == str(category)
+                and str(placement.asset_id) == str(asset_id)
+            )
+        )
+        for category, asset_id in locked_asset_ids.items()
+    }
+    asset_lock_fallback_violations = {
+        category: int(
+            sum(
+                1
+                for placement in placements
+                if str(placement.category).strip().lower() == str(category)
+                and (
+                    str(placement.asset_id) != str(asset_id)
+                    or str(placement.selection_source).strip().lower() != "curated_asset_lock"
+                )
+            )
+        )
+        for category, asset_id in locked_asset_ids.items()
+    }
     placement_log_summary = _summarize_placement_decision_events(decision_events)
     placement_log_path = ""
     if placement_logging_mode == "full_with_ui_summary":
@@ -5862,6 +6068,14 @@ def compose_street_scene(
             for source_key, asset_ids in asset_source_unique_assets.items()
         },
         "asset_scale_mode": str(getattr(config, "asset_scale_mode", "canonical_v1")),
+        "curated_asset_lock_enabled": bool(curated_asset_profile != "disabled"),
+        "asset_lock_profile": str(curated_asset_profile),
+        "curated_street_assets_profile": str(curated_asset_profile),
+        "locked_asset_ids": dict(locked_asset_ids),
+        "locked_asset_selection_counts": dict(locked_asset_selection_counts),
+        "locked_asset_counts": dict(locked_asset_selection_counts),
+        "fallback_blocked_categories": sorted(str(category) for category in locked_asset_ids),
+        "asset_lock_fallback_violations": dict(asset_lock_fallback_violations),
         "asset_scale_summary": asset_scale_summary,
         "tree_species_policy": str(getattr(config, "tree_species_policy", "per_theme_single_species")),
         "furniture_balance_policy": str(getattr(config, "furniture_balance_policy", "overall_balanced")),

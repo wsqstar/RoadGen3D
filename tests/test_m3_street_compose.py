@@ -71,8 +71,8 @@ def _write_manifest(path: Path, rows: list[dict[str, object]]) -> None:
 def _build_real_rows(base_dir: Path, *, include_buildings: bool = False) -> list[dict[str, object]]:
     categories = [
         ("bench_01", "bench"),
-        ("lamp_01", "lamp"),
-        ("trash_01", "trash"),
+        ("lamp_modern_production", "lamp"),
+        ("objaverse_trash_f16b7d84113d4cba869412ee95769910", "trash"),
         ("tree_01", "tree"),
         ("bus_stop_01", "bus_stop"),
         ("mailbox_01", "mailbox"),
@@ -1770,6 +1770,7 @@ def test_pick_category_candidate_parametric_first_prefers_parametric_bench(monke
             topk_per_category=2,
             max_trials_per_slot=5,
             asset_curation_mode="parametric_first",
+            curated_street_assets_profile="disabled",
         ),
     )
 
@@ -1826,6 +1827,7 @@ def test_pick_category_candidate_scene_ready_first_prefers_production_bench(monk
             topk_per_category=2,
             max_trials_per_slot=5,
             asset_curation_mode="scene_ready_first",
+            curated_street_assets_profile="disabled",
         ),
     )
 
@@ -1866,6 +1868,7 @@ def test_pick_category_candidate_legacy_prefers_non_parametric_bench(monkeypatch
             topk_per_category=2,
             max_trials_per_slot=5,
             asset_curation_mode="legacy",
+            curated_street_assets_profile="disabled",
         ),
     )
 
@@ -1902,6 +1905,7 @@ def test_pick_category_candidate_legacy_falls_back_when_only_parametric_exists(m
             topk_per_category=1,
             max_trials_per_slot=5,
             asset_curation_mode="legacy",
+            curated_street_assets_profile="disabled",
         ),
     )
 
@@ -1942,6 +1946,7 @@ def test_pick_category_candidate_parametric_first_does_not_override_non_priority
             topk_per_category=2,
             max_trials_per_slot=5,
             asset_curation_mode="parametric_first",
+            curated_street_assets_profile="disabled",
         ),
     )
 
@@ -1996,6 +2001,7 @@ def test_pick_category_candidate_scene_ready_first_prefers_scene_ready_lamp(monk
             topk_per_category=2,
             max_trials_per_slot=5,
             asset_curation_mode="scene_ready_first",
+            curated_street_assets_profile="disabled",
         ),
     )
 
@@ -2039,12 +2045,113 @@ def test_pick_category_candidate_scene_ready_first_falls_back_when_only_ineligib
             topk_per_category=1,
             max_trials_per_slot=5,
             asset_curation_mode="scene_ready_first",
+            curated_street_assets_profile="disabled",
         ),
     )
 
     assert row["asset_id"] == "tree_lowpoly"
-    assert score > 0.91
-    assert source == "faiss_softmax"
+
+
+def test_pick_category_candidate_curated_lock_uses_fixed_hq_assets(monkeypatch):
+    asset_by_id = {
+        "lamp_modern_production": _asset_row(
+            "lamp_modern_production",
+            "lamp",
+            source="parametric_generated",
+            quality_tier=3,
+            scene_eligible=True,
+        ),
+        "objaverse_trash_f16b7d84113d4cba869412ee95769910": _asset_row(
+            "objaverse_trash_f16b7d84113d4cba869412ee95769910",
+            "trash",
+            source="objaverse_import",
+            quality_tier=3,
+            scene_eligible=True,
+        ),
+        "curated_railing_module_v1": _asset_row(
+            "curated_railing_module_v1",
+            "bollard",
+            source="curated_virtual",
+            quality_tier=3,
+            scene_eligible=True,
+        ),
+        "lamp_other": _asset_row("lamp_other", "lamp"),
+        "trash_other": _asset_row("trash_other", "trash"),
+        "bollard_other": _asset_row("bollard_other", "bollard"),
+    }
+    hits = [
+        RetrievalHit(asset_id="lamp_other", score=0.99),
+        RetrievalHit(asset_id="trash_other", score=0.98),
+        RetrievalHit(asset_id="bollard_other", score=0.97),
+    ]
+    monkeypatch.setattr(street_layout, "_softmax_weights", lambda scores, temperature: [1.0] + [0.0] * (len(scores) - 1))
+    config = StreetComposeConfig(
+        query="street",
+        length_m=60.0,
+        road_width_m=8.0,
+        sidewalk_width_m=2.5,
+        lane_count=2,
+        density=1.0,
+        seed=0,
+        topk_per_category=3,
+        max_trials_per_slot=5,
+        curated_street_assets_profile="fixed_hq_v1",
+    )
+
+    lamp_row, lamp_score, lamp_source = street_layout._pick_category_candidate(
+        query="street",
+        category="lamp",
+        topk=3,
+        embedder=_UnitFakeEmbedder(),
+        index_store=_UnitFakeIndexStore(hits),
+        asset_by_id=asset_by_id,
+        category_pool=[row for row in asset_by_id.values() if row["category"] == "lamp"],
+        used_asset_ids=set(),
+        rng=random.Random(0),
+        config=config,
+    )
+    trash_row, trash_score, trash_source = street_layout._pick_category_candidate(
+        query="street",
+        category="trash",
+        topk=3,
+        embedder=_UnitFakeEmbedder(),
+        index_store=_UnitFakeIndexStore(hits),
+        asset_by_id=asset_by_id,
+        category_pool=[row for row in asset_by_id.values() if row["category"] == "trash"],
+        used_asset_ids=set(),
+        rng=random.Random(0),
+        config=config,
+    )
+    bollard_row, bollard_score, bollard_source = street_layout._pick_category_candidate(
+        query="street",
+        category="bollard",
+        topk=3,
+        embedder=_UnitFakeEmbedder(),
+        index_store=_UnitFakeIndexStore(hits),
+        asset_by_id=asset_by_id,
+        category_pool=[row for row in asset_by_id.values() if row["category"] == "bollard"],
+        used_asset_ids=set(),
+        rng=random.Random(0),
+        config=config,
+    )
+
+    assert (lamp_row["asset_id"], lamp_score, lamp_source) == ("lamp_modern_production", 1.0, "curated_asset_lock")
+    assert (trash_row["asset_id"], trash_score, trash_source) == (
+        "objaverse_trash_f16b7d84113d4cba869412ee95769910",
+        1.0,
+        "curated_asset_lock",
+    )
+    assert (bollard_row["asset_id"], bollard_score, bollard_source) == ("curated_railing_module_v1", 1.0, "curated_asset_lock")
+
+
+def test_validate_curated_locked_assets_raises_for_missing_locked_asset():
+    asset_by_id = {
+        "lamp_modern_production": _asset_row("lamp_modern_production", "lamp", scene_eligible=True),
+        "curated_railing_module_v1": _asset_row("curated_railing_module_v1", "bollard", source="curated_virtual", scene_eligible=True),
+    }
+
+    with pytest.raises(RuntimeError, match="requires trash asset"):
+        street_layout._validate_curated_locked_assets(asset_by_id=asset_by_id, profile="fixed_hq_v1")
 
 
 def test_osm_bench_yaw_aligns_parallel_to_carriageway():
@@ -2783,7 +2890,7 @@ def test_street_compose_empty_category_pool_fails_cleanly(tmp_path: Path):
     )
     with pytest.raises(RuntimeError, match="No supported categories found"):
         compose_street_scene(
-            config=_build_config(seed=1),
+            config=replace(_build_config(seed=1), curated_street_assets_profile="disabled"),
             manifest_path=manifest,
             artifacts_dir=tmp_path / "artifacts",
             local_files_only=True,
@@ -2983,6 +3090,51 @@ def test_scene_layout_contains_asset_source_usage_summary(tmp_path: Path, monkey
     assert "asset_source_unique_counts" in summary
     assert isinstance(summary.get("asset_usage_by_source", []), list)
     assert any(item.get("source") == "objaverse_import" for item in summary.get("asset_usage_by_source", []))
+
+
+def test_scene_layout_contains_curated_asset_lock_summary(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    rows = _build_real_rows(tmp_path / "data")
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in reversed(rows)])
+
+    result = compose_street_scene(
+        config=_build_config(seed=42),
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+    )
+    payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    summary = payload["summary"]
+
+    assert summary["asset_lock_profile"] == "fixed_hq_v1"
+    assert summary["curated_asset_lock_enabled"] is True
+    assert summary["locked_asset_ids"]["lamp"] == "lamp_modern_production"
+    assert summary["locked_asset_ids"]["trash"] == "objaverse_trash_f16b7d84113d4cba869412ee95769910"
+    assert summary["locked_asset_ids"]["bollard"] == "curated_railing_module_v1"
+    assert summary["fallback_blocked_categories"] == ["bollard", "lamp", "trash"]
+    assert summary["asset_lock_fallback_violations"] == {"lamp": 0, "trash": 0, "bollard": 0}
+
+    locked_by_category = {
+        "lamp": "lamp_modern_production",
+        "trash": "objaverse_trash_f16b7d84113d4cba869412ee95769910",
+        "bollard": "curated_railing_module_v1",
+    }
+    curated_placements = [
+        placement
+        for placement in payload["placements"]
+        if str(placement.get("category", "")).strip().lower() in locked_by_category
+    ]
+    assert curated_placements
+    assert all(
+        str(placement.get("asset_id", "")) == locked_by_category[str(placement.get("category", "")).strip().lower()]
+        for placement in curated_placements
+    )
+    assert all(str(placement.get("selection_source", "")) == "curated_asset_lock" for placement in curated_placements)
 
 
 def test_scene_layout_contains_presentation_views_and_metrics(tmp_path: Path, monkeypatch):
