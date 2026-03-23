@@ -48,6 +48,42 @@ type GenerationResponse = {
   viewer_url: string;
 };
 
+type SceneJobCreateResponse = {
+  job_id: string;
+  status: string;
+  created_at: string;
+};
+
+type SceneJobStatusResponse = {
+  job_id: string;
+  status: string;
+  created_at: string;
+  started_at: string;
+  finished_at: string;
+  error: string;
+  result: GenerationResponse | null;
+};
+
+type SceneRecord = {
+  job_id: string;
+  status: string;
+  created_at: string;
+  finished_at: string;
+  scene_layout_path: string;
+  scene_glb_path: string;
+  scene_ply_path: string;
+  viewer_url: string;
+  summary: Record<string, unknown>;
+};
+
+type SceneJobListResponse = {
+  items: SceneJobStatusResponse[];
+};
+
+type SceneRecentResponse = {
+  items: SceneRecord[];
+};
+
 type FieldConfig = {
   key: string;
   label: string;
@@ -57,9 +93,17 @@ type FieldConfig = {
 
 const API_BASE = (import.meta.env.VITE_ROADGEN_API_BASE as string | undefined) || "http://127.0.0.1:8010";
 const VIEWER_BASE = (import.meta.env.VITE_ROADGEN_VIEWER_BASE as string | undefined) || "http://127.0.0.1:4173";
+const POLL_INTERVAL_MS = 1200;
+const TERMINAL_JOB_STATES = new Set(["succeeded", "failed"]);
+
 const FIELD_CONFIGS: FieldConfig[] = [
   { key: "query", label: "Scene Query", type: "text" },
-  { key: "design_rule_profile", label: "Rule Profile", type: "select", options: ["balanced_complete_street_v1", "pedestrian_priority_v1", "transit_priority_v1"] },
+  {
+    key: "design_rule_profile",
+    label: "Rule Profile",
+    type: "select",
+    options: ["balanced_complete_street_v1", "pedestrian_priority_v1", "transit_priority_v1"],
+  },
   { key: "target_street_type", label: "Street Type", type: "text" },
   { key: "objective_profile", label: "Objective", type: "select", options: ["balanced", "greening", "commerce", "transit"] },
   { key: "city_context", label: "City Context", type: "text" },
@@ -79,6 +123,8 @@ export function mountWorkbench(app: HTMLDivElement): void {
     messages: [] as ChatMessage[],
     lastDraft: null as DraftResponse | null,
     lastGeneration: null as GenerationResponse | null,
+    currentJob: null as SceneJobStatusResponse | null,
+    recentScenes: [] as SceneRecord[],
   };
 
   app.innerHTML = `
@@ -86,13 +132,13 @@ export function mountWorkbench(app: HTMLDivElement): void {
       <section class="hero">
         <h1>RoadGen3D Street Workbench</h1>
         <p>
-          生成工作台和 3D viewer 分开运行。这里负责对话、RAG、参数确认和生成触发；空间浏览与漫游交给独立 viewer。
+          生成工作台和 3D viewer 分开运行。这里负责对话、RAG、参数确认和任务触发；空间浏览与漫游交给独立 viewer。
         </p>
         <div class="hero-grid">
           <div class="hero-chip">1. Intent Clarification</div>
           <div class="hero-chip">2. PDF RAG Evidence</div>
           <div class="hero-chip">3. Parameter Confirmation</div>
-          <div class="hero-chip">4. Generate</div>
+          <div class="hero-chip">4. Scene Job</div>
         </div>
         <div class="hero-actions">
           <a class="hero-link" href="${escapeHtml(VIEWER_BASE)}" target="_blank" rel="noreferrer">Open Standalone Viewer</a>
@@ -142,17 +188,17 @@ export function mountWorkbench(app: HTMLDivElement): void {
               <div id="draft-summary" class="summary-box">等待设计草案。</div>
               <div id="parameter-form" class="form-grid"></div>
               <div class="actions">
-                <button id="generate-btn" class="btn primary" disabled>确认参数并生成街道</button>
+                <button id="generate-btn" class="btn primary" disabled>确认参数并创建生成任务</button>
               </div>
             </div>
           </section>
 
           <section class="panel">
             <div class="panel-head">
-              <h2>Generation Result</h2>
+              <h2>Scene Jobs</h2>
             </div>
             <div class="panel-body">
-              <div id="generation-result" class="result-box">尚未触发生成。</div>
+              <div id="generation-result" class="result-box">尚未触发生成任务。</div>
             </div>
           </section>
         </div>
@@ -174,6 +220,8 @@ export function mountWorkbench(app: HTMLDivElement): void {
 
   renderTimeline();
   renderParameterForm({});
+  renderJobPanel();
+  void bootstrap();
 
   draftBtn.addEventListener("click", async () => {
     const prompt = promptInput.value.trim();
@@ -194,10 +242,12 @@ export function mountWorkbench(app: HTMLDivElement): void {
       state.messages.push({ role: "assistant", content: payload.draft.design_summary });
       state.lastDraft = payload;
       state.lastGeneration = null;
+      state.currentJob = null;
       promptInput.value = "";
       renderTimeline();
       renderDraft(payload);
-      setStatus(payload.warnings.length ? payload.warnings.join("\n") : "设计草案已生成，请确认参数后再触发生成。");
+      renderJobPanel();
+      setStatus(payload.warnings.length ? payload.warnings.join("\n") : "设计草案已生成，请确认参数后创建生成任务。");
     } catch (error) {
       setStatus(asErrorMessage(error));
     } finally {
@@ -224,23 +274,81 @@ export function mountWorkbench(app: HTMLDivElement): void {
       return;
     }
     generateBtn.disabled = true;
-    setStatus("正在调用现有场景生成链路...");
+    setStatus("正在创建场景生成任务...");
     try {
       const draft = buildDraftFromForm(state.lastDraft.draft, parameterForm);
-      const payload = await postJson<GenerationResponse>("/api/design/generate", {
+      const created = await postJson<SceneJobCreateResponse>("/api/scene/jobs", {
         draft,
         patch_overrides: {},
         generation_options: {},
       });
-      state.lastGeneration = payload;
-      renderGeneration(payload);
-      setStatus("生成完成，可以在独立 viewer 中查看结果。");
+      state.currentJob = {
+        job_id: created.job_id,
+        status: created.status,
+        created_at: created.created_at,
+        started_at: "",
+        finished_at: "",
+        error: "",
+        result: null,
+      };
+      renderJobPanel();
+      setStatus("任务已入队，正在轮询生成状态...");
+      await pollSceneJob(created.job_id);
     } catch (error) {
       setStatus(asErrorMessage(error));
-    } finally {
       generateBtn.disabled = false;
     }
   });
+
+  async function bootstrap(): Promise<void> {
+    try {
+      await refreshRecentScenes();
+      const jobs = await getJson<SceneJobListResponse>("/api/scene/jobs");
+      if (jobs.items.length) {
+        state.currentJob = jobs.items[0];
+        if (state.currentJob.result) {
+          state.lastGeneration = state.currentJob.result;
+        }
+        renderJobPanel();
+        if (!TERMINAL_JOB_STATES.has(state.currentJob.status)) {
+          generateBtn.disabled = true;
+          setStatus("检测到未完成任务，继续同步状态...");
+          await pollSceneJob(state.currentJob.job_id);
+          return;
+        }
+      }
+    } catch (_error) {
+      // Workbench should still render even if the API is not up yet.
+    }
+  }
+
+  async function pollSceneJob(jobId: string): Promise<void> {
+    while (true) {
+      const payload = await getJson<SceneJobStatusResponse>(`/api/scene/jobs/${jobId}`);
+      state.currentJob = payload;
+      if (payload.result) {
+        state.lastGeneration = payload.result;
+      }
+      renderJobPanel();
+      if (TERMINAL_JOB_STATES.has(payload.status)) {
+        generateBtn.disabled = false;
+        if (payload.status === "succeeded" && payload.result) {
+          await refreshRecentScenes();
+          setStatus("生成完成，可以在独立 viewer 中查看结果。");
+        } else {
+          setStatus(payload.error || "生成任务失败。");
+        }
+        return;
+      }
+      await sleep(POLL_INTERVAL_MS);
+    }
+  }
+
+  async function refreshRecentScenes(): Promise<void> {
+    const payload = await getJson<SceneRecentResponse>("/api/scenes/recent");
+    state.recentScenes = payload.items;
+    renderJobPanel();
+  }
 
   function renderDraft(payload: DraftResponse): void {
     generateBtn.disabled = false;
@@ -248,7 +356,6 @@ export function mountWorkbench(app: HTMLDivElement): void {
     renderEvidence(payload.evidence, payload.draft.citations_by_field);
     renderParameterForm(payload.draft.compose_config_patch, payload.draft.citations_by_field);
     draftSummary.textContent = formatDraftSummary(payload.draft);
-    generationResult.textContent = "尚未触发生成。";
   }
 
   function renderIntent(intent: DesignIntent): void {
@@ -328,7 +435,74 @@ export function mountWorkbench(app: HTMLDivElement): void {
     }).join("");
   }
 
-  function renderGeneration(result: GenerationResponse): void {
+  function renderJobPanel(): void {
+    const currentJob = state.currentJob;
+    const currentJobHtml = currentJob
+      ? `
+          <div class="result-section">
+            <div class="result-head">
+              <strong>Current Job</strong>
+              <span class="status-pill ${escapeHtml(currentJob.status)}">${escapeHtml(currentJob.status)}</span>
+            </div>
+            <div class="field-note">job_id: <span class="mono">${escapeHtml(currentJob.job_id)}</span></div>
+            <div class="field-note">created: ${escapeHtml(formatTimestamp(currentJob.created_at))}</div>
+            ${currentJob.started_at ? `<div class="field-note">started: ${escapeHtml(formatTimestamp(currentJob.started_at))}</div>` : ""}
+            ${currentJob.finished_at ? `<div class="field-note">finished: ${escapeHtml(formatTimestamp(currentJob.finished_at))}</div>` : ""}
+            ${currentJob.error ? `<div class="summary-box">Error: ${escapeHtml(currentJob.error)}</div>` : ""}
+            ${currentJob.result ? renderGenerationCard(currentJob.result) : `<div class="field-note">等待生成结果...</div>`}
+          </div>
+        `
+      : `<div class="result-section"><strong>Current Job</strong><div class="field-note">尚未创建生成任务。</div></div>`;
+
+    const recentScenesHtml = state.recentScenes.length
+      ? state.recentScenes
+          .map((item) => {
+            const viewerHref = item.viewer_url || VIEWER_BASE;
+            const summary = JSON.stringify(item.summary || {}, null, 2);
+            return `
+              <article class="scene-card">
+                <div class="result-head">
+                  <strong>${escapeHtml(item.job_id.slice(0, 10))}</strong>
+                  <span class="status-pill ${escapeHtml(item.status)}">${escapeHtml(item.status)}</span>
+                </div>
+                <div class="field-note">finished: ${escapeHtml(formatTimestamp(item.finished_at || item.created_at))}</div>
+                <div class="actions">
+                  <a class="hero-link scene-link" href="${escapeHtml(viewerHref)}" target="_blank" rel="noreferrer">Open Viewer</a>
+                </div>
+                ${item.scene_layout_path ? `<div class="mono">layout: ${escapeHtml(item.scene_layout_path)}</div>` : ""}
+                <pre class="mono scene-summary">${escapeHtml(summary)}</pre>
+              </article>
+            `;
+          })
+          .join("")
+      : `<div class="field-note">还没有成功生成的场景。</div>`;
+
+    generationResult.innerHTML = `
+      ${currentJobHtml}
+      <div class="result-section">
+        <div class="result-head">
+          <strong>Recent Scenes</strong>
+          <button id="refresh-scenes-btn" class="btn secondary" type="button">刷新</button>
+        </div>
+        <div class="scene-list">${recentScenesHtml}</div>
+      </div>
+    `;
+
+    const refreshBtn = generationResult.querySelector<HTMLButtonElement>("#refresh-scenes-btn");
+    refreshBtn?.addEventListener("click", async () => {
+      refreshBtn.disabled = true;
+      try {
+        await refreshRecentScenes();
+        setStatus("最近场景列表已刷新。");
+      } catch (error) {
+        setStatus(asErrorMessage(error));
+      } finally {
+        refreshBtn.disabled = false;
+      }
+    });
+  }
+
+  function renderGenerationCard(result: GenerationResponse): string {
     const viewerHref = result.viewer_url || VIEWER_BASE;
     const links = [
       `<div><a href="${escapeHtml(viewerHref)}" target="_blank" rel="noreferrer">Open Viewer</a></div>`,
@@ -337,10 +511,12 @@ export function mountWorkbench(app: HTMLDivElement): void {
     ]
       .filter(Boolean)
       .join("");
-    generationResult.innerHTML = `
-      <div><strong>Summary</strong></div>
-      <pre class="mono">${escapeHtml(JSON.stringify(result.summary, null, 2))}</pre>
-      ${links}
+    return `
+      <div class="summary-box">
+        <div><strong>Summary</strong></div>
+        <pre class="mono scene-summary">${escapeHtml(JSON.stringify(result.summary, null, 2))}</pre>
+        ${links}
+      </div>
     `;
   }
 
@@ -412,11 +588,37 @@ async function postJson<T>(path: string, payload: unknown): Promise<T> {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
+  return handleJsonResponse<T>(response);
+}
+
+async function getJson<T>(path: string): Promise<T> {
+  const response = await fetch(`${API_BASE}${path}`);
+  return handleJsonResponse<T>(response);
+}
+
+async function handleJsonResponse<T>(response: Response): Promise<T> {
   if (!response.ok) {
     const text = await response.text();
     throw new Error(text || `Request failed with status ${response.status}`);
   }
   return (await response.json()) as T;
+}
+
+function formatTimestamp(value: string): string {
+  if (!value) {
+    return "";
+  }
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return value;
+  }
+  return date.toLocaleString();
+}
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => {
+    window.setTimeout(resolve, ms);
+  });
 }
 
 function escapeHtml(text: string): string {

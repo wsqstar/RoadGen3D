@@ -87,6 +87,12 @@ from .scene_textures import (
     create_scene_texture_tracker,
     scene_texture_pack_name,
 )
+from .services.scene_backends import (
+    GroundMaterialBackend,
+    ObjectAssetBackend,
+    SkyBackend,
+    collect_environment_source_datasets,
+)
 from .spatial_viz import (
     plot_poi_exclusion_overview,
     plot_zoning_grid_preview as plot_zoning_grid_preview_2d,
@@ -1483,6 +1489,7 @@ def _build_base_scene(
     roughness: Optional[Dict[str, float]] = None,
     texture_mode: str = "topdown_tiles_v1",
     texture_tracker=None,
+    texture_overrides: Mapping[str, str] | None = None,
 ):
     trimesh = _require_trimesh()
     scene = trimesh.Scene()
@@ -1499,6 +1506,7 @@ def _build_base_scene(
         roughness=(roughness or {}).get("context_ground", 0.85),
         texture_mode=texture_mode,
         texture_tracker=texture_tracker,
+        texture_overrides=texture_overrides,
     )
     scene.add_geometry(context_ground, node_name="context_ground")
 
@@ -1513,6 +1521,7 @@ def _build_base_scene(
         roughness=(roughness or {}).get("carriageway", 0.95),
         texture_mode=texture_mode,
         texture_tracker=texture_tracker,
+        texture_overrides=texture_overrides,
     )
     scene.add_geometry(road, node_name="road_slab")
 
@@ -1551,6 +1560,7 @@ def _build_base_scene(
                 roughness=(roughness or {}).get(r_key, 0.70),
                 texture_mode=texture_mode,
                 texture_tracker=texture_tracker,
+                texture_overrides=texture_overrides,
             )
             scene.add_geometry(slab, node_name=f"sidewalk_{getattr(band, 'name', 'band')}")
     else:
@@ -1564,6 +1574,7 @@ def _build_base_scene(
                 roughness=(roughness or {}).get("sidewalk", 0.70),
                 texture_mode=texture_mode,
                 texture_tracker=texture_tracker,
+                texture_overrides=texture_overrides,
             )
             scene.add_geometry(sidewalk_left, node_name="sidewalk_left")
 
@@ -1577,6 +1588,7 @@ def _build_base_scene(
                 roughness=(roughness or {}).get("sidewalk", 0.70),
                 texture_mode=texture_mode,
                 texture_tracker=texture_tracker,
+                texture_overrides=texture_overrides,
             )
             scene.add_geometry(sidewalk_right, node_name="sidewalk_right")
 
@@ -1594,6 +1606,7 @@ def _build_base_scene(
             roughness=(roughness or {}).get("curb", 0.40),
             texture_mode=texture_mode,
             texture_tracker=texture_tracker,
+            texture_overrides=texture_overrides,
         )
         scene.add_geometry(curb, node_name=f"curb_{side_name}")
 
@@ -1611,6 +1624,7 @@ def _build_base_scene(
         roughness=(roughness or {}).get("lane_mark", 0.30),
         texture_mode=texture_mode,
         texture_tracker=texture_tracker,
+        texture_overrides=texture_overrides,
     )
 
     return scene
@@ -1652,6 +1666,7 @@ def _apply_surface_finish(
     roughness: float,
     texture_mode: str,
     texture_tracker=None,
+    texture_overrides: Mapping[str, str] | None = None,
 ):
     return apply_default_scene_texture(
         mesh,
@@ -1660,6 +1675,7 @@ def _apply_surface_finish(
         roughness=float(roughness),
         texture_mode=str(texture_mode),
         tracker=texture_tracker,
+        texture_overrides=texture_overrides,
     )
 
 
@@ -1749,6 +1765,7 @@ def _add_road_box(
     roughness: float = 0.7,
     texture_mode: str = "topdown_tiles_v1",
     texture_tracker=None,
+    texture_overrides: Mapping[str, str] | None = None,
 ) -> None:
     trimesh = _require_trimesh()
     mesh = trimesh.creation.box(extents=(float(length_m), float(height_m), float(width_m)))
@@ -1761,6 +1778,7 @@ def _add_road_box(
         roughness=float(roughness),
         texture_mode=texture_mode,
         texture_tracker=texture_tracker,
+        texture_overrides=texture_overrides,
     )
     scene.add_geometry(mesh, node_name=node_name)
 
@@ -1785,6 +1803,7 @@ def _add_centerline_markings(
     roughness: float,
     texture_mode: str = "topdown_tiles_v1",
     texture_tracker=None,
+    texture_overrides: Mapping[str, str] | None = None,
 ) -> None:
     if not _should_render_centerline_marking(
         carriageway_width_m=float(road_width_m),
@@ -1818,6 +1837,7 @@ def _add_centerline_markings(
                 roughness=roughness,
                 texture_mode=texture_mode,
                 texture_tracker=texture_tracker,
+                texture_overrides=texture_overrides,
             )
             dash_idx += 1
             dash_distance += dash_length_m + dash_gap_m
@@ -1842,6 +1862,7 @@ def _add_centerline_markings(
             roughness=roughness,
             texture_mode=texture_mode,
             texture_tracker=texture_tracker,
+            texture_overrides=texture_overrides,
         )
         dash_idx += 1
         dash_x += dash_length_m + dash_gap_m
@@ -1857,6 +1878,7 @@ def _add_beauty_scene_proxies(
     placements: List[StreetPlacement],
     texture_mode: str = "topdown_tiles_v1",
     texture_tracker=None,
+    texture_overrides: Mapping[str, str] | None = None,
 ) -> None:
     colors = style_palette(getattr(config, "style_preset", None))
     rough = surface_roughness(getattr(config, "style_preset", None))
@@ -1897,6 +1919,7 @@ def _add_beauty_scene_proxies(
                         roughness=rough.get("lane_mark", 0.30),
                         texture_mode=texture_mode,
                         texture_tracker=texture_tracker,
+                        texture_overrides=texture_overrides,
                     )
                 dash_idx += 1
                 dash_x += dash_length_m + dash_gap_m
@@ -1923,6 +1946,7 @@ def _add_beauty_scene_proxies(
                 roughness=rough.get("crossing", 0.35),
                 texture_mode=texture_mode,
                 texture_tracker=texture_tracker,
+                texture_overrides=texture_overrides,
             )
 
     for idx, placement in enumerate(placements):
@@ -1946,6 +1970,7 @@ def _add_beauty_scene_proxies(
                 roughness=rough.get("tree_pit", 0.90),
                 texture_mode=texture_mode,
                 texture_tracker=texture_tracker,
+                texture_overrides=texture_overrides,
             )
         elif placement.category == "bus_stop":
             _add_road_box(
@@ -1965,6 +1990,7 @@ def _add_beauty_scene_proxies(
                 roughness=rough.get("transit_pad", 0.50),
                 texture_mode=texture_mode,
                 texture_tracker=texture_tracker,
+                texture_overrides=texture_overrides,
             )
 
 
@@ -2160,6 +2186,7 @@ def _stage_scene_base(
     palette: Mapping[str, Tuple[int, int, int, int]],
     roughness: Optional[Dict[str, float]] = None,
     texture_tracker=None,
+    texture_overrides: Mapping[str, str] | None = None,
 ):
     if config.layout_mode == "osm" and placement_ctx is not None:
         return _build_osm_base_scene(
@@ -2168,6 +2195,7 @@ def _stage_scene_base(
             roughness=roughness,
             texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
             texture_tracker=texture_tracker,
+            texture_overrides=texture_overrides,
         )
     left_side_width = sum(float(band.width_m) for band in resolved_program.bands if band.side == "left")
     right_side_width = sum(float(band.width_m) for band in resolved_program.bands if band.side == "right")
@@ -2181,6 +2209,7 @@ def _stage_scene_base(
         roughness=roughness,
         texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
         texture_tracker=texture_tracker,
+        texture_overrides=texture_overrides,
     )
 
 
@@ -2196,6 +2225,7 @@ def _add_polygon_slab(
     texture_mode: str,
     node_name: str,
     texture_tracker=None,
+    texture_overrides: Mapping[str, str] | None = None,
 ) -> None:
     if len(polygon_xz) < 3:
         return
@@ -2223,6 +2253,7 @@ def _add_polygon_slab(
                 roughness=float(roughness),
                 texture_mode=texture_mode,
                 texture_tracker=texture_tracker,
+                texture_overrides=texture_overrides,
             )
             scene.add_geometry(mesh, node_name=node_name)
             return
@@ -2251,6 +2282,7 @@ def _add_polygon_slab(
         roughness=float(roughness),
         texture_mode=texture_mode,
         texture_tracker=texture_tracker,
+        texture_overrides=texture_overrides,
     )
     scene.add_geometry(mesh, node_name=node_name)
 
@@ -2293,6 +2325,7 @@ def _add_zoning_proxies(
     roughness: Optional[Dict[str, float]] = None,
     texture_mode: str = "topdown_tiles_v1",
     texture_tracker=None,
+    texture_overrides: Mapping[str, str] | None = None,
 ) -> None:
     for idx, cell in enumerate(zoning_grid):
         polygon_xz = cell.get("polygon_xz", []) or []
@@ -2310,6 +2343,7 @@ def _add_zoning_proxies(
             texture_mode=texture_mode,
             node_name=f"zoning_proxy_{idx:03d}",
             texture_tracker=texture_tracker,
+            texture_overrides=texture_overrides,
         )
 
 
@@ -2386,6 +2420,7 @@ def _build_production_steps(
     palette: Mapping[str, Tuple[int, int, int, int]],
     osm_geometry: Mapping[str, object] | None,
     overall_texture_tracker=None,
+    texture_overrides: Mapping[str, str] | None = None,
 ) -> Tuple[ProductionStepRecord, ...]:
     step_dir = (out_dir / "production_steps").resolve()
     step_dir.mkdir(parents=True, exist_ok=True)
@@ -2461,6 +2496,7 @@ def _build_production_steps(
             palette=palette,
             roughness=rough,
             texture_tracker=step_texture_tracker,
+            texture_overrides=texture_overrides,
         )
         _add_beauty_scene_proxies(
             scene,
@@ -2471,6 +2507,7 @@ def _build_production_steps(
             placements=list(visible_placements),
             texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
             texture_tracker=step_texture_tracker,
+            texture_overrides=texture_overrides,
         )
         if include_zoning:
             _add_zoning_proxies(
@@ -2479,6 +2516,7 @@ def _build_production_steps(
                 roughness=rough,
                 texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
                 texture_tracker=step_texture_tracker,
+                texture_overrides=texture_overrides,
             )
         if visible_placements:
             _add_instance_meshes(
@@ -2630,6 +2668,7 @@ def _build_osm_base_scene(
     roughness: Optional[Dict[str, float]] = None,
     texture_mode: str = "topdown_tiles_v1",
     texture_tracker=None,
+    texture_overrides: Mapping[str, str] | None = None,
 ):
     """Build a trimesh Scene with carriageway + sidewalk extruded slabs from OSM geometry."""
     trimesh = _require_trimesh()
@@ -2672,6 +2711,7 @@ def _build_osm_base_scene(
             roughness=(roughness or {}).get("context_ground", 0.85),
             texture_mode=texture_mode,
             texture_tracker=texture_tracker,
+            texture_overrides=texture_overrides,
         )
         scene.add_geometry(ground, node_name="context_ground")
 
@@ -2719,6 +2759,7 @@ def _build_osm_base_scene(
                     roughness=(roughness or {}).get(roughness_key or surface_role or "sidewalk", 0.9),
                     texture_mode=texture_mode,
                     texture_tracker=texture_tracker,
+                    texture_overrides=texture_overrides,
                 )
                 scene.add_geometry(mesh, node_name=f"{name_prefix}_{idx}")
             except (ValueError, RuntimeError, IndexError):
@@ -2778,6 +2819,7 @@ def _build_osm_base_scene(
         roughness=(roughness or {}).get("lane_mark", 0.30),
         texture_mode=texture_mode,
         texture_tracker=texture_tracker,
+        texture_overrides=texture_overrides,
     )
 
     return scene
@@ -4246,6 +4288,9 @@ def compose_street_scene(
     policy_ckpt: Optional[Path] = None,
     program_ckpt: Optional[Path] = None,
     policy_temperature: float = SOFTMAX_TEMPERATURE,
+    object_asset_backend: ObjectAssetBackend | None = None,
+    ground_material_backend: GroundMaterialBackend | None = None,
+    sky_backend: SkyBackend | None = None,
 ) -> StreetComposeResult:
     """
     Compose a street scene by category-aware retrieval and collision-aware placement.
@@ -4263,7 +4308,30 @@ def compose_street_scene(
     if policy_mode not in {"rule", "learned"}:
         raise ValueError("placement_policy must be 'rule' or 'learned'")
 
-    rows = _load_real_manifest(manifest_path)
+    object_backend_name = "manifest_legacy"
+    if object_asset_backend is not None:
+        object_backend_name, rows = object_asset_backend.load_rows(manifest_path=manifest_path)
+    else:
+        rows = _load_real_manifest(manifest_path)
+    ground_selection = None
+    if ground_material_backend is not None:
+        try:
+            ground_selection = ground_material_backend.select_for_config(config)
+        except Exception as exc:
+            logger.warning("Ground material backend selection failed: %s", exc)
+    sky_selection = None
+    if sky_backend is not None:
+        try:
+            sky_selection = sky_backend.select_for_config(config)
+        except Exception as exc:
+            logger.warning("Sky backend selection failed: %s", exc)
+    texture_overrides = dict(ground_selection.texture_overrides) if ground_selection is not None else {}
+    environment_source_datasets = collect_environment_source_datasets(ground_selection, sky_selection)
+    environment_source_dataset = ""
+    if len(environment_source_datasets) == 1:
+        environment_source_dataset = environment_source_datasets[0]
+    elif environment_source_datasets:
+        environment_source_dataset = "mixed"
     mesh_cache = _load_mesh_cache(rows)
     curated_asset_profile = _normalize_curated_street_assets_profile(
         getattr(config, "curated_street_assets_profile", "fixed_hq_v1")
@@ -5759,6 +5827,7 @@ def compose_street_scene(
             roughness=rough,
             texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
             texture_tracker=scene_texture_tracker,
+            texture_overrides=texture_overrides,
         )
     else:
         left_side_width = sum(float(band.width_m) for band in resolved_program.bands if band.side == "left")
@@ -5773,6 +5842,7 @@ def compose_street_scene(
             roughness=rough,
             texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
             texture_tracker=scene_texture_tracker,
+            texture_overrides=texture_overrides,
         )
     _add_beauty_scene_proxies(
         scene,
@@ -5783,6 +5853,7 @@ def compose_street_scene(
         placements=placements,
         texture_mode=str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")),
         texture_tracker=scene_texture_tracker,
+        texture_overrides=texture_overrides,
     )
     _add_instance_meshes(
         scene=scene,
@@ -5829,6 +5900,7 @@ def compose_street_scene(
         palette=palette,
         osm_geometry=serialized_osm_geometry,
         overall_texture_tracker=scene_texture_tracker,
+        texture_overrides=texture_overrides,
     )
     production_steps_dir = (out_dir / "production_steps").resolve()
     production_steps_manifest = (production_steps_dir / "production_steps.json").resolve()
@@ -6077,6 +6149,21 @@ def compose_street_scene(
         "fallback_blocked_categories": sorted(str(category) for category in locked_asset_ids),
         "asset_lock_fallback_violations": dict(asset_lock_fallback_violations),
         "asset_scale_summary": asset_scale_summary,
+        "selected_object_backend": str(object_backend_name),
+        "selected_ground_materials": (
+            dict(ground_selection.material_ids_by_role)
+            if ground_selection is not None
+            else {}
+        ),
+        "selected_ground_material_backend": (
+            str(ground_selection.backend_name)
+            if ground_selection is not None
+            else ""
+        ),
+        "selected_sky_id": str(sky_selection.sky_id) if sky_selection is not None else "",
+        "selected_sky_backend": str(sky_selection.backend_name) if sky_selection is not None else "",
+        "environment_source_dataset": str(environment_source_dataset),
+        "environment_source_datasets": list(environment_source_datasets),
         "tree_species_policy": str(getattr(config, "tree_species_policy", "per_theme_single_species")),
         "furniture_balance_policy": str(getattr(config, "furniture_balance_policy", "overall_balanced")),
         "placement_logging_mode": str(getattr(config, "placement_logging_mode", "full_with_ui_summary")),
@@ -6325,6 +6412,11 @@ def compose_street_scene(
     layout_payload = {
         "query": config.query,
         "config": config.to_dict(),
+        "selected_object_backend": str(object_backend_name),
+        "selected_ground_materials": ground_selection.to_dict() if ground_selection is not None else {},
+        "selected_sky": sky_selection.to_dict() if sky_selection is not None else {},
+        "environment_source_dataset": str(environment_source_dataset),
+        "environment_source_datasets": list(environment_source_datasets),
         "program_generation": program_generation_payload,
         "street_program": resolved_program.to_dict(),
         "constraint_set": base_constraint_set.to_dict(),
@@ -6410,6 +6502,14 @@ def compose_street_scene(
     if placement_log_path:
         outputs["placement_decisions"] = str(placement_log_path)
     outputs["policy_used"] = policy_used
+    outputs["selected_object_backend"] = str(object_backend_name)
+    outputs["selected_ground_materials"] = (
+        json.dumps(dict(ground_selection.material_ids_by_role), ensure_ascii=True)
+        if ground_selection is not None
+        else "{}"
+    )
+    outputs["selected_sky_id"] = str(sky_selection.sky_id) if sky_selection is not None else ""
+    outputs["environment_source_dataset"] = str(environment_source_dataset)
     outputs["design_rule_profile"] = str(config.design_rule_profile)
     outputs["objective_profile"] = str(getattr(config, "objective_profile", "balanced"))
     outputs["program_cross_section_type"] = str(resolved_program.cross_section_type)

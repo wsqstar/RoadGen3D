@@ -26,7 +26,11 @@ class _FakeLLM:
                 "style_preferences": ["all-age friendly"],
                 "safety_priorities": ["pedestrian safety"],
                 "follow_up_questions": [],
-                "rag_queries": ["sidewalk width complete streets", "bus stop placement"],
+                "rag_queries": ["步道宽度 complete streets", "公交站点设置"],
+            }
+        if self.calls == 2:
+            return {
+                "english_queries": ["sidewalk width complete streets", "bus stop placement"],
             }
         return {
             "normalized_scene_query": "walkable all-age complete street with safe sidewalks",
@@ -83,3 +87,4 @@ def test_design_assistant_service_builds_draft_bundle():
     assert bundle.draft.compose_config_patch["sidewalk_width_m"] == 4.2
     assert bundle.draft.citations_by_field["sidewalk_width_m"] == ("complete_streets_0001",)
     assert "pedestrian-priority" in bundle.draft.design_summary
+    assert service.llm_client.calls == 3

@@ -12,8 +12,16 @@ if str(ROOT) not in sys.path:
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from roadgen3d.services.design_types import DesignDraft, DesignDraftBundle, DesignIntent
-from ui.api.main import create_app
+from roadgen3d.services.design_types import (  # noqa: E402
+    DesignDraft,
+    DesignDraftBundle,
+    DesignIntent,
+    SceneGenerationResult,
+    SceneJobCreateResponse,
+    SceneJobStatusResponse,
+    SceneRecord,
+)
+from web.api.main import create_app  # noqa: E402
 
 
 class _FakeService:
@@ -44,8 +52,52 @@ class _FakeService:
             "compose_config": draft.compose_config_patch,
             "summary": {"instance_count": 5},
             "scene_layout_path": "/tmp/layout.json",
+            "scene_glb_path": "/tmp/scene.glb",
+            "scene_ply_path": "/tmp/scene.ply",
             "viewer_url": "http://127.0.0.1:4173/?layout=demo",
         }
+
+    def create_scene_job(self, draft, **kwargs):
+        return SceneJobCreateResponse(job_id="job-demo", status="queued", created_at="2026-03-23T00:00:00+00:00")
+
+    def list_scene_jobs(self, *, limit=20):
+        return [
+            SceneJobStatusResponse(
+                job_id="job-demo",
+                status="succeeded",
+                created_at="2026-03-23T00:00:00+00:00",
+                started_at="2026-03-23T00:00:01+00:00",
+                finished_at="2026-03-23T00:00:02+00:00",
+                result=SceneGenerationResult(
+                    compose_config={"sidewalk_width_m": 4.0},
+                    summary={"instance_count": 5},
+                    scene_layout_path="/tmp/layout.json",
+                    scene_glb_path="/tmp/scene.glb",
+                    scene_ply_path="/tmp/scene.ply",
+                    viewer_url="http://127.0.0.1:4173/?layout=demo",
+                ),
+            )
+        ][:limit]
+
+    def get_scene_job(self, job_id: str):
+        if job_id != "job-demo":
+            return None
+        return self.list_scene_jobs(limit=1)[0]
+
+    def list_recent_scenes(self, *, limit=20):
+        return [
+            SceneRecord(
+                job_id="job-demo",
+                status="succeeded",
+                created_at="2026-03-23T00:00:00+00:00",
+                finished_at="2026-03-23T00:00:02+00:00",
+                scene_layout_path="/tmp/layout.json",
+                scene_glb_path="/tmp/scene.glb",
+                scene_ply_path="/tmp/scene.ply",
+                viewer_url="http://127.0.0.1:4173/?layout=demo",
+                summary={"instance_count": 5},
+            )
+        ][:limit]
 
     def rebuild_knowledge(self, **kwargs):
         return {"output_dir": "/tmp/knowledge", "chunk_count": 42}
@@ -81,6 +133,33 @@ def test_design_api_endpoints_return_expected_shapes():
     )
     assert generate_response.status_code == 200
     assert generate_response.json()["viewer_url"].startswith("http://127.0.0.1:4173/")
+
+    job_create_response = client.post(
+        "/api/scene/jobs",
+        json={
+            "draft": {
+                "normalized_scene_query": "walkable street",
+                "compose_config_patch": {"sidewalk_width_m": 4.0},
+                "citations_by_field": {},
+                "design_summary": "summary",
+                "risk_notes": [],
+            }
+        },
+    )
+    assert job_create_response.status_code == 200
+    assert job_create_response.json()["status"] == "queued"
+
+    job_list_response = client.get("/api/scene/jobs")
+    assert job_list_response.status_code == 200
+    assert job_list_response.json()["items"][0]["status"] == "succeeded"
+
+    job_status_response = client.get("/api/scene/jobs/job-demo")
+    assert job_status_response.status_code == 200
+    assert job_status_response.json()["result"]["scene_layout_path"] == "/tmp/layout.json"
+
+    recent_response = client.get("/api/scenes/recent")
+    assert recent_response.status_code == 200
+    assert recent_response.json()["items"][0]["viewer_url"].startswith("http://127.0.0.1:4173/")
 
     rebuild_response = client.post("/api/knowledge/rebuild", json={})
     assert rebuild_response.status_code == 200

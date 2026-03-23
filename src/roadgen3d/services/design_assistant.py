@@ -3,12 +3,19 @@
 from __future__ import annotations
 
 from pathlib import Path
+import re
 from typing import Any, Dict, Iterable, List, Mapping, Sequence, Tuple
 
 from ..knowledge import ClipTextEmbedderAdapter, PdfKnowledgeBaseBuilder, PdfKnowledgeBaseRetriever
 from ..knowledge.pdf_rag import KnowledgeSearchHit
-from ..llm import GLMClient, build_design_draft_messages, build_design_intent_messages
+from ..llm import (
+    GLMClient,
+    build_design_draft_messages,
+    build_design_intent_messages,
+    build_rag_query_translation_messages,
+)
 from .design_runtime import generate_scene_from_draft
+from .scene_jobs import SceneJobService
 from .design_types import (
     ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS,
     ChatMessage,
@@ -16,6 +23,9 @@ from .design_types import (
     DesignDraftBundle,
     DesignIntent,
     RagEvidence,
+    SceneJobCreateResponse,
+    SceneJobStatusResponse,
+    SceneRecord,
     sanitize_citations_by_field,
     sanitize_compose_config_patch,
 )
@@ -25,6 +35,7 @@ ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_COMPLETE_STREETS_PDF = (ROOT / "knowledge" / "book" / "Complete streets design guide.pdf").resolve()
 DEFAULT_COMPLETE_STREETS_ARTIFACT_DIR = (ROOT / "knowledge" / "complete_streets").resolve()
 DEFAULT_CLIP_MODEL_DIR = (ROOT / "models" / "clip-vit-base-patch32").resolve()
+_CJK_RE = re.compile(r"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]")
 
 
 class DesignAssistantService:
@@ -38,12 +49,14 @@ class DesignAssistantService:
         knowledge_retriever: PdfKnowledgeBaseRetriever | Any | None = None,
         default_pdf_path: Path | None = None,
         default_artifact_dir: Path | None = None,
+        scene_job_service: SceneJobService | None = None,
     ) -> None:
         self.llm_client = llm_client
         self.knowledge_builder = knowledge_builder or PdfKnowledgeBaseBuilder()
         self._knowledge_retriever = knowledge_retriever
         self.default_pdf_path = Path(default_pdf_path or DEFAULT_COMPLETE_STREETS_PDF).expanduser().resolve()
         self.default_artifact_dir = Path(default_artifact_dir or DEFAULT_COMPLETE_STREETS_ARTIFACT_DIR).expanduser().resolve()
+        self.scene_job_service = scene_job_service or SceneJobService(generator=generate_scene_from_draft)
 
     def rebuild_knowledge(
         self,
@@ -79,7 +92,12 @@ class DesignAssistantService:
         llm = self._get_llm_client()
         intent_payload = llm.chat_json(build_design_intent_messages(chat_messages, user_input))
         intent = parse_design_intent(intent_payload, fallback_query=user_input)
-        evidence = tuple(self._retrieve_evidence(intent.rag_queries or (str(user_input).strip(),), topk=topk))
+        retrieval_queries = self._prepare_retrieval_queries(
+            llm=llm,
+            intent=intent,
+            user_input=user_input,
+        )
+        evidence = tuple(self._retrieve_evidence(retrieval_queries, topk=topk))
         draft_payload = llm.chat_json(
             build_design_draft_messages(chat_messages, intent, evidence, current_patch or {})
         )
@@ -108,11 +126,33 @@ class DesignAssistantService:
         patch_overrides: Mapping[str, Any] | None = None,
         generation_options: Mapping[str, Any] | None = None,
     ) -> Dict[str, Any]:
-        return generate_scene_from_draft(
-            draft,
+        return self.scene_job_service.run_job_sync(
+            draft=draft,
             patch_overrides=patch_overrides,
             generation_options=generation_options,
         ).to_dict()
+
+    def create_scene_job(
+        self,
+        draft: DesignDraft,
+        *,
+        patch_overrides: Mapping[str, Any] | None = None,
+        generation_options: Mapping[str, Any] | None = None,
+    ) -> SceneJobCreateResponse:
+        return self.scene_job_service.submit_job(
+            draft=draft,
+            patch_overrides=patch_overrides,
+            generation_options=generation_options,
+        )
+
+    def list_scene_jobs(self, *, limit: int = 20) -> List[SceneJobStatusResponse]:
+        return self.scene_job_service.list_jobs(limit=limit)
+
+    def get_scene_job(self, job_id: str) -> SceneJobStatusResponse | None:
+        return self.scene_job_service.get_job(job_id)
+
+    def list_recent_scenes(self, *, limit: int = 20) -> List[SceneRecord]:
+        return self.scene_job_service.list_recent_scenes(limit=limit)
 
     def _get_llm_client(self) -> GLMClient | Any:
         if self.llm_client is None:
@@ -140,6 +180,33 @@ class DesignAssistantService:
                 items.append(evidence)
         items.sort(key=lambda item: float(item.score), reverse=True)
         return items[: max(1, int(topk))]
+
+    def _prepare_retrieval_queries(
+        self,
+        *,
+        llm: GLMClient | Any,
+        intent: DesignIntent,
+        user_input: str,
+    ) -> Tuple[str, ...]:
+        base_queries = tuple(
+            dict.fromkeys(
+                query_text
+                for query_text in (intent.rag_queries or (str(user_input).strip(),))
+                if str(query_text or "").strip()
+            )
+        )
+        if not base_queries:
+            return ()
+        if not any(_contains_cjk_text(query) for query in base_queries):
+            return base_queries
+        try:
+            translation_payload = llm.chat_json(build_rag_query_translation_messages(base_queries))
+        except Exception:
+            return base_queries
+        translated_queries = tuple(dict.fromkeys(_coerce_text_list(translation_payload.get("english_queries"))))
+        if not translated_queries:
+            return base_queries
+        return tuple(dict.fromkeys(translated_queries + base_queries))
 
 
 def normalize_chat_messages(messages: Sequence[Mapping[str, Any]] | Sequence[ChatMessage]) -> Tuple[ChatMessage, ...]:
@@ -244,3 +311,7 @@ def _coerce_text_list(value: object) -> List[str]:
     else:
         items = list(value)
     return [str(item).strip() for item in items if str(item).strip()]
+
+
+def _contains_cjk_text(value: str) -> bool:
+    return bool(_CJK_RE.search(str(value or "")))

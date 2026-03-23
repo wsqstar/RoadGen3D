@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from functools import lru_cache
 from pathlib import Path
-from typing import Iterable, Sequence
+from typing import Iterable, Mapping, Sequence
 
 import numpy as np
 
@@ -201,6 +201,7 @@ def apply_default_scene_texture(
     roughness: float,
     texture_mode: str,
     tracker: SceneTextureTracker | None = None,
+    texture_overrides: Mapping[str, str] | None = None,
 ):
     """Return a textured copy of *mesh* or a legacy solid-material fallback."""
 
@@ -211,7 +212,11 @@ def apply_default_scene_texture(
         return _solid_pbr_mesh(mesh, rgba=tint_rgba, roughness=roughness)
 
     trimesh = _require_trimesh()
-    texture_path = _TEXTURE_PATHS.get(str(surface_role or "").strip().lower())
+    normalized_role = str(surface_role or "").strip().lower()
+    override_path = ""
+    if texture_overrides:
+        override_path = str(texture_overrides.get(normalized_role, "") or "").strip()
+    texture_path = Path(override_path).expanduser() if override_path else _TEXTURE_PATHS.get(normalized_role)
     texture_image = _load_texture_rgba(str(texture_path)) if texture_path is not None else None
     if trimesh is None or texture_image is None:
         if tracker is not None:

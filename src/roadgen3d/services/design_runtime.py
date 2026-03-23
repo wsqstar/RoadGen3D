@@ -10,6 +10,14 @@ from ..street_layout import compose_street_scene
 from ..types import StreetComposeConfig
 from ..web_viewer_dev import build_web_viewer_url, cache_scene_layout_for_viewer
 from .design_types import DesignDraft, SceneGenerationOptions, SceneGenerationResult, sanitize_compose_config_patch
+from .scene_backends import (
+    DEFAULT_GROUND_MATERIAL_MANIFEST_PATH,
+    DEFAULT_OBJECT_MANIFEST_V2_PATH,
+    DEFAULT_SKY_MANIFEST_PATH,
+    ManifestGroundMaterialBackend,
+    ManifestObjectAssetBackend,
+    ManifestSkyBackend,
+)
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -17,6 +25,9 @@ DEFAULT_SCENE_GENERATION_OPTIONS = SceneGenerationOptions(
     manifest_path=(ROOT / "data" / "real" / "real_assets_manifest.jsonl").resolve(),
     artifacts_dir=(ROOT / "artifacts" / "real").resolve(),
     out_dir=(ROOT / "artifacts" / "real").resolve(),
+    object_manifest_v2_path=DEFAULT_OBJECT_MANIFEST_V2_PATH,
+    ground_material_manifest_path=DEFAULT_GROUND_MATERIAL_MANIFEST_PATH,
+    sky_manifest_path=DEFAULT_SKY_MANIFEST_PATH,
     model_name="openai/clip-vit-base-patch32",
     model_dir=None,
     local_files_only=False,
@@ -72,10 +83,28 @@ def normalize_scene_generation_options(
     if not overrides:
         return DEFAULT_SCENE_GENERATION_OPTIONS
     payload = dict(overrides)
+
+    def _resolve_optional_path(value: object, fallback: Path | None) -> Path | None:
+        if value in (None, ""):
+            return fallback
+        return Path(str(value)).expanduser().resolve()
+
     return SceneGenerationOptions(
         manifest_path=Path(str(payload.get("manifest_path", DEFAULT_SCENE_GENERATION_OPTIONS.manifest_path))).expanduser().resolve(),
         artifacts_dir=Path(str(payload.get("artifacts_dir", DEFAULT_SCENE_GENERATION_OPTIONS.artifacts_dir))).expanduser().resolve(),
         out_dir=Path(str(payload.get("out_dir", DEFAULT_SCENE_GENERATION_OPTIONS.out_dir))).expanduser().resolve(),
+        object_manifest_v2_path=_resolve_optional_path(
+            payload.get("object_manifest_v2_path"),
+            DEFAULT_SCENE_GENERATION_OPTIONS.object_manifest_v2_path,
+        ),
+        ground_material_manifest_path=_resolve_optional_path(
+            payload.get("ground_material_manifest_path"),
+            DEFAULT_SCENE_GENERATION_OPTIONS.ground_material_manifest_path,
+        ),
+        sky_manifest_path=_resolve_optional_path(
+            payload.get("sky_manifest_path"),
+            DEFAULT_SCENE_GENERATION_OPTIONS.sky_manifest_path,
+        ),
         model_name=str(payload.get("model_name", DEFAULT_SCENE_GENERATION_OPTIONS.model_name)),
         model_dir=(
             Path(str(payload["model_dir"])).expanduser().resolve()
@@ -114,6 +143,16 @@ def generate_scene_from_draft(
         else normalize_scene_generation_options(generation_options)
     )
     config = build_compose_config_from_draft(draft, patch_overrides=patch_overrides)
+    object_backend = ManifestObjectAssetBackend(
+        manifest_path=options.manifest_path,
+        manifest_v2_path=options.object_manifest_v2_path,
+    )
+    ground_backend = ManifestGroundMaterialBackend(
+        manifest_path=options.ground_material_manifest_path,
+    )
+    sky_backend = ManifestSkyBackend(
+        manifest_path=options.sky_manifest_path,
+    )
     result = compose_street_scene(
         config=config,
         manifest_path=options.manifest_path,
@@ -128,6 +167,9 @@ def generate_scene_from_draft(
         policy_ckpt=options.policy_ckpt,
         program_ckpt=options.program_ckpt,
         policy_temperature=float(options.policy_temperature),
+        object_asset_backend=object_backend,
+        ground_material_backend=ground_backend,
+        sky_backend=sky_backend,
     )
     scene_layout_path = str(result.outputs.get("scene_layout", "") or "")
     viewer_url = ""

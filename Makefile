@@ -9,7 +9,8 @@ UI_API_PORT := 8010
 .PHONY: dev gradio-dev ui-api workbench-api workbench-web workbench-install viewer-web viewer-install ui-web ui-install knowledge-build train collect eval help
 
 help:
-	@echo "make dev               - Launch legacy Gradio UI"
+	@echo "make dev               - Launch workbench API + workbench web + viewer web"
+	@echo "make gradio-dev        - Launch legacy Gradio UI"
 	@echo "make workbench-api     - Launch the FastAPI design assistant"
 	@echo "make workbench-web     - Launch the new Vite generation workbench"
 	@echo "make workbench-install - Install web/workbench dependencies"
@@ -22,13 +23,17 @@ help:
 	@echo "make eval      - Run M4 engineering evaluation"
 
 dev:
-	$(MAKE) gradio-dev
+	@trap 'kill 0' INT TERM EXIT; \
+	$(MAKE) workbench-api & \
+	$(MAKE) workbench-web & \
+	$(MAKE) viewer-web & \
+	wait
 
 gradio-dev:
 	$(PYTHON) scripts/m1_gradio_app.py --host 127.0.0.1 --port 7860 --inbrowser
 
 workbench-api:
-	$(PYTHON) -m uvicorn ui.api.main:app --host $(UI_API_HOST) --port $(UI_API_PORT) --reload
+	$(PYTHON) -m uvicorn web.api.main:app --host $(UI_API_HOST) --port $(UI_API_PORT) --reload
 
 ui-api: workbench-api
 

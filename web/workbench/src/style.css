@@ -322,6 +322,82 @@ select {
   font-family: var(--mono);
 }
 
+.result-box {
+  display: grid;
+  gap: 14px;
+}
+
+.result-section {
+  display: grid;
+  gap: 10px;
+}
+
+.result-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 86px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.status-pill.queued {
+  background: rgba(182, 82, 47, 0.12);
+  color: var(--accent);
+}
+
+.status-pill.running {
+  background: rgba(45, 74, 66, 0.12);
+  color: var(--forest);
+}
+
+.status-pill.succeeded {
+  background: rgba(46, 103, 61, 0.14);
+  color: #235536;
+}
+
+.status-pill.failed {
+  background: rgba(171, 44, 44, 0.12);
+  color: #982727;
+}
+
+.scene-list {
+  display: grid;
+  gap: 12px;
+}
+
+.scene-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.48);
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.scene-summary {
+  margin: 0;
+  max-height: 240px;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+.scene-link {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+}
+
 @media (max-width: 1080px) {
   .layout {
     grid-template-columns: 1fr;

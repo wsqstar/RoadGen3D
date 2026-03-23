@@ -28,13 +28,34 @@ def build_design_intent_messages(
         "`user_goals`(string[])、`style_preferences`(string[])、"
         "`safety_priorities`(string[])、`follow_up_questions`(string[])、"
         "`rag_queries`(string[])。"
-        "RAG 查询必须是适合从 complete streets 设计文档中检索规范建议的短句。"
+        "RAG 查询必须是适合从 complete streets 设计文档中检索规范建议的英文短句。"
+        "即使用户使用中文，`rag_queries` 也必须输出英文。"
         "如果用户强调步行安全、全龄友好、慢行优先等，要明确写进 safety_priorities。"
     )
     messages: list[Dict[str, str]] = [{"role": "system", "content": system_prompt}]
     messages.extend(conversation)
     messages.append({"role": "user", "content": str(user_input)})
     return messages
+
+
+def build_rag_query_translation_messages(
+    queries: Sequence[str],
+) -> list[Dict[str, str]]:
+    system_prompt = (
+        "你是 RoadGen3D 的 RAG 检索查询翻译器。"
+        "请把街道设计相关的检索短句翻译并重写成适合英文设计指南检索的英文短句。"
+        "你只能输出 JSON。"
+        "字段必须包含：`english_queries`(string[])。"
+        "保留设计意图，不要扩写成完整段落，不要输出中文。"
+    )
+    payload = {
+        "queries": [str(item).strip() for item in queries if str(item).strip()],
+        "instruction": "输出适合英文 complete streets 设计文档检索的英文查询。",
+    }
+    return [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": json.dumps(payload, ensure_ascii=False)},
+    ]
 
 
 def build_design_draft_messages(

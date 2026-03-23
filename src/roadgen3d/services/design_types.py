@@ -179,6 +179,9 @@ class SceneGenerationOptions:
     manifest_path: Path
     artifacts_dir: Path
     out_dir: Path
+    object_manifest_v2_path: Path | None = None
+    ground_material_manifest_path: Path | None = None
+    sky_manifest_path: Path | None = None
     model_name: str = "openai/clip-vit-base-patch32"
     model_dir: Path | None = None
     local_files_only: bool = False
@@ -194,6 +197,11 @@ class SceneGenerationOptions:
             "manifest_path": str(self.manifest_path),
             "artifacts_dir": str(self.artifacts_dir),
             "out_dir": str(self.out_dir),
+            "object_manifest_v2_path": str(self.object_manifest_v2_path) if self.object_manifest_v2_path is not None else None,
+            "ground_material_manifest_path": (
+                str(self.ground_material_manifest_path) if self.ground_material_manifest_path is not None else None
+            ),
+            "sky_manifest_path": str(self.sky_manifest_path) if self.sky_manifest_path is not None else None,
             "model_name": self.model_name,
             "model_dir": str(self.model_dir) if self.model_dir is not None else None,
             "local_files_only": bool(self.local_files_only),
@@ -219,3 +227,51 @@ class SceneGenerationResult:
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
+
+
+@dataclass(frozen=True)
+class SceneRecord:
+    """One generated scene record retained by the in-memory job service."""
+
+    job_id: str
+    status: str
+    created_at: str
+    finished_at: str = ""
+    scene_layout_path: str = ""
+    scene_glb_path: str = ""
+    scene_ply_path: str = ""
+    viewer_url: str = ""
+    summary: Dict[str, Any] = field(default_factory=dict)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass(frozen=True)
+class SceneJobCreateResponse:
+    """Response returned when a scene generation job is queued."""
+
+    job_id: str
+    status: str
+    created_at: str
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass(frozen=True)
+class SceneJobStatusResponse:
+    """Serializable job status for the Web API and workbench."""
+
+    job_id: str
+    status: str
+    created_at: str
+    started_at: str = ""
+    finished_at: str = ""
+    error: str = ""
+    result: SceneGenerationResult | None = None
+
+    def to_dict(self) -> Dict[str, Any]:
+        payload = asdict(self)
+        payload["result"] = self.result.to_dict() if self.result is not None else None
+        return payload

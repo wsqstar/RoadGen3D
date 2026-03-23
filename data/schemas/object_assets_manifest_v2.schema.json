@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://roadgen3d.local/schemas/object_assets_manifest_v2.schema.json",
+  "title": "RoadGen3D Object Assets Manifest V2 Row",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "asset_id",
+    "category",
+    "text_desc",
+    "mesh_path",
+    "latent_path",
+    "source_dataset",
+    "license",
+    "split"
+  ],
+  "properties": {
+    "asset_id": { "type": "string", "minLength": 1 },
+    "source_dataset": { "type": "string", "minLength": 1 },
+    "source_uid": { "type": "string" },
+    "category": { "type": "string", "minLength": 1 },
+    "source_category": { "type": "string" },
+    "text_desc": { "type": "string", "minLength": 1 },
+    "mesh_path": { "type": "string", "minLength": 1 },
+    "thumbnail_path": { "type": "string" },
+    "latent_path": { "type": "string", "minLength": 1 },
+    "appearance_embedding_path": { "type": "string" },
+    "license": { "type": "string", "minLength": 1 },
+    "split": {
+      "type": "string",
+      "enum": ["train", "val", "test"]
+    },
+    "metric_width_m": { "type": "number" },
+    "metric_depth_m": { "type": "number" },
+    "metric_height_m": { "type": "number" },
+    "canonical_front": { "type": "string" },
+    "mass_kg": { "type": "number" },
+    "friction": { "type": "number" },
+    "affordance_tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}
