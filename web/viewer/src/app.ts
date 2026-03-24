@@ -311,6 +311,30 @@ function makeDirectLayoutLabel(layoutPath: string): string {
   return `Direct Layout · ${tail || normalized}`;
 }
 
+function compactUiLabel(label: string, maxLength = 54): string {
+  if (label.length <= maxLength) {
+    return label;
+  }
+
+  const normalized = label.replace(/\\/g, "/");
+  if (normalized.includes("/")) {
+    const parts = normalized.split("/").filter(Boolean);
+    const tail = parts.slice(-2).join("/");
+    const head = parts[0] ?? "";
+    const compactPath = `${head}/.../${tail}`;
+    if (compactPath.length <= maxLength) {
+      return compactPath;
+    }
+    if (tail.length + 1 >= maxLength) {
+      return `...${tail.slice(-(maxLength - 3))}`;
+    }
+  }
+
+  const left = Math.max(8, Math.floor((maxLength - 1) / 2));
+  const right = Math.max(8, maxLength - left - 1);
+  return `${label.slice(0, left)}...${label.slice(-right)}`;
+}
+
 function disposeObject(root: THREE.Object3D): void {
   root.traverse((child: THREE.Object3D) => {
     const mesh = child as THREE.Mesh;
@@ -1461,18 +1485,23 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
       recentLayoutsByPath.set(layout.layout_path, layout);
       const optionEl = document.createElement("option");
       optionEl.value = layout.layout_path;
-      optionEl.textContent = layout.label;
+      optionEl.textContent = compactUiLabel(layout.label);
+      optionEl.title = layout.label;
       layoutSelectEl.appendChild(optionEl);
     }
     if (selectedPath && !recentLayoutsByPath.has(selectedPath)) {
       const optionEl = document.createElement("option");
       optionEl.value = selectedPath;
-      optionEl.textContent = makeDirectLayoutLabel(selectedPath);
+      const directLabel = makeDirectLayoutLabel(selectedPath);
+      optionEl.textContent = compactUiLabel(directLabel);
+      optionEl.title = directLabel;
       layoutSelectEl.appendChild(optionEl);
     }
     layoutSelectEl.disabled = layoutSelectEl.options.length === 0;
     if (selectedPath) {
       layoutSelectEl.value = selectedPath;
+      const selectedLayout = recentLayoutsByPath.get(selectedPath);
+      layoutSelectEl.title = selectedLayout?.label ?? makeDirectLayoutLabel(selectedPath);
     }
   }
 
@@ -1484,10 +1513,13 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
       optionsByKey.set(option.key, option);
       const optionEl = document.createElement("option");
       optionEl.value = option.key;
-      optionEl.textContent = option.label;
+      optionEl.textContent = compactUiLabel(option.label, 42);
+      optionEl.title = option.label;
       selectEl.appendChild(optionEl);
     }
     selectEl.disabled = options.length === 0;
+    const selectedOption = options.find((option) => option.key === selectEl.value) ?? options[0];
+    selectEl.title = selectedOption?.label ?? "";
     return options;
   }
 
@@ -1504,6 +1536,7 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
       ? currentManifest.default_selection
       : options[0]?.key ?? "";
     selectEl.value = defaultKey;
+    selectEl.title = optionsByKey.get(defaultKey)?.label ?? "";
     updateQueryLayout(layoutPath);
     await loadScene(optionsByKey.get(defaultKey) ?? options[0]);
   }
@@ -1657,6 +1690,7 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
       }
       try {
         await loadLayoutSelection(nextLayoutPath);
+        layoutSelectEl.title = recentLayoutsByPath.get(nextLayoutPath)?.label ?? makeDirectLayoutLabel(nextLayoutPath);
       } catch (error) {
         const message = error instanceof Error ? error.message : "Failed to load scene layout.";
         setError(errorEl, message);
@@ -1672,11 +1706,12 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
       if (!nextOption) {
         return;
       }
-      try {
-        await loadScene(nextOption);
-      } catch (error) {
-        const message = error instanceof Error ? error.message : "Failed to load GLB.";
-        setError(errorEl, message);
+    try {
+      selectEl.title = nextOption.label;
+      await loadScene(nextOption);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Failed to load GLB.";
+      setError(errorEl, message);
         setStatus("Scene load failed");
       }
     },
