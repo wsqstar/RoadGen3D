@@ -676,11 +676,11 @@ function createAvatarFigure(): THREE.Group {
   return avatar;
 }
 
-function mountViewer(root: HTMLElement): Promise<void> {
+function mountViewer(root: HTMLElement): Promise<() => void> {
   return mountViewerImpl(root);
 }
 
-async function mountViewerImpl(root: HTMLElement): Promise<void> {
+async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
   root.innerHTML = `
     <div class="viewer-shell">
       <div class="viewer-topbar">
@@ -698,6 +698,13 @@ async function mountViewerImpl(root: HTMLElement): Promise<void> {
           <div class="viewer-help">
             Click to capture mouse · WASD move · Shift sprint · Esc unlock · R reset · P panel · Ctrl/Cmd+C copy target
           </div>
+          <button
+            id="viewer-scene-graph-link"
+            class="viewer-nav-button viewer-nav-button-secondary"
+            type="button"
+          >
+            Scene Graph
+          </button>
           <button id="viewer-settings-toggle" class="viewer-settings-toggle" type="button" aria-expanded="false">
             Settings
           </button>
@@ -785,6 +792,7 @@ async function mountViewerImpl(root: HTMLElement): Promise<void> {
   const errorEl = requireElement<HTMLElement>(root, "#viewer-error");
   const layoutSelectEl = requireElement<HTMLSelectElement>(root, "#layout-select");
   const selectEl = requireElement<HTMLSelectElement>(root, "#scene-select");
+  const sceneGraphLinkEl = requireElement<HTMLButtonElement>(root, "#viewer-scene-graph-link");
   const settingsToggleEl = requireElement<HTMLButtonElement>(root, "#viewer-settings-toggle");
   const settingsPanelEl = requireElement<HTMLElement>(root, "#viewer-settings-panel");
   const settingsCloseEl = requireElement<HTMLButtonElement>(root, "#viewer-settings-close");
@@ -858,6 +866,10 @@ async function mountViewerImpl(root: HTMLElement): Promise<void> {
   const loader = new GLTFLoader();
   const raycaster = new THREE.Raycaster();
   const clock = new THREE.Clock();
+  const eventController = new AbortController();
+  const { signal } = eventController;
+  let animationFrameId = 0;
+  let destroyed = false;
   const moveState: MovementState = {
     forward: false,
     backward: false,
@@ -1496,32 +1508,48 @@ async function mountViewerImpl(root: HTMLElement): Promise<void> {
     await loadScene(optionsByKey.get(defaultKey) ?? options[0]);
   }
 
-  renderer.domElement.addEventListener("click", () => {
-    if (!settingsOpen && !controls.isLocked) {
-      controls.lock();
-    }
-  });
+  renderer.domElement.addEventListener(
+    "click",
+    () => {
+      if (!settingsOpen && !controls.isLocked) {
+        controls.lock();
+      }
+    },
+    { signal },
+  );
 
-  settingsToggleEl.addEventListener("click", () => setSettingsOpen(!settingsOpen));
-  settingsCloseEl.addEventListener("click", () => setSettingsOpen(false));
+  sceneGraphLinkEl.addEventListener(
+    "click",
+    () => {
+      window.location.hash = "#scene-graph";
+    },
+    { signal },
+  );
 
-  minimapOverlayEl.addEventListener("click", (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    if (!currentSceneBounds) {
-      return;
-    }
-    const rect = minimapOverlayEl.getBoundingClientRect();
-    if (rect.width <= 0 || rect.height <= 0) {
-      return;
-    }
-    const nx = clamp((event.clientX - rect.left) / rect.width, 0, 1);
-    const nz = clamp((event.clientY - rect.top) / rect.height, 0, 1);
-    const worldX = currentSceneBounds.minX + nx * (currentSceneBounds.maxX - currentSceneBounds.minX);
-    const worldZ = currentSceneBounds.minZ + nz * (currentSceneBounds.maxZ - currentSceneBounds.minZ);
-    currentAvatarPosition.set(worldX, currentAvatarPosition.y, worldZ);
-    syncCameraRig();
-  });
+  settingsToggleEl.addEventListener("click", () => setSettingsOpen(!settingsOpen), { signal });
+  settingsCloseEl.addEventListener("click", () => setSettingsOpen(false), { signal });
+
+  minimapOverlayEl.addEventListener(
+    "click",
+    (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (!currentSceneBounds) {
+        return;
+      }
+      const rect = minimapOverlayEl.getBoundingClientRect();
+      if (rect.width <= 0 || rect.height <= 0) {
+        return;
+      }
+      const nx = clamp((event.clientX - rect.left) / rect.width, 0, 1);
+      const nz = clamp((event.clientY - rect.top) / rect.height, 0, 1);
+      const worldX = currentSceneBounds.minX + nx * (currentSceneBounds.maxX - currentSceneBounds.minX);
+      const worldZ = currentSceneBounds.minZ + nz * (currentSceneBounds.maxZ - currentSceneBounds.minZ);
+      currentAvatarPosition.set(worldX, currentAvatarPosition.y, worldZ);
+      syncCameraRig();
+    },
+    { signal },
+  );
 
   for (const [presetKey, presetLabel] of Object.entries(LIGHTING_PRESET_LABELS)) {
     const optionEl = document.createElement("option");
@@ -1530,89 +1558,135 @@ async function mountViewerImpl(root: HTMLElement): Promise<void> {
     lightingPresetEl.appendChild(optionEl);
   }
 
-  lightingPresetEl.addEventListener("change", () => {
-    const nextPreset = lightingPresetEl.value;
-    const presetValues = LIGHTING_PRESETS[nextPreset];
-    if (!presetValues) {
-      return;
-    }
-    lightingState.preset = nextPreset;
-    Object.assign(lightingState, presetValues);
-    syncLightingUi();
-  });
+  lightingPresetEl.addEventListener(
+    "change",
+    () => {
+      const nextPreset = lightingPresetEl.value;
+      const presetValues = LIGHTING_PRESETS[nextPreset];
+      if (!presetValues) {
+        return;
+      }
+      lightingState.preset = nextPreset;
+      Object.assign(lightingState, presetValues);
+      syncLightingUi();
+    },
+    { signal },
+  );
 
-  exposureInput.addEventListener("input", () => {
-    lightingState.preset = "custom";
-    lightingState.exposure = Number(exposureInput.value);
-    syncLightingUi();
-  });
-  keyInput.addEventListener("input", () => {
-    lightingState.preset = "custom";
-    lightingState.keyLightIntensity = Number(keyInput.value);
-    syncLightingUi();
-  });
-  fillInput.addEventListener("input", () => {
-    lightingState.preset = "custom";
-    lightingState.fillLightIntensity = Number(fillInput.value);
-    syncLightingUi();
-  });
-  warmthInput.addEventListener("input", () => {
-    lightingState.preset = "custom";
-    lightingState.warmth = Number(warmthInput.value);
-    syncLightingUi();
-  });
-  shadowInput.addEventListener("input", () => {
-    lightingState.preset = "custom";
-    lightingState.shadowStrength = Number(shadowInput.value);
-    syncLightingUi();
-  });
-  thirdPersonToggleEl.addEventListener("change", () => {
-    currentCameraMode = thirdPersonToggleEl.checked ? "third_person" : "first_person";
-    syncCameraRig();
-  });
-  laserToggleEl.addEventListener("change", () => {
-    crosshairEl.hidden = !laserToggleEl.checked;
-    if (!laserToggleEl.checked) {
-      clearInfoCard();
-      laserBeam.visible = false;
-      laserHitDot.visible = false;
-      currentLaserHitPoint = null;
-    }
-  });
+  exposureInput.addEventListener(
+    "input",
+    () => {
+      lightingState.preset = "custom";
+      lightingState.exposure = Number(exposureInput.value);
+      syncLightingUi();
+    },
+    { signal },
+  );
+  keyInput.addEventListener(
+    "input",
+    () => {
+      lightingState.preset = "custom";
+      lightingState.keyLightIntensity = Number(keyInput.value);
+      syncLightingUi();
+    },
+    { signal },
+  );
+  fillInput.addEventListener(
+    "input",
+    () => {
+      lightingState.preset = "custom";
+      lightingState.fillLightIntensity = Number(fillInput.value);
+      syncLightingUi();
+    },
+    { signal },
+  );
+  warmthInput.addEventListener(
+    "input",
+    () => {
+      lightingState.preset = "custom";
+      lightingState.warmth = Number(warmthInput.value);
+      syncLightingUi();
+    },
+    { signal },
+  );
+  shadowInput.addEventListener(
+    "input",
+    () => {
+      lightingState.preset = "custom";
+      lightingState.shadowStrength = Number(shadowInput.value);
+      syncLightingUi();
+    },
+    { signal },
+  );
+  thirdPersonToggleEl.addEventListener(
+    "change",
+    () => {
+      currentCameraMode = thirdPersonToggleEl.checked ? "third_person" : "first_person";
+      syncCameraRig();
+    },
+    { signal },
+  );
+  laserToggleEl.addEventListener(
+    "change",
+    () => {
+      crosshairEl.hidden = !laserToggleEl.checked;
+      if (!laserToggleEl.checked) {
+        clearInfoCard();
+        laserBeam.visible = false;
+        laserHitDot.visible = false;
+        currentLaserHitPoint = null;
+      }
+    },
+    { signal },
+  );
 
-  controls.addEventListener("lock", updateOverlay);
-  controls.addEventListener("unlock", updateOverlay);
-  window.addEventListener("resize", resizeRenderer);
-  window.addEventListener("keydown", (event) => handleKey(event, true));
-  window.addEventListener("keyup", (event) => handleKey(event, false));
-  layoutSelectEl.addEventListener("change", async () => {
-    const nextLayoutPath = layoutSelectEl.value.trim();
-    if (!nextLayoutPath || nextLayoutPath === currentLayoutPath) {
-      return;
-    }
-    try {
-      await loadLayoutSelection(nextLayoutPath);
-    } catch (error) {
-      const message = error instanceof Error ? error.message : "Failed to load scene layout.";
-      setError(errorEl, message);
-      setStatus("Scene layout load failed");
-    }
-  });
-  selectEl.addEventListener("change", async () => {
-    const nextOption = optionsByKey.get(selectEl.value);
-    if (!nextOption) {
-      return;
-    }
-    try {
-      await loadScene(nextOption);
-    } catch (error) {
-      const message = error instanceof Error ? error.message : "Failed to load GLB.";
-      setError(errorEl, message);
-      setStatus("Scene load failed");
-    }
-  });
+  const handleControlsLock = () => updateOverlay();
+  const handleControlsUnlock = () => updateOverlay();
+  controls.addEventListener("lock", handleControlsLock);
+  controls.addEventListener("unlock", handleControlsUnlock);
+
+  window.addEventListener("resize", resizeRenderer, { signal });
+  window.addEventListener("keydown", (event) => handleKey(event, true), { signal });
+  window.addEventListener("keyup", (event) => handleKey(event, false), { signal });
+  layoutSelectEl.addEventListener(
+    "change",
+    async () => {
+      const nextLayoutPath = layoutSelectEl.value.trim();
+      if (!nextLayoutPath || nextLayoutPath === currentLayoutPath) {
+        return;
+      }
+      try {
+        await loadLayoutSelection(nextLayoutPath);
+      } catch (error) {
+        const message = error instanceof Error ? error.message : "Failed to load scene layout.";
+        setError(errorEl, message);
+        setStatus("Scene layout load failed");
+      }
+    },
+    { signal },
+  );
+  selectEl.addEventListener(
+    "change",
+    async () => {
+      const nextOption = optionsByKey.get(selectEl.value);
+      if (!nextOption) {
+        return;
+      }
+      try {
+        await loadScene(nextOption);
+      } catch (error) {
+        const message = error instanceof Error ? error.message : "Failed to load GLB.";
+        setError(errorEl, message);
+        setStatus("Scene load failed");
+      }
+    },
+    { signal },
+  );
 
   function animate(): void {
+    if (destroyed) {
+      return;
+    }
     const delta = clock.getDelta();
     if (controls.isLocked) {
       const moveSpeed = moveState.sprint ? 8.5 : 4.5;
@@ -1632,7 +1706,7 @@ async function mountViewerImpl(root: HTMLElement): Promise<void> {
     updateLaserPointer();
     renderer.render(scene, camera);
     renderMinimap();
-    requestAnimationFrame(animate);
+    animationFrameId = requestAnimationFrame(animate);
   }
 
   try {
@@ -1655,6 +1729,21 @@ async function mountViewerImpl(root: HTMLElement): Promise<void> {
     setError(errorEl, message);
     setStatus("Viewer unavailable");
   }
+
+  return () => {
+    destroyed = true;
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+    }
+    eventController.abort();
+    controls.removeEventListener("lock", handleControlsLock);
+    controls.removeEventListener("unlock", handleControlsUnlock);
+    if (controls.isLocked) {
+      controls.unlock();
+    }
+    renderer.dispose();
+    minimapRenderer.dispose();
+  };
 }
 
 export { mountViewer };

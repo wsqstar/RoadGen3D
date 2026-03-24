@@ -105,6 +105,23 @@ body {
   padding: 0.6rem 0.95rem;
 }
 
+.viewer-nav-button {
+  padding: 0.6rem 0.95rem;
+  border: none;
+  border-radius: 999px;
+  background: rgba(17, 24, 39, 0.92);
+  color: #ffffff;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.viewer-nav-button-secondary {
+  background: rgba(255, 255, 255, 0.92);
+  color: #111827;
+  box-shadow: inset 0 0 0 1px rgba(107, 114, 128, 0.24);
+}
+
 .viewer-settings-close {
   width: 2rem;
   height: 2rem;
@@ -433,5 +450,214 @@ body {
   .viewer-info-card {
     top: 7.2rem;
     width: min(22rem, calc(100vw - 2rem));
+  }
+}
+
+.scene-page {
+  min-height: 100%;
+  padding: 1.2rem;
+  overflow: auto;
+  background:
+    radial-gradient(circle at top left, rgba(211, 224, 196, 0.9), transparent 24%),
+    linear-gradient(180deg, #f3eee2 0%, #ebe6d8 100%);
+}
+
+.scene-page-topbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.scene-page-kicker {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5f6d56;
+}
+
+.scene-page-title {
+  margin: 0.2rem 0 0;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  line-height: 1.05;
+  color: #1e2a1e;
+}
+
+.scene-page-subtitle {
+  max-width: 54rem;
+  margin: 0.55rem 0 0;
+  color: #445043;
+  line-height: 1.55;
+}
+
+.scene-page-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(320px, 0.95fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.scene-sidebar {
+  display: grid;
+  gap: 1rem;
+}
+
+.scene-panel {
+  border: 1px solid rgba(83, 99, 70, 0.14);
+  border-radius: 1.25rem;
+  background: rgba(255, 252, 245, 0.84);
+  box-shadow: 0 20px 50px rgba(68, 53, 26, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.scene-panel-canvas {
+  padding: 1rem;
+}
+
+.scene-panel-header {
+  padding: 1rem 1rem 0;
+}
+
+.scene-panel-header h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #1f2a20;
+}
+
+.scene-panel-header p {
+  margin: 0.35rem 0 0;
+  color: #556253;
+  line-height: 1.45;
+}
+
+.scene-graph-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 0.8rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #f5f1e8;
+}
+
+.scene-axis-label,
+.scene-origin-label,
+.scene-tree-label {
+  font-family: "SF Mono", "Roboto Mono", monospace;
+}
+
+.scene-axis-label,
+.scene-origin-label {
+  font-size: 22px;
+  fill: #445043;
+}
+
+.scene-tree-label {
+  font-size: 20px;
+  font-weight: 700;
+  fill: #243223;
+}
+
+.scene-relation-line {
+  stroke: #ca7d52;
+  stroke-width: 4;
+  stroke-dasharray: 12 10;
+  opacity: 0.95;
+}
+
+.scene-metrics {
+  padding-bottom: 1rem;
+}
+
+.scene-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  padding: 1rem;
+}
+
+.scene-metric-grid div {
+  padding: 0.9rem 1rem;
+  border-radius: 0.95rem;
+  background: rgba(219, 230, 207, 0.55);
+}
+
+.scene-metric-grid strong {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 1.4rem;
+  color: #1f2a20;
+}
+
+.scene-metric-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #566553;
+}
+
+.scene-bullet-list {
+  margin: 0;
+  padding: 0 1.2rem 1.1rem 2.2rem;
+  color: #2f3a30;
+  line-height: 1.6;
+}
+
+.scene-table-wrap {
+  padding: 0.85rem 1rem 1rem;
+  overflow: auto;
+}
+
+.scene-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 32rem;
+  font-size: 0.92rem;
+}
+
+.scene-table th,
+.scene-table td {
+  padding: 0.7rem 0.6rem;
+  border-bottom: 1px solid rgba(111, 128, 107, 0.18);
+  text-align: left;
+  vertical-align: top;
+}
+
+.scene-table th {
+  color: #4f5d4d;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1080px) {
+  .scene-page-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  body {
+    overflow: auto;
+  }
+
+  .viewer-topbar,
+  .scene-page-topbar {
+    flex-direction: column;
+  }
+
+  .viewer-actions {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .scene-page {
+    padding: 0.85rem;
+  }
+
+  .scene-table {
+    min-width: 28rem;
   }
 }
