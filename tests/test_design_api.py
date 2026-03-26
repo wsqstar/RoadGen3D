@@ -16,6 +16,7 @@ from roadgen3d.services.design_types import (  # noqa: E402
     DesignDraft,
     DesignDraftBundle,
     DesignIntent,
+    RagEvidence,
     SceneGenerationResult,
     SceneJobCreateResponse,
     SceneJobStatusResponse,
@@ -30,8 +31,10 @@ class _FakeService:
 
     def __init__(self):
         self.last_scene_context = None
+        self.last_knowledge_source = None
 
     def draft_design(self, **kwargs):
+        self.last_knowledge_source = kwargs.get("knowledge_source")
         return DesignDraftBundle(
             stage="draft_ready",
             intent=DesignIntent(
@@ -51,6 +54,51 @@ class _FakeService:
             ),
             warnings=(),
         )
+
+    def list_knowledge_sources(self):
+        return [
+            {
+                "key": "hybrid",
+                "label": "Hybrid",
+                "available": True,
+                "description": "Combined PDF + GraphRAG search.",
+                "artifact_count": 2,
+                "item_count": 10,
+            },
+            {
+                "key": "pdf_rag",
+                "label": "PDF RAG",
+                "available": True,
+                "description": "PDF chunk retrieval.",
+                "artifact_count": 1,
+                "item_count": 8,
+            },
+            {
+                "key": "graph_rag",
+                "label": "GraphRAG",
+                "available": True,
+                "description": "Merged txt and graph community reports.",
+                "artifact_count": 1,
+                "item_count": 2,
+            },
+        ]
+
+    def search_knowledge(self, *, query: str, topk: int = 6, knowledge_source: str = "hybrid"):
+        self.last_knowledge_source = knowledge_source
+        return [
+            RagEvidence(
+                chunk_id="graph_001",
+                doc_id="graphrag_community_report",
+                section_title=f"match for {query}",
+                page_start=0,
+                page_end=0,
+                text="Sidewalks should stay generous near transit stops.",
+                source_path="/tmp/graphrag/community_reports.parquet",
+                score=0.88,
+                relevance_reason="Matched RAG query: sidewalk width",
+                knowledge_source=knowledge_source,
+            )
+        ][:topk]
 
     def generate_scene(self, draft, **kwargs):
         scene_context = kwargs.get("scene_context")
@@ -141,12 +189,14 @@ def test_design_api_endpoints_return_expected_shapes():
             "messages": [{"role": "user", "content": "请做一条全龄友好的街道。"}],
             "user_input": "请做一条全龄友好的街道。",
             "current_patch": {},
+            "knowledge_source": "graph_rag",
         },
     )
     assert draft_response.status_code == 200
     assert draft_response.json()["stage"] == "draft_ready"
     assert draft_response.json()["draft"]["compose_config_patch"]["sidewalk_width_m"] == 4.0
     assert draft_response.json()["draft"]["parameter_sources_by_field"]["sidewalk_width_m"] == "rag"
+    assert service.last_knowledge_source == "graph_rag"
 
     generate_response = client.post(
         "/api/design/generate",
@@ -214,6 +264,26 @@ def test_design_api_endpoints_return_expected_shapes():
     assert rebuild_response.status_code == 200
     assert rebuild_response.json()["chunk_count"] == 42
 
+    source_response = client.get("/api/knowledge/sources")
+    assert source_response.status_code == 200
+    assert source_response.json()["items"][0]["key"] == "hybrid"
+
+    search_response = client.post(
+        "/api/knowledge/search",
+        json={"query": "sidewalk width near transit", "knowledge_source": "graph_rag", "topk": 3},
+    )
+    assert search_response.status_code == 200
+    assert search_response.json()["items"][0]["knowledge_source"] == "graph_rag"
+    assert service.last_knowledge_source == "graph_rag"
+
+    default_search_response = client.post(
+        "/api/knowledge/search",
+        json={"query": "default knowledge source", "topk": 1},
+    )
+    assert default_search_response.status_code == 200
+    assert default_search_response.json()["knowledge_source"] == "graph_rag"
+    assert service.last_knowledge_source == "graph_rag"
+
     geo_response = client.get("/api/geo/china-cities")
     assert geo_response.status_code == 200
     assert geo_response.json()["items"][0]["name_en"] == "guangzhou"
@@ -258,6 +328,7 @@ def test_design_api_supports_clarification_stage():
             "messages": [{"role": "user", "content": "请做一条全龄友好的街道。"}],
             "user_input": "请做一条全龄友好的街道。",
             "current_patch": {},
+            "knowledge_source": "hybrid",
         },
     )
 
@@ -266,3 +337,20 @@ def test_design_api_supports_clarification_stage():
     assert payload["stage"] == "clarification_required"
     assert payload["draft"] is None
     assert payload["intent"]["follow_up_questions"] == ["Which city should this street fit into?"]
+
+
+def test_design_api_defaults_draft_requests_to_graph_rag():
+    service = _FakeService()
+    client = TestClient(create_app(design_service=service))
+
+    response = client.post(
+        "/api/design/draft",
+        json={
+            "messages": [{"role": "user", "content": "请做一条全龄友好的街道。"}],
+            "user_input": "请做一条全龄友好的街道。",
+            "current_patch": {},
+        },
+    )
+
+    assert response.status_code == 200
+    assert service.last_knowledge_source == "graph_rag"

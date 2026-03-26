@@ -114,6 +114,40 @@ class _FakeRetriever:
         ]
 
 
+class _FakeGraphRetriever:
+    def describe(self):
+        return type(
+            "_GraphStatus",
+            (),
+            {
+                "to_dict": lambda self: {
+                    "key": "graph_rag",
+                    "label": "GraphRAG",
+                    "available": True,
+                    "description": "Merged txt corpus.",
+                    "artifact_count": 1,
+                    "item_count": 2,
+                }
+            },
+        )()
+
+    def search(self, query: str, topk: int = 5):
+        return [
+            KnowledgeSearchHit(
+                chunk=KnowledgeChunk(
+                    chunk_id="graph_0001",
+                    doc_id="graphrag_community_report",
+                    page_start=0,
+                    page_end=0,
+                    section_title="GraphRAG sidewalk guidance",
+                    text=f"Graph evidence for {query}.",
+                    source_path="/tmp/graphrag/community_reports.parquet",
+                ),
+                score=0.84,
+            )
+        ][:topk]
+
+
 def test_design_assistant_service_builds_draft_bundle():
     service = DesignAssistantService(
         llm_client=_FakeLLM(),
@@ -125,6 +159,7 @@ def test_design_assistant_service_builds_draft_bundle():
         user_input="我想做步行安全、全龄友好的街道。",
         current_patch={"target_street_type": "mixed_use"},
         topk=4,
+        knowledge_source="pdf_rag",
     )
 
     assert bundle.stage == "draft_ready"
@@ -142,6 +177,48 @@ def test_design_assistant_service_builds_draft_bundle():
     assert bundle.draft.parameter_sources_by_field["style_preset"] == "system_default"
     assert "pedestrian-priority" in bundle.draft.design_summary
     assert service.llm_client.calls == 5
+
+
+def test_design_assistant_service_supports_graph_and_hybrid_knowledge_search():
+    service = DesignAssistantService(
+        llm_client=_FakeLLM(),
+        knowledge_retriever=_FakeRetriever(),
+        graph_knowledge_retriever=_FakeGraphRetriever(),
+    )
+
+    graph_results = service.search_knowledge(
+        query="sidewalk width near transit",
+        topk=3,
+        knowledge_source="graph_rag",
+    )
+    hybrid_results = service.search_knowledge(
+        query="sidewalk width near transit",
+        topk=4,
+        knowledge_source="hybrid",
+    )
+
+    assert len(graph_results) == 1
+    assert graph_results[0].knowledge_source == "graph_rag"
+    assert graph_results[0].chunk_id == "graph_0001"
+    assert len(hybrid_results) >= 2
+    assert {item.knowledge_source for item in hybrid_results} == {"pdf_rag", "graph_rag"}
+
+
+def test_design_assistant_service_defaults_to_graph_rag():
+    service = DesignAssistantService(
+        llm_client=_FakeLLM(),
+        knowledge_retriever=_FakeRetriever(),
+        graph_knowledge_retriever=_FakeGraphRetriever(),
+    )
+
+    results = service.search_knowledge(
+        query="sidewalk width near transit",
+        topk=2,
+    )
+
+    assert len(results) == 1
+    assert results[0].knowledge_source == "graph_rag"
+    assert results[0].chunk_id == "graph_0001"
 
 
 class _ClarificationFirstLLM:

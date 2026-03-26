@@ -2,11 +2,17 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 import re
 from typing import Any, Dict, Iterable, List, Mapping, Sequence, Tuple
 
-from ..knowledge import ClipTextEmbedderAdapter, PdfKnowledgeBaseBuilder, PdfKnowledgeBaseRetriever
+from ..knowledge import (
+    ClipTextEmbedderAdapter,
+    GraphRagKnowledgeRetriever,
+    PdfKnowledgeBaseBuilder,
+    PdfKnowledgeBaseRetriever,
+)
 from ..knowledge.pdf_rag import KnowledgeSearchHit
 from ..llm import (
     GLMClient,
@@ -39,11 +45,14 @@ from .scene_context_service import list_china_cities_payload
 ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_COMPLETE_STREETS_PDF = (ROOT / "knowledge" / "book" / "Complete streets design guide.pdf").resolve()
 DEFAULT_COMPLETE_STREETS_ARTIFACT_DIR = (ROOT / "knowledge" / "complete_streets").resolve()
+DEFAULT_GRAPHRAG_PROJECT_DIR = (ROOT / "knowledge" / "graphRAG").resolve()
 DEFAULT_CLIP_MODEL_DIR = (ROOT / "models" / "clip-vit-base-patch32").resolve()
 _CJK_RE = re.compile(r"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]")
 _RAG_SOURCE = "rag"
 _LLM_INFERRED_SOURCE = "llm_inferred"
 _SYSTEM_DEFAULT_SOURCE = "system_default"
+_DEFAULT_KNOWLEDGE_SOURCE = "graph_rag"
+_ALLOWED_KNOWLEDGE_SOURCES = frozenset({"hybrid", "pdf_rag", "graph_rag"})
 
 
 class DesignAssistantService:
@@ -55,15 +64,21 @@ class DesignAssistantService:
         llm_client: GLMClient | Any | None = None,
         knowledge_builder: PdfKnowledgeBaseBuilder | None = None,
         knowledge_retriever: PdfKnowledgeBaseRetriever | Any | None = None,
+        graph_knowledge_retriever: GraphRagKnowledgeRetriever | Any | None = None,
         default_pdf_path: Path | None = None,
         default_artifact_dir: Path | None = None,
+        default_graphrag_project_dir: Path | None = None,
         scene_job_service: SceneJobService | None = None,
     ) -> None:
         self.llm_client = llm_client
         self.knowledge_builder = knowledge_builder or PdfKnowledgeBaseBuilder()
         self._knowledge_retriever = knowledge_retriever
+        self._graph_knowledge_retriever = graph_knowledge_retriever
         self.default_pdf_path = Path(default_pdf_path or DEFAULT_COMPLETE_STREETS_PDF).expanduser().resolve()
         self.default_artifact_dir = Path(default_artifact_dir or DEFAULT_COMPLETE_STREETS_ARTIFACT_DIR).expanduser().resolve()
+        self.default_graphrag_project_dir = Path(
+            default_graphrag_project_dir or DEFAULT_GRAPHRAG_PROJECT_DIR
+        ).expanduser().resolve()
         self.scene_job_service = scene_job_service or SceneJobService(generator=generate_scene_from_draft)
 
     def rebuild_knowledge(
@@ -95,7 +110,9 @@ class DesignAssistantService:
         user_input: str,
         current_patch: Mapping[str, Any] | None = None,
         topk: int = 6,
+        knowledge_source: str = _DEFAULT_KNOWLEDGE_SOURCE,
     ) -> DesignDraftBundle:
+        resolved_knowledge_source = normalize_knowledge_source(knowledge_source)
         chat_messages = normalize_chat_messages(messages)
         llm = self._get_llm_client()
         intent_payload = llm.chat_json(build_design_intent_messages(chat_messages, user_input, current_patch))
@@ -116,7 +133,13 @@ class DesignAssistantService:
             intent=intent,
             user_input=user_input,
         )
-        evidence = tuple(self._retrieve_evidence(retrieval_queries, topk=topk))
+        evidence = tuple(
+            self._retrieve_evidence(
+                retrieval_queries,
+                topk=topk,
+                knowledge_source=resolved_knowledge_source,
+            )
+        )
         draft = self._generate_design_draft(
             llm=llm,
             chat_messages=chat_messages,
@@ -135,7 +158,13 @@ class DesignAssistantService:
                 missing_fields=missing_fields,
             )
             if followup_queries:
-                extra_evidence = tuple(self._retrieve_evidence(followup_queries, topk=max(topk, 8)))
+                extra_evidence = tuple(
+                    self._retrieve_evidence(
+                        followup_queries,
+                        topk=max(topk, 8),
+                        knowledge_source=resolved_knowledge_source,
+                    )
+                )
                 if extra_evidence:
                     evidence = tuple(merge_evidence_collections(evidence, extra_evidence))
                     draft = self._generate_design_draft(
@@ -153,7 +182,10 @@ class DesignAssistantService:
         draft, defaulted_fields = finalize_design_draft(draft)
         warnings: List[str] = []
         if not evidence:
-            warnings.append("No RAG evidence was found for the current design brief.")
+            warnings.append(
+                "No RAG evidence was found for the current design brief."
+                f" Knowledge source: {resolved_knowledge_source}."
+            )
         if not draft.compose_config_patch:
             warnings.append("The LLM returned an empty compose-config patch; defaults will be used.")
         if followup_queries:
@@ -173,6 +205,33 @@ class DesignAssistantService:
             evidence=evidence,
             draft=draft,
             warnings=tuple(warnings),
+        )
+
+    def list_knowledge_sources(self) -> List[Dict[str, Any]]:
+        pdf_status = self._build_pdf_knowledge_status()
+        graph_status = self._build_graph_knowledge_status()
+        hybrid_available = bool(pdf_status["available"] or graph_status["available"])
+        hybrid_status = {
+            "key": "hybrid",
+            "label": "Hybrid",
+            "available": hybrid_available,
+            "description": "Merge the existing PDF RAG chunks with GraphRAG txt/community artifacts.",
+            "artifact_count": int(pdf_status.get("artifact_count", 0)) + int(graph_status.get("artifact_count", 0)),
+            "item_count": int(pdf_status.get("item_count", 0)) + int(graph_status.get("item_count", 0)),
+        }
+        return [hybrid_status, pdf_status, graph_status]
+
+    def search_knowledge(
+        self,
+        *,
+        query: str,
+        topk: int = 6,
+        knowledge_source: str = _DEFAULT_KNOWLEDGE_SOURCE,
+    ) -> List[RagEvidence]:
+        return self._retrieve_evidence(
+            (query,),
+            topk=topk,
+            knowledge_source=normalize_knowledge_source(knowledge_source),
         )
 
     def generate_scene(
@@ -222,25 +281,95 @@ class DesignAssistantService:
             self.llm_client = GLMClient()
         return self.llm_client
 
-    def _get_retriever(self) -> PdfKnowledgeBaseRetriever | Any:
+    def _get_pdf_retriever(self) -> PdfKnowledgeBaseRetriever | Any:
         if self._knowledge_retriever is None:
             self._knowledge_retriever = PdfKnowledgeBaseRetriever(artifact_dir=self.default_artifact_dir)
         return self._knowledge_retriever
 
-    def _retrieve_evidence(self, queries: Iterable[str], *, topk: int) -> List[RagEvidence]:
-        retriever = self._get_retriever()
+    def _get_graph_retriever(self) -> GraphRagKnowledgeRetriever | Any:
+        if self._graph_knowledge_retriever is None:
+            self._graph_knowledge_retriever = GraphRagKnowledgeRetriever(
+                project_dir=self.default_graphrag_project_dir,
+            )
+        return self._graph_knowledge_retriever
+
+    def _build_pdf_knowledge_status(self) -> Dict[str, Any]:
+        metadata_path = self.default_artifact_dir / "metadata.json"
+        chunks_path = self.default_artifact_dir / "chunks.jsonl"
+        index_path = self.default_artifact_dir / "index.faiss"
+        item_count = 0
+        if metadata_path.exists():
+            try:
+                payload = json.loads(metadata_path.read_text(encoding="utf-8"))
+                item_count = int(payload.get("chunk_count", 0) or 0)
+            except Exception:
+                item_count = 0
+        return {
+            "key": "pdf_rag",
+            "label": "PDF RAG",
+            "available": chunks_path.exists() and index_path.exists(),
+            "description": "FAISS-backed chunk retrieval built from the complete streets PDF guide.",
+            "artifact_count": sum(1 for path in [metadata_path, chunks_path, index_path] if path.exists()),
+            "item_count": item_count,
+            "artifact_dir": str(self.default_artifact_dir),
+            "source_path": str(self.default_pdf_path),
+        }
+
+    def _build_graph_knowledge_status(self) -> Dict[str, Any]:
+        return self._get_graph_retriever().describe().to_dict()
+
+    def _resolve_retrievers_for_source(self, knowledge_source: str) -> Tuple[Tuple[str, Any], ...]:
+        resolved = normalize_knowledge_source(knowledge_source)
+        if resolved == "pdf_rag":
+            return (("pdf_rag", self._get_pdf_retriever()),)
+        if resolved == "graph_rag":
+            graph_status = self._build_graph_knowledge_status()
+            if not graph_status.get("available"):
+                raise RuntimeError(graph_status.get("error") or "GraphRAG artifacts are not available.")
+            return (("graph_rag", self._get_graph_retriever()),)
+
+        retrievers: List[Tuple[str, Any]] = []
+        pdf_status = self._build_pdf_knowledge_status()
+        if pdf_status.get("available"):
+            retrievers.append(("pdf_rag", self._get_pdf_retriever()))
+        graph_status = self._build_graph_knowledge_status()
+        if graph_status.get("available"):
+            retrievers.append(("graph_rag", self._get_graph_retriever()))
+        if not retrievers:
+            raise RuntimeError("No knowledge sources are available for the workbench.")
+        return tuple(retrievers)
+
+    def _retrieve_evidence(
+        self,
+        queries: Iterable[str],
+        *,
+        topk: int,
+        knowledge_source: str = _DEFAULT_KNOWLEDGE_SOURCE,
+    ) -> List[RagEvidence]:
+        retrievers = self._resolve_retrievers_for_source(knowledge_source)
         items: List[RagEvidence] = []
         seen = set()
         for query in queries:
             query_text = str(query or "").strip()
             if not query_text:
                 continue
-            for hit in retriever.search(query_text, topk=max(1, int(topk))):
-                evidence = convert_search_hit_to_evidence(hit, rag_query=query_text)
-                if evidence.chunk_id in seen:
+            for source_name, retriever in retrievers:
+                try:
+                    hits = retriever.search(query_text, topk=max(1, int(topk)))
+                except Exception:
+                    if knowledge_source != "hybrid":
+                        raise
                     continue
-                seen.add(evidence.chunk_id)
-                items.append(evidence)
+                for hit in hits:
+                    evidence = convert_search_hit_to_evidence(
+                        hit,
+                        rag_query=query_text,
+                        knowledge_source=source_name,
+                    )
+                    if evidence.chunk_id in seen:
+                        continue
+                    seen.add(evidence.chunk_id)
+                    items.append(evidence)
         items.sort(key=lambda item: float(item.score), reverse=True)
         return items[: max(1, int(topk))]
 
@@ -407,7 +536,12 @@ def parse_design_draft(
     )
 
 
-def convert_search_hit_to_evidence(hit: KnowledgeSearchHit, *, rag_query: str) -> RagEvidence:
+def convert_search_hit_to_evidence(
+    hit: KnowledgeSearchHit,
+    *,
+    rag_query: str,
+    knowledge_source: str = "pdf_rag",
+) -> RagEvidence:
     hints = infer_parameter_hints(hit.chunk.text)
     return RagEvidence(
         chunk_id=hit.chunk.chunk_id,
@@ -419,6 +553,7 @@ def convert_search_hit_to_evidence(hit: KnowledgeSearchHit, *, rag_query: str) -
         source_path=hit.chunk.source_path,
         score=float(hit.score),
         relevance_reason=f"Matched RAG query: {rag_query}",
+        knowledge_source=normalize_knowledge_source(knowledge_source),
         parameter_hints=hints,
     )
 
@@ -503,3 +638,10 @@ def _coerce_text_list(value: object) -> List[str]:
 
 def _contains_cjk_text(value: str) -> bool:
     return bool(_CJK_RE.search(str(value or "")))
+
+
+def normalize_knowledge_source(value: object) -> str:
+    normalized = str(value or _DEFAULT_KNOWLEDGE_SOURCE).strip().lower()
+    if normalized not in _ALLOWED_KNOWLEDGE_SOURCES:
+        return _DEFAULT_KNOWLEDGE_SOURCE
+    return normalized

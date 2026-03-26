@@ -1,0 +1,307 @@
+2026-03-22 15:16:00.0534 - INFO - graphrag_llm.metrics.log_metrics_writer - Metrics for openai/text-embedding-3-large: {
+  "attempted_request_count": 6,
+  "successful_response_count": 6,
+  "failed_response_count": 0,
+  "failure_rate": 0.0,
+  "requests_with_retries": 0,
+  "retries": 0,
+  "retry_rate": 0.0,
+  "compute_duration_seconds": 24.325519800186157,
+  "compute_duration_per_response_seconds": 4.054253300031026,
+  "cache_hit_rate": 0.0,
+  "streaming_responses": 0,
+  "responses_with_tokens": 6,
+  "prompt_tokens": 12330,
+  "total_tokens": 12330,
+  "tokens_per_response": 2055.0,
+  "cost_per_response": 0.0
+}
+2026-03-22 15:16:00.0535 - INFO - graphrag_llm.metrics.log_metrics_writer - Metrics for openai/gpt-4o: {
+  "attempted_request_count": 30,
+  "successful_response_count": 30,
+  "failed_response_count": 0,
+  "failure_rate": 0.0,
+  "requests_with_retries": 0,
+  "retries": 0,
+  "retry_rate": 0.0,
+  "compute_duration_seconds": 135.31752753257751,
+  "compute_duration_per_response_seconds": 4.832768840449197,
+  "cache_hit_rate": 0.0,
+  "streaming_responses": 2,
+  "responses_with_tokens": 28,
+  "prompt_tokens": 66071,
+  "completion_tokens": 11378,
+  "total_tokens": 77449,
+  "tokens_per_response": 2766.035714285714,
+  "cost_per_response": 0.0
+}
+2026-03-24 20:27:06.0101 - ERROR - graphrag_llm.middleware.with_logging - Request failed after 7 retries with exception=litellm.InternalServerError: InternalServerError: OpenAIException - Connection error.
+Traceback (most recent call last):
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpcore/_sync/connection.py", line 101, in handle_request
+    raise exc
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpcore/_sync/connection.py", line 78, in handle_request
+    stream = self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpcore/_sync/connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpcore/_backends/sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+  File "/Users/shiqi/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1005, in request
+    response = self._client.send(
+               ^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+  File "/Users/shiqi/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/llms/openai/openai.py", line 1363, in embedding
+    headers, sync_embedding_response = self.make_sync_openai_embedding_request(
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/litellm_core_utils/logging_utils.py", line 344, in sync_wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/llms/openai/openai.py", line 1236, in make_sync_openai_embedding_request
+    raise e
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/llms/openai/openai.py", line 1228, in make_sync_openai_embedding_request
+    raw_response = openai_client.embeddings.with_raw_response.create(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/openai/_legacy_response.py", line 367, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/openai/resources/embeddings.py", line 136, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1037, in request
+    raise APIConnectionError(request=request) from err
+openai.APIConnectionError: Connection error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/main.py", line 4923, in embedding
+    response = openai_chat_completions.embedding(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/llms/openai/openai.py", line 1394, in embedding
+    raise OpenAIError(
+litellm.llms.openai.common_utils.OpenAIError: Connection error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/graphrag_llm/middleware/with_logging.py", line 49, in _request_count_middleware
+    return sync_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/graphrag_llm/middleware/with_request_count.py", line 53, in _request_count_middleware
+    result = sync_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/graphrag_llm/middleware/with_retries.py", line 47, in _retry_middleware
+    return retrier.retry(
+           ^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/graphrag_llm/retry/exponential_retry.py", line 70, in retry
+    return func(**input_args)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/graphrag_llm/middleware/with_metrics.py", line 56, in _metrics_middleware
+    response = sync_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/graphrag_llm/embedding/lite_llm_embedding.py", line 188, in _base_embedding
+    response = litellm.embedding(**new_args)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/utils.py", line 1775, in wrapper
+    raise e
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/utils.py", line 1596, in wrapper
+    result = original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/main.py", line 5777, in embedding
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2456, in exception_type
+    raise e
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 588, in exception_type
+    raise InternalServerError(
+litellm.exceptions.InternalServerError: litellm.InternalServerError: InternalServerError: OpenAIException - Connection error.
+2026-03-24 20:31:35.0282 - ERROR - graphrag_llm.middleware.with_logging - Request failed after 7 retries with exception=litellm.InternalServerError: InternalServerError: OpenAIException - Connection error.
+Traceback (most recent call last):
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpcore/_sync/connection.py", line 101, in handle_request
+    raise exc
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpcore/_sync/connection.py", line 78, in handle_request
+    stream = self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpcore/_sync/connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpcore/_backends/sync.py", line 207, in connect_tcp
+    with map_exceptions(exc_map):
+  File "/Users/shiqi/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1005, in request
+    response = self._client.send(
+               ^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 249, in handle_request
+    with map_httpcore_exceptions():
+  File "/Users/shiqi/.local/share/uv/python/cpython-3.11.14-macos-aarch64-none/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno 8] nodename nor servname provided, or not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/llms/openai/openai.py", line 1363, in embedding
+    headers, sync_embedding_response = self.make_sync_openai_embedding_request(
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/litellm_core_utils/logging_utils.py", line 344, in sync_wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/llms/openai/openai.py", line 1236, in make_sync_openai_embedding_request
+    raise e
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/llms/openai/openai.py", line 1228, in make_sync_openai_embedding_request
+    raw_response = openai_client.embeddings.with_raw_response.create(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/openai/_legacy_response.py", line 367, in wrapped
+    return cast(LegacyAPIResponse[R], func(*args, **kwargs))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/openai/resources/embeddings.py", line 136, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/openai/_base_client.py", line 1037, in request
+    raise APIConnectionError(request=request) from err
+openai.APIConnectionError: Connection error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/main.py", line 4923, in embedding
+    response = openai_chat_completions.embedding(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/llms/openai/openai.py", line 1394, in embedding
+    raise OpenAIError(
+litellm.llms.openai.common_utils.OpenAIError: Connection error.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/graphrag_llm/middleware/with_logging.py", line 49, in _request_count_middleware
+    return sync_middleware(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/graphrag_llm/middleware/with_request_count.py", line 53, in _request_count_middleware
+    result = sync_middleware(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/graphrag_llm/middleware/with_retries.py", line 47, in _retry_middleware
+    return retrier.retry(
+           ^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/graphrag_llm/retry/exponential_retry.py", line 70, in retry
+    return func(**input_args)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/graphrag_llm/middleware/with_metrics.py", line 56, in _metrics_middleware
+    response = sync_middleware(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/graphrag_llm/embedding/lite_llm_embedding.py", line 188, in _base_embedding
+    response = litellm.embedding(**new_args)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/utils.py", line 1775, in wrapper
+    raise e
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/utils.py", line 1596, in wrapper
+    result = original_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/main.py", line 5777, in embedding
+    raise exception_type(
+          ^^^^^^^^^^^^^^^
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 2456, in exception_type
+    raise e
+  File "/Users/shiqi/Coding/github/GIStudio/RoadGen3D/.venv/lib/python3.11/site-packages/litellm/litellm_core_utils/exception_mapping_utils.py", line 588, in exception_type
+    raise InternalServerError(
+litellm.exceptions.InternalServerError: litellm.InternalServerError: InternalServerError: OpenAIException - Connection error.
+2026-03-24 20:31:35.0320 - INFO - graphrag_llm.metrics.log_metrics_writer - Metrics for openai/text-embedding-3-small: {
+  "attempted_request_count": 2,
+  "successful_response_count": 0,
+  "failed_response_count": 2,
+  "failure_rate": 1.0,
+  "requests_with_retries": 2,
+  "retries": 14,
+  "retry_rate": 0.875,
+  "compute_duration_per_response_seconds": 0.0,
+  "cache_hit_rate": 0.0,
+  "tokens_per_response": 0.0,
+  "cost_per_response": 0.0
+}
+2026-03-24 20:31:35.0321 - INFO - graphrag_llm.metrics.log_metrics_writer - Metrics for openai/gpt-4o: {
+  "failure_rate": 0.0,
+  "compute_duration_per_response_seconds": 0.0,
+  "cache_hit_rate": 0.0,
+  "tokens_per_response": 0.0,
+  "cost_per_response": 0.0
+}

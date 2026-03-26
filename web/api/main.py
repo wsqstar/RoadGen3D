@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import sys
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
@@ -33,6 +33,7 @@ class DraftRequestModel(BaseModel):
     user_input: str
     current_patch: Dict[str, Any] = Field(default_factory=dict)
     topk: int = 6
+    knowledge_source: str = "graph_rag"
 
 
 class GenerateRequestModel(BaseModel):
@@ -50,8 +51,14 @@ class SceneJobCreateRequestModel(BaseModel):
 
 
 class KnowledgeRebuildRequestModel(BaseModel):
-    pdf_path: str | None = None
-    artifact_dir: str | None = None
+    pdf_path: Optional[str] = None
+    artifact_dir: Optional[str] = None
+
+
+class KnowledgeSearchRequestModel(BaseModel):
+    query: str
+    topk: int = 6
+    knowledge_source: str = "graph_rag"
 
 
 def create_app(*, design_service: DesignAssistantService | Any | None = None) -> FastAPI:
@@ -88,6 +95,7 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
                 user_input=request.user_input,
                 current_patch=request.current_patch,
                 topk=int(request.topk),
+                knowledge_source=request.knowledge_source,
             )
         except (GLMConfigurationError, GLMResponseError) as exc:
             raise HTTPException(status_code=503, detail=str(exc)) from exc
@@ -155,6 +163,27 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
             ))
         except RuntimeError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @app.get("/api/knowledge/sources")
+    def list_knowledge_sources() -> Dict[str, Any]:
+        service = app.state.design_service
+        return make_json_safe({"items": service.list_knowledge_sources()})
+
+    @app.post("/api/knowledge/search")
+    def search_knowledge(request: KnowledgeSearchRequestModel) -> Dict[str, Any]:
+        service = app.state.design_service
+        try:
+            items = service.search_knowledge(
+                query=request.query,
+                topk=int(request.topk),
+                knowledge_source=request.knowledge_source,
+            )
+        except RuntimeError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        return make_json_safe({
+            "knowledge_source": request.knowledge_source,
+            "items": [item.to_dict() for item in items],
+        })
 
     return app
 

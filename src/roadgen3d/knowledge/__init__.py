@@ -1,5 +1,6 @@
 """Knowledge-base helpers for design-document RAG."""
 
+from .graphrag import GraphRagKnowledgeRetriever, GraphRagSourceStatus
 from .pdf_rag import (
     ClipTextEmbedderAdapter,
     KnowledgeBuildArtifacts,
@@ -16,6 +17,8 @@ __all__ = [
     "KnowledgeChunk",
     "KnowledgeSearchHit",
     "ClipTextEmbedderAdapter",
+    "GraphRagKnowledgeRetriever",
+    "GraphRagSourceStatus",
     "PdfKnowledgeBaseBuilder",
     "PdfKnowledgeBaseRetriever",
     "SentenceTransformerEmbedder",

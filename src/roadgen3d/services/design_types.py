@@ -167,6 +167,7 @@ class RagEvidence:
     source_path: str
     score: float = 0.0
     relevance_reason: str = ""
+    knowledge_source: str = "pdf_rag"
     parameter_hints: Dict[str, str] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:

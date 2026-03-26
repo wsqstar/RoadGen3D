@@ -3,6 +3,8 @@ type ChatMessage = {
   content: string;
 };
 
+type KnowledgeSourceKey = "hybrid" | "pdf_rag" | "graph_rag";
+
 type DesignIntent = {
   user_goals: string[];
   style_preferences: string[];
@@ -21,6 +23,7 @@ type RagEvidence = {
   source_path: string;
   score: number;
   relevance_reason: string;
+  knowledge_source?: string;
   parameter_hints?: Record<string, string>;
 };
 
@@ -56,6 +59,34 @@ type DraftResponse = {
   evidence: RagEvidence[];
   draft: DesignDraft | null;
   warnings: string[];
+};
+
+type KnowledgeSourceStatus = {
+  key: KnowledgeSourceKey;
+  label: string;
+  available: boolean;
+  description: string;
+  artifact_count?: number;
+  item_count?: number;
+  project_dir?: string;
+  output_dir?: string;
+  txt_dir?: string;
+  input_dir?: string;
+  cache_dir?: string;
+  last_build_status?: string;
+  runtime_error?: string;
+  artifact_dir?: string;
+  source_path?: string;
+  error?: string;
+};
+
+type KnowledgeSourceListResponse = {
+  items: KnowledgeSourceStatus[];
+};
+
+type KnowledgeSearchResponse = {
+  knowledge_source: KnowledgeSourceKey;
+  items: RagEvidence[];
 };
 
 type GenerationResponse = {
@@ -158,6 +189,9 @@ export function mountWorkbench(app: HTMLDivElement): void {
     currentJob: null as SceneJobStatusResponse | null,
     recentScenes: [] as SceneRecord[],
     cities: [] as ChinaCity[],
+    knowledgeSources: [] as KnowledgeSourceStatus[],
+    selectedKnowledgeSource: "graph_rag" as KnowledgeSourceKey,
+    manualKnowledgeResults: [] as RagEvidence[],
     sceneContext: {
       layout_mode: "osm",
       aoi_bbox: null,
@@ -175,7 +209,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
         </p>
         <div class="hero-grid">
           <div class="hero-chip">1. Intent Clarification</div>
-          <div class="hero-chip">2. PDF RAG Evidence</div>
+          <div class="hero-chip">2. GraphRAG Evidence</div>
           <div class="hero-chip">3. Parameter Confirmation</div>
           <div class="hero-chip">4. Scene Job</div>
         </div>
@@ -198,9 +232,19 @@ export function mountWorkbench(app: HTMLDivElement): void {
               <div id="timeline" class="timeline"></div>
               <div class="composer">
                 <textarea id="prompt-input" placeholder="例如：我想做一条步行安全、全龄友好的完整街道，公交可达性要好，机动车不要太强势。"></textarea>
+                <div class="scene-setup-grid">
+                  <div class="field">
+                    <label for="knowledge-source">Knowledge Mode</label>
+                    <select id="knowledge-source">
+                      <option value="graph_rag" selected>graph_rag</option>
+                      <option value="hybrid">hybrid</option>
+                      <option value="pdf_rag">pdf_rag</option>
+                    </select>
+                  </div>
+                </div>
                 <div class="actions">
                   <button id="draft-btn" class="btn primary">生成设计建议</button>
-                  <button id="rebuild-btn" class="btn secondary">重建知识库</button>
+                  <button id="rebuild-btn" class="btn secondary">重建 PDF 知识库</button>
                 </div>
                 <div id="status-box" class="status-box">等待输入。</div>
               </div>
@@ -251,6 +295,22 @@ export function mountWorkbench(app: HTMLDivElement): void {
 	            </div>
 	          </section>
 
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Knowledge Search</h2>
+            </div>
+            <div class="panel-body">
+              <div id="knowledge-source-summary" class="summary-box">正在检查知识源状态...</div>
+              <div class="composer knowledge-composer">
+                <textarea id="knowledge-query" placeholder="例如：minimum sidewalk width near transit stops，或者 输入中文问题来手动核对 GraphRAG / PDF 证据。"></textarea>
+                <div class="actions">
+                  <button id="knowledge-search-btn" class="btn secondary" type="button">查询知识</button>
+                </div>
+              </div>
+              <div id="knowledge-search-results" class="evidence-list"></div>
+            </div>
+          </section>
+
 	          <section class="panel">
 	            <div class="panel-head">
               <h2>Evidence</h2>
@@ -294,6 +354,11 @@ export function mountWorkbench(app: HTMLDivElement): void {
   const draftBtn = requireElement<HTMLButtonElement>(app, "#draft-btn");
   const rebuildBtn = requireElement<HTMLButtonElement>(app, "#rebuild-btn");
   const statusBox = requireElement<HTMLDivElement>(app, "#status-box");
+  const knowledgeSource = requireElement<HTMLSelectElement>(app, "#knowledge-source");
+  const knowledgeSourceSummary = requireElement<HTMLDivElement>(app, "#knowledge-source-summary");
+  const knowledgeQuery = requireElement<HTMLTextAreaElement>(app, "#knowledge-query");
+  const knowledgeSearchBtn = requireElement<HTMLButtonElement>(app, "#knowledge-search-btn");
+  const knowledgeSearchResults = requireElement<HTMLDivElement>(app, "#knowledge-search-results");
   const sceneLayoutMode = requireElement<HTMLSelectElement>(app, "#scene-layout-mode");
   const sceneCity = requireElement<HTMLSelectElement>(app, "#scene-city");
   const sceneCityField = requireElement<HTMLDivElement>(app, "#scene-city-field");
@@ -313,8 +378,14 @@ export function mountWorkbench(app: HTMLDivElement): void {
   renderTimeline();
   renderParameterForm({});
   renderSceneSetup();
+  renderKnowledgeSourcePanel();
   renderJobPanel();
   void bootstrap();
+
+  knowledgeSource.addEventListener("change", () => {
+    state.selectedKnowledgeSource = normalizeKnowledgeSourceKey(knowledgeSource.value);
+    renderKnowledgeSourcePanel();
+  });
 
   sceneLayoutMode.addEventListener("change", () => {
     renderSceneSetup();
@@ -349,6 +420,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
         user_input: prompt,
         current_patch: state.lastDraft?.draft?.compose_config_patch || {},
         topk: 6,
+        knowledge_source: state.selectedKnowledgeSource,
       });
       state.messages.push({ role: "user", content: prompt });
       if (payload.stage === "clarification_required") {
@@ -387,6 +459,34 @@ export function mountWorkbench(app: HTMLDivElement): void {
       setStatus(asErrorMessage(error));
     } finally {
       rebuildBtn.disabled = false;
+    }
+  });
+
+  knowledgeSearchBtn.addEventListener("click", async () => {
+    const query = knowledgeQuery.value.trim();
+    if (!query) {
+      setStatus("请输入要查询的知识问题。");
+      return;
+    }
+    knowledgeSearchBtn.disabled = true;
+    setStatus(`正在查询 ${formatKnowledgeSourceLabel(state.selectedKnowledgeSource)}...`);
+    try {
+      const payload = await postJson<KnowledgeSearchResponse>("/api/knowledge/search", {
+        query,
+        topk: 6,
+        knowledge_source: state.selectedKnowledgeSource,
+      });
+      state.manualKnowledgeResults = payload.items;
+      renderKnowledgeSourcePanel();
+      setStatus(
+        payload.items.length
+          ? `已返回 ${payload.items.length} 条知识证据。`
+          : `没有在 ${formatKnowledgeSourceLabel(state.selectedKnowledgeSource)} 中检索到匹配证据。`,
+      );
+    } catch (error) {
+      setStatus(asErrorMessage(error));
+    } finally {
+      knowledgeSearchBtn.disabled = false;
     }
   });
 
@@ -429,6 +529,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
 
   async function bootstrap(): Promise<void> {
     try {
+      await loadKnowledgeSources();
       await loadChinaCities();
       await refreshRecentScenes();
       const jobs = await getJson<SceneJobListResponse>("/api/scene/jobs");
@@ -448,6 +549,28 @@ export function mountWorkbench(app: HTMLDivElement): void {
     } catch (_error) {
       // Workbench should still render even if the API is not up yet.
     }
+  }
+
+  async function loadKnowledgeSources(): Promise<void> {
+    const payload = await getJson<KnowledgeSourceListResponse>("/api/knowledge/sources");
+    state.knowledgeSources = payload.items;
+    const optionsHtml = payload.items
+      .map((item) => `<option value="${escapeHtml(item.key)}" ${item.available ? "" : "disabled"}>${escapeHtml(item.label)}</option>`)
+      .join("");
+    if (optionsHtml) {
+      knowledgeSource.innerHTML = optionsHtml;
+    }
+    const preferredSource =
+      payload.items.find((item) => item.key === "graph_rag" && item.available)
+      || payload.items.find((item) => item.key === "hybrid" && item.available)
+      || payload.items.find((item) => item.available)
+      || payload.items.find((item) => item.key === state.selectedKnowledgeSource)
+      || payload.items[0];
+    if (preferredSource) {
+      state.selectedKnowledgeSource = preferredSource.key;
+      knowledgeSource.value = preferredSource.key;
+    }
+    renderKnowledgeSourcePanel();
   }
 
   async function loadChinaCities(): Promise<void> {
@@ -498,6 +621,36 @@ export function mountWorkbench(app: HTMLDivElement): void {
     renderJobPanel();
   }
 
+  function renderKnowledgeSourcePanel(): void {
+    const rows = state.knowledgeSources.length
+      ? state.knowledgeSources
+          .map((item) => {
+            const countLabel = item.available
+              ? `${String(item.item_count || 0)} items`
+              : item.error || "unavailable";
+            return `<span class="tag">${escapeHtml(`${item.label}: ${countLabel}`)}</span>`;
+          })
+          .join("")
+      : `<span class="tag">Hybrid: API not loaded</span>`;
+    const selected = state.knowledgeSources.find((item) => item.key === state.selectedKnowledgeSource);
+    const selectedDescription = selected
+      ? [
+          `${selected.label}: ${selected.description}`,
+          selected.available ? `items: ${String(selected.item_count || 0)}` : `status: ${selected.error || "unavailable"}`,
+          selected.last_build_status ? `runtime build: ${selected.last_build_status}` : "",
+          selected.runtime_error ? `runtime error: ${selected.runtime_error}` : "",
+        ].join("\n")
+      : `${formatKnowledgeSourceLabel(state.selectedKnowledgeSource)}: API not loaded yet.`;
+    knowledgeSourceSummary.innerHTML = `
+      <div class="tag-row">${rows}</div>
+      <div class="field-note">当前草案生成与手动查询都会使用：${escapeHtml(formatKnowledgeSourceLabel(state.selectedKnowledgeSource))}</div>
+      <div class="field-note">${escapeHtml(selectedDescription)}</div>
+    `;
+    knowledgeSearchResults.innerHTML = state.manualKnowledgeResults.length
+      ? buildEvidenceCards(state.manualKnowledgeResults)
+      : `<div class="field-note">这里会显示手动查询到的 PDF / GraphRAG 证据。</div>`;
+  }
+
   function renderDraftResponse(payload: DraftResponse): void {
     if (payload.stage === "clarification_required" || !payload.draft) {
       renderClarification(payload);
@@ -541,6 +694,10 @@ export function mountWorkbench(app: HTMLDivElement): void {
   }
 
   function renderEvidence(evidence: RagEvidence[], citationsByField: Record<string, string[]>): void {
+    evidenceList.innerHTML = buildEvidenceCards(evidence, citationsByField);
+  }
+
+  function buildEvidenceCards(evidence: RagEvidence[], citationsByField: Record<string, string[]> = {}): string {
     const citedMap = new Map<string, string[]>();
     Object.entries(citationsByField).forEach(([field, ids]) => {
       ids.forEach((id) => {
@@ -549,19 +706,22 @@ export function mountWorkbench(app: HTMLDivElement): void {
         citedMap.set(id, list);
       });
     });
-    evidenceList.innerHTML = evidence
+    return evidence
       .map((item) => {
         const citedFields = citedMap.get(item.chunk_id) || [];
         const hints = Object.entries(item.parameter_hints || {})
           .map(([key, value]) => `<span class="hint">${escapeHtml(key)}: ${escapeHtml(value)}</span>`)
           .join("");
+        const pageLabel = item.page_start > 0 && item.page_end > 0 ? `<span>pp. ${item.page_start}-${item.page_end}</span>` : "";
+        const sourceLabel = `<span class="tag">${escapeHtml(formatKnowledgeSourceLabel(item.knowledge_source || "pdf_rag"))}</span>`;
         return `
           <article class="evidence-card">
             <div class="evidence-meta">
               <span><strong>${escapeHtml(item.section_title || item.chunk_id)}</strong></span>
               <span>${escapeHtml(item.doc_id)}</span>
-              <span>pp. ${item.page_start}-${item.page_end}</span>
+              ${pageLabel}
               <span>score ${item.score.toFixed(3)}</span>
+              ${sourceLabel}
             </div>
             <div class="field-note">${escapeHtml(item.relevance_reason)}</div>
             <p class="evidence-text">${escapeHtml(item.text)}</p>
@@ -877,6 +1037,26 @@ function renderTagRow(items: string[]): string {
     return `<div class="field-note">none</div>`;
   }
   return `<div class="tag-row">${items.map((item) => `<span class="tag">${escapeHtml(item)}</span>`).join("")}</div>`;
+}
+
+function normalizeKnowledgeSourceKey(value: string): KnowledgeSourceKey {
+  if (value === "pdf_rag" || value === "graph_rag") {
+    return value;
+  }
+  return "hybrid";
+}
+
+function formatKnowledgeSourceLabel(source: string): string {
+  switch (source) {
+    case "pdf_rag":
+      return "PDF RAG";
+    case "graph_rag":
+      return "GraphRAG";
+    case "hybrid":
+      return "Hybrid";
+    default:
+      return source || "Unknown";
+  }
 }
 
 function formatParameterSourceLabel(source: string): string {
