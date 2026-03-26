@@ -33,6 +33,14 @@ from .latent_store import LatentStore, load_asset_records
 from .layout_features import CandidateDescriptor, PolicyFeatureContext, build_candidate_feature
 from .layout_policy import LayoutPolicyMLP, LayoutPolicyRuntime, PolicyTrainConfig
 from .layout_solver import LayoutSolverRuntime, solve_layout
+from .metaurban_procedural import (
+    MetaUrbanProceduralConfig,
+    build_metaurban_layout_payload,
+    build_metaurban_segment_graph,
+    resolve_metaurban_block_sequence,
+    sample_metaurban_block_sequence,
+    write_metaurban_layout_payload,
+)
 from .milp_solver import solve_candidate_assignment
 from .osm_ingest import fetch_osm_data, parse_osm_features, project_to_local
 from .osm_segment_graph import build_segment_graph
@@ -125,6 +133,7 @@ __all__ = [
     "LayoutSolverResult",
     "LatentStore",
     "M1Pipeline",
+    "MetaUrbanProceduralConfig",
     "ModelLoadError",
     "LampParams",
     "PipelineResult",
@@ -161,6 +170,8 @@ __all__ = [
     "WorkspaceReadiness",
     "aggregate_scene_rows",
     "build_candidate_feature",
+    "build_metaurban_layout_payload",
+    "build_metaurban_segment_graph",
     "build_placement_context",
     "build_segment_graph",
     "compare_mode_reports",
@@ -196,7 +207,9 @@ __all__ = [
     "parse_osm_features",
     "project_to_local",
     "resolve_device_backend",
+    "resolve_metaurban_block_sequence",
     "resolve_torch_device",
+    "sample_metaurban_block_sequence",
     "score_entrance_impact",
     "score_placement",
     "solve_candidate_assignment",
@@ -204,5 +217,6 @@ __all__ = [
     "split_program_samples_by_scene",
     "train_program_generator",
     "vectorize_program_input",
+    "write_metaurban_layout_payload",
     "write_discovered_roads_jsonl",
 ]
