@@ -33,6 +33,21 @@ def test_build_web_viewer_url_accepts_repo_layout_and_encodes_query(tmp_path: Pa
     assert "scene_layout.json" in url
 
 
+def test_build_web_viewer_url_accepts_scene_directory(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+    repo_root = (tmp_path / "repo").resolve()
+    scene_dir = repo_root / "artifacts" / "real" / "metaurban" / "hkust_gz_gate" / "run_001"
+    layout_path = scene_dir / "scene_layout.json"
+    layout_path.parent.mkdir(parents=True, exist_ok=True)
+    layout_path.write_text("{}", encoding="utf-8")
+
+    monkeypatch.setattr(viewer, "ROOT", repo_root)
+
+    url = viewer.build_web_viewer_url(scene_dir)
+
+    assert url.startswith("http://127.0.0.1:4173/?layout=")
+    assert "scene_layout.json" in url
+
+
 def test_infer_spawn_payload_defaults_to_street_center():
     payload = viewer.infer_spawn_payload({"summary": {"length_m": 120.0}})
 

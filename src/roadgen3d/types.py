@@ -58,7 +58,7 @@ class StreetComposeConfig:
     max_trials_per_slot: int
 
     # -- M5 fields (all have defaults for backward compat) --
-    layout_mode: str = "template"  # "template" | "osm"
+    layout_mode: str = "template"  # "template" | "osm" | "metaurban"
     constraint_mode: str = "soft"  # "off" | "soft"
     aoi_bbox: Optional[Tuple[float, ...]] = None  # (min_lon, min_lat, max_lon, max_lat)
     osm_cache_dir: str = "artifacts/m5/osm_cache"
@@ -470,6 +470,8 @@ class RoadSegmentNode:
     station_start_m: float = 0.0
     station_end_m: float = 0.0
     station_center_m: float = 0.0
+    road_width_m: float = 0.0
+    lane_profile: Dict[str, int] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -487,6 +489,8 @@ class RoadSegmentNode:
             "station_start_m": float(self.station_start_m),
             "station_end_m": float(self.station_end_m),
             "station_center_m": float(self.station_center_m),
+            "road_width_m": float(self.road_width_m),
+            "lane_profile": {str(key): int(value) for key, value in self.lane_profile.items()},
         }
 
 
@@ -519,6 +523,17 @@ class RoadSegmentGraph:
         }
 
     def summary(self) -> Dict[str, Any]:
+        road_ids = {int(node.road_id) for node in self.nodes}
+        road_widths_by_road: Dict[int, float] = {}
+        for node in self.nodes:
+            width_m = float(getattr(node, "road_width_m", 0.0) or 0.0)
+            if width_m <= 0.0:
+                continue
+            lane_profile = getattr(node, "lane_profile", {}) or {}
+            if lane_profile and int(lane_profile.get("total_lane_count", 0)) <= 0:
+                continue
+            road_widths_by_road.setdefault(int(node.road_id), width_m)
+        unique_widths = list(road_widths_by_road.values())
         return {
             "mode": self.mode,
             "segment_count": len(self.nodes),
@@ -527,6 +542,14 @@ class RoadSegmentGraph:
             "avg_segment_length_m": (
                 sum(float(node.length_m) for node in self.nodes) / len(self.nodes)
                 if self.nodes
+                else 0.0
+            ),
+            "road_count": len(road_widths_by_road) if road_widths_by_road else len(road_ids),
+            "min_road_width_m": min(unique_widths) if unique_widths else 0.0,
+            "max_road_width_m": max(unique_widths) if unique_widths else 0.0,
+            "avg_road_width_m": (
+                sum(unique_widths) / len(unique_widths)
+                if unique_widths
                 else 0.0
             ),
         }

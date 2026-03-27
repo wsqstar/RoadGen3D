@@ -318,6 +318,34 @@ select {
   gap: 12px;
 }
 
+.reference-plan-preview {
+  display: grid;
+}
+
+.reference-plan-card {
+  display: grid;
+  gap: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(247, 242, 232, 0.72));
+  padding: 14px;
+}
+
+.reference-plan-meta {
+  display: grid;
+  gap: 10px;
+}
+
+.reference-plan-image {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.72);
+  object-fit: cover;
+  max-height: 320px;
+}
+
 .bbox-grid {
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
 }

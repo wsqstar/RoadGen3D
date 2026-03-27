@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -47,12 +48,15 @@ DEFAULT_COMPLETE_STREETS_PDF = (ROOT / "knowledge" / "book" / "Complete streets 
 DEFAULT_COMPLETE_STREETS_ARTIFACT_DIR = (ROOT / "knowledge" / "complete_streets").resolve()
 DEFAULT_GRAPHRAG_PROJECT_DIR = (ROOT / "knowledge" / "graphRAG").resolve()
 DEFAULT_CLIP_MODEL_DIR = (ROOT / "models" / "clip-vit-base-patch32").resolve()
+DEFAULT_DESIGN_DRAFT_CACHE_DIR = (ROOT / "artifacts" / "workbench_cache" / "design_draft_cache").resolve()
 _CJK_RE = re.compile(r"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]")
 _RAG_SOURCE = "rag"
 _LLM_INFERRED_SOURCE = "llm_inferred"
 _SYSTEM_DEFAULT_SOURCE = "system_default"
 _DEFAULT_KNOWLEDGE_SOURCE = "graph_rag"
 _ALLOWED_KNOWLEDGE_SOURCES = frozenset({"hybrid", "pdf_rag", "graph_rag"})
+_DRAFT_CACHE_VERSION = "roadgen3d_design_draft_cache_v1"
+_DRAFT_CACHE_HIT_WARNING = "Loaded cached design analysis for the exact same prompt; skipped new LLM and GraphRAG work."
 
 
 class DesignAssistantService:
@@ -68,6 +72,7 @@ class DesignAssistantService:
         default_pdf_path: Path | None = None,
         default_artifact_dir: Path | None = None,
         default_graphrag_project_dir: Path | None = None,
+        draft_cache_dir: Path | None = None,
         scene_job_service: SceneJobService | None = None,
     ) -> None:
         self.llm_client = llm_client
@@ -79,6 +84,7 @@ class DesignAssistantService:
         self.default_graphrag_project_dir = Path(
             default_graphrag_project_dir or DEFAULT_GRAPHRAG_PROJECT_DIR
         ).expanduser().resolve()
+        self.draft_cache_dir = Path(draft_cache_dir or DEFAULT_DESIGN_DRAFT_CACHE_DIR).expanduser().resolve()
         self.scene_job_service = scene_job_service or SceneJobService(generator=generate_scene_from_draft)
 
     def rebuild_knowledge(
@@ -113,6 +119,17 @@ class DesignAssistantService:
         knowledge_source: str = _DEFAULT_KNOWLEDGE_SOURCE,
     ) -> DesignDraftBundle:
         resolved_knowledge_source = normalize_knowledge_source(knowledge_source)
+        cache_key = self._build_draft_cache_key(
+            user_input=user_input,
+            knowledge_source=resolved_knowledge_source,
+        )
+        cached_bundle = self._load_cached_draft_bundle(
+            cache_key=cache_key,
+            fallback_query=user_input,
+            current_patch=current_patch,
+        )
+        if cached_bundle is not None:
+            return cached_bundle
         chat_messages = normalize_chat_messages(messages)
         llm = self._get_llm_client()
         intent_payload = llm.chat_json(build_design_intent_messages(chat_messages, user_input, current_patch))
@@ -121,13 +138,20 @@ class DesignAssistantService:
             warnings: List[str] = []
             if intent.follow_up_questions:
                 warnings.append("Additional clarification is required before drafting a street design.")
-            return DesignDraftBundle(
+            result = DesignDraftBundle(
                 stage="clarification_required",
                 intent=intent,
                 evidence=(),
                 draft=None,
                 warnings=tuple(warnings),
             )
+            self._save_draft_bundle_cache(
+                cache_key=cache_key,
+                user_input=user_input,
+                knowledge_source=resolved_knowledge_source,
+                bundle=result,
+            )
+            return result
         retrieval_queries = self._prepare_retrieval_queries(
             llm=llm,
             intent=intent,
@@ -199,13 +223,20 @@ class DesignAssistantService:
                 "Some parameters still lacked explicit values after retrieval and were filled with stable defaults: "
                 + ", ".join(defaulted_fields)
             )
-        return DesignDraftBundle(
+        result = DesignDraftBundle(
             stage="draft_ready",
             intent=intent,
             evidence=evidence,
             draft=draft,
             warnings=tuple(warnings),
         )
+        self._save_draft_bundle_cache(
+            cache_key=cache_key,
+            user_input=user_input,
+            knowledge_source=resolved_knowledge_source,
+            bundle=result,
+        )
+        return result
 
     def list_knowledge_sources(self) -> List[Dict[str, Any]]:
         pdf_status = self._build_pdf_knowledge_status()
@@ -292,6 +323,99 @@ class DesignAssistantService:
                 project_dir=self.default_graphrag_project_dir,
             )
         return self._graph_knowledge_retriever
+
+    def _build_draft_cache_key(
+        self,
+        *,
+        user_input: str,
+        knowledge_source: str,
+    ) -> str:
+        normalized_prompt = _normalize_cache_prompt(user_input)
+        key_payload = {
+            "knowledge_source": normalize_knowledge_source(knowledge_source),
+            "user_input": normalized_prompt,
+        }
+        digest = hashlib.sha256(
+            json.dumps(key_payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+        ).hexdigest()
+        return str(digest)
+
+    def _draft_cache_path_for_key(self, cache_key: str) -> Path:
+        return self.draft_cache_dir / f"{cache_key}.json"
+
+    def _load_cached_draft_bundle(
+        self,
+        *,
+        cache_key: str,
+        fallback_query: str,
+        current_patch: Mapping[str, Any] | None,
+    ) -> DesignDraftBundle | None:
+        cache_path = self._draft_cache_path_for_key(cache_key)
+        if not cache_path.exists():
+            return None
+        try:
+            payload = json.loads(cache_path.read_text(encoding="utf-8"))
+        except Exception:
+            return None
+        if str(payload.get("version", "")) != _DRAFT_CACHE_VERSION:
+            return None
+        bundle_payload = payload.get("bundle")
+        if not isinstance(bundle_payload, Mapping):
+            return None
+        intent_payload = bundle_payload.get("intent")
+        intent = parse_design_intent(
+            intent_payload if isinstance(intent_payload, Mapping) else {},
+            fallback_query=fallback_query,
+        )
+        evidence = tuple(
+            parse_rag_evidence(item)
+            for item in (bundle_payload.get("evidence") or [])
+            if isinstance(item, Mapping) and _clean_text(item.get("chunk_id"))
+        )
+        draft_payload = bundle_payload.get("draft")
+        draft = None
+        if isinstance(draft_payload, Mapping):
+            draft = parse_design_draft(
+                draft_payload,
+                evidence=evidence,
+                fallback_query=fallback_query,
+                current_patch={},
+            )
+            draft, _ = finalize_design_draft(draft)
+            draft = _merge_current_patch_into_cached_draft(draft, current_patch=current_patch)
+        warnings = tuple(dict.fromkeys(_coerce_text_list(bundle_payload.get("warnings"))))
+        if _DRAFT_CACHE_HIT_WARNING not in warnings:
+            warnings = warnings + (_DRAFT_CACHE_HIT_WARNING,)
+        return DesignDraftBundle(
+            stage=str(bundle_payload.get("stage", "draft_ready") or "draft_ready"),
+            intent=intent,
+            evidence=evidence,
+            draft=draft,
+            warnings=warnings,
+            cache_hit=True,
+        )
+
+    def _save_draft_bundle_cache(
+        self,
+        *,
+        cache_key: str,
+        user_input: str,
+        knowledge_source: str,
+        bundle: DesignDraftBundle,
+    ) -> None:
+        cache_path = self._draft_cache_path_for_key(cache_key)
+        payload = {
+            "version": _DRAFT_CACHE_VERSION,
+            "cache_key": str(cache_key),
+            "knowledge_source": normalize_knowledge_source(knowledge_source),
+            "user_input": _normalize_cache_prompt(user_input),
+            "bundle": bundle.to_dict(),
+        }
+        try:
+            cache_path.parent.mkdir(parents=True, exist_ok=True)
+            cache_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        except Exception:
+            return
 
     def _build_pdf_knowledge_status(self) -> Dict[str, Any]:
         metadata_path = self.default_artifact_dir / "metadata.json"
@@ -558,6 +682,27 @@ def convert_search_hit_to_evidence(
     )
 
 
+def parse_rag_evidence(payload: Mapping[str, Any]) -> RagEvidence:
+    parameter_hints = payload.get("parameter_hints")
+    return RagEvidence(
+        chunk_id=_clean_text(payload.get("chunk_id")) or "cached_chunk",
+        doc_id=_clean_text(payload.get("doc_id")) or "cached_doc",
+        section_title=_clean_text(payload.get("section_title")) or "Cached Evidence",
+        page_start=int(payload.get("page_start", 0) or 0),
+        page_end=int(payload.get("page_end", 0) or 0),
+        text=str(payload.get("text", "") or ""),
+        source_path=str(payload.get("source_path", "") or ""),
+        score=float(payload.get("score", 0.0) or 0.0),
+        relevance_reason=str(payload.get("relevance_reason", "") or ""),
+        knowledge_source=normalize_knowledge_source(payload.get("knowledge_source")),
+        parameter_hints={
+            str(key): str(value)
+            for key, value in dict(parameter_hints or {}).items()
+            if _clean_text(key) and _clean_text(value)
+        },
+    )
+
+
 def infer_parameter_hints(text: str) -> Dict[str, str]:
     lowered = str(text or "").lower()
     hints: Dict[str, str] = {}
@@ -626,6 +771,35 @@ def finalize_design_draft(draft: DesignDraft) -> Tuple[DesignDraft, Tuple[str, .
     )
 
 
+def _merge_current_patch_into_cached_draft(
+    draft: DesignDraft,
+    *,
+    current_patch: Mapping[str, Any] | None,
+) -> DesignDraft:
+    overrides = sanitize_compose_config_patch(current_patch)
+    if not overrides:
+        return draft
+    patch = dict(draft.compose_config_patch)
+    citations = {
+        key: tuple(value)
+        for key, value in draft.citations_by_field.items()
+    }
+    for key, value in overrides.items():
+        if str(patch.get(key, "")) != str(value):
+            citations.pop(key, None)
+        patch[key] = value
+    merged_draft, _ = finalize_design_draft(
+        DesignDraft(
+            normalized_scene_query=str(patch.get("query") or draft.normalized_scene_query),
+            compose_config_patch=patch,
+            citations_by_field=citations,
+            design_summary=draft.design_summary,
+            risk_notes=draft.risk_notes,
+        )
+    )
+    return merged_draft
+
+
 def _coerce_text_list(value: object) -> List[str]:
     if value is None:
         return []
@@ -638,6 +812,14 @@ def _coerce_text_list(value: object) -> List[str]:
 
 def _contains_cjk_text(value: str) -> bool:
     return bool(_CJK_RE.search(str(value or "")))
+
+
+def _clean_text(value: object) -> str:
+    return str(value or "").strip()
+
+
+def _normalize_cache_prompt(value: object) -> str:
+    return re.sub(r"\s+", " ", str(value or "").strip())
 
 
 def normalize_knowledge_source(value: object) -> str:

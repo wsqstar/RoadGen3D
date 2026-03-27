@@ -288,6 +288,87 @@ def test_design_api_endpoints_return_expected_shapes():
     assert geo_response.status_code == 200
     assert geo_response.json()["items"][0]["name_en"] == "guangzhou"
 
+    reference_plan_response = client.get("/api/reference-plans")
+    assert reference_plan_response.status_code == 200
+    assert any(item["plan_id"] == "hkust_gz_gate" for item in reference_plan_response.json()["items"])
+
+    reference_plan_image_response = client.get("/api/reference-plans/hkust_gz_gate/image")
+    assert reference_plan_image_response.status_code == 200
+    assert reference_plan_image_response.headers["content-type"].startswith("image/")
+
+    annotation_convert_response = client.post(
+        "/api/reference-annotations/convert",
+        json={
+            "annotation": {
+                "plan_id": "hkust_gz_gate",
+                "image_width_px": 1200,
+                "image_height_px": 800,
+                "pixels_per_meter": 10.0,
+                "centerlines": [
+                    {
+                        "id": "main_axis",
+                        "road_width_m": 11.0,
+                        "reference_width_px": 98.0,
+                        "forward_drive_lane_count": 2,
+                        "reverse_drive_lane_count": 1,
+                        "bike_lane_count": 1,
+                        "parking_lane_count": 1,
+                        "points": [
+                            {"x": 120, "y": 400},
+                            {"x": 520, "y": 400},
+                            {"x": 980, "y": 360},
+                        ],
+                    },
+                    {
+                        "id": "north_branch",
+                        "road_width_m": 9.0,
+                        "reference_width_px": 78.0,
+                        "forward_drive_lane_count": 1,
+                        "reverse_drive_lane_count": 1,
+                        "bus_lane_count": 1,
+                        "points": [
+                            {"x": 520, "y": 400},
+                            {"x": 520, "y": 160},
+                        ],
+                    },
+                ],
+                "junctions": [{"x": 520, "y": 400, "kind": "intersection"}],
+                "roundabouts": [{"x": 980, "y": 360, "radius_px": 48}],
+                "control_points": [{"x": 120, "y": 400, "kind": "gateway"}],
+            },
+            "compose_config": {"segment_length_m": 9.0},
+        },
+    )
+    assert annotation_convert_response.status_code == 200
+    assert annotation_convert_response.json()["graph"]["mode"] == "annotation"
+    assert annotation_convert_response.json()["summary"]["centerline_count"] == 2
+    assert annotation_convert_response.json()["summary"]["segment_count"] > 0
+    assert len(annotation_convert_response.json()["road_profiles"]) == 2
+    assert annotation_convert_response.json()["road_profiles"][0]["reference_width_px"] == 98.0
+    assert annotation_convert_response.json()["graph"]["nodes"][0]["road_width_m"] > 0
+    assert "lane_profile" in annotation_convert_response.json()["graph"]["nodes"][0]
+
+    metaurban_generate_response = client.post(
+        "/api/design/generate",
+        json={
+            "draft": {
+                "normalized_scene_query": "campus gateway boulevard",
+                "compose_config_patch": {"sidewalk_width_m": 4.0},
+                "citations_by_field": {},
+                "design_summary": "summary",
+                "risk_notes": [],
+            },
+            "scene_context": {
+                "layout_mode": "metaurban",
+                "reference_plan_id": "hkust_gz_gate",
+            },
+        },
+    )
+    assert metaurban_generate_response.status_code == 200
+    assert metaurban_generate_response.json()["summary"]["layout_mode"] == "metaurban"
+    assert service.last_scene_context is not None
+    assert service.last_scene_context.reference_plan_id == "hkust_gz_gate"
+
     invalid_osm_response = client.post(
         "/api/design/generate",
         json={

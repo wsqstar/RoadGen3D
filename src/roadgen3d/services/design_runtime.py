@@ -3,10 +3,13 @@
 from __future__ import annotations
 
 import json
+from dataclasses import replace
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Mapping
 
 from ..json_safe import make_json_safe
+from ..metaurban_scene_bridge import build_metaurban_scene_bridge
 from ..street_layout import compose_street_scene
 from ..types import StreetComposeConfig
 from ..web_viewer_dev import build_web_viewer_url, cache_scene_layout_for_viewer
@@ -31,6 +34,7 @@ from .scene_context_service import ResolvedSceneContext, resolve_scene_context
 
 
 ROOT = Path(__file__).resolve().parents[3]
+DEFAULT_METAURBAN_REFERENCE_PLAN_ID = "hkust_gz_gate"
 DEFAULT_SCENE_GENERATION_OPTIONS = SceneGenerationOptions(
     manifest_path=(ROOT / "data" / "real" / "real_assets_manifest.jsonl").resolve(),
     artifacts_dir=(ROOT / "artifacts" / "real").resolve(),
@@ -180,6 +184,102 @@ def _augment_layout_summary(layout_path: str | Path, extra_summary: Mapping[str,
     path.write_text(json.dumps(make_json_safe(payload), ensure_ascii=True, indent=2), encoding="utf-8")
 
 
+def _build_scene_generation_result(
+    *,
+    config: StreetComposeConfig,
+    compose_result: Any,
+    extra_summary: Mapping[str, Any] | None = None,
+) -> SceneGenerationResult:
+    scene_layout_path = str(compose_result.outputs.get("scene_layout", "") or "")
+    viewer_url = ""
+    summary: Dict[str, Any] = {
+        "instance_count": int(getattr(compose_result, "instance_count", 0)),
+        "dropped_slots": int(getattr(compose_result, "dropped_slots", 0)),
+    }
+    if scene_layout_path:
+        _augment_layout_summary(scene_layout_path, extra_summary or {})
+        cached_layout = cache_scene_layout_for_viewer(scene_layout_path)
+        _augment_layout_summary(cached_layout, extra_summary or {})
+        viewer_url = build_web_viewer_url(cached_layout)
+        try:
+            payload = json.loads(Path(cached_layout).read_text(encoding="utf-8"))
+            summary = dict(payload.get("summary", {}) or summary)
+        except Exception:
+            pass
+    return SceneGenerationResult(
+        compose_config=dict(make_json_safe(config.to_dict())),
+        summary=dict(make_json_safe(summary)),
+        scene_layout_path=scene_layout_path,
+        scene_glb_path=str(compose_result.outputs.get("scene_glb", "") or ""),
+        scene_ply_path=str(compose_result.outputs.get("scene_ply", "") or ""),
+        viewer_url=viewer_url,
+    )
+
+
+def _build_scene_backends(options: SceneGenerationOptions):
+    object_backend = ManifestObjectAssetBackend(
+        manifest_path=options.manifest_path,
+        manifest_v2_path=options.object_manifest_v2_path,
+    )
+    ground_backend = ManifestGroundMaterialBackend(
+        manifest_path=options.ground_material_manifest_path,
+    )
+    sky_backend = ManifestSkyBackend(
+        manifest_path=options.sky_manifest_path,
+    )
+    return object_backend, ground_backend, sky_backend
+
+
+def _build_metaurban_out_dir(base_out_dir: Path, plan_id: str) -> Path:
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    return (Path(base_out_dir).expanduser().resolve() / "metaurban" / str(plan_id) / timestamp).resolve()
+
+
+def _generate_metaurban_scene_from_draft(
+    base_config: StreetComposeConfig,
+    *,
+    options: SceneGenerationOptions,
+    scene_context: SceneContext,
+) -> SceneGenerationResult:
+    plan_id = str(scene_context.reference_plan_id or DEFAULT_METAURBAN_REFERENCE_PLAN_ID).strip().lower()
+    try:
+        bridge = build_metaurban_scene_bridge(
+            base_config,
+            plan_id=plan_id,
+        )
+    except KeyError as exc:
+        raise RuntimeError(str(exc)) from exc
+    config = replace(base_config, layout_mode="metaurban")
+    metaurban_out_dir = _build_metaurban_out_dir(options.out_dir, plan_id)
+    object_backend, ground_backend, sky_backend = _build_scene_backends(options)
+    result = compose_street_scene(
+        config=config,
+        manifest_path=options.manifest_path,
+        artifacts_dir=options.artifacts_dir,
+        model_name=options.model_name,
+        model_dir=options.model_dir,
+        local_files_only=bool(options.local_files_only),
+        device=options.device,
+        export_format=options.export_format,
+        out_dir=metaurban_out_dir,
+        placement_policy=options.placement_policy,
+        policy_ckpt=options.policy_ckpt,
+        program_ckpt=options.program_ckpt,
+        policy_temperature=float(options.policy_temperature),
+        object_asset_backend=object_backend,
+        ground_material_backend=ground_backend,
+        sky_backend=sky_backend,
+        road_segment_graph_override=bridge.road_segment_graph,
+        projected_features_override=bridge.projected_features,
+        placement_context_override=bridge.placement_context,
+    )
+    return _build_scene_generation_result(
+        config=config,
+        compose_result=result,
+        extra_summary=bridge.summary_metadata,
+    )
+
+
 def generate_scene_from_draft(
     draft: DesignDraft,
     *,
@@ -195,8 +295,15 @@ def generate_scene_from_draft(
         else normalize_scene_generation_options(generation_options)
     )
     base_config = build_compose_config_from_draft(draft, patch_overrides=patch_overrides)
+    normalized_scene_context = sanitize_scene_context(scene_context)
+    if normalized_scene_context.layout_mode == "metaurban":
+        return _generate_metaurban_scene_from_draft(
+            base_config,
+            options=options,
+            scene_context=normalized_scene_context,
+        )
     resolved_scene_context = resolve_scene_context(
-        sanitize_scene_context(scene_context),
+        normalized_scene_context,
         config=base_config,
         artifacts_dir=options.artifacts_dir,
     )
@@ -204,16 +311,7 @@ def generate_scene_from_draft(
         base_config,
         resolved_scene_context=resolved_scene_context,
     )
-    object_backend = ManifestObjectAssetBackend(
-        manifest_path=options.manifest_path,
-        manifest_v2_path=options.object_manifest_v2_path,
-    )
-    ground_backend = ManifestGroundMaterialBackend(
-        manifest_path=options.ground_material_manifest_path,
-    )
-    sky_backend = ManifestSkyBackend(
-        manifest_path=options.sky_manifest_path,
-    )
+    object_backend, ground_backend, sky_backend = _build_scene_backends(options)
     result = compose_street_scene(
         config=config,
         manifest_path=options.manifest_path,
@@ -232,28 +330,8 @@ def generate_scene_from_draft(
         ground_material_backend=ground_backend,
         sky_backend=sky_backend,
     )
-    scene_layout_path = str(result.outputs.get("scene_layout", "") or "")
-    viewer_url = ""
-    summary: Dict[str, Any] = {
-        "instance_count": int(result.instance_count),
-        "dropped_slots": int(result.dropped_slots),
-    }
-    if scene_layout_path:
-        scene_context_summary = resolved_scene_context.to_summary_metadata()
-        _augment_layout_summary(scene_layout_path, scene_context_summary)
-        cached_layout = cache_scene_layout_for_viewer(scene_layout_path)
-        _augment_layout_summary(cached_layout, scene_context_summary)
-        viewer_url = build_web_viewer_url(cached_layout)
-        try:
-            payload = json.loads(Path(cached_layout).read_text(encoding="utf-8"))
-            summary = dict(payload.get("summary", {}) or summary)
-        except Exception:
-            pass
-    return SceneGenerationResult(
-        compose_config=dict(make_json_safe(config.to_dict())),
-        summary=dict(make_json_safe(summary)),
-        scene_layout_path=scene_layout_path,
-        scene_glb_path=str(result.outputs.get("scene_glb", "") or ""),
-        scene_ply_path=str(result.outputs.get("scene_ply", "") or ""),
-        viewer_url=viewer_url,
+    return _build_scene_generation_result(
+        config=config,
+        compose_result=result,
+        extra_summary=resolved_scene_context.to_summary_metadata(),
     )

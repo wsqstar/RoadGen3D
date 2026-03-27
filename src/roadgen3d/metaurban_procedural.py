@@ -17,11 +17,13 @@ from typing import Dict, Iterable, List, Sequence, Tuple
 
 from .types import RoadSegmentBand, RoadSegmentEdge, RoadSegmentGraph, RoadSegmentNode
 
+ROOT = Path(__file__).resolve().parents[2]
 METAURBAN_V2_BLOCK_WEIGHTS: Dict[str, float] = {
     "C": 0.40,  # Curve
     "S": 0.20,  # Straight
     "X": 0.15,  # StdInterSection
     "T": 0.15,  # StdTInterSection
+    "O": 0.10,  # Roundabout
 }
 SUPPORTED_METAURBAN_BLOCKS: Tuple[str, ...] = tuple(METAURBAN_V2_BLOCK_WEIGHTS.keys())
 DEFAULT_ALLOWED_CATEGORIES: Tuple[str, ...] = (
@@ -57,6 +59,48 @@ class MetaUrbanProceduralConfig:
 
     def to_dict(self) -> Dict[str, object]:
         return asdict(self)
+
+
+@dataclass(frozen=True)
+class MetaUrbanReferencePlan:
+    """One site-specific reference plan backed by a local image and preset config."""
+
+    plan_id: str
+    label: str
+    description: str
+    image_path: Path
+    block_sequence: str
+    seed: int = 42
+    straight_length_m: float = 28.0
+    intersection_span_m: float = 18.0
+    branch_length_m: float = 24.0
+    curve_radius_m: float = 16.0
+    curve_angle_deg: float = 60.0
+
+    def to_dict(self) -> Dict[str, object]:
+        payload = asdict(self)
+        payload["image_path"] = str(self.image_path)
+        return payload
+
+
+_REFERENCE_PLANS: Dict[str, MetaUrbanReferencePlan] = {
+    "hkust_gz_gate": MetaUrbanReferencePlan(
+        plan_id="hkust_gz_gate",
+        label="HKUST-GZ Gate",
+        description=(
+            "Approximate the HKUST(GZ) gate frontage: west approach, signalized crossroad, "
+            "tree-lined boulevard, center roundabout, and east campus-edge intersection."
+        ),
+        image_path=(ROOT / "assets" / "hkust-gz" / "image.png").resolve(),
+        block_sequence="SXSOXS",
+        seed=17,
+        straight_length_m=34.0,
+        intersection_span_m=22.0,
+        branch_length_m=26.0,
+        curve_radius_m=18.0,
+        curve_angle_deg=60.0,
+    ),
+}
 
 
 def _normalize_block_sequence(value: str) -> str:
@@ -97,6 +141,50 @@ def resolve_metaurban_block_sequence(
     if normalized:
         return normalized
     return sample_metaurban_block_sequence(config.block_count, rng=rng)
+
+
+def list_metaurban_reference_plans() -> Tuple[MetaUrbanReferencePlan, ...]:
+    """Return all built-in reference plans."""
+
+    return tuple(_REFERENCE_PLANS.values())
+
+
+def get_metaurban_reference_plan(plan_id: str) -> MetaUrbanReferencePlan:
+    """Return one built-in reference plan by id."""
+
+    key = str(plan_id or "").strip().lower()
+    if key not in _REFERENCE_PLANS:
+        raise KeyError(f"Unknown MetaUrban reference plan: {plan_id}")
+    return _REFERENCE_PLANS[key]
+
+
+def build_metaurban_reference_config(
+    plan_id: str,
+    *,
+    lane_count: int = 2,
+    sidewalk_width_m: float = 2.5,
+    lane_width_m: float = 3.5,
+    segment_length_m: float = 12.0,
+    start_heading_deg: float = 0.0,
+) -> MetaUrbanProceduralConfig:
+    """Build a procedural config from a site-specific preset."""
+
+    plan = get_metaurban_reference_plan(plan_id)
+    return MetaUrbanProceduralConfig(
+        seed=int(plan.seed),
+        block_count=len(plan.block_sequence),
+        block_sequence=str(plan.block_sequence),
+        lane_count=max(int(lane_count), 1),
+        lane_width_m=float(max(lane_width_m, 2.8)),
+        sidewalk_width_m=float(max(sidewalk_width_m, 1.8)),
+        segment_length_m=float(max(segment_length_m, 4.0)),
+        straight_length_m=float(plan.straight_length_m),
+        intersection_span_m=float(plan.intersection_span_m),
+        branch_length_m=float(plan.branch_length_m),
+        curve_radius_m=float(plan.curve_radius_m),
+        curve_angle_deg=float(plan.curve_angle_deg),
+        start_heading_deg=float(start_heading_deg),
+    )
 
 
 def _advance(point: Tuple[float, float], heading_rad: float, length_m: float) -> Tuple[float, float]:
@@ -471,9 +559,110 @@ def build_metaurban_segment_graph(config: MetaUrbanProceduralConfig) -> RoadSegm
             road_id += 1
             continue
 
+        if token == "O":
+            hub_xy = _advance(cursor_xy, heading_rad, float(max(config.intersection_span_m * 0.35, 2.0)))
+            hub_ids, hub_xy = builder.add_polyline(
+                [cursor_xy, hub_xy],
+                road_id=road_id,
+                connect_from=(current_anchor,),
+                is_junction=True,
+                poi_types=("roundabout",),
+                highway_type="metaurban_roundabout",
+            )
+            hub_anchor = hub_ids[-1]
+            road_id += 1
+
+            ring_radius = float(max(config.curve_radius_m * 0.75, config.lane_width_m * config.lane_count * 1.3, 8.0))
+            ring_points = [
+                _advance(hub_xy, heading_rad, ring_radius),
+                _advance(hub_xy, _heading_left(heading_rad), ring_radius),
+                _advance(hub_xy, heading_rad + math.pi, ring_radius),
+                _advance(hub_xy, _heading_right(heading_rad), ring_radius),
+                _advance(hub_xy, heading_rad, ring_radius),
+            ]
+            builder.add_polyline(
+                ring_points,
+                road_id=road_id,
+                connect_from=(hub_anchor,),
+                is_junction=True,
+                poi_types=("roundabout",),
+                highway_type="metaurban_roundabout_ring",
+            )
+            road_id += 1
+
+            forward_xy = _advance(hub_xy, heading_rad, float(max(config.intersection_span_m * 1.1, 2.0)))
+            segment_ids, cursor_xy = builder.add_polyline(
+                [hub_xy, forward_xy],
+                road_id=road_id,
+                connect_from=(hub_anchor,),
+                is_junction=True,
+                poi_types=("roundabout",),
+                highway_type="metaurban_roundabout_exit",
+            )
+            current_anchor = segment_ids[-1]
+            road_id += 1
+
+            left_xy = _advance(hub_xy, _heading_left(heading_rad), float(max(config.branch_length_m, 2.0)))
+            builder.add_polyline(
+                [hub_xy, left_xy],
+                road_id=road_id,
+                connect_from=(hub_anchor,),
+                is_junction=True,
+                poi_types=("roundabout",),
+                highway_type="metaurban_roundabout_branch",
+            )
+            road_id += 1
+
+            right_xy = _advance(hub_xy, _heading_right(heading_rad), float(max(config.branch_length_m, 2.0)))
+            builder.add_polyline(
+                [hub_xy, right_xy],
+                road_id=road_id,
+                connect_from=(hub_anchor,),
+                is_junction=True,
+                poi_types=("roundabout",),
+                highway_type="metaurban_roundabout_branch",
+            )
+            road_id += 1
+            continue
+
         raise ValueError(f"Unsupported MetaUrban block token: {token}")
 
     return builder.build()
+
+
+def compute_metaurban_plan_metrics(graph: RoadSegmentGraph) -> Dict[str, float]:
+    """Compute frontend-facing plan metrics for procedural layouts."""
+
+    nodes = tuple(graph.nodes)
+    edges = tuple(graph.edges)
+    if not nodes:
+        return {
+            "total_network_length_m": 0.0,
+            "junction_density_per_100m": 0.0,
+            "connectivity_ratio": 0.0,
+            "network_width_m": 0.0,
+            "network_height_m": 0.0,
+            "branching_factor": 0.0,
+        }
+    total_length = float(sum(float(node.length_m) for node in nodes))
+    xs = [float(point) for node in nodes for point in (node.start_xy[0], node.end_xy[0])]
+    ys = [float(point) for node in nodes for point in (node.start_xy[1], node.end_xy[1])]
+    junction_count = sum(1 for node in nodes if bool(node.is_junction))
+    outgoing_counts: Dict[str, int] = {}
+    incoming_counts: Dict[str, int] = {}
+    for edge in edges:
+        outgoing_counts[edge.from_segment_id] = outgoing_counts.get(edge.from_segment_id, 0) + 1
+        incoming_counts[edge.to_segment_id] = incoming_counts.get(edge.to_segment_id, 0) + 1
+    branching_nodes = sum(1 for segment_id, count in outgoing_counts.items() if int(count) > 1 and segment_id)
+    reachable_edge_budget = max(len(nodes) - 1, 1)
+    return {
+        "total_network_length_m": round(total_length, 2),
+        "junction_density_per_100m": round((junction_count / max(total_length, 1.0)) * 100.0, 3),
+        "connectivity_ratio": round(len(edges) / float(reachable_edge_budget), 3),
+        "network_width_m": round(max(xs) - min(xs), 2) if xs else 0.0,
+        "network_height_m": round(max(ys) - min(ys), 2) if ys else 0.0,
+        "branching_factor": round(branching_nodes / float(max(len(nodes), 1)), 3),
+    }
 
 
 def build_metaurban_layout_payload(config: MetaUrbanProceduralConfig) -> Dict[str, object]:
@@ -481,6 +670,7 @@ def build_metaurban_layout_payload(config: MetaUrbanProceduralConfig) -> Dict[st
 
     graph = build_metaurban_segment_graph(config)
     sequence = resolve_metaurban_block_sequence(config, rng=random.Random(int(config.seed)))
+    evaluation = compute_metaurban_plan_metrics(graph)
     return {
         "generator": "metaurban_procedural_v1",
         "reference": {
@@ -490,20 +680,57 @@ def build_metaurban_layout_payload(config: MetaUrbanProceduralConfig) -> Dict[st
                 "metaurban/component/algorithm/blocks_prob_dist.py",
                 "metaurban/component/pgblock/straight.py",
                 "metaurban/component/pgblock/curve.py",
+                "metaurban/component/pgblock/roundabout.py",
             ],
             "notes": (
                 "RoadGen3D-native graph port of MetaUrban's block-sequence generator. "
-                "Current port supports Straight(S), Curve(C), StdInterSection(X), and StdTInterSection(T)."
+                "Current port supports Straight(S), Curve(C), StdInterSection(X), "
+                "StdTInterSection(T), and a graph-level Roundabout(O)."
             ),
         },
         "config": config.to_dict(),
         "summary": {
             **graph.summary(),
+            **evaluation,
             "block_sequence": sequence,
             "supported_block_types": list(SUPPORTED_METAURBAN_BLOCKS),
         },
+        "evaluation": evaluation,
         "graph": graph.to_dict(),
     }
+
+
+def build_metaurban_reference_layout_payload(
+    plan_id: str,
+    *,
+    lane_count: int = 2,
+    sidewalk_width_m: float = 2.5,
+    lane_width_m: float = 3.5,
+    segment_length_m: float = 12.0,
+) -> Dict[str, object]:
+    """Build a procedural layout payload from a named reference plan preset."""
+
+    plan = get_metaurban_reference_plan(plan_id)
+    config = build_metaurban_reference_config(
+        plan_id,
+        lane_count=lane_count,
+        sidewalk_width_m=sidewalk_width_m,
+        lane_width_m=lane_width_m,
+        segment_length_m=segment_length_m,
+    )
+    payload = build_metaurban_layout_payload(config)
+    payload["reference_plan"] = {
+        "plan_id": plan.plan_id,
+        "label": plan.label,
+        "description": plan.description,
+        "image_path": str(plan.image_path),
+    }
+    payload["summary"] = {
+        **dict(payload.get("summary", {}) or {}),
+        "reference_plan_id": plan.plan_id,
+        "reference_plan_label": plan.label,
+    }
+    return payload
 
 
 def write_metaurban_layout_payload(
@@ -523,9 +750,15 @@ __all__ = [
     "DEFAULT_ALLOWED_CATEGORIES",
     "METAURBAN_V2_BLOCK_WEIGHTS",
     "MetaUrbanProceduralConfig",
+    "MetaUrbanReferencePlan",
     "SUPPORTED_METAURBAN_BLOCKS",
+    "build_metaurban_reference_config",
+    "build_metaurban_reference_layout_payload",
     "build_metaurban_layout_payload",
     "build_metaurban_segment_graph",
+    "compute_metaurban_plan_metrics",
+    "get_metaurban_reference_plan",
+    "list_metaurban_reference_plans",
     "resolve_metaurban_block_sequence",
     "sample_metaurban_block_sequence",
     "write_metaurban_layout_payload",

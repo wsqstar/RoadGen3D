@@ -206,12 +206,14 @@ class SceneContext:
     layout_mode: str = "template"
     aoi_bbox: Tuple[float, float, float, float] | None = None
     city_name_en: str | None = None
+    reference_plan_id: str | None = None
 
     def to_dict(self) -> Dict[str, Any]:
         return {
             "layout_mode": self.layout_mode,
             "aoi_bbox": list(self.aoi_bbox) if self.aoi_bbox is not None else None,
             "city_name_en": self.city_name_en,
+            "reference_plan_id": self.reference_plan_id,
         }
 
 
@@ -222,13 +224,15 @@ def sanitize_scene_context(payload: Mapping[str, Any] | SceneContext | None) -> 
         return payload
     raw = dict(payload or {})
     layout_mode = str(raw.get("layout_mode", "template") or "template").strip().lower()
-    if layout_mode not in {"template", "osm"}:
+    if layout_mode not in {"template", "osm", "metaurban"}:
         layout_mode = "template"
     city_name_en = _clean_text(raw.get("city_name_en")) or None
+    reference_plan_id = _clean_text(raw.get("reference_plan_id")) or None
     return SceneContext(
         layout_mode=layout_mode,
         aoi_bbox=_coerce_bbox_tuple(raw.get("aoi_bbox")),
         city_name_en=city_name_en,
+        reference_plan_id=reference_plan_id,
     )
 
 
@@ -241,6 +245,7 @@ class DesignDraftBundle:
     evidence: Tuple[RagEvidence, ...]
     draft: DesignDraft | None
     warnings: Tuple[str, ...] = ()
+    cache_hit: bool = False
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -249,6 +254,7 @@ class DesignDraftBundle:
             "evidence": [item.to_dict() for item in self.evidence],
             "draft": self.draft.to_dict() if self.draft is not None else None,
             "warnings": list(self.warnings),
+            "cache_hit": bool(self.cache_hit),
         }
 
 

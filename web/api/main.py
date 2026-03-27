@@ -8,6 +8,7 @@ from typing import Any, Dict, List, Optional
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -19,6 +20,11 @@ if str(SRC) not in sys.path:
 
 from roadgen3d.json_safe import make_json_safe  # noqa: E402
 from roadgen3d.llm import GLMConfigurationError, GLMResponseError  # noqa: E402
+from roadgen3d.metaurban_procedural import get_metaurban_reference_plan, list_metaurban_reference_plans  # noqa: E402
+from roadgen3d.reference_annotation import (  # noqa: E402
+    build_reference_annotation_compose_config,
+    build_reference_annotation_graph_payload,
+)
 from roadgen3d.services.design_assistant import DesignAssistantService, parse_design_draft  # noqa: E402
 from roadgen3d.services.design_types import sanitize_scene_context  # noqa: E402
 
@@ -61,6 +67,11 @@ class KnowledgeSearchRequestModel(BaseModel):
     knowledge_source: str = "graph_rag"
 
 
+class ReferenceAnnotationConvertRequestModel(BaseModel):
+    annotation: Dict[str, Any]
+    compose_config: Dict[str, Any] = Field(default_factory=dict)
+
+
 def create_app(*, design_service: DesignAssistantService | Any | None = None) -> FastAPI:
     app = FastAPI(title="RoadGen3D Design Assistant API", version="0.2.0")
     app.add_middleware(
@@ -85,6 +96,37 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
     def list_china_cities() -> Dict[str, Any]:
         service = app.state.design_service
         return make_json_safe({"items": service.list_china_cities()})
+
+    @app.get("/api/reference-plans")
+    def list_reference_plans() -> Dict[str, Any]:
+        items = []
+        for plan in list_metaurban_reference_plans():
+            payload = plan.to_dict()
+            payload["image_url"] = f"/api/reference-plans/{plan.plan_id}/image"
+            items.append(payload)
+        return make_json_safe({"items": items})
+
+    @app.get("/api/reference-plans/{plan_id}/image")
+    def get_reference_plan_image(plan_id: str) -> FileResponse:
+        try:
+            plan = get_metaurban_reference_plan(plan_id)
+        except KeyError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+        if not plan.image_path.exists():
+            raise HTTPException(status_code=404, detail=f"Reference plan image not found: {plan.image_path}")
+        return FileResponse(plan.image_path)
+
+    @app.post("/api/reference-annotations/convert")
+    def convert_reference_annotation(request: ReferenceAnnotationConvertRequestModel) -> Dict[str, Any]:
+        try:
+            compose_config = build_reference_annotation_compose_config(request.compose_config)
+            payload = build_reference_annotation_graph_payload(
+                request.annotation,
+                config=compose_config,
+            )
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        return make_json_safe(payload)
 
     @app.post("/api/design/draft")
     def design_draft(request: DraftRequestModel) -> Dict[str, Any]:

@@ -727,7 +727,7 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
             class="viewer-nav-button viewer-nav-button-secondary"
             type="button"
           >
-            Scene Graph
+            Annotation
           </button>
           <button id="viewer-settings-toggle" class="viewer-settings-toggle" type="button" aria-expanded="false">
             Settings

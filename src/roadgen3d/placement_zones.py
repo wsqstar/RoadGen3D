@@ -56,6 +56,7 @@ class PlacementContext:
     origin_offset: Tuple[float, float] = (0.0, 0.0)
     carriageway_polygon: Any = None
     road_reference: Any = None
+    road_references: List[Any] = field(default_factory=list)
     carriageway_width_m: float = 0.0
     left_clear_path_width_m: float = 0.0
     right_clear_path_width_m: float = 0.0
@@ -514,6 +515,7 @@ def build_placement_context(
         origin_offset=projected_features.origin_utm,
         carriageway_polygon=carriageway,
         road_reference=projected_features.roads[0] if projected_features.roads else None,
+        road_references=list(projected_features.roads),
         carriageway_width_m=float(cross_section.carriageway_width_m),
         left_clear_path_width_m=float(cross_section.left_clear_path_width_m),
         right_clear_path_width_m=float(cross_section.right_clear_path_width_m),

@@ -50,6 +50,10 @@ def resolve_repo_path(path_text: str | Path) -> Path:
 
 def resolve_scene_layout_path(layout_path: str | Path) -> Path:
     resolved = Path(layout_path).expanduser().resolve()
+    if resolved.is_dir():
+        candidate = (resolved / "scene_layout.json").resolve()
+        if candidate.exists():
+            return candidate
     if not resolved.exists():
         raise WebViewerError(f"Scene layout does not exist: {resolved}")
     return resolved

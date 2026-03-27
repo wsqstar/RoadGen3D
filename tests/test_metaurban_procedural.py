@@ -16,7 +16,9 @@ from roadgen3d.metaurban_procedural import (
     MetaUrbanProceduralConfig,
     SUPPORTED_METAURBAN_BLOCKS,
     build_metaurban_layout_payload,
+    build_metaurban_reference_layout_payload,
     build_metaurban_segment_graph,
+    get_metaurban_reference_plan,
     sample_metaurban_block_sequence,
     write_metaurban_layout_payload,
 )
@@ -48,6 +50,22 @@ def test_build_metaurban_segment_graph_from_sequence_contains_junctions_and_turn
     assert max(abs(float(node.center_xy[1])) for node in graph.nodes) > 0.1
 
 
+def test_build_metaurban_segment_graph_supports_roundabout_blocks():
+    config = MetaUrbanProceduralConfig(
+        seed=13,
+        block_sequence="SOX",
+        segment_length_m=8.0,
+        straight_length_m=18.0,
+        branch_length_m=14.0,
+        intersection_span_m=12.0,
+        curve_radius_m=14.0,
+    )
+
+    graph = build_metaurban_segment_graph(config)
+
+    assert any("roundabout" in str(node.highway_type) for node in graph.nodes)
+
+
 def test_metaurban_layout_payload_writes_json(tmp_path: Path):
     config = MetaUrbanProceduralConfig(seed=5, block_sequence="SXT", block_count=3)
     output_path = tmp_path / "metaurban_layout.json"
@@ -69,3 +87,20 @@ def test_build_metaurban_layout_payload_uses_explicit_sequence_without_sampling(
 
     assert payload["summary"]["block_sequence"] == "TCS"
     assert payload["config"]["block_count"] == 99
+
+
+def test_metaurban_reference_plan_payload_includes_metrics_and_image():
+    plan = get_metaurban_reference_plan("hkust_gz_gate")
+
+    payload = build_metaurban_reference_layout_payload(
+        "hkust_gz_gate",
+        lane_count=3,
+        sidewalk_width_m=3.0,
+        lane_width_m=3.3,
+    )
+
+    assert plan.image_path.exists()
+    assert payload["reference_plan"]["plan_id"] == "hkust_gz_gate"
+    assert payload["summary"]["reference_plan_label"] == plan.label
+    assert payload["summary"]["block_sequence"] == plan.block_sequence
+    assert payload["evaluation"]["total_network_length_m"] > 0.0

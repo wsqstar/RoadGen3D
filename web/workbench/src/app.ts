@@ -37,9 +37,10 @@ type DesignDraft = {
 };
 
 type SceneContext = {
-  layout_mode: "template" | "osm";
+  layout_mode: "template" | "osm" | "metaurban";
   aoi_bbox: [number, number, number, number] | null;
   city_name_en: string | null;
+  reference_plan_id: string | null;
 };
 
 type ChinaCity = {
@@ -53,12 +54,32 @@ type ChinaCityResponse = {
   items: ChinaCity[];
 };
 
+type ReferencePlan = {
+  plan_id: string;
+  label: string;
+  description: string;
+  image_path: string;
+  image_url: string;
+  block_sequence: string;
+  seed: number;
+  straight_length_m: number;
+  intersection_span_m: number;
+  branch_length_m: number;
+  curve_radius_m: number;
+  curve_angle_deg: number;
+};
+
+type ReferencePlanResponse = {
+  items: ReferencePlan[];
+};
+
 type DraftResponse = {
   stage: "clarification_required" | "draft_ready";
   intent: DesignIntent;
   evidence: RagEvidence[];
   draft: DesignDraft | null;
   warnings: string[];
+  cache_hit?: boolean;
 };
 
 type KnowledgeSourceStatus = {
@@ -146,6 +167,8 @@ const VIEWER_BASE = (import.meta.env.VITE_ROADGEN_VIEWER_BASE as string | undefi
 const POLL_INTERVAL_MS = 1200;
 const TERMINAL_JOB_STATES = new Set(["succeeded", "failed"]);
 const DEFAULT_WORKBENCH_CITY = "guangzhou";
+const DEFAULT_REFERENCE_PLAN_ID = "hkust_gz_gate";
+const PEDESTRIAN_ALL_AGE_PRESET_PROMPT = "步行安全，全龄友好";
 const SUMMARY_OMIT_KEYS = new Set([
   "spatial_context",
   "poi_exclusion_zones",
@@ -189,13 +212,15 @@ export function mountWorkbench(app: HTMLDivElement): void {
     currentJob: null as SceneJobStatusResponse | null,
     recentScenes: [] as SceneRecord[],
     cities: [] as ChinaCity[],
+    referencePlans: [] as ReferencePlan[],
     knowledgeSources: [] as KnowledgeSourceStatus[],
     selectedKnowledgeSource: "graph_rag" as KnowledgeSourceKey,
     manualKnowledgeResults: [] as RagEvidence[],
     sceneContext: {
-      layout_mode: "osm",
+      layout_mode: "metaurban",
       aoi_bbox: null,
-      city_name_en: null,
+      city_name_en: DEFAULT_WORKBENCH_CITY,
+      reference_plan_id: DEFAULT_REFERENCE_PLAN_ID,
     } as SceneContext,
     bboxDirty: false,
   };
@@ -244,6 +269,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
                 </div>
                 <div class="actions">
                   <button id="draft-btn" class="btn primary">生成设计建议</button>
+                  <button id="preset-pedestrian-btn" class="btn secondary" type="button">步行安全，全龄友好</button>
                   <button id="rebuild-btn" class="btn secondary">重建 PDF 知识库</button>
                 </div>
                 <div id="status-box" class="status-box">等待输入。</div>
@@ -260,7 +286,8 @@ export function mountWorkbench(app: HTMLDivElement): void {
 	                <div class="field">
 	                  <label for="scene-layout-mode">Layout Mode</label>
 	                  <select id="scene-layout-mode">
-	                    <option value="osm" selected>osm</option>
+	                    <option value="osm">osm</option>
+	                    <option value="metaurban" selected>metaurban</option>
 	                    <option value="template">template</option>
 	                  </select>
 	                </div>
@@ -268,6 +295,12 @@ export function mountWorkbench(app: HTMLDivElement): void {
 	                  <label for="scene-city">City</label>
 	                  <select id="scene-city">
 	                    <option value="">Loading cities...</option>
+	                  </select>
+	                </div>
+	                <div id="scene-reference-field" class="field" style="display:none;">
+	                  <label for="scene-reference-plan">Reference Plan</label>
+	                  <select id="scene-reference-plan">
+	                    <option value="">Loading reference plans...</option>
 	                  </select>
 	                </div>
 	              </div>
@@ -291,7 +324,8 @@ export function mountWorkbench(app: HTMLDivElement): void {
 	                  </div>
 	                </div>
 	              </div>
-	              <div id="scene-setup-summary" class="summary-box">OSM 模式会在 AOI 中自动挑一条普通可步行街道，并启用周边建筑链路。</div>
+	              <div id="reference-plan-preview" class="reference-plan-preview" hidden></div>
+	              <div id="scene-setup-summary" class="summary-box">MetaUrban 模式会默认加载港科广门口参考平面，并直接走 3D corridor scene/export 链。</div>
 	            </div>
 	          </section>
 
@@ -352,6 +386,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
   const timelineEl = requireElement<HTMLDivElement>(app, "#timeline");
   const promptInput = requireElement<HTMLTextAreaElement>(app, "#prompt-input");
   const draftBtn = requireElement<HTMLButtonElement>(app, "#draft-btn");
+  const presetPedestrianBtn = requireElement<HTMLButtonElement>(app, "#preset-pedestrian-btn");
   const rebuildBtn = requireElement<HTMLButtonElement>(app, "#rebuild-btn");
   const statusBox = requireElement<HTMLDivElement>(app, "#status-box");
   const knowledgeSource = requireElement<HTMLSelectElement>(app, "#knowledge-source");
@@ -362,7 +397,10 @@ export function mountWorkbench(app: HTMLDivElement): void {
   const sceneLayoutMode = requireElement<HTMLSelectElement>(app, "#scene-layout-mode");
   const sceneCity = requireElement<HTMLSelectElement>(app, "#scene-city");
   const sceneCityField = requireElement<HTMLDivElement>(app, "#scene-city-field");
+  const sceneReferenceField = requireElement<HTMLDivElement>(app, "#scene-reference-field");
+  const sceneReferencePlan = requireElement<HTMLSelectElement>(app, "#scene-reference-plan");
   const osmSceneFields = requireElement<HTMLDivElement>(app, "#osm-scene-fields");
+  const referencePlanPreview = requireElement<HTMLDivElement>(app, "#reference-plan-preview");
   const bboxMinLon = requireElement<HTMLInputElement>(app, "#bbox-min-lon");
   const bboxMinLat = requireElement<HTMLInputElement>(app, "#bbox-min-lat");
   const bboxMaxLon = requireElement<HTMLInputElement>(app, "#bbox-max-lon");
@@ -391,6 +429,10 @@ export function mountWorkbench(app: HTMLDivElement): void {
     renderSceneSetup();
   });
 
+  sceneReferencePlan.addEventListener("change", () => {
+    renderSceneSetup();
+  });
+
   sceneCity.addEventListener("change", () => {
     const city = state.cities.find((item) => item.name_en === sceneCity.value);
     if (city && !state.bboxDirty) {
@@ -412,40 +454,32 @@ export function mountWorkbench(app: HTMLDivElement): void {
       setStatus("请输入街道目标。");
       return;
     }
-    draftBtn.disabled = true;
-    setStatus("正在让 LLM 解析意图并检索设计指南...");
     try {
-      const payload = await postJson<DraftResponse>("/api/design/draft", {
-        messages: state.messages,
-        user_input: prompt,
-        current_patch: state.lastDraft?.draft?.compose_config_patch || {},
-        topk: 6,
-        knowledge_source: state.selectedKnowledgeSource,
+      await requestDesignDraft({
+        prompt,
+        currentPatch: state.lastDraft?.draft?.compose_config_patch || {},
+        knowledgeSource: state.selectedKnowledgeSource,
+        autoGenerate: false,
       });
-      state.messages.push({ role: "user", content: prompt });
-      if (payload.stage === "clarification_required") {
-        const followUpMessage = buildClarificationAssistantMessage(payload.intent.follow_up_questions);
-        state.messages.push({ role: "assistant", content: followUpMessage });
-        state.lastDraft = null;
-      } else {
-        state.messages.push({ role: "assistant", content: payload.draft?.design_summary || "设计草案已生成。" });
-        state.lastDraft = payload;
-      }
-      state.lastGeneration = null;
-      state.currentJob = null;
-      promptInput.value = "";
-      renderTimeline();
-      renderDraftResponse(payload);
-      renderJobPanel();
-      if (payload.stage === "clarification_required") {
-        setStatus(payload.warnings.length ? payload.warnings.join("\n") : "请先回答澄清问题，然后我再继续生成设计草案。");
-      } else {
-        setStatus(payload.warnings.length ? payload.warnings.join("\n") : "设计草案已生成，请确认参数后创建生成任务。");
-      }
     } catch (error) {
       setStatus(asErrorMessage(error));
-    } finally {
-      draftBtn.disabled = false;
+    }
+  });
+
+  presetPedestrianBtn.addEventListener("click", async () => {
+    state.selectedKnowledgeSource = "graph_rag";
+    knowledgeSource.value = "graph_rag";
+    renderKnowledgeSourcePanel();
+    promptInput.value = PEDESTRIAN_ALL_AGE_PRESET_PROMPT;
+    try {
+      await requestDesignDraft({
+        prompt: PEDESTRIAN_ALL_AGE_PRESET_PROMPT,
+        currentPatch: {},
+        knowledgeSource: "graph_rag",
+        autoGenerate: true,
+      });
+    } catch (error) {
+      setStatus(asErrorMessage(error));
     }
   });
 
@@ -495,10 +529,99 @@ export function mountWorkbench(app: HTMLDivElement): void {
       setStatus("请先生成设计草案。");
       return;
     }
-    generateBtn.disabled = true;
-    setStatus("正在创建场景生成任务...");
     try {
       const draft = buildDraftFromForm(state.lastDraft.draft, parameterForm);
+      await createSceneJobFromDraft(draft, {
+        queuedStatusMessage: "任务已入队，正在轮询生成状态...",
+      });
+    } catch (error) {
+      setStatus(asErrorMessage(error));
+    }
+  });
+
+  async function requestDesignDraft(options: {
+    prompt: string;
+    currentPatch: Record<string, string | number>;
+    knowledgeSource: KnowledgeSourceKey;
+    autoGenerate: boolean;
+  }): Promise<void> {
+    const {
+      prompt,
+      currentPatch,
+      knowledgeSource: requestedKnowledgeSource,
+      autoGenerate,
+    } = options;
+    draftBtn.disabled = true;
+    presetPedestrianBtn.disabled = true;
+    setStatus(
+      autoGenerate
+        ? "正在读取“步行安全，全龄友好”的缓存分析，并准备直接执行 2D / 3D 生成..."
+        : "正在尝试加载缓存；若没有命中，再执行新的 LLM / GraphRAG 分析...",
+    );
+    try {
+      const payload = await postJson<DraftResponse>("/api/design/draft", {
+        messages: state.messages,
+        user_input: prompt,
+        current_patch: currentPatch,
+        topk: 6,
+        knowledge_source: requestedKnowledgeSource,
+      });
+      const cacheMessage = payload.cache_hit
+        ? "已命中缓存，跳过新的 LLM / GraphRAG 分析。"
+        : "未命中缓存，已完成新的 LLM / GraphRAG 分析。";
+      state.messages.push({ role: "user", content: prompt });
+      if (payload.stage === "clarification_required") {
+        const followUpMessage = buildClarificationAssistantMessage(payload.intent.follow_up_questions);
+        state.messages.push({ role: "assistant", content: followUpMessage });
+        state.lastDraft = null;
+      } else {
+        state.messages.push({ role: "assistant", content: payload.draft?.design_summary || "设计草案已生成。" });
+        state.lastDraft = payload;
+      }
+      state.lastGeneration = null;
+      state.currentJob = null;
+      promptInput.value = autoGenerate ? prompt : "";
+      renderTimeline();
+      renderDraftResponse(payload);
+      renderJobPanel();
+      if (payload.stage === "clarification_required" || !payload.draft) {
+        setStatus(
+          payload.warnings.length
+            ? `${cacheMessage}\n${payload.warnings.join("\n")}`
+            : `${cacheMessage}\n请先回答澄清问题，然后我再继续生成设计草案。`,
+        );
+        return;
+      }
+      if (autoGenerate) {
+        setStatus(`${cacheMessage}\n正在直接创建 2D / 3D 生成任务...`);
+        await createSceneJobFromDraft(payload.draft, {
+          queuedStatusMessage: `${cacheMessage}\n任务已入队，正在轮询 2D / 3D 生成状态...`,
+        });
+        return;
+      }
+      setStatus(
+        payload.warnings.length
+          ? `${cacheMessage}\n${payload.warnings.join("\n")}`
+          : `${cacheMessage}\n设计草案已生成，请确认参数后创建生成任务。`,
+      );
+    } finally {
+      generateBtn.disabled = false;
+      draftBtn.disabled = false;
+      presetPedestrianBtn.disabled = false;
+    }
+  }
+
+  async function createSceneJobFromDraft(
+    draft: DesignDraft,
+    options: {
+      queuedStatusMessage: string;
+    },
+  ): Promise<void> {
+    generateBtn.disabled = true;
+    presetPedestrianBtn.disabled = true;
+    draftBtn.disabled = true;
+    setStatus("正在创建场景生成任务...");
+    try {
       const sceneContext = buildSceneContextFromForm();
       if (sceneContext.layout_mode === "osm" && !sceneContext.aoi_bbox) {
         throw new Error("OSM 模式需要有效的 AOI bbox。");
@@ -519,18 +642,20 @@ export function mountWorkbench(app: HTMLDivElement): void {
         result: null,
       };
       renderJobPanel();
-      setStatus("任务已入队，正在轮询生成状态...");
+      setStatus(options.queuedStatusMessage);
       await pollSceneJob(created.job_id);
-    } catch (error) {
-      setStatus(asErrorMessage(error));
+    } finally {
       generateBtn.disabled = false;
+      draftBtn.disabled = false;
+      presetPedestrianBtn.disabled = false;
     }
-  });
+  }
 
   async function bootstrap(): Promise<void> {
     try {
       await loadKnowledgeSources();
       await loadChinaCities();
+      await loadReferencePlans();
       await refreshRecentScenes();
       const jobs = await getJson<SceneJobListResponse>("/api/scene/jobs");
       if (jobs.items.length) {
@@ -579,16 +704,39 @@ export function mountWorkbench(app: HTMLDivElement): void {
     sceneCity.innerHTML = state.cities
       .map((item) => `<option value="${escapeHtml(item.name_en)}">${escapeHtml(`${item.name_zh} ${item.name_en}`)}</option>`)
       .join("");
-    const defaultCity = state.cities.find((item) => item.name_en === DEFAULT_WORKBENCH_CITY) || state.cities[0];
-    if (defaultCity) {
-      sceneCity.value = defaultCity.name_en;
-      setBboxInputs(defaultCity.bbox);
-      state.bboxDirty = false;
+    const preferredCity = state.cities.find((item) => item.name_en === state.sceneContext.city_name_en)
+      || state.cities.find((item) => item.name_en === DEFAULT_WORKBENCH_CITY)
+      || state.cities[0];
+    if (preferredCity) {
+      sceneCity.value = preferredCity.name_en;
+      if (!state.bboxDirty) {
+        setBboxInputs(preferredCity.bbox);
+      }
       state.sceneContext = {
-        layout_mode: "osm",
-        aoi_bbox: defaultCity.bbox,
-        city_name_en: defaultCity.name_en,
+        ...state.sceneContext,
+        city_name_en: preferredCity.name_en,
+        aoi_bbox: state.sceneContext.layout_mode === "osm" ? preferredCity.bbox : state.sceneContext.aoi_bbox,
       };
+      state.bboxDirty = false;
+    }
+    renderSceneSetup();
+  }
+
+  async function loadReferencePlans(): Promise<void> {
+    const payload = await getJson<ReferencePlanResponse>("/api/reference-plans");
+    state.referencePlans = payload.items;
+    sceneReferencePlan.innerHTML = state.referencePlans.length
+      ? state.referencePlans
+          .map((item) => `<option value="${escapeHtml(item.plan_id)}">${escapeHtml(item.label)}</option>`)
+          .join("")
+      : `<option value="">No reference plans</option>`;
+    const preferredPlan = state.referencePlans.find((item) => item.plan_id === state.sceneContext.reference_plan_id)
+      || state.referencePlans.find((item) => item.plan_id === DEFAULT_REFERENCE_PLAN_ID)
+      || state.referencePlans[0]
+      || null;
+    if (preferredPlan) {
+      sceneReferencePlan.value = preferredPlan.plan_id;
+      state.sceneContext.reference_plan_id = preferredPlan.plan_id;
     }
     renderSceneSetup();
   }
@@ -775,8 +923,26 @@ export function mountWorkbench(app: HTMLDivElement): void {
     const sceneContext = buildSceneContextFromForm();
     state.sceneContext = sceneContext;
     const isOsm = sceneContext.layout_mode === "osm";
+    const isMetaUrban = sceneContext.layout_mode === "metaurban";
     sceneCityField.style.display = isOsm ? "" : "none";
+    sceneReferenceField.style.display = isMetaUrban ? "" : "none";
     osmSceneFields.style.display = isOsm ? "" : "none";
+    referencePlanPreview.hidden = !isMetaUrban;
+    if (isMetaUrban) {
+      const plan = state.referencePlans.find((item) => item.plan_id === sceneContext.reference_plan_id) || null;
+      renderReferencePlanPreview(plan);
+      if (!plan) {
+        sceneSetupSummary.textContent = "MetaUrban 模式需要一个可用的参考平面，目前还没有加载到预置。";
+        return;
+      }
+      sceneSetupSummary.textContent =
+        `MetaUrban 模式会基于参考平面和 block grammar 直接生成可导出的 3D corridor scene。`
+        + `\nReference: ${plan.label}`
+        + `\nBlock sequence: ${plan.block_sequence}`
+        + "\n会复用 corridor 几何、周边建筑、scene export 和 viewer 链路，不再停在平面 layout。";
+      return;
+    }
+    referencePlanPreview.innerHTML = "";
     if (!isOsm) {
       sceneSetupSummary.textContent =
         "Template 模式会生成参数化直街模板，不会启用 OSM 走廊、自动选路或周边建筑链路。";
@@ -790,6 +956,34 @@ export function mountWorkbench(app: HTMLDivElement): void {
       + `\nAOI: ${bboxLabel}`
       + `\nBBox source: ${state.bboxDirty ? "manual override" : "city preset"}`
       + "\nPOI 只用于选路与道路两侧用地/规则推断，不作为 workbench 主显示对象。";
+  }
+
+  function renderReferencePlanPreview(plan: ReferencePlan | null): void {
+    if (!plan) {
+      referencePlanPreview.innerHTML = `<div class="field-note">未加载到 MetaUrban reference plan。</div>`;
+      return;
+    }
+    referencePlanPreview.innerHTML = `
+      <article class="reference-plan-card">
+        <div class="reference-plan-meta">
+          <div class="result-head">
+            <strong>${escapeHtml(plan.label)}</strong>
+            <span class="tag">seed ${escapeHtml(String(plan.seed))}</span>
+          </div>
+          <div class="field-note">${escapeHtml(plan.description)}</div>
+          <div class="tag-row">
+            <span class="tag">sequence ${escapeHtml(plan.block_sequence)}</span>
+            <span class="tag">straight ${escapeHtml(formatMetricValue(plan.straight_length_m, 1))}m</span>
+            <span class="tag">roundabout radius ${escapeHtml(formatMetricValue(plan.curve_radius_m, 1))}m</span>
+          </div>
+        </div>
+        <img
+          class="reference-plan-image"
+          src="${escapeHtml(resolveApiUrl(plan.image_url))}"
+          alt="${escapeHtml(plan.label)} reference plan"
+        />
+      </article>
+    `;
   }
 
   function renderJobPanel(): void {
@@ -812,10 +1006,14 @@ export function mountWorkbench(app: HTMLDivElement): void {
       : `<div class="result-section"><strong>Current Job</strong><div class="field-note">尚未创建生成任务。</div></div>`;
 
     const recentScenesHtml = state.recentScenes.length
-      ? state.recentScenes
+        ? state.recentScenes
           .map((item) => {
-            const viewerHref = item.viewer_url || VIEWER_BASE;
             const summary = JSON.stringify(compactSceneSummary(item.summary || {}), null, 2);
+            const viewerUrl = resolveViewerUrl(item.viewer_url, item.scene_layout_path);
+            const normalizedLayoutPath = normalizeSceneLayoutPath(item.scene_layout_path);
+            const viewerLinkHtml = viewerUrl
+              ? `<a class="hero-link scene-link" href="${escapeHtml(viewerUrl)}" target="_blank" rel="noreferrer">Open Viewer</a>`
+              : `<div class="field-note">Viewer 链接暂不可用，但 scene/export 结果仍可直接检查。</div>`;
             return `
               <article class="scene-card">
                 <div class="result-head">
@@ -824,10 +1022,10 @@ export function mountWorkbench(app: HTMLDivElement): void {
                 </div>
                 <div class="field-note">finished: ${escapeHtml(formatTimestamp(item.finished_at || item.created_at))}</div>
                 <div class="actions">
-                  <a class="hero-link scene-link" href="${escapeHtml(viewerHref)}" target="_blank" rel="noreferrer">Open Viewer</a>
+                  ${viewerLinkHtml}
                 </div>
                 ${renderSceneSummaryHighlights(item.summary || {})}
-                ${item.scene_layout_path ? `<div class="mono">layout: ${escapeHtml(item.scene_layout_path)}</div>` : ""}
+                ${normalizedLayoutPath ? `<div class="mono">layout: ${escapeHtml(normalizedLayoutPath)}</div>` : ""}
                 <pre class="mono scene-summary">${escapeHtml(summary)}</pre>
               </article>
             `;
@@ -861,21 +1059,27 @@ export function mountWorkbench(app: HTMLDivElement): void {
   }
 
   function renderGenerationCard(result: GenerationResponse): string {
-    const viewerHref = result.viewer_url || VIEWER_BASE;
     const summary = compactSceneSummary(result.summary);
-    const links = [
-      `<div><a href="${escapeHtml(viewerHref)}" target="_blank" rel="noreferrer">Open Viewer</a></div>`,
-      result.scene_layout_path ? `<div class="mono">layout: ${escapeHtml(result.scene_layout_path)}</div>` : "",
-      result.scene_glb_path ? `<div class="mono">glb: ${escapeHtml(result.scene_glb_path)}</div>` : "",
-    ]
-      .filter(Boolean)
-      .join("");
+    const viewerUrl = resolveViewerUrl(result.viewer_url, result.scene_layout_path);
+    const normalizedLayoutPath = normalizeSceneLayoutPath(result.scene_layout_path);
+    const links: string[] = [];
+    if (viewerUrl) {
+      links.push(`<div><a href="${escapeHtml(viewerUrl)}" target="_blank" rel="noreferrer">Open Viewer</a></div>`);
+    } else {
+      links.push(`<div class="field-note">Viewer 链接暂不可用，请直接检查导出的 scene 文件。</div>`);
+    }
+    if (normalizedLayoutPath) {
+      links.push(`<div class="mono">layout: ${escapeHtml(normalizedLayoutPath)}</div>`);
+    }
+    if (result.scene_glb_path) {
+      links.push(`<div class="mono">glb: ${escapeHtml(result.scene_glb_path)}</div>`);
+    }
     return `
       <div class="summary-box">
         <div><strong>Summary</strong></div>
         ${renderSceneSummaryHighlights(result.summary)}
         <pre class="mono scene-summary">${escapeHtml(JSON.stringify(summary, null, 2))}</pre>
-        ${links}
+        ${links.join("")}
       </div>
     `;
   }
@@ -933,18 +1137,32 @@ function buildDraftFromForm(baseDraft: DesignDraft, parameterForm: HTMLDivElemen
 function buildSceneContextFromForm(): SceneContext {
   const layoutModeEl = requireElement<HTMLSelectElement>(document, "#scene-layout-mode");
   const cityEl = requireElement<HTMLSelectElement>(document, "#scene-city");
+  const referencePlanEl = requireElement<HTMLSelectElement>(document, "#scene-reference-plan");
   const bboxFields = [
     requireElement<HTMLInputElement>(document, "#bbox-min-lon"),
     requireElement<HTMLInputElement>(document, "#bbox-min-lat"),
     requireElement<HTMLInputElement>(document, "#bbox-max-lon"),
     requireElement<HTMLInputElement>(document, "#bbox-max-lat"),
   ];
-  const layoutMode = layoutModeEl.value === "template" ? "template" : "osm";
+  const layoutMode = layoutModeEl.value === "template"
+    ? "template"
+    : layoutModeEl.value === "metaurban"
+      ? "metaurban"
+      : "osm";
+  if (layoutMode === "metaurban") {
+    return {
+      layout_mode: "metaurban",
+      aoi_bbox: null,
+      city_name_en: cityEl.value || null,
+      reference_plan_id: referencePlanEl.value || null,
+    };
+  }
   if (layoutMode === "template") {
     return {
       layout_mode: "template",
       aoi_bbox: null,
       city_name_en: cityEl.value || null,
+      reference_plan_id: null,
     };
   }
   const bbox = bboxFields.map((field) => Number(field.value.trim()));
@@ -956,6 +1174,7 @@ function buildSceneContextFromForm(): SceneContext {
     layout_mode: "osm",
     aoi_bbox: isValid ? (bbox as [number, number, number, number]) : null,
     city_name_en: cityEl.value || null,
+    reference_plan_id: null,
   };
 }
 
@@ -999,6 +1218,14 @@ function renderSceneSummaryHighlights(summary: Record<string, unknown>): string 
   if (layoutMode) {
     rows.push(`<div><strong>layout_mode</strong>: ${escapeHtml(layoutMode)}</div>`);
   }
+  if (summary.reference_plan_label) {
+    rows.push(`<div><strong>reference_plan</strong>: ${escapeHtml(String(summary.reference_plan_label))}</div>`);
+  } else if (summary.reference_plan_id) {
+    rows.push(`<div><strong>reference_plan_id</strong>: ${escapeHtml(String(summary.reference_plan_id))}</div>`);
+  }
+  if (summary.generation_stage) {
+    rows.push(`<div><strong>generation_stage</strong>: ${escapeHtml(String(summary.generation_stage))}</div>`);
+  }
   const requestedAoi = formatUnknownBbox(summary.requested_aoi_bbox);
   if (requestedAoi) {
     rows.push(`<div><strong>requested_aoi_bbox</strong>: ${escapeHtml(requestedAoi)}</div>`);
@@ -1019,6 +1246,19 @@ function renderSceneSummaryHighlights(summary: Record<string, unknown>): string 
   if (summary.infill_footprint_count !== undefined) {
     rows.push(`<div><strong>infill_footprint_count</strong>: ${escapeHtml(String(summary.infill_footprint_count))}</div>`);
   }
+  [
+    { key: "total_network_length_m", label: "total_network_length_m", digits: 1 },
+    { key: "junction_density_per_100m", label: "junction_density_per_100m", digits: 3 },
+    { key: "connectivity_ratio", label: "connectivity_ratio", digits: 3 },
+    { key: "network_width_m", label: "network_width_m", digits: 1 },
+    { key: "network_height_m", label: "network_height_m", digits: 1 },
+    { key: "branching_factor", label: "branching_factor", digits: 3 },
+  ].forEach((item) => {
+    const value = summary[item.key];
+    if (typeof value === "number" && Number.isFinite(value)) {
+      rows.push(`<div><strong>${escapeHtml(item.label)}</strong>: ${escapeHtml(formatMetricValue(value, item.digits))}</div>`);
+    }
+  });
   if (!rows.length) {
     return "";
   }
@@ -1030,6 +1270,36 @@ function formatUnknownBbox(value: unknown): string {
     return "";
   }
   return `(${value.map((item) => Number(item).toFixed(4)).join(", ")})`;
+}
+
+function formatMetricValue(value: number, digits = 2): string {
+  return Number(value)
+    .toFixed(digits)
+    .replace(/\.0+$/, "")
+    .replace(/(\.\d*?[1-9])0+$/, "$1");
+}
+
+function normalizeSceneLayoutPath(layoutPath: string): string {
+  const trimmed = String(layoutPath || "").trim();
+  if (!trimmed) {
+    return "";
+  }
+  if (/scene_layout\.json$/i.test(trimmed)) {
+    return trimmed;
+  }
+  return `${trimmed.replace(/\/+$/, "")}/scene_layout.json`;
+}
+
+function buildFallbackViewerUrl(layoutPath: string): string {
+  const normalizedLayoutPath = normalizeSceneLayoutPath(layoutPath);
+  if (!normalizedLayoutPath) {
+    return "";
+  }
+  return `${VIEWER_BASE}/?layout=${encodeURIComponent(normalizedLayoutPath)}`;
+}
+
+function resolveViewerUrl(viewerUrl: string, layoutPath: string): string {
+  return String(viewerUrl || "").trim() || buildFallbackViewerUrl(layoutPath);
 }
 
 function renderTagRow(items: string[]): string {
@@ -1094,6 +1364,13 @@ async function postJson<T>(path: string, payload: unknown): Promise<T> {
 async function getJson<T>(path: string): Promise<T> {
   const response = await fetch(`${API_BASE}${path}`);
   return handleJsonResponse<T>(response);
+}
+
+function resolveApiUrl(path: string): string {
+  if (/^https?:\/\//.test(path)) {
+    return path;
+  }
+  return `${API_BASE}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
 async function handleJsonResponse<T>(response: Response): Promise<T> {

@@ -438,6 +438,10 @@ def _street_furniture_scale_info(
     )
 
 
+def _is_corridor_layout_mode(layout_mode: object) -> bool:
+    return str(layout_mode or "").strip().lower() in {"osm", "metaurban"}
+
+
 def _validate_config(config: StreetComposeConfig) -> None:
     if not config.query.strip():
         raise ValueError("query cannot be empty")
@@ -458,8 +462,8 @@ def _validate_config(config: StreetComposeConfig) -> None:
     if config.max_trials_per_slot <= 0:
         raise ValueError("max_trials_per_slot must be >= 1")
     # -- M5 validation --
-    if config.layout_mode not in ("template", "osm"):
-        raise ValueError("layout_mode must be 'template' or 'osm'")
+    if config.layout_mode not in ("template", "osm", "metaurban"):
+        raise ValueError("layout_mode must be 'template', 'osm', or 'metaurban'")
     if config.constraint_mode not in ("off", "soft"):
         raise ValueError("constraint_mode must be 'off' or 'soft'")
     if config.layout_mode == "osm":
@@ -1737,7 +1741,9 @@ def _road_pose_from_context(placement_ctx: object | None, fallback_length_m: flo
 
 
 def _road_reference_coords(source: object | None) -> Tuple[Tuple[float, float], ...]:
-    road_reference = getattr(source, "road_reference", None)
+    road_reference = source
+    if source is not None and not hasattr(source, "coords"):
+        road_reference = getattr(source, "road_reference", None)
     coords = tuple(
         (float(point[0]), float(point[1]))
         for point in (getattr(road_reference, "coords", []) or [])
@@ -1839,6 +1845,7 @@ def _add_centerline_markings(
     road_coords: Sequence[Tuple[float, float]] | None = None,
     color: Sequence[int],
     roughness: float,
+    node_name_prefix: str = "centerline_mark",
     texture_mode: str = "topdown_tiles_v1",
     texture_tracker=None,
     texture_overrides: Mapping[str, str] | None = None,
@@ -1871,7 +1878,7 @@ def _add_centerline_markings(
                 y_min_m=0.004,
                 color=color,
                 surface_role="lane_mark",
-                node_name=f"centerline_mark_{dash_idx}",
+                node_name=f"{node_name_prefix}_{dash_idx}",
                 roughness=roughness,
                 texture_mode=texture_mode,
                 texture_tracker=texture_tracker,
@@ -1896,7 +1903,7 @@ def _add_centerline_markings(
             y_min_m=0.004,
             color=color,
             surface_role="lane_mark",
-            node_name=f"centerline_mark_{dash_idx}",
+            node_name=f"{node_name_prefix}_{dash_idx}",
             roughness=roughness,
             texture_mode=texture_mode,
             texture_tracker=texture_tracker,
@@ -1926,7 +1933,7 @@ def _add_beauty_scene_proxies(
     )
     road_width_m = float(getattr(street_program, "road_width_m", config.road_width_m))
     lane_count = max(1, int(getattr(street_program, "lane_count", config.lane_count)))
-    render_linear_road_overlays = str(getattr(config, "layout_mode", "template")).strip().lower() != "osm"
+    render_linear_road_overlays = not _is_corridor_layout_mode(getattr(config, "layout_mode", "template"))
 
     if render_linear_road_overlays:
         if lane_count > 1:
@@ -2114,7 +2121,7 @@ def _export_scene(scene, out_dir: Path, export_format: str) -> Dict[str, str]:
 
 
 def _production_step_definitions(layout_mode: str) -> Tuple[Tuple[str, str], ...]:
-    if str(layout_mode).strip().lower() == "osm":
+    if _is_corridor_layout_mode(layout_mode):
         return (
             ("road_base", "Road Base"),
             ("land_use_zoning", "Land Use / Zoning"),
@@ -2226,7 +2233,7 @@ def _stage_scene_base(
     texture_tracker=None,
     texture_overrides: Mapping[str, str] | None = None,
 ):
-    if config.layout_mode == "osm" and placement_ctx is not None:
+    if _is_corridor_layout_mode(config.layout_mode) and placement_ctx is not None:
         return _build_osm_base_scene(
             placement_ctx,
             palette=palette,
@@ -2467,7 +2474,7 @@ def _build_production_steps(
     rough = surface_roughness(getattr(config, "style_preset", None))
 
     stage_visibility: Dict[str, Tuple[bool, bool, Tuple[StreetPlacement, ...], Tuple[str, ...]]] = {}
-    if str(config.layout_mode).strip().lower() == "osm":
+    if _is_corridor_layout_mode(config.layout_mode):
         stage_visibility = {
             "road_base": (False, False, tuple(), tuple()),
             "land_use_zoning": (True, False, tuple(), tuple()),
@@ -2844,21 +2851,46 @@ def _build_osm_base_scene(
         placement_ctx,
         float(fallback_length_m),
     )
-    _add_centerline_markings(
-        scene,
-        road_length_m=float(road_length_m),
-        road_width_m=float(getattr(placement_ctx, "carriageway_width_m", 0.0) or 0.0),
-        road_center_x_m=float(road_center_x_m),
-        road_center_z_m=float(road_center_z_m),
-        road_yaw_deg=float(road_yaw_deg),
-        lane_count=None,
-        road_coords=_road_reference_coords(placement_ctx),
-        color=colors.get("lane_mark", (245, 245, 245, 255)),
-        roughness=(roughness or {}).get("lane_mark", 0.30),
-        texture_mode=texture_mode,
-        texture_tracker=texture_tracker,
-        texture_overrides=texture_overrides,
-    )
+    road_references = list(getattr(placement_ctx, "road_references", []) or [])
+    if not road_references:
+        fallback_reference = getattr(placement_ctx, "road_reference", None)
+        if fallback_reference is not None:
+            road_references = [fallback_reference]
+    if road_references:
+        for road_index, road_reference in enumerate(road_references):
+            coords = _road_reference_coords(road_reference)
+            _add_centerline_markings(
+                scene,
+                road_length_m=float(max(_polyline_length_m(coords), 0.0) or road_length_m),
+                road_width_m=float(getattr(placement_ctx, "carriageway_width_m", 0.0) or 0.0),
+                road_center_x_m=float(road_center_x_m),
+                road_center_z_m=float(road_center_z_m),
+                road_yaw_deg=float(road_yaw_deg),
+                lane_count=None,
+                road_coords=coords,
+                color=colors.get("lane_mark", (245, 245, 245, 255)),
+                roughness=(roughness or {}).get("lane_mark", 0.30),
+                node_name_prefix=f"centerline_mark_{road_index}",
+                texture_mode=texture_mode,
+                texture_tracker=texture_tracker,
+                texture_overrides=texture_overrides,
+            )
+    else:
+        _add_centerline_markings(
+            scene,
+            road_length_m=float(road_length_m),
+            road_width_m=float(getattr(placement_ctx, "carriageway_width_m", 0.0) or 0.0),
+            road_center_x_m=float(road_center_x_m),
+            road_center_z_m=float(road_center_z_m),
+            road_yaw_deg=float(road_yaw_deg),
+            lane_count=None,
+            road_coords=_road_reference_coords(placement_ctx),
+            color=colors.get("lane_mark", (245, 245, 245, 255)),
+            roughness=(roughness or {}).get("lane_mark", 0.30),
+            texture_mode=texture_mode,
+            texture_tracker=texture_tracker,
+            texture_overrides=texture_overrides,
+        )
 
     return scene
 
@@ -3511,7 +3543,7 @@ def _iter_slot_candidate_groups(
     rng: random.Random,
 ) -> Tuple[Tuple[Dict[str, object], ...], ...]:
     anchor_target_xz = getattr(slot, "anchor_position_xz", None)
-    if anchor_target_xz is not None and placement_ctx is not None and config.layout_mode == "osm":
+    if anchor_target_xz is not None and placement_ctx is not None and _is_corridor_layout_mode(config.layout_mode):
         target_point = (float(anchor_target_xz[0]), float(anchor_target_xz[1]))
         return (
             _search_tier_exact_candidates(category=category, anchor_target_xz=target_point, placement_ctx=placement_ctx),
@@ -3535,7 +3567,7 @@ def _iter_slot_candidate_groups(
         )
     candidates: List[Dict[str, object]] = []
     for _trial_idx in range(int(config.max_trials_per_slot)):
-        if config.layout_mode == "osm" and placement_ctx is not None:
+        if _is_corridor_layout_mode(config.layout_mode) and placement_ctx is not None:
             pose = _sample_pose_osm_for_segment(
                 category,
                 placement_ctx,
@@ -4078,7 +4110,7 @@ def _place_surrounding_buildings(
     rng: random.Random,
     start_instance_index: int,
 ) -> _SurroundingBuildingResult:
-    if not bool(getattr(config, "enable_surrounding_buildings", True)) or config.layout_mode != "osm":
+    if not bool(getattr(config, "enable_surrounding_buildings", True)) or not _is_corridor_layout_mode(config.layout_mode):
         return _SurroundingBuildingResult(
             building_footprints=tuple(),
             generated_lots=tuple(),
@@ -4087,6 +4119,9 @@ def _place_surrounding_buildings(
             retrieval_predictions=tuple(),
             building_summary={
                 "enabled": False,
+                "generation_mode_requested": str(getattr(config, "surrounding_building_mode", "grid_growth") or "grid_growth"),
+                "generation_mode_used": "",
+                "generation_fallback_reason": "",
                 "footprint_count": 0,
                 "lot_count": 0,
                 "placed_count": 0,
@@ -4105,7 +4140,14 @@ def _place_surrounding_buildings(
             instance_index=int(start_instance_index),
         )
 
-    mode = str(getattr(config, "surrounding_building_mode", "grid_growth") or "grid_growth").strip().lower()
+    requested_mode = str(getattr(config, "surrounding_building_mode", "grid_growth") or "grid_growth").strip().lower()
+    mode = requested_mode
+    generation_fallback_reason = ""
+    if str(config.layout_mode).strip().lower() == "metaurban" and mode == "footprint_based":
+        mode = "grid_growth"
+        generation_fallback_reason = (
+            "metaurban v1 does not align real footprint imports yet; fell back to grid_growth."
+        )
     road_type = _dominant_building_road_type(road_segment_graph, resolved_program)
     building_footprints: Tuple[BuildingFootprint, ...] = tuple()
     generated_lots: Tuple[GeneratedLot, ...] = tuple()
@@ -4244,6 +4286,9 @@ def _place_surrounding_buildings(
         **dict(placement_summary),
         "enabled": True,
         "generation_mode": mode,
+        "generation_mode_requested": requested_mode,
+        "generation_mode_used": mode,
+        "generation_fallback_reason": generation_fallback_reason,
         "footprint_count": int(len(building_footprints)),
         "lot_count": int(len(generated_lots)),
         "target_type": "lot" if mode == "grid_growth" else "footprint",
@@ -4335,6 +4380,9 @@ def compose_street_scene(
     object_asset_backend: ObjectAssetBackend | None = None,
     ground_material_backend: GroundMaterialBackend | None = None,
     sky_backend: SkyBackend | None = None,
+    road_segment_graph_override: object | None = None,
+    projected_features_override: object | None = None,
+    placement_context_override: object | None = None,
 ) -> StreetComposeResult:
     """
     Compose a street scene by category-aware retrieval and collision-aware placement.
@@ -4466,6 +4514,7 @@ def compose_street_scene(
 
     placement_ctx = None
     projected = None
+    road_segment_graph = road_segment_graph_override if road_segment_graph_override is not None else None
     effective_poi_counts: Dict[str, int] = normalize_poi_counts({})
     if config.layout_mode == "osm":
         from .osm_ingest import fetch_osm_data, parse_osm_features, project_to_local
@@ -4485,6 +4534,14 @@ def compose_street_scene(
                 "Selected road does not retain enough effective POIs after compose filtering "
                 "(requires weighted POI score >= 2.0 and at least 1 core POI)."
             )
+    elif config.layout_mode == "metaurban":
+        if road_segment_graph_override is None or projected_features_override is None or placement_context_override is None:
+            raise ValueError(
+                "metaurban layout_mode requires road_segment_graph_override, "
+                "projected_features_override, and placement_context_override"
+            )
+        projected = projected_features_override
+        placement_ctx = placement_context_override
 
     poi_ctx = None
     rule_set = None
@@ -4528,7 +4585,8 @@ def compose_street_scene(
                 raise RuntimeError(
                     f"Selected road has {poi_type} POIs but the asset inventory has no {category} category."
                 )
-    road_segment_graph = build_segment_graph(projected, config) if projected is not None else None
+    if road_segment_graph is None and projected is not None:
+        road_segment_graph = build_segment_graph(projected, config)
     spatial_ctx = build_spatial_context(config, road_segment_graph, poi_ctx)
     theme_segments = infer_theme_segments(
         road_segment_graph,
@@ -4570,12 +4628,12 @@ def compose_street_scene(
         zone_query = f"{config.query}, {theme_segment.theme_name} streetscape"
         zone_design_rule_profile = (
             str(theme_spec["design_rule_profile"])
-            if config.layout_mode == "osm"
+            if _is_corridor_layout_mode(config.layout_mode)
             else str(config.design_rule_profile)
         )
         zone_style_preset = (
             str(theme_spec["style_preset"])
-            if config.layout_mode == "osm"
+            if _is_corridor_layout_mode(config.layout_mode)
             else str(config.style_preset)
         )
         zone_config = replace(
@@ -4584,7 +4642,11 @@ def compose_street_scene(
             length_m=float(max(theme_segment.length_m, min(float(config.segment_length_m), float(config.length_m)))),
             design_rule_profile=zone_design_rule_profile,
             style_preset=zone_style_preset,
-            target_street_type=str(theme_segment.theme_name) if config.layout_mode == "osm" else str(config.target_street_type),
+            target_street_type=(
+                str(theme_segment.theme_name)
+                if _is_corridor_layout_mode(config.layout_mode)
+                else str(config.target_street_type)
+            ),
         )
         zone_program_result = program_runtime.generate(
             ProgramGenerationInput(
@@ -5859,13 +5921,13 @@ def compose_street_scene(
 
     dominant_palette_style = (
         theme_segments[0].style_preset
-        if theme_segments and config.layout_mode == "osm"
+        if theme_segments and _is_corridor_layout_mode(config.layout_mode)
         else getattr(config, "style_preset", None)
     )
     palette = style_palette(dominant_palette_style)
     rough = surface_roughness(dominant_palette_style)
     scene_texture_tracker = create_scene_texture_tracker(str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")))
-    if config.layout_mode == "osm" and placement_ctx is not None:
+    if _is_corridor_layout_mode(config.layout_mode) and placement_ctx is not None:
         scene = _build_osm_base_scene(
             placement_ctx,
             palette=palette,
@@ -5925,7 +5987,7 @@ def compose_street_scene(
     outputs = _export_scene(scene=scene, out_dir=out_dir, export_format=export_format)
     serialized_osm_geometry = (
         _serialize_osm_geometry(placement_ctx)
-        if config.layout_mode == "osm" and placement_ctx is not None
+        if _is_corridor_layout_mode(config.layout_mode) and placement_ctx is not None
         else None
     )
     production_steps = _build_production_steps(
@@ -6367,7 +6429,16 @@ def compose_street_scene(
             else 1.0
         ),
         "unplaced_required_slot_count": int(anchor_resolution_summary["unplaced_required"]),
-        "building_generation_mode": str(getattr(config, "surrounding_building_mode", "grid_growth")),
+        "building_generation_mode": str(
+            building_summary.get("generation_mode_used") or getattr(config, "surrounding_building_mode", "grid_growth")
+        ),
+        "building_generation_mode_requested": str(
+            building_summary.get("generation_mode_requested") or getattr(config, "surrounding_building_mode", "grid_growth")
+        ),
+        "building_generation_mode_used": str(
+            building_summary.get("generation_mode_used") or getattr(config, "surrounding_building_mode", "grid_growth")
+        ),
+        "building_generation_fallback_reason": str(building_summary.get("generation_fallback_reason", "") or ""),
         "land_use_asymmetry_strength": float(0.0 if asymmetry_raw is None else asymmetry_raw),
         "left_right_bias": float(0.0 if bias_raw is None else bias_raw),
         "building_front_setback_min_m": float(DEFAULT_BUILDING_FRONT_SETBACK_MIN_M if setback_min_raw is None else setback_min_raw),

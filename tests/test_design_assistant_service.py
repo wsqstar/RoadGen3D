@@ -85,7 +85,11 @@ class _FakeLLM:
 
 
 class _FakeRetriever:
+    def __init__(self):
+        self.calls = 0
+
     def search(self, query: str, topk: int = 5):
+        self.calls += 1
         if "sidewalk" in query:
             chunk_id = "complete_streets_0001"
             section = "Sidewalk Width Guidance"
@@ -115,6 +119,9 @@ class _FakeRetriever:
 
 
 class _FakeGraphRetriever:
+    def __init__(self):
+        self.calls = 0
+
     def describe(self):
         return type(
             "_GraphStatus",
@@ -132,6 +139,7 @@ class _FakeGraphRetriever:
         )()
 
     def search(self, query: str, topk: int = 5):
+        self.calls += 1
         return [
             KnowledgeSearchHit(
                 chunk=KnowledgeChunk(
@@ -148,10 +156,11 @@ class _FakeGraphRetriever:
         ][:topk]
 
 
-def test_design_assistant_service_builds_draft_bundle():
+def test_design_assistant_service_builds_draft_bundle(tmp_path: Path):
     service = DesignAssistantService(
         llm_client=_FakeLLM(),
         knowledge_retriever=_FakeRetriever(),
+        draft_cache_dir=tmp_path,
     )
 
     bundle = service.draft_design(
@@ -179,11 +188,12 @@ def test_design_assistant_service_builds_draft_bundle():
     assert service.llm_client.calls == 5
 
 
-def test_design_assistant_service_supports_graph_and_hybrid_knowledge_search():
+def test_design_assistant_service_supports_graph_and_hybrid_knowledge_search(tmp_path: Path):
     service = DesignAssistantService(
         llm_client=_FakeLLM(),
         knowledge_retriever=_FakeRetriever(),
         graph_knowledge_retriever=_FakeGraphRetriever(),
+        draft_cache_dir=tmp_path,
     )
 
     graph_results = service.search_knowledge(
@@ -204,11 +214,12 @@ def test_design_assistant_service_supports_graph_and_hybrid_knowledge_search():
     assert {item.knowledge_source for item in hybrid_results} == {"pdf_rag", "graph_rag"}
 
 
-def test_design_assistant_service_defaults_to_graph_rag():
+def test_design_assistant_service_defaults_to_graph_rag(tmp_path: Path):
     service = DesignAssistantService(
         llm_client=_FakeLLM(),
         knowledge_retriever=_FakeRetriever(),
         graph_knowledge_retriever=_FakeGraphRetriever(),
+        draft_cache_dir=tmp_path,
     )
 
     results = service.search_knowledge(
@@ -244,10 +255,16 @@ class _FailIfRetrieverRuns:
         raise AssertionError(f"retriever should not run during clarification stage: {query} / {topk}")
 
 
-def test_design_assistant_service_returns_clarification_stage_before_rag():
+class _FailIfLLMRuns:
+    def chat_json(self, _messages, *, temperature=0.2):
+        raise AssertionError("llm should not run on cache hit")
+
+
+def test_design_assistant_service_returns_clarification_stage_before_rag(tmp_path: Path):
     service = DesignAssistantService(
         llm_client=_ClarificationFirstLLM(),
         knowledge_retriever=_FailIfRetrieverRuns(),
+        draft_cache_dir=tmp_path,
     )
 
     bundle = service.draft_design(
@@ -262,3 +279,74 @@ def test_design_assistant_service_returns_clarification_stage_before_rag():
     assert bundle.evidence == ()
     assert len(bundle.intent.follow_up_questions) == 2
     assert service.llm_client.calls == 1
+
+
+def test_design_assistant_service_reuses_cached_bundle_for_identical_prompt(tmp_path: Path):
+    retriever = _FakeRetriever()
+    service = DesignAssistantService(
+        llm_client=_FakeLLM(),
+        knowledge_retriever=retriever,
+        draft_cache_dir=tmp_path,
+    )
+
+    first = service.draft_design(
+        messages=[{"role": "user", "content": "我想做步行安全、全龄友好的街道。"}],
+        user_input="我想做步行安全、全龄友好的街道。",
+        current_patch={},
+        topk=4,
+        knowledge_source="pdf_rag",
+    )
+    llm_call_count = service.llm_client.calls
+    retriever_call_count = retriever.calls
+
+    second = service.draft_design(
+        messages=[{"role": "user", "content": "我想做步行安全、全龄友好的街道。"}],
+        user_input="我想做步行安全、全龄友好的街道。",
+        current_patch={},
+        topk=4,
+        knowledge_source="pdf_rag",
+    )
+
+    assert first.cache_hit is False
+    assert second.cache_hit is True
+    assert second.draft is not None
+    assert second.draft.compose_config_patch["sidewalk_width_m"] == 4.2
+    assert service.llm_client.calls == llm_call_count
+    assert retriever.calls == retriever_call_count
+
+
+def test_design_assistant_service_loads_cached_bundle_from_disk(tmp_path: Path):
+    cache_dir = tmp_path / "draft_cache"
+    prompt = "步行安全，全龄友好"
+    producer = DesignAssistantService(
+        llm_client=_FakeLLM(),
+        knowledge_retriever=_FakeRetriever(),
+        draft_cache_dir=cache_dir,
+    )
+    produced = producer.draft_design(
+        messages=[{"role": "user", "content": prompt}],
+        user_input=prompt,
+        current_patch={},
+        topk=4,
+        knowledge_source="pdf_rag",
+    )
+
+    consumer = DesignAssistantService(
+        llm_client=_FailIfLLMRuns(),
+        knowledge_retriever=_FailIfRetrieverRuns(),
+        draft_cache_dir=cache_dir,
+    )
+    cached = consumer.draft_design(
+        messages=[{"role": "user", "content": prompt}],
+        user_input=prompt,
+        current_patch={},
+        topk=4,
+        knowledge_source="pdf_rag",
+    )
+
+    assert produced.cache_hit is False
+    assert cached.cache_hit is True
+    assert cached.draft is not None
+    assert produced.draft is not None
+    assert cached.draft.normalized_scene_query == produced.draft.normalized_scene_query
+    assert cached.evidence[0].chunk_id == produced.evidence[0].chunk_id

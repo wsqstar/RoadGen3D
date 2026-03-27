@@ -205,3 +205,83 @@ def test_generate_scene_from_draft_requires_bbox_for_osm_scene_context():
         assert "AOI bbox" in str(exc)
     else:
         raise AssertionError("Expected missing OSM bbox to raise RuntimeError")
+
+
+def test_generate_scene_from_draft_supports_metaurban_reference_layout(tmp_path: Path, monkeypatch):
+    captured: dict[str, object] = {}
+    layout_path = tmp_path / "scene_layout.json"
+    layout_path.write_text(json.dumps({"summary": {"instance_count": 6, "frontage_parcel_count": 3}}), encoding="utf-8")
+
+    monkeypatch.setattr(
+        runtime,
+        "resolve_scene_context",
+        lambda *_args, **_kwargs: (_ for _ in ()).throw(AssertionError("resolve_scene_context should not run for metaurban")),
+    )
+    monkeypatch.setattr(
+        runtime,
+        "build_metaurban_scene_bridge",
+        lambda config, *, plan_id: SimpleNamespace(
+            road_segment_graph=object(),
+            projected_features=object(),
+            placement_context=object(),
+            summary_metadata={
+                "layout_mode": "metaurban",
+                "reference_plan_id": plan_id,
+                "reference_plan_label": "HKUST-GZ Gate",
+                "total_network_length_m": 188.0,
+            },
+        ),
+    )
+
+    def _fake_compose(**kwargs):
+        captured["config"] = kwargs["config"]
+        captured["road_segment_graph_override"] = kwargs["road_segment_graph_override"]
+        captured["projected_features_override"] = kwargs["projected_features_override"]
+        captured["placement_context_override"] = kwargs["placement_context_override"]
+        return SimpleNamespace(
+            instance_count=6,
+            dropped_slots=0,
+            outputs={
+                "scene_layout": str(layout_path),
+                "scene_glb": str(tmp_path / "scene.glb"),
+                "scene_ply": str(tmp_path / "scene.ply"),
+            },
+        )
+
+    monkeypatch.setattr(runtime, "compose_street_scene", _fake_compose)
+    monkeypatch.setattr(runtime, "cache_scene_layout_for_viewer", lambda layout: Path(layout))
+    monkeypatch.setattr(runtime, "build_web_viewer_url", lambda _layout: "http://127.0.0.1:4173/?layout=demo")
+
+    draft = DesignDraft(
+        normalized_scene_query="campus gateway boulevard",
+        compose_config_patch={
+            "road_width_m": 10.5,
+            "sidewalk_width_m": 3.0,
+            "lane_count": 3,
+            "length_m": 96.0,
+        },
+        citations_by_field={},
+        design_summary="summary",
+    )
+    result = generate_scene_from_draft(
+        draft,
+        generation_options={"out_dir": str(tmp_path)},
+        scene_context=SceneContext(
+            layout_mode="metaurban",
+            reference_plan_id="hkust_gz_gate",
+        ),
+    )
+
+    layout_path = Path(result.scene_layout_path)
+    payload = json.loads(layout_path.read_text(encoding="utf-8"))
+
+    assert layout_path.exists()
+    assert captured["config"].layout_mode == "metaurban"
+    assert captured["road_segment_graph_override"] is not None
+    assert captured["projected_features_override"] is not None
+    assert captured["placement_context_override"] is not None
+    assert result.viewer_url.startswith("http://127.0.0.1:4173/")
+    assert result.scene_glb_path.endswith("scene.glb")
+    assert result.summary["layout_mode"] == "metaurban"
+    assert result.summary["reference_plan_id"] == "hkust_gz_gate"
+    assert payload["summary"]["total_network_length_m"] > 0.0
