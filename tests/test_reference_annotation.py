@@ -137,6 +137,21 @@ def test_build_segment_graph_from_annotation_builds_junctions_and_roundabout():
     assert any(hint.strip_kind == "clear_sidewalk" for hint in north_branch_node.metaurban_asset_hints)
 
 
+def test_build_segment_graph_from_annotation_detects_shared_vertex_junction_without_explicit_marker():
+    payload = _sample_annotation_payload()
+    payload["junctions"] = []
+
+    graph = build_segment_graph_from_annotation(
+        parse_reference_annotation(payload),
+        config=build_reference_annotation_compose_config({"segment_length_m": 10.0, "road_width_m": 11.0}),
+    )
+
+    assert graph.mode == "annotation"
+    assert len(graph.edges) >= 8
+    assert any(node.is_junction for node in graph.nodes)
+    assert any("junction" in node.poi_types for node in graph.nodes)
+
+
 def test_build_reference_annotation_graph_payload_returns_summary_and_graph():
     payload = build_reference_annotation_graph_payload(
         _sample_annotation_payload(),
@@ -170,6 +185,9 @@ def test_build_reference_annotation_graph_payload_returns_summary_and_graph():
     assert payload["summary"]["street_furniture_instance_count"] == 2
     assert payload["summary"]["metaurban_asset_hint_count"] == len(payload["metaurban_asset_hints"])
     assert payload["summary"]["detailed_centerline_count"] == 1
+    assert payload["summary"]["junction_count"] == 1
+    assert payload["summary"]["derived_junction_count"] == 1
+    assert payload["summary"]["topology_junction_count"] == 1
     assert payload["summary"]["cross_section_strip_count"] == 11
     assert payload["summary"]["roundabout_count"] == 1
     assert payload["summary"]["segment_count"] > 0

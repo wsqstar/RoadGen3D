@@ -22,6 +22,7 @@ from .types import (
 ANNOTATION_SCHEMA_VERSION = "roadgen3d_reference_annotation_v2"
 DEFAULT_PIXELS_PER_METER = 8.0
 DEFAULT_ROUNDABOUT_RADIUS_PX = 36.0
+DEFAULT_SEGMENT_LENGTH_M = 12.0
 DEFAULT_FORWARD_DRIVE_LANE_COUNT = 2
 DEFAULT_REVERSE_DRIVE_LANE_COUNT = 2
 DEFAULT_BIKE_LANE_COUNT = 0
@@ -64,7 +65,7 @@ NOMINAL_STRIP_WIDTHS: Dict[str, float] = {
     "bus_lane": 3.5,
     "bike_lane": 1.8,
     "parking_lane": 2.5,
-    "median": 1.5,
+    "median": 0.3,
     "nearroad_buffer": 0.5,
     "nearroad_furnishing": 1.5,
     "clear_sidewalk": 2.5,
@@ -1191,6 +1192,31 @@ def _collect_auto_junction_anchors(
     return [tuple(cluster["point"]) for cluster in clusters if int(cluster["count"]) >= 2]
 
 
+def _merge_anchor_points(
+    anchors: Sequence[Tuple[float, float]],
+    *,
+    tolerance_m: float,
+) -> List[Tuple[float, float]]:
+    clusters: List[Dict[str, Any]] = []
+    for anchor in anchors:
+        matched = None
+        for cluster in clusters:
+            if _distance(cluster["point"], anchor) <= tolerance_m:
+                matched = cluster
+                break
+        if matched is None:
+            clusters.append({"point": anchor, "count": 1})
+        else:
+            count = int(matched["count"]) + 1
+            merged = (
+                (matched["point"][0] * matched["count"] + anchor[0]) / count,
+                (matched["point"][1] * matched["count"] + anchor[1]) / count,
+            )
+            matched["point"] = merged
+            matched["count"] = count
+    return [tuple(cluster["point"]) for cluster in clusters]
+
+
 def _build_poi_types(
     point: Tuple[float, float],
     *,
@@ -1554,11 +1580,15 @@ def build_segment_graph_from_annotation(
     explicit_junctions = [_pixel_to_local(annotation, x=item.x, y=item.y) for item in annotation.junctions]
     roundabout_centers = [_pixel_to_local(annotation, x=item.x, y=item.y) for item in annotation.roundabouts]
     control_points = [(item, _pixel_to_local(annotation, x=item.x, y=item.y)) for item in annotation.control_points]
+    junction_tolerance_m = max(float(resolved_config.segment_length_m) * 0.5, 4.0)
     auto_junctions = _collect_auto_junction_anchors(
         [points for _, points in local_centerlines],
-        tolerance_m=max(float(resolved_config.segment_length_m) * 0.5, 4.0),
+        tolerance_m=junction_tolerance_m,
     )
-    junction_anchors = explicit_junctions + [anchor for anchor in auto_junctions if anchor not in explicit_junctions]
+    junction_anchors = _merge_anchor_points(
+        [*explicit_junctions, *auto_junctions],
+        tolerance_m=junction_tolerance_m,
+    )
 
     nodes: List[RoadSegmentNode] = []
     edges: List[RoadSegmentEdge] = []
@@ -1649,10 +1679,23 @@ def summarize_reference_annotation(annotation_input: ReferenceAnnotation | Mappi
     road_profiles = _build_annotation_road_profiles(annotation)
     cross_section_profiles = _build_cross_section_profiles(annotation)
     furniture_instances = _build_street_furniture_instances(annotation)
+    local_centerlines: List[List[Tuple[float, float]]] = []
     points: List[Tuple[float, float]] = []
     for centerline in annotation.centerlines:
+        local_points = _dedupe_adjacent_points(
+            [_pixel_to_local(annotation, x=point.x, y=point.y) for point in centerline.points]
+        )
+        if len(local_points) >= 2:
+            local_centerlines.append(local_points)
         for point in centerline.points:
             points.append(_pixel_to_local(annotation, x=point.x, y=point.y))
+    explicit_junctions = [_pixel_to_local(annotation, x=marker.x, y=marker.y) for marker in annotation.junctions]
+    junction_tolerance_m = max(DEFAULT_SEGMENT_LENGTH_M * 0.5, 4.0)
+    derived_junctions = _collect_auto_junction_anchors(local_centerlines, tolerance_m=junction_tolerance_m)
+    topology_junctions = _merge_anchor_points(
+        [*explicit_junctions, *derived_junctions],
+        tolerance_m=junction_tolerance_m,
+    )
     for marker in annotation.junctions:
         points.append(_pixel_to_local(annotation, x=marker.x, y=marker.y))
     for marker in annotation.control_points:
@@ -1708,6 +1751,8 @@ def summarize_reference_annotation(annotation_input: ReferenceAnnotation | Mappi
             if centerline.resolved_cross_section_mode() == CROSS_SECTION_MODE_DETAILED
         ),
         "junction_count": len(annotation.junctions),
+        "derived_junction_count": len(derived_junctions),
+        "topology_junction_count": len(topology_junctions),
         "roundabout_count": len(annotation.roundabouts),
         "control_point_count": len(annotation.control_points),
         "control_point_kinds": sorted({item.kind for item in annotation.control_points}),

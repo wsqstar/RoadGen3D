@@ -362,6 +362,9 @@ def test_design_api_endpoints_return_expected_shapes():
     assert annotation_convert_response.json()["graph"]["mode"] == "annotation"
     assert annotation_convert_response.json()["summary"]["centerline_count"] == 2
     assert annotation_convert_response.json()["summary"]["segment_count"] > 0
+    assert annotation_convert_response.json()["summary"]["junction_count"] == 1
+    assert annotation_convert_response.json()["summary"]["derived_junction_count"] == 1
+    assert annotation_convert_response.json()["summary"]["topology_junction_count"] == 1
     assert len(annotation_convert_response.json()["road_profiles"]) == 2
     assert len(annotation_convert_response.json()["cross_section_profiles"]) == 2
     assert len(annotation_convert_response.json()["street_furniture_instances"]) == 2
