@@ -76,6 +76,7 @@ def _sample_annotation_payload():
 
 def test_reference_annotation_scene_bridge_builds_junction_geometry():
     pytest.importorskip("shapely")
+    from shapely.geometry import Point
 
     bridge = build_reference_annotation_scene_bridge(
         _sample_annotation_payload(),
@@ -86,9 +87,15 @@ def test_reference_annotation_scene_bridge_builds_junction_geometry():
     assert bridge.summary_metadata["junction_geometry_count"] == 1
     assert bridge.summary_metadata["t_junction_count"] == 1
     assert bridge.placement_context.junction_geometries[0]["kind"] == "t_junction"
+    assert not bridge.placement_context.junction_geometries[0]["junction_core_rect"].is_empty
+    assert len(bridge.placement_context.junction_geometries[0]["approach_boundaries"]) == 3
     assert len(bridge.placement_context.junction_geometries[0]["crosswalk_patches"]) == 3
     assert len(bridge.placement_context.junction_geometries[0]["sidewalk_corner_patches"]) >= 1
+    assert len(bridge.placement_context.junction_geometries[0]["nearroad_corner_patches"]) >= 1
     assert len(bridge.placement_context.junction_geometries[0]["frontage_corner_patches"]) >= 1
+    anchor = bridge.placement_context.junction_geometries[0]["anchor_xy"]
+    assert bridge.placement_context.junction_geometries[0]["junction_core_rect"].contains(Point(anchor[0], anchor[1]))
+    assert not bridge.placement_context.carriageway.contains(Point(anchor[0], anchor[1]))
 
 
 def test_osm_geometry_serialization_and_scene_include_junction_patches():
@@ -103,10 +110,14 @@ def test_osm_geometry_serialization_and_scene_include_junction_patches():
     serialized = _serialize_osm_geometry(bridge.placement_context)
     assert len(serialized["junction_geometries"]) == 1
     assert serialized["junction_geometries"][0]["kind"] == "t_junction"
+    assert serialized["junction_geometries"][0]["junction_core_rect_rings"]
+    assert len(serialized["junction_geometries"][0]["approach_boundaries"]) == 3
     assert len(serialized["junction_geometries"][0]["crosswalk_patches"]) == 3
+    assert len(serialized["junction_geometries"][0]["nearroad_corner_patches"]) >= 1
     assert serialized["junction_geometries"][0]["carriageway_core_rings"]
 
     scene = _build_osm_base_scene(bridge.placement_context)
     node_names = set(scene.graph.nodes_geometry)
     assert any(name.startswith("junction_crosswalk_") for name in node_names)
     assert any(name.startswith("junction_sidewalk_corner_") for name in node_names)
+    assert any(name.startswith("junction_nearroad_corner_") for name in node_names)

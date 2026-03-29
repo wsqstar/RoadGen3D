@@ -1426,6 +1426,13 @@ body {
 .annotation-centerline,
 .annotation-road-band,
 .annotation-cross-strip,
+.annotation-junction-core,
+.annotation-junction-crosswalk,
+.annotation-junction-sidewalk-corner,
+.annotation-junction-nearroad-corner,
+.annotation-junction-frontage-corner,
+.annotation-junction-boundary,
+.annotation-junction-label,
 .annotation-marker,
 .annotation-roundabout,
 .annotation-roundabout-center,
@@ -1456,6 +1463,100 @@ body {
 .annotation-cross-strip-selected {
   filter: drop-shadow(0 0 10px rgba(20, 90, 220, 0.34));
   stroke: rgba(20, 90, 220, 0.92) !important;
+}
+
+.annotation-junction-core {
+  fill: rgba(56, 60, 68, 0.72);
+  stroke: rgba(27, 34, 47, 0.72);
+  stroke-width: 1.8;
+}
+
+.annotation-junction-crosswalk {
+  fill: rgba(246, 247, 248, 0.88);
+  stroke: rgba(218, 222, 226, 0.92);
+  stroke-width: 1;
+}
+
+.annotation-junction-sidewalk-corner {
+  fill: rgba(235, 224, 206, 0.68);
+  stroke: rgba(188, 177, 159, 0.72);
+  stroke-width: 1;
+}
+
+.annotation-junction-nearroad-corner {
+  fill: rgba(126, 101, 71, 0.3);
+  stroke: rgba(103, 80, 56, 0.5);
+  stroke-width: 1;
+}
+
+.annotation-junction-frontage-corner {
+  fill: rgba(183, 212, 230, 0.3);
+  stroke: rgba(119, 160, 186, 0.46);
+  stroke-width: 1;
+}
+
+.annotation-junction-boundary {
+  stroke: rgba(244, 248, 255, 0.92);
+  stroke-width: 3.6;
+  stroke-dasharray: 10 6;
+}
+
+.annotation-junction-label {
+  fill: #f8fbff;
+  font-size: 12px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: rgba(25, 31, 43, 0.8);
+  stroke-width: 3px;
+}
+
+.annotation-junction-core-selected,
+.annotation-junction-crosswalk-selected,
+.annotation-junction-sidewalk-corner-selected,
+.annotation-junction-nearroad-corner-selected,
+.annotation-junction-frontage-corner-selected {
+  filter: drop-shadow(0 0 12px rgba(29, 78, 216, 0.42));
+}
+
+.annotation-junction-core-selected {
+  fill: rgba(44, 74, 128, 0.78);
+  stroke: rgba(234, 243, 255, 0.95);
+  stroke-width: 2.4;
+}
+
+.annotation-junction-crosswalk-selected {
+  fill: rgba(255, 255, 255, 0.96);
+  stroke: rgba(77, 127, 214, 0.96);
+  stroke-width: 1.6;
+}
+
+.annotation-junction-sidewalk-corner-selected {
+  fill: rgba(248, 238, 219, 0.86);
+  stroke: rgba(78, 125, 210, 0.82);
+  stroke-width: 1.6;
+}
+
+.annotation-junction-nearroad-corner-selected {
+  fill: rgba(153, 120, 80, 0.48);
+  stroke: rgba(72, 113, 196, 0.82);
+  stroke-width: 1.6;
+}
+
+.annotation-junction-frontage-corner-selected {
+  fill: rgba(196, 225, 241, 0.48);
+  stroke: rgba(72, 113, 196, 0.82);
+  stroke-width: 1.6;
+}
+
+.annotation-junction-boundary-selected {
+  stroke: rgba(255, 255, 255, 1);
+  stroke-width: 5.4;
+}
+
+.annotation-junction-label-selected {
+  fill: #ffffff;
+  stroke: rgba(28, 56, 111, 0.96);
+  stroke-width: 4px;
 }
 
 .annotation-centerline-draft {

@@ -391,6 +391,86 @@ def _rectangle_patch(
     return Polygon(corners)
 
 
+def _angle_distance_deg(a_deg: float, b_deg: float) -> float:
+    diff = abs(_normalize_angle_deg(float(a_deg) - float(b_deg)))
+    return float(min(diff, abs(diff - 360.0)))
+
+
+def _axis_distance_deg(angle_deg: float, axis_angle_deg: float) -> float:
+    diff = _angle_distance_deg(angle_deg, axis_angle_deg)
+    return float(min(diff, abs(diff - 180.0)))
+
+
+def _unit_vector_from_angle(angle_deg: float) -> Tuple[float, float]:
+    angle_rad = math.radians(float(angle_deg))
+    return (math.cos(angle_rad), math.sin(angle_rad))
+
+
+def _principal_junction_axis(arms: Sequence[Dict[str, Any]]) -> Tuple[float, float]:
+    if not arms:
+        return (1.0, 0.0)
+    best_pair: Tuple[Dict[str, Any], Dict[str, Any]] | None = None
+    best_score = float("inf")
+    for index, arm in enumerate(arms):
+        for other in arms[index + 1 :]:
+            diff = _angle_distance_deg(float(arm["angle_deg"]), float(other["angle_deg"]))
+            score = abs(diff - 180.0)
+            if score < best_score:
+                best_score = score
+                best_pair = (arm, other)
+    if best_pair is not None and best_score <= 45.0:
+        return tuple(float(value) for value in best_pair[0]["tangent"])
+    return tuple(float(value) for value in arms[0]["tangent"])
+
+
+def _ray_rectangle_exit_distance(
+    direction: Tuple[float, float],
+    axis_u: Tuple[float, float],
+    axis_v: Tuple[float, float],
+    half_u_m: float,
+    half_v_m: float,
+) -> float:
+    candidates: List[float] = []
+    dot_u = abs(float(direction[0]) * float(axis_u[0]) + float(direction[1]) * float(axis_u[1]))
+    dot_v = abs(float(direction[0]) * float(axis_v[0]) + float(direction[1]) * float(axis_v[1]))
+    if dot_u > 1e-6:
+        candidates.append(float(half_u_m) / dot_u)
+    if dot_v > 1e-6:
+        candidates.append(float(half_v_m) / dot_v)
+    return max(min(candidates) if candidates else 0.0, 0.05)
+
+
+def _junction_rectangle_patch(
+    *,
+    anchor: Tuple[float, float],
+    axis_u: Tuple[float, float],
+    axis_v: Tuple[float, float],
+    half_u_m: float,
+    half_v_m: float,
+) -> Any:
+    from shapely.geometry import Polygon
+
+    corners = [
+        (
+            float(anchor[0]) - float(axis_u[0]) * float(half_u_m) - float(axis_v[0]) * float(half_v_m),
+            float(anchor[1]) - float(axis_u[1]) * float(half_u_m) - float(axis_v[1]) * float(half_v_m),
+        ),
+        (
+            float(anchor[0]) - float(axis_u[0]) * float(half_u_m) + float(axis_v[0]) * float(half_v_m),
+            float(anchor[1]) - float(axis_u[1]) * float(half_u_m) + float(axis_v[1]) * float(half_v_m),
+        ),
+        (
+            float(anchor[0]) + float(axis_u[0]) * float(half_u_m) + float(axis_v[0]) * float(half_v_m),
+            float(anchor[1]) + float(axis_u[1]) * float(half_u_m) + float(axis_v[1]) * float(half_v_m),
+        ),
+        (
+            float(anchor[0]) + float(axis_u[0]) * float(half_u_m) - float(axis_v[0]) * float(half_v_m),
+            float(anchor[1]) + float(axis_u[1]) * float(half_u_m) - float(axis_v[1]) * float(half_v_m),
+        ),
+    ]
+    return Polygon(corners)
+
+
 def build_junction_geometries(
     roads: Sequence[Any],
     *,
@@ -514,25 +594,82 @@ def build_junction_geometries(
             )
             continue
 
-        approach_polygons = []
+        axis_u = _principal_junction_axis(arms)
+        axis_u_length = max(math.hypot(float(axis_u[0]), float(axis_u[1])), 1e-6)
+        axis_u = (float(axis_u[0]) / axis_u_length, float(axis_u[1]) / axis_u_length)
+        axis_v = (float(-axis_u[1]), float(axis_u[0]))
+        axis_u_angle = _angle_deg((0.0, 0.0), axis_u)
+
+        arms_on_u: List[Dict[str, Any]] = []
+        arms_on_v: List[Dict[str, Any]] = []
+        for arm in arms:
+            along_u = _axis_distance_deg(float(arm["angle_deg"]), axis_u_angle)
+            along_v = _axis_distance_deg(float(arm["angle_deg"]), axis_u_angle + 90.0)
+            if along_v + 1e-6 < along_u:
+                arms_on_v.append(arm)
+            else:
+                arms_on_u.append(arm)
+
+        def _max_half_width(items: Sequence[Dict[str, Any]], fallback: Sequence[Dict[str, Any]]) -> float:
+            values = [float(item["carriageway_width_m"]) * 0.5 for item in items if float(item["carriageway_width_m"]) > 0.0]
+            if not values:
+                values = [
+                    float(item["carriageway_width_m"]) * 0.5
+                    for item in fallback
+                    if float(item["carriageway_width_m"]) > 0.0
+                ]
+            return max(values or [2.0])
+
+        half_u_m = _max_half_width(arms_on_v, arms)
+        half_v_m = _max_half_width(arms_on_u, arms)
+        junction_core_rect = _junction_rectangle_patch(
+            anchor=anchor,
+            axis_u=axis_u,
+            axis_v=axis_v,
+            half_u_m=half_u_m,
+            half_v_m=half_v_m,
+        )
+        if aoi_polygon is not None and not getattr(aoi_polygon, "is_empty", True):
+            junction_core_rect = junction_core_rect.intersection(aoi_polygon)
+
         crosswalk_patches = []
+        approach_boundaries = []
+        sidewalk_trim_polygons = []
         for arm_index, arm in enumerate(arms):
             half_width = float(arm["carriageway_width_m"]) * 0.5
-            extent_m = max(float(crosswalk_depth_m) + half_width + 4.0, float(arm["carriageway_width_m"]))
-            approach_polygons.append(
-                LineString(
-                    [
-                        anchor,
-                        (
-                            anchor[0] + float(arm["tangent"][0]) * extent_m,
-                            anchor[1] + float(arm["tangent"][1]) * extent_m,
-                        ),
-                    ]
-                ).buffer(half_width, cap_style="flat")
+            exit_distance_m = _ray_rectangle_exit_distance(
+                tuple(arm["tangent"]),
+                axis_u,
+                axis_v,
+                half_u_m,
+                half_v_m,
             )
+            boundary_center = (
+                anchor[0] + float(arm["tangent"][0]) * exit_distance_m,
+                anchor[1] + float(arm["tangent"][1]) * exit_distance_m,
+            )
+            boundary_start = (
+                boundary_center[0] - float(arm["normal"][0]) * half_width,
+                boundary_center[1] - float(arm["normal"][1]) * half_width,
+            )
+            boundary_end = (
+                boundary_center[0] + float(arm["normal"][0]) * half_width,
+                boundary_center[1] + float(arm["normal"][1]) * half_width,
+            )
+            approach_boundaries.append(
+                {
+                    "boundary_id": f"junction_{index:02d}_approach_{arm_index:02d}",
+                    "road_id": int(arm["road_id"]),
+                    "center_xy": [round(boundary_center[0], 3), round(boundary_center[1], 3)],
+                    "start_xy": [round(boundary_start[0], 3), round(boundary_start[1], 3)],
+                    "end_xy": [round(boundary_end[0], 3), round(boundary_end[1], 3)],
+                    "exit_distance_m": round(float(exit_distance_m), 3),
+                }
+            )
+
             center = (
-                anchor[0] + float(arm["tangent"][0]) * (float(crosswalk_depth_m) * 0.5 + min(half_width * 0.35, 1.8)),
-                anchor[1] + float(arm["tangent"][1]) * (float(crosswalk_depth_m) * 0.5 + min(half_width * 0.35, 1.8)),
+                anchor[0] + float(arm["tangent"][0]) * (float(exit_distance_m) + float(crosswalk_depth_m) * 0.5),
+                anchor[1] + float(arm["tangent"][1]) * (float(exit_distance_m) + float(crosswalk_depth_m) * 0.5),
             )
             patch = _rectangle_patch(
                 center=center,
@@ -551,9 +688,29 @@ def build_junction_geometries(
                 }
             )
 
-        carriageway_core = _merge_polygon_geometries(approach_polygons, aoi_polygon=aoi_polygon)
+            side_total_width_m = (
+                float(arm["nearroad_buffer_width_m"])
+                + float(arm["nearroad_furnishing_width_m"])
+                + float(arm["clear_sidewalk_width_m"])
+                + float(arm["farfromroad_buffer_width_m"])
+                + float(arm["frontage_reserve_width_m"])
+            )
+            trim_half_width = max(half_width + side_total_width_m, half_width)
+            trim_extent_m = max(float(exit_distance_m) + float(crosswalk_depth_m), float(crosswalk_depth_m))
+            trim_polygon = LineString(
+                [
+                    anchor,
+                    (
+                        anchor[0] + float(arm["tangent"][0]) * trim_extent_m,
+                        anchor[1] + float(arm["tangent"][1]) * trim_extent_m,
+                    ),
+                ]
+            ).buffer(trim_half_width, cap_style="flat")
+            sidewalk_trim_polygons.append(trim_polygon)
 
+        carriageway_core = junction_core_rect
         sidewalk_corner_patches = []
+        nearroad_corner_patches = []
         frontage_corner_patches = []
         ordered_arms = sorted(arms, key=lambda item: float(item["angle_deg"]))
         for arm_index, arm in enumerate(ordered_arms):
@@ -565,14 +722,32 @@ def build_junction_geometries(
                 sweep += 360.0
             if sweep <= 5.0 or sweep >= 175.0:
                 continue
-            base_inner_m = max(
-                float(arm["carriageway_width_m"]) * 0.5
-                + float(arm["nearroad_buffer_width_m"])
-                + float(arm["nearroad_furnishing_width_m"]),
-                float(next_arm["carriageway_width_m"]) * 0.5
-                + float(next_arm["nearroad_buffer_width_m"])
-                + float(next_arm["nearroad_furnishing_width_m"]),
+            nearroad_inner_m = max(
+                float(arm["carriageway_width_m"]) * 0.5 + float(arm["nearroad_buffer_width_m"]),
+                float(next_arm["carriageway_width_m"]) * 0.5 + float(next_arm["nearroad_buffer_width_m"]),
             )
+            nearroad_width_m = max(
+                float(arm["nearroad_furnishing_width_m"]),
+                float(next_arm["nearroad_furnishing_width_m"]),
+            )
+            if nearroad_width_m > 0.0:
+                nearroad_patch = _sector_patch(
+                    anchor=anchor,
+                    start_angle_deg=start_angle,
+                    end_angle_deg=end_angle,
+                    inner_radius_m=nearroad_inner_m,
+                    outer_radius_m=nearroad_inner_m + nearroad_width_m,
+                )
+                nearroad_patch = nearroad_patch.difference(junction_core_rect)
+                if aoi_polygon is not None and not getattr(aoi_polygon, "is_empty", True):
+                    nearroad_patch = nearroad_patch.intersection(aoi_polygon)
+                nearroad_corner_patches.append(
+                    {
+                        "patch_id": f"junction_{index:02d}_nearroad_{arm_index:02d}",
+                        "geometry": nearroad_patch,
+                    }
+                )
+            base_inner_m = nearroad_inner_m + nearroad_width_m
             clear_sidewalk_width_m = max(
                 float(arm["clear_sidewalk_width_m"]),
                 float(next_arm["clear_sidewalk_width_m"]),
@@ -585,6 +760,7 @@ def build_junction_geometries(
                     inner_radius_m=base_inner_m,
                     outer_radius_m=base_inner_m + clear_sidewalk_width_m,
                 )
+                sidewalk_patch = sidewalk_patch.difference(junction_core_rect)
                 if aoi_polygon is not None and not getattr(aoi_polygon, "is_empty", True):
                     sidewalk_patch = sidewalk_patch.intersection(aoi_polygon)
                 sidewalk_corner_patches.append(
@@ -610,6 +786,7 @@ def build_junction_geometries(
                     inner_radius_m=frontage_inner_m,
                     outer_radius_m=frontage_inner_m + frontage_width_m,
                 )
+                frontage_patch = frontage_patch.difference(junction_core_rect)
                 if aoi_polygon is not None and not getattr(aoi_polygon, "is_empty", True):
                     frontage_patch = frontage_patch.intersection(aoi_polygon)
                 frontage_corner_patches.append(
@@ -626,10 +803,14 @@ def build_junction_geometries(
                 "anchor_xy": [round(anchor[0], 3), round(anchor[1], 3)],
                 "arm_count": int(arm_count),
                 "connected_road_ids": connected_road_ids,
+                "junction_core_rect": junction_core_rect,
                 "carriageway_core": carriageway_core,
+                "approach_boundaries": approach_boundaries,
                 "crosswalk_patches": crosswalk_patches,
                 "sidewalk_corner_patches": sidewalk_corner_patches,
+                "nearroad_corner_patches": nearroad_corner_patches,
                 "frontage_corner_patches": frontage_corner_patches,
+                "sidewalk_trim_zone": _merge_polygon_geometries(sidewalk_trim_polygons, aoi_polygon=aoi_polygon),
             }
         )
     return junctions
@@ -923,6 +1104,23 @@ def build_placement_context(
         road_segment_graph=road_segment_graph,
         aoi_polygon=aoi_polygon,
     )
+
+    if junction_geometries:
+        carriageway_trim = _merge_polygon_geometries(
+            [item.get("junction_core_rect") for item in junction_geometries],
+            aoi_polygon=aoi_polygon,
+        )
+        if carriageway_trim is not None and not getattr(carriageway_trim, "is_empty", True):
+            carriageway = _clip_to_aoi(carriageway.difference(carriageway_trim), aoi_polygon)
+
+        sidewalk_trim = _merge_polygon_geometries(
+            [item.get("sidewalk_trim_zone") for item in junction_geometries],
+            aoi_polygon=aoi_polygon,
+        )
+        if sidewalk_trim is not None and not getattr(sidewalk_trim, "is_empty", True):
+            left_sidewalk_zone = _clip_to_aoi(left_sidewalk_zone.difference(sidewalk_trim), aoi_polygon)
+            right_sidewalk_zone = _clip_to_aoi(right_sidewalk_zone.difference(sidewalk_trim), aoi_polygon)
+            sidewalk_zone = _clip_to_aoi(sidewalk_zone.difference(sidewalk_trim), aoi_polygon)
 
     return PlacementContext(
         sidewalk_zone=sidewalk_zone,

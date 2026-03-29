@@ -2843,7 +2843,7 @@ def _build_osm_base_scene(
     junction_geometries = list(getattr(placement_ctx, "junction_geometries", []) or [])
     if junction_geometries:
         for junction_index, junction in enumerate(junction_geometries):
-            carriageway_core = junction.get("carriageway_core")
+            carriageway_core = junction.get("junction_core_rect") or junction.get("carriageway_core")
             if carriageway_core is not None and not getattr(carriageway_core, "is_empty", True):
                 _extrude_polygon(
                     carriageway_core,
@@ -2879,6 +2879,19 @@ def _build_osm_base_scene(
                     y_offset=SIDEWALK_ELEVATION_M,
                     roughness_key="sidewalk",
                     surface_role="sidewalk",
+                )
+            for patch_index, patch in enumerate(junction.get("nearroad_corner_patches", []) or ()):
+                geometry = patch.get("geometry")
+                if geometry is None or getattr(geometry, "is_empty", True):
+                    continue
+                _extrude_polygon(
+                    geometry,
+                    0.05,
+                    list(colors.get("furnishing", colors.get("sidewalk", (165, 168, 172, 255)))),
+                    f"junction_nearroad_corner_{junction_index}_{patch_index}",
+                    y_offset=SIDEWALK_ELEVATION_M,
+                    roughness_key="furnishing",
+                    surface_role="furnishing",
                 )
             for patch_index, patch in enumerate(junction.get("frontage_corner_patches", []) or ()):
                 geometry = patch.get("geometry")
@@ -3122,7 +3135,28 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
                     "anchor_xy": [round(float(value), 3) for value in item.get("anchor_xy", [0.0, 0.0])[:2]],
                     "arm_count": int(item.get("arm_count", 0) or 0),
                     "connected_road_ids": [int(value) for value in item.get("connected_road_ids", []) or ()],
-                    "carriageway_core_rings": _extract_rings(item.get("carriageway_core")),
+                    "junction_core_rect_rings": _extract_rings(item.get("junction_core_rect")),
+                    "carriageway_core_rings": _extract_rings(item.get("junction_core_rect") or item.get("carriageway_core")),
+                    "approach_boundaries": [
+                        {
+                            "boundary_id": str(boundary.get("boundary_id", "") or ""),
+                            "road_id": int(boundary.get("road_id", 0) or 0),
+                            "center_xy": [
+                                round(float(value), 3)
+                                for value in boundary.get("center_xy", [0.0, 0.0])[:2]
+                            ],
+                            "start_xy": [
+                                round(float(value), 3)
+                                for value in boundary.get("start_xy", [0.0, 0.0])[:2]
+                            ],
+                            "end_xy": [
+                                round(float(value), 3)
+                                for value in boundary.get("end_xy", [0.0, 0.0])[:2]
+                            ],
+                            "exit_distance_m": round(float(boundary.get("exit_distance_m", 0.0) or 0.0), 3),
+                        }
+                        for boundary in item.get("approach_boundaries", []) or ()
+                    ],
                     "crosswalk_patches": [
                         {
                             "patch_id": str(patch.get("patch_id", "") or ""),
@@ -3137,6 +3171,13 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
                             "rings": _extract_rings(patch.get("geometry")),
                         }
                         for patch in item.get("sidewalk_corner_patches", []) or ()
+                    ],
+                    "nearroad_corner_patches": [
+                        {
+                            "patch_id": str(patch.get("patch_id", "") or ""),
+                            "rings": _extract_rings(patch.get("geometry")),
+                        }
+                        for patch in item.get("nearroad_corner_patches", []) or ()
                     ],
                     "frontage_corner_patches": [
                         {

@@ -160,6 +160,30 @@ type CrossDraft = {
   positiveEndpointSnap: BranchSnapTarget | null;
 };
 
+type DerivedJunctionOverlayPatch = {
+  patchId: string;
+  points: AnnotationPoint[];
+};
+
+type DerivedJunctionOverlayBoundary = {
+  boundaryId: string;
+  start: AnnotationPoint;
+  end: AnnotationPoint;
+};
+
+type DerivedJunctionOverlay = {
+  junctionId: string;
+  kind: "t_junction" | "cross_junction";
+  core: AnnotationPoint[];
+  crosswalks: DerivedJunctionOverlayPatch[];
+  sidewalkCorners: DerivedJunctionOverlayPatch[];
+  nearroadCorners: DerivedJunctionOverlayPatch[];
+  frontageCorners: DerivedJunctionOverlayPatch[];
+  approachBoundaries: DerivedJunctionOverlayBoundary[];
+  anchor: AnnotationPoint;
+  armCount: number;
+};
+
 type MetaurbanAssetBadge = {
   key: string;
   label: string;
@@ -175,7 +199,7 @@ type Selection =
       vertexIndex?: number;
     }
   | {
-      kind: "junction" | "roundabout" | "control_point";
+      kind: "junction" | "roundabout" | "control_point" | "derived_junction";
       id: string;
     }
   | null;
@@ -892,6 +916,399 @@ function pointOnAxis(anchor: AnnotationPoint, axisNormal: AnnotationPoint, signe
   };
 }
 
+function normalizeAngleDegTs(value: number): number {
+  let normalized = value % 360;
+  if (normalized < 0) {
+    normalized += 360;
+  }
+  return normalized;
+}
+
+function angleDegTs(fromPoint: AnnotationPoint, toPoint: AnnotationPoint): number {
+  return normalizeAngleDegTs((Math.atan2(toPoint.y - fromPoint.y, toPoint.x - fromPoint.x) * 180) / Math.PI);
+}
+
+function angleDistanceDegTs(aDeg: number, bDeg: number): number {
+  const diff = Math.abs(normalizeAngleDegTs(aDeg - bDeg));
+  return Math.min(diff, Math.abs(diff - 360));
+}
+
+function axisDistanceDegTs(angleDeg: number, axisAngleDeg: number): number {
+  const diff = angleDistanceDegTs(angleDeg, axisAngleDeg);
+  return Math.min(diff, Math.abs(diff - 180));
+}
+
+function classifyDerivedJunctionKind(anglesDeg: number[]): "t_junction" | "cross_junction" | "complex_junction" {
+  const ordered = [...anglesDeg].sort((a, b) => a - b);
+  const diffs = ordered.map((value, index) => {
+    const nextValue = ordered[(index + 1) % ordered.length];
+    const raw = nextValue - value + (index === ordered.length - 1 ? 360 : 0);
+    return raw;
+  });
+  if (ordered.length === 4 && diffs.length > 0 && diffs.every((diff) => Math.abs(diff - 90) <= 35)) {
+    return "cross_junction";
+  }
+  if (ordered.length === 3 && diffs.some((diff) => diff >= 145)) {
+    return "t_junction";
+  }
+  return "complex_junction";
+}
+
+function junctionProfileWidths(centerline: AnnotatedCenterline): {
+  carriagewayWidthM: number;
+  nearroadBufferWidthM: number;
+  nearroadFurnishingWidthM: number;
+  clearSidewalkWidthM: number;
+  farfromroadBufferWidthM: number;
+  frontageReserveWidthM: number;
+} {
+  const strips =
+    resolvedCrossSectionMode(centerline) === CROSS_SECTION_MODE_DETAILED && centerline.cross_section_strips.length > 0
+      ? centerline.cross_section_strips
+      : seedDetailedCrossSection(centerline);
+  const sideStrips = strips.filter((strip) => strip.zone === "left" || strip.zone === "right");
+  const maxWidthForKind = (kind: StripKind): number => {
+    let best = 0;
+    for (const strip of sideStrips) {
+      if (strip.kind === kind) {
+        best = Math.max(best, Math.max(0, strip.width_m));
+      }
+    }
+    return best;
+  };
+  return {
+    carriagewayWidthM: getCenterlineCarriagewayWidth(centerline),
+    nearroadBufferWidthM: maxWidthForKind("nearroad_buffer"),
+    nearroadFurnishingWidthM: maxWidthForKind("nearroad_furnishing"),
+    clearSidewalkWidthM: maxWidthForKind("clear_sidewalk"),
+    farfromroadBufferWidthM: maxWidthForKind("farfromroad_buffer"),
+    frontageReserveWidthM: maxWidthForKind("frontage_reserve"),
+  };
+}
+
+function rectanglePolygonPoints(
+  center: AnnotationPoint,
+  tangent: AnnotationPoint,
+  normal: AnnotationPoint,
+  lengthPx: number,
+  widthPx: number,
+): AnnotationPoint[] {
+  const halfLength = Math.max(lengthPx * 0.5, 1);
+  const halfWidth = Math.max(widthPx * 0.5, 1);
+  return [
+    { x: center.x - tangent.x * halfLength - normal.x * halfWidth, y: center.y - tangent.y * halfLength - normal.y * halfWidth },
+    { x: center.x - tangent.x * halfLength + normal.x * halfWidth, y: center.y - tangent.y * halfLength + normal.y * halfWidth },
+    { x: center.x + tangent.x * halfLength + normal.x * halfWidth, y: center.y + tangent.y * halfLength + normal.y * halfWidth },
+    { x: center.x + tangent.x * halfLength - normal.x * halfWidth, y: center.y + tangent.y * halfLength - normal.y * halfWidth },
+  ];
+}
+
+function sectorPolygonPoints(
+  anchor: AnnotationPoint,
+  startAngleDeg: number,
+  endAngleDeg: number,
+  innerRadiusPx: number,
+  outerRadiusPx: number,
+  steps = 10,
+): AnnotationPoint[] {
+  const normalizedStart = normalizeAngleDegTs(startAngleDeg);
+  let sweep = normalizeAngleDegTs(endAngleDeg) - normalizedStart;
+  if (sweep <= 0) {
+    sweep += 360;
+  }
+  if (outerRadiusPx <= innerRadiusPx || outerRadiusPx <= 0 || sweep <= 1 || sweep >= 179) {
+    return [];
+  }
+  const outerPoints: AnnotationPoint[] = [];
+  const innerPoints: AnnotationPoint[] = [];
+  for (let index = 0; index <= steps; index += 1) {
+    const ratio = index / steps;
+    const angleRad = ((normalizedStart + sweep * ratio) * Math.PI) / 180;
+    outerPoints.push({
+      x: anchor.x + Math.cos(angleRad) * outerRadiusPx,
+      y: anchor.y + Math.sin(angleRad) * outerRadiusPx,
+    });
+    innerPoints.push({
+      x: anchor.x + Math.cos(angleRad) * innerRadiusPx,
+      y: anchor.y + Math.sin(angleRad) * innerRadiusPx,
+    });
+  }
+  return [...outerPoints, ...innerPoints.reverse()];
+}
+
+function deriveJunctionOverlayGeometries(
+  annotation: ReferenceAnnotation,
+  previewCenterlines: AnnotatedCenterline[] = [],
+): DerivedJunctionOverlay[] {
+  const allCenterlines = [...annotation.centerlines, ...previewCenterlines];
+  const tolerancePx = Math.max(annotation.pixels_per_meter * 0.35, 4);
+  const clusters: Array<{
+    point: AnnotationPoint;
+    count: number;
+    members: Array<{ centerline: AnnotatedCenterline; vertexIndex: number; points: AnnotationPoint[] }>;
+  }> = [];
+
+  for (const centerline of allCenterlines) {
+    for (let vertexIndex = 0; vertexIndex < centerline.points.length; vertexIndex += 1) {
+      const point = centerline.points[vertexIndex];
+      let matched = clusters.find((cluster) => pointDistance(cluster.point, point) <= tolerancePx) ?? null;
+      if (!matched) {
+        matched = { point: { ...point }, count: 0, members: [] };
+        clusters.push(matched);
+      }
+      const count = matched.count + 1;
+      matched.point = {
+        x: (matched.point.x * matched.count + point.x) / count,
+        y: (matched.point.y * matched.count + point.y) / count,
+      };
+      matched.count = count;
+      matched.members.push({
+        centerline,
+        vertexIndex,
+        points: centerline.points.map((item) => ({ ...item })),
+      });
+    }
+  }
+
+  const overlays: DerivedJunctionOverlay[] = [];
+  for (let clusterIndex = 0; clusterIndex < clusters.length; clusterIndex += 1) {
+    const cluster = clusters[clusterIndex];
+    const uniqueCenterlineIds = new Set(cluster.members.map((member) => member.centerline.id));
+    if (uniqueCenterlineIds.size < 2) {
+      continue;
+    }
+    const anchor = cluster.point;
+    const arms: Array<{
+      centerlineId: string;
+      angleDeg: number;
+      tangent: AnnotationPoint;
+      normal: AnnotationPoint;
+      carriagewayWidthPx: number;
+      nearroadBufferWidthPx: number;
+      nearroadFurnishingWidthPx: number;
+      clearSidewalkWidthPx: number;
+      farfromroadBufferWidthPx: number;
+      frontageReserveWidthPx: number;
+    }> = [];
+    const seenArmKeys = new Set<string>();
+    for (const member of cluster.members) {
+      const { centerline, vertexIndex, points } = member;
+      const widths = junctionProfileWidths(centerline);
+      for (const neighborIndex of [vertexIndex - 1, vertexIndex + 1]) {
+        if (neighborIndex < 0 || neighborIndex >= points.length) {
+          continue;
+        }
+        const neighbor = points[neighborIndex];
+        const lengthPx = pointDistance(anchor, neighbor);
+        if (lengthPx <= Math.max(tolerancePx * 0.25, 1)) {
+          continue;
+        }
+        const armKey = `${centerline.id}:${Math.round(neighbor.x * 100)}:${Math.round(neighbor.y * 100)}`;
+        if (seenArmKeys.has(armKey)) {
+          continue;
+        }
+        seenArmKeys.add(armKey);
+        const tangent = {
+          x: (neighbor.x - anchor.x) / lengthPx,
+          y: (neighbor.y - anchor.y) / lengthPx,
+        };
+        arms.push({
+          centerlineId: centerline.id,
+          angleDeg: angleDegTs(anchor, neighbor),
+          tangent,
+          normal: { x: tangent.y, y: -tangent.x },
+          carriagewayWidthPx: widths.carriagewayWidthM * annotation.pixels_per_meter,
+          nearroadBufferWidthPx: widths.nearroadBufferWidthM * annotation.pixels_per_meter,
+          nearroadFurnishingWidthPx: widths.nearroadFurnishingWidthM * annotation.pixels_per_meter,
+          clearSidewalkWidthPx: widths.clearSidewalkWidthM * annotation.pixels_per_meter,
+          farfromroadBufferWidthPx: widths.farfromroadBufferWidthM * annotation.pixels_per_meter,
+          frontageReserveWidthPx: widths.frontageReserveWidthM * annotation.pixels_per_meter,
+        });
+      }
+    }
+    const kind = classifyDerivedJunctionKind(arms.map((arm) => arm.angleDeg));
+    if (kind !== "t_junction" && kind !== "cross_junction") {
+      continue;
+    }
+
+    let axisSource = arms[0]?.tangent ?? { x: 1, y: 0 };
+    let bestScore = Number.POSITIVE_INFINITY;
+    for (let index = 0; index < arms.length; index += 1) {
+      for (let otherIndex = index + 1; otherIndex < arms.length; otherIndex += 1) {
+        const score = Math.abs(angleDistanceDegTs(arms[index].angleDeg, arms[otherIndex].angleDeg) - 180);
+        if (score < bestScore) {
+          bestScore = score;
+          axisSource = arms[index].tangent;
+        }
+      }
+    }
+    const axisLength = Math.max(Math.hypot(axisSource.x, axisSource.y), 1e-6);
+    const axisU = { x: axisSource.x / axisLength, y: axisSource.y / axisLength };
+    const axisV = { x: -axisU.y, y: axisU.x };
+    const axisUAngle = angleDegTs({ x: 0, y: 0 }, axisU);
+    const armsOnU: typeof arms = [];
+    const armsOnV: typeof arms = [];
+    for (const arm of arms) {
+      const alongU = axisDistanceDegTs(arm.angleDeg, axisUAngle);
+      const alongV = axisDistanceDegTs(arm.angleDeg, axisUAngle + 90);
+      if (alongV + 1e-6 < alongU) {
+        armsOnV.push(arm);
+      } else {
+        armsOnU.push(arm);
+      }
+    }
+    const maxHalfWidth = (items: typeof arms, fallback: typeof arms): number => {
+      const source = items.length > 0 ? items : fallback;
+      return Math.max(...source.map((arm) => Math.max(arm.carriagewayWidthPx * 0.5, 1)));
+    };
+    const halfUPx = maxHalfWidth(armsOnV, arms);
+    const halfVPx = maxHalfWidth(armsOnU, arms);
+    const core = [
+      { x: anchor.x - axisU.x * halfUPx - axisV.x * halfVPx, y: anchor.y - axisU.y * halfUPx - axisV.y * halfVPx },
+      { x: anchor.x - axisU.x * halfUPx + axisV.x * halfVPx, y: anchor.y - axisU.y * halfUPx + axisV.y * halfVPx },
+      { x: anchor.x + axisU.x * halfUPx + axisV.x * halfVPx, y: anchor.y + axisU.y * halfUPx + axisV.y * halfVPx },
+      { x: anchor.x + axisU.x * halfUPx - axisV.x * halfVPx, y: anchor.y + axisU.y * halfUPx - axisV.y * halfVPx },
+    ];
+
+    const approachBoundaries: DerivedJunctionOverlayBoundary[] = [];
+    const crosswalks: DerivedJunctionOverlayPatch[] = [];
+    for (let armIndex = 0; armIndex < arms.length; armIndex += 1) {
+      const arm = arms[armIndex];
+      const dotU = Math.abs(arm.tangent.x * axisU.x + arm.tangent.y * axisU.y);
+      const dotV = Math.abs(arm.tangent.x * axisV.x + arm.tangent.y * axisV.y);
+      const exitDistancePx = Math.max(
+        Math.min(
+          dotU > 1e-6 ? halfUPx / dotU : Number.POSITIVE_INFINITY,
+          dotV > 1e-6 ? halfVPx / dotV : Number.POSITIVE_INFINITY,
+        ),
+        1,
+      );
+      const boundaryCenter = {
+        x: anchor.x + arm.tangent.x * exitDistancePx,
+        y: anchor.y + arm.tangent.y * exitDistancePx,
+      };
+      const halfWidth = Math.max(arm.carriagewayWidthPx * 0.5, 1);
+      approachBoundaries.push({
+        boundaryId: `junction_overlay_${clusterIndex + 1}_boundary_${armIndex + 1}`,
+        start: {
+          x: boundaryCenter.x - arm.normal.x * halfWidth,
+          y: boundaryCenter.y - arm.normal.y * halfWidth,
+        },
+        end: {
+          x: boundaryCenter.x + arm.normal.x * halfWidth,
+          y: boundaryCenter.y + arm.normal.y * halfWidth,
+        },
+      });
+      const crosswalkCenter = {
+        x: anchor.x + arm.tangent.x * (exitDistancePx + annotation.pixels_per_meter * 1.5),
+        y: anchor.y + arm.tangent.y * (exitDistancePx + annotation.pixels_per_meter * 1.5),
+      };
+      crosswalks.push({
+        patchId: `junction_overlay_${clusterIndex + 1}_crosswalk_${armIndex + 1}`,
+        points: rectanglePolygonPoints(
+          crosswalkCenter,
+          arm.tangent,
+          arm.normal,
+          annotation.pixels_per_meter * 3,
+          arm.carriagewayWidthPx,
+        ),
+      });
+    }
+
+    const orderedArms = [...arms].sort((a, b) => a.angleDeg - b.angleDeg);
+    const sidewalkCorners: DerivedJunctionOverlayPatch[] = [];
+    const nearroadCorners: DerivedJunctionOverlayPatch[] = [];
+    const frontageCorners: DerivedJunctionOverlayPatch[] = [];
+    for (let armIndex = 0; armIndex < orderedArms.length; armIndex += 1) {
+      const arm = orderedArms[armIndex];
+      const nextArm = orderedArms[(armIndex + 1) % orderedArms.length];
+      let sweep = nextArm.angleDeg - arm.angleDeg;
+      if (sweep <= 0) {
+        sweep += 360;
+      }
+      if (sweep <= 5 || sweep >= 175) {
+        continue;
+      }
+      const nearroadInnerPx = Math.max(
+        arm.carriagewayWidthPx * 0.5 + arm.nearroadBufferWidthPx,
+        nextArm.carriagewayWidthPx * 0.5 + nextArm.nearroadBufferWidthPx,
+      );
+      const nearroadWidthPx = Math.max(arm.nearroadFurnishingWidthPx, nextArm.nearroadFurnishingWidthPx);
+      if (nearroadWidthPx > 0) {
+        const points = sectorPolygonPoints(anchor, arm.angleDeg, nextArm.angleDeg, nearroadInnerPx, nearroadInnerPx + nearroadWidthPx);
+        if (points.length > 0) {
+          nearroadCorners.push({
+            patchId: `junction_overlay_${clusterIndex + 1}_nearroad_${armIndex + 1}`,
+            points,
+          });
+        }
+      }
+      const sidewalkInnerPx = nearroadInnerPx + nearroadWidthPx;
+      const clearSidewalkWidthPx = Math.max(arm.clearSidewalkWidthPx, nextArm.clearSidewalkWidthPx);
+      if (clearSidewalkWidthPx > 0) {
+        const points = sectorPolygonPoints(
+          anchor,
+          arm.angleDeg,
+          nextArm.angleDeg,
+          sidewalkInnerPx,
+          sidewalkInnerPx + clearSidewalkWidthPx,
+        );
+        if (points.length > 0) {
+          sidewalkCorners.push({
+            patchId: `junction_overlay_${clusterIndex + 1}_sidewalk_${armIndex + 1}`,
+            points,
+          });
+        }
+      }
+      const frontageInnerPx =
+        sidewalkInnerPx +
+        clearSidewalkWidthPx +
+        Math.max(arm.farfromroadBufferWidthPx, nextArm.farfromroadBufferWidthPx);
+      const frontageWidthPx = Math.max(arm.frontageReserveWidthPx, nextArm.frontageReserveWidthPx);
+      if (frontageWidthPx > 0) {
+        const points = sectorPolygonPoints(
+          anchor,
+          arm.angleDeg,
+          nextArm.angleDeg,
+          frontageInnerPx,
+          frontageInnerPx + frontageWidthPx,
+        );
+        if (points.length > 0) {
+          frontageCorners.push({
+            patchId: `junction_overlay_${clusterIndex + 1}_frontage_${armIndex + 1}`,
+            points,
+          });
+        }
+      }
+    }
+
+    overlays.push({
+      junctionId: `junction_overlay_${String(clusterIndex + 1).padStart(2, "0")}`,
+      kind,
+      core,
+      crosswalks,
+      sidewalkCorners,
+      nearroadCorners,
+      frontageCorners,
+      approachBoundaries,
+      anchor: { ...anchor },
+      armCount: arms.length,
+    });
+  }
+  return overlays;
+}
+
+function derivedJunctionKindLabel(kind: "t_junction" | "cross_junction"): string {
+  return kind === "cross_junction" ? "Cross Junction" : "T Junction";
+}
+
+function getDerivedJunctionOverlay(
+  annotation: ReferenceAnnotation,
+  junctionId: string,
+): DerivedJunctionOverlay | null {
+  return deriveJunctionOverlayGeometries(annotation).find((item) => item.junctionId === junctionId) ?? null;
+}
+
 function stripDisplayPoint(
   centerline: AnnotatedCenterline,
   stripId: string,
@@ -1445,6 +1862,7 @@ function getSelectedFeature(annotation: ReferenceAnnotation, selection: Selectio
   | AnnotatedCenterline
   | AnnotatedMarker
   | AnnotatedRoundabout
+  | DerivedJunctionOverlay
   | null {
   if (!selection) {
     return null;
@@ -1457,6 +1875,9 @@ function getSelectedFeature(annotation: ReferenceAnnotation, selection: Selectio
   }
   if (selection.kind === "roundabout") {
     return annotation.roundabouts.find((item) => item.id === selection.id) ?? null;
+  }
+  if (selection.kind === "derived_junction") {
+    return getDerivedJunctionOverlay(annotation, selection.id);
   }
   return annotation.control_points.find((item) => item.id === selection.id) ?? null;
 }
@@ -1773,6 +2194,7 @@ function buildGraphSummaryMarkup(graphResult: ConvertedGraphPayload | null): str
 
 function buildFeatureTableMarkup(annotation: ReferenceAnnotation): string {
   const rows: string[] = [];
+  const derivedJunctions = deriveJunctionOverlayGeometries(annotation);
   for (const centerline of annotation.centerlines) {
     rows.push(`
       <tr>
@@ -1780,6 +2202,16 @@ function buildFeatureTableMarkup(annotation: ReferenceAnnotation): string {
         <td>${escapeHtml(centerline.id)}</td>
         <td>${escapeHtml(centerline.label)}</td>
         <td>${centerline.points.length} pts · ${getCenterlineCrossSectionWidth(centerline).toFixed(1)}m · ${formatCrossSectionSummary(centerline)} · ${centerline.street_furniture_instances.length} furn. · ${escapeHtml(formatLaneSummary(centerline))}</td>
+      </tr>
+    `);
+  }
+  for (const item of derivedJunctions) {
+    rows.push(`
+      <tr>
+        <td>derived junction</td>
+        <td>${escapeHtml(item.junctionId)}</td>
+        <td>${escapeHtml(derivedJunctionKindLabel(item.kind))}</td>
+        <td>${item.armCount} arms · (${item.anchor.x.toFixed(0)}, ${item.anchor.y.toFixed(0)})</td>
       </tr>
     `);
   }
@@ -2265,6 +2697,53 @@ function buildInspectorMarkup(
       }
     `;
   }
+  if (selection.kind === "derived_junction") {
+    const junction = feature as DerivedJunctionOverlay;
+    return `
+      <section class="annotation-cross-preview-section">
+        <div class="annotation-cross-preview-header">
+          <div>
+            <h3>${escapeHtml(derivedJunctionKindLabel(junction.kind))}</h3>
+            <div class="scene-micro-note">${escapeHtml(junction.junctionId)}</div>
+          </div>
+          <div class="annotation-cross-preview-stats">
+            <span class="annotation-cross-preview-stat">${junction.armCount} arms</span>
+            <span class="annotation-cross-preview-stat">${junction.crosswalks.length} crossings</span>
+          </div>
+        </div>
+        <div class="scene-inspector-grid">
+          <div class="scene-fact-card">
+            <span class="scene-fact-label">Kind</span>
+            <strong>${escapeHtml(derivedJunctionKindLabel(junction.kind))}</strong>
+          </div>
+          <div class="scene-fact-card">
+            <span class="scene-fact-label">Anchor</span>
+            <strong>${junction.anchor.x.toFixed(0)}, ${junction.anchor.y.toFixed(0)}</strong>
+          </div>
+          <div class="scene-fact-card">
+            <span class="scene-fact-label">Crosswalks</span>
+            <strong>${junction.crosswalks.length}</strong>
+          </div>
+          <div class="scene-fact-card">
+            <span class="scene-fact-label">Approach Boundaries</span>
+            <strong>${junction.approachBoundaries.length}</strong>
+          </div>
+          <div class="scene-fact-card">
+            <span class="scene-fact-label">Sidewalk Corners</span>
+            <strong>${junction.sidewalkCorners.length}</strong>
+          </div>
+          <div class="scene-fact-card">
+            <span class="scene-fact-label">Near-road Corners</span>
+            <strong>${junction.nearroadCorners.length}</strong>
+          </div>
+          <div class="scene-fact-card scene-form-field-wide">
+            <span class="scene-fact-label">Behavior</span>
+            <strong>Rectangular carriageway core with zebra boundaries and connected sidewalk/frontage corner patches.</strong>
+          </div>
+        </div>
+      </section>
+    `;
+  }
   if (selection.kind === "roundabout") {
     const roundabout = feature as AnnotatedRoundabout;
     return `
@@ -2502,6 +2981,126 @@ function buildCrossPreviewMarkup(
   return fragments.join("");
 }
 
+function previewCenterlinesFromDrafts(
+  annotation: ReferenceAnnotation,
+  branchDraft: BranchDraft | null,
+  crossDraft: CrossDraft | null,
+): AnnotatedCenterline[] {
+  const previews: AnnotatedCenterline[] = [];
+  if (branchDraft) {
+    const host = annotation.centerlines.find((item) => item.id === branchDraft.anchor.centerlineId);
+    if (host && pointDistance(branchDraft.anchor.point, branchDraft.endpoint) > 1) {
+      previews.push(
+        cloneCenterlineForBranch(host, "__preview_branch__", [branchDraft.anchor.point, branchDraft.endpoint]),
+      );
+    }
+  }
+  if (crossDraft) {
+    const host = annotation.centerlines.find((item) => item.id === crossDraft.anchor.centerlineId);
+    if (
+      host &&
+      (pointDistance(crossDraft.anchor.point, crossDraft.negativeEndpoint) > 1 ||
+        pointDistance(crossDraft.anchor.point, crossDraft.positiveEndpoint) > 1)
+    ) {
+      previews.push(
+        cloneCenterlineForBranch(host, "__preview_cross__", [
+          crossDraft.negativeEndpoint,
+          crossDraft.anchor.point,
+          crossDraft.positiveEndpoint,
+        ]),
+      );
+    }
+  }
+  return previews;
+}
+
+function buildDerivedJunctionOverlayMarkup(
+  annotation: ReferenceAnnotation,
+  selection: Selection,
+  branchDraft: BranchDraft | null,
+  crossDraft: CrossDraft | null,
+): string {
+  const overlays = deriveJunctionOverlayGeometries(
+    annotation,
+    previewCenterlinesFromDrafts(annotation, branchDraft, crossDraft),
+  );
+  if (overlays.length === 0) {
+    return "";
+  }
+  return overlays
+    .map((overlay) => {
+      const isSelected = selection?.kind === "derived_junction" && selection.id === overlay.junctionId;
+      const polygonMarkup = (patches: DerivedJunctionOverlayPatch[], className: string): string =>
+        patches
+          .map((patch) => {
+            if (patch.points.length < 3) {
+              return "";
+            }
+            return `
+              <polygon
+                class="${className}${isSelected ? ` ${className}-selected` : ""}"
+                points="${patch.points.map((point) => `${point.x},${point.y}`).join(" ")}"
+                data-feature-kind="derived_junction"
+                data-feature-id="${escapeHtml(overlay.junctionId)}"
+              />
+            `;
+          })
+          .join("");
+      const boundaryMarkup = overlay.approachBoundaries
+        .map(
+          (boundary) => `
+            <line
+              class="annotation-junction-boundary${isSelected ? " annotation-junction-boundary-selected" : ""}"
+              x1="${boundary.start.x}"
+              y1="${boundary.start.y}"
+              x2="${boundary.end.x}"
+              y2="${boundary.end.y}"
+              data-feature-kind="derived_junction"
+              data-feature-id="${escapeHtml(overlay.junctionId)}"
+            />
+          `,
+        )
+        .join("");
+      const coreBounds = overlay.core.reduce(
+        (acc, point) => ({
+          minX: Math.min(acc.minX, point.x),
+          minY: Math.min(acc.minY, point.y),
+          maxX: Math.max(acc.maxX, point.x),
+          maxY: Math.max(acc.maxY, point.y),
+        }),
+        { minX: Number.POSITIVE_INFINITY, minY: Number.POSITIVE_INFINITY, maxX: Number.NEGATIVE_INFINITY, maxY: Number.NEGATIVE_INFINITY },
+      );
+      const labelX = (coreBounds.minX + coreBounds.maxX) * 0.5;
+      const labelY = coreBounds.minY - 10;
+      return `
+        <g class="annotation-feature-group">
+          ${polygonMarkup(overlay.frontageCorners, "annotation-junction-frontage-corner")}
+          ${polygonMarkup(overlay.nearroadCorners, "annotation-junction-nearroad-corner")}
+          ${polygonMarkup(overlay.sidewalkCorners, "annotation-junction-sidewalk-corner")}
+          <polygon
+            class="annotation-junction-core${isSelected ? " annotation-junction-core-selected" : ""}"
+            points="${overlay.core.map((point) => `${point.x},${point.y}`).join(" ")}"
+            data-feature-kind="derived_junction"
+            data-feature-id="${escapeHtml(overlay.junctionId)}"
+          />
+          ${polygonMarkup(overlay.crosswalks, "annotation-junction-crosswalk")}
+          ${boundaryMarkup}
+          <text
+            class="annotation-junction-label${isSelected ? " annotation-junction-label-selected" : ""}"
+            x="${labelX}"
+            y="${labelY}"
+            text-anchor="middle"
+            data-feature-kind="derived_junction"
+            data-feature-id="${escapeHtml(overlay.junctionId)}"
+          >
+            ${escapeHtml(derivedJunctionKindLabel(overlay.kind))}
+          </text>
+        </g>
+      `;
+    })
+    .join("");
+}
+
 function buildOverlayMarkup(
   annotation: ReferenceAnnotation,
   draftCenterline: AnnotationPoint[],
@@ -2615,6 +3214,13 @@ function buildOverlayMarkup(
       `
       : "";
 
+  const derivedJunctionMarkup = buildDerivedJunctionOverlayMarkup(
+    annotation,
+    selection,
+    branchDraft,
+    crossDraft,
+  );
+
   return `
     <svg
       id="annotation-overlay-svg"
@@ -2625,6 +3231,7 @@ function buildOverlayMarkup(
     >
       <rect x="0" y="0" width="${width}" height="${height}" fill="transparent" />
       ${centerlineMarkup}
+      ${derivedJunctionMarkup}
       ${markerMarkup}
       ${roundaboutMarkup}
       ${buildBranchPreviewMarkup(branchHoverSnap, branchDraft)}
@@ -3518,7 +4125,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
         : "选择参考 plan 或导入 PNG 后，就可以在图上开始标注。";
     finishCenterlineButton.disabled = state.draftCenterline.length < 2;
     undoPointButton.disabled = state.draftCenterline.length === 0;
-    deleteSelectedButton.disabled = !state.selection;
+    deleteSelectedButton.disabled = !state.selection || state.selection.kind === "derived_junction";
     imageResetButton.disabled = !state.currentImageUrl;
     downloadGraphButton.disabled = !state.graphResult;
   }
@@ -3578,7 +4185,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       }
       return selection;
     }
-    if (featureKind === "junction" || featureKind === "roundabout" || featureKind === "control_point") {
+    if (featureKind === "junction" || featureKind === "roundabout" || featureKind === "control_point" || featureKind === "derived_junction") {
       return { kind: featureKind, id: featureId };
     }
     return null;
@@ -3766,6 +4373,8 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       state.annotation.control_points = state.annotation.control_points.filter((item) => item.id !== state.selection?.id);
       state.selection = null;
       setStatus(statusEl, "Deleted control point.", "success");
+    } else if (state.selection.kind === "derived_junction") {
+      setStatus(statusEl, "Derived junctions come from shared road vertices. Edit the connected centerlines instead.", "neutral");
     }
     clearGraphResult("Annotation changed. Re-run convert to refresh graph output.");
     renderAll();
