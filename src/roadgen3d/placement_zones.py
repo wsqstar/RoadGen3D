@@ -619,6 +619,11 @@ def _connector_join_point(
     )
 
 
+def _should_trim_outside_corner(kind: str, sweep_deg: float) -> bool:
+    _ = kind
+    return abs(float(sweep_deg) - 90.0) <= 30.0
+
+
 def _corner_connector_patch(
     *,
     corner_center: Tuple[float, float],
@@ -626,6 +631,7 @@ def _corner_connector_patch(
     next_arm: Dict[str, Any],
     kind: str,
     junction_core_rect: Any,
+    trim_outside_corner: bool = False,
     aoi_polygon: Any | None = None,
 ) -> Any:
     from shapely.geometry import Polygon
@@ -660,6 +666,12 @@ def _corner_connector_patch(
     )
     if not patch.is_valid:
         patch = patch.buffer(0)
+    if trim_outside_corner:
+        outer_corner = Polygon([outer_point_a, outer_join, outer_point_b])
+        if not outer_corner.is_valid:
+            outer_corner = outer_corner.buffer(0)
+        if not getattr(outer_corner, "is_empty", True):
+            patch = patch.difference(outer_corner)
     patch = patch.difference(junction_core_rect)
     if aoi_polygon is not None and not getattr(aoi_polygon, "is_empty", True):
         patch = patch.intersection(aoi_polygon)
@@ -907,6 +919,7 @@ def _build_explicit_graph_junction_geometries(
                 sweep += 360.0
             if sweep <= 5.0 or sweep >= 175.0:
                 continue
+            trim_outside_corner = _should_trim_outside_corner(kind, sweep)
             corner_center = _line_intersection(
                 tuple(float(value) for value in arm["split_boundary_center"]),
                 tuple(float(value) for value in arm["normal"]),
@@ -921,6 +934,7 @@ def _build_explicit_graph_junction_geometries(
                 next_arm=next_arm,
                 kind="nearroad_furnishing",
                 junction_core_rect=junction_core_rect,
+                trim_outside_corner=trim_outside_corner,
                 aoi_polygon=aoi_polygon,
             )
             if not getattr(nearroad_patch, "is_empty", True):
@@ -936,6 +950,7 @@ def _build_explicit_graph_junction_geometries(
                 next_arm=next_arm,
                 kind="clear_sidewalk",
                 junction_core_rect=junction_core_rect,
+                trim_outside_corner=trim_outside_corner,
                 aoi_polygon=aoi_polygon,
             )
             if not getattr(sidewalk_patch, "is_empty", True):
@@ -951,6 +966,7 @@ def _build_explicit_graph_junction_geometries(
                 next_arm=next_arm,
                 kind="frontage_reserve",
                 junction_core_rect=junction_core_rect,
+                trim_outside_corner=trim_outside_corner,
                 aoi_polygon=aoi_polygon,
             )
             if not getattr(frontage_patch, "is_empty", True):

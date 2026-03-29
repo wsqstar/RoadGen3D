@@ -176,6 +176,7 @@ type CrossDraft = {
 type DerivedJunctionOverlayPatch = {
   patchId: string;
   points: AnnotationPoint[];
+  cutoutPoints?: AnnotationPoint[];
 };
 
 type DerivedJunctionOverlayBoundary = {
@@ -1815,7 +1816,15 @@ function connectorJoinPointTs(
   };
 }
 
-function cornerConnectorPolygonPointsTs(
+function shouldTrimOutsideCornerTs(
+  kind: "t_junction" | "cross_junction",
+  sweepDeg: number,
+): boolean {
+  void kind;
+  return Math.abs(sweepDeg - 90) <= 30;
+}
+
+function cornerConnectorPatchGeometryTs(
   arm: {
     splitBoundaryCenter: AnnotationPoint;
     normal: AnnotationPoint;
@@ -1828,14 +1837,27 @@ function cornerConnectorPolygonPointsTs(
   },
   offsetsA: { innerOffsetPx: number; outerOffsetPx: number },
   offsetsB: { innerOffsetPx: number; outerOffsetPx: number },
-): AnnotationPoint[] {
+  options: {
+    trimOutsideCorner: boolean;
+  },
+): {
+  points: AnnotationPoint[];
+  cutoutPoints?: AnnotationPoint[];
+} {
   const innerPointA = pointOnBoundaryWithOffsetTs(arm.splitBoundaryCenter, arm.normal, offsetsA.innerOffsetPx);
   const innerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.innerOffsetPx);
   const outerPointA = pointOnBoundaryWithOffsetTs(arm.splitBoundaryCenter, arm.normal, offsetsA.outerOffsetPx);
   const outerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.outerOffsetPx);
   const innerJoin = connectorJoinPointTs(innerPointA, arm.tangent, innerPointB, nextArm.tangent);
   const outerJoin = connectorJoinPointTs(outerPointA, arm.tangent, outerPointB, nextArm.tangent);
-  return [outerPointA, outerJoin, outerPointB, innerPointB, innerJoin, innerPointA];
+  return options.trimOutsideCorner
+    ? {
+        points: [outerPointA, outerJoin, outerPointB, innerPointB, innerJoin, innerPointA],
+        cutoutPoints: [outerPointA, outerJoin, outerPointB],
+      }
+    : {
+        points: [outerPointA, outerJoin, outerPointB, innerPointB, innerJoin, innerPointA],
+      };
 }
 
 function deriveExplicitJunctionOverlayGeometries(annotation: ReferenceAnnotation): DerivedJunctionOverlay[] {
@@ -2084,6 +2106,7 @@ function deriveExplicitJunctionOverlayGeometries(annotation: ReferenceAnnotation
       if (!cornerCenter) {
         continue;
       }
+      const trimOutsideCorner = shouldTrimOutsideCornerTs(kind, sweep);
       cornerFocusPoints.push({
         focusId: `${junction.id}_focus_${String(armIndex + 1).padStart(2, "0")}`,
         point: cornerCenter,
@@ -2155,11 +2178,14 @@ function deriveExplicitJunctionOverlayGeometries(annotation: ReferenceAnnotation
             end: outerPointB,
           },
         );
-        const points = cornerConnectorPolygonPointsTs(arm, nextArm, offsetsA, offsetsB);
-        if (points.length > 0) {
+        const patchGeometry = cornerConnectorPatchGeometryTs(arm, nextArm, offsetsA, offsetsB, {
+          trimOutsideCorner,
+        });
+        if (patchGeometry.points.length > 0) {
           spec.bucket.push({
             patchId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}`,
-            points,
+            points: patchGeometry.points,
+            cutoutPoints: patchGeometry.cutoutPoints,
           });
         }
       }
@@ -2448,6 +2474,7 @@ function deriveLegacyJunctionOverlayGeometries(
       if (!cornerCenter) {
         continue;
       }
+      const trimOutsideCorner = shouldTrimOutsideCornerTs(kind, sweep);
       cornerFocusPoints.push({
         focusId: `junction_overlay_${clusterIndex + 1}_focus_${armIndex + 1}`,
         point: cornerCenter,
@@ -2519,11 +2546,14 @@ function deriveLegacyJunctionOverlayGeometries(
             end: outerPointB,
           },
         );
-        const points = cornerConnectorPolygonPointsTs(arm, nextArm, offsetsA, offsetsB);
-        if (points.length > 0) {
+        const patchGeometry = cornerConnectorPatchGeometryTs(arm, nextArm, offsetsA, offsetsB, {
+          trimOutsideCorner,
+        });
+        if (patchGeometry.points.length > 0) {
           spec.bucket.push({
             patchId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}`,
-            points,
+            points: patchGeometry.points,
+            cutoutPoints: patchGeometry.cutoutPoints,
           });
         }
       }
@@ -4607,6 +4637,22 @@ function buildDerivedJunctionOverlayMarkup(
           .map((patch) => {
             if (patch.points.length < 3) {
               return "";
+            }
+            if (patch.cutoutPoints && patch.cutoutPoints.length >= 3) {
+              const pathData = [
+                `M ${patch.points.map((point) => `${point.x},${point.y}`).join(" L ")} Z`,
+                `M ${patch.cutoutPoints.map((point) => `${point.x},${point.y}`).join(" L ")} Z`,
+              ].join(" ");
+              return `
+                <path
+                  class="${className}${isSelected ? ` ${className}-selected` : ""}"
+                  d="${pathData}"
+                  fill-rule="evenodd"
+                  style="stroke: none"
+                  data-feature-kind="${featureKind}"
+                  data-feature-id="${escapeHtml(overlay.junctionId)}"
+                />
+              `;
             }
             return `
               <polygon
