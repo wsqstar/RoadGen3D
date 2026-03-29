@@ -1141,6 +1141,113 @@ def _parse_roundabout(value: Any, index: int) -> AnnotatedRoundabout:
     )
 
 
+def _annotation_point_xy(point: AnnotationPoint) -> Tuple[float, float]:
+    return (float(point.x), float(point.y))
+
+
+def _junction_anchor_xy(junction: AnnotatedJunction) -> Tuple[float, float]:
+    return (float(junction.anchor_x), float(junction.anchor_y))
+
+
+def _point_on_segment_distance(
+    point_xy: Tuple[float, float],
+    start_xy: Tuple[float, float],
+    end_xy: Tuple[float, float],
+) -> float:
+    dx = float(end_xy[0]) - float(start_xy[0])
+    dy = float(end_xy[1]) - float(start_xy[1])
+    length_sq = dx * dx + dy * dy
+    if length_sq <= 1e-6:
+        return _distance(point_xy, start_xy)
+    ratio = max(
+        0.0,
+        min(
+            ((float(point_xy[0]) - float(start_xy[0])) * dx + (float(point_xy[1]) - float(start_xy[1])) * dy) / length_sq,
+            1.0,
+        ),
+    )
+    projected = (
+        float(start_xy[0]) + dx * ratio,
+        float(start_xy[1]) + dy * ratio,
+    )
+    return _distance(point_xy, projected)
+
+
+def _point_on_polyline_distance(
+    point_xy: Tuple[float, float],
+    polyline_xy: Sequence[Tuple[float, float]],
+) -> float:
+    if len(polyline_xy) < 2:
+        return float("inf")
+    best = float("inf")
+    for start_xy, end_xy in zip(polyline_xy[:-1], polyline_xy[1:]):
+        best = min(best, _point_on_segment_distance(point_xy, start_xy, end_xy))
+    return best
+
+
+def _validate_explicit_junction_model(annotation: ReferenceAnnotation) -> None:
+    explicit_junctions = [junction for junction in annotation.junctions if str(junction.source_mode or "") == "explicit"]
+    if not explicit_junctions:
+        return
+    endpoint_tolerance_px = max(float(annotation.pixels_per_meter) * 0.35, 4.0)
+    centerlines_by_id = {str(centerline.feature_id): centerline for centerline in annotation.centerlines}
+
+    for junction in explicit_junctions:
+        junction_id = str(junction.feature_id)
+        anchor_xy = _junction_anchor_xy(junction)
+        connected_ids = {str(item) for item in junction.connected_centerline_ids if str(item)}
+
+        for centerline_id in connected_ids:
+            centerline = centerlines_by_id.get(centerline_id)
+            if centerline is None:
+                raise ValueError(
+                    f"Explicit junction '{junction_id}' references missing centerline '{centerline_id}'."
+                )
+            point_xy = [_annotation_point_xy(point) for point in centerline.points]
+            if len(point_xy) < 2:
+                continue
+            anchored_at_start = _distance(point_xy[0], anchor_xy) <= endpoint_tolerance_px
+            anchored_at_end = _distance(point_xy[-1], anchor_xy) <= endpoint_tolerance_px
+            if not anchored_at_start and not anchored_at_end:
+                raise ValueError(
+                    f"Centerline '{centerline.feature_id}' is connected to explicit junction '{junction_id}' "
+                    "but does not terminate at that junction anchor."
+                )
+            if anchored_at_start and str(centerline.start_junction_id or "") != junction_id:
+                raise ValueError(
+                    f"Centerline '{centerline.feature_id}' starts at explicit junction '{junction_id}' "
+                    "but is missing matching start_junction_id metadata."
+                )
+            if anchored_at_end and str(centerline.end_junction_id or "") != junction_id:
+                raise ValueError(
+                    f"Centerline '{centerline.feature_id}' ends at explicit junction '{junction_id}' "
+                    "but is missing matching end_junction_id metadata."
+                )
+
+        for centerline in annotation.centerlines:
+            point_xy = [_annotation_point_xy(point) for point in centerline.points]
+            if len(point_xy) < 2:
+                continue
+            anchored_at_start = _distance(point_xy[0], anchor_xy) <= endpoint_tolerance_px
+            anchored_at_end = _distance(point_xy[-1], anchor_xy) <= endpoint_tolerance_px
+            endpoint_refs_junction = junction_id in {
+                str(centerline.start_junction_id or ""),
+                str(centerline.end_junction_id or ""),
+            }
+            if endpoint_refs_junction and str(centerline.feature_id) not in connected_ids:
+                raise ValueError(
+                    f"Centerline '{centerline.feature_id}' points to explicit junction '{junction_id}', "
+                    "but the junction does not include it in connected_centerline_ids."
+                )
+            if anchored_at_start or anchored_at_end:
+                continue
+            if _point_on_polyline_distance(anchor_xy, point_xy) <= endpoint_tolerance_px:
+                raise ValueError(
+                    f"Centerline '{centerline.feature_id}' passes through explicit junction '{junction_id}'. "
+                    "Reference Plan Annotator centerlines must terminate at explicit junctions instead of continuing through them."
+                )
+
+
 def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotation:
     if not _is_record(payload):
         raise ValueError("Annotation JSON must be an object.")
@@ -1163,7 +1270,7 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
     if not centerlines:
         raise ValueError("At least one centerline is required.")
 
-    return ReferenceAnnotation(
+    annotation = ReferenceAnnotation(
         version=_as_string(payload.get("version"), ANNOTATION_SCHEMA_VERSION),
         plan_id=_as_string(payload.get("plan_id"), "custom_annotation"),
         image_path=_as_string(payload.get("image_path"), ""),
@@ -1188,6 +1295,8 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
             for index, item in enumerate(control_points_raw)
         ),
     )
+    _validate_explicit_junction_model(annotation)
+    return annotation
 
 
 def build_reference_annotation_compose_config(overrides: Mapping[str, Any] | None = None) -> StreetComposeConfig:

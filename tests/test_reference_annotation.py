@@ -360,3 +360,63 @@ def test_explicit_junction_payload_builds_graph_junction_metadata():
     assert graph.summary()["graph_t_junction_count"] == 1
     assert any(node.end_junction_id == "junction_01" for node in graph.nodes)
     assert any(node.start_junction_id == "junction_01" for node in graph.nodes)
+
+
+def test_parse_reference_annotation_rejects_explicit_junction_without_matching_endpoint_metadata():
+    payload = _explicit_junction_annotation_payload()
+    payload["centerlines"][0]["end_junction_id"] = ""
+
+    with pytest.raises(ValueError, match="missing matching end_junction_id"):
+        parse_reference_annotation(payload)
+
+
+def test_parse_reference_annotation_rejects_centerline_passing_through_explicit_junction():
+    payload = {
+        "version": ANNOTATION_SCHEMA_VERSION,
+        "plan_id": "explicit_cross_invalid",
+        "image_width_px": 1200,
+        "image_height_px": 800,
+        "pixels_per_meter": 10.0,
+        "centerlines": [
+            {
+                "id": "main_axis",
+                "label": "Main Axis",
+                "road_width_m": 12.0,
+                "forward_drive_lane_count": 1,
+                "reverse_drive_lane_count": 1,
+                "points": [
+                    {"x": 120, "y": 400},
+                    {"x": 520, "y": 400},
+                    {"x": 980, "y": 400},
+                ],
+            },
+            {
+                "id": "north_arm",
+                "label": "North Arm",
+                "road_width_m": 12.0,
+                "forward_drive_lane_count": 1,
+                "reverse_drive_lane_count": 1,
+                "start_junction_id": "junction_01",
+                "points": [
+                    {"x": 520, "y": 400},
+                    {"x": 520, "y": 140},
+                ],
+            },
+        ],
+        "junctions": [
+            {
+                "id": "junction_01",
+                "label": "Junction 01",
+                "kind": "t_junction",
+                "anchor": {"x": 520, "y": 400},
+                "connected_centerline_ids": ["main_axis", "north_arm"],
+                "crosswalk_depth_m": 3.0,
+                "source_mode": "explicit",
+            }
+        ],
+        "roundabouts": [],
+        "control_points": [],
+    }
+
+    with pytest.raises(ValueError, match="does not terminate at that junction anchor"):
+        parse_reference_annotation(payload)
