@@ -962,6 +962,14 @@ function previewCrossSection(centerline: AnnotatedCenterline): PreviewCrossSecti
   };
 }
 
+function crossSectionPreviewDisplayOrder(strips: AnnotatedCrossSectionStrip[]): AnnotatedCrossSectionStrip[] {
+  const sorted = sortedCrossSectionStrips(strips);
+  const left = sorted.filter((strip) => strip.zone === "left").reverse();
+  const center = sorted.filter((strip) => strip.zone === "center");
+  const right = sorted.filter((strip) => strip.zone === "right");
+  return [...left, ...center, ...right];
+}
+
 function metaurbanStripLabel(kind: StripKind): string {
   return METAAURBAN_STRIP_DISPLAY_LABELS[kind] || STRIP_KIND_LABELS[kind];
 }
@@ -1446,27 +1454,66 @@ function buildCrossSectionPreviewMarkup(
   selectedStripId: string | null,
 ): string {
   const preview = previewCrossSection(centerline);
-  const totalWidth = preview.strips.reduce((sum, strip) => sum + Math.max(strip.width_m, 0), 0);
-  const bands = preview.strips
-    .map((strip) => {
+  const isDetailedPreview = preview.sourceMode === "detailed";
+  const displayStrips = crossSectionPreviewDisplayOrder(preview.strips);
+  const totalWidth = displayStrips.reduce((sum, strip) => sum + Math.max(strip.width_m, 0), 0);
+  const bands: string[] = [];
+  displayStrips.forEach((strip, index) => {
+    const nextStrip = displayStrips[index + 1];
       const selected = selectedStripId === strip.strip_id;
-      return `
-        <button
-          type="button"
+      bands.push(`
+        <div
           class="annotation-cross-preview-strip${selected ? " annotation-cross-preview-strip-selected" : ""}"
-          data-action="select-preview-strip"
-          data-strip-id="${escapeHtml(strip.strip_id)}"
-          data-preview-source="${escapeHtml(preview.sourceMode)}"
+          data-preview-strip-shell="${escapeHtml(strip.strip_id)}"
           style="flex: ${Math.max(strip.width_m, 0.8)} 0 0; background: ${stripPreviewFillColor(strip.kind)}; border-color: ${stripStrokeColor(strip.kind)};"
         >
-          <span class="annotation-cross-preview-strip-label">${escapeHtml(metaurbanStripLabel(strip.kind))}</span>
-          <span class="annotation-cross-preview-strip-meta">${escapeHtml(strip.width_m.toFixed(2))}m · ${escapeHtml(stripDirectionChip(strip))}</span>
-          <span class="annotation-cross-preview-strip-zone">${escapeHtml(metaurbanStripZoneLabel(strip.kind))}</span>
-          ${buildMetaurbanAssetBadgeMarkup(strip.kind)}
-        </button>
-      `;
-    })
-    .join("");
+          <button
+            type="button"
+            class="annotation-cross-preview-strip-hitbox"
+            data-action="select-preview-strip"
+            data-strip-id="${escapeHtml(strip.strip_id)}"
+            data-preview-source="${escapeHtml(preview.sourceMode)}"
+          >
+            <span class="annotation-cross-preview-strip-label">${escapeHtml(metaurbanStripLabel(strip.kind))}</span>
+            <span class="annotation-cross-preview-strip-meta">${escapeHtml(strip.width_m.toFixed(2))}m · ${escapeHtml(stripDirectionChip(strip))}</span>
+            <span class="annotation-cross-preview-strip-zone">${escapeHtml(metaurbanStripZoneLabel(strip.kind))}</span>
+            ${buildMetaurbanAssetBadgeMarkup(strip.kind)}
+          </button>
+          ${
+            isDetailedPreview
+              ? `
+                <label class="annotation-cross-preview-control">
+                  <span>Width</span>
+                  <input
+                    type="range"
+                    min="0.1"
+                    max="12"
+                    step="0.1"
+                    value="${strip.width_m.toFixed(2)}"
+                    data-strip-field="width_m"
+                    data-strip-id="${escapeHtml(strip.strip_id)}"
+                  />
+                </label>
+              `
+              : ""
+          }
+        </div>
+      `);
+      if (isDetailedPreview && nextStrip) {
+        bands.push(`
+          <button
+            type="button"
+            class="annotation-cross-preview-divider"
+            data-action="start-preview-resize"
+            data-left-strip-id="${escapeHtml(strip.strip_id)}"
+            data-right-strip-id="${escapeHtml(nextStrip.strip_id)}"
+            aria-label="Resize boundary between ${escapeHtml(metaurbanStripLabel(strip.kind))} and ${escapeHtml(metaurbanStripLabel(nextStrip.kind))}"
+          >
+            <span class="annotation-cross-preview-divider-line" aria-hidden="true"></span>
+          </button>
+        `);
+      }
+    });
   return `
     <section class="annotation-cross-preview-section">
       <div class="annotation-cross-preview-header">
@@ -1482,7 +1529,7 @@ function buildCrossSectionPreviewMarkup(
         </div>
       </div>
       <div class="annotation-cross-preview-row">
-        ${bands}
+        ${bands.join("")}
       </div>
       <div class="scene-micro-note">
         ${escapeHtml(
@@ -2135,8 +2182,9 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
         </div>
       </div>
 
-      <div class="scene-page-layout">
-        <section class="scene-panel scene-panel-canvas">
+      <div id="annotation-page-layout" class="scene-page-layout" data-sidebar-collapsed="false">
+        <div class="scene-main-column">
+          <section class="scene-panel scene-panel-canvas">
           <div class="scene-panel-header">
             <h2>Reference Board</h2>
             <p>先选参考图并标中心线，调好 Pixels / Meter 和总宽度后，再进入详细 strip 模式拆分车道、人行道、frontage reserve 和街道家具。</p>
@@ -2201,19 +2249,91 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
             选择参考 plan 或导入 PNG 后，就可以在图上开始标注。
           </div>
 
-          <div id="annotation-stage" class="scene-layer-stage" data-has-image="false">
+          <div id="annotation-stage" class="scene-layer-stage" data-has-image="false" data-loading="true" data-empty-state="loading">
             <div id="annotation-stage-empty" class="scene-image-empty">
-              Load a reference plan image to start annotating.
+              Loading default reference plan...
             </div>
             <div id="annotation-board" class="scene-board" hidden>
               <img id="annotation-original-image" class="scene-original-image annotation-original-image" alt="Reference plan" />
               <div id="annotation-overlay-host" class="scene-graph-overlay"></div>
             </div>
           </div>
-        </section>
+          </section>
 
-        <aside class="scene-sidebar">
-          <section class="scene-panel">
+          <section class="scene-panel scene-panel-selected-feature">
+            <div class="scene-panel-header">
+              <h2>Selected Feature</h2>
+              <p>中心线支持 Coarse / Detailed 两阶段编辑。Detailed 模式下可以手工拆 strip、调方向，并在 furnishing/frontage 带上放置街道家具实例。</p>
+            </div>
+            <div id="annotation-inspector" class="scene-inspector-wrap"></div>
+          </section>
+        </div>
+
+        <aside id="annotation-sidebar" class="scene-sidebar" data-collapsed="false">
+          <div class="scene-sidebar-rail">
+            <button id="annotation-sidebar-toggle" class="scene-sidebar-toggle" type="button" aria-expanded="true" aria-label="Collapse sidebar panels">
+              <span class="scene-sidebar-toggle-icon" aria-hidden="true">></span>
+              <span class="scene-sidebar-toggle-label">Hide Panels</span>
+            </button>
+          </div>
+          <div class="scene-sidebar-content">
+            <section class="scene-panel scene-panel-compact scene-metrics">
+              <div class="scene-panel-header">
+                <h2>Annotation Summary</h2>
+                <p>当前手工标注的统计概览。</p>
+              </div>
+              <div id="annotation-summary-grid" class="scene-metric-grid"></div>
+            </section>
+
+            <section class="scene-panel scene-panel-compact">
+              <div class="scene-panel-header">
+                <h2>Graph Conversion</h2>
+                <p>把当前 annotation JSON 直接送进后端 converter，生成保留详细横断面与家具实例的 segment graph。</p>
+              </div>
+              <div class="scene-import-toolbar">
+                <label class="scene-form-field scene-form-field-inline">
+                  <span>Segment Length (m)</span>
+                  <input id="annotation-segment-length" type="number" min="4" step="1" value="${DEFAULT_SEGMENT_LENGTH_M}" />
+                </label>
+                <label class="scene-form-field scene-form-field-inline">
+                  <span>Sidewalk Width (m)</span>
+                  <input id="annotation-sidewalk-width" type="number" min="1" step="0.5" value="${DEFAULT_SIDEWALK_WIDTH_M}" />
+                </label>
+                <button id="annotation-convert-graph" class="scene-toolbar-button" type="button">Convert to Graph</button>
+                <button id="annotation-download-graph" class="scene-toolbar-button scene-toolbar-button-secondary" type="button">
+                  Download Graph
+                </button>
+              </div>
+              <div id="annotation-graph-status" class="scene-status" data-tone="neutral">
+                Convert 后会在这里显示 graph 结果。
+              </div>
+              <div id="annotation-graph-summary" class="scene-metric-grid"></div>
+              <div class="scene-json-wrap">
+                <textarea id="annotation-graph-json" class="scene-json-input" spellcheck="false" readonly></textarea>
+              </div>
+            </section>
+
+            <section class="scene-panel scene-panel-compact">
+              <div class="scene-panel-header">
+                <h2>Feature Table</h2>
+                <p>快速检查当前所有要素及其核心属性。</p>
+              </div>
+              <div class="scene-table-wrap scene-table-wrap-compact">
+                <table class="scene-table scene-table-compact">
+                  <thead>
+                    <tr>
+                      <th>Type</th>
+                      <th>ID</th>
+                      <th>Label</th>
+                      <th>Detail</th>
+                    </tr>
+                  </thead>
+                  <tbody id="annotation-feature-table"></tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="scene-panel scene-panel-compact">
             <div class="scene-panel-header">
               <h2>Annotation JSON</h2>
               <p>可以从这里导入、导出或直接修改标注 JSON。</p>
@@ -2235,77 +2355,15 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
             <div id="annotation-status" class="scene-status" data-tone="neutral">
               Waiting for a reference image.
             </div>
-          </section>
-
-          <section class="scene-panel scene-metrics">
-            <div class="scene-panel-header">
-              <h2>Annotation Summary</h2>
-              <p>当前手工标注的统计概览。</p>
-            </div>
-            <div id="annotation-summary-grid" class="scene-metric-grid"></div>
-          </section>
-
-          <section class="scene-panel">
-            <div class="scene-panel-header">
-              <h2>Graph Conversion</h2>
-              <p>把当前 annotation JSON 直接送进后端 converter，生成保留详细横断面与家具实例的 segment graph。</p>
-            </div>
-            <div class="scene-import-toolbar">
-              <label class="scene-form-field scene-form-field-inline">
-                <span>Segment Length (m)</span>
-                <input id="annotation-segment-length" type="number" min="4" step="1" value="${DEFAULT_SEGMENT_LENGTH_M}" />
-              </label>
-              <label class="scene-form-field scene-form-field-inline">
-                <span>Sidewalk Width (m)</span>
-                <input id="annotation-sidewalk-width" type="number" min="1" step="0.5" value="${DEFAULT_SIDEWALK_WIDTH_M}" />
-              </label>
-              <button id="annotation-convert-graph" class="scene-toolbar-button" type="button">Convert to Graph</button>
-              <button id="annotation-download-graph" class="scene-toolbar-button scene-toolbar-button-secondary" type="button">
-                Download Graph
-              </button>
-            </div>
-            <div id="annotation-graph-status" class="scene-status" data-tone="neutral">
-              Convert 后会在这里显示 graph 结果。
-            </div>
-            <div id="annotation-graph-summary" class="scene-metric-grid"></div>
-            <div class="scene-json-wrap">
-              <textarea id="annotation-graph-json" class="scene-json-input" spellcheck="false" readonly></textarea>
-            </div>
-          </section>
-
-          <section class="scene-panel">
-            <div class="scene-panel-header">
-              <h2>Feature Table</h2>
-              <p>快速检查当前所有要素及其核心属性。</p>
-            </div>
-            <div class="scene-table-wrap">
-              <table class="scene-table">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>ID</th>
-                    <th>Label</th>
-                    <th>Detail</th>
-                  </tr>
-                </thead>
-                <tbody id="annotation-feature-table"></tbody>
-              </table>
-            </div>
-          </section>
+            </section>
+          </div>
         </aside>
       </div>
-
-      <section class="scene-panel scene-panel-bottom">
-        <div class="scene-panel-header">
-          <h2>Selected Feature</h2>
-          <p>中心线支持 Coarse / Detailed 两阶段编辑。Detailed 模式下可以手工拆 strip、调方向，并在 furnishing/frontage 带上放置街道家具实例。</p>
-        </div>
-        <div id="annotation-inspector" class="scene-inspector-wrap"></div>
-      </section>
     </div>
   `;
 
   const backButton = requireElement<HTMLButtonElement>(root, "#scene-page-back");
+  const pageLayoutEl = requireElement<HTMLElement>(root, "#annotation-page-layout");
   const planSelect = requireElement<HTMLSelectElement>(root, "#annotation-plan-select");
   const imageInput = requireElement<HTMLInputElement>(root, "#annotation-image-input");
   const imageResetButton = requireElement<HTMLButtonElement>(root, "#annotation-image-reset");
@@ -2341,6 +2399,8 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
   const graphSummaryEl = requireElement<HTMLElement>(root, "#annotation-graph-summary");
   const graphTextarea = requireElement<HTMLTextAreaElement>(root, "#annotation-graph-json");
   const featureTableEl = requireElement<HTMLElement>(root, "#annotation-feature-table");
+  const sidebarEl = requireElement<HTMLElement>(root, "#annotation-sidebar");
+  const sidebarToggleButton = requireElement<HTMLButtonElement>(root, "#annotation-sidebar-toggle");
 
   const toolButtons = Array.from(root.querySelectorAll<HTMLButtonElement>(".scene-tool-button"));
 
@@ -2362,6 +2422,18 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     defaultRoundaboutRadiusPx: DEFAULT_ROUNDABOUT_RADIUS_PX,
     isReferenceImageLoading: true,
     referenceImageLoadingMessage: "Loading default reference plan...",
+    isSidebarCollapsed: false,
+    previewResize: null as null | {
+      pointerId: number;
+      centerlineId: string;
+      leftStripId: string;
+      rightStripId: string;
+      startClientX: number;
+      startLeftWidthM: number;
+      startRightWidthM: number;
+      pairWidthPx: number;
+      didResize: boolean;
+    },
     pendingFurnitureKind: "bench" as FurnitureKind,
     furniturePlacement: null as null | {
       centerlineId: string;
@@ -2410,6 +2482,8 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
   function updateStageVisibility(): void {
     const hasImage = Boolean(state.currentImageUrl);
     stageEl.dataset.hasImage = hasImage ? "true" : "false";
+    stageEl.dataset.loading = state.isReferenceImageLoading ? "true" : "false";
+    stageEl.dataset.emptyState = hasImage ? "ready" : state.isReferenceImageLoading ? "loading" : "empty";
     boardEl.hidden = !hasImage;
     stageEmptyEl.hidden = hasImage;
     if (!hasImage) {
@@ -2433,6 +2507,22 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
   function renderToolButtons(): void {
     for (const button of toolButtons) {
       button.dataset.active = button.dataset.tool === state.selectedTool ? "true" : "false";
+    }
+  }
+
+  function renderSidebar(): void {
+    const collapsed = state.isSidebarCollapsed;
+    pageLayoutEl.dataset.sidebarCollapsed = collapsed ? "true" : "false";
+    sidebarEl.dataset.collapsed = collapsed ? "true" : "false";
+    sidebarToggleButton.setAttribute("aria-expanded", collapsed ? "false" : "true");
+    sidebarToggleButton.setAttribute("aria-label", collapsed ? "Expand sidebar panels" : "Collapse sidebar panels");
+    const iconEl = sidebarToggleButton.querySelector<HTMLElement>(".scene-sidebar-toggle-icon");
+    const labelEl = sidebarToggleButton.querySelector<HTMLElement>(".scene-sidebar-toggle-label");
+    if (iconEl) {
+      iconEl.textContent = collapsed ? "<" : ">";
+    }
+    if (labelEl) {
+      labelEl.textContent = collapsed ? "Show Panels" : "Hide Panels";
     }
   }
 
@@ -2575,9 +2665,50 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     const stripInputs = Array.from(inspectorEl.querySelectorAll<HTMLElement>("[data-strip-field][data-strip-id]"));
     const stripActionButtons = Array.from(inspectorEl.querySelectorAll<HTMLButtonElement>("[data-action]"));
     const furnitureInputs = Array.from(inspectorEl.querySelectorAll<HTMLElement>("[data-furniture-field][data-instance-id]"));
+    const previewResizeHandles = Array.from(
+      inspectorEl.querySelectorAll<HTMLButtonElement>("[data-action='start-preview-resize']"),
+    );
 
     const findStripById = (stripId: string): AnnotatedCrossSectionStrip | null =>
       centerline.cross_section_strips.find((strip) => strip.strip_id === stripId) ?? null;
+
+    for (const handle of previewResizeHandles) {
+      handle.addEventListener(
+        "pointerdown",
+        (event) => {
+          const leftStripId = handle.dataset.leftStripId;
+          const rightStripId = handle.dataset.rightStripId;
+          if (!leftStripId || !rightStripId) {
+            return;
+          }
+          const leftStrip = findStripById(leftStripId);
+          const rightStrip = findStripById(rightStripId);
+          if (!leftStrip || !rightStrip) {
+            return;
+          }
+          const leftShell = inspectorEl.querySelector<HTMLElement>(`[data-preview-strip-shell="${leftStripId}"]`);
+          const rightShell = inspectorEl.querySelector<HTMLElement>(`[data-preview-strip-shell="${rightStripId}"]`);
+          const pairWidthPx = Math.max(
+            1,
+            (leftShell?.getBoundingClientRect().width ?? 0) + (rightShell?.getBoundingClientRect().width ?? 0),
+          );
+          state.previewResize = {
+            pointerId: event.pointerId,
+            centerlineId: centerline.id,
+            leftStripId,
+            rightStripId,
+            startClientX: event.clientX,
+            startLeftWidthM: leftStrip.width_m,
+            startRightWidthM: rightStrip.width_m,
+            pairWidthPx,
+            didResize: false,
+          };
+          event.preventDefault();
+          event.stopPropagation();
+        },
+        { signal },
+      );
+    }
 
     for (const input of stripInputs) {
       const eventName = input instanceof HTMLSelectElement ? "change" : "input";
@@ -2827,6 +2958,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
 
   function renderAll(): void {
     renderToolButtons();
+    renderSidebar();
     summaryGridEl.innerHTML = buildAnnotationSummaryMarkup(state.annotation);
     featureTableEl.innerHTML = buildFeatureTableMarkup(state.annotation);
     graphSummaryEl.innerHTML = buildGraphSummaryMarkup(state.graphResult);
@@ -2836,9 +2968,13 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     syncJsonTextarea();
     renderInspector();
     renderOverlay();
-    imageMetaEl.textContent = state.currentImageUrl
-      ? `${state.annotation.plan_id || "custom"} · ${state.annotation.image_width_px} × ${state.annotation.image_height_px}px · ${state.annotation.pixels_per_meter.toFixed(1)} px/m · ${state.annotation.centerlines.length} roads · ${state.annotation.centerlines.reduce((sum, item) => sum + item.cross_section_strips.length, 0)} strips · ${state.annotation.centerlines.reduce((sum, item) => sum + item.street_furniture_instances.length, 0)} furniture`
-      : "选择参考 plan 或导入 PNG 后，就可以在图上开始标注。";
+    const showInlineLoading = state.isReferenceImageLoading && !state.currentImageUrl;
+    imageMetaEl.dataset.loading = showInlineLoading ? "true" : "false";
+    imageMetaEl.textContent = showInlineLoading
+      ? state.referenceImageLoadingMessage
+      : state.currentImageUrl
+        ? `${state.annotation.plan_id || "custom"} · ${state.annotation.image_width_px} × ${state.annotation.image_height_px}px · ${state.annotation.pixels_per_meter.toFixed(1)} px/m · ${state.annotation.centerlines.length} roads · ${state.annotation.centerlines.reduce((sum, item) => sum + item.cross_section_strips.length, 0)} strips · ${state.annotation.centerlines.reduce((sum, item) => sum + item.street_furniture_instances.length, 0)} furniture`
+        : "选择参考 plan 或导入 PNG 后，就可以在图上开始标注。";
     finishCenterlineButton.disabled = state.draftCenterline.length < 2;
     undoPointButton.disabled = state.draftCenterline.length === 0;
     deleteSelectedButton.disabled = !state.selection;
@@ -3188,6 +3324,15 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     { signal },
   );
 
+  sidebarToggleButton.addEventListener(
+    "click",
+    () => {
+      state.isSidebarCollapsed = !state.isSidebarCollapsed;
+      renderAll();
+    },
+    { signal },
+  );
+
   planSelect.addEventListener(
     "change",
     async () => {
@@ -3432,6 +3577,30 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
   window.addEventListener(
     "pointermove",
     (event) => {
+      if (state.previewResize && state.previewResize.pointerId === event.pointerId) {
+        const centerline = state.annotation.centerlines.find((item) => item.id === state.previewResize?.centerlineId);
+        const leftStrip = centerline?.cross_section_strips.find((strip) => strip.strip_id === state.previewResize?.leftStripId);
+        const rightStrip = centerline?.cross_section_strips.find((strip) => strip.strip_id === state.previewResize?.rightStripId);
+        if (!centerline || !leftStrip || !rightStrip) {
+          state.previewResize = null;
+          return;
+        }
+        const pairWidthM = state.previewResize.startLeftWidthM + state.previewResize.startRightWidthM;
+        const deltaPx = event.clientX - state.previewResize.startClientX;
+        const deltaM = deltaPx * (pairWidthM / Math.max(1, state.previewResize.pairWidthPx));
+        const clampedDeltaM = clamp(
+          deltaM,
+          -(state.previewResize.startLeftWidthM - 0.1),
+          state.previewResize.startRightWidthM - 0.1,
+        );
+        leftStrip.width_m = Math.max(0.1, state.previewResize.startLeftWidthM + clampedDeltaM);
+        rightStrip.width_m = Math.max(0.1, state.previewResize.startRightWidthM - clampedDeltaM);
+        state.previewResize.didResize = true;
+        syncCenterlineDerivedFields(centerline);
+        clearGraphResult("Annotation changed. Re-run convert to refresh graph output.");
+        renderAll();
+        return;
+      }
       if (!state.drag || state.drag.pointerId !== event.pointerId) {
         return;
       }
@@ -3491,6 +3660,15 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
   window.addEventListener(
     "pointerup",
     (event) => {
+      if (state.previewResize && state.previewResize.pointerId === event.pointerId) {
+        const resized = state.previewResize.didResize;
+        state.previewResize = null;
+        if (resized) {
+          setStatus(statusEl, "Updated cross-section boundary widths.", "success");
+        }
+        renderAll();
+        return;
+      }
       if (state.drag && state.drag.pointerId === event.pointerId) {
         state.drag = null;
         syncSelectionAfterMutation();
