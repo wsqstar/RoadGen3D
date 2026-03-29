@@ -227,6 +227,22 @@ type DerivedJunctionOverlayConnectorLine = {
   points: AnnotationPoint[];
 };
 
+type JunctionOverlayStripLinkEndpoint = {
+  centerlineId: string;
+  stripId: string;
+  stripKind: StripKind;
+  stripZone: StripZone;
+};
+
+type JunctionOverlayStripLink = {
+  linkId: string;
+  junctionId: string;
+  stripKind: StripKind;
+  start: JunctionOverlayStripLinkEndpoint;
+  end: JunctionOverlayStripLinkEndpoint;
+  points: AnnotationPoint[];
+};
+
 type DerivedJunctionOverlay = {
   junctionId: string;
   kind: "t_junction" | "cross_junction";
@@ -246,6 +262,13 @@ type DerivedJunctionOverlay = {
   boundaryExtensionLines: JunctionOverlayGuideLine[];
   focusGuideLines: JunctionOverlayGuideLine[];
   connectorCenterLines: DerivedJunctionOverlayConnectorLine[];
+  cornerStripLinks: JunctionOverlayStripLink[];
+};
+
+type ClippedDisplaySegment = {
+  points: AnnotationPoint[];
+  clippedStart: boolean;
+  clippedEnd: boolean;
 };
 
 type MetaurbanAssetBadge = {
@@ -756,63 +779,63 @@ function formatCrossSectionSummary(centerline: AnnotatedCenterline): string {
   return `L${left} · C${center} · R${right}`;
 }
 
-function stripSelectionSignature(
-  centerline: AnnotatedCenterline,
-  stripId: string,
-): {
-  zone: StripZone;
-  kind: StripKind;
-  direction: StripDirection;
-  occurrenceIndex: number;
-} | null {
-  const target = centerline.cross_section_strips.find((strip) => strip.strip_id === stripId) ?? null;
-  if (!target) {
-    return null;
-  }
-  const exactMatches = sortedCrossSectionStrips(centerline.cross_section_strips).filter(
-    (strip) =>
-      strip.zone === target.zone &&
-      strip.kind === target.kind &&
-      strip.direction === target.direction,
-  );
-  const exactIndex = exactMatches.findIndex((strip) => strip.strip_id === target.strip_id);
-  return {
-    zone: target.zone,
-    kind: target.kind,
-    direction: target.direction,
-    occurrenceIndex: Math.max(exactIndex, 0),
-  };
+type SelectedStripCornerConnection = {
+  linkId: string;
+  junctionId: string;
+  stripKind: StripKind;
+  current: JunctionOverlayStripLinkEndpoint;
+  peer: JunctionOverlayStripLinkEndpoint;
+  points: AnnotationPoint[];
+};
+
+function stripKey(centerlineId: string, stripId: string): string {
+  return `${centerlineId}:${stripId}`;
 }
 
-function matchedLinkedStripIdsForCenterline(
-  centerline: AnnotatedCenterline,
-  signature: {
-    zone: StripZone;
-    kind: StripKind;
-    direction: StripDirection;
-    occurrenceIndex: number;
-  },
-): string[] {
-  const exactMatches = sortedCrossSectionStrips(centerline.cross_section_strips).filter(
-    (strip) =>
-      strip.zone === signature.zone &&
-      strip.kind === signature.kind &&
-      strip.direction === signature.direction,
-  );
-  if (exactMatches.length > 0) {
-    return [exactMatches[Math.min(signature.occurrenceIndex, exactMatches.length - 1)].strip_id];
+function stripLinkEndpointMatches(
+  endpoint: JunctionOverlayStripLinkEndpoint,
+  centerlineId: string,
+  stripId: string,
+): boolean {
+  return endpoint.centerlineId === centerlineId && endpoint.stripId === stripId;
+}
+
+function selectedStripCornerConnections(
+  junctionOverlays: DerivedJunctionOverlay[],
+  centerlineId: string,
+  stripId: string,
+): SelectedStripCornerConnection[] {
+  const connections: SelectedStripCornerConnection[] = [];
+  for (const overlay of junctionOverlays) {
+    for (const link of overlay.cornerStripLinks) {
+      if (stripLinkEndpointMatches(link.start, centerlineId, stripId)) {
+        connections.push({
+          linkId: link.linkId,
+          junctionId: link.junctionId,
+          stripKind: link.stripKind,
+          current: link.start,
+          peer: link.end,
+          points: link.points.map((point) => clonePoint(point)),
+        });
+        continue;
+      }
+      if (stripLinkEndpointMatches(link.end, centerlineId, stripId)) {
+        connections.push({
+          linkId: link.linkId,
+          junctionId: link.junctionId,
+          stripKind: link.stripKind,
+          current: link.end,
+          peer: link.start,
+          points: [...link.points].reverse().map((point) => clonePoint(point)),
+        });
+      }
+    }
   }
-  const fallbackMatches = sortedCrossSectionStrips(centerline.cross_section_strips).filter(
-    (strip) => strip.zone === signature.zone && strip.kind === signature.kind,
-  );
-  if (fallbackMatches.length > 0) {
-    return [fallbackMatches[Math.min(signature.occurrenceIndex, fallbackMatches.length - 1)].strip_id];
-  }
-  return [];
+  return connections;
 }
 
 function linkedCrossStripKeys(
-  annotation: ReferenceAnnotation,
+  junctionOverlays: DerivedJunctionOverlay[],
   selection: Selection,
   selectedStripId: string | null,
 ): Set<string> {
@@ -820,31 +843,9 @@ function linkedCrossStripKeys(
   if (selection?.kind !== "centerline" || !selectedStripId) {
     return keys;
   }
-  const selectedCenterline = annotation.centerlines.find((item) => item.id === selection.id) ?? null;
-  if (!selectedCenterline) {
-    return keys;
-  }
-  const signature = stripSelectionSignature(selectedCenterline, selectedStripId);
-  if (!signature) {
-    return keys;
-  }
-  keys.add(`${selectedCenterline.id}:${selectedStripId}`);
-  const crossJunctions = annotation.junctions.filter(
-    (junction) =>
-      junction.source_mode === "explicit" &&
-      junction.kind === "cross_junction" &&
-      junction.connected_centerline_ids.includes(selectedCenterline.id),
-  );
-  for (const junction of crossJunctions) {
-    for (const centerlineId of junction.connected_centerline_ids) {
-      const centerline = annotation.centerlines.find((item) => item.id === centerlineId);
-      if (!centerline) {
-        continue;
-      }
-      for (const stripId of matchedLinkedStripIdsForCenterline(centerline, signature)) {
-        keys.add(`${centerline.id}:${stripId}`);
-      }
-    }
+  keys.add(stripKey(selection.id, selectedStripId));
+  for (const connection of selectedStripCornerConnections(junctionOverlays, selection.id, selectedStripId)) {
+    keys.add(stripKey(connection.peer.centerlineId, connection.peer.stripId));
   }
   return keys;
 }
@@ -1931,45 +1932,6 @@ function rectanglePolygonPoints(
   ];
 }
 
-function sectorPolygonPoints(
-  anchor: AnnotationPoint,
-  startAngleDeg: number,
-  endAngleDeg: number,
-  innerRadiusPx: number,
-  outerRadiusPx: number,
-  steps = 10,
-): AnnotationPoint[] {
-  const normalizedStart = normalizeAngleDegTs(startAngleDeg);
-  const normalizedEnd = normalizeAngleDegTs(endAngleDeg);
-  let sweep = normalizedEnd - normalizedStart;
-  if (sweep <= 0) {
-    sweep += 360;
-  }
-  let start = normalizedStart;
-  if (sweep > 180) {
-    start = normalizedEnd;
-    sweep = 360 - sweep;
-  }
-  if (outerRadiusPx <= innerRadiusPx || outerRadiusPx <= 0 || sweep <= 1 || sweep >= 179) {
-    return [];
-  }
-  const outerPoints: AnnotationPoint[] = [];
-  const innerPoints: AnnotationPoint[] = [];
-  for (let index = 0; index <= steps; index += 1) {
-    const ratio = index / steps;
-    const angleRad = ((start + sweep * ratio) * Math.PI) / 180;
-    outerPoints.push({
-      x: anchor.x + Math.cos(angleRad) * outerRadiusPx,
-      y: anchor.y + Math.sin(angleRad) * outerRadiusPx,
-    });
-    innerPoints.push({
-      x: anchor.x + Math.cos(angleRad) * innerRadiusPx,
-      y: anchor.y + Math.sin(angleRad) * innerRadiusPx,
-    });
-  }
-  return [...outerPoints, ...innerPoints.reverse()];
-}
-
 function centerlineSideStripLayouts(centerline: AnnotatedCenterline): Record<StripZone, Array<{
   stripId: string;
   kind: StripKind;
@@ -2136,17 +2098,18 @@ function cornerStripOffsetRangeTs(
   cornerCenter: AnnotationPoint,
   kind: StripKind,
   pixelsPerMeter: number,
-): { zone: StripZone; centerOffsetPx: number; innerOffsetPx: number; outerOffsetPx: number } | null {
+): { zone: StripZone; stripId: string | null; centerOffsetPx: number; innerOffsetPx: number; outerOffsetPx: number } | null {
   const zone = facingZoneForCornerTs(arm.splitBoundaryCenter, arm.normal, cornerCenter);
   const matching = arm.sideStripLayouts[zone].find((item) => item.kind === kind) ?? null;
   if (matching) {
     return {
       zone,
+      stripId: matching.stripId,
       ...orientedOffsetRangeTs(
         {
-      centerOffsetPx: matching.centerOffsetM * pixelsPerMeter,
-      innerOffsetPx: matching.innerOffsetM * pixelsPerMeter,
-      outerOffsetPx: matching.outerOffsetM * pixelsPerMeter,
+          centerOffsetPx: matching.centerOffsetM * pixelsPerMeter,
+          innerOffsetPx: matching.innerOffsetM * pixelsPerMeter,
+          outerOffsetPx: matching.outerOffsetM * pixelsPerMeter,
         },
         arm.reverseOffsets,
       ),
@@ -2156,7 +2119,7 @@ function cornerStripOffsetRangeTs(
   if (!generic) {
     return null;
   }
-  return { zone, ...orientedOffsetRangeTs(generic, arm.reverseOffsets) };
+  return { zone, stripId: null, ...orientedOffsetRangeTs(generic, arm.reverseOffsets) };
 }
 
 function pointOnBoundaryWithOffsetTs(
@@ -2224,53 +2187,6 @@ function cornerConnectorPatchGeometryTs(
     : {
         points: [outerPointA, outerJoin, outerPointB, innerPointB, innerJoin, innerPointA],
       };
-}
-
-function frontageSectorPatchGeometryTs(
-  anchor: AnnotationPoint,
-  startAngleDeg: number,
-  endAngleDeg: number,
-  arm: {
-    carriagewayWidthPx: number;
-    nearroadBufferWidthPx: number;
-    nearroadFurnishingWidthPx: number;
-    clearSidewalkWidthPx: number;
-    farfromroadBufferWidthPx: number;
-    frontageReserveWidthPx: number;
-  },
-  nextArm: {
-    carriagewayWidthPx: number;
-    nearroadBufferWidthPx: number;
-    nearroadFurnishingWidthPx: number;
-    clearSidewalkWidthPx: number;
-    farfromroadBufferWidthPx: number;
-    frontageReserveWidthPx: number;
-  },
-): {
-  points: AnnotationPoint[];
-  cutoutPoints?: AnnotationPoint[];
-} | null {
-  const frontageWidthPx = Math.max(arm.frontageReserveWidthPx, nextArm.frontageReserveWidthPx);
-  if (frontageWidthPx <= 1e-6) {
-    return null;
-  }
-  const nearroadInnerPx = Math.max(
-    Math.max(arm.carriagewayWidthPx * 0.5, 0) + Math.max(arm.nearroadBufferWidthPx, 0),
-    Math.max(nextArm.carriagewayWidthPx * 0.5, 0) + Math.max(nextArm.nearroadBufferWidthPx, 0),
-  );
-  const nearroadWidthPx = Math.max(arm.nearroadFurnishingWidthPx, nextArm.nearroadFurnishingWidthPx, 0);
-  const clearSidewalkWidthPx = Math.max(arm.clearSidewalkWidthPx, nextArm.clearSidewalkWidthPx, 0);
-  const farfromroadBufferWidthPx = Math.max(arm.farfromroadBufferWidthPx, nextArm.farfromroadBufferWidthPx, 0);
-  const frontageInnerPx = nearroadInnerPx + nearroadWidthPx + clearSidewalkWidthPx + farfromroadBufferWidthPx;
-  const points = sectorPolygonPoints(
-    anchor,
-    startAngleDeg,
-    endAngleDeg,
-    frontageInnerPx,
-    frontageInnerPx + frontageWidthPx,
-    12,
-  );
-  return points.length >= 3 ? { points } : null;
 }
 
 function deriveExplicitJunctionOverlayGeometries(annotation: ReferenceAnnotation): DerivedJunctionOverlay[] {
@@ -2501,6 +2417,7 @@ function deriveExplicitJunctionOverlayGeometries(annotation: ReferenceAnnotation
     const nearroadCorners: DerivedJunctionOverlayPatch[] = [];
     const frontageCorners: DerivedJunctionOverlayPatch[] = [];
     const connectorCenterLines: DerivedJunctionOverlayConnectorLine[] = [];
+    const cornerStripLinks: JunctionOverlayStripLink[] = [];
     const cornerFocusPoints: JunctionOverlayCornerFocus[] = [];
     const boundaryExtensionLines: JunctionOverlayGuideLine[] = [];
     const focusGuideLines: JunctionOverlayGuideLine[] = [];
@@ -2558,6 +2475,26 @@ function deriveExplicitJunctionOverlayGeometries(annotation: ReferenceAnnotation
           strokeWidthPx: Math.max(2, (Math.abs(offsetsA.outerOffsetPx - offsetsA.innerOffsetPx) + Math.abs(offsetsB.outerOffsetPx - offsetsB.innerOffsetPx)) * 0.5),
           points: [centerPointA, centerJoin, centerPointB],
         });
+        if (offsetsA.stripId && offsetsB.stripId) {
+          cornerStripLinks.push({
+            linkId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_link`,
+            junctionId: junction.id,
+            stripKind: spec.kind,
+            start: {
+              centerlineId: arm.centerlineId,
+              stripId: offsetsA.stripId,
+              stripKind: spec.kind,
+              stripZone: offsetsA.zone,
+            },
+            end: {
+              centerlineId: nextArm.centerlineId,
+              stripId: offsetsB.stripId,
+              stripKind: spec.kind,
+              stripZone: offsetsB.zone,
+            },
+            points: [clonePoint(centerPointA), clonePoint(centerJoin), clonePoint(centerPointB)],
+          });
+        }
         focusGuideLines.push(
           {
             guideId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_center_a`,
@@ -2590,12 +2527,9 @@ function deriveExplicitJunctionOverlayGeometries(annotation: ReferenceAnnotation
             end: outerPointB,
           },
         );
-        const patchGeometry =
-          spec.kind === "frontage_reserve"
-            ? frontageSectorPatchGeometryTs(anchor, arm.angleDeg, nextArm.angleDeg, arm, nextArm)
-            : cornerConnectorPatchGeometryTs(arm, nextArm, offsetsA, offsetsB, {
-                trimOutsideCorner,
-              });
+        const patchGeometry = cornerConnectorPatchGeometryTs(arm, nextArm, offsetsA, offsetsB, {
+          trimOutsideCorner,
+        });
         if (patchGeometry && patchGeometry.points.length > 0) {
           spec.bucket.push({
             patchId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}`,
@@ -2625,6 +2559,7 @@ function deriveExplicitJunctionOverlayGeometries(annotation: ReferenceAnnotation
       boundaryExtensionLines,
       focusGuideLines,
       connectorCenterLines,
+      cornerStripLinks,
     });
   }
   return overlays;
@@ -2875,6 +2810,7 @@ function deriveLegacyJunctionOverlayGeometries(
     const nearroadCorners: DerivedJunctionOverlayPatch[] = [];
     const frontageCorners: DerivedJunctionOverlayPatch[] = [];
     const connectorCenterLines: DerivedJunctionOverlayConnectorLine[] = [];
+    const cornerStripLinks: JunctionOverlayStripLink[] = [];
     const cornerFocusPoints: JunctionOverlayCornerFocus[] = [];
     const boundaryExtensionLines: JunctionOverlayGuideLine[] = [];
     const focusGuideLines: JunctionOverlayGuideLine[] = [];
@@ -2932,6 +2868,26 @@ function deriveLegacyJunctionOverlayGeometries(
           strokeWidthPx: Math.max(2, (Math.abs(offsetsA.outerOffsetPx - offsetsA.innerOffsetPx) + Math.abs(offsetsB.outerOffsetPx - offsetsB.innerOffsetPx)) * 0.5),
           points: [centerPointA, centerJoin, centerPointB],
         });
+        if (offsetsA.stripId && offsetsB.stripId) {
+          cornerStripLinks.push({
+            linkId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}_link`,
+            junctionId: `junction_overlay_${String(clusterIndex + 1).padStart(2, "0")}`,
+            stripKind: spec.kind,
+            start: {
+              centerlineId: arm.centerlineId,
+              stripId: offsetsA.stripId,
+              stripKind: spec.kind,
+              stripZone: offsetsA.zone,
+            },
+            end: {
+              centerlineId: nextArm.centerlineId,
+              stripId: offsetsB.stripId,
+              stripKind: spec.kind,
+              stripZone: offsetsB.zone,
+            },
+            points: [clonePoint(centerPointA), clonePoint(centerJoin), clonePoint(centerPointB)],
+          });
+        }
         focusGuideLines.push(
           {
             guideId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}_center_a`,
@@ -2964,12 +2920,9 @@ function deriveLegacyJunctionOverlayGeometries(
             end: outerPointB,
           },
         );
-        const patchGeometry =
-          spec.kind === "frontage_reserve"
-            ? frontageSectorPatchGeometryTs(anchor, arm.angleDeg, nextArm.angleDeg, arm, nextArm)
-            : cornerConnectorPatchGeometryTs(arm, nextArm, offsetsA, offsetsB, {
-                trimOutsideCorner,
-              });
+        const patchGeometry = cornerConnectorPatchGeometryTs(arm, nextArm, offsetsA, offsetsB, {
+          trimOutsideCorner,
+        });
         if (patchGeometry && patchGeometry.points.length > 0) {
           spec.bucket.push({
             patchId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}`,
@@ -2999,6 +2952,7 @@ function deriveLegacyJunctionOverlayGeometries(
       boundaryExtensionLines,
       focusGuideLines,
       connectorCenterLines,
+      cornerStripLinks,
     });
   }
   return overlays;
@@ -4029,9 +3983,122 @@ function stripDirectionMarkup(strip: AnnotatedCrossSectionStrip): string {
   });
 }
 
+function stripZoneSideLabel(zone: StripZone): string {
+  if (zone === "left") {
+    return "Left side";
+  }
+  if (zone === "right") {
+    return "Right side";
+  }
+  return "Center";
+}
+
+function normalizedConnectionPreviewPoints(
+  points: AnnotationPoint[],
+  width = 96,
+  height = 72,
+  padding = 10,
+): AnnotationPoint[] {
+  if (points.length === 0) {
+    return [];
+  }
+  let minX = points[0].x;
+  let maxX = points[0].x;
+  let minY = points[0].y;
+  let maxY = points[0].y;
+  for (const point of points) {
+    minX = Math.min(minX, point.x);
+    maxX = Math.max(maxX, point.x);
+    minY = Math.min(minY, point.y);
+    maxY = Math.max(maxY, point.y);
+  }
+  const spanX = Math.max(maxX - minX, 1);
+  const spanY = Math.max(maxY - minY, 1);
+  const scale = Math.min((width - padding * 2) / spanX, (height - padding * 2) / spanY);
+  const drawnWidth = spanX * scale;
+  const drawnHeight = spanY * scale;
+  const originX = (width - drawnWidth) * 0.5;
+  const originY = (height - drawnHeight) * 0.5;
+  return points.map((point) => ({
+    x: originX + (point.x - minX) * scale,
+    y: originY + (point.y - minY) * scale,
+  }));
+}
+
+function buildCornerConnectionCardMarkup(connection: SelectedStripCornerConnection): string {
+  const previewPoints = normalizedConnectionPreviewPoints(connection.points);
+  const polylinePoints = previewPoints.map((point) => `${point.x},${point.y}`).join(" ");
+  const startPoint = previewPoints[0] ?? { x: 12, y: 36 };
+  const endPoint = previewPoints[previewPoints.length - 1] ?? { x: 84, y: 36 };
+  return `
+    <button
+      type="button"
+      class="annotation-corner-link-card"
+      data-action="focus-linked-strip"
+      data-centerline-id="${escapeHtml(connection.peer.centerlineId)}"
+      data-strip-id="${escapeHtml(connection.peer.stripId)}"
+    >
+      <div class="annotation-corner-link-preview" aria-hidden="true">
+        <svg class="annotation-corner-link-svg" viewBox="0 0 96 72" role="presentation">
+          <polyline
+            points="${polylinePoints}"
+            fill="none"
+            stroke="${stripStrokeColor(connection.stripKind)}"
+            stroke-width="10"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <circle cx="${startPoint.x}" cy="${startPoint.y}" r="6" fill="#f6f2e8" stroke="#2a6edc" stroke-width="3" />
+          <circle cx="${endPoint.x}" cy="${endPoint.y}" r="6" fill="#f6f2e8" stroke="${stripStrokeColor(connection.stripKind)}" stroke-width="3" />
+        </svg>
+      </div>
+      <div class="annotation-corner-link-copy">
+        <strong>${escapeHtml(connection.peer.centerlineId)} · ${escapeHtml(connection.peer.stripId)}</strong>
+        <span>${escapeHtml(metaurbanStripLabel(connection.peer.stripKind))} · ${escapeHtml(stripZoneSideLabel(connection.peer.stripZone))}</span>
+        <span class="annotation-corner-link-junction">via ${escapeHtml(connection.junctionId)}</span>
+      </div>
+    </button>
+  `;
+}
+
+function buildStripCornerConnectionsMarkup(
+  centerline: AnnotatedCenterline,
+  selectedStripId: string | null,
+  junctionOverlays: DerivedJunctionOverlay[],
+): string {
+  const selectedStrip = selectedStripId
+    ? centerline.cross_section_strips.find((strip) => strip.strip_id === selectedStripId) ?? null
+    : null;
+  if (!selectedStrip) {
+    return "";
+  }
+  const connections = selectedStripCornerConnections(junctionOverlays, centerline.id, selectedStrip.strip_id);
+  return `
+    <section class="annotation-corner-link-section">
+      <div class="annotation-corner-link-header">
+        <div>
+          <strong>Corner Connection</strong>
+          <div class="scene-micro-note">${escapeHtml(selectedStrip.strip_id)} · ${escapeHtml(stripZoneSideLabel(selectedStrip.zone))}</div>
+        </div>
+        <span class="annotation-cross-preview-stat">${connections.length} link${connections.length === 1 ? "" : "s"}</span>
+      </div>
+      ${
+        connections.length > 0
+          ? `
+            <div class="annotation-corner-link-list">
+              ${connections.map((connection) => buildCornerConnectionCardMarkup(connection)).join("")}
+            </div>
+          `
+          : `<div class="scene-empty-note">No corner connector is derived for this strip yet.</div>`
+      }
+    </section>
+  `;
+}
+
 function buildCrossSectionPreviewMarkup(
   centerline: AnnotatedCenterline,
   selectedStripId: string | null,
+  junctionOverlays: DerivedJunctionOverlay[],
 ): string {
   const preview = previewCrossSection(centerline);
   const isDetailedPreview = preview.sourceMode === "detailed";
@@ -4118,6 +4185,7 @@ function buildCrossSectionPreviewMarkup(
             : "Click a band to select it, then adjust width and direction below.",
         )}
       </div>
+      ${buildStripCornerConnectionsMarkup(centerline, selectedStripId, junctionOverlays)}
     </section>
   `;
 }
@@ -4125,7 +4193,7 @@ function buildCrossSectionPreviewMarkup(
 function buildSelectedStripEditorMarkup(
   centerline: AnnotatedCenterline,
   selectedStripId: string | null,
-  linkedRoadCount = 0,
+  cornerLinkedRoadCount = 0,
 ): string {
   const strip = selectedStripId
     ? centerline.cross_section_strips.find((item) => item.strip_id === selectedStripId) ?? null
@@ -4184,8 +4252,8 @@ function buildSelectedStripEditorMarkup(
           <strong>${escapeHtml(metaurbanStripZoneLabel(strip.kind))}</strong>
         </div>
         <div class="scene-fact-card">
-          <span class="scene-fact-label">Cross-linked Roads</span>
-          <strong>${linkedRoadCount}</strong>
+          <span class="scene-fact-label">Corner-linked Roads</span>
+          <strong>${cornerLinkedRoadCount}</strong>
         </div>
         <div class="scene-fact-card scene-form-field-wide">
           <span class="scene-fact-label">Guidance</span>
@@ -4441,7 +4509,14 @@ function buildRoadCollectionInspectorMarkup(annotation: ReferenceAnnotation): st
   const ppm = Math.max(annotation.pixels_per_meter, 1e-6);
   const junctionOverlays = deriveJunctionOverlayGeometries(annotation);
   const totalLengthM = roads.reduce((sum, centerline) => {
-    return sum + (polylineLength(clippedCenterlineDisplayPoints(centerline, junctionOverlays)) / ppm);
+    return (
+      sum +
+      (clippedCenterlineDisplaySegments(centerline, junctionOverlays, ppm).reduce(
+        (segmentSum, segment) => segmentSum + polylineLength(segment.points),
+        0,
+      ) /
+        ppm)
+    );
   }, 0);
   const detailedRoadCount = roads.filter((item) => resolvedCrossSectionMode(item) === CROSS_SECTION_MODE_DETAILED).length;
   const coarseRoadCount = roads.length - detailedRoadCount;
@@ -4531,24 +4606,18 @@ function buildInspectorMarkup(
   }
   if (selection.kind === "centerline") {
     const centerline = feature as AnnotatedCenterline;
-    const linkedRoadIds = new Set(
-      annotation.junctions
-        .filter(
-          (junction) =>
-            junction.source_mode === "explicit" &&
-            junction.kind === "cross_junction" &&
-            junction.connected_centerline_ids.includes(centerline.id),
-        )
-        .flatMap((junction) => junction.connected_centerline_ids)
-        .filter((centerlineId) => centerlineId !== centerline.id),
-    );
+    const junctionOverlays = deriveJunctionOverlayGeometries(annotation);
+    const cornerConnections = selectedStripId
+      ? selectedStripCornerConnections(junctionOverlays, centerline.id, selectedStripId)
+      : [];
+    const linkedRoadIds = new Set(cornerConnections.map((connection) => connection.peer.centerlineId));
     const referenceWidthMeters = getReferenceWidthMeters(centerline, annotation.pixels_per_meter);
     const profile = deriveLaneProfile(centerline);
     const detailed = resolvedCrossSectionMode(centerline) === CROSS_SECTION_MODE_DETAILED;
     const nominalWidth = nominalSeedCrossSectionWidth(centerline);
     const canCalibratePixelsPerMeter = centerline.reference_width_px !== null && centerline.reference_width_px > 0;
     return `
-      ${buildCrossSectionPreviewMarkup(centerline, selectedStripId)}
+      ${buildCrossSectionPreviewMarkup(centerline, selectedStripId, junctionOverlays)}
       <div class="scene-inspector-grid">
         <label class="scene-form-field">
           <span>ID</span>
@@ -4772,56 +4841,206 @@ function dedupeAdjacentDisplayPoints(points: AnnotationPoint[]): AnnotationPoint
   return deduped;
 }
 
-function clippedCenterlineDisplayPoints(
-  centerline: AnnotatedCenterline,
-  junctionOverlays: DerivedJunctionOverlay[],
-): AnnotationPoint[] {
-  const points = centerline.points.map((point) => clonePoint(point));
-  if (points.length < 2) {
-    return points;
-  }
-  const findOverlay = (junctionId: string): DerivedJunctionOverlay | null =>
-    junctionOverlays.find((item) => item.sourceMode === "explicit" && item.junctionId === junctionId) ?? null;
-  if (centerline.start_junction_id) {
-    const overlay = findOverlay(centerline.start_junction_id);
-    const footPoint = overlay?.skeletonFootPoints.find((item) => item.centerlineId === centerline.id) ?? null;
-    if (footPoint) {
-      points[0] = clonePoint(footPoint.point);
-    }
-  }
-  if (centerline.end_junction_id) {
-    const overlay = findOverlay(centerline.end_junction_id);
-    const footPoint = overlay?.skeletonFootPoints.find((item) => item.centerlineId === centerline.id) ?? null;
-    if (footPoint) {
-      points[points.length - 1] = clonePoint(footPoint.point);
-    }
-  }
-  return dedupeAdjacentDisplayPoints(points);
+function junctionOverlayTolerancePx(pixelsPerMeter: number): number {
+  return Math.max(pixelsPerMeter * 0.35, 4);
 }
 
-function junctionStripEndpointPoint(
+function selectClipPointForNeighbor(
+  vertex: AnnotationPoint,
+  neighbor: AnnotationPoint,
+  candidates: AnnotationPoint[],
+): AnnotationPoint | null {
+  const directionX = neighbor.x - vertex.x;
+  const directionY = neighbor.y - vertex.y;
+  const directionLength = Math.hypot(directionX, directionY);
+  if (directionLength <= 1e-6) {
+    return null;
+  }
+  let bestScore = -Infinity;
+  let bestPoint: AnnotationPoint | null = null;
+  for (const candidate of candidates) {
+    const clipX = candidate.x - vertex.x;
+    const clipY = candidate.y - vertex.y;
+    const clipLength = Math.hypot(clipX, clipY);
+    if (clipLength <= 1e-6) {
+      continue;
+    }
+    const score =
+      (directionX / directionLength) * (clipX / clipLength) +
+      (directionY / directionLength) * (clipY / clipLength);
+    if (score > 0.5 && score > bestScore) {
+      bestScore = score;
+      bestPoint = clonePoint(candidate);
+    }
+  }
+  return bestPoint;
+}
+
+function skeletonClipPointForNeighbor(
+  centerline: AnnotatedCenterline,
+  vertex: AnnotationPoint,
+  neighbor: AnnotationPoint,
+  junctionOverlays: DerivedJunctionOverlay[],
+  pixelsPerMeter: number,
+): AnnotationPoint | null {
+  const tolerancePx = junctionOverlayTolerancePx(pixelsPerMeter);
+  const candidates: AnnotationPoint[] = [];
+  for (const overlay of junctionOverlays) {
+    if (pointDistance(overlay.anchor, vertex) > tolerancePx) {
+      continue;
+    }
+    for (const footPoint of overlay.skeletonFootPoints) {
+      if (footPoint.centerlineId === centerline.id) {
+        candidates.push(footPoint.point);
+      }
+    }
+  }
+  return selectClipPointForNeighbor(vertex, neighbor, candidates);
+}
+
+function stripClipPointForNeighbor(
   centerline: AnnotatedCenterline,
   stripId: string,
+  vertex: AnnotationPoint,
+  neighbor: AnnotationPoint,
   junctionOverlays: DerivedJunctionOverlay[],
-  endpoint: "start" | "end",
+  pixelsPerMeter: number,
 ): AnnotationPoint | null {
-  const junctionId = endpoint === "start" ? centerline.start_junction_id : centerline.end_junction_id;
-  if (!junctionId) {
-    return null;
+  const tolerancePx = junctionOverlayTolerancePx(pixelsPerMeter);
+  const candidates: AnnotationPoint[] = [];
+  for (const overlay of junctionOverlays) {
+    if (pointDistance(overlay.anchor, vertex) > tolerancePx) {
+      continue;
+    }
+    for (const controlPoint of overlay.subLaneControlPoints) {
+      if (
+        controlPoint.centerlineId === centerline.id &&
+        controlPoint.stripId === stripId &&
+        controlPoint.pointKind === "center_control_point"
+      ) {
+        candidates.push(controlPoint.point);
+      }
+    }
   }
-  const overlay =
-    junctionOverlays.find((item) => item.sourceMode === "explicit" && item.junctionId === junctionId) ?? null;
-  if (!overlay) {
-    return null;
+  return selectClipPointForNeighbor(vertex, neighbor, candidates);
+}
+
+function baseCenterlineDisplaySegments(
+  centerline: AnnotatedCenterline,
+  junctionOverlays: DerivedJunctionOverlay[],
+  pixelsPerMeter: number,
+): AnnotationPoint[][] {
+  const points = centerline.points.map((point) => clonePoint(point));
+  if (points.length < 2) {
+    return [];
   }
-  const controlPoint =
-    overlay.subLaneControlPoints.find(
-      (item) =>
-        item.centerlineId === centerline.id &&
-        item.stripId === stripId &&
-        item.pointKind === "center_control_point",
-    ) ?? null;
-  return controlPoint ? clonePoint(controlPoint.point) : null;
+  const tolerancePx = junctionOverlayTolerancePx(pixelsPerMeter);
+  const segments: AnnotationPoint[][] = [];
+  let currentSegment: AnnotationPoint[] = [clonePoint(points[0])];
+  for (let index = 1; index < points.length; index += 1) {
+    currentSegment.push(clonePoint(points[index]));
+    const isInternalVertex = index > 0 && index < points.length - 1;
+    const shouldSplit =
+      isInternalVertex &&
+      junctionOverlays.some(
+        (overlay) =>
+          pointDistance(overlay.anchor, points[index]) <= tolerancePx &&
+          overlay.skeletonFootPoints.filter((item) => item.centerlineId === centerline.id).length >= 2,
+      );
+    if (!shouldSplit) {
+      continue;
+    }
+    const dedupedSegment = dedupeAdjacentDisplayPoints(currentSegment);
+    if (dedupedSegment.length >= 2) {
+      segments.push(dedupedSegment);
+    }
+    currentSegment = [clonePoint(points[index])];
+  }
+  const dedupedSegment = dedupeAdjacentDisplayPoints(currentSegment);
+  if (dedupedSegment.length >= 2) {
+    segments.push(dedupedSegment);
+  }
+  return segments;
+}
+
+function clippedCenterlineDisplaySegments(
+  centerline: AnnotatedCenterline,
+  junctionOverlays: DerivedJunctionOverlay[],
+  pixelsPerMeter: number,
+): ClippedDisplaySegment[] {
+  return baseCenterlineDisplaySegments(centerline, junctionOverlays, pixelsPerMeter)
+    .map((segment) => {
+      const clipped = segment.map((point) => clonePoint(point));
+      const startClip = skeletonClipPointForNeighbor(centerline, segment[0], segment[1], junctionOverlays, pixelsPerMeter);
+      const endClip = skeletonClipPointForNeighbor(
+        centerline,
+        segment[segment.length - 1],
+        segment[segment.length - 2],
+        junctionOverlays,
+        pixelsPerMeter,
+      );
+      if (startClip) {
+        clipped[0] = startClip;
+      }
+      if (endClip) {
+        clipped[clipped.length - 1] = endClip;
+      }
+      const points = dedupeAdjacentDisplayPoints(clipped);
+      return {
+        points,
+        clippedStart: startClip !== null,
+        clippedEnd: endClip !== null,
+      };
+    })
+    .filter((segment) => segment.points.length >= 2);
+}
+
+function clippedStripDisplaySegments(
+  centerline: AnnotatedCenterline,
+  stripId: string,
+  centerOffsetM: number,
+  pixelsPerMeter: number,
+  junctionOverlays: DerivedJunctionOverlay[],
+): ClippedDisplaySegment[] {
+  return baseCenterlineDisplaySegments(centerline, junctionOverlays, pixelsPerMeter)
+    .map((segment) => {
+      const offsetPoints = offsetPolyline(segment, centerOffsetM * pixelsPerMeter);
+      if (offsetPoints.length < 2) {
+        return null;
+      }
+      const startClip = stripClipPointForNeighbor(
+        centerline,
+        stripId,
+        segment[0],
+        segment[1],
+        junctionOverlays,
+        pixelsPerMeter,
+      );
+      const endClip = stripClipPointForNeighbor(
+        centerline,
+        stripId,
+        segment[segment.length - 1],
+        segment[segment.length - 2],
+        junctionOverlays,
+        pixelsPerMeter,
+      );
+      if (startClip) {
+        offsetPoints[0] = startClip;
+      }
+      if (endClip) {
+        offsetPoints[offsetPoints.length - 1] = endClip;
+      }
+      const points = dedupeAdjacentDisplayPoints(offsetPoints);
+      if (points.length < 2) {
+        return null;
+      }
+      return {
+        points,
+        clippedStart: startClip !== null,
+        clippedEnd: endClip !== null,
+      };
+    })
+    .filter((segment): segment is ClippedDisplaySegment => segment !== null);
 }
 
 function buildCenterlineOverlayMarkup(
@@ -4833,12 +5052,12 @@ function buildCenterlineOverlayMarkup(
   junctionOverlays: DerivedJunctionOverlay[],
   linkedStripKeys: Set<string>,
 ): string {
-  const displayPoints = clippedCenterlineDisplayPoints(centerline, junctionOverlays);
-  if (displayPoints.length < 2) {
+  const displaySegments = clippedCenterlineDisplaySegments(centerline, junctionOverlays, pixelsPerMeter);
+  if (displaySegments.length === 0) {
     return "";
   }
-  const junctionClippedCaps = Boolean(centerline.start_junction_id || centerline.end_junction_id);
-  const points = displayPoints.map((point) => `${point.x},${point.y}`).join(" ");
+  const anySegmentClipped = displaySegments.some((segment) => segment.clippedStart || segment.clippedEnd);
+  const labelPoint = displaySegments[0]?.points[0] ?? centerline.points[0] ?? { x: 0, y: 0 };
   const centerlineWidthPx = getDisplayCenterlineWidthPx(pixelsPerMeter);
   const vertexMarkup = centerline.points
     .map((point, index) => {
@@ -4863,40 +5082,45 @@ function buildCenterlineOverlayMarkup(
     bandMarkup = sortedCrossSectionStrips(centerline.cross_section_strips)
       .map((strip) => {
         const stripOffset = offsets[strip.strip_id];
-        const offsetPoints = offsetPolyline(displayPoints, stripOffset.centerOffsetM * pixelsPerMeter);
-        const startEndpoint = junctionStripEndpointPoint(centerline, strip.strip_id, junctionOverlays, "start");
-        const endEndpoint = junctionStripEndpointPoint(centerline, strip.strip_id, junctionOverlays, "end");
-        if (startEndpoint && offsetPoints.length > 0) {
-          offsetPoints[0] = startEndpoint;
-        }
-        if (endEndpoint && offsetPoints.length > 0) {
-          offsetPoints[offsetPoints.length - 1] = endEndpoint;
-        }
-        const offsetPolylinePoints = offsetPoints.map((point) => `${point.x},${point.y}`).join(" ");
         const isStripSelected = selectedStripId === strip.strip_id;
         const isLinkedStrip = linkedStripKeys.has(`${centerline.id}:${strip.strip_id}`);
-        return `
-          <polyline
-            class="annotation-cross-strip${isStripSelected ? " annotation-cross-strip-selected" : isLinkedStrip ? " annotation-cross-strip-linked" : ""}"
-            points="${offsetPolylinePoints}"
-            style="stroke: ${stripStrokeColor(strip.kind)}; stroke-width: ${Math.max(2, strip.width_m * pixelsPerMeter)}px; stroke-linecap: ${junctionClippedCaps ? "butt" : "round"}"
-            data-feature-kind="centerline"
-            data-feature-id="${escapeHtml(centerline.id)}"
-          />
-        `;
+        return clippedStripDisplaySegments(
+          centerline,
+          strip.strip_id,
+          stripOffset.centerOffsetM,
+          pixelsPerMeter,
+          junctionOverlays,
+        )
+          .map((segment) => {
+            const offsetPolylinePoints = segment.points.map((point) => `${point.x},${point.y}`).join(" ");
+            return `
+              <polyline
+                class="annotation-cross-strip${isStripSelected ? " annotation-cross-strip-selected" : isLinkedStrip ? " annotation-cross-strip-linked" : ""}"
+                points="${offsetPolylinePoints}"
+                style="stroke: ${stripStrokeColor(strip.kind)}; stroke-width: ${Math.max(2, strip.width_m * pixelsPerMeter)}px; stroke-linecap: ${segment.clippedStart || segment.clippedEnd ? "butt" : "round"}"
+                data-feature-kind="centerline"
+                data-feature-id="${escapeHtml(centerline.id)}"
+              />
+            `;
+          })
+          .join("");
       })
       .join("");
   } else {
     const roadBandWidthPx = getDisplayReferenceWidthPx(centerline, pixelsPerMeter);
-    bandMarkup = `
+    bandMarkup = displaySegments
+      .map(
+        (segment) => `
       <polyline
         class="annotation-road-band${isSelected ? " annotation-feature-selected" : ""}"
-        points="${points}"
-        style="stroke-width: ${roadBandWidthPx}px; stroke-linecap: ${junctionClippedCaps ? "butt" : "round"}"
+        points="${segment.points.map((point) => `${point.x},${point.y}`).join(" ")}"
+        style="stroke-width: ${roadBandWidthPx}px; stroke-linecap: ${segment.clippedStart || segment.clippedEnd ? "butt" : "round"}"
         data-feature-kind="centerline"
         data-feature-id="${escapeHtml(centerline.id)}"
       />
-    `;
+    `,
+      )
+      .join("");
   }
 
   const furnitureMarkup = centerline.street_furniture_instances
@@ -4925,16 +5149,21 @@ function buildCenterlineOverlayMarkup(
   return `
     <g class="annotation-feature-group">
       ${bandMarkup}
+      ${displaySegments
+        .map(
+          (segment) => `
       <polyline
         class="annotation-centerline${isSelected ? " annotation-feature-selected" : ""}"
-        points="${points}"
-        style="stroke-width: ${centerlineWidthPx}px"
+        points="${segment.points.map((point) => `${point.x},${point.y}`).join(" ")}"
+        style="stroke-width: ${centerlineWidthPx}px; stroke-linecap: ${segment.clippedStart || segment.clippedEnd || anySegmentClipped ? "butt" : "round"}"
         data-feature-kind="centerline"
         data-feature-id="${escapeHtml(centerline.id)}"
-      />
+      />`,
+        )
+        .join("")}
       ${vertexMarkup}
       ${furnitureMarkup}
-      <text class="annotation-label" x="${displayPoints[0]?.x ?? 0}" y="${(displayPoints[0]?.y ?? 0) - 12}">
+      <text class="annotation-label" x="${labelPoint.x}" y="${labelPoint.y - 12}">
         ${escapeHtml(centerline.label || centerline.id)}
       </text>
     </g>
@@ -5255,11 +5484,11 @@ function buildOverlayMarkup(
   const width = Math.max(annotation.image_width_px, 1);
   const height = Math.max(annotation.image_height_px, 1);
   const selectedKey = selection ? `${selection.kind}:${selection.id}` : "";
-  const linkedStripKeys = linkedCrossStripKeys(annotation, selection, selectedStripId);
   const junctionOverlays = deriveJunctionOverlayGeometries(
     annotation,
     previewCenterlinesFromDrafts(annotation, branchDraft, crossDraft),
   );
+  const linkedStripKeys = linkedCrossStripKeys(junctionOverlays, selection, selectedStripId);
 
   const centerlineMarkup = annotation.centerlines
     .map((centerline) => {
@@ -6104,6 +6333,21 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
           }
           if (action === "select-strip") {
             state.selectedStripId = button.dataset.stripId ?? null;
+            renderAll();
+            return;
+          }
+          if (action === "focus-linked-strip") {
+            const targetCenterlineId = button.dataset.centerlineId ?? "";
+            const targetStripId = button.dataset.stripId ?? "";
+            const targetCenterline = state.annotation.centerlines.find((item) => item.id === targetCenterlineId) ?? null;
+            if (!targetCenterline) {
+              return;
+            }
+            state.selection = { kind: "centerline", id: targetCenterline.id };
+            state.selectedStripId = targetCenterline.cross_section_strips.some((strip) => strip.strip_id === targetStripId)
+              ? targetStripId
+              : null;
+            clearFurniturePlacement();
             renderAll();
             return;
           }

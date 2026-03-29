@@ -274,6 +274,7 @@ def _road_profile_widths_from_graph(road_segment_graph: Any | None) -> Dict[int,
     profiles: Dict[int, Dict[str, Any]] = {}
     if road_segment_graph is None:
         return profiles
+    is_annotation_graph = str(getattr(road_segment_graph, "mode", "") or "") == "annotation"
     for node in getattr(road_segment_graph, "nodes", ()) or ():
         road_id = int(getattr(node, "road_id", 0) or 0)
         if road_id <= 0 or road_id in profiles:
@@ -289,6 +290,17 @@ def _road_profile_widths_from_graph(road_segment_graph: Any | None) -> Dict[int,
         def _avg(kind: str) -> float:
             values = [float(value) for value in width_by_kind.get(kind, []) if float(value) > 0.0]
             return float(sum(values) / len(values)) if values else 0.0
+        nearroad_buffer_width_m = _avg("nearroad_buffer")
+        nearroad_furnishing_width_m = _avg("nearroad_furnishing")
+        clear_sidewalk_width_m = _avg("clear_sidewalk")
+        farfromroad_buffer_width_m = _avg("farfromroad_buffer")
+        frontage_reserve_width_m = _avg("frontage_reserve")
+        if is_annotation_graph and not strips:
+            nearroad_buffer_width_m = 0.0
+            nearroad_furnishing_width_m = 1.5
+            clear_sidewalk_width_m = 2.5
+            farfromroad_buffer_width_m = 0.0
+            frontage_reserve_width_m = 2.0
         center_width_m = sum(
             max(float(getattr(strip, "width_m", 0.0) or 0.0), 0.0)
             for strip in strips
@@ -325,11 +337,11 @@ def _road_profile_widths_from_graph(road_segment_graph: Any | None) -> Dict[int,
                 offset_from_carriageway_m += width_m
         profiles[road_id] = {
             "carriageway_width_m": float(getattr(node, "road_width_m", 0.0) or 0.0),
-            "nearroad_buffer_width_m": _avg("nearroad_buffer"),
-            "nearroad_furnishing_width_m": _avg("nearroad_furnishing"),
-            "clear_sidewalk_width_m": _avg("clear_sidewalk"),
-            "farfromroad_buffer_width_m": _avg("farfromroad_buffer"),
-            "frontage_reserve_width_m": _avg("frontage_reserve"),
+            "nearroad_buffer_width_m": nearroad_buffer_width_m,
+            "nearroad_furnishing_width_m": nearroad_furnishing_width_m,
+            "clear_sidewalk_width_m": clear_sidewalk_width_m,
+            "farfromroad_buffer_width_m": farfromroad_buffer_width_m,
+            "frontage_reserve_width_m": frontage_reserve_width_m,
             "side_strip_layouts": side_strip_layouts,
         }
     return profiles
@@ -1098,6 +1110,7 @@ def build_junction_geometries(
                         "clear_sidewalk_width_m": float(profile.get("clear_sidewalk_width_m", 0.0) or 0.0),
                         "farfromroad_buffer_width_m": float(profile.get("farfromroad_buffer_width_m", 0.0) or 0.0),
                         "frontage_reserve_width_m": float(profile.get("frontage_reserve_width_m", 0.0) or 0.0),
+                        "side_strip_layouts": dict(profile.get("side_strip_layouts", {}) or {}),
                     }
                 )
         arm_angles = [float(item["angle_deg"]) for item in arms]
@@ -1249,6 +1262,10 @@ def build_junction_geometries(
                 ]
             ).buffer(trim_half_width, cap_style="flat")
             sidewalk_trim_polygons.append(trim_polygon)
+            arm["split_boundary_center"] = (
+                anchor[0] + float(arm["tangent"][0]) * (float(exit_distance_m) + float(crosswalk_depth_m)),
+                anchor[1] + float(arm["tangent"][1]) * (float(exit_distance_m) + float(crosswalk_depth_m)),
+            )
 
         carriageway_core = junction_core_rect
         sidewalk_corner_patches = []
@@ -1264,73 +1281,57 @@ def build_junction_geometries(
                 sweep += 360.0
             if sweep <= 5.0 or sweep >= 175.0:
                 continue
-            nearroad_inner_m = max(
-                float(arm["carriageway_width_m"]) * 0.5 + float(arm["nearroad_buffer_width_m"]),
-                float(next_arm["carriageway_width_m"]) * 0.5 + float(next_arm["nearroad_buffer_width_m"]),
+            trim_outside_corner = _should_trim_outside_corner(kind, sweep)
+            corner_center = _line_intersection(
+                tuple(float(value) for value in arm["split_boundary_center"]),
+                tuple(float(value) for value in arm["normal"]),
+                tuple(float(value) for value in next_arm["split_boundary_center"]),
+                tuple(float(value) for value in next_arm["normal"]),
             )
-            nearroad_width_m = max(
-                float(arm["nearroad_furnishing_width_m"]),
-                float(next_arm["nearroad_furnishing_width_m"]),
+            if corner_center is None:
+                continue
+            nearroad_patch = _corner_connector_patch(
+                corner_center=corner_center,
+                arm=arm,
+                next_arm=next_arm,
+                kind="nearroad_furnishing",
+                junction_core_rect=junction_core_rect,
+                trim_outside_corner=trim_outside_corner,
+                aoi_polygon=aoi_polygon,
             )
-            if nearroad_width_m > 0.0:
-                nearroad_patch = _sector_patch(
-                    anchor=anchor,
-                    start_angle_deg=start_angle,
-                    end_angle_deg=end_angle,
-                    inner_radius_m=nearroad_inner_m,
-                    outer_radius_m=nearroad_inner_m + nearroad_width_m,
-                )
-                nearroad_patch = nearroad_patch.difference(junction_core_rect)
-                if aoi_polygon is not None and not getattr(aoi_polygon, "is_empty", True):
-                    nearroad_patch = nearroad_patch.intersection(aoi_polygon)
+            if not getattr(nearroad_patch, "is_empty", True):
                 nearroad_corner_patches.append(
                     {
                         "patch_id": f"junction_{index:02d}_nearroad_{arm_index:02d}",
                         "geometry": nearroad_patch,
                     }
                 )
-            base_inner_m = nearroad_inner_m + nearroad_width_m
-            clear_sidewalk_width_m = max(
-                float(arm["clear_sidewalk_width_m"]),
-                float(next_arm["clear_sidewalk_width_m"]),
+            sidewalk_patch = _corner_connector_patch(
+                corner_center=corner_center,
+                arm=arm,
+                next_arm=next_arm,
+                kind="clear_sidewalk",
+                junction_core_rect=junction_core_rect,
+                trim_outside_corner=trim_outside_corner,
+                aoi_polygon=aoi_polygon,
             )
-            if clear_sidewalk_width_m > 0.0:
-                sidewalk_patch = _sector_patch(
-                    anchor=anchor,
-                    start_angle_deg=start_angle,
-                    end_angle_deg=end_angle,
-                    inner_radius_m=base_inner_m,
-                    outer_radius_m=base_inner_m + clear_sidewalk_width_m,
-                )
-                sidewalk_patch = sidewalk_patch.difference(junction_core_rect)
-                if aoi_polygon is not None and not getattr(aoi_polygon, "is_empty", True):
-                    sidewalk_patch = sidewalk_patch.intersection(aoi_polygon)
+            if not getattr(sidewalk_patch, "is_empty", True):
                 sidewalk_corner_patches.append(
                     {
                         "patch_id": f"junction_{index:02d}_sidewalk_{arm_index:02d}",
                         "geometry": sidewalk_patch,
                     }
                 )
-            frontage_width_m = max(
-                float(arm["frontage_reserve_width_m"]),
-                float(next_arm["frontage_reserve_width_m"]),
+            frontage_patch = _corner_connector_patch(
+                corner_center=corner_center,
+                arm=arm,
+                next_arm=next_arm,
+                kind="frontage_reserve",
+                junction_core_rect=junction_core_rect,
+                trim_outside_corner=trim_outside_corner,
+                aoi_polygon=aoi_polygon,
             )
-            if frontage_width_m > 0.0:
-                frontage_inner_m = (
-                    base_inner_m
-                    + clear_sidewalk_width_m
-                    + max(float(arm["farfromroad_buffer_width_m"]), float(next_arm["farfromroad_buffer_width_m"]))
-                )
-                frontage_patch = _sector_patch(
-                    anchor=anchor,
-                    start_angle_deg=start_angle,
-                    end_angle_deg=end_angle,
-                    inner_radius_m=frontage_inner_m,
-                    outer_radius_m=frontage_inner_m + frontage_width_m,
-                )
-                frontage_patch = frontage_patch.difference(junction_core_rect)
-                if aoi_polygon is not None and not getattr(aoi_polygon, "is_empty", True):
-                    frontage_patch = frontage_patch.intersection(aoi_polygon)
+            if not getattr(frontage_patch, "is_empty", True):
                 frontage_corner_patches.append(
                     {
                         "patch_id": f"junction_{index:02d}_frontage_{arm_index:02d}",

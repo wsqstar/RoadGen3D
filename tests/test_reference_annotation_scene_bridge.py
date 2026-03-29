@@ -17,6 +17,17 @@ from roadgen3d.reference_annotation_scene_bridge import build_reference_annotati
 from roadgen3d.street_layout import _build_osm_base_scene, _serialize_osm_geometry
 
 
+def _max_polygon_ring_size(geometry) -> int:
+    geom_type = getattr(geometry, "geom_type", "")
+    if geom_type == "Polygon":
+        return len(list(geometry.exterior.coords))
+    if geom_type == "MultiPolygon":
+        return max((len(list(poly.exterior.coords)) for poly in geometry.geoms), default=0)
+    if geom_type == "GeometryCollection":
+        return max((_max_polygon_ring_size(item) for item in geometry.geoms), default=0)
+    return 0
+
+
 def _sample_annotation_payload():
     return {
         "version": ANNOTATION_SCHEMA_VERSION,
@@ -162,6 +173,11 @@ def test_reference_annotation_scene_bridge_builds_junction_geometry():
     assert len(bridge.placement_context.junction_geometries[0]["sidewalk_corner_patches"]) >= 1
     assert len(bridge.placement_context.junction_geometries[0]["nearroad_corner_patches"]) >= 1
     assert len(bridge.placement_context.junction_geometries[0]["frontage_corner_patches"]) >= 1
+    assert all(
+        _max_polygon_ring_size(patch["geometry"]) <= 8
+        for patch in bridge.placement_context.junction_geometries[0]["frontage_corner_patches"]
+        if not patch["geometry"].is_empty
+    )
     anchor = bridge.placement_context.junction_geometries[0]["anchor_xy"]
     assert bridge.placement_context.junction_geometries[0]["junction_core_rect"].contains(Point(anchor[0], anchor[1]))
     assert not bridge.placement_context.carriageway.contains(Point(anchor[0], anchor[1]))
@@ -183,6 +199,11 @@ def test_osm_geometry_serialization_and_scene_include_junction_patches():
     assert len(serialized["junction_geometries"][0]["approach_boundaries"]) == 3
     assert len(serialized["junction_geometries"][0]["crosswalk_patches"]) == 3
     assert len(serialized["junction_geometries"][0]["nearroad_corner_patches"]) >= 1
+    assert len(serialized["junction_geometries"][0]["frontage_corner_patches"]) >= 1
+    assert all(
+        max((len(ring) for ring in patch["rings"]), default=0) <= 8
+        for patch in serialized["junction_geometries"][0]["frontage_corner_patches"]
+    )
     assert serialized["junction_geometries"][0]["carriageway_core_rings"]
 
     scene = _build_osm_base_scene(bridge.placement_context)

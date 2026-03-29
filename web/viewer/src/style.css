@@ -1325,6 +1325,81 @@ body {
     );
 }
 
+.annotation-corner-link-section {
+  display: grid;
+  gap: 0.75rem;
+  padding-top: 0.15rem;
+}
+
+.annotation-corner-link-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.annotation-corner-link-list {
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.annotation-corner-link-card {
+  appearance: none;
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: 0.8rem;
+  align-items: center;
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid rgba(111, 128, 107, 0.18);
+  border-radius: 0.95rem;
+  background: rgba(255, 252, 246, 0.92);
+  color: #243322;
+  text-align: left;
+  cursor: pointer;
+}
+
+.annotation-corner-link-card:hover {
+  box-shadow: 0 10px 24px rgba(42, 110, 220, 0.12);
+  transform: translateY(-1px);
+}
+
+.annotation-corner-link-preview {
+  display: grid;
+  place-items: center;
+  padding: 0.3rem;
+  border-radius: 0.8rem;
+  background: rgba(243, 238, 226, 0.88);
+}
+
+.annotation-corner-link-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.annotation-corner-link-copy {
+  display: grid;
+  gap: 0.22rem;
+}
+
+.annotation-corner-link-copy strong {
+  font-size: 0.84rem;
+  color: #223122;
+}
+
+.annotation-corner-link-copy span {
+  font-size: 0.76rem;
+  color: #5a6956;
+}
+
+.annotation-corner-link-junction {
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
 .annotation-metaurban-badge-row {
   display: flex;
   gap: 0.45rem;
