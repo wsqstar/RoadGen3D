@@ -22,12 +22,12 @@ from .types import (
 ANNOTATION_SCHEMA_VERSION = "roadgen3d_reference_annotation_v2"
 DEFAULT_PIXELS_PER_METER = 8.0
 DEFAULT_ROUNDABOUT_RADIUS_PX = 36.0
-DEFAULT_ROAD_WIDTH_M = 12.0
-DEFAULT_FORWARD_DRIVE_LANE_COUNT = 1
-DEFAULT_REVERSE_DRIVE_LANE_COUNT = 1
+DEFAULT_FORWARD_DRIVE_LANE_COUNT = 2
+DEFAULT_REVERSE_DRIVE_LANE_COUNT = 2
 DEFAULT_BIKE_LANE_COUNT = 0
 DEFAULT_BUS_LANE_COUNT = 0
 DEFAULT_PARKING_LANE_COUNT = 0
+DEFAULT_DRIVE_LANE_WIDTH_M = 3.3
 
 CROSS_SECTION_MODE_COARSE = "coarse"
 CROSS_SECTION_MODE_DETAILED = "detailed"
@@ -60,7 +60,7 @@ VALID_FURNITURE_KINDS = frozenset(
     }
 )
 NOMINAL_STRIP_WIDTHS: Dict[str, float] = {
-    "drive_lane": 3.25,
+    "drive_lane": DEFAULT_DRIVE_LANE_WIDTH_M,
     "bus_lane": 3.5,
     "bike_lane": 1.8,
     "parking_lane": 2.5,
@@ -71,6 +71,16 @@ NOMINAL_STRIP_WIDTHS: Dict[str, float] = {
     "farfromroad_buffer": 0.5,
     "frontage_reserve": 2.0,
 }
+DEFAULT_ROAD_WIDTH_M = (
+    (DEFAULT_FORWARD_DRIVE_LANE_COUNT + DEFAULT_REVERSE_DRIVE_LANE_COUNT) * DEFAULT_DRIVE_LANE_WIDTH_M
+    + 2
+    * (
+        NOMINAL_STRIP_WIDTHS["nearroad_furnishing"]
+        + NOMINAL_STRIP_WIDTHS["clear_sidewalk"]
+        + NOMINAL_STRIP_WIDTHS["frontage_reserve"]
+    )
+    + NOMINAL_STRIP_WIDTHS["median"]
+)
 ROOT = Path(__file__).resolve().parents[2]
 METAURBAN_ROOT = (ROOT / "metaurban").resolve()
 METAURBAN_ASSETS_DIR = (METAURBAN_ROOT / "assets").resolve()
@@ -337,6 +347,48 @@ def _split_auxiliary_count_across_directions(
     if reverse_drive_lane_count > 0:
         return total, 0
     return 0, total
+
+
+def _nominal_seed_cross_section_width(
+    forward_drive_lane_count: int,
+    reverse_drive_lane_count: int,
+    bike_lane_count: int,
+    bus_lane_count: int,
+    parking_lane_count: int,
+) -> float:
+    left_parking, right_parking = _split_auxiliary_count_across_directions(
+        parking_lane_count,
+        forward_drive_lane_count,
+        reverse_drive_lane_count,
+    )
+    left_bike, right_bike = _split_auxiliary_count_across_directions(
+        bike_lane_count,
+        forward_drive_lane_count,
+        reverse_drive_lane_count,
+    )
+    left_bus, right_bus = _split_auxiliary_count_across_directions(
+        bus_lane_count,
+        forward_drive_lane_count,
+        reverse_drive_lane_count,
+    )
+    side_width = 2.0 * (
+        float(NOMINAL_STRIP_WIDTHS["nearroad_furnishing"])
+        + float(NOMINAL_STRIP_WIDTHS["clear_sidewalk"])
+        + float(NOMINAL_STRIP_WIDTHS["frontage_reserve"])
+    )
+    center_width = (
+        (max(int(forward_drive_lane_count), 0) + max(int(reverse_drive_lane_count), 0))
+        * float(NOMINAL_STRIP_WIDTHS["drive_lane"])
+        + (left_parking + right_parking) * float(NOMINAL_STRIP_WIDTHS["parking_lane"])
+        + (left_bike + right_bike) * float(NOMINAL_STRIP_WIDTHS["bike_lane"])
+        + (left_bus + right_bus) * float(NOMINAL_STRIP_WIDTHS["bus_lane"])
+        + (
+            float(NOMINAL_STRIP_WIDTHS["median"])
+            if forward_drive_lane_count > 0 and reverse_drive_lane_count > 0
+            else 0.0
+        )
+    )
+    return round(side_width + center_width, 3)
 
 
 def _next_seed_strip_id(strips: Sequence[AnnotatedCrossSectionStrip], zone: str) -> str:
@@ -635,7 +687,11 @@ def _parse_point(value: Any, label: str) -> AnnotationPoint:
 def _resolve_drive_lane_defaults(value: Mapping[str, Any], index: int) -> Tuple[int, int]:
     legacy_lane_count = max(
         1,
-        _as_int(value.get("lane_count"), f"centerlines[{index}].lane_count", default=2),
+        _as_int(
+            value.get("lane_count"),
+            f"centerlines[{index}].lane_count",
+            default=DEFAULT_FORWARD_DRIVE_LANE_COUNT + DEFAULT_REVERSE_DRIVE_LANE_COUNT,
+        ),
     )
     forward_default = max(1, int(math.ceil(float(legacy_lane_count) / 2.0)))
     reverse_default = max(0, int(legacy_lane_count - forward_default))
@@ -813,6 +869,30 @@ def _parse_centerline(value: Any, index: int) -> AnnotatedCenterline:
     feature_id = _as_string(value.get("id") or value.get("feature_id"), fallback_id)
     label = _as_string(value.get("label"), feature_id)
     forward_drive_lane_count, reverse_drive_lane_count = _resolve_drive_lane_defaults(value, index)
+    bike_lane_count = max(
+        0,
+        _as_int(
+            value.get("bike_lane_count"),
+            f"centerlines[{index}].bike_lane_count",
+            default=DEFAULT_BIKE_LANE_COUNT,
+        ),
+    )
+    bus_lane_count = max(
+        0,
+        _as_int(
+            value.get("bus_lane_count"),
+            f"centerlines[{index}].bus_lane_count",
+            default=DEFAULT_BUS_LANE_COUNT,
+        ),
+    )
+    parking_lane_count = max(
+        0,
+        _as_int(
+            value.get("parking_lane_count"),
+            f"centerlines[{index}].parking_lane_count",
+            default=DEFAULT_PARKING_LANE_COUNT,
+        ),
+    )
     reference_width_px = _as_optional_float(
         value.get("reference_width_px"),
         f"centerlines[{index}].reference_width_px",
@@ -880,36 +960,21 @@ def _parse_centerline(value: Any, index: int) -> AnnotatedCenterline:
             _as_float(
                 value.get("road_width_m"),
                 f"centerlines[{index}].road_width_m",
-                default=DEFAULT_ROAD_WIDTH_M,
+                default=_nominal_seed_cross_section_width(
+                    forward_drive_lane_count,
+                    reverse_drive_lane_count,
+                    bike_lane_count,
+                    bus_lane_count,
+                    parking_lane_count,
+                ),
             ),
         ),
         reference_width_px=max(1.0, reference_width_px) if reference_width_px is not None else None,
         forward_drive_lane_count=forward_drive_lane_count,
         reverse_drive_lane_count=reverse_drive_lane_count,
-        bike_lane_count=max(
-            0,
-            _as_int(
-                value.get("bike_lane_count"),
-                f"centerlines[{index}].bike_lane_count",
-                default=DEFAULT_BIKE_LANE_COUNT,
-            ),
-        ),
-        bus_lane_count=max(
-            0,
-            _as_int(
-                value.get("bus_lane_count"),
-                f"centerlines[{index}].bus_lane_count",
-                default=DEFAULT_BUS_LANE_COUNT,
-            ),
-        ),
-        parking_lane_count=max(
-            0,
-            _as_int(
-                value.get("parking_lane_count"),
-                f"centerlines[{index}].parking_lane_count",
-                default=DEFAULT_PARKING_LANE_COUNT,
-            ),
-        ),
+        bike_lane_count=bike_lane_count,
+        bus_lane_count=bus_lane_count,
+        parking_lane_count=parking_lane_count,
         highway_type=_as_string(value.get("highway_type"), "annotated_centerline"),
         cross_section_mode=cross_section_mode,
         cross_section_strips=cross_section_strips,
@@ -1012,7 +1077,7 @@ def build_reference_annotation_compose_config(overrides: Mapping[str, Any] | Non
     return StreetComposeConfig(
         query=_as_string(payload.get("query"), "reference annotation graph"),
         length_m=max(24.0, _as_float(payload.get("length_m"), "length_m", default=120.0)),
-        road_width_m=max(4.0, _as_float(payload.get("road_width_m"), "road_width_m", default=12.0)),
+        road_width_m=max(4.0, _as_float(payload.get("road_width_m"), "road_width_m", default=DEFAULT_ROAD_WIDTH_M)),
         sidewalk_width_m=max(1.0, _as_float(payload.get("sidewalk_width_m"), "sidewalk_width_m", default=3.0)),
         lane_count=max(1, _as_int(payload.get("lane_count"), "lane_count", default=2)),
         density=max(0.1, _as_float(payload.get("density"), "density", default=1.0)),

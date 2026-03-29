@@ -180,15 +180,22 @@ type StatusTone = "neutral" | "success" | "error";
 
 const API_BASE = (import.meta.env.VITE_ROADGEN_API_BASE as string | undefined) || "http://127.0.0.1:8010";
 const ANNOTATION_SCHEMA_VERSION = "roadgen3d_reference_annotation_v2";
+const FALLBACK_REFERENCE_PLAN: ReferencePlan = {
+  plan_id: "hkust_gz_gate",
+  label: "HKUST-GZ Gate",
+  description: "Built-in fallback reference plan.",
+  image_url: "/api/reference-plans/hkust_gz_gate/image",
+};
 const DEFAULT_PIXELS_PER_METER = 8;
 const DEFAULT_SIDEWALK_WIDTH_M = 3;
 const DEFAULT_SEGMENT_LENGTH_M = 12;
-const DEFAULT_ROAD_WIDTH_M = 12;
 const DEFAULT_ROUNDABOUT_RADIUS_PX = 36;
-const DEFAULT_FORWARD_DRIVE_LANE_COUNT = 1;
-const DEFAULT_REVERSE_DRIVE_LANE_COUNT = 1;
+const DEFAULT_FORWARD_DRIVE_LANE_COUNT = 2;
+const DEFAULT_REVERSE_DRIVE_LANE_COUNT = 2;
 const CROSS_SECTION_MODE_COARSE: CrossSectionMode = "coarse";
 const CROSS_SECTION_MODE_DETAILED: CrossSectionMode = "detailed";
+const DEFAULT_DRIVE_LANE_WIDTH_M = 3.3;
+const DEFAULT_CENTERLINE_MARK_WIDTH_M = 0.3;
 
 const STRIP_KINDS: StripKind[] = [
   "drive_lane",
@@ -229,7 +236,7 @@ const FURNITURE_KINDS: FurnitureKind[] = [
 ];
 const STRIP_DIRECTION_OPTIONS: StripDirection[] = ["forward", "reverse", "bidirectional", "none"];
 const NOMINAL_STRIP_WIDTHS: Record<StripKind, number> = {
-  drive_lane: 3.25,
+  drive_lane: DEFAULT_DRIVE_LANE_WIDTH_M,
   bus_lane: 3.5,
   bike_lane: 1.8,
   parking_lane: 2.5,
@@ -240,6 +247,13 @@ const NOMINAL_STRIP_WIDTHS: Record<StripKind, number> = {
   farfromroad_buffer: 0.5,
   frontage_reserve: 2.0,
 };
+const DEFAULT_ROAD_WIDTH_M =
+  (DEFAULT_FORWARD_DRIVE_LANE_COUNT + DEFAULT_REVERSE_DRIVE_LANE_COUNT) * DEFAULT_DRIVE_LANE_WIDTH_M +
+  2 *
+    (NOMINAL_STRIP_WIDTHS.nearroad_furnishing +
+      NOMINAL_STRIP_WIDTHS.clear_sidewalk +
+      NOMINAL_STRIP_WIDTHS.frontage_reserve) +
+  NOMINAL_STRIP_WIDTHS.median;
 const STRIP_KIND_LABELS: Record<StripKind, string> = {
   drive_lane: "Drive Lane",
   bus_lane: "Bus Lane",
@@ -380,7 +394,10 @@ function resolveDriveLaneDefaults(record: Record<string, unknown>): {
   forward_drive_lane_count: number;
   reverse_drive_lane_count: number;
 } {
-  const legacyLaneCount = Math.max(1, Math.round(asNumber(record.lane_count, 2)));
+  const legacyLaneCount = Math.max(
+    1,
+    Math.round(asNumber(record.lane_count, DEFAULT_FORWARD_DRIVE_LANE_COUNT + DEFAULT_REVERSE_DRIVE_LANE_COUNT)),
+  );
   const defaultForward = Math.max(1, Math.ceil(legacyLaneCount / 2));
   const defaultReverse = Math.max(0, legacyLaneCount - defaultForward);
   const forwardDriveLaneCount = asNonNegativeInt(record.forward_drive_lane_count, defaultForward);
@@ -799,6 +816,52 @@ function splitAuxiliaryCountAcrossDirections(
   return { reverse: 0, forward: total };
 }
 
+function nominalSeedCrossSectionWidthForCounts(
+  forwardDriveLaneCount: number,
+  reverseDriveLaneCount: number,
+  bikeLaneCount: number,
+  busLaneCount: number,
+  parkingLaneCount: number,
+): number {
+  const parkingSplit = splitAuxiliaryCountAcrossDirections(
+    Math.max(0, parkingLaneCount),
+    Math.max(0, forwardDriveLaneCount),
+    Math.max(0, reverseDriveLaneCount),
+  );
+  const bikeSplit = splitAuxiliaryCountAcrossDirections(
+    Math.max(0, bikeLaneCount),
+    Math.max(0, forwardDriveLaneCount),
+    Math.max(0, reverseDriveLaneCount),
+  );
+  const busSplit = splitAuxiliaryCountAcrossDirections(
+    Math.max(0, busLaneCount),
+    Math.max(0, forwardDriveLaneCount),
+    Math.max(0, reverseDriveLaneCount),
+  );
+  const sideWidth =
+    2 *
+    (NOMINAL_STRIP_WIDTHS.nearroad_furnishing +
+      NOMINAL_STRIP_WIDTHS.clear_sidewalk +
+      NOMINAL_STRIP_WIDTHS.frontage_reserve);
+  const centerWidth =
+    (Math.max(0, reverseDriveLaneCount) + Math.max(0, forwardDriveLaneCount)) * NOMINAL_STRIP_WIDTHS.drive_lane +
+    (parkingSplit.reverse + parkingSplit.forward) * NOMINAL_STRIP_WIDTHS.parking_lane +
+    (bikeSplit.reverse + bikeSplit.forward) * NOMINAL_STRIP_WIDTHS.bike_lane +
+    (busSplit.reverse + busSplit.forward) * NOMINAL_STRIP_WIDTHS.bus_lane +
+    (forwardDriveLaneCount > 0 && reverseDriveLaneCount > 0 ? NOMINAL_STRIP_WIDTHS.median : 0);
+  return Number((sideWidth + centerWidth).toFixed(3));
+}
+
+function nominalSeedCrossSectionWidth(centerline: AnnotatedCenterline): number {
+  return nominalSeedCrossSectionWidthForCounts(
+    centerline.forward_drive_lane_count,
+    centerline.reverse_drive_lane_count,
+    centerline.bike_lane_count,
+    centerline.bus_lane_count,
+    centerline.parking_lane_count,
+  );
+}
+
 function seedDetailedCrossSection(centerline: AnnotatedCenterline): AnnotatedCrossSectionStrip[] {
   const leftAux = {
     parking: splitAuxiliaryCountAcrossDirections(
@@ -883,7 +946,7 @@ function seedDetailedCrossSection(centerline: AnnotatedCenterline): AnnotatedCro
   }
 
   const nominalTotalWidth = strips.reduce((sum, strip) => sum + strip.width_m, 0);
-  const targetWidth = Math.max(1, centerline.road_width_m);
+  const targetWidth = Math.max(1, centerline.road_width_m || nominalTotalWidth);
   const scale = nominalTotalWidth > 0 ? targetWidth / nominalTotalWidth : 1;
   return strips.map((strip) => ({
     ...strip,
@@ -947,6 +1010,10 @@ function getDisplayReferenceWidthPx(centerline: AnnotatedCenterline, pixelsPerMe
     return explicitWidth;
   }
   return Math.max(getCenterlineCrossSectionWidth(centerline) * Math.max(pixelsPerMeter, 0.0001), 2);
+}
+
+function getDisplayCenterlineWidthPx(pixelsPerMeter: number): number {
+  return Math.max(DEFAULT_CENTERLINE_MARK_WIDTH_M * Math.max(pixelsPerMeter, 0.0001), 1);
 }
 
 function previewCrossSection(centerline: AnnotatedCenterline): PreviewCrossSection {
@@ -1104,6 +1171,9 @@ function normalizeCenterline(value: unknown, index: number): AnnotatedCenterline
   const record = value && typeof value === "object" ? (value as Record<string, unknown>) : {};
   const rawPoints = Array.isArray(record.points) ? record.points : [];
   const driveLaneDefaults = resolveDriveLaneDefaults(record);
+  const bikeLaneCount = asNonNegativeInt(record.bike_lane_count, 0);
+  const busLaneCount = asNonNegativeInt(record.bus_lane_count, 0);
+  const parkingLaneCount = asNonNegativeInt(record.parking_lane_count, 0);
   const referenceWidthPx = asNullableNumber(record.reference_width_px);
   const id = asString(record.id, `centerline_${String(index + 1).padStart(2, "0")}`);
   const crossSectionStrips = Array.isArray(record.cross_section_strips)
@@ -1116,13 +1186,25 @@ function normalizeCenterline(value: unknown, index: number): AnnotatedCenterline
     id,
     label: asString(record.label, asString(record.id, `Centerline ${index + 1}`)),
     points: rawPoints.map((item) => normalizePoint(item)),
-    road_width_m: Math.max(1, asNumber(record.road_width_m, DEFAULT_ROAD_WIDTH_M)),
+    road_width_m: Math.max(
+      1,
+      asNumber(
+        record.road_width_m,
+        nominalSeedCrossSectionWidthForCounts(
+          driveLaneDefaults.forward_drive_lane_count,
+          driveLaneDefaults.reverse_drive_lane_count,
+          bikeLaneCount,
+          busLaneCount,
+          parkingLaneCount,
+        ),
+      ),
+    ),
     reference_width_px: referenceWidthPx === null ? null : Math.max(1, referenceWidthPx),
     forward_drive_lane_count: driveLaneDefaults.forward_drive_lane_count,
     reverse_drive_lane_count: driveLaneDefaults.reverse_drive_lane_count,
-    bike_lane_count: asNonNegativeInt(record.bike_lane_count, 0),
-    bus_lane_count: asNonNegativeInt(record.bus_lane_count, 0),
-    parking_lane_count: asNonNegativeInt(record.parking_lane_count, 0),
+    bike_lane_count: bikeLaneCount,
+    bus_lane_count: busLaneCount,
+    parking_lane_count: parkingLaneCount,
     highway_type: asString(record.highway_type, "annotated_centerline"),
     cross_section_mode:
       asString(record.cross_section_mode, crossSectionStrips.length > 0 ? CROSS_SECTION_MODE_DETAILED : CROSS_SECTION_MODE_COARSE) ===
@@ -1758,6 +1840,8 @@ function buildInspectorMarkup(
     const referenceWidthMeters = getReferenceWidthMeters(centerline, annotation.pixels_per_meter);
     const profile = deriveLaneProfile(centerline);
     const detailed = resolvedCrossSectionMode(centerline) === CROSS_SECTION_MODE_DETAILED;
+    const nominalWidth = nominalSeedCrossSectionWidth(centerline);
+    const canCalibratePixelsPerMeter = centerline.reference_width_px !== null && centerline.reference_width_px > 0;
     return `
       ${buildCrossSectionPreviewMarkup(centerline, selectedStripId)}
       <div class="scene-inspector-grid">
@@ -1817,11 +1901,34 @@ function buildInspectorMarkup(
           <span class="scene-fact-label">Lane Summary</span>
           <strong>${profile.total_drive_lane_count} drive · ${profile.total_lane_count} total</strong>
         </div>
+        <div class="scene-fact-card">
+          <span class="scene-fact-label">Drive Lane Width</span>
+          <strong>${NOMINAL_STRIP_WIDTHS.drive_lane.toFixed(2)}m target</strong>
+        </div>
+        <div class="scene-fact-card">
+          <span class="scene-fact-label">Pixels / Meter</span>
+          <strong>${annotation.pixels_per_meter.toFixed(2)} px/m</strong>
+        </div>
         <div class="scene-fact-card scene-form-field-wide">
           <span class="scene-fact-label">Geometry</span>
           <strong>${centerline.points.length} vertices${selection.vertexIndex !== undefined ? ` · selected vertex ${selection.vertexIndex + 1}` : ""}</strong>
         </div>
         <div class="annotation-detail-actions scene-form-field-wide">
+          ${
+            !detailed
+              ? `<button type="button" class="scene-toolbar-button scene-toolbar-button-secondary" data-action="reset-road-width-to-nominal">
+                  Reset Width to Nominal ${escapeHtml(nominalWidth.toFixed(2))}m
+                </button>`
+              : ""
+          }
+          <button
+            type="button"
+            class="scene-toolbar-button scene-toolbar-button-secondary"
+            data-action="calibrate-pixels-per-meter"
+            ${canCalibratePixelsPerMeter ? "" : "disabled"}
+          >
+            Calibrate Pixels / Meter from Reference Width
+          </button>
           <button type="button" class="scene-toolbar-button" data-action="split-centerline">
             ${detailed ? "Reseed Cross Section" : "Split to Cross Section"}
           </button>
@@ -1936,6 +2043,7 @@ function buildCenterlineOverlayMarkup(
   selectedStripId: string | null,
 ): string {
   const points = centerline.points.map((point) => `${point.x},${point.y}`).join(" ");
+  const centerlineWidthPx = getDisplayCenterlineWidthPx(pixelsPerMeter);
   const vertexMarkup = centerline.points
     .map((point, index) => {
       const vertexSelected = isSelected && selectedVertexIndex === index;
@@ -2015,7 +2123,7 @@ function buildCenterlineOverlayMarkup(
       <polyline
         class="annotation-centerline${isSelected ? " annotation-feature-selected" : ""}"
         points="${points}"
-        style="stroke-width: 3px"
+        style="stroke-width: ${centerlineWidthPx}px"
         data-feature-kind="centerline"
         data-feature-id="${escapeHtml(centerline.id)}"
       />
@@ -2121,6 +2229,7 @@ function buildOverlayMarkup(
           <polyline
             class="annotation-centerline annotation-centerline-draft"
             points="${draftCenterline.map((point) => `${point.x},${point.y}`).join(" ")}"
+            style="stroke-width: ${getDisplayCenterlineWidthPx(annotation.pixels_per_meter)}px"
           />
           ${draftCenterline
             .map(
@@ -2405,7 +2514,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
   const toolButtons = Array.from(root.querySelectorAll<HTMLButtonElement>(".scene-tool-button"));
 
   const state = {
-    referencePlans: [] as ReferencePlan[],
+    referencePlans: [FALLBACK_REFERENCE_PLAN] as ReferencePlan[],
     annotation: createEmptyAnnotation(),
     draftCenterline: [] as AnnotationPoint[],
     selectedTool: "select" as Tool,
@@ -2524,6 +2633,32 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     if (labelEl) {
       labelEl.textContent = collapsed ? "Show Panels" : "Hide Panels";
     }
+  }
+
+  function mergeReferencePlans(items: ReferencePlan[]): void {
+    const byId = new Map<string, ReferencePlan>();
+    for (const plan of [...state.referencePlans, ...items]) {
+      byId.set(plan.plan_id, plan);
+    }
+    state.referencePlans = Array.from(byId.values());
+  }
+
+  function renderReferencePlanOptions(preferredPlanId?: string): void {
+    const options = [
+      `<option value="">Choose a reference plan</option>`,
+      ...state.referencePlans.map(
+        (plan) => `<option value="${escapeHtml(plan.plan_id)}">${escapeHtml(plan.label || plan.plan_id)}</option>`,
+      ),
+    ];
+    planSelect.innerHTML = options.join("");
+    const resolvedPlanId =
+      (preferredPlanId && state.referencePlans.some((plan) => plan.plan_id === preferredPlanId) ? preferredPlanId : "") ||
+      (state.annotation.plan_id && state.referencePlans.some((plan) => plan.plan_id === state.annotation.plan_id)
+        ? state.annotation.plan_id
+        : "") ||
+      state.referencePlans[0]?.plan_id ||
+      "";
+    planSelect.value = resolvedPlanId;
   }
 
   function renderInspector(): void {
@@ -2789,6 +2924,21 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
             renderAll();
             return;
           }
+          if (action === "reset-road-width-to-nominal") {
+            centerline.road_width_m = nominalSeedCrossSectionWidth(centerline);
+            markAnnotationChanged(`Reset ${centerline.id} width to nominal cross-section.`);
+            renderAll();
+            return;
+          }
+          if (action === "calibrate-pixels-per-meter") {
+            if (centerline.reference_width_px && centerline.road_width_m > 0) {
+              state.annotation.pixels_per_meter = Math.max(0.1, centerline.reference_width_px / centerline.road_width_m);
+              pixelsPerMeterInput.value = state.annotation.pixels_per_meter.toFixed(2);
+              markAnnotationChanged(`Calibrated pixels per meter from ${centerline.id} reference width.`);
+              renderAll();
+            }
+            return;
+          }
           if (action === "split-centerline") {
             centerline.cross_section_strips = seedDetailedCrossSection(centerline);
             centerline.street_furniture_instances = [];
@@ -3047,8 +3197,15 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     renderAll();
     try {
       await new Promise<void>((resolve, reject) => {
-        originalImageEl.onload = () => resolve();
-        originalImageEl.onerror = () => reject(new Error("Failed to load the selected image."));
+        const timeoutId = window.setTimeout(() => reject(new Error("Timed out while loading the selected image.")), 4000);
+        originalImageEl.onload = () => {
+          window.clearTimeout(timeoutId);
+          resolve();
+        };
+        originalImageEl.onerror = () => {
+          window.clearTimeout(timeoutId);
+          reject(new Error("Failed to load the selected image."));
+        };
         originalImageEl.src = resolvedImageUrl;
       });
       const width = originalImageEl.naturalWidth;
@@ -3088,31 +3245,35 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     await loadImageFromUrl(plan.image_url, { planId: plan.plan_id, preserveFeatures: false });
   }
 
-  async function loadReferencePlans(): Promise<void> {
-    state.isReferenceImageLoading = true;
-    state.referenceImageLoadingMessage = "Loading reference plans...";
-    renderAll();
-    const response = await fetch(`${API_BASE}/api/reference-plans`);
-    if (!response.ok) {
-      throw new Error(`Failed to load reference plans (${response.status}).`);
+  async function loadReferencePlans(options: { silent?: boolean } = {}): Promise<void> {
+    const { silent = false } = options;
+    if (!silent) {
+      state.isReferenceImageLoading = true;
+      state.referenceImageLoadingMessage = "Loading reference plans...";
+      renderAll();
     }
-    const payload = (await response.json()) as ReferencePlansPayload;
-    state.referencePlans = Array.isArray(payload.items) ? payload.items : [];
-    const options = [
-      `<option value="">Choose a reference plan</option>`,
-      ...state.referencePlans.map(
-        (plan) => `<option value="${escapeHtml(plan.plan_id)}">${escapeHtml(plan.label || plan.plan_id)}</option>`,
-      ),
-    ];
-    planSelect.innerHTML = options.join("");
-    const defaultPlan = state.referencePlans.find((item) => item.plan_id === "hkust_gz_gate") ?? state.referencePlans[0];
-    if (defaultPlan) {
-      planSelect.value = defaultPlan.plan_id;
-      await applyReferencePlan(defaultPlan.plan_id);
-      return;
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), 4000);
+    try {
+      const response = await fetch(`${API_BASE}/api/reference-plans`, { signal: controller.signal });
+      if (!response.ok) {
+        throw new Error(`Failed to load reference plans (${response.status}).`);
+      }
+      const payload = (await response.json()) as ReferencePlansPayload;
+      mergeReferencePlans(Array.isArray(payload.items) ? payload.items : []);
+      const defaultPlan = state.referencePlans.find((item) => item.plan_id === "hkust_gz_gate") ?? state.referencePlans[0];
+      renderReferencePlanOptions(defaultPlan?.plan_id);
+      if (!state.currentImageUrl && defaultPlan) {
+        await applyReferencePlan(defaultPlan.plan_id);
+        return;
+      }
+      renderAll();
+    } finally {
+      window.clearTimeout(timeoutId);
+      if (!silent) {
+        state.isReferenceImageLoading = false;
+      }
     }
-    state.isReferenceImageLoading = false;
-    renderAll();
   }
 
   function finalizeDraftCenterline(): void {
@@ -3125,7 +3286,13 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       id,
       label: id,
       points: state.draftCenterline.map((point) => ({ x: point.x, y: point.y })),
-      road_width_m: DEFAULT_ROAD_WIDTH_M,
+      road_width_m: nominalSeedCrossSectionWidthForCounts(
+        DEFAULT_FORWARD_DRIVE_LANE_COUNT,
+        DEFAULT_REVERSE_DRIVE_LANE_COUNT,
+        0,
+        0,
+        0,
+      ),
       reference_width_px: null,
       forward_drive_lane_count: DEFAULT_FORWARD_DRIVE_LANE_COUNT,
       reverse_drive_lane_count: DEFAULT_REVERSE_DRIVE_LANE_COUNT,
@@ -3791,11 +3958,19 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     { signal },
   );
 
+  renderReferencePlanOptions(FALLBACK_REFERENCE_PLAN.plan_id);
   renderAll();
-  void loadReferencePlans().catch((error) => {
+  void applyReferencePlan(FALLBACK_REFERENCE_PLAN.plan_id).catch((error) => {
     state.isReferenceImageLoading = false;
     renderAll();
-    setStatus(statusEl, error instanceof Error ? error.message : "Failed to load reference plans.", "error");
+    setStatus(
+      statusEl,
+      error instanceof Error ? error.message : `Failed to load default reference plan ${FALLBACK_REFERENCE_PLAN.plan_id}.`,
+      "error",
+    );
+  });
+  void loadReferencePlans({ silent: true }).catch((error) => {
+    setStatus(statusEl, error instanceof Error ? error.message : "Failed to refresh reference plans.", "error");
   });
 
   return () => {
