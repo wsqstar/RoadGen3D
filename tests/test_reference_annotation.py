@@ -188,6 +188,8 @@ def test_build_reference_annotation_graph_payload_returns_summary_and_graph():
     assert payload["summary"]["junction_count"] == 1
     assert payload["summary"]["derived_junction_count"] == 1
     assert payload["summary"]["topology_junction_count"] == 1
+    assert payload["summary"]["t_junction_count"] == 1
+    assert payload["summary"]["cross_junction_count"] == 0
     assert payload["summary"]["cross_section_strip_count"] == 11
     assert payload["summary"]["roundabout_count"] == 1
     assert payload["summary"]["segment_count"] > 0
@@ -195,6 +197,8 @@ def test_build_reference_annotation_graph_payload_returns_summary_and_graph():
     assert payload["summary"]["min_road_width_m"] == 9.0
     assert payload["summary"]["max_road_width_m"] == pytest.approx(13.2)
     assert payload["summary"]["max_cross_section_width_m"] == pytest.approx(25.2)
+    assert payload["derived_junctions"][0]["kind"] == "t_junction"
+    assert payload["derived_junctions"][0]["arm_count"] == 3
 
 
 def test_parse_reference_annotation_accepts_legacy_coarse_payload():
@@ -231,3 +235,32 @@ def test_parse_reference_annotation_rejects_furniture_on_non_compatible_strip():
 
     with pytest.raises(ValueError, match="furniture-compatible"):
         parse_reference_annotation(payload)
+
+
+def test_build_reference_annotation_graph_payload_detects_cross_junction_topology():
+    payload = _sample_annotation_payload()
+    payload["junctions"] = []
+    payload["centerlines"].append(
+        {
+            "id": "south_branch",
+            "label": "South Branch",
+            "road_width_m": 9.0,
+            "forward_drive_lane_count": 1,
+            "reverse_drive_lane_count": 1,
+            "points": [
+                {"x": 520, "y": 400},
+                {"x": 520, "y": 660},
+            ],
+        }
+    )
+
+    graph_payload = build_reference_annotation_graph_payload(
+        payload,
+        config=build_reference_annotation_compose_config({"segment_length_m": 9.0}),
+    )
+
+    assert graph_payload["summary"]["derived_junction_count"] == 1
+    assert graph_payload["summary"]["t_junction_count"] == 0
+    assert graph_payload["summary"]["cross_junction_count"] == 1
+    assert graph_payload["derived_junctions"][0]["kind"] == "cross_junction"
+    assert graph_payload["derived_junctions"][0]["arm_count"] == 4

@@ -125,6 +125,7 @@ type ConvertedGraphPayload = {
   road_profiles?: Array<Record<string, unknown>>;
   cross_section_profiles?: Array<Record<string, unknown>>;
   street_furniture_instances?: Array<Record<string, unknown>>;
+  derived_junctions?: Array<Record<string, unknown>>;
   metaurban_asset_hints?: Array<Record<string, unknown>>;
   metaurban_asset_guide?: Record<string, unknown>;
   summary: Record<string, unknown>;
@@ -149,13 +150,23 @@ type BranchDraft = {
   endpointSnap: BranchSnapTarget | null;
 };
 
+type CrossDraft = {
+  anchor: BranchSnapTarget;
+  axisNormal: AnnotationPoint;
+  halfLengthPx: number;
+  negativeEndpoint: AnnotationPoint;
+  positiveEndpoint: AnnotationPoint;
+  negativeEndpointSnap: BranchSnapTarget | null;
+  positiveEndpointSnap: BranchSnapTarget | null;
+};
+
 type MetaurbanAssetBadge = {
   key: string;
   label: string;
   shortLabel: string;
 };
 
-type Tool = "select" | "adjust" | "centerline" | "branch" | "roundabout" | "control_point";
+type Tool = "select" | "adjust" | "centerline" | "branch" | "cross" | "roundabout" | "control_point";
 
 type Selection =
   | {
@@ -213,6 +224,7 @@ const DEFAULT_CENTERLINE_MARK_WIDTH_M = 0.3;
 const BRANCH_SNAP_TOLERANCE_PX = 16;
 const BRANCH_VERTEX_REUSE_TOLERANCE_PX = 4;
 const BRANCH_MIN_LENGTH_M = 4;
+const CROSS_MIN_HALF_LENGTH_M = 4;
 
 const STRIP_KINDS: StripKind[] = [
   "drive_lane",
@@ -864,6 +876,22 @@ function insertSharedVertexAtSnap(centerline: AnnotatedCenterline, snap: BranchS
   return inserted;
 }
 
+function crossAxisNormalAtSnap(centerline: AnnotatedCenterline, snap: BranchSnapTarget): AnnotationPoint {
+  const sample = stationToPolylinePoint(centerline.points, snap.stationPx);
+  const length = Math.max(Math.hypot(sample.leftNormal.x, sample.leftNormal.y), 1e-6);
+  return {
+    x: sample.leftNormal.x / length,
+    y: sample.leftNormal.y / length,
+  };
+}
+
+function pointOnAxis(anchor: AnnotationPoint, axisNormal: AnnotationPoint, signedDistancePx: number): AnnotationPoint {
+  return {
+    x: anchor.x + axisNormal.x * signedDistancePx,
+    y: anchor.y + axisNormal.y * signedDistancePx,
+  };
+}
+
 function stripDisplayPoint(
   centerline: AnnotatedCenterline,
   stripId: string,
@@ -1467,24 +1495,126 @@ function collectAnchorClusters(points: AnnotationPoint[], toleranceM: number): A
   return clusters;
 }
 
+function normalizeAngleDeg(value: number): number {
+  let normalized = value % 360;
+  if (normalized < 0) {
+    normalized += 360;
+  }
+  return normalized;
+}
+
+function angleDeg(fromPoint: AnnotationPoint, toPoint: AnnotationPoint): number {
+  return normalizeAngleDeg((Math.atan2(toPoint.y - fromPoint.y, toPoint.x - fromPoint.x) * 180) / Math.PI);
+}
+
+function circularAngleDiffs(anglesDeg: number[]): number[] {
+  if (anglesDeg.length === 0) {
+    return [];
+  }
+  const ordered = [...anglesDeg].map(normalizeAngleDeg).sort((a, b) => a - b);
+  return ordered.map((value, index) => {
+    const nextValue = ordered[(index + 1) % ordered.length];
+    return index === ordered.length - 1 ? (nextValue - value) + 360 : nextValue - value;
+  });
+}
+
+function classifyTopologyJunctionKind(anglesDeg: number[]): "t_junction" | "cross_junction" | "complex_junction" {
+  const diffs = circularAngleDiffs(anglesDeg);
+  if (anglesDeg.length === 4 && diffs.length > 0 && Math.max(...diffs.map((value) => Math.abs(value - 90))) <= 35) {
+    return "cross_junction";
+  }
+  if (anglesDeg.length === 3 && diffs.some((value) => value >= 145)) {
+    return "t_junction";
+  }
+  return "complex_junction";
+}
+
+function deriveTopologyJunctions(annotation: ReferenceAnnotation): Array<{
+  anchor: AnnotationPoint;
+  armCount: number;
+  kind: "t_junction" | "cross_junction" | "complex_junction";
+}> {
+  const toleranceM = Math.max(DEFAULT_SEGMENT_LENGTH_M * 0.5, 4.0);
+  const localCenterlines = annotation.centerlines
+    .map((centerline, roadIndex) => ({
+      roadId: roadIndex + 1,
+      points: centerline.points.map((point) => pixelPointToLocal(annotation, point)),
+    }))
+    .filter((item) => item.points.length >= 2);
+  const clusters: Array<{
+    point: AnnotationPoint;
+    count: number;
+    members: Array<{ roadId: number; vertexIndex: number; points: AnnotationPoint[] }>;
+  }> = [];
+  for (const road of localCenterlines) {
+    road.points.forEach((point, vertexIndex) => {
+      let matched = clusters.find((cluster) => pointDistance(cluster.point, point) <= toleranceM) ?? null;
+      if (!matched) {
+        matched = { point: { ...point }, count: 0, members: [] };
+        clusters.push(matched);
+      }
+      const nextCount = matched.count + 1;
+      matched.point = {
+        x: (matched.point.x * matched.count + point.x) / nextCount,
+        y: (matched.point.y * matched.count + point.y) / nextCount,
+      };
+      matched.count = nextCount;
+      matched.members.push({ roadId: road.roadId, vertexIndex, points: road.points });
+    });
+  }
+  return clusters.flatMap((cluster) => {
+    const connectedRoadIds = new Set(cluster.members.map((member) => member.roadId));
+    if (connectedRoadIds.size < 2) {
+      return [];
+    }
+    const seenArmKeys = new Set<string>();
+    const angles: number[] = [];
+    for (const member of cluster.members) {
+      for (const neighborIndex of [member.vertexIndex - 1, member.vertexIndex + 1]) {
+        if (neighborIndex < 0 || neighborIndex >= member.points.length) {
+          continue;
+        }
+        const neighbor = member.points[neighborIndex];
+        if (pointDistance(cluster.point, neighbor) <= Math.max(toleranceM * 0.25, 0.05)) {
+          continue;
+        }
+        const key = `${member.roadId}:${neighbor.x.toFixed(3)}:${neighbor.y.toFixed(3)}`;
+        if (seenArmKeys.has(key)) {
+          continue;
+        }
+        seenArmKeys.add(key);
+        angles.push(angleDeg(cluster.point, neighbor));
+      }
+    }
+    if (angles.length < 3) {
+      return [];
+    }
+    return [{
+      anchor: { ...cluster.point },
+      armCount: angles.length,
+      kind: classifyTopologyJunctionKind(angles),
+    }];
+  });
+}
+
 function deriveJunctionStats(annotation: ReferenceAnnotation): {
   explicitCount: number;
   derivedCount: number;
   topologyCount: number;
+  tCount: number;
+  crossCount: number;
 } {
   const toleranceM = Math.max(DEFAULT_SEGMENT_LENGTH_M * 0.5, 4.0);
-  const localPolylineVertices = annotation.centerlines.flatMap((centerline) =>
-    centerline.points.map((point) => pixelPointToLocal(annotation, point)),
-  );
-  const derivedAnchors = collectAnchorClusters(localPolylineVertices, toleranceM)
-    .filter((cluster) => cluster.count >= 2)
-    .map((cluster) => cluster.point);
+  const derivedTopologyJunctions = deriveTopologyJunctions(annotation);
+  const derivedAnchors = derivedTopologyJunctions.map((item) => item.anchor);
   const explicitAnchors = annotation.junctions.map((item) => pixelPointToLocal(annotation, item));
   const topologyAnchors = collectAnchorClusters([...explicitAnchors, ...derivedAnchors], toleranceM);
   return {
     explicitCount: annotation.junctions.length,
-    derivedCount: derivedAnchors.length,
+    derivedCount: derivedTopologyJunctions.length,
     topologyCount: topologyAnchors.length,
+    tCount: derivedTopologyJunctions.filter((item) => item.kind === "t_junction").length,
+    crossCount: derivedTopologyJunctions.filter((item) => item.kind === "cross_junction").length,
   };
 }
 
@@ -1523,6 +1653,10 @@ function buildAnnotationSummaryMarkup(annotation: ReferenceAnnotation): string {
     <div>
       <span class="scene-metric-label">Topology Jn</span>
       <strong>${junctionStats.topologyCount}</strong>
+    </div>
+    <div>
+      <span class="scene-metric-label">T / Cross</span>
+      <strong>${junctionStats.tCount} / ${junctionStats.crossCount}</strong>
     </div>
     <div>
       <span class="scene-metric-label">Avg Width</span>
@@ -1609,6 +1743,10 @@ function buildGraphSummaryMarkup(graphResult: ConvertedGraphPayload | null): str
     <div>
       <span class="scene-metric-label">Topology Jn</span>
       <strong>${escapeHtml(String(summary.topology_junction_count ?? 0))}</strong>
+    </div>
+    <div>
+      <span class="scene-metric-label">T / Cross</span>
+      <strong>${escapeHtml(String(summary.t_junction_count ?? 0))} / ${escapeHtml(String(summary.cross_junction_count ?? 0))}</strong>
     </div>
     <div>
       <span class="scene-metric-label">Junction Segments</span>
@@ -2336,6 +2474,34 @@ function buildBranchPreviewMarkup(
   return fragments.join("");
 }
 
+function buildCrossPreviewMarkup(
+  crossHoverSnap: BranchSnapTarget | null,
+  crossDraft: CrossDraft | null,
+): string {
+  const fragments: string[] = [];
+  if (crossHoverSnap && !crossDraft) {
+    fragments.push(`
+      <g class="annotation-feature-group">
+        <circle class="annotation-branch-anchor annotation-cross-anchor" cx="${crossHoverSnap.point.x}" cy="${crossHoverSnap.point.y}" r="8" />
+      </g>
+    `);
+  }
+  if (crossDraft) {
+    fragments.push(`
+      <g class="annotation-feature-group">
+        <circle class="annotation-branch-anchor annotation-cross-anchor" cx="${crossDraft.anchor.point.x}" cy="${crossDraft.anchor.point.y}" r="8" />
+        <polyline
+          class="annotation-branch-preview annotation-cross-preview"
+          points="${crossDraft.negativeEndpoint.x},${crossDraft.negativeEndpoint.y} ${crossDraft.anchor.point.x},${crossDraft.anchor.point.y} ${crossDraft.positiveEndpoint.x},${crossDraft.positiveEndpoint.y}"
+        />
+        <circle class="annotation-branch-end annotation-cross-end${crossDraft.negativeEndpointSnap ? " annotation-branch-end-snapped" : ""}" cx="${crossDraft.negativeEndpoint.x}" cy="${crossDraft.negativeEndpoint.y}" r="7" />
+        <circle class="annotation-branch-end annotation-cross-end${crossDraft.positiveEndpointSnap ? " annotation-branch-end-snapped" : ""}" cx="${crossDraft.positiveEndpoint.x}" cy="${crossDraft.positiveEndpoint.y}" r="7" />
+      </g>
+    `);
+  }
+  return fragments.join("");
+}
+
 function buildOverlayMarkup(
   annotation: ReferenceAnnotation,
   draftCenterline: AnnotationPoint[],
@@ -2343,6 +2509,8 @@ function buildOverlayMarkup(
   selectedStripId: string | null,
   branchHoverSnap: BranchSnapTarget | null,
   branchDraft: BranchDraft | null,
+  crossHoverSnap: BranchSnapTarget | null,
+  crossDraft: CrossDraft | null,
 ): string {
   const width = Math.max(annotation.image_width_px, 1);
   const height = Math.max(annotation.image_height_px, 1);
@@ -2460,6 +2628,7 @@ function buildOverlayMarkup(
       ${markerMarkup}
       ${roundaboutMarkup}
       ${buildBranchPreviewMarkup(branchHoverSnap, branchDraft)}
+      ${buildCrossPreviewMarkup(crossHoverSnap, crossDraft)}
       ${draftMarkup}
     </svg>
   `;
@@ -2519,6 +2688,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
             <button id="annotation-tool-adjust" class="scene-tool-button" data-tool="adjust" type="button">Adjust</button>
             <button id="annotation-tool-centerline" class="scene-tool-button" data-tool="centerline" type="button">Centerline</button>
             <button id="annotation-tool-branch" class="scene-tool-button" data-tool="branch" type="button">Branch</button>
+            <button id="annotation-tool-cross" class="scene-tool-button" data-tool="cross" type="button">Cross</button>
             <button id="annotation-tool-roundabout" class="scene-tool-button" data-tool="roundabout" type="button">Roundabout</button>
             <button id="annotation-tool-control-point" class="scene-tool-button" data-tool="control_point" type="button">Control Point</button>
           </div>
@@ -2754,6 +2924,8 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     },
     branchHoverSnap: null as BranchSnapTarget | null,
     branchDraft: null as BranchDraft | null,
+    crossHoverSnap: null as BranchSnapTarget | null,
+    crossDraft: null as CrossDraft | null,
   };
 
   function clearGraphResult(reason: string): void {
@@ -2782,6 +2954,11 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
   function clearBranchDraft(): void {
     state.branchHoverSnap = null;
     state.branchDraft = null;
+  }
+
+  function clearCrossDraft(): void {
+    state.crossHoverSnap = null;
+    state.crossDraft = null;
   }
 
   function markAnnotationChanged(statusMessage?: string): void {
@@ -3314,6 +3491,8 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       state.selectedStripId,
       state.branchHoverSnap,
       state.branchDraft,
+      state.crossHoverSnap,
+      state.crossDraft,
     );
     updateStageVisibility();
   }
@@ -3350,11 +3529,16 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     if (tool !== "branch") {
       clearBranchDraft();
     }
+    if (tool !== "cross") {
+      clearCrossDraft();
+    }
     if (tool !== "select") {
       clearFurniturePlacement();
     }
     if (tool === "branch") {
       setStatus(statusEl, "Branch Tool: hover an existing road to snap, click once to lock the anchor, then click again to place the branch.", "neutral");
+    } else if (tool === "cross") {
+      setStatus(statusEl, "Cross Tool: hover an existing road to snap, click once to lock the center, then click again to set the half-length of the perpendicular cross road.", "neutral");
     }
     renderAll();
   }
@@ -3440,6 +3624,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       state.selectedStripId = null;
       state.draftCenterline = [];
       clearBranchDraft();
+      clearCrossDraft();
       clearFurniturePlacement();
       clearGraphResult("Reference image updated. Convert again after annotating.");
       setStatus(statusEl, `Loaded reference image: ${planId || "custom"}.`, "success");
@@ -3527,6 +3712,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     state.selectedStripId = null;
     state.draftCenterline = [];
     clearBranchDraft();
+    clearCrossDraft();
     markAnnotationChanged(`Saved centerline ${id}.`);
     renderAll();
   }
@@ -3540,6 +3726,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     state.selectedStripId = null;
     state.draftCenterline = [];
     clearBranchDraft();
+    clearCrossDraft();
     clearFurniturePlacement();
     clearGraphResult("Annotation reset. Draw new features and convert again.");
     setStatus(statusEl, "Annotation cleared.", "neutral");
@@ -3683,6 +3870,44 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     };
   }
 
+  function updateCrossPreview(point: AnnotationPoint | null): void {
+    if (state.selectedTool !== "cross") {
+      clearCrossDraft();
+      return;
+    }
+    if (!point) {
+      state.crossHoverSnap = null;
+      return;
+    }
+    if (!state.crossDraft) {
+      state.crossHoverSnap = findNearestBranchSnapTarget(state.annotation, point);
+      return;
+    }
+    const anchorPoint = state.crossDraft.anchor.point;
+    const axisNormal = state.crossDraft.axisNormal;
+    const signedDistancePx =
+      (point.x - anchorPoint.x) * axisNormal.x +
+      (point.y - anchorPoint.y) * axisNormal.y;
+    const halfLengthPx = Math.abs(signedDistancePx);
+    const desiredPositive = pointOnAxis(anchorPoint, axisNormal, halfLengthPx);
+    const desiredNegative = pointOnAxis(anchorPoint, axisNormal, -halfLengthPx);
+    const positiveEndpointSnap = findNearestBranchSnapTarget(state.annotation, desiredPositive, {
+      excludeCenterlineId: state.crossDraft.anchor.centerlineId,
+    });
+    const negativeEndpointSnap = findNearestBranchSnapTarget(state.annotation, desiredNegative, {
+      excludeCenterlineId: state.crossDraft.anchor.centerlineId,
+    });
+    state.crossHoverSnap = null;
+    state.crossDraft = {
+      ...state.crossDraft,
+      halfLengthPx,
+      positiveEndpoint: positiveEndpointSnap ? { ...positiveEndpointSnap.point } : desiredPositive,
+      negativeEndpoint: negativeEndpointSnap ? { ...negativeEndpointSnap.point } : desiredNegative,
+      positiveEndpointSnap,
+      negativeEndpointSnap,
+    };
+  }
+
   function beginBranchFromSnap(snap: BranchSnapTarget): void {
     const host = state.annotation.centerlines.find((item) => item.id === snap.centerlineId);
     if (!host) {
@@ -3700,6 +3925,31 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     state.selectedStripId = host.cross_section_strips[0]?.strip_id ?? null;
     clearFurniturePlacement();
     markAnnotationChanged(`Locked branch anchor on ${host.id}. Move the mouse and click again to place the branch end.`);
+    renderAll();
+  }
+
+  function beginCrossFromSnap(snap: BranchSnapTarget): void {
+    const host = state.annotation.centerlines.find((item) => item.id === snap.centerlineId);
+    if (!host) {
+      setStatus(statusEl, "Could not resolve the host road for this cross anchor.", "error");
+      return;
+    }
+    const anchorPoint = insertSharedVertexAtSnap(host, snap);
+    const axisNormal = crossAxisNormalAtSnap(host, snap);
+    state.crossDraft = {
+      anchor: { ...snap, point: { ...anchorPoint } },
+      axisNormal,
+      halfLengthPx: 0,
+      negativeEndpoint: { ...anchorPoint },
+      positiveEndpoint: { ...anchorPoint },
+      negativeEndpointSnap: null,
+      positiveEndpointSnap: null,
+    };
+    state.crossHoverSnap = null;
+    state.selection = { kind: "centerline", id: host.id };
+    state.selectedStripId = host.cross_section_strips[0]?.strip_id ?? null;
+    clearFurniturePlacement();
+    markAnnotationChanged(`Locked cross center on ${host.id}. Move the mouse and click again to set the cross half-length.`);
     renderAll();
   }
 
@@ -3759,6 +4009,62 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     clearFurniturePlacement();
     clearBranchDraft();
     markAnnotationChanged(`Created branch ${branchId}.`);
+    renderAll();
+  }
+
+  function commitCrossAtPoint(point: AnnotationPoint): void {
+    const draft = state.crossDraft;
+    if (!draft) {
+      return;
+    }
+    const host = state.annotation.centerlines.find((item) => item.id === draft.anchor.centerlineId);
+    if (!host) {
+      clearCrossDraft();
+      setStatus(statusEl, "The host road is no longer available. Start the cross again.", "error");
+      renderAll();
+      return;
+    }
+    updateCrossPreview(point);
+    const refreshedDraft = state.crossDraft;
+    if (!refreshedDraft) {
+      return;
+    }
+    const minLengthPx = CROSS_MIN_HALF_LENGTH_M * Math.max(state.annotation.pixels_per_meter, 0.0001);
+    if (refreshedDraft.halfLengthPx < minLengthPx) {
+      setStatus(
+        statusEl,
+        `Cross is too short. Minimum half-length is ${CROSS_MIN_HALF_LENGTH_M.toFixed(1)}m.`,
+        "error",
+      );
+      renderAll();
+      return;
+    }
+    let negativeEndpoint = { ...refreshedDraft.negativeEndpoint };
+    let positiveEndpoint = { ...refreshedDraft.positiveEndpoint };
+    if (refreshedDraft.negativeEndpointSnap) {
+      const target = state.annotation.centerlines.find((item) => item.id === refreshedDraft.negativeEndpointSnap?.centerlineId);
+      if (!target) {
+        setStatus(statusEl, "Could not resolve the negative cross endpoint road.", "error");
+        return;
+      }
+      negativeEndpoint = { ...insertSharedVertexAtSnap(target, refreshedDraft.negativeEndpointSnap) };
+    }
+    if (refreshedDraft.positiveEndpointSnap) {
+      const target = state.annotation.centerlines.find((item) => item.id === refreshedDraft.positiveEndpointSnap?.centerlineId);
+      if (!target) {
+        setStatus(statusEl, "Could not resolve the positive cross endpoint road.", "error");
+        return;
+      }
+      positiveEndpoint = { ...insertSharedVertexAtSnap(target, refreshedDraft.positiveEndpointSnap) };
+    }
+    const crossId = nextFeatureId(state.annotation, "centerline");
+    const crossCenterline = cloneCenterlineForBranch(host, crossId, [negativeEndpoint, refreshedDraft.anchor.point, positiveEndpoint]);
+    state.annotation.centerlines.push(crossCenterline);
+    state.selection = { kind: "centerline", id: crossId };
+    state.selectedStripId = crossCenterline.cross_section_strips[0]?.strip_id ?? null;
+    clearFurniturePlacement();
+    clearCrossDraft();
+    markAnnotationChanged(`Created cross road ${crossId}.`);
     renderAll();
   }
 
@@ -3871,6 +4177,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       state.selectedStripId = null;
       state.draftCenterline = [];
       clearBranchDraft();
+      clearCrossDraft();
       clearFurniturePlacement();
       originalImageEl.removeAttribute("src");
       clearGraphResult("Image cleared. Load another reference plan to continue.");
@@ -4022,6 +4329,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
         state.selection = null;
         state.selectedStripId = null;
         clearBranchDraft();
+        clearCrossDraft();
         renderAll();
         return;
       }
@@ -4039,6 +4347,24 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
           setStatus(statusEl, "Draw at least one centerline before creating a branch.", "error");
         } else {
           setStatus(statusEl, "Branch Tool starts from an existing road. Hover a road until the snap anchor appears.", "error");
+        }
+        renderAll();
+        return;
+      }
+
+      if (state.selectedTool === "cross") {
+        if (state.crossDraft) {
+          commitCrossAtPoint(point);
+          return;
+        }
+        if (state.crossHoverSnap) {
+          beginCrossFromSnap(state.crossHoverSnap);
+          return;
+        }
+        if (state.annotation.centerlines.length === 0) {
+          setStatus(statusEl, "Draw at least one centerline before creating a cross road.", "error");
+        } else {
+          setStatus(statusEl, "Cross Tool starts from an existing road. Hover a road until the snap anchor appears.", "error");
         }
         renderAll();
         return;
@@ -4103,6 +4429,11 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       }
       if (state.selectedTool === "branch" && !state.drag) {
         updateBranchPreview(imagePointFromPointer(event));
+        renderAll();
+        return;
+      }
+      if (state.selectedTool === "cross" && !state.drag) {
+        updateCrossPreview(imagePointFromPointer(event));
         renderAll();
         return;
       }
@@ -4198,6 +4529,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
         state.selectedStripId = null;
         state.draftCenterline = [];
         clearBranchDraft();
+        clearCrossDraft();
         clearFurniturePlacement();
         if (annotation.image_path) {
           try {
@@ -4232,6 +4564,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
         state.selectedStripId = null;
         state.draftCenterline = [];
         clearBranchDraft();
+        clearCrossDraft();
         clearFurniturePlacement();
         clearGraphResult("Annotation JSON applied. Re-run convert to refresh graph output.");
         if (annotation.image_path) {

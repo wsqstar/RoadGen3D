@@ -8,7 +8,7 @@ import math
 import random
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 from .cross_section_synthesis import synthesize_poi_driven_cross_section
 from .poi_taxonomy import (
@@ -69,6 +69,7 @@ class PlacementContext:
     poi_fit_report: Dict[str, Any] = field(default_factory=dict)
     required_left_width_m: float = 0.0
     required_right_width_m: float = 0.0
+    junction_geometries: List[Dict[str, Any]] = field(default_factory=list)
 
 
 # ---------------------------------------------------------------------------
@@ -221,6 +222,417 @@ def _clip_to_aoi(geometry: Any, aoi_polygon: Any) -> Any:
         polys = [g for g in clipped.geoms if isinstance(g, ShapelyPolygon)]
         return MultiPolygon(polys) if polys else MultiPolygon()
     return clipped
+
+
+def _dedupe_adjacent_points(points: Sequence[Tuple[float, float]]) -> List[Tuple[float, float]]:
+    deduped: List[Tuple[float, float]] = []
+    for point in points:
+        xy = (float(point[0]), float(point[1]))
+        if not deduped or math.hypot(deduped[-1][0] - xy[0], deduped[-1][1] - xy[1]) > 1e-6:
+            deduped.append(xy)
+    return deduped
+
+
+def _normalize_angle_deg(value: float) -> float:
+    normalized = math.fmod(float(value), 360.0)
+    if normalized < 0.0:
+        normalized += 360.0
+    return normalized
+
+
+def _angle_deg(from_point: Tuple[float, float], to_point: Tuple[float, float]) -> float:
+    return _normalize_angle_deg(
+        math.degrees(float(math.atan2(float(to_point[1]) - float(from_point[1]), float(to_point[0]) - float(from_point[0]))))
+    )
+
+
+def _circular_angle_diffs_deg(angles_deg: Sequence[float]) -> List[float]:
+    if not angles_deg:
+        return []
+    ordered = sorted(_normalize_angle_deg(value) for value in angles_deg)
+    diffs: List[float] = []
+    for index, value in enumerate(ordered):
+        next_value = ordered[(index + 1) % len(ordered)]
+        raw_diff = next_value - value
+        if index == len(ordered) - 1:
+            raw_diff += 360.0
+        diffs.append(float(raw_diff))
+    return diffs
+
+
+def _classify_junction_kind(angles_deg: Sequence[float]) -> str:
+    arm_count = len(tuple(angles_deg))
+    diffs = _circular_angle_diffs_deg(angles_deg)
+    if arm_count == 4 and diffs and max(abs(diff - 90.0) for diff in diffs) <= 35.0:
+        return "cross_junction"
+    if arm_count == 3 and diffs and any(diff >= 145.0 for diff in diffs):
+        return "t_junction"
+    return "complex_junction"
+
+
+def _road_profile_widths_from_graph(road_segment_graph: Any | None) -> Dict[int, Dict[str, float]]:
+    profiles: Dict[int, Dict[str, float]] = {}
+    if road_segment_graph is None:
+        return profiles
+    for node in getattr(road_segment_graph, "nodes", ()) or ():
+        road_id = int(getattr(node, "road_id", 0) or 0)
+        if road_id <= 0 or road_id in profiles:
+            continue
+        strips = tuple(getattr(node, "cross_section_strips", ()) or ())
+        width_by_kind: Dict[str, List[float]] = {}
+        for strip in strips:
+            kind = str(getattr(strip, "kind", "") or "")
+            zone = str(getattr(strip, "zone", "") or "")
+            if zone not in {"left", "right"}:
+                continue
+            width_by_kind.setdefault(kind, []).append(float(getattr(strip, "width_m", 0.0) or 0.0))
+        def _avg(kind: str) -> float:
+            values = [float(value) for value in width_by_kind.get(kind, []) if float(value) > 0.0]
+            return float(sum(values) / len(values)) if values else 0.0
+        profiles[road_id] = {
+            "carriageway_width_m": float(getattr(node, "road_width_m", 0.0) or 0.0),
+            "nearroad_buffer_width_m": _avg("nearroad_buffer"),
+            "nearroad_furnishing_width_m": _avg("nearroad_furnishing"),
+            "clear_sidewalk_width_m": _avg("clear_sidewalk"),
+            "farfromroad_buffer_width_m": _avg("farfromroad_buffer"),
+            "frontage_reserve_width_m": _avg("frontage_reserve"),
+        }
+    return profiles
+
+
+def _merge_polygon_geometries(polygons: Sequence[Any], *, aoi_polygon: Any | None = None) -> Any:
+    from shapely.geometry import MultiPolygon
+    from shapely.ops import unary_union
+
+    valid = [poly for poly in polygons if poly is not None and not getattr(poly, "is_empty", True)]
+    if not valid:
+        return MultiPolygon()
+    merged = unary_union(valid)
+    if aoi_polygon is not None and not getattr(aoi_polygon, "is_empty", True):
+        merged = merged.intersection(aoi_polygon)
+    if merged.is_empty:
+        return MultiPolygon()
+    return merged
+
+
+def _sector_patch(
+    *,
+    anchor: Tuple[float, float],
+    start_angle_deg: float,
+    end_angle_deg: float,
+    inner_radius_m: float,
+    outer_radius_m: float,
+    steps: int = 12,
+) -> Any:
+    from shapely.geometry import Polygon
+
+    if outer_radius_m <= inner_radius_m or outer_radius_m <= 0.0:
+        return Polygon()
+    start = _normalize_angle_deg(start_angle_deg)
+    end = _normalize_angle_deg(end_angle_deg)
+    sweep = end - start
+    if sweep <= 0.0:
+        sweep += 360.0
+    if sweep <= 1e-3 or sweep >= 179.0:
+        return Polygon()
+    point_count = max(int(steps), 3)
+    outer_points: List[Tuple[float, float]] = []
+    inner_points: List[Tuple[float, float]] = []
+    for index in range(point_count + 1):
+        ratio = float(index) / float(point_count)
+        angle_deg = start + sweep * ratio
+        angle_rad = math.radians(angle_deg)
+        outer_points.append(
+            (
+                float(anchor[0]) + math.cos(angle_rad) * float(outer_radius_m),
+                float(anchor[1]) + math.sin(angle_rad) * float(outer_radius_m),
+            )
+        )
+        inner_points.append(
+            (
+                float(anchor[0]) + math.cos(angle_rad) * float(inner_radius_m),
+                float(anchor[1]) + math.sin(angle_rad) * float(inner_radius_m),
+            )
+        )
+    ring = [*outer_points, *reversed(inner_points)]
+    return Polygon(ring)
+
+
+def _rectangle_patch(
+    *,
+    center: Tuple[float, float],
+    tangent: Tuple[float, float],
+    normal: Tuple[float, float],
+    length_m: float,
+    width_m: float,
+) -> Any:
+    from shapely.geometry import Polygon
+
+    half_length = max(float(length_m) * 0.5, 0.05)
+    half_width = max(float(width_m) * 0.5, 0.05)
+    corners = [
+        (
+            center[0] - tangent[0] * half_length - normal[0] * half_width,
+            center[1] - tangent[1] * half_length - normal[1] * half_width,
+        ),
+        (
+            center[0] - tangent[0] * half_length + normal[0] * half_width,
+            center[1] - tangent[1] * half_length + normal[1] * half_width,
+        ),
+        (
+            center[0] + tangent[0] * half_length + normal[0] * half_width,
+            center[1] + tangent[1] * half_length + normal[1] * half_width,
+        ),
+        (
+            center[0] + tangent[0] * half_length - normal[0] * half_width,
+            center[1] + tangent[1] * half_length - normal[1] * half_width,
+        ),
+    ]
+    return Polygon(corners)
+
+
+def build_junction_geometries(
+    roads: Sequence[Any],
+    *,
+    road_segment_graph: Any | None = None,
+    aoi_polygon: Any | None = None,
+    crosswalk_depth_m: float = 3.0,
+    tolerance_m: float = 0.25,
+) -> List[Dict[str, Any]]:
+    from shapely.geometry import LineString, MultiPolygon
+
+    road_profiles = _road_profile_widths_from_graph(road_segment_graph)
+    clusters: List[Dict[str, Any]] = []
+    road_widths_by_id: Dict[int, float] = {}
+    for road in roads:
+        road_id = int(getattr(road, "osm_id", 0) or 0)
+        points = _dedupe_adjacent_points(getattr(road, "coords", ()) or ())
+        if len(points) < 2:
+            continue
+        road_widths_by_id[road_id] = float(getattr(road, "width_m", 8.0) or 8.0)
+        for vertex_index, point in enumerate(points):
+            matched = None
+            for cluster in clusters:
+                if math.hypot(float(cluster["point"][0]) - float(point[0]), float(cluster["point"][1]) - float(point[1])) <= tolerance_m:
+                    matched = cluster
+                    break
+            if matched is None:
+                matched = {"point": tuple(point), "count": 0, "members": []}
+                clusters.append(matched)
+            count = int(matched["count"]) + 1
+            anchor = (
+                (float(matched["point"][0]) * float(matched["count"]) + float(point[0])) / float(count),
+                (float(matched["point"][1]) * float(matched["count"]) + float(point[1])) / float(count),
+            )
+            matched["point"] = anchor
+            matched["count"] = count
+            matched["members"].append({"road_id": road_id, "vertex_index": int(vertex_index), "points": tuple(points)})
+
+    junctions: List[Dict[str, Any]] = []
+    for index, cluster in enumerate(clusters, start=1):
+        members = list(cluster.get("members", []))
+        connected_road_ids = sorted({int(member["road_id"]) for member in members if int(member["road_id"]) > 0})
+        if len(connected_road_ids) < 2:
+            continue
+        anchor = (float(cluster["point"][0]), float(cluster["point"][1]))
+        arms: List[Dict[str, Any]] = []
+        seen_arm_keys: set[Tuple[int, int, int]] = set()
+        for member in members:
+            points = tuple(member["points"])
+            vertex_index = int(member["vertex_index"])
+            road_id = int(member["road_id"])
+            profile = road_profiles.get(road_id, {})
+            carriageway_width_m = float(
+                profile.get("carriageway_width_m", float(road_widths_by_id.get(road_id, 8.0)))
+            )
+            for neighbor_index in (vertex_index - 1, vertex_index + 1):
+                if neighbor_index < 0 or neighbor_index >= len(points):
+                    continue
+                neighbor = points[neighbor_index]
+                length_m = math.hypot(float(neighbor[0]) - anchor[0], float(neighbor[1]) - anchor[1])
+                if length_m <= max(float(tolerance_m) * 0.25, 0.05):
+                    continue
+                arm_key = (
+                    road_id,
+                    int(round(float(neighbor[0]) * 1000.0)),
+                    int(round(float(neighbor[1]) * 1000.0)),
+                )
+                if arm_key in seen_arm_keys:
+                    continue
+                seen_arm_keys.add(arm_key)
+                tangent = (
+                    (float(neighbor[0]) - anchor[0]) / length_m,
+                    (float(neighbor[1]) - anchor[1]) / length_m,
+                )
+                arms.append(
+                    {
+                        "road_id": road_id,
+                        "angle_deg": _angle_deg(anchor, neighbor),
+                        "tangent": tangent,
+                        "normal": (float(tangent[1]), float(-tangent[0])),
+                        "carriageway_width_m": max(carriageway_width_m, 1.0),
+                        "nearroad_buffer_width_m": float(profile.get("nearroad_buffer_width_m", 0.0) or 0.0),
+                        "nearroad_furnishing_width_m": float(profile.get("nearroad_furnishing_width_m", 0.0) or 0.0),
+                        "clear_sidewalk_width_m": float(profile.get("clear_sidewalk_width_m", 0.0) or 0.0),
+                        "farfromroad_buffer_width_m": float(profile.get("farfromroad_buffer_width_m", 0.0) or 0.0),
+                        "frontage_reserve_width_m": float(profile.get("frontage_reserve_width_m", 0.0) or 0.0),
+                    }
+                )
+        arm_angles = [float(item["angle_deg"]) for item in arms]
+        arm_count = len(arm_angles)
+        if arm_count < 3:
+            continue
+        kind = _classify_junction_kind(arm_angles)
+        if kind not in {"t_junction", "cross_junction"}:
+            carriageway_core = MultiPolygon()
+            approach_polygons = []
+            for arm in arms:
+                extent_m = max(float(crosswalk_depth_m) + 6.0, float(arm["carriageway_width_m"]))
+                approach = LineString(
+                    [
+                        anchor,
+                        (
+                            anchor[0] + float(arm["tangent"][0]) * extent_m,
+                            anchor[1] + float(arm["tangent"][1]) * extent_m,
+                        ),
+                    ]
+                ).buffer(float(arm["carriageway_width_m"]) * 0.5, cap_style="flat")
+                approach_polygons.append(approach)
+            carriageway_core = _merge_polygon_geometries(approach_polygons, aoi_polygon=aoi_polygon)
+            junctions.append(
+                {
+                    "junction_id": f"junction_{index:02d}",
+                    "kind": "complex_junction",
+                    "anchor_xy": [round(anchor[0], 3), round(anchor[1], 3)],
+                    "arm_count": int(arm_count),
+                    "connected_road_ids": connected_road_ids,
+                    "carriageway_core": carriageway_core,
+                    "crosswalk_patches": [],
+                    "sidewalk_corner_patches": [],
+                    "frontage_corner_patches": [],
+                }
+            )
+            continue
+
+        approach_polygons = []
+        crosswalk_patches = []
+        for arm_index, arm in enumerate(arms):
+            half_width = float(arm["carriageway_width_m"]) * 0.5
+            extent_m = max(float(crosswalk_depth_m) + half_width + 4.0, float(arm["carriageway_width_m"]))
+            approach_polygons.append(
+                LineString(
+                    [
+                        anchor,
+                        (
+                            anchor[0] + float(arm["tangent"][0]) * extent_m,
+                            anchor[1] + float(arm["tangent"][1]) * extent_m,
+                        ),
+                    ]
+                ).buffer(half_width, cap_style="flat")
+            )
+            center = (
+                anchor[0] + float(arm["tangent"][0]) * (float(crosswalk_depth_m) * 0.5 + min(half_width * 0.35, 1.8)),
+                anchor[1] + float(arm["tangent"][1]) * (float(crosswalk_depth_m) * 0.5 + min(half_width * 0.35, 1.8)),
+            )
+            patch = _rectangle_patch(
+                center=center,
+                tangent=tuple(arm["tangent"]),
+                normal=tuple(arm["normal"]),
+                length_m=float(crosswalk_depth_m),
+                width_m=float(arm["carriageway_width_m"]),
+            )
+            if aoi_polygon is not None and not getattr(aoi_polygon, "is_empty", True):
+                patch = patch.intersection(aoi_polygon)
+            crosswalk_patches.append(
+                {
+                    "patch_id": f"junction_{index:02d}_crosswalk_{arm_index:02d}",
+                    "road_id": int(arm["road_id"]),
+                    "geometry": patch,
+                }
+            )
+
+        carriageway_core = _merge_polygon_geometries(approach_polygons, aoi_polygon=aoi_polygon)
+
+        sidewalk_corner_patches = []
+        frontage_corner_patches = []
+        ordered_arms = sorted(arms, key=lambda item: float(item["angle_deg"]))
+        for arm_index, arm in enumerate(ordered_arms):
+            next_arm = ordered_arms[(arm_index + 1) % len(ordered_arms)]
+            start_angle = float(arm["angle_deg"])
+            end_angle = float(next_arm["angle_deg"])
+            sweep = end_angle - start_angle
+            if sweep <= 0.0:
+                sweep += 360.0
+            if sweep <= 5.0 or sweep >= 175.0:
+                continue
+            base_inner_m = max(
+                float(arm["carriageway_width_m"]) * 0.5
+                + float(arm["nearroad_buffer_width_m"])
+                + float(arm["nearroad_furnishing_width_m"]),
+                float(next_arm["carriageway_width_m"]) * 0.5
+                + float(next_arm["nearroad_buffer_width_m"])
+                + float(next_arm["nearroad_furnishing_width_m"]),
+            )
+            clear_sidewalk_width_m = max(
+                float(arm["clear_sidewalk_width_m"]),
+                float(next_arm["clear_sidewalk_width_m"]),
+            )
+            if clear_sidewalk_width_m > 0.0:
+                sidewalk_patch = _sector_patch(
+                    anchor=anchor,
+                    start_angle_deg=start_angle,
+                    end_angle_deg=end_angle,
+                    inner_radius_m=base_inner_m,
+                    outer_radius_m=base_inner_m + clear_sidewalk_width_m,
+                )
+                if aoi_polygon is not None and not getattr(aoi_polygon, "is_empty", True):
+                    sidewalk_patch = sidewalk_patch.intersection(aoi_polygon)
+                sidewalk_corner_patches.append(
+                    {
+                        "patch_id": f"junction_{index:02d}_sidewalk_{arm_index:02d}",
+                        "geometry": sidewalk_patch,
+                    }
+                )
+            frontage_width_m = max(
+                float(arm["frontage_reserve_width_m"]),
+                float(next_arm["frontage_reserve_width_m"]),
+            )
+            if frontage_width_m > 0.0:
+                frontage_inner_m = (
+                    base_inner_m
+                    + clear_sidewalk_width_m
+                    + max(float(arm["farfromroad_buffer_width_m"]), float(next_arm["farfromroad_buffer_width_m"]))
+                )
+                frontage_patch = _sector_patch(
+                    anchor=anchor,
+                    start_angle_deg=start_angle,
+                    end_angle_deg=end_angle,
+                    inner_radius_m=frontage_inner_m,
+                    outer_radius_m=frontage_inner_m + frontage_width_m,
+                )
+                if aoi_polygon is not None and not getattr(aoi_polygon, "is_empty", True):
+                    frontage_patch = frontage_patch.intersection(aoi_polygon)
+                frontage_corner_patches.append(
+                    {
+                        "patch_id": f"junction_{index:02d}_frontage_{arm_index:02d}",
+                        "geometry": frontage_patch,
+                    }
+                )
+
+        junctions.append(
+            {
+                "junction_id": f"junction_{index:02d}",
+                "kind": kind,
+                "anchor_xy": [round(anchor[0], 3), round(anchor[1], 3)],
+                "arm_count": int(arm_count),
+                "connected_road_ids": connected_road_ids,
+                "carriageway_core": carriageway_core,
+                "crosswalk_patches": crosswalk_patches,
+                "sidewalk_corner_patches": sidewalk_corner_patches,
+                "frontage_corner_patches": frontage_corner_patches,
+            }
+        )
+    return junctions
 
 
 # ---------------------------------------------------------------------------
@@ -420,15 +832,19 @@ def poi_core_count(counts: Dict[str, int]) -> int:
 def evaluate_projected_road_context(
     projected_features: Any,
     config: Any,
+    *,
+    road_segment_graph: Any | None = None,
 ) -> Tuple[Any, PlacementContext, Dict[str, int]]:
     filtered_projected = apply_road_selection(projected_features, config)
-    placement_ctx = build_placement_context(filtered_projected, config)
+    placement_ctx = build_placement_context(filtered_projected, config, road_segment_graph=road_segment_graph)
     return filtered_projected, placement_ctx, count_placement_context_pois(placement_ctx)
 
 
 def build_placement_context(
     projected_features: Any,
     config: Any,
+    *,
+    road_segment_graph: Any | None = None,
 ) -> PlacementContext:
     """Build the full placement context from projected OSM features and config."""
     from shapely.geometry import box
@@ -502,6 +918,12 @@ def build_placement_context(
         }),
     )
 
+    junction_geometries = build_junction_geometries(
+        projected_features.roads,
+        road_segment_graph=road_segment_graph,
+        aoi_polygon=aoi_polygon,
+    )
+
     return PlacementContext(
         sidewalk_zone=sidewalk_zone,
         carriageway=carriageway,
@@ -528,6 +950,7 @@ def build_placement_context(
         poi_fit_report=dict(cross_section.poi_fit_report),
         required_left_width_m=float(cross_section.required_left_width_m),
         required_right_width_m=float(cross_section.required_right_width_m),
+        junction_geometries=list(junction_geometries),
     )
 
 

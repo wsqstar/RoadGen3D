@@ -201,6 +201,43 @@ def _dedupe_adjacent_points(points: Sequence[Tuple[float, float]]) -> List[Tuple
     return deduped
 
 
+def _normalize_angle_deg(value: float) -> float:
+    normalized = math.fmod(float(value), 360.0)
+    if normalized < 0.0:
+        normalized += 360.0
+    return normalized
+
+
+def _angle_deg(from_point: Tuple[float, float], to_point: Tuple[float, float]) -> float:
+    return _normalize_angle_deg(
+        math.degrees(float(math.atan2(float(to_point[1]) - float(from_point[1]), float(to_point[0]) - float(from_point[0]))))
+    )
+
+
+def _circular_angle_diffs_deg(angles_deg: Sequence[float]) -> List[float]:
+    if not angles_deg:
+        return []
+    ordered = sorted(_normalize_angle_deg(value) for value in angles_deg)
+    diffs: List[float] = []
+    for index, value in enumerate(ordered):
+        next_value = ordered[(index + 1) % len(ordered)]
+        raw_diff = next_value - value
+        if index == len(ordered) - 1:
+            raw_diff += 360.0
+        diffs.append(float(raw_diff))
+    return diffs
+
+
+def _classify_topology_junction_kind(angles_deg: Sequence[float]) -> str:
+    arm_count = len(tuple(angles_deg))
+    diffs = _circular_angle_diffs_deg(angles_deg)
+    if arm_count == 4 and diffs and max(abs(diff - 90.0) for diff in diffs) <= 35.0:
+        return "cross_junction"
+    if arm_count == 3 and diffs and any(diff >= 145.0 for diff in diffs):
+        return "t_junction"
+    return "complex_junction"
+
+
 def _safe_slug(label: str, fallback: str) -> str:
     normalized = "".join(ch.lower() if ch.isalnum() else "_" for ch in label.strip())
     collapsed = "_".join(part for part in normalized.split("_") if part)
@@ -1166,6 +1203,109 @@ def _build_street_furniture_instances(annotation: ReferenceAnnotation) -> List[D
     return items
 
 
+def _collect_local_centerlines(
+    annotation: ReferenceAnnotation,
+) -> List[Tuple[int, AnnotatedCenterline, List[Tuple[float, float]]]]:
+    local_centerlines: List[Tuple[int, AnnotatedCenterline, List[Tuple[float, float]]]] = []
+    road_id = 1
+    for centerline in annotation.centerlines:
+        points = _dedupe_adjacent_points(
+            [_pixel_to_local(annotation, x=point.x, y=point.y) for point in centerline.points]
+        )
+        if len(points) >= 2:
+            local_centerlines.append((road_id, centerline, points))
+            road_id += 1
+    return local_centerlines
+
+
+def _derive_topology_junctions(
+    local_centerlines: Sequence[Tuple[int, AnnotatedCenterline, Sequence[Tuple[float, float]]]],
+    *,
+    tolerance_m: float,
+) -> List[Dict[str, Any]]:
+    clusters: List[Dict[str, Any]] = []
+    for road_id, centerline, points in local_centerlines:
+        for vertex_index, point in enumerate(points):
+            matched = None
+            for cluster in clusters:
+                if _distance(cluster["point"], point) <= tolerance_m:
+                    matched = cluster
+                    break
+            if matched is None:
+                matched = {
+                    "point": tuple(point),
+                    "count": 0,
+                    "members": [],
+                }
+                clusters.append(matched)
+            count = int(matched["count"]) + 1
+            anchor = (
+                (float(matched["point"][0]) * float(matched["count"]) + float(point[0])) / float(count),
+                (float(matched["point"][1]) * float(matched["count"]) + float(point[1])) / float(count),
+            )
+            matched["point"] = anchor
+            matched["count"] = count
+            matched["members"].append(
+                {
+                    "road_id": int(road_id),
+                    "centerline_id": str(centerline.feature_id),
+                    "vertex_index": int(vertex_index),
+                    "points": tuple((float(item[0]), float(item[1])) for item in points),
+                }
+            )
+
+    derived: List[Dict[str, Any]] = []
+    for index, cluster in enumerate(clusters, start=1):
+        members = list(cluster.get("members", []))
+        connected_road_ids = sorted({int(member["road_id"]) for member in members})
+        if len(connected_road_ids) < 2:
+            continue
+        anchor = (float(cluster["point"][0]), float(cluster["point"][1]))
+        arm_records: List[Dict[str, Any]] = []
+        seen_arm_keys: set[Tuple[int, int, int]] = set()
+        for member in members:
+            points = tuple(member["points"])
+            vertex_index = int(member["vertex_index"])
+            for neighbor_index in (vertex_index - 1, vertex_index + 1):
+                if neighbor_index < 0 or neighbor_index >= len(points):
+                    continue
+                neighbor = points[neighbor_index]
+                if _distance(anchor, neighbor) <= max(float(tolerance_m) * 0.25, 0.05):
+                    continue
+                arm_key = (
+                    int(member["road_id"]),
+                    int(round(float(neighbor[0]) * 1000.0)),
+                    int(round(float(neighbor[1]) * 1000.0)),
+                )
+                if arm_key in seen_arm_keys:
+                    continue
+                seen_arm_keys.add(arm_key)
+                arm_records.append(
+                    {
+                        "road_id": int(member["road_id"]),
+                        "centerline_id": str(member["centerline_id"]),
+                        "angle_deg": float(_angle_deg(anchor, neighbor)),
+                    }
+                )
+        arm_angles = [float(item["angle_deg"]) for item in arm_records]
+        arm_count = len(arm_angles)
+        if arm_count < 3:
+            continue
+        kind = _classify_topology_junction_kind(arm_angles)
+        derived.append(
+            {
+                "junction_id": f"derived_junction_{index:02d}",
+                "kind": kind,
+                "anchor": [round(anchor[0], 3), round(anchor[1], 3)],
+                "arm_count": int(arm_count),
+                "connected_road_ids": connected_road_ids,
+                "connected_centerline_ids": sorted({str(member["centerline_id"]) for member in members}),
+                "arm_angles_deg": [round(value, 2) for value in sorted(arm_angles)],
+            }
+        )
+    return derived
+
+
 def _collect_auto_junction_anchors(
     polylines: Sequence[Sequence[Tuple[float, float]]],
     *,
@@ -1566,14 +1706,7 @@ def build_segment_graph_from_annotation(
 ) -> RoadSegmentGraph:
     annotation = annotation_input if isinstance(annotation_input, ReferenceAnnotation) else parse_reference_annotation(annotation_input)
     resolved_config = config or build_reference_annotation_compose_config()
-
-    local_centerlines: List[Tuple[AnnotatedCenterline, List[Tuple[float, float]]]] = []
-    for centerline in annotation.centerlines:
-        points = _dedupe_adjacent_points(
-            [_pixel_to_local(annotation, x=point.x, y=point.y) for point in centerline.points]
-        )
-        if len(points) >= 2:
-            local_centerlines.append((centerline, points))
+    local_centerlines = _collect_local_centerlines(annotation)
     if not local_centerlines:
         raise ValueError("Annotation contains no usable centerlines.")
 
@@ -1582,7 +1715,7 @@ def build_segment_graph_from_annotation(
     control_points = [(item, _pixel_to_local(annotation, x=item.x, y=item.y)) for item in annotation.control_points]
     junction_tolerance_m = max(float(resolved_config.segment_length_m) * 0.5, 4.0)
     auto_junctions = _collect_auto_junction_anchors(
-        [points for _, points in local_centerlines],
+        [points for _, _, points in local_centerlines],
         tolerance_m=junction_tolerance_m,
     )
     junction_anchors = _merge_anchor_points(
@@ -1594,12 +1727,11 @@ def build_segment_graph_from_annotation(
     edges: List[RoadSegmentEdge] = []
     segment_counter = 0
     edge_counter = 0
-    road_id = 1
     default_anchor_width_m = max(
-        [float(centerline.cross_section_width_m()) for centerline, _ in local_centerlines] + [float(resolved_config.road_width_m)],
+        [float(centerline.cross_section_width_m()) for _, centerline, _ in local_centerlines] + [float(resolved_config.road_width_m)],
     )
 
-    for centerline, points in local_centerlines:
+    for road_id, centerline, points in local_centerlines:
         centerline_nodes, centerline_edges, segment_counter, edge_counter = _build_centerline_nodes(
             centerline,
             road_id=road_id,
@@ -1613,7 +1745,7 @@ def build_segment_graph_from_annotation(
         )
         nodes.extend(centerline_nodes)
         edges.extend(centerline_edges)
-        road_id += 1
+    road_id = len(local_centerlines) + 1
 
     for roundabout, center_xy in zip(annotation.roundabouts, roundabout_centers):
         radius_m = float(roundabout.radius_px) / max(float(annotation.pixels_per_meter), 1.0)
@@ -1679,19 +1811,20 @@ def summarize_reference_annotation(annotation_input: ReferenceAnnotation | Mappi
     road_profiles = _build_annotation_road_profiles(annotation)
     cross_section_profiles = _build_cross_section_profiles(annotation)
     furniture_instances = _build_street_furniture_instances(annotation)
+    local_centerlines_with_ids = _collect_local_centerlines(annotation)
     local_centerlines: List[List[Tuple[float, float]]] = []
     points: List[Tuple[float, float]] = []
-    for centerline in annotation.centerlines:
-        local_points = _dedupe_adjacent_points(
-            [_pixel_to_local(annotation, x=point.x, y=point.y) for point in centerline.points]
-        )
-        if len(local_points) >= 2:
-            local_centerlines.append(local_points)
+    for _, centerline, local_points in local_centerlines_with_ids:
+        local_centerlines.append(list(local_points))
         for point in centerline.points:
             points.append(_pixel_to_local(annotation, x=point.x, y=point.y))
     explicit_junctions = [_pixel_to_local(annotation, x=marker.x, y=marker.y) for marker in annotation.junctions]
     junction_tolerance_m = max(DEFAULT_SEGMENT_LENGTH_M * 0.5, 4.0)
-    derived_junctions = _collect_auto_junction_anchors(local_centerlines, tolerance_m=junction_tolerance_m)
+    topology_derived_junctions = _derive_topology_junctions(
+        local_centerlines_with_ids,
+        tolerance_m=junction_tolerance_m,
+    )
+    derived_junctions = [tuple(float(value) for value in item["anchor"]) for item in topology_derived_junctions]
     topology_junctions = _merge_anchor_points(
         [*explicit_junctions, *derived_junctions],
         tolerance_m=junction_tolerance_m,
@@ -1751,8 +1884,12 @@ def summarize_reference_annotation(annotation_input: ReferenceAnnotation | Mappi
             if centerline.resolved_cross_section_mode() == CROSS_SECTION_MODE_DETAILED
         ),
         "junction_count": len(annotation.junctions),
-        "derived_junction_count": len(derived_junctions),
+        "derived_junction_count": len(topology_derived_junctions),
         "topology_junction_count": len(topology_junctions),
+        "t_junction_count": sum(1 for item in topology_derived_junctions if str(item.get("kind", "")) == "t_junction"),
+        "cross_junction_count": sum(
+            1 for item in topology_derived_junctions if str(item.get("kind", "")) == "cross_junction"
+        ),
         "roundabout_count": len(annotation.roundabouts),
         "control_point_count": len(annotation.control_points),
         "control_point_kinds": sorted({item.kind for item in annotation.control_points}),
@@ -1800,6 +1937,10 @@ def build_reference_annotation_graph_payload(
     street_furniture_instances = _build_street_furniture_instances(annotation)
     metaurban_asset_hints = _build_metaurban_asset_hint_records(annotation)
     metaurban_asset_guide = _build_metaurban_asset_guide()
+    derived_junctions = _derive_topology_junctions(
+        _collect_local_centerlines(annotation),
+        tolerance_m=max(float(resolved_config.segment_length_m) * 0.5, 4.0),
+    )
     summary = summarize_reference_annotation(annotation)
     summary.update(graph.summary())
     summary["road_profile_count"] = len(road_profiles)
@@ -1820,6 +1961,7 @@ def build_reference_annotation_graph_payload(
         "street_furniture_instances": street_furniture_instances,
         "metaurban_asset_hints": metaurban_asset_hints,
         "metaurban_asset_guide": metaurban_asset_guide,
+        "derived_junctions": derived_junctions,
         "summary": summary,
     }
 

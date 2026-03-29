@@ -1472,16 +1472,29 @@ body {
   stroke-dasharray: 18 10;
 }
 
+.annotation-cross-preview {
+  stroke: #2563eb;
+}
+
 .annotation-branch-anchor {
   fill: #fff7d6;
   stroke: #53a26d;
   stroke-width: 4;
 }
 
+.annotation-cross-anchor {
+  fill: #eef5ff;
+  stroke: #2563eb;
+}
+
 .annotation-branch-end {
   fill: rgba(255, 253, 246, 0.92);
   stroke: #53a26d;
   stroke-width: 3;
+}
+
+.annotation-cross-end {
+  stroke: #2563eb;
 }
 
 .annotation-branch-end-snapped {

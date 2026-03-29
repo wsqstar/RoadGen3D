@@ -2840,6 +2840,60 @@ def _build_osm_base_scene(
         except Exception:
             logger.debug("Skipping curb geometry in OSM base scene")
 
+    junction_geometries = list(getattr(placement_ctx, "junction_geometries", []) or [])
+    if junction_geometries:
+        for junction_index, junction in enumerate(junction_geometries):
+            carriageway_core = junction.get("carriageway_core")
+            if carriageway_core is not None and not getattr(carriageway_core, "is_empty", True):
+                _extrude_polygon(
+                    carriageway_core,
+                    0.012,
+                    list(colors.get("carriageway", (65, 68, 72, 255))),
+                    f"junction_carriageway_core_{junction_index}",
+                    y_offset=0.004,
+                    roughness_key="carriageway",
+                    surface_role="carriageway",
+                )
+            for patch_index, patch in enumerate(junction.get("crosswalk_patches", []) or ()):
+                geometry = patch.get("geometry")
+                if geometry is None or getattr(geometry, "is_empty", True):
+                    continue
+                _extrude_polygon(
+                    geometry,
+                    0.01,
+                    list(colors.get("lane_mark", (245, 245, 245, 255))),
+                    f"junction_crosswalk_{junction_index}_{patch_index}",
+                    y_offset=0.008,
+                    roughness_key="lane_mark",
+                    surface_role="lane_mark",
+                )
+            for patch_index, patch in enumerate(junction.get("sidewalk_corner_patches", []) or ()):
+                geometry = patch.get("geometry")
+                if geometry is None or getattr(geometry, "is_empty", True):
+                    continue
+                _extrude_polygon(
+                    geometry,
+                    0.08,
+                    list(colors.get("sidewalk", (165, 168, 172, 255))),
+                    f"junction_sidewalk_corner_{junction_index}_{patch_index}",
+                    y_offset=SIDEWALK_ELEVATION_M,
+                    roughness_key="sidewalk",
+                    surface_role="sidewalk",
+                )
+            for patch_index, patch in enumerate(junction.get("frontage_corner_patches", []) or ()):
+                geometry = patch.get("geometry")
+                if geometry is None or getattr(geometry, "is_empty", True):
+                    continue
+                _extrude_polygon(
+                    geometry,
+                    0.05,
+                    list(colors.get("context_ground", (168, 163, 150, 255))),
+                    f"junction_frontage_corner_{junction_index}_{patch_index}",
+                    y_offset=SIDEWALK_ELEVATION_M,
+                    roughness_key="context_ground",
+                    surface_role="context_ground",
+                )
+
     fallback_length_m = 20.0
     if scene_bounds:
         fallback_length_m = max(
@@ -3057,6 +3111,42 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
     if aoi is not None and not aoi.is_empty:
         b = aoi.bounds  # (minx, miny, maxx, maxy)
         result["aoi_bbox_m"] = [round(v, 2) for v in b]
+    junction_geometries = list(getattr(placement_ctx, "junction_geometries", []) or [])
+    if junction_geometries:
+        result["junction_geometries"] = []
+        for item in junction_geometries:
+            result["junction_geometries"].append(
+                {
+                    "junction_id": str(item.get("junction_id", "") or ""),
+                    "kind": str(item.get("kind", "") or ""),
+                    "anchor_xy": [round(float(value), 3) for value in item.get("anchor_xy", [0.0, 0.0])[:2]],
+                    "arm_count": int(item.get("arm_count", 0) or 0),
+                    "connected_road_ids": [int(value) for value in item.get("connected_road_ids", []) or ()],
+                    "carriageway_core_rings": _extract_rings(item.get("carriageway_core")),
+                    "crosswalk_patches": [
+                        {
+                            "patch_id": str(patch.get("patch_id", "") or ""),
+                            "road_id": int(patch.get("road_id", 0) or 0),
+                            "rings": _extract_rings(patch.get("geometry")),
+                        }
+                        for patch in item.get("crosswalk_patches", []) or ()
+                    ],
+                    "sidewalk_corner_patches": [
+                        {
+                            "patch_id": str(patch.get("patch_id", "") or ""),
+                            "rings": _extract_rings(patch.get("geometry")),
+                        }
+                        for patch in item.get("sidewalk_corner_patches", []) or ()
+                    ],
+                    "frontage_corner_patches": [
+                        {
+                            "patch_id": str(patch.get("patch_id", "") or ""),
+                            "rings": _extract_rings(patch.get("geometry")),
+                        }
+                        for patch in item.get("frontage_corner_patches", []) or ()
+                    ],
+                }
+            )
     return result
 
 
@@ -4523,7 +4613,11 @@ def compose_street_scene(
         raw = fetch_osm_data(bbox=config.aoi_bbox, cache_dir=Path(config.osm_cache_dir))
         features = parse_osm_features(raw)
         projected = project_to_local(features, config.aoi_bbox)
-        projected, placement_ctx, effective_poi_counts = evaluate_projected_road_context(projected, config)
+        projected, placement_ctx, effective_poi_counts = evaluate_projected_road_context(
+            projected,
+            config,
+            road_segment_graph=road_segment_graph,
+        )
         if not getattr(placement_ctx, "poi_fit_feasible", True):
             raise RuntimeError(
                 "Selected road failed POI fit synthesis: "

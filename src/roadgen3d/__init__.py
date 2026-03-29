@@ -91,6 +91,11 @@ from .reference_annotation import (
     parse_reference_annotation,
     summarize_reference_annotation,
 )
+from .reference_annotation_scene_bridge import (
+    ANNOTATION_SCENE_BBOX_PADDING_M,
+    ReferenceAnnotationSceneBridgeResult,
+    build_reference_annotation_scene_bridge,
+)
 from .runtime_device import resolve_device_backend, resolve_torch_device
 from .street_layout import compose_street_scene
 from .street_program import infer_street_program
@@ -138,6 +143,7 @@ __all__ = [
     "AnnotatedCenterline",
     "AnnotatedMarker",
     "AnnotatedRoundabout",
+    "ANNOTATION_SCENE_BBOX_PADDING_M",
     "AnnotationPoint",
     "BenchParams",
     "BuildingFootprint",
@@ -210,6 +216,7 @@ __all__ = [
     "build_metaurban_reference_config",
     "build_reference_annotation_compose_config",
     "build_reference_annotation_graph_payload",
+    "build_reference_annotation_scene_bridge",
     "build_metaurban_reference_layout_payload",
     "build_metaurban_scene_bridge",
     "build_metaurban_segment_graph",
@@ -255,6 +262,7 @@ __all__ = [
     "get_metaurban_reference_plan",
     "METAURBAN_SCENE_BBOX_PADDING_M",
     "resolve_metaurban_block_sequence",
+    "ReferenceAnnotationSceneBridgeResult",
     "resolve_torch_device",
     "sample_metaurban_block_sequence",
     "score_entrance_impact",

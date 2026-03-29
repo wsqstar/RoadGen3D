@@ -196,7 +196,11 @@ def build_metaurban_scene_bridge(
         origin_utm=(0.0, 0.0),
         utm_epsg=0,
     )
-    placement_context = build_placement_context(projected_features, compose_config)
+    placement_context = build_placement_context(
+        projected_features,
+        compose_config,
+        road_segment_graph=road_segment_graph,
+    )
     evaluation = compute_metaurban_plan_metrics(road_segment_graph)
     block_sequence = resolve_metaurban_block_sequence(
         resolved_procedural_config,
