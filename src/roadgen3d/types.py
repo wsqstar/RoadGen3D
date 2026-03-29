@@ -527,6 +527,102 @@ class RoadSegmentMetaUrbanAssetHint:
 
 
 @dataclass(frozen=True)
+class RoadSegmentJunctionApproachSplit:
+    """One road approach boundary owned by a junction."""
+
+    boundary_id: str
+    road_id: int
+    centerline_id: str
+    start_xy: Tuple[float, float]
+    end_xy: Tuple[float, float]
+    center_xy: Tuple[float, float]
+    exit_distance_m: float = 0.0
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "boundary_id": self.boundary_id,
+            "road_id": int(self.road_id),
+            "centerline_id": self.centerline_id,
+            "start_xy": list(self.start_xy),
+            "end_xy": list(self.end_xy),
+            "center_xy": list(self.center_xy),
+            "exit_distance_m": float(self.exit_distance_m),
+        }
+
+
+@dataclass(frozen=True)
+class RoadSegmentJunctionFootPoint:
+    """Centerline foot point on an approach boundary."""
+
+    foot_id: str
+    road_id: int
+    centerline_id: str
+    xy: Tuple[float, float]
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "foot_id": self.foot_id,
+            "road_id": int(self.road_id),
+            "centerline_id": self.centerline_id,
+            "xy": list(self.xy),
+        }
+
+
+@dataclass(frozen=True)
+class RoadSegmentJunctionControlPoint:
+    """Derived control point for sub-lane corner construction."""
+
+    control_id: str
+    road_id: int
+    centerline_id: str
+    strip_kind: str
+    strip_zone: str
+    point_kind: str
+    xy: Tuple[float, float]
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "control_id": self.control_id,
+            "road_id": int(self.road_id),
+            "centerline_id": self.centerline_id,
+            "strip_kind": self.strip_kind,
+            "strip_zone": self.strip_zone,
+            "point_kind": self.point_kind,
+            "xy": list(self.xy),
+        }
+
+
+@dataclass(frozen=True)
+class RoadSegmentJunction:
+    """Explicit junction metadata carried alongside the road graph."""
+
+    junction_id: str
+    kind: str
+    anchor_xy: Tuple[float, float]
+    connected_road_ids: Tuple[int, ...] = ()
+    connected_centerline_ids: Tuple[str, ...] = ()
+    crosswalk_depth_m: float = 3.0
+    source_mode: str = "explicit"
+    approach_split_lines: Tuple[RoadSegmentJunctionApproachSplit, ...] = ()
+    skeleton_foot_points: Tuple[RoadSegmentJunctionFootPoint, ...] = ()
+    sub_lane_control_points: Tuple[RoadSegmentJunctionControlPoint, ...] = ()
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "junction_id": self.junction_id,
+            "kind": self.kind,
+            "anchor_xy": list(self.anchor_xy),
+            "connected_road_ids": [int(item) for item in self.connected_road_ids],
+            "connected_centerline_ids": [str(item) for item in self.connected_centerline_ids],
+            "crosswalk_depth_m": float(self.crosswalk_depth_m),
+            "source_mode": self.source_mode,
+            "approach_split_lines": [item.to_dict() for item in self.approach_split_lines],
+            "skeleton_foot_points": [item.to_dict() for item in self.skeleton_foot_points],
+            "sub_lane_control_points": [item.to_dict() for item in self.sub_lane_control_points],
+        }
+
+
+@dataclass(frozen=True)
 class RoadSegmentNode:
     """One segment on a road polyline graph."""
 
@@ -550,6 +646,8 @@ class RoadSegmentNode:
     cross_section_width_m: float = 0.0
     street_furniture_instances: Tuple[RoadSegmentFurnitureInstance, ...] = ()
     metaurban_asset_hints: Tuple[RoadSegmentMetaUrbanAssetHint, ...] = ()
+    start_junction_id: str = ""
+    end_junction_id: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -579,6 +677,8 @@ class RoadSegmentNode:
                 hint.to_dict()
                 for hint in self.metaurban_asset_hints
             ],
+            "start_junction_id": self.start_junction_id,
+            "end_junction_id": self.end_junction_id,
         }
 
 
@@ -601,6 +701,7 @@ class RoadSegmentGraph:
 
     nodes: Tuple[RoadSegmentNode, ...]
     edges: Tuple[RoadSegmentEdge, ...]
+    junctions: Tuple[RoadSegmentJunction, ...] = ()
     mode: str = "osm"
 
     def to_dict(self) -> Dict[str, Any]:
@@ -608,6 +709,7 @@ class RoadSegmentGraph:
             "mode": self.mode,
             "nodes": [node.to_dict() for node in self.nodes],
             "edges": [edge.to_dict() for edge in self.edges],
+            "junctions": [junction.to_dict() for junction in self.junctions],
         }
 
     def summary(self) -> Dict[str, Any]:
@@ -629,11 +731,15 @@ class RoadSegmentGraph:
             metaurban_asset_hint_count += len(getattr(node, "metaurban_asset_hints", ()) or ())
         unique_widths = list(carriageway_widths_by_road.values())
         unique_cross_section_widths = list(cross_section_widths_by_road.values())
+        junction_kinds = [str(junction.kind) for junction in self.junctions]
         return {
             "mode": self.mode,
             "segment_count": len(self.nodes),
             "edge_count": len(self.edges),
             "junction_segment_count": sum(1 for node in self.nodes if node.is_junction),
+            "graph_junction_count": len(self.junctions),
+            "graph_t_junction_count": sum(1 for kind in junction_kinds if kind == "t_junction"),
+            "graph_cross_junction_count": sum(1 for kind in junction_kinds if kind == "cross_junction"),
             "avg_segment_length_m": (
                 sum(float(node.length_m) for node in self.nodes) / len(self.nodes)
                 if self.nodes

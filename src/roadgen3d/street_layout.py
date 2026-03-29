@@ -3141,6 +3141,7 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
                         {
                             "boundary_id": str(boundary.get("boundary_id", "") or ""),
                             "road_id": int(boundary.get("road_id", 0) or 0),
+                            "centerline_id": str(boundary.get("centerline_id", "") or ""),
                             "center_xy": [
                                 round(float(value), 3)
                                 for value in boundary.get("center_xy", [0.0, 0.0])[:2]
@@ -3156,6 +3157,54 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
                             "exit_distance_m": round(float(boundary.get("exit_distance_m", 0.0) or 0.0), 3),
                         }
                         for boundary in item.get("approach_boundaries", []) or ()
+                    ],
+                    "approach_split_lines": [
+                        {
+                            "boundary_id": str(boundary.get("boundary_id", "") or ""),
+                            "road_id": int(boundary.get("road_id", 0) or 0),
+                            "centerline_id": str(boundary.get("centerline_id", "") or ""),
+                            "center_xy": [
+                                round(float(value), 3)
+                                for value in boundary.get("center_xy", [0.0, 0.0])[:2]
+                            ],
+                            "start_xy": [
+                                round(float(value), 3)
+                                for value in boundary.get("start_xy", [0.0, 0.0])[:2]
+                            ],
+                            "end_xy": [
+                                round(float(value), 3)
+                                for value in boundary.get("end_xy", [0.0, 0.0])[:2]
+                            ],
+                            "exit_distance_m": round(float(boundary.get("exit_distance_m", 0.0) or 0.0), 3),
+                        }
+                        for boundary in item.get("approach_split_lines", []) or ()
+                    ],
+                    "skeleton_foot_points": [
+                        {
+                            "foot_id": str(foot.get("foot_id", "") or ""),
+                            "road_id": int(foot.get("road_id", 0) or 0),
+                            "centerline_id": str(foot.get("centerline_id", "") or ""),
+                            "xy": [
+                                round(float(value), 3)
+                                for value in foot.get("xy", [0.0, 0.0])[:2]
+                            ],
+                        }
+                        for foot in item.get("skeleton_foot_points", []) or ()
+                    ],
+                    "sub_lane_control_points": [
+                        {
+                            "control_id": str(control.get("control_id", "") or ""),
+                            "road_id": int(control.get("road_id", 0) or 0),
+                            "centerline_id": str(control.get("centerline_id", "") or ""),
+                            "strip_kind": str(control.get("strip_kind", "") or ""),
+                            "strip_zone": str(control.get("strip_zone", "") or ""),
+                            "point_kind": str(control.get("point_kind", "") or ""),
+                            "xy": [
+                                round(float(value), 3)
+                                for value in control.get("xy", [0.0, 0.0])[:2]
+                            ],
+                        }
+                        for control in item.get("sub_lane_control_points", []) or ()
                     ],
                     "crosswalk_patches": [
                         {

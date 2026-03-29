@@ -1,0 +1,22 @@
+# 密钥与本地环境
+.env
+.env.local
+*.pem
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# IDE / 系统
+.cursor/
+.DS_Store
+.idea/
+.vscode/
+

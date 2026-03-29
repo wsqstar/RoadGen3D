@@ -14,15 +14,20 @@ from .types import (
     RoadSegmentEdge,
     RoadSegmentFurnitureInstance,
     RoadSegmentGraph,
+    RoadSegmentJunction,
+    RoadSegmentJunctionApproachSplit,
+    RoadSegmentJunctionControlPoint,
+    RoadSegmentJunctionFootPoint,
     RoadSegmentMetaUrbanAssetHint,
     RoadSegmentNode,
     StreetComposeConfig,
 )
 
 ANNOTATION_SCHEMA_VERSION = "roadgen3d_reference_annotation_v2"
-DEFAULT_PIXELS_PER_METER = 8.0
+DEFAULT_PIXELS_PER_METER = 1.5
 DEFAULT_ROUNDABOUT_RADIUS_PX = 36.0
 DEFAULT_SEGMENT_LENGTH_M = 12.0
+DEFAULT_CROSSWALK_DEPTH_M = 3.0
 DEFAULT_FORWARD_DRIVE_LANE_COUNT = 2
 DEFAULT_REVERSE_DRIVE_LANE_COUNT = 2
 DEFAULT_BIKE_LANE_COUNT = 0
@@ -587,6 +592,8 @@ class AnnotatedCenterline:
     cross_section_mode: str = CROSS_SECTION_MODE_COARSE
     cross_section_strips: Tuple[AnnotatedCrossSectionStrip, ...] = ()
     street_furniture_instances: Tuple[AnnotatedStreetFurnitureInstance, ...] = ()
+    start_junction_id: str = ""
+    end_junction_id: str = ""
 
     def resolved_cross_section_mode(self) -> str:
         if self.cross_section_strips:
@@ -645,7 +652,34 @@ class AnnotatedCenterline:
             "cross_section_mode": self.resolved_cross_section_mode(),
             "cross_section_strips": [strip.to_dict() for strip in self.cross_section_strips],
             "street_furniture_instances": [item.to_dict() for item in self.street_furniture_instances],
+            "start_junction_id": self.start_junction_id,
+            "end_junction_id": self.end_junction_id,
             "points": [point.to_dict() for point in self.points],
+        }
+
+
+@dataclass(frozen=True)
+class AnnotatedJunction:
+    feature_id: str
+    label: str
+    kind: str
+    anchor_x: float
+    anchor_y: float
+    connected_centerline_ids: Tuple[str, ...] = ()
+    crosswalk_depth_m: float = DEFAULT_CROSSWALK_DEPTH_M
+    source_mode: str = "explicit"
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "id": self.feature_id,
+            "label": self.label,
+            "kind": self.kind,
+            "x": float(self.anchor_x),
+            "y": float(self.anchor_y),
+            "anchor": {"x": float(self.anchor_x), "y": float(self.anchor_y)},
+            "connected_centerline_ids": [str(item) for item in self.connected_centerline_ids],
+            "crosswalk_depth_m": float(self.crosswalk_depth_m),
+            "source_mode": self.source_mode,
         }
 
 
@@ -694,7 +728,7 @@ class ReferenceAnnotation:
     image_height_px: int
     pixels_per_meter: float
     centerlines: Tuple[AnnotatedCenterline, ...]
-    junctions: Tuple[AnnotatedMarker, ...]
+    junctions: Tuple[AnnotatedJunction, ...]
     roundabouts: Tuple[AnnotatedRoundabout, ...]
     control_points: Tuple[AnnotatedMarker, ...]
 
@@ -1017,6 +1051,8 @@ def _parse_centerline(value: Any, index: int) -> AnnotatedCenterline:
         cross_section_mode=cross_section_mode,
         cross_section_strips=cross_section_strips,
         street_furniture_instances=street_furniture_instances,
+        start_junction_id=_as_string(value.get("start_junction_id"), ""),
+        end_junction_id=_as_string(value.get("end_junction_id"), ""),
     )
     if centerline.resolved_cross_section_mode() == CROSS_SECTION_MODE_DETAILED and centerline.carriageway_width_m() <= 0.0:
         raise ValueError(f"centerlines[{index}] detailed cross section must include at least one center strip.")
@@ -1036,6 +1072,50 @@ def _parse_marker(value: Any, index: int, *, collection: str, default_kind: str)
         x=_as_float(value.get("x"), f"{collection}[{index}].x"),
         y=_as_float(value.get("y"), f"{collection}[{index}].y"),
         kind=kind or default_kind,
+    )
+
+
+def _parse_junction(value: Any, index: int) -> AnnotatedJunction:
+    if not _is_record(value):
+        raise ValueError(f"junctions[{index}] must be an object.")
+    fallback_id = f"junction_{index + 1:02d}"
+    feature_id = _as_string(value.get("id") or value.get("feature_id"), fallback_id)
+    label = _as_string(value.get("label"), feature_id)
+    raw_anchor = value.get("anchor")
+    if _is_record(raw_anchor):
+        anchor_x = _as_float(raw_anchor.get("x"), f"junctions[{index}].anchor.x")
+        anchor_y = _as_float(raw_anchor.get("y"), f"junctions[{index}].anchor.y")
+    else:
+        anchor_x = _as_float(value.get("x"), f"junctions[{index}].x")
+        anchor_y = _as_float(value.get("y"), f"junctions[{index}].y")
+    raw_connected = value.get("connected_centerline_ids") or []
+    if not isinstance(raw_connected, Sequence) or isinstance(raw_connected, (str, bytes)):
+        raise ValueError(f"junctions[{index}].connected_centerline_ids must be an array when provided.")
+    connected_centerline_ids = tuple(
+        _as_string(item, "") for item in raw_connected if _as_string(item, "")
+    )
+    source_mode = _as_string(
+        value.get("source_mode"),
+        "explicit" if connected_centerline_ids or _is_record(raw_anchor) else "legacy_marker",
+    )
+    kind_default = "intersection" if source_mode == "legacy_marker" else "t_junction"
+    kind = _safe_slug(_as_string(value.get("kind"), kind_default), kind_default)
+    return AnnotatedJunction(
+        feature_id=feature_id,
+        label=label,
+        kind=kind or kind_default,
+        anchor_x=anchor_x,
+        anchor_y=anchor_y,
+        connected_centerline_ids=connected_centerline_ids,
+        crosswalk_depth_m=max(
+            0.5,
+            _as_float(
+                value.get("crosswalk_depth_m"),
+                f"junctions[{index}].crosswalk_depth_m",
+                default=DEFAULT_CROSSWALK_DEPTH_M,
+            ),
+        ),
+        source_mode=source_mode,
     )
 
 
@@ -1099,7 +1179,7 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
         ),
         centerlines=centerlines,
         junctions=tuple(
-            _parse_marker(item, index, collection="junctions", default_kind="intersection")
+            _parse_junction(item, index)
             for index, item in enumerate(junctions_raw)
         ),
         roundabouts=tuple(_parse_roundabout(item, index) for index, item in enumerate(roundabouts_raw)),
@@ -1216,6 +1296,48 @@ def _collect_local_centerlines(
             local_centerlines.append((road_id, centerline, points))
             road_id += 1
     return local_centerlines
+
+
+def _junction_anchor_local(annotation: ReferenceAnnotation, junction: AnnotatedJunction) -> Tuple[float, float]:
+    return _pixel_to_local(annotation, x=junction.anchor_x, y=junction.anchor_y)
+
+
+def _build_explicit_graph_junctions(
+    annotation: ReferenceAnnotation,
+    local_centerlines: Sequence[Tuple[int, AnnotatedCenterline, Sequence[Tuple[float, float]]]],
+) -> List[RoadSegmentJunction]:
+    centerline_lookup = {
+        str(centerline.feature_id): (int(road_id), centerline, tuple((float(x), float(y)) for x, y in points))
+        for road_id, centerline, points in local_centerlines
+    }
+    result: List[RoadSegmentJunction] = []
+    for junction in annotation.junctions:
+        if not junction.connected_centerline_ids:
+            continue
+        paired_connections: List[Tuple[int, str]] = []
+        for centerline_id in junction.connected_centerline_ids:
+            match = centerline_lookup.get(str(centerline_id))
+            if match is None:
+                continue
+            pair = (int(match[0]), str(centerline_id))
+            if pair not in paired_connections:
+                paired_connections.append(pair)
+        connected_road_ids = [int(item[0]) for item in paired_connections]
+        connected_centerline_ids = [str(item[1]) for item in paired_connections]
+        if len(set(connected_road_ids)) < 2:
+            continue
+        result.append(
+            RoadSegmentJunction(
+                junction_id=str(junction.feature_id),
+                kind=str(junction.kind),
+                anchor_xy=_junction_anchor_local(annotation, junction),
+                connected_road_ids=tuple(connected_road_ids),
+                connected_centerline_ids=tuple(connected_centerline_ids),
+                crosswalk_depth_m=float(junction.crosswalk_depth_m),
+                source_mode=str(junction.source_mode),
+            )
+        )
+    return result
 
 
 def _derive_topology_junctions(
@@ -1564,7 +1686,13 @@ def _build_centerline_nodes(
                 control_tolerance_m=control_tolerance_m,
             )
             is_junction = (
-                part_idx == 0
+                (bool(centerline.start_junction_id) and coord_idx == 0 and part_idx == 0)
+                or (
+                    bool(centerline.end_junction_id)
+                    and coord_idx == len(polyline_m) - 2
+                    and part_idx == subdivisions - 1
+                )
+                or part_idx == 0
                 or part_idx == subdivisions - 1
                 or any(_distance(center, anchor) <= junction_tolerance_m for anchor in junction_anchors)
                 or any(_distance(center, anchor) <= roundabout_tolerance_m for anchor in roundabout_anchors)
@@ -1602,6 +1730,16 @@ def _build_centerline_nodes(
                         include_end=include_end,
                     ),
                     metaurban_asset_hints=metaurban_asset_hints,
+                    start_junction_id=(
+                        str(centerline.start_junction_id)
+                        if coord_idx == 0 and part_idx == 0 and centerline.start_junction_id
+                        else ""
+                    ),
+                    end_junction_id=(
+                        str(centerline.end_junction_id)
+                        if coord_idx == len(polyline_m) - 2 and part_idx == subdivisions - 1 and centerline.end_junction_id
+                        else ""
+                    ),
                 )
             )
             station_m = station_end_m
@@ -1710,23 +1848,33 @@ def build_segment_graph_from_annotation(
     if not local_centerlines:
         raise ValueError("Annotation contains no usable centerlines.")
 
-    explicit_junctions = [_pixel_to_local(annotation, x=item.x, y=item.y) for item in annotation.junctions]
+    explicit_graph_junctions = _build_explicit_graph_junctions(annotation, local_centerlines)
+    explicit_junctions = [tuple(float(value) for value in junction.anchor_xy) for junction in explicit_graph_junctions]
+    legacy_marker_junctions = [
+        _junction_anchor_local(annotation, item)
+        for item in annotation.junctions
+        if not item.connected_centerline_ids
+    ]
     roundabout_centers = [_pixel_to_local(annotation, x=item.x, y=item.y) for item in annotation.roundabouts]
     control_points = [(item, _pixel_to_local(annotation, x=item.x, y=item.y)) for item in annotation.control_points]
     junction_tolerance_m = max(float(resolved_config.segment_length_m) * 0.5, 4.0)
-    auto_junctions = _collect_auto_junction_anchors(
-        [points for _, _, points in local_centerlines],
-        tolerance_m=junction_tolerance_m,
-    )
-    junction_anchors = _merge_anchor_points(
-        [*explicit_junctions, *auto_junctions],
-        tolerance_m=junction_tolerance_m,
-    )
+    if explicit_graph_junctions:
+        junction_anchors = list(explicit_junctions)
+    else:
+        auto_junctions = _collect_auto_junction_anchors(
+            [points for _, _, points in local_centerlines],
+            tolerance_m=junction_tolerance_m,
+        )
+        junction_anchors = _merge_anchor_points(
+            [*legacy_marker_junctions, *auto_junctions],
+            tolerance_m=junction_tolerance_m,
+        )
 
     nodes: List[RoadSegmentNode] = []
     edges: List[RoadSegmentEdge] = []
     segment_counter = 0
     edge_counter = 0
+    centerline_terminals: Dict[str, Dict[str, Any]] = {}
     default_anchor_width_m = max(
         [float(centerline.cross_section_width_m()) for _, centerline, _ in local_centerlines] + [float(resolved_config.road_width_m)],
     )
@@ -1745,6 +1893,16 @@ def build_segment_graph_from_annotation(
         )
         nodes.extend(centerline_nodes)
         edges.extend(centerline_edges)
+        if centerline_nodes:
+            centerline_terminals[str(centerline.feature_id)] = {
+                "road_id": int(road_id),
+                "start_segment_id": str(centerline_nodes[0].segment_id),
+                "end_segment_id": str(centerline_nodes[-1].segment_id),
+                "start_xy": tuple(points[0]),
+                "end_xy": tuple(points[-1]),
+                "start_junction_id": str(centerline.start_junction_id or ""),
+                "end_junction_id": str(centerline.end_junction_id or ""),
+            }
     road_id = len(local_centerlines) + 1
 
     for roundabout, center_xy in zip(annotation.roundabouts, roundabout_centers):
@@ -1763,47 +1921,100 @@ def build_segment_graph_from_annotation(
         road_id += 1
 
     edge_pairs = {(edge.from_segment_id, edge.to_segment_id) for edge in edges}
+    graph_junctions: List[RoadSegmentJunction] = list(explicit_graph_junctions)
 
-    anchor_groups: List[Tuple[str, Tuple[float, float], float]] = []
-    for anchor in junction_anchors:
-        anchor_groups.append(("junction", anchor, max(default_anchor_width_m, 8.0)))
-    for roundabout, center_xy in zip(annotation.roundabouts, roundabout_centers):
-        radius_m = max(float(roundabout.radius_px) / max(float(annotation.pixels_per_meter), 1.0), 4.0)
-        anchor_groups.append(("roundabout", center_xy, radius_m + default_anchor_width_m))
-
-    for kind, anchor, threshold_m in anchor_groups:
-        touching_nodes = [
-            node
-            for node in nodes
-            if (
-                _distance(node.center_xy, anchor) <= threshold_m
-                or _distance(node.start_xy, anchor) <= threshold_m
-                or _distance(node.end_xy, anchor) <= threshold_m
-            )
-        ]
-        if len(touching_nodes) < 2:
-            continue
-        for from_idx, from_node in enumerate(touching_nodes):
-            for to_node in touching_nodes[from_idx + 1:]:
-                pairs = (
-                    (from_node.segment_id, to_node.segment_id),
-                    (to_node.segment_id, from_node.segment_id),
-                )
-                for from_segment_id, to_segment_id in pairs:
-                    if from_segment_id == to_segment_id or (from_segment_id, to_segment_id) in edge_pairs:
-                        continue
-                    edge_pairs.add((from_segment_id, to_segment_id))
-                    edges.append(
-                        RoadSegmentEdge(
-                            edge_id=f"annot_edge_{edge_counter:04d}",
-                            from_segment_id=from_segment_id,
-                            to_segment_id=to_segment_id,
-                            weight=1.0 if kind == "junction" else 0.9,
+    if explicit_graph_junctions:
+        for junction in explicit_graph_junctions:
+            touching_segment_ids: List[str] = []
+            for centerline_id in junction.connected_centerline_ids:
+                terminal = centerline_terminals.get(str(centerline_id))
+                if terminal is None:
+                    continue
+                matched = False
+                if terminal["start_junction_id"] == junction.junction_id:
+                    touching_segment_ids.append(str(terminal["start_segment_id"]))
+                    matched = True
+                if terminal["end_junction_id"] == junction.junction_id:
+                    touching_segment_ids.append(str(terminal["end_segment_id"]))
+                    matched = True
+                if matched:
+                    continue
+                anchor = tuple(float(value) for value in junction.anchor_xy)
+                start_distance = _distance(tuple(terminal["start_xy"]), anchor)
+                end_distance = _distance(tuple(terminal["end_xy"]), anchor)
+                if start_distance <= max(junction_tolerance_m, 0.5):
+                    touching_segment_ids.append(str(terminal["start_segment_id"]))
+                if end_distance <= max(junction_tolerance_m, 0.5):
+                    touching_segment_ids.append(str(terminal["end_segment_id"]))
+            unique_touching = list(dict.fromkeys(touching_segment_ids))
+            for from_idx, from_segment_id in enumerate(unique_touching):
+                for to_segment_id in unique_touching[from_idx + 1:]:
+                    for pair in ((from_segment_id, to_segment_id), (to_segment_id, from_segment_id)):
+                        if pair[0] == pair[1] or pair in edge_pairs:
+                            continue
+                        edge_pairs.add(pair)
+                        edges.append(
+                            RoadSegmentEdge(
+                                edge_id=f"annot_edge_{edge_counter:04d}",
+                                from_segment_id=pair[0],
+                                to_segment_id=pair[1],
+                                weight=1.0,
+                            )
                         )
-                    )
-                    edge_counter += 1
+                        edge_counter += 1
+    else:
+        anchor_groups: List[Tuple[str, Tuple[float, float], float]] = []
+        for anchor in junction_anchors:
+            anchor_groups.append(("junction", anchor, max(default_anchor_width_m, 8.0)))
+        for roundabout, center_xy in zip(annotation.roundabouts, roundabout_centers):
+            radius_m = max(float(roundabout.radius_px) / max(float(annotation.pixels_per_meter), 1.0), 4.0)
+            anchor_groups.append(("roundabout", center_xy, radius_m + default_anchor_width_m))
 
-    return RoadSegmentGraph(nodes=tuple(nodes), edges=tuple(edges), mode="annotation")
+        for kind, anchor, threshold_m in anchor_groups:
+            touching_nodes = [
+                node
+                for node in nodes
+                if (
+                    _distance(node.center_xy, anchor) <= threshold_m
+                    or _distance(node.start_xy, anchor) <= threshold_m
+                    or _distance(node.end_xy, anchor) <= threshold_m
+                )
+            ]
+            if len(touching_nodes) < 2:
+                continue
+            for from_idx, from_node in enumerate(touching_nodes):
+                for to_node in touching_nodes[from_idx + 1:]:
+                    pairs = (
+                        (from_node.segment_id, to_node.segment_id),
+                        (to_node.segment_id, from_node.segment_id),
+                    )
+                    for from_segment_id, to_segment_id in pairs:
+                        if from_segment_id == to_segment_id or (from_segment_id, to_segment_id) in edge_pairs:
+                            continue
+                        edge_pairs.add((from_segment_id, to_segment_id))
+                        edges.append(
+                            RoadSegmentEdge(
+                                edge_id=f"annot_edge_{edge_counter:04d}",
+                                from_segment_id=from_segment_id,
+                                to_segment_id=to_segment_id,
+                                weight=1.0 if kind == "junction" else 0.9,
+                            )
+                        )
+                        edge_counter += 1
+        graph_junctions = [
+            RoadSegmentJunction(
+                junction_id=str(item["junction_id"]),
+                kind=str(item["kind"]),
+                anchor_xy=(float(item["anchor"][0]), float(item["anchor"][1])),
+                connected_road_ids=tuple(int(value) for value in item.get("connected_road_ids", []) or ()),
+                connected_centerline_ids=tuple(str(value) for value in item.get("connected_centerline_ids", []) or ()),
+                crosswalk_depth_m=DEFAULT_CROSSWALK_DEPTH_M,
+                source_mode="derived",
+            )
+            for item in _derive_topology_junctions(local_centerlines, tolerance_m=junction_tolerance_m)
+        ]
+
+    return RoadSegmentGraph(nodes=tuple(nodes), edges=tuple(edges), junctions=tuple(graph_junctions), mode="annotation")
 
 
 def summarize_reference_annotation(annotation_input: ReferenceAnnotation | Mapping[str, Any]) -> Dict[str, Any]:
@@ -1818,7 +2029,7 @@ def summarize_reference_annotation(annotation_input: ReferenceAnnotation | Mappi
         local_centerlines.append(list(local_points))
         for point in centerline.points:
             points.append(_pixel_to_local(annotation, x=point.x, y=point.y))
-    explicit_junctions = [_pixel_to_local(annotation, x=marker.x, y=marker.y) for marker in annotation.junctions]
+    explicit_junctions = [_junction_anchor_local(annotation, marker) for marker in annotation.junctions]
     junction_tolerance_m = max(DEFAULT_SEGMENT_LENGTH_M * 0.5, 4.0)
     topology_derived_junctions = _derive_topology_junctions(
         local_centerlines_with_ids,
@@ -1830,7 +2041,7 @@ def summarize_reference_annotation(annotation_input: ReferenceAnnotation | Mappi
         tolerance_m=junction_tolerance_m,
     )
     for marker in annotation.junctions:
-        points.append(_pixel_to_local(annotation, x=marker.x, y=marker.y))
+        points.append(_junction_anchor_local(annotation, marker))
     for marker in annotation.control_points:
         points.append(_pixel_to_local(annotation, x=marker.x, y=marker.y))
     for roundabout in annotation.roundabouts:
@@ -1878,6 +2089,8 @@ def summarize_reference_annotation(annotation_input: ReferenceAnnotation | Mappi
         "pixels_per_meter": float(annotation.pixels_per_meter),
         "annotation_road_count": len(road_profiles),
         "centerline_count": len(annotation.centerlines),
+        "explicit_junction_count": sum(1 for item in annotation.junctions if item.source_mode == "explicit"),
+        "legacy_junction_count": sum(1 for item in annotation.junctions if item.source_mode != "explicit"),
         "detailed_centerline_count": sum(
             1
             for centerline in annotation.centerlines
@@ -1970,6 +2183,7 @@ __all__ = [
     "ANNOTATION_SCHEMA_VERSION",
     "AnnotatedCenterline",
     "AnnotatedCrossSectionStrip",
+    "AnnotatedJunction",
     "AnnotatedMarker",
     "AnnotatedRoundabout",
     "AnnotatedStreetFurnitureInstance",

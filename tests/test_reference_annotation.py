@@ -93,6 +93,82 @@ def _sample_annotation_payload():
     }
 
 
+def _explicit_junction_annotation_payload():
+    return {
+        "version": ANNOTATION_SCHEMA_VERSION,
+        "plan_id": "hkust_gz_gate",
+        "image_path": "/tmp/hkust-gz.png",
+        "image_width_px": 1200,
+        "image_height_px": 800,
+        "pixels_per_meter": 10.0,
+        "centerlines": [
+            {
+                "id": "west_arm",
+                "label": "West Arm",
+                "road_width_m": 25.2,
+                "cross_section_mode": "detailed",
+                "cross_section_strips": [
+                    {"strip_id": "left_furnishing", "zone": "left", "kind": "nearroad_furnishing", "width_m": 1.5, "direction": "none", "order_index": 0},
+                    {"strip_id": "left_sidewalk", "zone": "left", "kind": "clear_sidewalk", "width_m": 2.5, "direction": "none", "order_index": 1},
+                    {"strip_id": "left_frontage", "zone": "left", "kind": "frontage_reserve", "width_m": 2.0, "direction": "none", "order_index": 2},
+                    {"strip_id": "rev_drive", "zone": "center", "kind": "drive_lane", "width_m": 3.3, "direction": "reverse", "order_index": 0},
+                    {"strip_id": "median_01", "zone": "center", "kind": "median", "width_m": 0.3, "direction": "none", "order_index": 1},
+                    {"strip_id": "fwd_drive_01", "zone": "center", "kind": "drive_lane", "width_m": 3.3, "direction": "forward", "order_index": 2},
+                    {"strip_id": "fwd_drive_02", "zone": "center", "kind": "drive_lane", "width_m": 3.3, "direction": "forward", "order_index": 3},
+                    {"strip_id": "right_furnishing", "zone": "right", "kind": "nearroad_furnishing", "width_m": 1.5, "direction": "none", "order_index": 0},
+                    {"strip_id": "right_sidewalk", "zone": "right", "kind": "clear_sidewalk", "width_m": 2.5, "direction": "none", "order_index": 1},
+                    {"strip_id": "right_frontage", "zone": "right", "kind": "frontage_reserve", "width_m": 2.0, "direction": "none", "order_index": 2},
+                ],
+                "start_junction_id": "",
+                "end_junction_id": "junction_01",
+                "points": [
+                    {"x": 120, "y": 400},
+                    {"x": 520, "y": 400},
+                ],
+            },
+            {
+                "id": "east_arm",
+                "label": "East Arm",
+                "road_width_m": 25.2,
+                "forward_drive_lane_count": 2,
+                "reverse_drive_lane_count": 1,
+                "start_junction_id": "junction_01",
+                "end_junction_id": "",
+                "points": [
+                    {"x": 520, "y": 400},
+                    {"x": 980, "y": 400},
+                ],
+            },
+            {
+                "id": "north_arm",
+                "label": "North Arm",
+                "road_width_m": 12.0,
+                "forward_drive_lane_count": 1,
+                "reverse_drive_lane_count": 1,
+                "start_junction_id": "junction_01",
+                "end_junction_id": "",
+                "points": [
+                    {"x": 520, "y": 400},
+                    {"x": 520, "y": 140},
+                ],
+            },
+        ],
+        "junctions": [
+            {
+                "id": "junction_01",
+                "label": "Junction 01",
+                "kind": "t_junction",
+                "anchor": {"x": 520, "y": 400},
+                "connected_centerline_ids": ["west_arm", "east_arm", "north_arm"],
+                "crosswalk_depth_m": 3.0,
+                "source_mode": "explicit",
+            }
+        ],
+        "roundabouts": [],
+        "control_points": [],
+    }
+
+
 def test_parse_reference_annotation_normalizes_payload():
     annotation = parse_reference_annotation(_sample_annotation_payload())
 
@@ -264,3 +340,23 @@ def test_build_reference_annotation_graph_payload_detects_cross_junction_topolog
     assert graph_payload["summary"]["cross_junction_count"] == 1
     assert graph_payload["derived_junctions"][0]["kind"] == "cross_junction"
     assert graph_payload["derived_junctions"][0]["arm_count"] == 4
+
+
+def test_explicit_junction_payload_builds_graph_junction_metadata():
+    payload = _explicit_junction_annotation_payload()
+
+    annotation = parse_reference_annotation(payload)
+    graph = build_segment_graph_from_annotation(
+        annotation,
+        config=build_reference_annotation_compose_config({"segment_length_m": 9.0}),
+    )
+
+    assert len(graph.junctions) == 1
+    assert graph.junctions[0].junction_id == "junction_01"
+    assert graph.junctions[0].kind == "t_junction"
+    assert graph.junctions[0].source_mode == "explicit"
+    assert tuple(graph.junctions[0].connected_centerline_ids) == ("west_arm", "east_arm", "north_arm")
+    assert graph.summary()["graph_junction_count"] == 1
+    assert graph.summary()["graph_t_junction_count"] == 1
+    assert any(node.end_junction_id == "junction_01" for node in graph.nodes)
+    assert any(node.start_junction_id == "junction_01" for node in graph.nodes)

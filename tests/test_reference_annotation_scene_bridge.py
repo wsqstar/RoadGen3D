@@ -74,6 +74,75 @@ def _sample_annotation_payload():
     }
 
 
+def _explicit_junction_payload():
+    return {
+        "version": ANNOTATION_SCHEMA_VERSION,
+        "plan_id": "hkust_gz_gate",
+        "image_path": "/tmp/hkust-gz.png",
+        "image_width_px": 1200,
+        "image_height_px": 800,
+        "pixels_per_meter": 10.0,
+        "centerlines": [
+            {
+                "id": "west_arm",
+                "road_width_m": 25.2,
+                "cross_section_mode": "detailed",
+                "cross_section_strips": [
+                    {"strip_id": "left_furnishing", "zone": "left", "kind": "nearroad_furnishing", "width_m": 1.5, "direction": "none", "order_index": 0},
+                    {"strip_id": "left_sidewalk", "zone": "left", "kind": "clear_sidewalk", "width_m": 2.5, "direction": "none", "order_index": 1},
+                    {"strip_id": "left_frontage", "zone": "left", "kind": "frontage_reserve", "width_m": 2.0, "direction": "none", "order_index": 2},
+                    {"strip_id": "rev_drive", "zone": "center", "kind": "drive_lane", "width_m": 3.3, "direction": "reverse", "order_index": 0},
+                    {"strip_id": "median_01", "zone": "center", "kind": "median", "width_m": 0.3, "direction": "none", "order_index": 1},
+                    {"strip_id": "fwd_drive_01", "zone": "center", "kind": "drive_lane", "width_m": 3.3, "direction": "forward", "order_index": 2},
+                    {"strip_id": "fwd_drive_02", "zone": "center", "kind": "drive_lane", "width_m": 3.3, "direction": "forward", "order_index": 3},
+                    {"strip_id": "right_furnishing", "zone": "right", "kind": "nearroad_furnishing", "width_m": 1.5, "direction": "none", "order_index": 0},
+                    {"strip_id": "right_sidewalk", "zone": "right", "kind": "clear_sidewalk", "width_m": 2.5, "direction": "none", "order_index": 1},
+                    {"strip_id": "right_frontage", "zone": "right", "kind": "frontage_reserve", "width_m": 2.0, "direction": "none", "order_index": 2},
+                ],
+                "end_junction_id": "junction_01",
+                "points": [
+                    {"x": 120, "y": 400},
+                    {"x": 520, "y": 400},
+                ],
+            },
+            {
+                "id": "east_arm",
+                "road_width_m": 25.2,
+                "forward_drive_lane_count": 2,
+                "reverse_drive_lane_count": 1,
+                "start_junction_id": "junction_01",
+                "points": [
+                    {"x": 520, "y": 400},
+                    {"x": 980, "y": 400},
+                ],
+            },
+            {
+                "id": "north_arm",
+                "road_width_m": 12.0,
+                "forward_drive_lane_count": 1,
+                "reverse_drive_lane_count": 1,
+                "start_junction_id": "junction_01",
+                "points": [
+                    {"x": 520, "y": 400},
+                    {"x": 520, "y": 140},
+                ],
+            },
+        ],
+        "junctions": [
+            {
+                "id": "junction_01",
+                "kind": "t_junction",
+                "anchor": {"x": 520, "y": 400},
+                "connected_centerline_ids": ["west_arm", "east_arm", "north_arm"],
+                "crosswalk_depth_m": 3.0,
+                "source_mode": "explicit",
+            }
+        ],
+        "roundabouts": [],
+        "control_points": [],
+    }
+
+
 def test_reference_annotation_scene_bridge_builds_junction_geometry():
     pytest.importorskip("shapely")
     from shapely.geometry import Point
@@ -121,3 +190,23 @@ def test_osm_geometry_serialization_and_scene_include_junction_patches():
     assert any(name.startswith("junction_crosswalk_") for name in node_names)
     assert any(name.startswith("junction_sidewalk_corner_") for name in node_names)
     assert any(name.startswith("junction_nearroad_corner_") for name in node_names)
+
+
+def test_explicit_junction_scene_bridge_serializes_split_lines_and_control_points():
+    pytest.importorskip("shapely")
+
+    bridge = build_reference_annotation_scene_bridge(
+        _explicit_junction_payload(),
+        compose_config=build_reference_annotation_compose_config({"segment_length_m": 9.0, "road_width_m": 13.2}),
+    )
+
+    junction_geometry = bridge.placement_context.junction_geometries[0]
+    assert junction_geometry["kind"] == "t_junction"
+    assert len(junction_geometry["approach_split_lines"]) == 3
+    assert len(junction_geometry["skeleton_foot_points"]) == 3
+    assert len(junction_geometry["sub_lane_control_points"]) > 0
+
+    serialized = _serialize_osm_geometry(bridge.placement_context)
+    assert len(serialized["junction_geometries"][0]["approach_split_lines"]) == 3
+    assert len(serialized["junction_geometries"][0]["skeleton_foot_points"]) == 3
+    assert len(serialized["junction_geometries"][0]["sub_lane_control_points"]) > 0

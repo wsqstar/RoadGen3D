@@ -270,8 +270,8 @@ def _classify_junction_kind(angles_deg: Sequence[float]) -> str:
     return "complex_junction"
 
 
-def _road_profile_widths_from_graph(road_segment_graph: Any | None) -> Dict[int, Dict[str, float]]:
-    profiles: Dict[int, Dict[str, float]] = {}
+def _road_profile_widths_from_graph(road_segment_graph: Any | None) -> Dict[int, Dict[str, Any]]:
+    profiles: Dict[int, Dict[str, Any]] = {}
     if road_segment_graph is None:
         return profiles
     for node in getattr(road_segment_graph, "nodes", ()) or ():
@@ -289,6 +289,40 @@ def _road_profile_widths_from_graph(road_segment_graph: Any | None) -> Dict[int,
         def _avg(kind: str) -> float:
             values = [float(value) for value in width_by_kind.get(kind, []) if float(value) > 0.0]
             return float(sum(values) / len(values)) if values else 0.0
+        center_width_m = sum(
+            max(float(getattr(strip, "width_m", 0.0) or 0.0), 0.0)
+            for strip in strips
+            if str(getattr(strip, "zone", "") or "") == "center"
+        )
+        half_carriageway_m = center_width_m * 0.5
+        side_strip_layouts: Dict[str, List[Dict[str, float | str]]] = {"left": [], "right": []}
+        for zone, sign in (("left", 1.0), ("right", -1.0)):
+            zone_strips = sorted(
+                (
+                    strip
+                    for strip in strips
+                    if str(getattr(strip, "zone", "") or "") == zone
+                ),
+                key=lambda item: int(getattr(item, "order_index", 0) or 0),
+            )
+            offset_from_carriageway_m = 0.0
+            for strip in zone_strips:
+                width_m = max(float(getattr(strip, "width_m", 0.0) or 0.0), 0.0)
+                inner_abs_m = half_carriageway_m + offset_from_carriageway_m
+                outer_abs_m = inner_abs_m + width_m
+                center_abs_m = (inner_abs_m + outer_abs_m) * 0.5
+                side_strip_layouts[zone].append(
+                    {
+                        "strip_id": str(getattr(strip, "strip_id", "") or ""),
+                        "kind": str(getattr(strip, "kind", "") or ""),
+                        "zone": zone,
+                        "width_m": width_m,
+                        "center_offset_m": center_abs_m * sign,
+                        "inner_offset_m": inner_abs_m * sign,
+                        "outer_offset_m": outer_abs_m * sign,
+                    }
+                )
+                offset_from_carriageway_m += width_m
         profiles[road_id] = {
             "carriageway_width_m": float(getattr(node, "road_width_m", 0.0) or 0.0),
             "nearroad_buffer_width_m": _avg("nearroad_buffer"),
@@ -296,6 +330,7 @@ def _road_profile_widths_from_graph(road_segment_graph: Any | None) -> Dict[int,
             "clear_sidewalk_width_m": _avg("clear_sidewalk"),
             "farfromroad_buffer_width_m": _avg("farfromroad_buffer"),
             "frontage_reserve_width_m": _avg("frontage_reserve"),
+            "side_strip_layouts": side_strip_layouts,
         }
     return profiles
 
@@ -333,6 +368,9 @@ def _sector_patch(
     sweep = end - start
     if sweep <= 0.0:
         sweep += 360.0
+    if sweep > 180.0:
+        start = end
+        sweep = 360.0 - sweep
     if sweep <= 1e-3 or sweep >= 179.0:
         return Polygon()
     point_count = max(int(steps), 3)
@@ -423,6 +461,10 @@ def _principal_junction_axis(arms: Sequence[Dict[str, Any]]) -> Tuple[float, flo
     return tuple(float(value) for value in arms[0]["tangent"])
 
 
+def _distance(a: Tuple[float, float], b: Tuple[float, float]) -> float:
+    return math.hypot(float(a[0]) - float(b[0]), float(a[1]) - float(b[1]))
+
+
 def _ray_rectangle_exit_distance(
     direction: Tuple[float, float],
     axis_u: Tuple[float, float],
@@ -471,6 +513,478 @@ def _junction_rectangle_patch(
     return Polygon(corners)
 
 
+def _line_intersection(
+    point_a: Tuple[float, float],
+    direction_a: Tuple[float, float],
+    point_b: Tuple[float, float],
+    direction_b: Tuple[float, float],
+) -> Tuple[float, float] | None:
+    ax, ay = float(point_a[0]), float(point_a[1])
+    adx, ady = float(direction_a[0]), float(direction_a[1])
+    bx, by = float(point_b[0]), float(point_b[1])
+    bdx, bdy = float(direction_b[0]), float(direction_b[1])
+    determinant = adx * bdy - ady * bdx
+    if abs(determinant) <= 1e-6:
+        return None
+    delta_x = bx - ax
+    delta_y = by - ay
+    t_value = (delta_x * bdy - delta_y * bdx) / determinant
+    return (ax + adx * t_value, ay + ady * t_value)
+
+
+def _facing_zone_for_corner(
+    arm: Dict[str, Any],
+    corner_center: Tuple[float, float],
+) -> str:
+    boundary_center = tuple(float(value) for value in arm["split_boundary_center"])
+    normal = tuple(float(value) for value in arm["normal"])
+    vector = (float(corner_center[0]) - boundary_center[0], float(corner_center[1]) - boundary_center[1])
+    dot_value = vector[0] * normal[0] + vector[1] * normal[1]
+    return "left" if dot_value >= 0.0 else "right"
+
+
+def _generic_strip_offset_range_for_kind(
+    arm: Dict[str, Any],
+    kind: str,
+    zone: str,
+) -> Tuple[float, float, float] | None:
+    sign = 1.0 if zone == "left" else -1.0
+    half_carriageway_m = max(float(arm["carriageway_width_m"]) * 0.5, 0.0)
+    nearroad_buffer = max(float(arm.get("nearroad_buffer_width_m", 0.0) or 0.0), 0.0)
+    nearroad_furnishing = max(float(arm.get("nearroad_furnishing_width_m", 0.0) or 0.0), 0.0)
+    clear_sidewalk = max(float(arm.get("clear_sidewalk_width_m", 0.0) or 0.0), 0.0)
+    farfromroad_buffer = max(float(arm.get("farfromroad_buffer_width_m", 0.0) or 0.0), 0.0)
+    frontage_reserve = max(float(arm.get("frontage_reserve_width_m", 0.0) or 0.0), 0.0)
+    inner_abs_m = None
+    outer_abs_m = None
+    if kind == "nearroad_furnishing" and nearroad_furnishing > 0.0:
+        inner_abs_m = half_carriageway_m + nearroad_buffer
+        outer_abs_m = inner_abs_m + nearroad_furnishing
+    elif kind == "clear_sidewalk" and clear_sidewalk > 0.0:
+        inner_abs_m = half_carriageway_m + nearroad_buffer + nearroad_furnishing
+        outer_abs_m = inner_abs_m + clear_sidewalk
+    elif kind == "frontage_reserve" and frontage_reserve > 0.0:
+        inner_abs_m = half_carriageway_m + nearroad_buffer + nearroad_furnishing + clear_sidewalk + farfromroad_buffer
+        outer_abs_m = inner_abs_m + frontage_reserve
+    if inner_abs_m is None or outer_abs_m is None:
+        return None
+    center_abs_m = (inner_abs_m + outer_abs_m) * 0.5
+    return (center_abs_m * sign, inner_abs_m * sign, outer_abs_m * sign)
+
+
+def _corner_strip_offset_range(
+    arm: Dict[str, Any],
+    corner_center: Tuple[float, float],
+    kind: str,
+) -> Tuple[str, float, float, float] | None:
+    zone = _facing_zone_for_corner(arm, corner_center)
+    for strip in tuple((arm.get("side_strip_layouts", {}) or {}).get(zone, ())):
+        if str(strip.get("kind", "") or "") != kind:
+            continue
+        return (
+            zone,
+            float(strip.get("center_offset_m", 0.0) or 0.0),
+            float(strip.get("inner_offset_m", 0.0) or 0.0),
+            float(strip.get("outer_offset_m", 0.0) or 0.0),
+        )
+    generic = _generic_strip_offset_range_for_kind(arm, kind, zone)
+    if generic is None:
+        return None
+    return (zone, generic[0], generic[1], generic[2])
+
+
+def _point_on_boundary_with_offset(
+    boundary_center: Tuple[float, float],
+    normal: Tuple[float, float],
+    offset_m: float,
+) -> Tuple[float, float]:
+    return (
+        float(boundary_center[0]) + float(normal[0]) * float(offset_m),
+        float(boundary_center[1]) + float(normal[1]) * float(offset_m),
+    )
+
+
+def _connector_join_point(
+    point_a: Tuple[float, float],
+    tangent_a: Tuple[float, float],
+    point_b: Tuple[float, float],
+    tangent_b: Tuple[float, float],
+) -> Tuple[float, float]:
+    join_point = _line_intersection(point_a, tangent_a, point_b, tangent_b)
+    if join_point is not None:
+        return join_point
+    return (
+        (float(point_a[0]) + float(point_b[0])) * 0.5,
+        (float(point_a[1]) + float(point_b[1])) * 0.5,
+    )
+
+
+def _corner_connector_patch(
+    *,
+    corner_center: Tuple[float, float],
+    arm: Dict[str, Any],
+    next_arm: Dict[str, Any],
+    kind: str,
+    junction_core_rect: Any,
+    aoi_polygon: Any | None = None,
+) -> Any:
+    from shapely.geometry import Polygon
+
+    connector_a = _corner_strip_offset_range(arm, corner_center, kind)
+    connector_b = _corner_strip_offset_range(next_arm, corner_center, kind)
+    if connector_a is None or connector_b is None:
+        return Polygon()
+    _, _, inner_offset_a, outer_offset_a = connector_a
+    _, _, inner_offset_b, outer_offset_b = connector_b
+    boundary_center_a = tuple(float(value) for value in arm["split_boundary_center"])
+    boundary_center_b = tuple(float(value) for value in next_arm["split_boundary_center"])
+    normal_a = tuple(float(value) for value in arm["normal"])
+    normal_b = tuple(float(value) for value in next_arm["normal"])
+    tangent_a = tuple(float(value) for value in arm["tangent"])
+    tangent_b = tuple(float(value) for value in next_arm["tangent"])
+    inner_point_a = _point_on_boundary_with_offset(boundary_center_a, normal_a, inner_offset_a)
+    inner_point_b = _point_on_boundary_with_offset(boundary_center_b, normal_b, inner_offset_b)
+    outer_point_a = _point_on_boundary_with_offset(boundary_center_a, normal_a, outer_offset_a)
+    outer_point_b = _point_on_boundary_with_offset(boundary_center_b, normal_b, outer_offset_b)
+    inner_join = _connector_join_point(inner_point_a, tangent_a, inner_point_b, tangent_b)
+    outer_join = _connector_join_point(outer_point_a, tangent_a, outer_point_b, tangent_b)
+    patch = Polygon(
+        [
+            outer_point_a,
+            outer_join,
+            outer_point_b,
+            inner_point_b,
+            inner_join,
+            inner_point_a,
+        ]
+    )
+    if not patch.is_valid:
+        patch = patch.buffer(0)
+    patch = patch.difference(junction_core_rect)
+    if aoi_polygon is not None and not getattr(aoi_polygon, "is_empty", True):
+        patch = patch.intersection(aoi_polygon)
+    return patch
+
+
+def _build_explicit_graph_junction_geometries(
+    roads: Sequence[Any],
+    *,
+    road_segment_graph: Any,
+    aoi_polygon: Any | None = None,
+) -> List[Dict[str, Any]]:
+    from shapely.geometry import LineString
+
+    road_profiles = _road_profile_widths_from_graph(road_segment_graph)
+    roads_by_id = {
+        int(getattr(road, "osm_id", 0) or 0): road
+        for road in roads
+        if int(getattr(road, "osm_id", 0) or 0) > 0
+    }
+    explicit_junctions = [
+        item
+        for item in (getattr(road_segment_graph, "junctions", ()) or ())
+        if str(getattr(item, "source_mode", "") or "") == "explicit"
+        and tuple(getattr(item, "connected_road_ids", ()) or ())
+    ]
+    junctions: List[Dict[str, Any]] = []
+    for junction in explicit_junctions:
+        anchor = tuple(float(value) for value in getattr(junction, "anchor_xy", (0.0, 0.0))[:2])
+        arms: List[Dict[str, Any]] = []
+        seen_road_ids: set[int] = set()
+        for road_id, centerline_id in zip(
+            tuple(getattr(junction, "connected_road_ids", ()) or ()),
+            tuple(getattr(junction, "connected_centerline_ids", ()) or ()),
+        ):
+            road_id = int(road_id)
+            if road_id <= 0 or road_id in seen_road_ids:
+                continue
+            road = roads_by_id.get(road_id)
+            if road is None:
+                continue
+            points = _dedupe_adjacent_points(getattr(road, "coords", ()) or ())
+            if len(points) < 2:
+                continue
+            if _distance(anchor, points[0]) <= 0.5:
+                neighbor = points[1]
+            elif _distance(anchor, points[-1]) <= 0.5:
+                neighbor = points[-2]
+            else:
+                continue
+            length_m = math.hypot(float(neighbor[0]) - anchor[0], float(neighbor[1]) - anchor[1])
+            if length_m <= 1e-6:
+                continue
+            tangent = (
+                (float(neighbor[0]) - anchor[0]) / length_m,
+                (float(neighbor[1]) - anchor[1]) / length_m,
+            )
+            profile = road_profiles.get(road_id, {})
+            arms.append(
+                {
+                    "road_id": road_id,
+                    "centerline_id": str(centerline_id),
+                    "angle_deg": _angle_deg(anchor, neighbor),
+                    "tangent": tangent,
+                    "normal": (float(tangent[1]), float(-tangent[0])),
+                    "carriageway_width_m": max(float(profile.get("carriageway_width_m", getattr(road, "width_m", 8.0) or 8.0)), 1.0),
+                    "nearroad_buffer_width_m": float(profile.get("nearroad_buffer_width_m", 0.0) or 0.0),
+                    "nearroad_furnishing_width_m": float(profile.get("nearroad_furnishing_width_m", 0.0) or 0.0),
+                    "clear_sidewalk_width_m": float(profile.get("clear_sidewalk_width_m", 0.0) or 0.0),
+                    "farfromroad_buffer_width_m": float(profile.get("farfromroad_buffer_width_m", 0.0) or 0.0),
+                    "frontage_reserve_width_m": float(profile.get("frontage_reserve_width_m", 0.0) or 0.0),
+                    "side_strip_layouts": dict(profile.get("side_strip_layouts", {}) or {}),
+                }
+            )
+            seen_road_ids.add(road_id)
+        if len(arms) < 3:
+            continue
+        kind = str(getattr(junction, "kind", "") or _classify_junction_kind([float(item["angle_deg"]) for item in arms]))
+        if kind not in {"t_junction", "cross_junction"}:
+            continue
+
+        axis_u = _principal_junction_axis(arms)
+        axis_u_length = max(math.hypot(float(axis_u[0]), float(axis_u[1])), 1e-6)
+        axis_u = (float(axis_u[0]) / axis_u_length, float(axis_u[1]) / axis_u_length)
+        axis_v = (float(-axis_u[1]), float(axis_u[0]))
+        axis_u_angle = _angle_deg((0.0, 0.0), axis_u)
+        arms_on_u: List[Dict[str, Any]] = []
+        arms_on_v: List[Dict[str, Any]] = []
+        for arm in arms:
+            along_u = _axis_distance_deg(float(arm["angle_deg"]), axis_u_angle)
+            along_v = _axis_distance_deg(float(arm["angle_deg"]), axis_u_angle + 90.0)
+            if along_v + 1e-6 < along_u:
+                arms_on_v.append(arm)
+            else:
+                arms_on_u.append(arm)
+
+        def _max_half_width(items: Sequence[Dict[str, Any]], fallback: Sequence[Dict[str, Any]]) -> float:
+            values = [float(item["carriageway_width_m"]) * 0.5 for item in items if float(item["carriageway_width_m"]) > 0.0]
+            if not values:
+                values = [float(item["carriageway_width_m"]) * 0.5 for item in fallback if float(item["carriageway_width_m"]) > 0.0]
+            return max(values or [2.0])
+
+        half_u_m = _max_half_width(arms_on_v, arms)
+        half_v_m = _max_half_width(arms_on_u, arms)
+        local_crosswalk_depth_m = max(float(getattr(junction, "crosswalk_depth_m", 3.0) or 3.0), 0.5)
+        junction_core_rect = _junction_rectangle_patch(
+            anchor=anchor,
+            axis_u=axis_u,
+            axis_v=axis_v,
+            half_u_m=half_u_m,
+            half_v_m=half_v_m,
+        )
+        if aoi_polygon is not None and not getattr(aoi_polygon, "is_empty", True):
+            junction_core_rect = junction_core_rect.intersection(aoi_polygon)
+
+        crosswalk_patches = []
+        approach_boundaries = []
+        skeleton_foot_points = []
+        sub_lane_control_points = []
+        sidewalk_trim_polygons = []
+        for arm_index, arm in enumerate(arms):
+            half_width = float(arm["carriageway_width_m"]) * 0.5
+            core_exit_distance_m = _ray_rectangle_exit_distance(
+                tuple(arm["tangent"]),
+                axis_u,
+                axis_v,
+                half_u_m,
+                half_v_m,
+            )
+            split_distance_m = float(core_exit_distance_m) + float(local_crosswalk_depth_m)
+            boundary_center = (
+                anchor[0] + float(arm["tangent"][0]) * split_distance_m,
+                anchor[1] + float(arm["tangent"][1]) * split_distance_m,
+            )
+            boundary_start = (
+                boundary_center[0] - float(arm["normal"][0]) * half_width,
+                boundary_center[1] - float(arm["normal"][1]) * half_width,
+            )
+            boundary_end = (
+                boundary_center[0] + float(arm["normal"][0]) * half_width,
+                boundary_center[1] + float(arm["normal"][1]) * half_width,
+            )
+            approach_boundaries.append(
+                {
+                    "boundary_id": f"{junction.junction_id}_approach_{arm_index:02d}",
+                    "road_id": int(arm["road_id"]),
+                    "centerline_id": str(arm["centerline_id"]),
+                    "center_xy": [round(boundary_center[0], 3), round(boundary_center[1], 3)],
+                    "start_xy": [round(boundary_start[0], 3), round(boundary_start[1], 3)],
+                    "end_xy": [round(boundary_end[0], 3), round(boundary_end[1], 3)],
+                    "exit_distance_m": round(float(split_distance_m), 3),
+                }
+            )
+            skeleton_foot_points.append(
+                {
+                    "foot_id": f"{junction.junction_id}_foot_{arm_index:02d}",
+                    "road_id": int(arm["road_id"]),
+                    "centerline_id": str(arm["centerline_id"]),
+                    "xy": [round(boundary_center[0], 3), round(boundary_center[1], 3)],
+                }
+            )
+            for zone in ("left", "right"):
+                for strip in tuple((arm.get("side_strip_layouts", {}) or {}).get(zone, ())):
+                    strip_kind = str(strip.get("kind", "") or "")
+                    if strip_kind not in {"clear_sidewalk", "nearroad_furnishing", "frontage_reserve"}:
+                        continue
+                    for point_kind, offset_key in (
+                        ("center_control_point", "center_offset_m"),
+                        ("inner_edge_control_point", "inner_offset_m"),
+                        ("outer_edge_control_point", "outer_offset_m"),
+                    ):
+                        offset_value = float(strip.get(offset_key, 0.0) or 0.0)
+                        sub_lane_control_points.append(
+                            {
+                                "control_id": f"{junction.junction_id}_{arm_index:02d}_{strip_kind}_{zone}_{point_kind}",
+                                "road_id": int(arm["road_id"]),
+                                "centerline_id": str(arm["centerline_id"]),
+                                "strip_kind": strip_kind,
+                                "strip_zone": zone,
+                                "point_kind": point_kind,
+                                "xy": [
+                                    round(boundary_center[0] + float(arm["normal"][0]) * offset_value, 3),
+                                    round(boundary_center[1] + float(arm["normal"][1]) * offset_value, 3),
+                                ],
+                            }
+                        )
+
+            center = (
+                anchor[0] + float(arm["tangent"][0]) * (float(core_exit_distance_m) + float(local_crosswalk_depth_m) * 0.5),
+                anchor[1] + float(arm["tangent"][1]) * (float(core_exit_distance_m) + float(local_crosswalk_depth_m) * 0.5),
+            )
+            patch = _rectangle_patch(
+                center=center,
+                tangent=tuple(arm["tangent"]),
+                normal=tuple(arm["normal"]),
+                length_m=float(local_crosswalk_depth_m),
+                width_m=float(arm["carriageway_width_m"]),
+            )
+            if aoi_polygon is not None and not getattr(aoi_polygon, "is_empty", True):
+                patch = patch.intersection(aoi_polygon)
+            crosswalk_patches.append(
+                {
+                    "patch_id": f"{junction.junction_id}_crosswalk_{arm_index:02d}",
+                    "road_id": int(arm["road_id"]),
+                    "centerline_id": str(arm["centerline_id"]),
+                    "geometry": patch,
+                }
+            )
+            side_total_width_m = (
+                float(arm["nearroad_buffer_width_m"])
+                + float(arm["nearroad_furnishing_width_m"])
+                + float(arm["clear_sidewalk_width_m"])
+                + float(arm["farfromroad_buffer_width_m"])
+                + float(arm["frontage_reserve_width_m"])
+            )
+            trim_half_width = max(half_width + side_total_width_m, half_width)
+            trim_extent_m = max(float(split_distance_m), float(local_crosswalk_depth_m))
+            trim_polygon = LineString(
+                [
+                    anchor,
+                    (
+                        anchor[0] + float(arm["tangent"][0]) * trim_extent_m,
+                        anchor[1] + float(arm["tangent"][1]) * trim_extent_m,
+                    ),
+                ]
+            ).buffer(trim_half_width, cap_style="flat")
+            sidewalk_trim_polygons.append(trim_polygon)
+            arm["core_exit_distance_m"] = float(core_exit_distance_m)
+            arm["split_distance_m"] = float(split_distance_m)
+            arm["split_boundary_center"] = boundary_center
+            arm["split_boundary_start"] = boundary_start
+            arm["split_boundary_end"] = boundary_end
+
+        carriageway_core = junction_core_rect
+        sidewalk_corner_patches = []
+        nearroad_corner_patches = []
+        frontage_corner_patches = []
+        ordered_arms = sorted(arms, key=lambda item: float(item["angle_deg"]))
+        for arm_index, arm in enumerate(ordered_arms):
+            next_arm = ordered_arms[(arm_index + 1) % len(ordered_arms)]
+            start_angle = float(arm["angle_deg"])
+            end_angle = float(next_arm["angle_deg"])
+            sweep = end_angle - start_angle
+            if sweep <= 0.0:
+                sweep += 360.0
+            if sweep <= 5.0 or sweep >= 175.0:
+                continue
+            corner_center = _line_intersection(
+                tuple(float(value) for value in arm["split_boundary_center"]),
+                tuple(float(value) for value in arm["normal"]),
+                tuple(float(value) for value in next_arm["split_boundary_center"]),
+                tuple(float(value) for value in next_arm["normal"]),
+            )
+            if corner_center is None:
+                continue
+            nearroad_patch = _corner_connector_patch(
+                corner_center=corner_center,
+                arm=arm,
+                next_arm=next_arm,
+                kind="nearroad_furnishing",
+                junction_core_rect=junction_core_rect,
+                aoi_polygon=aoi_polygon,
+            )
+            if not getattr(nearroad_patch, "is_empty", True):
+                nearroad_corner_patches.append(
+                    {
+                        "patch_id": f"{junction.junction_id}_nearroad_{arm_index:02d}",
+                        "geometry": nearroad_patch,
+                    }
+                )
+            sidewalk_patch = _corner_connector_patch(
+                corner_center=corner_center,
+                arm=arm,
+                next_arm=next_arm,
+                kind="clear_sidewalk",
+                junction_core_rect=junction_core_rect,
+                aoi_polygon=aoi_polygon,
+            )
+            if not getattr(sidewalk_patch, "is_empty", True):
+                sidewalk_corner_patches.append(
+                    {
+                        "patch_id": f"{junction.junction_id}_sidewalk_{arm_index:02d}",
+                        "geometry": sidewalk_patch,
+                    }
+                )
+            frontage_patch = _corner_connector_patch(
+                corner_center=corner_center,
+                arm=arm,
+                next_arm=next_arm,
+                kind="frontage_reserve",
+                junction_core_rect=junction_core_rect,
+                aoi_polygon=aoi_polygon,
+            )
+            if not getattr(frontage_patch, "is_empty", True):
+                frontage_corner_patches.append(
+                    {
+                        "patch_id": f"{junction.junction_id}_frontage_{arm_index:02d}",
+                        "geometry": frontage_patch,
+                    }
+                )
+
+        junctions.append(
+            {
+                "junction_id": str(junction.junction_id),
+                "kind": kind,
+                "anchor_xy": [round(anchor[0], 3), round(anchor[1], 3)],
+                "arm_count": int(len(arms)),
+                "connected_road_ids": sorted(int(item["road_id"]) for item in arms),
+                "connected_centerline_ids": sorted(str(item["centerline_id"]) for item in arms),
+                "junction_core_rect": junction_core_rect,
+                "carriageway_core": carriageway_core,
+                "approach_boundaries": approach_boundaries,
+                "approach_split_lines": list(approach_boundaries),
+                "skeleton_foot_points": skeleton_foot_points,
+                "sub_lane_control_points": sub_lane_control_points,
+                "crosswalk_patches": crosswalk_patches,
+                "sidewalk_corner_patches": sidewalk_corner_patches,
+                "nearroad_corner_patches": nearroad_corner_patches,
+                "frontage_corner_patches": frontage_corner_patches,
+                "sidewalk_trim_zone": _merge_polygon_geometries(sidewalk_trim_polygons, aoi_polygon=aoi_polygon),
+            }
+        )
+    return junctions
+
+
 def build_junction_geometries(
     roads: Sequence[Any],
     *,
@@ -480,6 +994,18 @@ def build_junction_geometries(
     tolerance_m: float = 0.25,
 ) -> List[Dict[str, Any]]:
     from shapely.geometry import LineString, MultiPolygon
+
+    explicit_graph_junctions = list(getattr(road_segment_graph, "junctions", ()) or ()) if road_segment_graph is not None else []
+    if any(
+        str(getattr(item, "source_mode", "") or "") == "explicit"
+        and tuple(getattr(item, "connected_road_ids", ()) or ())
+        for item in explicit_graph_junctions
+    ):
+        return _build_explicit_graph_junction_geometries(
+            roads,
+            road_segment_graph=road_segment_graph,
+            aoi_polygon=aoi_polygon,
+        )
 
     road_profiles = _road_profile_widths_from_graph(road_segment_graph)
     clusters: List[Dict[str, Any]] = []
