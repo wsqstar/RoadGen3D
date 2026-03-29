@@ -453,6 +453,80 @@ class RoadSegmentBand:
 
 
 @dataclass(frozen=True)
+class RoadSegmentCrossSectionStrip:
+    """One ordered strip in a segment-level street cross section."""
+
+    strip_id: str
+    zone: str
+    kind: str
+    width_m: float
+    direction: str = "none"
+    order_index: int = 0
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "strip_id": self.strip_id,
+            "zone": self.zone,
+            "kind": self.kind,
+            "width_m": float(self.width_m),
+            "direction": self.direction,
+            "order_index": int(self.order_index),
+        }
+
+
+@dataclass(frozen=True)
+class RoadSegmentFurnitureInstance:
+    """One street-furniture instance anchored to a segment cross section."""
+
+    instance_id: str
+    centerline_id: str
+    strip_id: str
+    kind: str
+    station_m: float
+    lateral_offset_m: float
+    yaw_deg: Optional[float] = None
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "instance_id": self.instance_id,
+            "centerline_id": self.centerline_id,
+            "strip_id": self.strip_id,
+            "kind": self.kind,
+            "station_m": float(self.station_m),
+            "lateral_offset_m": float(self.lateral_offset_m),
+            "yaw_deg": float(self.yaw_deg) if self.yaw_deg is not None else None,
+        }
+
+
+@dataclass(frozen=True)
+class RoadSegmentMetaUrbanAssetHint:
+    """MetaUrban-style asset/category hints derived from one street strip."""
+
+    strip_id: str
+    zone: str
+    strip_kind: str
+    metaurban_zone: str
+    display_label: str
+    suggested_assets: Tuple[str, ...] = ()
+    placement_hint: str = ""
+    asset_source: str = "metaurban_asset_config"
+    asset_directory_status: str = "hook_only"
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "strip_id": self.strip_id,
+            "zone": self.zone,
+            "strip_kind": self.strip_kind,
+            "metaurban_zone": self.metaurban_zone,
+            "display_label": self.display_label,
+            "suggested_assets": list(self.suggested_assets),
+            "placement_hint": self.placement_hint,
+            "asset_source": self.asset_source,
+            "asset_directory_status": self.asset_directory_status,
+        }
+
+
+@dataclass(frozen=True)
 class RoadSegmentNode:
     """One segment on a road polyline graph."""
 
@@ -472,6 +546,10 @@ class RoadSegmentNode:
     station_center_m: float = 0.0
     road_width_m: float = 0.0
     lane_profile: Dict[str, int] = field(default_factory=dict)
+    cross_section_strips: Tuple[RoadSegmentCrossSectionStrip, ...] = ()
+    cross_section_width_m: float = 0.0
+    street_furniture_instances: Tuple[RoadSegmentFurnitureInstance, ...] = ()
+    metaurban_asset_hints: Tuple[RoadSegmentMetaUrbanAssetHint, ...] = ()
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -491,6 +569,16 @@ class RoadSegmentNode:
             "station_center_m": float(self.station_center_m),
             "road_width_m": float(self.road_width_m),
             "lane_profile": {str(key): int(value) for key, value in self.lane_profile.items()},
+            "cross_section_strips": [strip.to_dict() for strip in self.cross_section_strips],
+            "cross_section_width_m": float(self.cross_section_width_m),
+            "street_furniture_instances": [
+                instance.to_dict()
+                for instance in self.street_furniture_instances
+            ],
+            "metaurban_asset_hints": [
+                hint.to_dict()
+                for hint in self.metaurban_asset_hints
+            ],
         }
 
 
@@ -524,7 +612,9 @@ class RoadSegmentGraph:
 
     def summary(self) -> Dict[str, Any]:
         road_ids = {int(node.road_id) for node in self.nodes}
-        road_widths_by_road: Dict[int, float] = {}
+        carriageway_widths_by_road: Dict[int, float] = {}
+        cross_section_widths_by_road: Dict[int, float] = {}
+        metaurban_asset_hint_count = 0
         for node in self.nodes:
             width_m = float(getattr(node, "road_width_m", 0.0) or 0.0)
             if width_m <= 0.0:
@@ -532,8 +622,13 @@ class RoadSegmentGraph:
             lane_profile = getattr(node, "lane_profile", {}) or {}
             if lane_profile and int(lane_profile.get("total_lane_count", 0)) <= 0:
                 continue
-            road_widths_by_road.setdefault(int(node.road_id), width_m)
-        unique_widths = list(road_widths_by_road.values())
+            carriageway_widths_by_road.setdefault(int(node.road_id), width_m)
+            cross_section_width_m = float(getattr(node, "cross_section_width_m", 0.0) or 0.0)
+            if cross_section_width_m > 0.0:
+                cross_section_widths_by_road.setdefault(int(node.road_id), cross_section_width_m)
+            metaurban_asset_hint_count += len(getattr(node, "metaurban_asset_hints", ()) or ())
+        unique_widths = list(carriageway_widths_by_road.values())
+        unique_cross_section_widths = list(cross_section_widths_by_road.values())
         return {
             "mode": self.mode,
             "segment_count": len(self.nodes),
@@ -544,7 +639,7 @@ class RoadSegmentGraph:
                 if self.nodes
                 else 0.0
             ),
-            "road_count": len(road_widths_by_road) if road_widths_by_road else len(road_ids),
+            "road_count": len(carriageway_widths_by_road) if carriageway_widths_by_road else len(road_ids),
             "min_road_width_m": min(unique_widths) if unique_widths else 0.0,
             "max_road_width_m": max(unique_widths) if unique_widths else 0.0,
             "avg_road_width_m": (
@@ -552,6 +647,22 @@ class RoadSegmentGraph:
                 if unique_widths
                 else 0.0
             ),
+            "min_cross_section_width_m": (
+                min(unique_cross_section_widths)
+                if unique_cross_section_widths
+                else 0.0
+            ),
+            "max_cross_section_width_m": (
+                max(unique_cross_section_widths)
+                if unique_cross_section_widths
+                else 0.0
+            ),
+            "avg_cross_section_width_m": (
+                sum(unique_cross_section_widths) / len(unique_cross_section_widths)
+                if unique_cross_section_widths
+                else 0.0
+            ),
+            "metaurban_asset_hint_count": int(metaurban_asset_hint_count),
         }
 
 

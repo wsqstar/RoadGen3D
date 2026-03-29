@@ -3,6 +3,7 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
+import pytest
 from fastapi.testclient import TestClient
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -307,12 +308,30 @@ def test_design_api_endpoints_return_expected_shapes():
                 "centerlines": [
                     {
                         "id": "main_axis",
-                        "road_width_m": 11.0,
-                        "reference_width_px": 98.0,
-                        "forward_drive_lane_count": 2,
+                        "road_width_m": 25.2,
+                        "reference_width_px": 218.0,
+                        "forward_drive_lane_count": 1,
                         "reverse_drive_lane_count": 1,
-                        "bike_lane_count": 1,
+                        "bus_lane_count": 1,
                         "parking_lane_count": 1,
+                        "cross_section_mode": "detailed",
+                        "cross_section_strips": [
+                            {"strip_id": "left_furnishing", "zone": "left", "kind": "nearroad_furnishing", "width_m": 1.5, "direction": "none", "order_index": 0},
+                            {"strip_id": "left_sidewalk", "zone": "left", "kind": "clear_sidewalk", "width_m": 2.5, "direction": "none", "order_index": 1},
+                            {"strip_id": "left_frontage", "zone": "left", "kind": "frontage_reserve", "width_m": 2.0, "direction": "none", "order_index": 2},
+                            {"strip_id": "rev_park", "zone": "center", "kind": "parking_lane", "width_m": 2.2, "direction": "reverse", "order_index": 0},
+                            {"strip_id": "rev_drive", "zone": "center", "kind": "drive_lane", "width_m": 3.2, "direction": "reverse", "order_index": 1},
+                            {"strip_id": "median_01", "zone": "center", "kind": "median", "width_m": 1.2, "direction": "none", "order_index": 2},
+                            {"strip_id": "fwd_drive", "zone": "center", "kind": "drive_lane", "width_m": 3.2, "direction": "forward", "order_index": 3},
+                            {"strip_id": "fwd_bus", "zone": "center", "kind": "bus_lane", "width_m": 3.4, "direction": "forward", "order_index": 4},
+                            {"strip_id": "right_furnishing", "zone": "right", "kind": "nearroad_furnishing", "width_m": 1.5, "direction": "none", "order_index": 0},
+                            {"strip_id": "right_sidewalk", "zone": "right", "kind": "clear_sidewalk", "width_m": 2.5, "direction": "none", "order_index": 1},
+                            {"strip_id": "right_frontage", "zone": "right", "kind": "frontage_reserve", "width_m": 2.0, "direction": "none", "order_index": 2},
+                        ],
+                        "street_furniture_instances": [
+                            {"instance_id": "bench_01", "centerline_id": "main_axis", "strip_id": "left_furnishing", "kind": "bench", "station_m": 7.5, "lateral_offset_m": -8.1},
+                            {"instance_id": "lamp_01", "centerline_id": "main_axis", "strip_id": "right_frontage", "kind": "lamp", "station_m": 22.0, "lateral_offset_m": 10.1, "yaw_deg": 90.0},
+                        ],
                         "points": [
                             {"x": 120, "y": 400},
                             {"x": 520, "y": 400},
@@ -344,9 +363,25 @@ def test_design_api_endpoints_return_expected_shapes():
     assert annotation_convert_response.json()["summary"]["centerline_count"] == 2
     assert annotation_convert_response.json()["summary"]["segment_count"] > 0
     assert len(annotation_convert_response.json()["road_profiles"]) == 2
-    assert annotation_convert_response.json()["road_profiles"][0]["reference_width_px"] == 98.0
+    assert len(annotation_convert_response.json()["cross_section_profiles"]) == 2
+    assert len(annotation_convert_response.json()["street_furniture_instances"]) == 2
+    assert len(annotation_convert_response.json()["metaurban_asset_hints"]) >= 2
+    assert annotation_convert_response.json()["metaurban_asset_guide"]["download_command"].endswith("pull_asset.py --update")
+    assert annotation_convert_response.json()["road_profiles"][0]["reference_width_px"] == 218.0
+    assert annotation_convert_response.json()["road_profiles"][0]["carriageway_width_m"] == pytest.approx(13.2)
+    assert annotation_convert_response.json()["cross_section_profiles"][0]["strip_count"] == 11
+    assert any(
+        item["annotation_id"] == "main_axis" and item["strip_id"] == "left_furnishing" and "Lamp_post" in item["suggested_assets"]
+        for item in annotation_convert_response.json()["metaurban_asset_hints"]
+    )
+    assert annotation_convert_response.json()["summary"]["metaurban_asset_hint_count"] == len(
+        annotation_convert_response.json()["metaurban_asset_hints"]
+    )
     assert annotation_convert_response.json()["graph"]["nodes"][0]["road_width_m"] > 0
     assert "lane_profile" in annotation_convert_response.json()["graph"]["nodes"][0]
+    assert "cross_section_strips" in annotation_convert_response.json()["graph"]["nodes"][0]
+    assert "street_furniture_instances" in annotation_convert_response.json()["graph"]["nodes"][0]
+    assert "metaurban_asset_hints" in annotation_convert_response.json()["graph"]["nodes"][0]
 
     metaurban_generate_response = client.post(
         "/api/design/generate",

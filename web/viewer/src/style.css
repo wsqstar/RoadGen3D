@@ -535,6 +535,10 @@ body {
   min-width: 0;
 }
 
+.scene-panel-bottom {
+  margin-top: 1rem;
+}
+
 .scene-layer-toolbar {
   display: flex;
   align-items: center;
@@ -935,6 +939,17 @@ body {
   font-size: 0.92rem;
 }
 
+.scene-form-field select {
+  width: 100%;
+  min-height: 2.35rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid rgba(83, 99, 70, 0.18);
+  border-radius: 0.85rem;
+  background: rgba(247, 245, 238, 0.95);
+  color: #213021;
+  font-size: 0.92rem;
+}
+
 .scene-form-field-wide {
   grid-column: 1 / -1;
 }
@@ -956,6 +971,211 @@ body {
   line-height: 1.55;
 }
 
+.scene-micro-note {
+  font-size: 0.8rem;
+  color: #6e7b68;
+}
+
+.scene-icon-button {
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 999px;
+  background: rgba(234, 227, 213, 0.98);
+  color: #32412f;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.annotation-detail-actions {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.annotation-cross-preview-section,
+.annotation-selected-strip-section,
+.annotation-metaurban-guide,
+.annotation-detailed-layout {
+  margin-top: 1rem;
+}
+
+.annotation-cross-preview-section,
+.annotation-selected-strip-section,
+.annotation-metaurban-guide {
+  display: grid;
+  gap: 0.8rem;
+  padding: 0.95rem;
+  border-radius: 1rem;
+  background: rgba(245, 241, 230, 0.78);
+  border: 1px solid rgba(111, 128, 107, 0.14);
+}
+
+.annotation-cross-preview-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.annotation-cross-preview-header h3 {
+  margin: 0;
+  font-size: 0.98rem;
+  color: #243322;
+}
+
+.annotation-cross-preview-stats {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.annotation-cross-preview-stat {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.9rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(255, 252, 246, 0.92);
+  color: #32412f;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.annotation-cross-preview-row {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.2rem;
+}
+
+.annotation-cross-preview-strip {
+  appearance: none;
+  display: grid;
+  gap: 0.5rem;
+  min-width: 8.5rem;
+  padding: 0.85rem;
+  border-radius: 0.95rem;
+  border: 1px solid rgba(83, 99, 70, 0.18);
+  color: #213021;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+}
+
+.annotation-cross-preview-strip-selected {
+  box-shadow:
+    inset 0 0 0 2px rgba(42, 110, 220, 0.35),
+    0 10px 24px rgba(42, 110, 220, 0.14);
+}
+
+.annotation-cross-preview-strip-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #1f2a20;
+}
+
+.annotation-cross-preview-strip-meta,
+.annotation-cross-preview-strip-zone {
+  font-size: 0.78rem;
+  color: #5d6c59;
+}
+
+.annotation-metaurban-badge-row {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.annotation-metaurban-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.75rem;
+  padding: 0.22rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 252, 246, 0.96);
+  border: 1px solid rgba(112, 126, 104, 0.14);
+  color: #3f4d3a;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.annotation-metaurban-guide-lines {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.annotation-detailed-layout {
+  display: grid;
+  gap: 1rem;
+}
+
+.annotation-strip-section,
+.annotation-furniture-section {
+  display: grid;
+  gap: 0.8rem;
+  padding: 0.95rem;
+  border-radius: 1rem;
+  background: rgba(245, 241, 230, 0.78);
+  border: 1px solid rgba(111, 128, 107, 0.14);
+}
+
+.annotation-strip-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.annotation-strip-section-header h3 {
+  margin: 0;
+  font-size: 0.96rem;
+  color: #243322;
+}
+
+.annotation-strip-row,
+.annotation-furniture-row {
+  display: grid;
+  gap: 0.7rem;
+  padding: 0.85rem;
+  border-radius: 0.95rem;
+  background: rgba(255, 252, 246, 0.9);
+  border: 1px solid rgba(112, 126, 104, 0.14);
+}
+
+.annotation-strip-row-selected {
+  box-shadow: inset 0 0 0 2px rgba(42, 110, 220, 0.28);
+  background: rgba(244, 248, 255, 0.96);
+}
+
+.annotation-strip-row-header,
+.annotation-furniture-row-header,
+.annotation-furniture-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.annotation-strip-row-actions {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.annotation-strip-row-summary {
+  display: flex;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+  align-items: center;
+  color: #42513f;
+  font-size: 0.84rem;
+}
+
 .annotation-overlay-svg {
   display: block;
   width: 100%;
@@ -969,6 +1189,7 @@ body {
 
 .annotation-centerline,
 .annotation-road-band,
+.annotation-cross-strip,
 .annotation-marker,
 .annotation-roundabout,
 .annotation-roundabout-center,
@@ -988,6 +1209,17 @@ body {
   stroke: #1f78ff;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.annotation-cross-strip {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.annotation-cross-strip-selected {
+  filter: drop-shadow(0 0 10px rgba(20, 90, 220, 0.34));
+  stroke: rgba(20, 90, 220, 0.92) !important;
 }
 
 .annotation-centerline-draft {
@@ -1037,6 +1269,20 @@ body {
 
 .annotation-vertex-selected {
   fill: #d94646;
+}
+
+.annotation-furniture-point {
+  fill: #6f4e37;
+  stroke: #fffdf6;
+  stroke-width: 2;
+}
+
+.annotation-furniture-label {
+  font: 600 13px/1 "SF Mono", "Roboto Mono", monospace;
+  fill: #36261b;
+  paint-order: stroke;
+  stroke: rgba(255, 253, 246, 0.92);
+  stroke-width: 3px;
 }
 
 .annotation-label {

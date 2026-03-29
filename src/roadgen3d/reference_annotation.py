@@ -4,12 +4,22 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
-from typing import Any, Dict, Iterable, List, Mapping, MutableMapping, Sequence, Tuple
+from pathlib import Path
+from typing import Any, Dict, List, Mapping, MutableMapping, Sequence, Tuple
 
 from .street_priors import DEFAULT_CATEGORIES
-from .types import RoadSegmentBand, RoadSegmentEdge, RoadSegmentGraph, RoadSegmentNode, StreetComposeConfig
+from .types import (
+    RoadSegmentBand,
+    RoadSegmentCrossSectionStrip,
+    RoadSegmentEdge,
+    RoadSegmentFurnitureInstance,
+    RoadSegmentGraph,
+    RoadSegmentMetaUrbanAssetHint,
+    RoadSegmentNode,
+    StreetComposeConfig,
+)
 
-ANNOTATION_SCHEMA_VERSION = "roadgen3d_reference_annotation_v1"
+ANNOTATION_SCHEMA_VERSION = "roadgen3d_reference_annotation_v2"
 DEFAULT_PIXELS_PER_METER = 8.0
 DEFAULT_ROUNDABOUT_RADIUS_PX = 36.0
 DEFAULT_ROAD_WIDTH_M = 12.0
@@ -18,6 +28,102 @@ DEFAULT_REVERSE_DRIVE_LANE_COUNT = 1
 DEFAULT_BIKE_LANE_COUNT = 0
 DEFAULT_BUS_LANE_COUNT = 0
 DEFAULT_PARKING_LANE_COUNT = 0
+
+CROSS_SECTION_MODE_COARSE = "coarse"
+CROSS_SECTION_MODE_DETAILED = "detailed"
+VALID_CROSS_SECTION_MODES = frozenset({CROSS_SECTION_MODE_COARSE, CROSS_SECTION_MODE_DETAILED})
+VALID_CROSS_SECTION_ZONES = frozenset({"left", "center", "right"})
+VALID_STRIP_DIRECTIONS = frozenset({"forward", "reverse", "bidirectional", "none"})
+LANE_STRIP_KINDS = frozenset({"drive_lane", "bus_lane", "bike_lane", "parking_lane"})
+CENTER_STRIP_KINDS = frozenset({"drive_lane", "bus_lane", "bike_lane", "parking_lane", "median"})
+SIDE_STRIP_KINDS = frozenset(
+    {
+        "nearroad_buffer",
+        "nearroad_furnishing",
+        "clear_sidewalk",
+        "farfromroad_buffer",
+        "frontage_reserve",
+    }
+)
+VALID_STRIP_KINDS = frozenset(CENTER_STRIP_KINDS | SIDE_STRIP_KINDS)
+FURNITURE_COMPATIBLE_STRIP_KINDS = frozenset({"nearroad_furnishing", "frontage_reserve"})
+VALID_FURNITURE_KINDS = frozenset(
+    {
+        "bench",
+        "lamp",
+        "trash",
+        "mailbox",
+        "bollard",
+        "sign",
+        "hydrant",
+        "bus_stop",
+    }
+)
+NOMINAL_STRIP_WIDTHS: Dict[str, float] = {
+    "drive_lane": 3.25,
+    "bus_lane": 3.5,
+    "bike_lane": 1.8,
+    "parking_lane": 2.5,
+    "median": 1.5,
+    "nearroad_buffer": 0.5,
+    "nearroad_furnishing": 1.5,
+    "clear_sidewalk": 2.5,
+    "farfromroad_buffer": 0.5,
+    "frontage_reserve": 2.0,
+}
+ROOT = Path(__file__).resolve().parents[2]
+METAURBAN_ROOT = (ROOT / "metaurban").resolve()
+METAURBAN_ASSETS_DIR = (METAURBAN_ROOT / "assets").resolve()
+METAURBAN_PEDESTRIAN_ASSETS_DIR = (METAURBAN_ROOT / "assets_pedestrian").resolve()
+METAURBAN_STRIP_DISPLAY_LABELS: Dict[str, str] = {
+    "drive_lane": "Drive Lane",
+    "bus_lane": "Bus Lane",
+    "bike_lane": "Bike Lane",
+    "parking_lane": "Parking Lane",
+    "median": "Median",
+    "nearroad_buffer": "Near-road Buffer",
+    "nearroad_furnishing": "Near-road Furnishing",
+    "clear_sidewalk": "Main Sidewalk",
+    "farfromroad_buffer": "Outer Buffer",
+    "frontage_reserve": "Valid Region",
+}
+METAURBAN_STRIP_ZONE_HINTS: Dict[str, str] = {
+    "drive_lane": "carriageway",
+    "bus_lane": "carriageway",
+    "bike_lane": "carriageway_edge",
+    "parking_lane": "carriageway_edge",
+    "median": "median",
+    "nearroad_buffer": "nearroad_buffer_sidewalk",
+    "nearroad_furnishing": "nearroad_sidewalk",
+    "clear_sidewalk": "main_sidewalk",
+    "farfromroad_buffer": "farfromroad_sidewalk",
+    "frontage_reserve": "valid_region",
+}
+METAURBAN_STRIP_ASSET_HINTS: Dict[str, Tuple[str, ...]] = {
+    "drive_lane": (),
+    "bus_lane": (),
+    "bike_lane": (),
+    "parking_lane": (),
+    "median": (),
+    "nearroad_buffer": ("Tree", "Traffic_sign", "Bollard"),
+    "nearroad_furnishing": ("Lamp_post", "TrashCan", "FireHydrant"),
+    "clear_sidewalk": ("Pedestrian", "Wheelchair", "Mailbox"),
+    "farfromroad_buffer": ("Bench",),
+    "frontage_reserve": ("Building",),
+}
+METAURBAN_STRIP_PLACEMENT_HINTS: Dict[str, str] = {
+    "drive_lane": "Roadway travel space.",
+    "bus_lane": "Transit-priority roadway space.",
+    "bike_lane": "Protected bike movement space.",
+    "parking_lane": "Road-edge parking or loading space.",
+    "median": "Median separator or refuge space.",
+    "nearroad_buffer": "MetaUrban nearroad_buffer_sidewalk objects typically sit here.",
+    "nearroad_furnishing": "MetaUrban nearroad_sidewalk furniture and utilities typically sit here.",
+    "clear_sidewalk": "MetaUrban main_sidewalk pedestrian flows and mailbox-scale objects typically sit here.",
+    "farfromroad_buffer": "MetaUrban farfromroad_sidewalk furniture or planting can extend here.",
+    "frontage_reserve": "MetaUrban valid_region buildings and frontage reserve typically start here.",
+}
+METAURBAN_ASSET_DOWNLOAD_COMMAND = "python metaurban/pull_asset.py --update"
 
 
 def _is_record(value: Any) -> bool:
@@ -60,8 +166,7 @@ def _as_int(value: Any, label: str, default: int | None = None) -> int:
         if default is None:
             raise ValueError(f"{label} must be a finite integer.")
         return int(default)
-    parsed = int(value)
-    return parsed
+    return int(value)
 
 
 def _distance(a: Tuple[float, float], b: Tuple[float, float]) -> float:
@@ -91,34 +196,6 @@ def _safe_slug(label: str, fallback: str) -> str:
     return collapsed or fallback
 
 
-def _segment_bands(
-    *,
-    segment_id: str,
-    config: StreetComposeConfig,
-    poi_types: Sequence[str],
-) -> Tuple[RoadSegmentBand, ...]:
-    return (
-        RoadSegmentBand(
-            band_id=f"{segment_id}_left",
-            segment_id=segment_id,
-            side="left",
-            kind="left_furnishing",
-            width_m=float(config.sidewalk_width_m),
-            allowed_categories=tuple(DEFAULT_CATEGORIES),
-            nearest_poi_types=tuple(poi_types),
-        ),
-        RoadSegmentBand(
-            band_id=f"{segment_id}_right",
-            segment_id=segment_id,
-            side="right",
-            kind="right_furnishing",
-            width_m=float(config.sidewalk_width_m),
-            allowed_categories=tuple(DEFAULT_CATEGORIES),
-            nearest_poi_types=tuple(poi_types),
-        ),
-    )
-
-
 def _lane_profile_dict(
     *,
     forward_drive_lane_count: int,
@@ -126,20 +203,32 @@ def _lane_profile_dict(
     bike_lane_count: int,
     bus_lane_count: int,
     parking_lane_count: int,
+    bidirectional_drive_lane_count: int = 0,
+    bidirectional_lane_count: int = 0,
 ) -> Dict[str, int]:
+    forward_drive_lane_count = int(max(forward_drive_lane_count, 0))
+    reverse_drive_lane_count = int(max(reverse_drive_lane_count, 0))
+    bike_lane_count = int(max(bike_lane_count, 0))
+    bus_lane_count = int(max(bus_lane_count, 0))
+    parking_lane_count = int(max(parking_lane_count, 0))
+    bidirectional_drive_lane_count = int(max(bidirectional_drive_lane_count, 0))
+    bidirectional_lane_count = int(max(bidirectional_lane_count, 0))
     return {
-        "forward_drive_lane_count": int(max(forward_drive_lane_count, 0)),
-        "reverse_drive_lane_count": int(max(reverse_drive_lane_count, 0)),
-        "bike_lane_count": int(max(bike_lane_count, 0)),
-        "bus_lane_count": int(max(bus_lane_count, 0)),
-        "parking_lane_count": int(max(parking_lane_count, 0)),
-        "total_drive_lane_count": int(max(forward_drive_lane_count, 0) + max(reverse_drive_lane_count, 0)),
-        "total_lane_count": int(
-            max(forward_drive_lane_count, 0)
-            + max(reverse_drive_lane_count, 0)
-            + max(bike_lane_count, 0)
-            + max(bus_lane_count, 0)
-            + max(parking_lane_count, 0)
+        "forward_drive_lane_count": forward_drive_lane_count,
+        "reverse_drive_lane_count": reverse_drive_lane_count,
+        "bike_lane_count": bike_lane_count,
+        "bus_lane_count": bus_lane_count,
+        "parking_lane_count": parking_lane_count,
+        "bidirectional_drive_lane_count": bidirectional_drive_lane_count,
+        "bidirectional_lane_count": bidirectional_lane_count,
+        "total_drive_lane_count": forward_drive_lane_count + reverse_drive_lane_count + bidirectional_drive_lane_count,
+        "total_lane_count": (
+            forward_drive_lane_count
+            + reverse_drive_lane_count
+            + bike_lane_count
+            + bus_lane_count
+            + parking_lane_count
+            + bidirectional_drive_lane_count
         ),
     }
 
@@ -151,6 +240,245 @@ class AnnotationPoint:
 
     def to_dict(self) -> Dict[str, float]:
         return {"x": float(self.x), "y": float(self.y)}
+
+
+@dataclass(frozen=True)
+class AnnotatedCrossSectionStrip:
+    strip_id: str
+    zone: str
+    kind: str
+    width_m: float
+    direction: str = "none"
+    order_index: int = 0
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "strip_id": self.strip_id,
+            "zone": self.zone,
+            "kind": self.kind,
+            "width_m": float(self.width_m),
+            "direction": self.direction,
+            "order_index": int(self.order_index),
+        }
+
+
+@dataclass(frozen=True)
+class AnnotatedStreetFurnitureInstance:
+    instance_id: str
+    centerline_id: str
+    strip_id: str
+    kind: str
+    station_m: float
+    lateral_offset_m: float
+    yaw_deg: float | None = None
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "instance_id": self.instance_id,
+            "centerline_id": self.centerline_id,
+            "strip_id": self.strip_id,
+            "kind": self.kind,
+            "station_m": float(self.station_m),
+            "lateral_offset_m": float(self.lateral_offset_m),
+            "yaw_deg": float(self.yaw_deg) if self.yaw_deg is not None else None,
+        }
+
+
+def _lane_profile_from_strips(strips: Sequence[AnnotatedCrossSectionStrip]) -> Dict[str, int]:
+    forward_drive_lane_count = 0
+    reverse_drive_lane_count = 0
+    bike_lane_count = 0
+    bus_lane_count = 0
+    parking_lane_count = 0
+    bidirectional_drive_lane_count = 0
+    bidirectional_lane_count = 0
+
+    for strip in strips:
+        if strip.zone != "center":
+            continue
+        if strip.kind == "drive_lane":
+            if strip.direction == "forward":
+                forward_drive_lane_count += 1
+            elif strip.direction == "reverse":
+                reverse_drive_lane_count += 1
+            elif strip.direction == "bidirectional":
+                bidirectional_drive_lane_count += 1
+                bidirectional_lane_count += 1
+        elif strip.kind == "bike_lane":
+            bike_lane_count += 1
+            if strip.direction == "bidirectional":
+                bidirectional_lane_count += 1
+        elif strip.kind == "bus_lane":
+            bus_lane_count += 1
+            if strip.direction == "bidirectional":
+                bidirectional_lane_count += 1
+        elif strip.kind == "parking_lane":
+            parking_lane_count += 1
+
+    return _lane_profile_dict(
+        forward_drive_lane_count=forward_drive_lane_count,
+        reverse_drive_lane_count=reverse_drive_lane_count,
+        bike_lane_count=bike_lane_count,
+        bus_lane_count=bus_lane_count,
+        parking_lane_count=parking_lane_count,
+        bidirectional_drive_lane_count=bidirectional_drive_lane_count,
+        bidirectional_lane_count=bidirectional_lane_count,
+    )
+
+
+def _split_auxiliary_count_across_directions(
+    total: int,
+    forward_drive_lane_count: int,
+    reverse_drive_lane_count: int,
+) -> Tuple[int, int]:
+    total = int(max(total, 0))
+    if forward_drive_lane_count > 0 and reverse_drive_lane_count > 0:
+        return int(math.ceil(float(total) / 2.0)), int(math.floor(float(total) / 2.0))
+    if reverse_drive_lane_count > 0:
+        return total, 0
+    return 0, total
+
+
+def _next_seed_strip_id(strips: Sequence[AnnotatedCrossSectionStrip], zone: str) -> str:
+    next_index = sum(1 for strip in strips if strip.zone == zone) + 1
+    return f"{zone}_{next_index:02d}"
+
+
+def _seed_detailed_cross_section(centerline: "AnnotatedCenterline") -> Tuple[AnnotatedCrossSectionStrip, ...]:
+    left_parking, right_parking = _split_auxiliary_count_across_directions(
+        centerline.parking_lane_count,
+        centerline.forward_drive_lane_count,
+        centerline.reverse_drive_lane_count,
+    )
+    left_bike, right_bike = _split_auxiliary_count_across_directions(
+        centerline.bike_lane_count,
+        centerline.forward_drive_lane_count,
+        centerline.reverse_drive_lane_count,
+    )
+    left_bus, right_bus = _split_auxiliary_count_across_directions(
+        centerline.bus_lane_count,
+        centerline.forward_drive_lane_count,
+        centerline.reverse_drive_lane_count,
+    )
+    strips: List[AnnotatedCrossSectionStrip] = []
+
+    def _push(zone: str, kind: str, direction: str) -> None:
+        strips.append(
+            AnnotatedCrossSectionStrip(
+                strip_id=_next_seed_strip_id(strips, zone),
+                zone=zone,
+                kind=kind,
+                width_m=float(NOMINAL_STRIP_WIDTHS[kind]),
+                direction=direction,
+                order_index=sum(1 for strip in strips if strip.zone == zone),
+            )
+        )
+
+    _push("left", "nearroad_furnishing", "none")
+    _push("left", "clear_sidewalk", "none")
+    _push("left", "frontage_reserve", "none")
+    _push("right", "nearroad_furnishing", "none")
+    _push("right", "clear_sidewalk", "none")
+    _push("right", "frontage_reserve", "none")
+
+    for _ in range(left_parking):
+        _push("center", "parking_lane", "reverse")
+    for _ in range(left_bike):
+        _push("center", "bike_lane", "reverse")
+    for _ in range(left_bus):
+        _push("center", "bus_lane", "reverse")
+    for _ in range(max(int(centerline.reverse_drive_lane_count), 0)):
+        _push("center", "drive_lane", "reverse")
+    if centerline.forward_drive_lane_count > 0 and centerline.reverse_drive_lane_count > 0:
+        _push("center", "median", "none")
+    for _ in range(max(int(centerline.forward_drive_lane_count), 0)):
+        _push("center", "drive_lane", "forward")
+    for _ in range(right_bus):
+        _push("center", "bus_lane", "forward")
+    for _ in range(right_bike):
+        _push("center", "bike_lane", "forward")
+    for _ in range(right_parking):
+        _push("center", "parking_lane", "forward")
+
+    nominal_total_width = sum(float(strip.width_m) for strip in strips)
+    target_width = max(float(centerline.road_width_m), 1.0)
+    scale = target_width / nominal_total_width if nominal_total_width > 0.0 else 1.0
+    return tuple(
+        AnnotatedCrossSectionStrip(
+            strip_id=strip.strip_id,
+            zone=strip.zone,
+            kind=strip.kind,
+            width_m=round(float(strip.width_m) * scale, 3),
+            direction=strip.direction,
+            order_index=strip.order_index,
+        )
+        for strip in strips
+    )
+
+
+def _preview_strips_for_centerline(centerline: "AnnotatedCenterline") -> Tuple[str, Tuple[AnnotatedCrossSectionStrip, ...]]:
+    if centerline.resolved_cross_section_mode() == CROSS_SECTION_MODE_DETAILED and centerline.cross_section_strips:
+        return "detailed", centerline.cross_section_strips
+    return "seed", _seed_detailed_cross_section(centerline)
+
+
+def _metaurban_asset_directory_flags() -> Dict[str, bool]:
+    return {
+        "assets_dir_present": bool(METAURBAN_ASSETS_DIR.exists()),
+        "assets_pedestrian_dir_present": bool(METAURBAN_PEDESTRIAN_ASSETS_DIR.exists()),
+    }
+
+
+def _metaurban_asset_directory_status_for_assets(suggested_assets: Sequence[str]) -> str:
+    if not suggested_assets:
+        return "not_applicable"
+    flags = _metaurban_asset_directory_flags()
+    requires_assets = any(asset not in {"Pedestrian", "Wheelchair"} for asset in suggested_assets)
+    requires_pedestrians = any(asset in {"Pedestrian", "Wheelchair"} for asset in suggested_assets)
+    assets_ready = (not requires_assets) or flags["assets_dir_present"]
+    pedestrians_ready = (not requires_pedestrians) or flags["assets_pedestrian_dir_present"]
+    return "available" if assets_ready and pedestrians_ready else "hook_only"
+
+
+def _build_metaurban_asset_hint_records(annotation: ReferenceAnnotation) -> List[Dict[str, Any]]:
+    hints: List[Dict[str, Any]] = []
+    for centerline in annotation.centerlines:
+        source_mode, strips = _preview_strips_for_centerline(centerline)
+        furniture_by_strip: Dict[str, List[str]] = {}
+        for instance in centerline.street_furniture_instances:
+            furniture_by_strip.setdefault(instance.strip_id, []).append(instance.kind)
+        for strip in strips:
+            suggested_assets = METAURBAN_STRIP_ASSET_HINTS.get(strip.kind, ())
+            hints.append(
+                {
+                    "annotation_id": centerline.feature_id,
+                    "label": centerline.label,
+                    "source_mode": source_mode,
+                    "strip_id": strip.strip_id,
+                    "zone": strip.zone,
+                    "strip_kind": strip.kind,
+                    "direction": strip.direction,
+                    "width_m": float(strip.width_m),
+                    "metaurban_zone": METAURBAN_STRIP_ZONE_HINTS.get(strip.kind, strip.kind),
+                    "display_label": METAURBAN_STRIP_DISPLAY_LABELS.get(strip.kind, strip.kind.replace("_", " ").title()),
+                    "suggested_assets": list(suggested_assets),
+                    "explicit_furniture_kinds": sorted(set(furniture_by_strip.get(strip.strip_id, []))),
+                    "placement_hint": METAURBAN_STRIP_PLACEMENT_HINTS.get(strip.kind, ""),
+                    "asset_source": "metaurban_asset_config",
+                    "asset_directory_status": _metaurban_asset_directory_status_for_assets(suggested_assets),
+                    **_metaurban_asset_directory_flags(),
+                }
+            )
+    return hints
+
+
+def _build_metaurban_asset_guide() -> Dict[str, Any]:
+    return {
+        "download_command": METAURBAN_ASSET_DOWNLOAD_COMMAND,
+        "assets_dir": str(METAURBAN_ASSETS_DIR),
+        "assets_pedestrian_dir": str(METAURBAN_PEDESTRIAN_ASSETS_DIR),
+        **_metaurban_asset_directory_flags(),
+    }
 
 
 @dataclass(frozen=True)
@@ -166,8 +494,20 @@ class AnnotatedCenterline:
     bus_lane_count: int = DEFAULT_BUS_LANE_COUNT
     parking_lane_count: int = DEFAULT_PARKING_LANE_COUNT
     highway_type: str = "annotated_centerline"
+    cross_section_mode: str = CROSS_SECTION_MODE_COARSE
+    cross_section_strips: Tuple[AnnotatedCrossSectionStrip, ...] = ()
+    street_furniture_instances: Tuple[AnnotatedStreetFurnitureInstance, ...] = ()
+
+    def resolved_cross_section_mode(self) -> str:
+        if self.cross_section_strips:
+            return CROSS_SECTION_MODE_DETAILED
+        if self.cross_section_mode in VALID_CROSS_SECTION_MODES:
+            return self.cross_section_mode
+        return CROSS_SECTION_MODE_COARSE
 
     def lane_profile(self) -> Dict[str, int]:
+        if self.resolved_cross_section_mode() == CROSS_SECTION_MODE_DETAILED and self.cross_section_strips:
+            return _lane_profile_from_strips(self.cross_section_strips)
         return _lane_profile_dict(
             forward_drive_lane_count=self.forward_drive_lane_count,
             reverse_drive_lane_count=self.reverse_drive_lane_count,
@@ -176,25 +516,45 @@ class AnnotatedCenterline:
             parking_lane_count=self.parking_lane_count,
         )
 
+    def cross_section_width_m(self) -> float:
+        if self.resolved_cross_section_mode() == CROSS_SECTION_MODE_DETAILED and self.cross_section_strips:
+            return float(sum(max(float(strip.width_m), 0.0) for strip in self.cross_section_strips))
+        return float(self.road_width_m)
+
+    def carriageway_width_m(self) -> float:
+        if self.resolved_cross_section_mode() == CROSS_SECTION_MODE_DETAILED and self.cross_section_strips:
+            width_m = sum(
+                max(float(strip.width_m), 0.0)
+                for strip in self.cross_section_strips
+                if strip.zone == "center"
+            )
+            if width_m > 0.0:
+                return float(width_m)
+        return float(self.road_width_m)
+
     def to_dict(self) -> Dict[str, Any]:
         lane_profile = self.lane_profile()
         return {
             "id": self.feature_id,
             "label": self.label,
-            "road_width_m": float(self.road_width_m),
+            "road_width_m": float(self.cross_section_width_m()),
+            "carriageway_width_m": float(self.carriageway_width_m()),
             "reference_width_px": (
                 float(self.reference_width_px)
                 if self.reference_width_px is not None
                 else None
             ),
-            "forward_drive_lane_count": int(self.forward_drive_lane_count),
-            "reverse_drive_lane_count": int(self.reverse_drive_lane_count),
-            "bike_lane_count": int(self.bike_lane_count),
-            "bus_lane_count": int(self.bus_lane_count),
-            "parking_lane_count": int(self.parking_lane_count),
+            "forward_drive_lane_count": int(lane_profile["forward_drive_lane_count"]),
+            "reverse_drive_lane_count": int(lane_profile["reverse_drive_lane_count"]),
+            "bike_lane_count": int(lane_profile["bike_lane_count"]),
+            "bus_lane_count": int(lane_profile["bus_lane_count"]),
+            "parking_lane_count": int(lane_profile["parking_lane_count"]),
             "lane_count": int(lane_profile["total_drive_lane_count"]),
             "lane_profile": lane_profile,
             "highway_type": self.highway_type,
+            "cross_section_mode": self.resolved_cross_section_mode(),
+            "cross_section_strips": [strip.to_dict() for strip in self.cross_section_strips],
+            "street_furniture_instances": [item.to_dict() for item in self.street_furniture_instances],
             "points": [point.to_dict() for point in self.points],
         }
 
@@ -300,13 +660,153 @@ def _resolve_drive_lane_defaults(value: Mapping[str, Any], index: int) -> Tuple[
     return forward_drive_lane_count, reverse_drive_lane_count
 
 
+def _parse_cross_section_strip(
+    value: Any,
+    *,
+    centerline_index: int,
+    strip_index: int,
+    fallback_prefix: str,
+) -> AnnotatedCrossSectionStrip:
+    if not _is_record(value):
+        raise ValueError(f"centerlines[{centerline_index}].cross_section_strips[{strip_index}] must be an object.")
+    strip_id = _as_string(
+        value.get("strip_id"),
+        f"{fallback_prefix}_strip_{strip_index + 1:02d}",
+    )
+    zone = _safe_slug(
+        _as_string(value.get("zone"), "center"),
+        "center",
+    )
+    if zone not in VALID_CROSS_SECTION_ZONES:
+        raise ValueError(
+            f"centerlines[{centerline_index}].cross_section_strips[{strip_index}].zone must be one of {sorted(VALID_CROSS_SECTION_ZONES)}."
+        )
+    kind = _safe_slug(
+        _as_string(value.get("kind"), "drive_lane"),
+        "drive_lane",
+    )
+    if kind not in VALID_STRIP_KINDS:
+        raise ValueError(
+            f"centerlines[{centerline_index}].cross_section_strips[{strip_index}].kind must be one of {sorted(VALID_STRIP_KINDS)}."
+        )
+    direction = _safe_slug(
+        _as_string(value.get("direction"), "none"),
+        "none",
+    )
+    if direction not in VALID_STRIP_DIRECTIONS:
+        raise ValueError(
+            f"centerlines[{centerline_index}].cross_section_strips[{strip_index}].direction must be one of {sorted(VALID_STRIP_DIRECTIONS)}."
+        )
+    if zone in {"left", "right"} and kind not in SIDE_STRIP_KINDS:
+        raise ValueError(
+            f"centerlines[{centerline_index}].cross_section_strips[{strip_index}] uses side zone '{zone}' but kind '{kind}' is not a side strip."
+        )
+    if zone == "center" and kind not in CENTER_STRIP_KINDS:
+        raise ValueError(
+            f"centerlines[{centerline_index}].cross_section_strips[{strip_index}] uses center zone but kind '{kind}' is not a center strip."
+        )
+    if kind in SIDE_STRIP_KINDS or kind == "median":
+        direction = "none"
+    return AnnotatedCrossSectionStrip(
+        strip_id=strip_id,
+        zone=zone,
+        kind=kind,
+        width_m=max(
+            0.1,
+            _as_float(
+                value.get("width_m"),
+                f"centerlines[{centerline_index}].cross_section_strips[{strip_index}].width_m",
+                default=1.0,
+            ),
+        ),
+        direction=direction,
+        order_index=max(
+            0,
+            _as_int(
+                value.get("order_index"),
+                f"centerlines[{centerline_index}].cross_section_strips[{strip_index}].order_index",
+                default=strip_index,
+            ),
+        ),
+    )
+
+
+def _parse_street_furniture_instance(
+    value: Any,
+    *,
+    centerline_index: int,
+    furniture_index: int,
+    fallback_prefix: str,
+    fallback_centerline_id: str,
+) -> AnnotatedStreetFurnitureInstance:
+    if not _is_record(value):
+        raise ValueError(
+            f"centerlines[{centerline_index}].street_furniture_instances[{furniture_index}] must be an object."
+        )
+    kind = _safe_slug(
+        _as_string(value.get("kind"), "bench"),
+        "bench",
+    )
+    if kind not in VALID_FURNITURE_KINDS:
+        raise ValueError(
+            f"centerlines[{centerline_index}].street_furniture_instances[{furniture_index}].kind must be one of {sorted(VALID_FURNITURE_KINDS)}."
+        )
+    return AnnotatedStreetFurnitureInstance(
+        instance_id=_as_string(
+            value.get("instance_id") or value.get("id"),
+            f"{fallback_prefix}_furniture_{furniture_index + 1:02d}",
+        ),
+        centerline_id=_as_string(
+            value.get("centerline_id"),
+            fallback_centerline_id,
+        ),
+        strip_id=_as_string(
+            value.get("strip_id"),
+            "",
+        ),
+        kind=kind,
+        station_m=max(
+            0.0,
+            _as_float(
+                value.get("station_m"),
+                f"centerlines[{centerline_index}].street_furniture_instances[{furniture_index}].station_m",
+                default=0.0,
+            ),
+        ),
+        lateral_offset_m=_as_float(
+            value.get("lateral_offset_m"),
+            f"centerlines[{centerline_index}].street_furniture_instances[{furniture_index}].lateral_offset_m",
+            default=0.0,
+        ),
+        yaw_deg=_as_optional_float(
+            value.get("yaw_deg"),
+            f"centerlines[{centerline_index}].street_furniture_instances[{furniture_index}].yaw_deg",
+        ),
+    )
+
+
+def _sorted_cross_section_strips(
+    strips: Sequence[AnnotatedCrossSectionStrip],
+) -> Tuple[AnnotatedCrossSectionStrip, ...]:
+    zone_rank = {"left": 0, "center": 1, "right": 2}
+    return tuple(
+        sorted(
+            strips,
+            key=lambda item: (zone_rank.get(item.zone, 99), int(item.order_index), item.strip_id),
+        )
+    )
+
+
 def _parse_centerline(value: Any, index: int) -> AnnotatedCenterline:
     if not _is_record(value):
         raise ValueError(f"centerlines[{index}] must be an object.")
     raw_points = value.get("points")
     if not isinstance(raw_points, Sequence) or isinstance(raw_points, (str, bytes)):
         raise ValueError(f"centerlines[{index}].points must be an array.")
-    points = tuple(_parse_point(item, f"centerlines[{index}].points[{point_idx}]") for point_idx, item in enumerate(raw_points))
+    points = tuple(
+        _parse_point(item, f"centerlines[{index}].points[{point_idx}]")
+        for point_idx, item in enumerate(raw_points)
+    )
     if len(points) < 2:
         raise ValueError(f"centerlines[{index}] must contain at least two points.")
     fallback_id = f"centerline_{index + 1:02d}"
@@ -317,7 +817,61 @@ def _parse_centerline(value: Any, index: int) -> AnnotatedCenterline:
         value.get("reference_width_px"),
         f"centerlines[{index}].reference_width_px",
     )
-    return AnnotatedCenterline(
+
+    raw_strips = value.get("cross_section_strips") or []
+    if not isinstance(raw_strips, Sequence) or isinstance(raw_strips, (str, bytes)):
+        raise ValueError(f"centerlines[{index}].cross_section_strips must be an array.")
+    cross_section_strips = _sorted_cross_section_strips(
+        [
+            _parse_cross_section_strip(
+                item,
+                centerline_index=index,
+                strip_index=strip_index,
+                fallback_prefix=feature_id,
+            )
+            for strip_index, item in enumerate(raw_strips)
+        ]
+    )
+    raw_mode = _safe_slug(
+        _as_string(
+            value.get("cross_section_mode"),
+            CROSS_SECTION_MODE_DETAILED if cross_section_strips else CROSS_SECTION_MODE_COARSE,
+        ),
+        CROSS_SECTION_MODE_COARSE,
+    )
+    cross_section_mode = raw_mode if raw_mode in VALID_CROSS_SECTION_MODES else CROSS_SECTION_MODE_COARSE
+    if cross_section_mode == CROSS_SECTION_MODE_DETAILED and not cross_section_strips:
+        cross_section_mode = CROSS_SECTION_MODE_COARSE
+
+    raw_furniture = value.get("street_furniture_instances") or []
+    if not isinstance(raw_furniture, Sequence) or isinstance(raw_furniture, (str, bytes)):
+        raise ValueError(f"centerlines[{index}].street_furniture_instances must be an array.")
+    street_furniture_instances = tuple(
+        _parse_street_furniture_instance(
+            item,
+            centerline_index=index,
+            furniture_index=furniture_index,
+            fallback_prefix=feature_id,
+            fallback_centerline_id=feature_id,
+        )
+        for furniture_index, item in enumerate(raw_furniture)
+    )
+    strip_by_id = {strip.strip_id: strip for strip in cross_section_strips}
+    for furniture_index, instance in enumerate(street_furniture_instances):
+        if instance.centerline_id != feature_id:
+            raise ValueError(
+                f"centerlines[{index}].street_furniture_instances[{furniture_index}].centerline_id must match {feature_id}."
+            )
+        if instance.strip_id not in strip_by_id:
+            raise ValueError(
+                f"centerlines[{index}].street_furniture_instances[{furniture_index}].strip_id must reference an existing cross-section strip."
+            )
+        if strip_by_id[instance.strip_id].kind not in FURNITURE_COMPATIBLE_STRIP_KINDS:
+            raise ValueError(
+                f"centerlines[{index}].street_furniture_instances[{furniture_index}] must target a furniture-compatible strip."
+            )
+
+    centerline = AnnotatedCenterline(
         feature_id=feature_id,
         label=label,
         points=points,
@@ -357,7 +911,13 @@ def _parse_centerline(value: Any, index: int) -> AnnotatedCenterline:
             ),
         ),
         highway_type=_as_string(value.get("highway_type"), "annotated_centerline"),
+        cross_section_mode=cross_section_mode,
+        cross_section_strips=cross_section_strips,
+        street_furniture_instances=street_furniture_instances,
     )
+    if centerline.resolved_cross_section_mode() == CROSS_SECTION_MODE_DETAILED and centerline.carriageway_width_m() <= 0.0:
+        raise ValueError(f"centerlines[{index}] detailed cross section must include at least one center strip.")
+    return centerline
 
 
 def _parse_marker(value: Any, index: int, *, collection: str, default_kind: str) -> AnnotatedMarker:
@@ -387,7 +947,14 @@ def _parse_roundabout(value: Any, index: int) -> AnnotatedRoundabout:
         label=label,
         x=_as_float(value.get("x"), f"roundabouts[{index}].x"),
         y=_as_float(value.get("y"), f"roundabouts[{index}].y"),
-        radius_px=max(6.0, _as_float(value.get("radius_px"), f"roundabouts[{index}].radius_px", default=DEFAULT_ROUNDABOUT_RADIUS_PX)),
+        radius_px=max(
+            6.0,
+            _as_float(
+                value.get("radius_px"),
+                f"roundabouts[{index}].radius_px",
+                default=DEFAULT_ROUNDABOUT_RADIUS_PX,
+            ),
+        ),
     )
 
 
@@ -419,11 +986,24 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
         image_path=_as_string(payload.get("image_path"), ""),
         image_width_px=max(0, _as_int(payload.get("image_width_px"), "image_width_px", default=0)),
         image_height_px=max(0, _as_int(payload.get("image_height_px"), "image_height_px", default=0)),
-        pixels_per_meter=max(0.1, _as_float(payload.get("pixels_per_meter"), "pixels_per_meter", default=DEFAULT_PIXELS_PER_METER)),
+        pixels_per_meter=max(
+            0.1,
+            _as_float(
+                payload.get("pixels_per_meter"),
+                "pixels_per_meter",
+                default=DEFAULT_PIXELS_PER_METER,
+            ),
+        ),
         centerlines=centerlines,
-        junctions=tuple(_parse_marker(item, index, collection="junctions", default_kind="intersection") for index, item in enumerate(junctions_raw)),
+        junctions=tuple(
+            _parse_marker(item, index, collection="junctions", default_kind="intersection")
+            for index, item in enumerate(junctions_raw)
+        ),
         roundabouts=tuple(_parse_roundabout(item, index) for index, item in enumerate(roundabouts_raw)),
-        control_points=tuple(_parse_marker(item, index, collection="control_points", default_kind="control_point") for index, item in enumerate(control_points_raw)),
+        control_points=tuple(
+            _parse_marker(item, index, collection="control_points", default_kind="control_point")
+            for index, item in enumerate(control_points_raw)
+        ),
     )
 
 
@@ -470,23 +1050,54 @@ def _build_annotation_road_profiles(annotation: ReferenceAnnotation) -> List[Dic
                 "road_id": int(road_id),
                 "annotation_id": centerline.feature_id,
                 "label": centerline.label,
-                "road_width_m": float(centerline.road_width_m),
+                "road_width_m": float(centerline.cross_section_width_m()),
+                "carriageway_width_m": float(centerline.carriageway_width_m()),
+                "cross_section_width_m": float(centerline.cross_section_width_m()),
+                "cross_section_mode": centerline.resolved_cross_section_mode(),
                 "reference_width_px": (
                     float(centerline.reference_width_px)
                     if centerline.reference_width_px is not None
                     else None
                 ),
                 "reference_width_m": reference_width_m,
-                "forward_drive_lane_count": int(centerline.forward_drive_lane_count),
-                "reverse_drive_lane_count": int(centerline.reverse_drive_lane_count),
-                "bike_lane_count": int(centerline.bike_lane_count),
-                "bus_lane_count": int(centerline.bus_lane_count),
-                "parking_lane_count": int(centerline.parking_lane_count),
+                "forward_drive_lane_count": int(lane_profile["forward_drive_lane_count"]),
+                "reverse_drive_lane_count": int(lane_profile["reverse_drive_lane_count"]),
+                "bike_lane_count": int(lane_profile["bike_lane_count"]),
+                "bus_lane_count": int(lane_profile["bus_lane_count"]),
+                "parking_lane_count": int(lane_profile["parking_lane_count"]),
                 "lane_profile": lane_profile,
                 "highway_type": centerline.highway_type,
+                "cross_section_strip_count": len(centerline.cross_section_strips),
+                "street_furniture_instance_count": len(centerline.street_furniture_instances),
             }
         )
     return road_profiles
+
+
+def _build_cross_section_profiles(annotation: ReferenceAnnotation) -> List[Dict[str, Any]]:
+    profiles: List[Dict[str, Any]] = []
+    for centerline in annotation.centerlines:
+        profiles.append(
+            {
+                "annotation_id": centerline.feature_id,
+                "label": centerline.label,
+                "cross_section_mode": centerline.resolved_cross_section_mode(),
+                "carriageway_width_m": float(centerline.carriageway_width_m()),
+                "cross_section_width_m": float(centerline.cross_section_width_m()),
+                "strip_count": len(centerline.cross_section_strips),
+                "strips": [strip.to_dict() for strip in centerline.cross_section_strips],
+                "street_furniture_instance_count": len(centerline.street_furniture_instances),
+            }
+        )
+    return profiles
+
+
+def _build_street_furniture_instances(annotation: ReferenceAnnotation) -> List[Dict[str, Any]]:
+    items: List[Dict[str, Any]] = []
+    for centerline in annotation.centerlines:
+        for instance in centerline.street_furniture_instances:
+            items.append(instance.to_dict())
+    return items
 
 
 def _collect_auto_junction_anchors(
@@ -536,6 +1147,137 @@ def _build_poi_types(
     return tuple(sorted(set(poi_types)))
 
 
+def _default_segment_bands(
+    *,
+    segment_id: str,
+    config: StreetComposeConfig,
+    poi_types: Sequence[str],
+) -> Tuple[RoadSegmentBand, ...]:
+    return (
+        RoadSegmentBand(
+            band_id=f"{segment_id}_left",
+            segment_id=segment_id,
+            side="left",
+            kind="left_furnishing",
+            width_m=float(config.sidewalk_width_m),
+            allowed_categories=tuple(DEFAULT_CATEGORIES),
+            nearest_poi_types=tuple(poi_types),
+        ),
+        RoadSegmentBand(
+            band_id=f"{segment_id}_right",
+            segment_id=segment_id,
+            side="right",
+            kind="right_furnishing",
+            width_m=float(config.sidewalk_width_m),
+            allowed_categories=tuple(DEFAULT_CATEGORIES),
+            nearest_poi_types=tuple(poi_types),
+        ),
+    )
+
+
+def _segment_bands_for_centerline(
+    *,
+    centerline: AnnotatedCenterline,
+    segment_id: str,
+    config: StreetComposeConfig,
+    poi_types: Sequence[str],
+) -> Tuple[RoadSegmentBand, ...]:
+    if centerline.resolved_cross_section_mode() != CROSS_SECTION_MODE_DETAILED or not centerline.cross_section_strips:
+        return _default_segment_bands(segment_id=segment_id, config=config, poi_types=poi_types)
+
+    bands = [
+        RoadSegmentBand(
+            band_id=f"{segment_id}_{strip.strip_id}",
+            segment_id=segment_id,
+            side="left" if strip.zone == "left" else "right",
+            kind=strip.kind,
+            width_m=float(strip.width_m),
+            allowed_categories=tuple(DEFAULT_CATEGORIES),
+            nearest_poi_types=tuple(poi_types),
+        )
+        for strip in centerline.cross_section_strips
+        if strip.zone in {"left", "right"}
+    ]
+    return tuple(bands) if bands else _default_segment_bands(segment_id=segment_id, config=config, poi_types=poi_types)
+
+
+def _segment_cross_section_strips(centerline: AnnotatedCenterline) -> Tuple[RoadSegmentCrossSectionStrip, ...]:
+    return tuple(
+        RoadSegmentCrossSectionStrip(
+            strip_id=strip.strip_id,
+            zone=strip.zone,
+            kind=strip.kind,
+            width_m=float(strip.width_m),
+            direction=strip.direction,
+            order_index=int(strip.order_index),
+        )
+        for strip in centerline.cross_section_strips
+    )
+
+
+def _segment_furniture_instances(
+    centerline: AnnotatedCenterline,
+    *,
+    station_start_m: float,
+    station_end_m: float,
+    include_end: bool,
+) -> Tuple[RoadSegmentFurnitureInstance, ...]:
+    matches: List[RoadSegmentFurnitureInstance] = []
+    epsilon = 1e-6
+    for instance in centerline.street_furniture_instances:
+        station_m = float(instance.station_m)
+        within = station_start_m - epsilon <= station_m <= station_end_m + epsilon if include_end else (
+            station_start_m - epsilon <= station_m < station_end_m + epsilon
+        )
+        if not within:
+            continue
+        matches.append(
+            RoadSegmentFurnitureInstance(
+                instance_id=instance.instance_id,
+                centerline_id=instance.centerline_id,
+                strip_id=instance.strip_id,
+                kind=instance.kind,
+                station_m=station_m,
+                lateral_offset_m=float(instance.lateral_offset_m),
+                yaw_deg=instance.yaw_deg,
+            )
+        )
+    return tuple(matches)
+
+
+def _segment_metaurban_asset_hints(
+    centerline: AnnotatedCenterline,
+) -> Tuple[RoadSegmentMetaUrbanAssetHint, ...]:
+    hint_records = _build_metaurban_asset_hint_records(
+        ReferenceAnnotation(
+            version=ANNOTATION_SCHEMA_VERSION,
+            plan_id="",
+            image_path="",
+            image_width_px=0,
+            image_height_px=0,
+            pixels_per_meter=DEFAULT_PIXELS_PER_METER,
+            centerlines=(centerline,),
+            junctions=(),
+            roundabouts=(),
+            control_points=(),
+        )
+    )
+    return tuple(
+        RoadSegmentMetaUrbanAssetHint(
+            strip_id=str(record["strip_id"]),
+            zone=str(record["zone"]),
+            strip_kind=str(record["strip_kind"]),
+            metaurban_zone=str(record["metaurban_zone"]),
+            display_label=str(record["display_label"]),
+            suggested_assets=tuple(str(item) for item in record.get("suggested_assets", []) or ()),
+            placement_hint=str(record.get("placement_hint", "") or ""),
+            asset_source=str(record.get("asset_source", "metaurban_asset_config") or "metaurban_asset_config"),
+            asset_directory_status=str(record.get("asset_directory_status", "hook_only") or "hook_only"),
+        )
+        for record in hint_records
+    )
+
+
 def _build_centerline_nodes(
     centerline: AnnotatedCenterline,
     *,
@@ -555,9 +1297,15 @@ def _build_centerline_nodes(
     last_segment_id: str | None = None
     station_m = 0.0
     segment_length_target = max(float(config.segment_length_m), 4.0)
-    junction_tolerance_m = max(float(centerline.road_width_m) * 0.85, segment_length_target * 0.6, 3.0)
-    roundabout_tolerance_m = max(float(centerline.road_width_m), segment_length_target, 5.0)
-    control_tolerance_m = max(float(centerline.road_width_m), 6.0)
+    anchor_width_m = max(float(centerline.cross_section_width_m()), 1.0)
+    junction_tolerance_m = max(anchor_width_m * 0.85, segment_length_target * 0.6, 3.0)
+    roundabout_tolerance_m = max(anchor_width_m, segment_length_target, 5.0)
+    control_tolerance_m = max(anchor_width_m, 6.0)
+    lane_profile = centerline.lane_profile()
+    cross_section_width_m = float(centerline.cross_section_width_m())
+    carriageway_width_m = float(centerline.carriageway_width_m())
+    cross_section_strips = _segment_cross_section_strips(centerline)
+    metaurban_asset_hints = _segment_metaurban_asset_hints(centerline)
 
     for coord_idx in range(len(polyline_m) - 1):
         start = tuple(polyline_m[coord_idx])
@@ -590,6 +1338,7 @@ def _build_centerline_nodes(
                 or any(_distance(center, anchor) <= junction_tolerance_m for anchor in junction_anchors)
                 or any(_distance(center, anchor) <= roundabout_tolerance_m for anchor in roundabout_anchors)
             )
+            include_end = coord_idx == len(polyline_m) - 2 and part_idx == subdivisions - 1
             nodes.append(
                 RoadSegmentNode(
                     segment_id=segment_id,
@@ -602,12 +1351,26 @@ def _build_centerline_nodes(
                     is_accessible=True,
                     highway_type=centerline.highway_type,
                     poi_types=tuple(poi_types),
-                    bands=_segment_bands(segment_id=segment_id, config=config, poi_types=poi_types),
+                    bands=_segment_bands_for_centerline(
+                        centerline=centerline,
+                        segment_id=segment_id,
+                        config=config,
+                        poi_types=poi_types,
+                    ),
                     station_start_m=float(station_start_m),
                     station_end_m=float(station_end_m),
                     station_center_m=float((station_start_m + station_end_m) * 0.5),
-                    road_width_m=float(centerline.road_width_m),
-                    lane_profile=centerline.lane_profile(),
+                    road_width_m=carriageway_width_m,
+                    lane_profile=lane_profile,
+                    cross_section_strips=cross_section_strips,
+                    cross_section_width_m=cross_section_width_m,
+                    street_furniture_instances=_segment_furniture_instances(
+                        centerline,
+                        station_start_m=station_start_m,
+                        station_end_m=station_end_m,
+                        include_end=include_end,
+                    ),
+                    metaurban_asset_hints=metaurban_asset_hints,
                 )
             )
             station_m = station_end_m
@@ -674,7 +1437,7 @@ def _build_roundabout_nodes(
                 is_accessible=True,
                 highway_type="annotated_roundabout",
                 poi_types=poi_types,
-                bands=_segment_bands(segment_id=segment_id, config=config, poi_types=poi_types),
+                bands=_default_segment_bands(segment_id=segment_id, config=config, poi_types=poi_types),
                 station_start_m=float(station_start_m),
                 station_end_m=float(station_end_m),
                 station_center_m=float((station_start_m + station_end_m) * 0.5),
@@ -686,6 +1449,8 @@ def _build_roundabout_nodes(
                     bus_lane_count=0,
                     parking_lane_count=0,
                 ),
+                cross_section_width_m=float(config.road_width_m),
+                metaurban_asset_hints=(),
             )
         )
         station_m = station_end_m
@@ -721,18 +1486,9 @@ def build_segment_graph_from_annotation(
     if not local_centerlines:
         raise ValueError("Annotation contains no usable centerlines.")
 
-    explicit_junctions = [
-        _pixel_to_local(annotation, x=item.x, y=item.y)
-        for item in annotation.junctions
-    ]
-    roundabout_centers = [
-        _pixel_to_local(annotation, x=item.x, y=item.y)
-        for item in annotation.roundabouts
-    ]
-    control_points = [
-        (item, _pixel_to_local(annotation, x=item.x, y=item.y))
-        for item in annotation.control_points
-    ]
+    explicit_junctions = [_pixel_to_local(annotation, x=item.x, y=item.y) for item in annotation.junctions]
+    roundabout_centers = [_pixel_to_local(annotation, x=item.x, y=item.y) for item in annotation.roundabouts]
+    control_points = [(item, _pixel_to_local(annotation, x=item.x, y=item.y)) for item in annotation.control_points]
     auto_junctions = _collect_auto_junction_anchors(
         [points for _, points in local_centerlines],
         tolerance_m=max(float(resolved_config.segment_length_m) * 0.5, 4.0),
@@ -745,7 +1501,7 @@ def build_segment_graph_from_annotation(
     edge_counter = 0
     road_id = 1
     default_anchor_width_m = max(
-        [float(centerline.road_width_m) for centerline, _ in local_centerlines] + [float(resolved_config.road_width_m)],
+        [float(centerline.cross_section_width_m()) for centerline, _ in local_centerlines] + [float(resolved_config.road_width_m)],
     )
 
     for centerline, points in local_centerlines:
@@ -826,6 +1582,8 @@ def build_segment_graph_from_annotation(
 def summarize_reference_annotation(annotation_input: ReferenceAnnotation | Mapping[str, Any]) -> Dict[str, Any]:
     annotation = annotation_input if isinstance(annotation_input, ReferenceAnnotation) else parse_reference_annotation(annotation_input)
     road_profiles = _build_annotation_road_profiles(annotation)
+    cross_section_profiles = _build_cross_section_profiles(annotation)
+    furniture_instances = _build_street_furniture_instances(annotation)
     points: List[Tuple[float, float]] = []
     for centerline in annotation.centerlines:
         for point in centerline.points:
@@ -864,11 +1622,13 @@ def summarize_reference_annotation(annotation_input: ReferenceAnnotation | Mappi
             "height_m": 0.0,
         }
     road_widths = [float(item["road_width_m"]) for item in road_profiles]
+    carriageway_widths = [float(item["carriageway_width_m"]) for item in road_profiles]
     reference_widths_px = [
         float(item["reference_width_px"])
         for item in road_profiles
         if item.get("reference_width_px") is not None
     ]
+    strip_count = sum(int(item["strip_count"]) for item in cross_section_profiles)
     return {
         "plan_id": annotation.plan_id,
         "image_path": annotation.image_path,
@@ -877,10 +1637,17 @@ def summarize_reference_annotation(annotation_input: ReferenceAnnotation | Mappi
         "pixels_per_meter": float(annotation.pixels_per_meter),
         "annotation_road_count": len(road_profiles),
         "centerline_count": len(annotation.centerlines),
+        "detailed_centerline_count": sum(
+            1
+            for centerline in annotation.centerlines
+            if centerline.resolved_cross_section_mode() == CROSS_SECTION_MODE_DETAILED
+        ),
         "junction_count": len(annotation.junctions),
         "roundabout_count": len(annotation.roundabouts),
         "control_point_count": len(annotation.control_points),
         "control_point_kinds": sorted({item.kind for item in annotation.control_points}),
+        "cross_section_strip_count": strip_count,
+        "street_furniture_instance_count": len(furniture_instances),
         "total_drive_lane_count": sum(int(item["lane_profile"]["total_drive_lane_count"]) for item in road_profiles),
         "bike_lane_count": sum(int(item["bike_lane_count"]) for item in road_profiles),
         "bus_lane_count": sum(int(item["bus_lane_count"]) for item in road_profiles),
@@ -899,6 +1666,13 @@ def summarize_reference_annotation(annotation_input: ReferenceAnnotation | Mappi
             if road_widths
             else 0.0
         ),
+        "min_carriageway_width_m": min(carriageway_widths) if carriageway_widths else 0.0,
+        "max_carriageway_width_m": max(carriageway_widths) if carriageway_widths else 0.0,
+        "avg_carriageway_width_m": (
+            sum(carriageway_widths) / len(carriageway_widths)
+            if carriageway_widths
+            else 0.0
+        ),
         **bounds,
     }
 
@@ -912,9 +1686,18 @@ def build_reference_annotation_graph_payload(
     resolved_config = config or build_reference_annotation_compose_config()
     graph = build_segment_graph_from_annotation(annotation, config=resolved_config)
     road_profiles = _build_annotation_road_profiles(annotation)
+    cross_section_profiles = _build_cross_section_profiles(annotation)
+    street_furniture_instances = _build_street_furniture_instances(annotation)
+    metaurban_asset_hints = _build_metaurban_asset_hint_records(annotation)
+    metaurban_asset_guide = _build_metaurban_asset_guide()
     summary = summarize_reference_annotation(annotation)
     summary.update(graph.summary())
     summary["road_profile_count"] = len(road_profiles)
+    summary["cross_section_profile_count"] = len(cross_section_profiles)
+    summary["street_furniture_instance_count"] = len(street_furniture_instances)
+    summary["metaurban_asset_hint_count"] = len(metaurban_asset_hints)
+    summary["metaurban_assets_dir_present"] = bool(metaurban_asset_guide["assets_dir_present"])
+    summary["metaurban_pedestrian_assets_dir_present"] = bool(metaurban_asset_guide["assets_pedestrian_dir_present"])
     summary["segment_length_target_m"] = float(resolved_config.segment_length_m)
     summary["compose_fallback_road_width_m"] = float(resolved_config.road_width_m)
     summary["compose_fallback_lane_count"] = int(resolved_config.lane_count)
@@ -923,6 +1706,10 @@ def build_reference_annotation_graph_payload(
         "annotation": annotation.to_dict(),
         "graph": graph.to_dict(),
         "road_profiles": road_profiles,
+        "cross_section_profiles": cross_section_profiles,
+        "street_furniture_instances": street_furniture_instances,
+        "metaurban_asset_hints": metaurban_asset_hints,
+        "metaurban_asset_guide": metaurban_asset_guide,
         "summary": summary,
     }
 
@@ -930,8 +1717,10 @@ def build_reference_annotation_graph_payload(
 __all__ = [
     "ANNOTATION_SCHEMA_VERSION",
     "AnnotatedCenterline",
+    "AnnotatedCrossSectionStrip",
     "AnnotatedMarker",
     "AnnotatedRoundabout",
+    "AnnotatedStreetFurnitureInstance",
     "AnnotationPoint",
     "DEFAULT_PIXELS_PER_METER",
     "DEFAULT_ROUNDABOUT_RADIUS_PX",

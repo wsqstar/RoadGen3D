@@ -3,6 +3,8 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
 if str(ROOT) not in sys.path:
@@ -31,13 +33,31 @@ def _sample_annotation_payload():
             {
                 "id": "main_axis",
                 "label": "Main Axis",
-                "road_width_m": 11.0,
-                "reference_width_px": 104.0,
-                "forward_drive_lane_count": 2,
+                "road_width_m": 25.2,
+                "reference_width_px": 218.0,
+                "forward_drive_lane_count": 1,
                 "reverse_drive_lane_count": 1,
-                "bike_lane_count": 1,
-                "bus_lane_count": 0,
+                "bike_lane_count": 0,
+                "bus_lane_count": 1,
                 "parking_lane_count": 1,
+                "cross_section_mode": "detailed",
+                "cross_section_strips": [
+                    {"strip_id": "left_furnishing", "zone": "left", "kind": "nearroad_furnishing", "width_m": 1.5, "direction": "none", "order_index": 0},
+                    {"strip_id": "left_sidewalk", "zone": "left", "kind": "clear_sidewalk", "width_m": 2.5, "direction": "none", "order_index": 1},
+                    {"strip_id": "left_frontage", "zone": "left", "kind": "frontage_reserve", "width_m": 2.0, "direction": "none", "order_index": 2},
+                    {"strip_id": "rev_park", "zone": "center", "kind": "parking_lane", "width_m": 2.2, "direction": "reverse", "order_index": 0},
+                    {"strip_id": "rev_drive", "zone": "center", "kind": "drive_lane", "width_m": 3.2, "direction": "reverse", "order_index": 1},
+                    {"strip_id": "median_01", "zone": "center", "kind": "median", "width_m": 1.2, "direction": "none", "order_index": 2},
+                    {"strip_id": "fwd_drive", "zone": "center", "kind": "drive_lane", "width_m": 3.2, "direction": "forward", "order_index": 3},
+                    {"strip_id": "fwd_bus", "zone": "center", "kind": "bus_lane", "width_m": 3.4, "direction": "forward", "order_index": 4},
+                    {"strip_id": "right_furnishing", "zone": "right", "kind": "nearroad_furnishing", "width_m": 1.5, "direction": "none", "order_index": 0},
+                    {"strip_id": "right_sidewalk", "zone": "right", "kind": "clear_sidewalk", "width_m": 2.5, "direction": "none", "order_index": 1},
+                    {"strip_id": "right_frontage", "zone": "right", "kind": "frontage_reserve", "width_m": 2.0, "direction": "none", "order_index": 2},
+                ],
+                "street_furniture_instances": [
+                    {"instance_id": "bench_01", "centerline_id": "main_axis", "strip_id": "left_furnishing", "kind": "bench", "station_m": 7.5, "lateral_offset_m": -8.1},
+                    {"instance_id": "lamp_01", "centerline_id": "main_axis", "strip_id": "right_frontage", "kind": "lamp", "station_m": 22.0, "lateral_offset_m": 10.1, "yaw_deg": 90.0},
+                ],
                 "points": [
                     {"x": 120, "y": 400},
                     {"x": 520, "y": 400},
@@ -79,9 +99,14 @@ def test_parse_reference_annotation_normalizes_payload():
     assert annotation.plan_id == "hkust_gz_gate"
     assert annotation.image_width_px == 1200
     assert annotation.centerlines[0].feature_id == "main_axis"
-    assert annotation.centerlines[0].reference_width_px == 104.0
-    assert annotation.centerlines[0].forward_drive_lane_count == 2
-    assert annotation.centerlines[0].bike_lane_count == 1
+    assert annotation.centerlines[0].reference_width_px == 218.0
+    assert annotation.centerlines[0].resolved_cross_section_mode() == "detailed"
+    assert len(annotation.centerlines[0].cross_section_strips) == 11
+    assert len(annotation.centerlines[0].street_furniture_instances) == 2
+    assert annotation.centerlines[0].lane_profile()["forward_drive_lane_count"] == 1
+    assert annotation.centerlines[0].lane_profile()["bus_lane_count"] == 1
+    assert annotation.centerlines[0].carriageway_width_m() == pytest.approx(13.2)
+    assert annotation.centerlines[0].cross_section_width_m() == pytest.approx(25.2)
     assert annotation.junctions[0].kind == "intersection"
     assert annotation.roundabouts[0].radius_px == 52.0
 
@@ -99,10 +124,17 @@ def test_build_segment_graph_from_annotation_builds_junctions_and_roundabout():
     assert any("gateway" in node.poi_types for node in graph.nodes)
     main_axis_node = next(node for node in graph.nodes if node.road_id == 1)
     north_branch_node = next(node for node in graph.nodes if node.road_id == 2)
-    assert main_axis_node.road_width_m == 11.0
-    assert main_axis_node.lane_profile["forward_drive_lane_count"] == 2
+    assert main_axis_node.road_width_m == pytest.approx(13.2)
+    assert main_axis_node.cross_section_width_m == pytest.approx(25.2)
+    assert len(main_axis_node.cross_section_strips) == 11
+    assert any(node.street_furniture_instances for node in graph.nodes if node.road_id == 1)
+    assert any(hint.strip_kind == "frontage_reserve" for hint in main_axis_node.metaurban_asset_hints)
+    assert any("Building" in hint.suggested_assets for hint in main_axis_node.metaurban_asset_hints)
+    assert main_axis_node.lane_profile["forward_drive_lane_count"] == 1
+    assert main_axis_node.lane_profile["bus_lane_count"] == 1
     assert north_branch_node.road_width_m == 9.0
     assert north_branch_node.lane_profile["bus_lane_count"] == 1
+    assert any(hint.strip_kind == "clear_sidewalk" for hint in north_branch_node.metaurban_asset_hints)
 
 
 def test_build_reference_annotation_graph_payload_returns_summary_and_graph():
@@ -114,14 +146,70 @@ def test_build_reference_annotation_graph_payload_returns_summary_and_graph():
     assert payload["annotation"]["plan_id"] == "hkust_gz_gate"
     assert payload["graph"]["mode"] == "annotation"
     assert len(payload["road_profiles"]) == 2
+    assert len(payload["cross_section_profiles"]) == 2
+    assert len(payload["street_furniture_instances"]) == 2
+    assert len(payload["metaurban_asset_hints"]) >= 2
+    assert payload["metaurban_asset_guide"]["download_command"].endswith("pull_asset.py --update")
     assert payload["road_profiles"][0]["annotation_id"] == "main_axis"
-    assert payload["road_profiles"][0]["reference_width_px"] == 104.0
+    assert payload["road_profiles"][0]["reference_width_px"] == 218.0
+    assert payload["road_profiles"][0]["carriageway_width_m"] == pytest.approx(13.2)
+    assert payload["cross_section_profiles"][0]["strip_count"] == 11
+    assert any(
+        item["annotation_id"] == "main_axis" and item["strip_id"] == "left_furnishing" and "Lamp_post" in item["suggested_assets"]
+        for item in payload["metaurban_asset_hints"]
+    )
+    assert any(
+        item["annotation_id"] == "north_branch" and item["source_mode"] == "seed" and item["strip_kind"] == "clear_sidewalk"
+        for item in payload["metaurban_asset_hints"]
+    )
     assert payload["road_profiles"][1]["bus_lane_count"] == 1
     assert payload["summary"]["centerline_count"] == 2
     assert payload["summary"]["annotation_road_count"] == 2
     assert payload["summary"]["road_profile_count"] == 2
+    assert payload["summary"]["cross_section_profile_count"] == 2
+    assert payload["summary"]["street_furniture_instance_count"] == 2
+    assert payload["summary"]["metaurban_asset_hint_count"] == len(payload["metaurban_asset_hints"])
+    assert payload["summary"]["detailed_centerline_count"] == 1
+    assert payload["summary"]["cross_section_strip_count"] == 11
     assert payload["summary"]["roundabout_count"] == 1
     assert payload["summary"]["segment_count"] > 0
     assert payload["summary"]["junction_segment_count"] > 0
     assert payload["summary"]["min_road_width_m"] == 9.0
-    assert payload["summary"]["max_road_width_m"] == 11.0
+    assert payload["summary"]["max_road_width_m"] == pytest.approx(13.2)
+    assert payload["summary"]["max_cross_section_width_m"] == pytest.approx(25.2)
+
+
+def test_parse_reference_annotation_accepts_legacy_coarse_payload():
+    payload = {
+        "version": ANNOTATION_SCHEMA_VERSION,
+        "plan_id": "legacy_demo",
+        "image_width_px": 640,
+        "image_height_px": 480,
+        "pixels_per_meter": 8.0,
+        "centerlines": [
+            {
+                "id": "legacy_axis",
+                "road_width_m": 10.0,
+                "forward_drive_lane_count": 1,
+                "reverse_drive_lane_count": 1,
+                "points": [
+                    {"x": 60, "y": 240},
+                    {"x": 580, "y": 240},
+                ],
+            }
+        ],
+    }
+
+    annotation = parse_reference_annotation(payload)
+
+    assert annotation.centerlines[0].resolved_cross_section_mode() == "coarse"
+    assert annotation.centerlines[0].cross_section_strips == ()
+    assert annotation.centerlines[0].street_furniture_instances == ()
+
+
+def test_parse_reference_annotation_rejects_furniture_on_non_compatible_strip():
+    payload = _sample_annotation_payload()
+    payload["centerlines"][0]["street_furniture_instances"][0]["strip_id"] = "left_sidewalk"
+
+    with pytest.raises(ValueError, match="furniture-compatible"):
+        parse_reference_annotation(payload)

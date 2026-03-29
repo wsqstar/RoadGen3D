@@ -3,6 +3,49 @@ type AnnotationPoint = {
   y: number;
 };
 
+type CrossSectionMode = "coarse" | "detailed";
+type StripZone = "left" | "center" | "right";
+type StripDirection = "forward" | "reverse" | "bidirectional" | "none";
+type StripKind =
+  | "drive_lane"
+  | "bus_lane"
+  | "bike_lane"
+  | "parking_lane"
+  | "median"
+  | "nearroad_buffer"
+  | "nearroad_furnishing"
+  | "clear_sidewalk"
+  | "farfromroad_buffer"
+  | "frontage_reserve";
+type FurnitureKind =
+  | "bench"
+  | "lamp"
+  | "trash"
+  | "mailbox"
+  | "bollard"
+  | "sign"
+  | "hydrant"
+  | "bus_stop";
+
+type AnnotatedCrossSectionStrip = {
+  strip_id: string;
+  zone: StripZone;
+  kind: StripKind;
+  width_m: number;
+  direction: StripDirection;
+  order_index: number;
+};
+
+type AnnotatedStreetFurnitureInstance = {
+  instance_id: string;
+  centerline_id: string;
+  strip_id: string;
+  kind: FurnitureKind;
+  station_m: number;
+  lateral_offset_m: number;
+  yaw_deg: number | null;
+};
+
 type AnnotatedCenterline = {
   id: string;
   label: string;
@@ -15,6 +58,9 @@ type AnnotatedCenterline = {
   bus_lane_count: number;
   parking_lane_count: number;
   highway_type: string;
+  cross_section_mode: CrossSectionMode;
+  cross_section_strips: AnnotatedCrossSectionStrip[];
+  street_furniture_instances: AnnotatedStreetFurnitureInstance[];
 };
 
 type LaneProfile = {
@@ -23,6 +69,8 @@ type LaneProfile = {
   bike_lane_count: number;
   bus_lane_count: number;
   parking_lane_count: number;
+  bidirectional_drive_lane_count: number;
+  bidirectional_lane_count: number;
   total_drive_lane_count: number;
   total_lane_count: number;
 };
@@ -75,10 +123,25 @@ type ConvertedGraphPayload = {
     edges: Array<Record<string, unknown>>;
   };
   road_profiles?: Array<Record<string, unknown>>;
+  cross_section_profiles?: Array<Record<string, unknown>>;
+  street_furniture_instances?: Array<Record<string, unknown>>;
+  metaurban_asset_hints?: Array<Record<string, unknown>>;
+  metaurban_asset_guide?: Record<string, unknown>;
   summary: Record<string, unknown>;
 };
 
-type Tool = "select" | "centerline" | "junction" | "roundabout" | "control_point";
+type PreviewCrossSection = {
+  sourceMode: "seed" | "detailed";
+  strips: AnnotatedCrossSectionStrip[];
+};
+
+type MetaurbanAssetBadge = {
+  key: string;
+  label: string;
+  shortLabel: string;
+};
+
+type Tool = "select" | "adjust" | "centerline" | "junction" | "roundabout" | "control_point";
 
 type Selection =
   | {
@@ -100,6 +163,12 @@ type DragState =
       pointerId: number;
     }
   | {
+      kind: "centerline_translate";
+      id: string;
+      pointerId: number;
+      lastPoint: AnnotationPoint;
+    }
+  | {
       kind: "marker";
       markerKind: "junction" | "roundabout" | "control_point";
       id: string;
@@ -110,7 +179,7 @@ type DragState =
 type StatusTone = "neutral" | "success" | "error";
 
 const API_BASE = (import.meta.env.VITE_ROADGEN_API_BASE as string | undefined) || "http://127.0.0.1:8010";
-const ANNOTATION_SCHEMA_VERSION = "roadgen3d_reference_annotation_v1";
+const ANNOTATION_SCHEMA_VERSION = "roadgen3d_reference_annotation_v2";
 const DEFAULT_PIXELS_PER_METER = 8;
 const DEFAULT_SIDEWALK_WIDTH_M = 3;
 const DEFAULT_SEGMENT_LENGTH_M = 12;
@@ -118,6 +187,150 @@ const DEFAULT_ROAD_WIDTH_M = 12;
 const DEFAULT_ROUNDABOUT_RADIUS_PX = 36;
 const DEFAULT_FORWARD_DRIVE_LANE_COUNT = 1;
 const DEFAULT_REVERSE_DRIVE_LANE_COUNT = 1;
+const CROSS_SECTION_MODE_COARSE: CrossSectionMode = "coarse";
+const CROSS_SECTION_MODE_DETAILED: CrossSectionMode = "detailed";
+
+const STRIP_KINDS: StripKind[] = [
+  "drive_lane",
+  "bus_lane",
+  "bike_lane",
+  "parking_lane",
+  "median",
+  "nearroad_buffer",
+  "nearroad_furnishing",
+  "clear_sidewalk",
+  "farfromroad_buffer",
+  "frontage_reserve",
+];
+const SIDE_STRIP_KINDS = new Set<StripKind>([
+  "nearroad_buffer",
+  "nearroad_furnishing",
+  "clear_sidewalk",
+  "farfromroad_buffer",
+  "frontage_reserve",
+]);
+const CENTER_STRIP_KINDS = new Set<StripKind>([
+  "drive_lane",
+  "bus_lane",
+  "bike_lane",
+  "parking_lane",
+  "median",
+]);
+const FURNITURE_COMPATIBLE_STRIP_KINDS = new Set<StripKind>(["nearroad_furnishing", "frontage_reserve"]);
+const FURNITURE_KINDS: FurnitureKind[] = [
+  "bench",
+  "lamp",
+  "trash",
+  "mailbox",
+  "bollard",
+  "sign",
+  "hydrant",
+  "bus_stop",
+];
+const STRIP_DIRECTION_OPTIONS: StripDirection[] = ["forward", "reverse", "bidirectional", "none"];
+const NOMINAL_STRIP_WIDTHS: Record<StripKind, number> = {
+  drive_lane: 3.25,
+  bus_lane: 3.5,
+  bike_lane: 1.8,
+  parking_lane: 2.5,
+  median: 1.5,
+  nearroad_buffer: 0.5,
+  nearroad_furnishing: 1.5,
+  clear_sidewalk: 2.5,
+  farfromroad_buffer: 0.5,
+  frontage_reserve: 2.0,
+};
+const STRIP_KIND_LABELS: Record<StripKind, string> = {
+  drive_lane: "Drive Lane",
+  bus_lane: "Bus Lane",
+  bike_lane: "Bike Lane",
+  parking_lane: "Parking Lane",
+  median: "Median",
+  nearroad_buffer: "Near-Road Buffer",
+  nearroad_furnishing: "Near-Road Furnishing",
+  clear_sidewalk: "Clear Sidewalk",
+  farfromroad_buffer: "Far-From-Road Buffer",
+  frontage_reserve: "Frontage Reserve",
+};
+const METAAURBAN_STRIP_DISPLAY_LABELS: Record<StripKind, string> = {
+  drive_lane: "Drive Lane",
+  bus_lane: "Bus Lane",
+  bike_lane: "Bike Lane",
+  parking_lane: "Parking Lane",
+  median: "Median",
+  nearroad_buffer: "Near-road Buffer",
+  nearroad_furnishing: "Near-road Furnishing",
+  clear_sidewalk: "Main Sidewalk",
+  farfromroad_buffer: "Outer Buffer",
+  frontage_reserve: "Valid Region",
+};
+const METAAURBAN_STRIP_ZONE_LABELS: Record<StripKind, string> = {
+  drive_lane: "carriageway",
+  bus_lane: "carriageway",
+  bike_lane: "carriageway_edge",
+  parking_lane: "carriageway_edge",
+  median: "median",
+  nearroad_buffer: "nearroad_buffer_sidewalk",
+  nearroad_furnishing: "nearroad_sidewalk",
+  clear_sidewalk: "main_sidewalk",
+  farfromroad_buffer: "farfromroad_sidewalk",
+  frontage_reserve: "valid_region",
+};
+const METAAURBAN_STRIP_ASSET_BADGES: Record<StripKind, MetaurbanAssetBadge[]> = {
+  drive_lane: [],
+  bus_lane: [],
+  bike_lane: [],
+  parking_lane: [],
+  median: [],
+  nearroad_buffer: [
+    { key: "tree", label: "Tree", shortLabel: "TREE" },
+    { key: "traffic_sign", label: "Traffic Sign", shortLabel: "SIGN" },
+    { key: "bollard", label: "Bollard", shortLabel: "BOLLARD" },
+  ],
+  nearroad_furnishing: [
+    { key: "lamp_post", label: "Lamp Post", shortLabel: "LAMP" },
+    { key: "trash_can", label: "TrashCan", shortLabel: "TRASH" },
+    { key: "fire_hydrant", label: "FireHydrant", shortLabel: "HYDRANT" },
+  ],
+  clear_sidewalk: [
+    { key: "pedestrian", label: "Pedestrian", shortLabel: "PED" },
+    { key: "wheelchair", label: "Wheelchair", shortLabel: "WC" },
+    { key: "mailbox", label: "Mailbox", shortLabel: "MAIL" },
+  ],
+  farfromroad_buffer: [
+    { key: "bench", label: "Bench", shortLabel: "BENCH" },
+  ],
+  frontage_reserve: [
+    { key: "building", label: "Building", shortLabel: "BLDG" },
+  ],
+};
+const METAAURBAN_STRIP_GUIDANCE: Record<StripKind, string> = {
+  drive_lane: "Vehicular through-movement space.",
+  bus_lane: "Transit-priority movement space.",
+  bike_lane: "Bike movement space.",
+  parking_lane: "Parking or loading edge space.",
+  median: "Central separator or refuge zone.",
+  nearroad_buffer: "MetaUrban nearroad_buffer_sidewalk objects typically sit here.",
+  nearroad_furnishing: "MetaUrban nearroad_sidewalk furniture and utilities typically sit here.",
+  clear_sidewalk: "MetaUrban main_sidewalk pedestrian flows and mailbox-scale objects typically sit here.",
+  farfromroad_buffer: "MetaUrban farfromroad_sidewalk furniture or planting can extend here.",
+  frontage_reserve: "MetaUrban valid_region buildings and frontage reserve typically start here.",
+};
+const METAAURBAN_ASSET_GUIDE_LINES = [
+  "MetaUrban real assets are optional for this annotator.",
+  "To add them later, run `python metaurban/pull_asset.py --update`.",
+  "Place assets under `metaurban/assets` and `metaurban/assets_pedestrian`.",
+];
+const FURNITURE_KIND_LABELS: Record<FurnitureKind, string> = {
+  bench: "Bench",
+  lamp: "Lamp",
+  trash: "Trash",
+  mailbox: "Mailbox",
+  bollard: "Bollard",
+  sign: "Sign",
+  hydrant: "Hydrant",
+  bus_stop: "Bus Stop",
+};
 
 function asNullableNumber(value: unknown): number | null {
   if (value === null || value === undefined) {
@@ -132,6 +345,35 @@ function asNullableNumber(value: unknown): number | null {
 
 function asNonNegativeInt(value: unknown, fallback: number): number {
   return Math.max(0, Math.round(asNumber(value, fallback)));
+}
+
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(max, Math.max(min, value));
+}
+
+function asNumber(value: unknown, fallback: number): number {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : fallback;
+}
+
+function asString(value: unknown, fallback = ""): string {
+  return typeof value === "string" && value.trim() ? value.trim() : fallback;
+}
+
+function isStripZone(value: string): value is StripZone {
+  return value === "left" || value === "center" || value === "right";
+}
+
+function isStripKind(value: string): value is StripKind {
+  return STRIP_KINDS.includes(value as StripKind);
+}
+
+function isStripDirection(value: string): value is StripDirection {
+  return STRIP_DIRECTION_OPTIONS.includes(value as StripDirection);
+}
+
+function isFurnitureKind(value: string): value is FurnitureKind {
+  return FURNITURE_KINDS.includes(value as FurnitureKind);
 }
 
 function resolveDriveLaneDefaults(record: Record<string, unknown>): {
@@ -167,8 +409,528 @@ function laneProfile(centerline: AnnotatedCenterline): LaneProfile {
     bike_lane_count: bike,
     bus_lane_count: bus,
     parking_lane_count: parking,
+    bidirectional_drive_lane_count: 0,
+    bidirectional_lane_count: 0,
     total_drive_lane_count: forward + reverse,
     total_lane_count: forward + reverse + bike + bus + parking,
+  };
+}
+
+function resolvedCrossSectionMode(centerline: AnnotatedCenterline): CrossSectionMode {
+  if (centerline.cross_section_strips.length > 0) {
+    return CROSS_SECTION_MODE_DETAILED;
+  }
+  return centerline.cross_section_mode === CROSS_SECTION_MODE_DETAILED
+    ? CROSS_SECTION_MODE_DETAILED
+    : CROSS_SECTION_MODE_COARSE;
+}
+
+function sortedCrossSectionStrips(strips: AnnotatedCrossSectionStrip[]): AnnotatedCrossSectionStrip[] {
+  const zoneRank: Record<StripZone, number> = { left: 0, center: 1, right: 2 };
+  return [...strips].sort((a, b) => {
+    const zoneDelta = zoneRank[a.zone] - zoneRank[b.zone];
+    if (zoneDelta !== 0) {
+      return zoneDelta;
+    }
+    if (a.order_index !== b.order_index) {
+      return a.order_index - b.order_index;
+    }
+    return a.strip_id.localeCompare(b.strip_id);
+  });
+}
+
+function getCenterlineCrossSectionWidth(centerline: AnnotatedCenterline): number {
+  if (resolvedCrossSectionMode(centerline) === CROSS_SECTION_MODE_DETAILED && centerline.cross_section_strips.length > 0) {
+    return centerline.cross_section_strips.reduce((sum, strip) => sum + Math.max(0, strip.width_m), 0);
+  }
+  return Math.max(1, centerline.road_width_m);
+}
+
+function getCenterlineCarriagewayWidth(centerline: AnnotatedCenterline): number {
+  if (resolvedCrossSectionMode(centerline) === CROSS_SECTION_MODE_DETAILED && centerline.cross_section_strips.length > 0) {
+    const width = centerline.cross_section_strips.reduce((sum, strip) => {
+      if (strip.zone !== "center") {
+        return sum;
+      }
+      return sum + Math.max(0, strip.width_m);
+    }, 0);
+    if (width > 0) {
+      return width;
+    }
+  }
+  return Math.max(1, centerline.road_width_m);
+}
+
+function deriveLaneProfileFromStrips(strips: AnnotatedCrossSectionStrip[]): LaneProfile {
+  let forwardDriveLaneCount = 0;
+  let reverseDriveLaneCount = 0;
+  let bikeLaneCount = 0;
+  let busLaneCount = 0;
+  let parkingLaneCount = 0;
+  let bidirectionalDriveLaneCount = 0;
+  let bidirectionalLaneCount = 0;
+
+  for (const strip of strips) {
+    if (strip.zone !== "center") {
+      continue;
+    }
+    if (strip.kind === "drive_lane") {
+      if (strip.direction === "forward") {
+        forwardDriveLaneCount += 1;
+      } else if (strip.direction === "reverse") {
+        reverseDriveLaneCount += 1;
+      } else if (strip.direction === "bidirectional") {
+        bidirectionalDriveLaneCount += 1;
+        bidirectionalLaneCount += 1;
+      }
+    } else if (strip.kind === "bike_lane") {
+      bikeLaneCount += 1;
+      if (strip.direction === "bidirectional") {
+        bidirectionalLaneCount += 1;
+      }
+    } else if (strip.kind === "bus_lane") {
+      busLaneCount += 1;
+      if (strip.direction === "bidirectional") {
+        bidirectionalLaneCount += 1;
+      }
+    } else if (strip.kind === "parking_lane") {
+      parkingLaneCount += 1;
+    }
+  }
+
+  return {
+    forward_drive_lane_count: forwardDriveLaneCount,
+    reverse_drive_lane_count: reverseDriveLaneCount,
+    bike_lane_count: bikeLaneCount,
+    bus_lane_count: busLaneCount,
+    parking_lane_count: parkingLaneCount,
+    bidirectional_drive_lane_count: bidirectionalDriveLaneCount,
+    bidirectional_lane_count: bidirectionalLaneCount,
+    total_drive_lane_count: forwardDriveLaneCount + reverseDriveLaneCount + bidirectionalDriveLaneCount,
+    total_lane_count:
+      forwardDriveLaneCount +
+      reverseDriveLaneCount +
+      bikeLaneCount +
+      busLaneCount +
+      parkingLaneCount +
+      bidirectionalDriveLaneCount,
+  };
+}
+
+function deriveLaneProfile(centerline: AnnotatedCenterline): LaneProfile {
+  if (resolvedCrossSectionMode(centerline) === CROSS_SECTION_MODE_DETAILED && centerline.cross_section_strips.length > 0) {
+    return deriveLaneProfileFromStrips(centerline.cross_section_strips);
+  }
+  return laneProfile(centerline);
+}
+
+function reindexCenterlineStrips(centerline: AnnotatedCenterline): void {
+  const nextStrips: AnnotatedCrossSectionStrip[] = [];
+  for (const zone of ["left", "center", "right"] as StripZone[]) {
+    const zoneStrips = sortedCrossSectionStrips(centerline.cross_section_strips).filter((strip) => strip.zone === zone);
+    zoneStrips.forEach((strip, index) => {
+      nextStrips.push({ ...strip, order_index: index });
+    });
+  }
+  centerline.cross_section_strips = nextStrips;
+}
+
+function syncCenterlineDerivedFields(centerline: AnnotatedCenterline): void {
+  reindexCenterlineStrips(centerline);
+  const mode = centerline.cross_section_strips.length > 0 ? CROSS_SECTION_MODE_DETAILED : CROSS_SECTION_MODE_COARSE;
+  centerline.cross_section_mode = mode;
+  const profile = deriveLaneProfile(centerline);
+  centerline.forward_drive_lane_count = profile.forward_drive_lane_count;
+  centerline.reverse_drive_lane_count = profile.reverse_drive_lane_count;
+  centerline.bike_lane_count = profile.bike_lane_count;
+  centerline.bus_lane_count = profile.bus_lane_count;
+  centerline.parking_lane_count = profile.parking_lane_count;
+  centerline.road_width_m = getCenterlineCrossSectionWidth(centerline);
+  const validStripIds = new Set(centerline.cross_section_strips.map((strip) => strip.strip_id));
+  const validFurnitureStripIds = new Set(
+    centerline.cross_section_strips
+      .filter((strip) => FURNITURE_COMPATIBLE_STRIP_KINDS.has(strip.kind))
+      .map((strip) => strip.strip_id),
+  );
+  centerline.street_furniture_instances = centerline.street_furniture_instances
+    .filter((instance) => validStripIds.has(instance.strip_id) && validFurnitureStripIds.has(instance.strip_id))
+    .map((instance) => ({ ...instance, centerline_id: centerline.id }));
+}
+
+function formatLaneSummary(centerline: AnnotatedCenterline): string {
+  const profile = deriveLaneProfile(centerline);
+  const parts = [`drive ${profile.forward_drive_lane_count}/${profile.reverse_drive_lane_count}`];
+  if (profile.bidirectional_drive_lane_count > 0) {
+    parts.push(`bi-drive ${profile.bidirectional_drive_lane_count}`);
+  }
+  if (profile.bike_lane_count > 0) {
+    parts.push(`bike ${profile.bike_lane_count}`);
+  }
+  if (profile.bus_lane_count > 0) {
+    parts.push(`bus ${profile.bus_lane_count}`);
+  }
+  if (profile.parking_lane_count > 0) {
+    parts.push(`park ${profile.parking_lane_count}`);
+  }
+  return parts.join(" · ");
+}
+
+function formatCrossSectionSummary(centerline: AnnotatedCenterline): string {
+  if (resolvedCrossSectionMode(centerline) !== CROSS_SECTION_MODE_DETAILED || centerline.cross_section_strips.length === 0) {
+    return "coarse";
+  }
+  const left = centerline.cross_section_strips.filter((strip) => strip.zone === "left").length;
+  const center = centerline.cross_section_strips.filter((strip) => strip.zone === "center").length;
+  const right = centerline.cross_section_strips.filter((strip) => strip.zone === "right").length;
+  return `L${left} · C${center} · R${right}`;
+}
+
+function stripCenterOffsetMeters(centerline: AnnotatedCenterline): Record<string, { centerOffsetM: number; widthM: number }> {
+  const strips = sortedCrossSectionStrips(centerline.cross_section_strips);
+  const left = strips.filter((strip) => strip.zone === "left");
+  const center = strips.filter((strip) => strip.zone === "center");
+  const right = strips.filter((strip) => strip.zone === "right");
+  const carriagewayWidthM = center.reduce((sum, strip) => sum + strip.width_m, 0);
+  const result: Record<string, { centerOffsetM: number; widthM: number }> = {};
+
+  let leftAccum = 0;
+  for (const strip of left) {
+    const centerOffsetM = -(carriagewayWidthM * 0.5 + leftAccum + strip.width_m * 0.5);
+    result[strip.strip_id] = { centerOffsetM, widthM: strip.width_m };
+    leftAccum += strip.width_m;
+  }
+
+  let centerAccum = -carriagewayWidthM * 0.5;
+  for (const strip of center) {
+    const centerOffsetM = centerAccum + strip.width_m * 0.5;
+    result[strip.strip_id] = { centerOffsetM, widthM: strip.width_m };
+    centerAccum += strip.width_m;
+  }
+
+  let rightAccum = 0;
+  for (const strip of right) {
+    const centerOffsetM = carriagewayWidthM * 0.5 + rightAccum + strip.width_m * 0.5;
+    result[strip.strip_id] = { centerOffsetM, widthM: strip.width_m };
+    rightAccum += strip.width_m;
+  }
+
+  return result;
+}
+
+function polylineLength(points: AnnotationPoint[]): number {
+  let total = 0;
+  for (let index = 0; index < points.length - 1; index += 1) {
+    total += Math.hypot(points[index + 1].x - points[index].x, points[index + 1].y - points[index].y);
+  }
+  return total;
+}
+
+function unitLeftNormal(a: AnnotationPoint, b: AnnotationPoint): AnnotationPoint {
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  const length = Math.hypot(dx, dy);
+  if (length <= 1e-6) {
+    return { x: 0, y: 0 };
+  }
+  return { x: dy / length, y: -dx / length };
+}
+
+function offsetPolyline(points: AnnotationPoint[], offsetPx: number): AnnotationPoint[] {
+  if (Math.abs(offsetPx) <= 1e-6 || points.length < 2) {
+    return points.map((point) => ({ ...point }));
+  }
+  return points.map((point, index) => {
+    const prev = points[Math.max(0, index - 1)];
+    const next = points[Math.min(points.length - 1, index + 1)];
+    const prevNormal = index > 0 ? unitLeftNormal(prev, point) : unitLeftNormal(point, next);
+    const nextNormal = index < points.length - 1 ? unitLeftNormal(point, next) : unitLeftNormal(prev, point);
+    const combined = { x: prevNormal.x + nextNormal.x, y: prevNormal.y + nextNormal.y };
+    const combinedLength = Math.hypot(combined.x, combined.y);
+    const normal = combinedLength > 1e-6
+      ? { x: combined.x / combinedLength, y: combined.y / combinedLength }
+      : prevNormal;
+    return { x: point.x + normal.x * offsetPx, y: point.y + normal.y * offsetPx };
+  });
+}
+
+function stationToPolylinePoint(points: AnnotationPoint[], stationPx: number): {
+  point: AnnotationPoint;
+  tangent: AnnotationPoint;
+  leftNormal: AnnotationPoint;
+} {
+  if (points.length < 2) {
+    return {
+      point: points[0] ?? { x: 0, y: 0 },
+      tangent: { x: 1, y: 0 },
+      leftNormal: { x: 0, y: -1 },
+    };
+  }
+  let remaining = clamp(stationPx, 0, polylineLength(points));
+  for (let index = 0; index < points.length - 1; index += 1) {
+    const a = points[index];
+    const b = points[index + 1];
+    const segmentLength = Math.hypot(b.x - a.x, b.y - a.y);
+    if (segmentLength <= 1e-6) {
+      continue;
+    }
+    if (remaining <= segmentLength || index === points.length - 2) {
+      const ratio = clamp(remaining / segmentLength, 0, 1);
+      const point = {
+        x: a.x + (b.x - a.x) * ratio,
+        y: a.y + (b.y - a.y) * ratio,
+      };
+      const tangent = {
+        x: (b.x - a.x) / segmentLength,
+        y: (b.y - a.y) / segmentLength,
+      };
+      return {
+        point,
+        tangent,
+        leftNormal: { x: tangent.y, y: -tangent.x },
+      };
+    }
+    remaining -= segmentLength;
+  }
+  const last = points[points.length - 1];
+  const prev = points[points.length - 2];
+  const segmentLength = Math.max(Math.hypot(last.x - prev.x, last.y - prev.y), 1e-6);
+  const tangent = {
+    x: (last.x - prev.x) / segmentLength,
+    y: (last.y - prev.y) / segmentLength,
+  };
+  return {
+    point: { ...last },
+    tangent,
+    leftNormal: { x: tangent.y, y: -tangent.x },
+  };
+}
+
+function projectPointOntoPolyline(points: AnnotationPoint[], point: AnnotationPoint): {
+  stationPx: number;
+  lateralPx: number;
+  projectedPoint: AnnotationPoint;
+} {
+  if (points.length < 2) {
+    return { stationPx: 0, lateralPx: 0, projectedPoint: points[0] ?? point };
+  }
+  let bestDistance = Number.POSITIVE_INFINITY;
+  let bestStationPx = 0;
+  let bestLateralPx = 0;
+  let bestPoint = points[0];
+  let accumulated = 0;
+  for (let index = 0; index < points.length - 1; index += 1) {
+    const a = points[index];
+    const b = points[index + 1];
+    const dx = b.x - a.x;
+    const dy = b.y - a.y;
+    const lengthSq = dx * dx + dy * dy;
+    if (lengthSq <= 1e-6) {
+      continue;
+    }
+    const ratio = clamp(((point.x - a.x) * dx + (point.y - a.y) * dy) / lengthSq, 0, 1);
+    const projectedPoint = { x: a.x + dx * ratio, y: a.y + dy * ratio };
+    const distance = Math.hypot(point.x - projectedPoint.x, point.y - projectedPoint.y);
+    if (distance < bestDistance) {
+      const length = Math.sqrt(lengthSq);
+      const tangent = { x: dx / length, y: dy / length };
+      const leftNormal = { x: tangent.y, y: -tangent.x };
+      bestDistance = distance;
+      bestStationPx = accumulated + ratio * length;
+      bestLateralPx =
+        (point.x - projectedPoint.x) * leftNormal.x +
+        (point.y - projectedPoint.y) * leftNormal.y;
+      bestPoint = projectedPoint;
+    }
+    accumulated += Math.sqrt(lengthSq);
+  }
+  return {
+    stationPx: bestStationPx,
+    lateralPx: bestLateralPx,
+    projectedPoint: bestPoint,
+  };
+}
+
+function stripDisplayPoint(
+  centerline: AnnotatedCenterline,
+  stripId: string,
+  stationPx: number,
+  lateralPx = 0,
+  pixelsPerMeter: number,
+): AnnotationPoint | null {
+  const offsets = stripCenterOffsetMeters(centerline);
+  const strip = offsets[stripId];
+  if (!strip) {
+    return null;
+  }
+  const sample = stationToPolylinePoint(centerline.points, stationPx);
+  const offsetPx = (strip.centerOffsetM * pixelsPerMeter) + lateralPx;
+  return {
+    x: sample.point.x + sample.leftNormal.x * offsetPx,
+    y: sample.point.y + sample.leftNormal.y * offsetPx,
+  };
+}
+
+function nextStripId(centerline: AnnotatedCenterline, zone: StripZone): string {
+  const used = new Set(centerline.cross_section_strips.map((strip) => strip.strip_id));
+  let counter = centerline.cross_section_strips.filter((strip) => strip.zone === zone).length + 1;
+  while (true) {
+    const candidate = `${zone}_${String(counter).padStart(2, "0")}`;
+    if (!used.has(candidate)) {
+      return candidate;
+    }
+    counter += 1;
+  }
+}
+
+function splitAuxiliaryCountAcrossDirections(
+  total: number,
+  forwardDriveLaneCount: number,
+  reverseDriveLaneCount: number,
+): { reverse: number; forward: number } {
+  if (forwardDriveLaneCount > 0 && reverseDriveLaneCount > 0) {
+    return {
+      reverse: Math.ceil(total / 2),
+      forward: Math.floor(total / 2),
+    };
+  }
+  if (reverseDriveLaneCount > 0) {
+    return { reverse: total, forward: 0 };
+  }
+  return { reverse: 0, forward: total };
+}
+
+function seedDetailedCrossSection(centerline: AnnotatedCenterline): AnnotatedCrossSectionStrip[] {
+  const leftAux = {
+    parking: splitAuxiliaryCountAcrossDirections(
+      Math.max(0, centerline.parking_lane_count),
+      centerline.forward_drive_lane_count,
+      centerline.reverse_drive_lane_count,
+    ).reverse,
+    bike: splitAuxiliaryCountAcrossDirections(
+      Math.max(0, centerline.bike_lane_count),
+      centerline.forward_drive_lane_count,
+      centerline.reverse_drive_lane_count,
+    ).reverse,
+    bus: splitAuxiliaryCountAcrossDirections(
+      Math.max(0, centerline.bus_lane_count),
+      centerline.forward_drive_lane_count,
+      centerline.reverse_drive_lane_count,
+    ).reverse,
+  };
+  const rightAux = {
+    parking: splitAuxiliaryCountAcrossDirections(
+      Math.max(0, centerline.parking_lane_count),
+      centerline.forward_drive_lane_count,
+      centerline.reverse_drive_lane_count,
+    ).forward,
+    bike: splitAuxiliaryCountAcrossDirections(
+      Math.max(0, centerline.bike_lane_count),
+      centerline.forward_drive_lane_count,
+      centerline.reverse_drive_lane_count,
+    ).forward,
+    bus: splitAuxiliaryCountAcrossDirections(
+      Math.max(0, centerline.bus_lane_count),
+      centerline.forward_drive_lane_count,
+      centerline.reverse_drive_lane_count,
+    ).forward,
+  };
+  const strips: AnnotatedCrossSectionStrip[] = [];
+
+  const pushStrip = (zone: StripZone, kind: StripKind, direction: StripDirection): void => {
+    strips.push({
+      strip_id: nextStripId({ ...centerline, cross_section_strips: strips }, zone),
+      zone,
+      kind,
+      width_m: NOMINAL_STRIP_WIDTHS[kind],
+      direction,
+      order_index: strips.filter((strip) => strip.zone === zone).length,
+    });
+  };
+
+  pushStrip("left", "nearroad_furnishing", "none");
+  pushStrip("left", "clear_sidewalk", "none");
+  pushStrip("left", "frontage_reserve", "none");
+  pushStrip("right", "nearroad_furnishing", "none");
+  pushStrip("right", "clear_sidewalk", "none");
+  pushStrip("right", "frontage_reserve", "none");
+
+  for (let index = 0; index < leftAux.parking; index += 1) {
+    pushStrip("center", "parking_lane", "reverse");
+  }
+  for (let index = 0; index < leftAux.bike; index += 1) {
+    pushStrip("center", "bike_lane", "reverse");
+  }
+  for (let index = 0; index < leftAux.bus; index += 1) {
+    pushStrip("center", "bus_lane", "reverse");
+  }
+  for (let index = 0; index < Math.max(0, centerline.reverse_drive_lane_count); index += 1) {
+    pushStrip("center", "drive_lane", "reverse");
+  }
+  if (centerline.forward_drive_lane_count > 0 && centerline.reverse_drive_lane_count > 0) {
+    pushStrip("center", "median", "none");
+  }
+  for (let index = 0; index < Math.max(0, centerline.forward_drive_lane_count); index += 1) {
+    pushStrip("center", "drive_lane", "forward");
+  }
+  for (let index = 0; index < rightAux.bus; index += 1) {
+    pushStrip("center", "bus_lane", "forward");
+  }
+  for (let index = 0; index < rightAux.bike; index += 1) {
+    pushStrip("center", "bike_lane", "forward");
+  }
+  for (let index = 0; index < rightAux.parking; index += 1) {
+    pushStrip("center", "parking_lane", "forward");
+  }
+
+  const nominalTotalWidth = strips.reduce((sum, strip) => sum + strip.width_m, 0);
+  const targetWidth = Math.max(1, centerline.road_width_m);
+  const scale = nominalTotalWidth > 0 ? targetWidth / nominalTotalWidth : 1;
+  return strips.map((strip) => ({
+    ...strip,
+    width_m: Number((strip.width_m * scale).toFixed(3)),
+  }));
+}
+
+function normalizeCrossSectionStrip(value: unknown, index: number, prefix: string): AnnotatedCrossSectionStrip {
+  const record = value && typeof value === "object" ? (value as Record<string, unknown>) : {};
+  const zone = asString(record.zone, "center");
+  const kind = asString(record.kind, "drive_lane");
+  const direction = asString(record.direction, "none");
+  const normalized: AnnotatedCrossSectionStrip = {
+    strip_id: asString(record.strip_id, `${prefix}_strip_${String(index + 1).padStart(2, "0")}`),
+    zone: isStripZone(zone) ? zone : "center",
+    kind: isStripKind(kind) ? kind : "drive_lane",
+    width_m: Math.max(0.1, asNumber(record.width_m, 1)),
+    direction: isStripDirection(direction) ? direction : "none",
+    order_index: Math.max(0, Math.round(asNumber(record.order_index, index))),
+  };
+  if (normalized.zone === "center" && !CENTER_STRIP_KINDS.has(normalized.kind)) {
+    normalized.kind = "drive_lane";
+  }
+  if ((normalized.zone === "left" || normalized.zone === "right") && !SIDE_STRIP_KINDS.has(normalized.kind)) {
+    normalized.kind = "nearroad_furnishing";
+  }
+  if (SIDE_STRIP_KINDS.has(normalized.kind) || normalized.kind === "median") {
+    normalized.direction = "none";
+  }
+  return normalized;
+}
+
+function normalizeStreetFurnitureInstance(
+  value: unknown,
+  index: number,
+  centerlineId: string,
+): AnnotatedStreetFurnitureInstance {
+  const record = value && typeof value === "object" ? (value as Record<string, unknown>) : {};
+  const kind = asString(record.kind, "bench");
+  return {
+    instance_id: asString(record.instance_id ?? record.id, `${centerlineId}_furniture_${String(index + 1).padStart(2, "0")}`),
+    centerline_id: asString(record.centerline_id, centerlineId),
+    strip_id: asString(record.strip_id, ""),
+    kind: isFurnitureKind(kind) ? kind : "bench",
+    station_m: Math.max(0, asNumber(record.station_m, 0)),
+    lateral_offset_m: asNumber(record.lateral_offset_m, 0),
+    yaw_deg: asNullableNumber(record.yaw_deg),
   };
 }
 
@@ -184,22 +946,100 @@ function getDisplayReferenceWidthPx(centerline: AnnotatedCenterline, pixelsPerMe
   if (explicitWidth !== null && explicitWidth > 0) {
     return explicitWidth;
   }
-  return Math.max(centerline.road_width_m * Math.max(pixelsPerMeter, 0.0001), 2);
+  return Math.max(getCenterlineCrossSectionWidth(centerline) * Math.max(pixelsPerMeter, 0.0001), 2);
 }
 
-function formatLaneSummary(centerline: AnnotatedCenterline): string {
-  const profile = laneProfile(centerline);
-  const parts = [`drive ${profile.forward_drive_lane_count}/${profile.reverse_drive_lane_count}`];
-  if (profile.bike_lane_count > 0) {
-    parts.push(`bike ${profile.bike_lane_count}`);
+function previewCrossSection(centerline: AnnotatedCenterline): PreviewCrossSection {
+  if (resolvedCrossSectionMode(centerline) === CROSS_SECTION_MODE_DETAILED && centerline.cross_section_strips.length > 0) {
+    return {
+      sourceMode: "detailed",
+      strips: sortedCrossSectionStrips(centerline.cross_section_strips),
+    };
   }
-  if (profile.bus_lane_count > 0) {
-    parts.push(`bus ${profile.bus_lane_count}`);
+  return {
+    sourceMode: "seed",
+    strips: seedDetailedCrossSection(centerline),
+  };
+}
+
+function metaurbanStripLabel(kind: StripKind): string {
+  return METAAURBAN_STRIP_DISPLAY_LABELS[kind] || STRIP_KIND_LABELS[kind];
+}
+
+function metaurbanStripZoneLabel(kind: StripKind): string {
+  return METAAURBAN_STRIP_ZONE_LABELS[kind] || kind;
+}
+
+function metaurbanAssetBadges(kind: StripKind): MetaurbanAssetBadge[] {
+  return METAAURBAN_STRIP_ASSET_BADGES[kind] || [];
+}
+
+function stripDirectionChip(strip: AnnotatedCrossSectionStrip): string {
+  if (strip.direction === "forward") {
+    return "FWD";
   }
-  if (profile.parking_lane_count > 0) {
-    parts.push(`park ${profile.parking_lane_count}`);
+  if (strip.direction === "reverse") {
+    return "REV";
   }
-  return parts.join(" · ");
+  if (strip.direction === "bidirectional") {
+    return "BI";
+  }
+  return "STATIC";
+}
+
+function stripPreviewFillColor(kind: StripKind): string {
+  switch (kind) {
+    case "drive_lane":
+      return "rgba(66, 74, 87, 0.16)";
+    case "bus_lane":
+      return "rgba(183, 72, 58, 0.18)";
+    case "bike_lane":
+      return "rgba(57, 135, 90, 0.18)";
+    case "parking_lane":
+      return "rgba(166, 130, 86, 0.18)";
+    case "median":
+      return "rgba(110, 122, 95, 0.16)";
+    case "nearroad_buffer":
+      return "rgba(152, 152, 152, 0.16)";
+    case "nearroad_furnishing":
+      return "rgba(126, 101, 71, 0.18)";
+    case "clear_sidewalk":
+      return "rgba(235, 224, 206, 0.94)";
+    case "farfromroad_buffer":
+      return "rgba(169, 188, 202, 0.18)";
+    case "frontage_reserve":
+      return "rgba(183, 212, 230, 0.24)";
+    default:
+      return "rgba(102, 102, 102, 0.12)";
+  }
+}
+
+function buildMetaurbanAssetBadgeMarkup(
+  kind: StripKind,
+  options: {
+    emptyMode?: "note" | "omit";
+  } = {},
+): string {
+  const { emptyMode = "omit" } = options;
+  const badges = metaurbanAssetBadges(kind);
+  if (!badges.length) {
+    return emptyMode === "note"
+      ? `<span class="scene-micro-note">No MetaUrban asset hints for this strip.</span>`
+      : "";
+  }
+  return `
+    <div class="annotation-metaurban-badge-row">
+      ${badges
+        .map(
+          (badge) => `
+            <span class="annotation-metaurban-badge" data-asset-key="${escapeHtml(badge.key)}" title="${escapeHtml(badge.label)}">
+              ${escapeHtml(badge.shortLabel)}
+            </span>
+          `,
+        )
+        .join("")}
+    </div>
+  `;
 }
 
 function requireElement<T extends Element>(root: ParentNode, selector: string): T {
@@ -217,19 +1057,6 @@ function escapeHtml(text: string): string {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
-}
-
-function clamp(value: number, min: number, max: number): number {
-  return Math.min(max, Math.max(min, value));
-}
-
-function asNumber(value: unknown, fallback: number): number {
-  const parsed = Number(value);
-  return Number.isFinite(parsed) ? parsed : fallback;
-}
-
-function asString(value: unknown, fallback = ""): string {
-  return typeof value === "string" && value.trim() ? value.trim() : fallback;
 }
 
 function resolveApiUrl(path: string): string {
@@ -270,8 +1097,15 @@ function normalizeCenterline(value: unknown, index: number): AnnotatedCenterline
   const rawPoints = Array.isArray(record.points) ? record.points : [];
   const driveLaneDefaults = resolveDriveLaneDefaults(record);
   const referenceWidthPx = asNullableNumber(record.reference_width_px);
-  return {
-    id: asString(record.id, `centerline_${String(index + 1).padStart(2, "0")}`),
+  const id = asString(record.id, `centerline_${String(index + 1).padStart(2, "0")}`);
+  const crossSectionStrips = Array.isArray(record.cross_section_strips)
+    ? record.cross_section_strips.map((item, stripIndex) => normalizeCrossSectionStrip(item, stripIndex, id))
+    : [];
+  const streetFurnitureInstances = Array.isArray(record.street_furniture_instances)
+    ? record.street_furniture_instances.map((item, furnitureIndex) => normalizeStreetFurnitureInstance(item, furnitureIndex, id))
+    : [];
+  const centerline: AnnotatedCenterline = {
+    id,
     label: asString(record.label, asString(record.id, `Centerline ${index + 1}`)),
     points: rawPoints.map((item) => normalizePoint(item)),
     road_width_m: Math.max(1, asNumber(record.road_width_m, DEFAULT_ROAD_WIDTH_M)),
@@ -282,7 +1116,16 @@ function normalizeCenterline(value: unknown, index: number): AnnotatedCenterline
     bus_lane_count: asNonNegativeInt(record.bus_lane_count, 0),
     parking_lane_count: asNonNegativeInt(record.parking_lane_count, 0),
     highway_type: asString(record.highway_type, "annotated_centerline"),
+    cross_section_mode:
+      asString(record.cross_section_mode, crossSectionStrips.length > 0 ? CROSS_SECTION_MODE_DETAILED : CROSS_SECTION_MODE_COARSE) ===
+      CROSS_SECTION_MODE_DETAILED
+        ? CROSS_SECTION_MODE_DETAILED
+        : CROSS_SECTION_MODE_COARSE,
+    cross_section_strips: sortedCrossSectionStrips(crossSectionStrips),
+    street_furniture_instances: streetFurnitureInstances,
   };
+  syncCenterlineDerivedFields(centerline);
+  return centerline;
 }
 
 function normalizeMarker(
@@ -405,19 +1248,26 @@ function getSelectedFeature(annotation: ReferenceAnnotation, selection: Selectio
 
 function buildAnnotationSummaryMarkup(annotation: ReferenceAnnotation): string {
   const roadCount = annotation.centerlines.length;
-  const roadWidths = annotation.centerlines.map((item) => item.road_width_m);
+  const roadWidths = annotation.centerlines.map((item) => getCenterlineCrossSectionWidth(item));
   const referenceWidths = annotation.centerlines.map((item) => getDisplayReferenceWidthPx(item, annotation.pixels_per_meter));
   const driveLaneTotal = annotation.centerlines.reduce(
-    (sum, item) => sum + laneProfile(item).total_drive_lane_count,
+    (sum, item) => sum + deriveLaneProfile(item).total_drive_lane_count,
     0,
   );
-  const bikeLaneTotal = annotation.centerlines.reduce((sum, item) => sum + item.bike_lane_count, 0);
-  const busLaneTotal = annotation.centerlines.reduce((sum, item) => sum + item.bus_lane_count, 0);
-  const parkingLaneTotal = annotation.centerlines.reduce((sum, item) => sum + item.parking_lane_count, 0);
+  const bikeLaneTotal = annotation.centerlines.reduce((sum, item) => sum + deriveLaneProfile(item).bike_lane_count, 0);
+  const busLaneTotal = annotation.centerlines.reduce((sum, item) => sum + deriveLaneProfile(item).bus_lane_count, 0);
+  const parkingLaneTotal = annotation.centerlines.reduce((sum, item) => sum + deriveLaneProfile(item).parking_lane_count, 0);
+  const detailedRoadCount = annotation.centerlines.filter((item) => resolvedCrossSectionMode(item) === CROSS_SECTION_MODE_DETAILED).length;
+  const stripCount = annotation.centerlines.reduce((sum, item) => sum + item.cross_section_strips.length, 0);
+  const furnitureCount = annotation.centerlines.reduce((sum, item) => sum + item.street_furniture_instances.length, 0);
   return `
     <div>
       <span class="scene-metric-label">Roads</span>
       <strong>${roadCount}</strong>
+    </div>
+    <div>
+      <span class="scene-metric-label">Detailed</span>
+      <strong>${detailedRoadCount}</strong>
     </div>
     <div>
       <span class="scene-metric-label">Junctions</span>
@@ -442,6 +1292,14 @@ function buildAnnotationSummaryMarkup(annotation: ReferenceAnnotation): string {
     <div>
       <span class="scene-metric-label">Parking</span>
       <strong>${parkingLaneTotal}</strong>
+    </div>
+    <div>
+      <span class="scene-metric-label">Strips</span>
+      <strong>${stripCount}</strong>
+    </div>
+    <div>
+      <span class="scene-metric-label">Furniture</span>
+      <strong>${furnitureCount}</strong>
     </div>
     <div>
       <span class="scene-metric-label">Scale</span>
@@ -486,24 +1344,28 @@ function buildGraphSummaryMarkup(graphResult: ConvertedGraphPayload | null): str
       <strong>${escapeHtml(String(summary.road_profile_count ?? summary.road_count ?? 0))}</strong>
     </div>
     <div>
+      <span class="scene-metric-label">Cross Sections</span>
+      <strong>${escapeHtml(String(summary.cross_section_profile_count ?? 0))}</strong>
+    </div>
+    <div>
       <span class="scene-metric-label">Junction Segments</span>
       <strong>${escapeHtml(String(summary.junction_segment_count ?? 0))}</strong>
     </div>
     <div>
-      <span class="scene-metric-label">Min Width</span>
-      <strong>${escapeHtml(Number(summary.min_road_width_m ?? 0).toFixed(1))}m</strong>
+      <span class="scene-metric-label">Carriageway</span>
+      <strong>${escapeHtml(Number(summary.avg_road_width_m ?? 0).toFixed(1))}m avg</strong>
     </div>
     <div>
-      <span class="scene-metric-label">Max Width</span>
-      <strong>${escapeHtml(Number(summary.max_road_width_m ?? 0).toFixed(1))}m</strong>
+      <span class="scene-metric-label">Cross Section</span>
+      <strong>${escapeHtml(Number(summary.avg_cross_section_width_m ?? 0).toFixed(1))}m avg</strong>
     </div>
     <div>
-      <span class="scene-metric-label">Avg Width</span>
-      <strong>${escapeHtml(Number(summary.avg_road_width_m ?? 0).toFixed(1))}m</strong>
+      <span class="scene-metric-label">Furniture</span>
+      <strong>${escapeHtml(String(summary.street_furniture_instance_count ?? 0))}</strong>
     </div>
     <div>
-      <span class="scene-metric-label">Edges</span>
-      <strong>${escapeHtml(String(summary.edge_count ?? 0))}</strong>
+      <span class="scene-metric-label">MetaUrban Hints</span>
+      <strong>${escapeHtml(String(summary.metaurban_asset_hint_count ?? 0))}</strong>
     </div>
   `;
 }
@@ -516,7 +1378,7 @@ function buildFeatureTableMarkup(annotation: ReferenceAnnotation): string {
         <td>centerline</td>
         <td>${escapeHtml(centerline.id)}</td>
         <td>${escapeHtml(centerline.label)}</td>
-        <td>${centerline.points.length} pts · ${centerline.road_width_m.toFixed(1)}m · ${getDisplayReferenceWidthPx(centerline, annotation.pixels_per_meter).toFixed(0)}px · ${escapeHtml(formatLaneSummary(centerline))}</td>
+        <td>${centerline.points.length} pts · ${getCenterlineCrossSectionWidth(centerline).toFixed(1)}m · ${formatCrossSectionSummary(centerline)} · ${centerline.street_furniture_instances.length} furn. · ${escapeHtml(formatLaneSummary(centerline))}</td>
       </tr>
     `);
   }
@@ -553,7 +1415,290 @@ function buildFeatureTableMarkup(annotation: ReferenceAnnotation): string {
   return rows.join("");
 }
 
-function buildInspectorMarkup(annotation: ReferenceAnnotation, selection: Selection): string {
+function buildSelectOptions<T extends string>(
+  values: readonly T[],
+  selectedValue: T,
+  labels: Record<T, string>,
+): string {
+  return values
+    .map(
+      (value) =>
+        `<option value="${escapeHtml(value)}"${value === selectedValue ? " selected" : ""}>${escapeHtml(labels[value])}</option>`,
+    )
+    .join("");
+}
+
+function stripDirectionMarkup(strip: AnnotatedCrossSectionStrip): string {
+  const options =
+    strip.zone === "center" && strip.kind !== "median"
+      ? STRIP_DIRECTION_OPTIONS
+      : (["none"] as const);
+  return buildSelectOptions(options, strip.direction, {
+    forward: "Forward",
+    reverse: "Reverse",
+    bidirectional: "Bidirectional",
+    none: "None",
+  });
+}
+
+function buildCrossSectionPreviewMarkup(
+  centerline: AnnotatedCenterline,
+  selectedStripId: string | null,
+): string {
+  const preview = previewCrossSection(centerline);
+  const totalWidth = preview.strips.reduce((sum, strip) => sum + Math.max(strip.width_m, 0), 0);
+  const bands = preview.strips
+    .map((strip) => {
+      const selected = selectedStripId === strip.strip_id;
+      return `
+        <button
+          type="button"
+          class="annotation-cross-preview-strip${selected ? " annotation-cross-preview-strip-selected" : ""}"
+          data-action="select-preview-strip"
+          data-strip-id="${escapeHtml(strip.strip_id)}"
+          data-preview-source="${escapeHtml(preview.sourceMode)}"
+          style="flex: ${Math.max(strip.width_m, 0.8)} 0 0; background: ${stripPreviewFillColor(strip.kind)}; border-color: ${stripStrokeColor(strip.kind)};"
+        >
+          <span class="annotation-cross-preview-strip-label">${escapeHtml(metaurbanStripLabel(strip.kind))}</span>
+          <span class="annotation-cross-preview-strip-meta">${escapeHtml(strip.width_m.toFixed(2))}m · ${escapeHtml(stripDirectionChip(strip))}</span>
+          <span class="annotation-cross-preview-strip-zone">${escapeHtml(metaurbanStripZoneLabel(strip.kind))}</span>
+          ${buildMetaurbanAssetBadgeMarkup(strip.kind)}
+        </button>
+      `;
+    })
+    .join("");
+  return `
+    <section class="annotation-cross-preview-section">
+      <div class="annotation-cross-preview-header">
+        <div>
+          <h3>Cross Section Preview</h3>
+          <div class="scene-micro-note">
+            ${escapeHtml(preview.sourceMode === "seed" ? "Seed preview from coarse parameters" : "Detailed cross section")}
+          </div>
+        </div>
+        <div class="annotation-cross-preview-stats">
+          <span class="annotation-cross-preview-stat">${escapeHtml(totalWidth.toFixed(2))}m total</span>
+          <span class="annotation-cross-preview-stat">${escapeHtml(getCenterlineCarriagewayWidth(centerline).toFixed(2))}m carriageway</span>
+        </div>
+      </div>
+      <div class="annotation-cross-preview-row">
+        ${bands}
+      </div>
+      <div class="scene-micro-note">
+        ${escapeHtml(
+          preview.sourceMode === "seed"
+            ? "Click a seed band to split this road into editable detailed strips."
+            : "Click a band to select it, then adjust width and direction below.",
+        )}
+      </div>
+    </section>
+  `;
+}
+
+function buildSelectedStripEditorMarkup(
+  centerline: AnnotatedCenterline,
+  selectedStripId: string | null,
+): string {
+  const strip = selectedStripId
+    ? centerline.cross_section_strips.find((item) => item.strip_id === selectedStripId) ?? null
+    : null;
+  if (!strip) {
+    return `
+      <section class="annotation-selected-strip-section">
+        <div class="annotation-strip-section-header">
+          <h3>Selected Strip</h3>
+          <span class="scene-micro-note">Click a band in the preview to focus one strip.</span>
+        </div>
+        <div class="scene-empty-note">No strip is selected yet.</div>
+      </section>
+    `;
+  }
+  return `
+    <section class="annotation-selected-strip-section">
+      <div class="annotation-strip-section-header">
+        <h3>Selected Strip</h3>
+        <span class="scene-micro-note">${escapeHtml(strip.strip_id)} · ${escapeHtml(metaurbanStripZoneLabel(strip.kind))}</span>
+      </div>
+      ${buildMetaurbanAssetBadgeMarkup(strip.kind, { emptyMode: "note" })}
+      <div class="scene-inspector-grid">
+        <label class="scene-form-field">
+          <span>Strip ID</span>
+          <input type="text" value="${escapeHtml(strip.strip_id)}" readonly />
+        </label>
+        <label class="scene-form-field">
+          <span>Zone</span>
+          <input type="text" value="${escapeHtml(strip.zone)}" readonly />
+        </label>
+        <label class="scene-form-field">
+          <span>Kind</span>
+          <select data-strip-field="kind" data-strip-id="${escapeHtml(strip.strip_id)}">
+            ${buildSelectOptions(
+              strip.zone === "center"
+                ? (["drive_lane", "bus_lane", "bike_lane", "parking_lane", "median"] as StripKind[])
+                : (["nearroad_buffer", "nearroad_furnishing", "clear_sidewalk", "farfromroad_buffer", "frontage_reserve"] as StripKind[]),
+              strip.kind,
+              STRIP_KIND_LABELS,
+            )}
+          </select>
+        </label>
+        <label class="scene-form-field">
+          <span>Width (m)</span>
+          <input type="number" min="0.1" step="0.1" data-strip-field="width_m" data-strip-id="${escapeHtml(strip.strip_id)}" value="${strip.width_m.toFixed(2)}" />
+        </label>
+        <label class="scene-form-field">
+          <span>Direction</span>
+          <select data-strip-field="direction" data-strip-id="${escapeHtml(strip.strip_id)}">
+            ${stripDirectionMarkup(strip)}
+          </select>
+        </label>
+        <div class="scene-fact-card">
+          <span class="scene-fact-label">MetaUrban Zone</span>
+          <strong>${escapeHtml(metaurbanStripZoneLabel(strip.kind))}</strong>
+        </div>
+        <div class="scene-fact-card scene-form-field-wide">
+          <span class="scene-fact-label">Guidance</span>
+          <strong>${escapeHtml(METAAURBAN_STRIP_GUIDANCE[strip.kind])}</strong>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function buildMetaurbanAssetGuideMarkup(): string {
+  return `
+    <section class="annotation-metaurban-guide">
+      <div class="annotation-strip-section-header">
+        <h3>MetaUrban Asset Hook</h3>
+        <span class="scene-micro-note">Placeholder badges now, real assets later.</span>
+      </div>
+      <div class="annotation-metaurban-guide-lines">
+        ${METAAURBAN_ASSET_GUIDE_LINES.map((line) => `<div class="scene-micro-note">${escapeHtml(line)}</div>`).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function buildStripSectionMarkup(
+  centerline: AnnotatedCenterline,
+  zone: StripZone,
+  selectedStripId: string | null,
+): string {
+  const strips = sortedCrossSectionStrips(centerline.cross_section_strips).filter((strip) => strip.zone === zone);
+  const rows = strips.length > 0
+    ? strips
+        .map(
+          (strip) => `
+            <div class="annotation-strip-row${selectedStripId === strip.strip_id ? " annotation-strip-row-selected" : ""}">
+              <div class="annotation-strip-row-header">
+                <button type="button" class="scene-toolbar-button scene-toolbar-button-secondary" data-action="select-strip" data-strip-id="${escapeHtml(strip.strip_id)}">
+                  ${escapeHtml(strip.strip_id)}
+                </button>
+                <div class="annotation-strip-row-actions">
+                  <button type="button" class="scene-icon-button" data-action="move-strip-up" data-strip-id="${escapeHtml(strip.strip_id)}">↑</button>
+                  <button type="button" class="scene-icon-button" data-action="move-strip-down" data-strip-id="${escapeHtml(strip.strip_id)}">↓</button>
+                  <button type="button" class="scene-icon-button" data-action="delete-strip" data-strip-id="${escapeHtml(strip.strip_id)}">×</button>
+                </div>
+              </div>
+              <div class="annotation-strip-row-summary">
+                <strong>${escapeHtml(metaurbanStripLabel(strip.kind))}</strong>
+                <span>${escapeHtml(strip.width_m.toFixed(2))}m</span>
+                <span>${escapeHtml(stripDirectionChip(strip))}</span>
+                <span>${escapeHtml(metaurbanStripZoneLabel(strip.kind))}</span>
+              </div>
+              ${buildMetaurbanAssetBadgeMarkup(strip.kind)}
+            </div>
+          `,
+        )
+        .join("")
+    : `<div class="scene-empty-note">No ${zone} strips yet.</div>`;
+  return `
+    <section class="annotation-strip-section">
+      <div class="annotation-strip-section-header">
+        <h3>${escapeHtml(zone.charAt(0).toUpperCase() + zone.slice(1))}</h3>
+        <button type="button" class="scene-toolbar-button scene-toolbar-button-secondary" data-action="add-strip" data-zone="${escapeHtml(zone)}">
+          Add Strip
+        </button>
+      </div>
+      ${rows}
+    </section>
+  `;
+}
+
+function buildFurnitureMarkup(
+  centerline: AnnotatedCenterline,
+  selectedStripId: string | null,
+  pendingFurnitureKind: FurnitureKind,
+  isPlacementArmed: boolean,
+): string {
+  const selectedStrip = selectedStripId
+    ? centerline.cross_section_strips.find((strip) => strip.strip_id === selectedStripId) ?? null
+    : null;
+  const canPlaceFurniture = Boolean(selectedStrip && FURNITURE_COMPATIBLE_STRIP_KINDS.has(selectedStrip.kind));
+  const furnitureRows = centerline.street_furniture_instances.length > 0
+    ? centerline.street_furniture_instances
+        .map(
+          (instance) => `
+            <div class="annotation-furniture-row">
+              <div class="annotation-furniture-row-header">
+                <strong>${escapeHtml(instance.instance_id)}</strong>
+                <button type="button" class="scene-icon-button" data-action="delete-furniture" data-instance-id="${escapeHtml(instance.instance_id)}">×</button>
+              </div>
+              <label class="scene-form-field">
+                <span>Kind</span>
+                <select data-furniture-field="kind" data-instance-id="${escapeHtml(instance.instance_id)}">
+                  ${buildSelectOptions(FURNITURE_KINDS, instance.kind, FURNITURE_KIND_LABELS)}
+                </select>
+              </label>
+              <label class="scene-form-field">
+                <span>Strip</span>
+                <input type="text" value="${escapeHtml(instance.strip_id)}" readonly />
+              </label>
+              <label class="scene-form-field">
+                <span>Station (m)</span>
+                <input type="number" min="0" step="0.1" data-furniture-field="station_m" data-instance-id="${escapeHtml(instance.instance_id)}" value="${instance.station_m.toFixed(2)}" />
+              </label>
+              <label class="scene-form-field">
+                <span>Lateral Offset (m)</span>
+                <input type="number" step="0.1" data-furniture-field="lateral_offset_m" data-instance-id="${escapeHtml(instance.instance_id)}" value="${instance.lateral_offset_m.toFixed(2)}" />
+              </label>
+              <label class="scene-form-field">
+                <span>Yaw</span>
+                <input type="number" step="1" data-furniture-field="yaw_deg" data-instance-id="${escapeHtml(instance.instance_id)}" value="${instance.yaw_deg === null ? "" : instance.yaw_deg.toFixed(0)}" />
+              </label>
+            </div>
+          `,
+        )
+        .join("")
+    : `<div class="scene-empty-note">No furniture instances yet.</div>`;
+  return `
+    <section class="annotation-furniture-section">
+      <div class="annotation-strip-section-header">
+        <h3>Street Furniture</h3>
+        <span class="scene-micro-note">${canPlaceFurniture ? `Target: ${escapeHtml(selectedStrip?.strip_id ?? "")}` : "Select a furnishing or frontage strip"}</span>
+      </div>
+      <div class="annotation-furniture-toolbar">
+        <label class="scene-form-field">
+          <span>Furniture Kind</span>
+          <select id="annotation-inspector-furniture-kind">
+            ${buildSelectOptions(FURNITURE_KINDS, pendingFurnitureKind, FURNITURE_KIND_LABELS)}
+          </select>
+        </label>
+        <button type="button" class="scene-toolbar-button" data-action="${isPlacementArmed ? "cancel-furniture-placement" : "arm-furniture-placement"}" ${canPlaceFurniture ? "" : "disabled"}>
+          ${isPlacementArmed ? "Cancel Placement" : "Place on Canvas"}
+        </button>
+      </div>
+      ${furnitureRows}
+    </section>
+  `;
+}
+
+function buildInspectorMarkup(
+  annotation: ReferenceAnnotation,
+  selection: Selection,
+  selectedStripId: string | null,
+  pendingFurnitureKind: FurnitureKind,
+  isFurniturePlacementArmed: boolean,
+): string {
   if (!selection) {
     return `<div class="scene-empty-note">选择一条中心线、路口、环岛或控制点后，可以在这里编辑属性。</div>`;
   }
@@ -564,8 +1709,10 @@ function buildInspectorMarkup(annotation: ReferenceAnnotation, selection: Select
   if (selection.kind === "centerline") {
     const centerline = feature as AnnotatedCenterline;
     const referenceWidthMeters = getReferenceWidthMeters(centerline, annotation.pixels_per_meter);
-    const profile = laneProfile(centerline);
+    const profile = deriveLaneProfile(centerline);
+    const detailed = resolvedCrossSectionMode(centerline) === CROSS_SECTION_MODE_DETAILED;
     return `
+      ${buildCrossSectionPreviewMarkup(centerline, selectedStripId)}
       <div class="scene-inspector-grid">
         <label class="scene-form-field">
           <span>ID</span>
@@ -576,8 +1723,8 @@ function buildInspectorMarkup(annotation: ReferenceAnnotation, selection: Select
           <input id="annotation-inspector-label" type="text" value="${escapeHtml(centerline.label)}" />
         </label>
         <label class="scene-form-field">
-          <span>Road Width (m)</span>
-          <input id="annotation-inspector-road-width" type="number" min="1" step="0.5" value="${centerline.road_width_m}" />
+          <span>Total Width (m)</span>
+          <input id="annotation-inspector-road-width" type="number" min="1" step="0.5" value="${centerline.road_width_m.toFixed(2)}" ${detailed ? "readonly" : ""} />
         </label>
         <label class="scene-form-field">
           <span>Reference Width (px)</span>
@@ -585,31 +1732,39 @@ function buildInspectorMarkup(annotation: ReferenceAnnotation, selection: Select
         </label>
         <label class="scene-form-field">
           <span>Forward Drive</span>
-          <input id="annotation-inspector-forward-drive-lanes" type="number" min="0" step="1" value="${centerline.forward_drive_lane_count}" />
+          <input id="annotation-inspector-forward-drive-lanes" type="number" min="0" step="1" value="${centerline.forward_drive_lane_count}" ${detailed ? "disabled" : ""} />
         </label>
         <label class="scene-form-field">
           <span>Reverse Drive</span>
-          <input id="annotation-inspector-reverse-drive-lanes" type="number" min="0" step="1" value="${centerline.reverse_drive_lane_count}" />
+          <input id="annotation-inspector-reverse-drive-lanes" type="number" min="0" step="1" value="${centerline.reverse_drive_lane_count}" ${detailed ? "disabled" : ""} />
         </label>
         <label class="scene-form-field">
           <span>Bike Lanes</span>
-          <input id="annotation-inspector-bike-lanes" type="number" min="0" step="1" value="${centerline.bike_lane_count}" />
+          <input id="annotation-inspector-bike-lanes" type="number" min="0" step="1" value="${centerline.bike_lane_count}" ${detailed ? "disabled" : ""} />
         </label>
         <label class="scene-form-field">
           <span>Bus Lanes</span>
-          <input id="annotation-inspector-bus-lanes" type="number" min="0" step="1" value="${centerline.bus_lane_count}" />
+          <input id="annotation-inspector-bus-lanes" type="number" min="0" step="1" value="${centerline.bus_lane_count}" ${detailed ? "disabled" : ""} />
         </label>
         <label class="scene-form-field">
           <span>Parking Lanes</span>
-          <input id="annotation-inspector-parking-lanes" type="number" min="0" step="1" value="${centerline.parking_lane_count}" />
+          <input id="annotation-inspector-parking-lanes" type="number" min="0" step="1" value="${centerline.parking_lane_count}" ${detailed ? "disabled" : ""} />
         </label>
         <label class="scene-form-field scene-form-field-wide">
           <span>Highway Type</span>
           <input id="annotation-inspector-highway-type" type="text" value="${escapeHtml(centerline.highway_type)}" />
         </label>
         <div class="scene-fact-card">
+          <span class="scene-fact-label">Mode</span>
+          <strong>${detailed ? "Detailed" : "Coarse"}</strong>
+        </div>
+        <div class="scene-fact-card">
           <span class="scene-fact-label">Reference Width (m)</span>
           <strong>${referenceWidthMeters === null ? "auto" : referenceWidthMeters.toFixed(2)}</strong>
+        </div>
+        <div class="scene-fact-card">
+          <span class="scene-fact-label">Carriageway</span>
+          <strong>${getCenterlineCarriagewayWidth(centerline).toFixed(2)}m</strong>
         </div>
         <div class="scene-fact-card">
           <span class="scene-fact-label">Lane Summary</span>
@@ -619,7 +1774,30 @@ function buildInspectorMarkup(annotation: ReferenceAnnotation, selection: Select
           <span class="scene-fact-label">Geometry</span>
           <strong>${centerline.points.length} vertices${selection.vertexIndex !== undefined ? ` · selected vertex ${selection.vertexIndex + 1}` : ""}</strong>
         </div>
+        <div class="annotation-detail-actions scene-form-field-wide">
+          <button type="button" class="scene-toolbar-button" data-action="split-centerline">
+            ${detailed ? "Reseed Cross Section" : "Split to Cross Section"}
+          </button>
+          ${detailed ? `<button type="button" class="scene-toolbar-button scene-toolbar-button-secondary" data-action="collapse-centerline">Back to Coarse</button>` : ""}
+        </div>
       </div>
+      ${
+        detailed
+          ? `
+            ${buildSelectedStripEditorMarkup(centerline, selectedStripId)}
+            <div class="annotation-detailed-layout">
+              ${buildStripSectionMarkup(centerline, "left", selectedStripId)}
+              ${buildStripSectionMarkup(centerline, "center", selectedStripId)}
+              ${buildStripSectionMarkup(centerline, "right", selectedStripId)}
+              ${buildFurnitureMarkup(centerline, selectedStripId, pendingFurnitureKind, isFurniturePlacementArmed)}
+            </div>
+            ${buildMetaurbanAssetGuideMarkup()}
+          `
+          : `
+            <div class="scene-empty-note">先把总宽度和参考图调准；你现在也可以直接点击上方 seed 横截面中的任一部分，自动进入 detailed 编辑。</div>
+            ${buildMetaurbanAssetGuideMarkup()}
+          `
+      }
     `;
   }
   if (selection.kind === "roundabout") {
@@ -676,10 +1854,138 @@ function buildInspectorMarkup(annotation: ReferenceAnnotation, selection: Select
   `;
 }
 
+function stripStrokeColor(kind: StripKind): string {
+  switch (kind) {
+    case "drive_lane":
+      return "rgba(66, 74, 87, 0.82)";
+    case "bus_lane":
+      return "rgba(183, 72, 58, 0.78)";
+    case "bike_lane":
+      return "rgba(57, 135, 90, 0.78)";
+    case "parking_lane":
+      return "rgba(166, 130, 86, 0.75)";
+    case "median":
+      return "rgba(110, 122, 95, 0.72)";
+    case "nearroad_buffer":
+      return "rgba(152, 152, 152, 0.4)";
+    case "nearroad_furnishing":
+      return "rgba(126, 101, 71, 0.56)";
+    case "clear_sidewalk":
+      return "rgba(235, 224, 206, 0.86)";
+    case "farfromroad_buffer":
+      return "rgba(169, 188, 202, 0.42)";
+    case "frontage_reserve":
+      return "rgba(183, 212, 230, 0.58)";
+    default:
+      return "rgba(102, 102, 102, 0.6)";
+  }
+}
+
+function buildCenterlineOverlayMarkup(
+  centerline: AnnotatedCenterline,
+  pixelsPerMeter: number,
+  isSelected: boolean,
+  selectedVertexIndex: number | undefined,
+  selectedStripId: string | null,
+): string {
+  const points = centerline.points.map((point) => `${point.x},${point.y}`).join(" ");
+  const vertexMarkup = centerline.points
+    .map((point, index) => {
+      const vertexSelected = isSelected && selectedVertexIndex === index;
+      return `
+        <circle
+          class="annotation-vertex${vertexSelected ? " annotation-vertex-selected" : ""}"
+          cx="${point.x}"
+          cy="${point.y}"
+          r="6"
+          data-feature-kind="centerline"
+          data-feature-id="${escapeHtml(centerline.id)}"
+          data-vertex-index="${index}"
+        />
+      `;
+    })
+    .join("");
+
+  let bandMarkup = "";
+  if (resolvedCrossSectionMode(centerline) === CROSS_SECTION_MODE_DETAILED && centerline.cross_section_strips.length > 0) {
+    const offsets = stripCenterOffsetMeters(centerline);
+    bandMarkup = sortedCrossSectionStrips(centerline.cross_section_strips)
+      .map((strip) => {
+        const stripOffset = offsets[strip.strip_id];
+        const offsetPoints = offsetPolyline(centerline.points, stripOffset.centerOffsetM * pixelsPerMeter);
+        const offsetPolylinePoints = offsetPoints.map((point) => `${point.x},${point.y}`).join(" ");
+        const isStripSelected = selectedStripId === strip.strip_id;
+        return `
+          <polyline
+            class="annotation-cross-strip${isStripSelected ? " annotation-cross-strip-selected" : ""}"
+            points="${offsetPolylinePoints}"
+            style="stroke: ${stripStrokeColor(strip.kind)}; stroke-width: ${Math.max(2, strip.width_m * pixelsPerMeter)}px"
+            data-feature-kind="centerline"
+            data-feature-id="${escapeHtml(centerline.id)}"
+          />
+        `;
+      })
+      .join("");
+  } else {
+    const roadBandWidthPx = getDisplayReferenceWidthPx(centerline, pixelsPerMeter);
+    bandMarkup = `
+      <polyline
+        class="annotation-road-band${isSelected ? " annotation-feature-selected" : ""}"
+        points="${points}"
+        style="stroke-width: ${roadBandWidthPx}px"
+        data-feature-kind="centerline"
+        data-feature-id="${escapeHtml(centerline.id)}"
+      />
+    `;
+  }
+
+  const furnitureMarkup = centerline.street_furniture_instances
+    .map((instance) => {
+      const point = stripDisplayPoint(
+        centerline,
+        instance.strip_id,
+        instance.station_m * pixelsPerMeter,
+        instance.lateral_offset_m * pixelsPerMeter,
+        pixelsPerMeter,
+      );
+      if (!point) {
+        return "";
+      }
+      return `
+        <g class="annotation-feature-group">
+          <circle class="annotation-furniture-point" cx="${point.x}" cy="${point.y}" r="6" />
+          <text class="annotation-furniture-label" x="${point.x + 10}" y="${point.y - 8}">
+            ${escapeHtml(FURNITURE_KIND_LABELS[instance.kind])}
+          </text>
+        </g>
+      `;
+    })
+    .join("");
+
+  return `
+    <g class="annotation-feature-group">
+      ${bandMarkup}
+      <polyline
+        class="annotation-centerline${isSelected ? " annotation-feature-selected" : ""}"
+        points="${points}"
+        style="stroke-width: 3px"
+        data-feature-kind="centerline"
+        data-feature-id="${escapeHtml(centerline.id)}"
+      />
+      ${vertexMarkup}
+      ${furnitureMarkup}
+      <text class="annotation-label" x="${centerline.points[0]?.x ?? 0}" y="${(centerline.points[0]?.y ?? 0) - 12}">
+        ${escapeHtml(centerline.label || centerline.id)}
+      </text>
+    </g>
+  `;
+}
+
 function buildOverlayMarkup(
   annotation: ReferenceAnnotation,
   draftCenterline: AnnotationPoint[],
   selection: Selection,
+  selectedStripId: string | null,
 ): string {
   const width = Math.max(annotation.image_width_px, 1);
   const height = Math.max(annotation.image_height_px, 1);
@@ -692,46 +1998,13 @@ function buildOverlayMarkup(
         selection && selection.kind === "centerline" && selection.id === centerline.id
           ? selection.vertexIndex
           : undefined;
-      const roadBandWidthPx = getDisplayReferenceWidthPx(centerline, annotation.pixels_per_meter);
-      const points = centerline.points.map((point) => `${point.x},${point.y}`).join(" ");
-      const vertexMarkup = centerline.points
-        .map((point, index) => {
-          const vertexSelected = isSelected && selectedVertexIndex === index;
-          return `
-            <circle
-              class="annotation-vertex${vertexSelected ? " annotation-vertex-selected" : ""}"
-              cx="${point.x}"
-              cy="${point.y}"
-              r="6"
-              data-feature-kind="centerline"
-              data-feature-id="${escapeHtml(centerline.id)}"
-              data-vertex-index="${index}"
-            />
-          `;
-        })
-        .join("");
-      return `
-        <g class="annotation-feature-group">
-          <polyline
-            class="annotation-road-band${isSelected ? " annotation-feature-selected" : ""}"
-            points="${points}"
-            style="stroke-width: ${roadBandWidthPx}px"
-            data-feature-kind="centerline"
-            data-feature-id="${escapeHtml(centerline.id)}"
-          />
-          <polyline
-            class="annotation-centerline${isSelected ? " annotation-feature-selected" : ""}"
-            points="${points}"
-            style="stroke-width: 3px"
-            data-feature-kind="centerline"
-            data-feature-id="${escapeHtml(centerline.id)}"
-          />
-          ${vertexMarkup}
-          <text class="annotation-label" x="${centerline.points[0]?.x ?? 0}" y="${(centerline.points[0]?.y ?? 0) - 12}">
-            ${escapeHtml(centerline.label || centerline.id)}
-          </text>
-        </g>
-      `;
+      return buildCenterlineOverlayMarkup(
+        centerline,
+        annotation.pixels_per_meter,
+        isSelected,
+        selectedVertexIndex,
+        isSelected ? selectedStripId : null,
+      );
     })
     .join("");
 
@@ -854,7 +2127,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
           <div class="scene-page-kicker">Viewer / Reference Annotation</div>
           <h1 class="scene-page-title">Reference Plan Annotator</h1>
           <p class="scene-page-subtitle">
-            载入参考图后，手工标注中心线、路口、环岛和关键控制点，导出 JSON，并直接调用后端转换成可复用的道路 graph。
+            先校准道路总宽与参考图，再把中心线拆成车道、步行带、门前预留和街道家具点位，最后导出 JSON 并转换成带详细横断面的道路 graph。
           </p>
         </div>
         <div class="scene-page-actions">
@@ -866,7 +2139,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
         <section class="scene-panel scene-panel-canvas">
           <div class="scene-panel-header">
             <h2>Reference Board</h2>
-            <p>先选参考图，再用工具在图上画中心线和关键节点。拖拽顶点或点位即可微调。</p>
+            <p>先选参考图并标中心线，调好 Pixels / Meter 和总宽度后，再进入详细 strip 模式拆分车道、人行道、frontage reserve 和街道家具。</p>
           </div>
 
           <div class="scene-layer-toolbar">
@@ -883,6 +2156,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
 
           <div class="scene-tool-row">
             <button id="annotation-tool-select" class="scene-tool-button" data-tool="select" type="button">Select</button>
+            <button id="annotation-tool-adjust" class="scene-tool-button" data-tool="adjust" type="button">Adjust</button>
             <button id="annotation-tool-centerline" class="scene-tool-button" data-tool="centerline" type="button">Centerline</button>
             <button id="annotation-tool-junction" class="scene-tool-button" data-tool="junction" type="button">Junction</button>
             <button id="annotation-tool-roundabout" class="scene-tool-button" data-tool="roundabout" type="button">Roundabout</button>
@@ -973,16 +2247,8 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
 
           <section class="scene-panel">
             <div class="scene-panel-header">
-              <h2>Selected Feature</h2>
-              <p>修改当前要素的属性，中心线顶点可直接拖拽。</p>
-            </div>
-            <div id="annotation-inspector" class="scene-inspector-wrap"></div>
-          </section>
-
-          <section class="scene-panel">
-            <div class="scene-panel-header">
               <h2>Graph Conversion</h2>
-              <p>把当前 annotation JSON 直接送进后端 converter，生成可复用的 segment graph。</p>
+              <p>把当前 annotation JSON 直接送进后端 converter，生成保留详细横断面与家具实例的 segment graph。</p>
             </div>
             <div class="scene-import-toolbar">
               <label class="scene-form-field scene-form-field-inline">
@@ -1028,6 +2294,14 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
           </section>
         </aside>
       </div>
+
+      <section class="scene-panel scene-panel-bottom">
+        <div class="scene-panel-header">
+          <h2>Selected Feature</h2>
+          <p>中心线支持 Coarse / Detailed 两阶段编辑。Detailed 模式下可以手工拆 strip、调方向，并在 furnishing/frontage 带上放置街道家具实例。</p>
+        </div>
+        <div id="annotation-inspector" class="scene-inspector-wrap"></div>
+      </section>
     </div>
   `;
 
@@ -1076,6 +2350,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     draftCenterline: [] as AnnotationPoint[],
     selectedTool: "select" as Tool,
     selection: null as Selection,
+    selectedStripId: null as string | null,
     drag: null as DragState,
     currentImageUrl: "",
     currentObjectUrl: "",
@@ -1085,6 +2360,14 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     originalOpacity: 1,
     overlayOpacity: 0.88,
     defaultRoundaboutRadiusPx: DEFAULT_ROUNDABOUT_RADIUS_PX,
+    isReferenceImageLoading: true,
+    referenceImageLoadingMessage: "Loading default reference plan...",
+    pendingFurnitureKind: "bench" as FurnitureKind,
+    furniturePlacement: null as null | {
+      centerlineId: string;
+      stripId: string;
+      kind: FurnitureKind;
+    },
   };
 
   function clearGraphResult(reason: string): void {
@@ -1092,6 +2375,29 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     graphTextarea.value = "";
     graphSummaryEl.innerHTML = buildGraphSummaryMarkup(null);
     setStatus(graphStatusEl, reason, "neutral");
+  }
+
+  function selectedCenterline(): AnnotatedCenterline | null {
+    const feature = getSelectedFeature(state.annotation, state.selection);
+    return state.selection?.kind === "centerline" && feature ? (feature as AnnotatedCenterline) : null;
+  }
+
+  function selectedStrip(centerline: AnnotatedCenterline | null = selectedCenterline()): AnnotatedCrossSectionStrip | null {
+    if (!centerline || !state.selectedStripId) {
+      return null;
+    }
+    return centerline.cross_section_strips.find((strip) => strip.strip_id === state.selectedStripId) ?? null;
+  }
+
+  function clearFurniturePlacement(): void {
+    state.furniturePlacement = null;
+  }
+
+  function markAnnotationChanged(statusMessage?: string): void {
+    clearGraphResult("Annotation changed. Re-run convert to refresh graph output.");
+    if (statusMessage) {
+      setStatus(statusEl, statusMessage, "success");
+    }
   }
 
   function revokeCurrentObjectUrl(): void {
@@ -1106,6 +2412,11 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     stageEl.dataset.hasImage = hasImage ? "true" : "false";
     boardEl.hidden = !hasImage;
     stageEmptyEl.hidden = hasImage;
+    if (!hasImage) {
+      stageEmptyEl.textContent = state.isReferenceImageLoading
+        ? state.referenceImageLoadingMessage
+        : "Load a reference plan image to start annotating.";
+    }
     originalImageEl.hidden = !hasImage || !state.showOriginal;
     originalImageEl.style.opacity = String(state.originalOpacity);
     overlayHostEl.hidden = !state.showOverlay;
@@ -1126,7 +2437,13 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
   }
 
   function renderInspector(): void {
-    inspectorEl.innerHTML = buildInspectorMarkup(state.annotation, state.selection);
+    inspectorEl.innerHTML = buildInspectorMarkup(
+      state.annotation,
+      state.selection,
+      state.selectedStripId,
+      state.pendingFurnitureKind,
+      Boolean(state.furniturePlacement),
+    );
     const selectedFeature = getSelectedFeature(state.annotation, state.selection);
     if (!selectedFeature || !state.selection) {
       return;
@@ -1145,6 +2462,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     const busLaneInput = inspectorEl.querySelector<HTMLInputElement>("#annotation-inspector-bus-lanes");
     const parkingLaneInput = inspectorEl.querySelector<HTMLInputElement>("#annotation-inspector-parking-lanes");
     const highwayTypeInput = inspectorEl.querySelector<HTMLInputElement>("#annotation-inspector-highway-type");
+    const furnitureKindSelect = inspectorEl.querySelector<HTMLSelectElement>("#annotation-inspector-furniture-kind");
 
     const updateSelection = (): void => {
       const feature = getSelectedFeature(state.annotation, state.selection);
@@ -1155,8 +2473,19 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
         const nextId = idInput.value.trim();
         if (nextId) {
           if ("id" in feature) {
+            const previousId = feature.id;
             feature.id = nextId;
             state.selection.id = nextId;
+            if (state.selection.kind === "centerline") {
+              const centerline = feature as AnnotatedCenterline;
+              centerline.street_furniture_instances = centerline.street_furniture_instances.map((item) => ({
+                ...item,
+                centerline_id: nextId,
+              }));
+              if (state.furniturePlacement?.centerlineId === previousId) {
+                state.furniturePlacement = { ...state.furniturePlacement, centerlineId: nextId };
+              }
+            }
           }
         }
       }
@@ -1200,7 +2529,10 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       if (highwayTypeInput && "highway_type" in feature) {
         feature.highway_type = highwayTypeInput.value.trim() || feature.highway_type;
       }
-      clearGraphResult("Annotation changed. Re-run convert to refresh graph output.");
+      if (state.selection.kind === "centerline") {
+        syncCenterlineDerivedFields(feature as AnnotatedCenterline);
+      }
+      markAnnotationChanged();
       renderAll();
     };
 
@@ -1222,6 +2554,260 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     ]) {
       input?.addEventListener("input", updateSelection, { signal });
     }
+
+    furnitureKindSelect?.addEventListener(
+      "change",
+      () => {
+        const value = asString(furnitureKindSelect.value, state.pendingFurnitureKind);
+        state.pendingFurnitureKind = isFurnitureKind(value) ? value : state.pendingFurnitureKind;
+        if (state.furniturePlacement) {
+          state.furniturePlacement = { ...state.furniturePlacement, kind: state.pendingFurnitureKind };
+        }
+      },
+      { signal },
+    );
+
+    const centerline = selectedCenterline();
+    if (!centerline) {
+      return;
+    }
+
+    const stripInputs = Array.from(inspectorEl.querySelectorAll<HTMLElement>("[data-strip-field][data-strip-id]"));
+    const stripActionButtons = Array.from(inspectorEl.querySelectorAll<HTMLButtonElement>("[data-action]"));
+    const furnitureInputs = Array.from(inspectorEl.querySelectorAll<HTMLElement>("[data-furniture-field][data-instance-id]"));
+
+    const findStripById = (stripId: string): AnnotatedCrossSectionStrip | null =>
+      centerline.cross_section_strips.find((strip) => strip.strip_id === stripId) ?? null;
+
+    for (const input of stripInputs) {
+      const eventName = input instanceof HTMLSelectElement ? "change" : "input";
+      input.addEventListener(
+        eventName,
+        () => {
+          const stripId = input.dataset.stripId;
+          const field = input.dataset.stripField;
+          if (!stripId || !field) {
+            return;
+          }
+          const strip = findStripById(stripId);
+          if (!strip) {
+            return;
+          }
+          if (field === "kind" && input instanceof HTMLSelectElement) {
+            const nextKind = asString(input.value, strip.kind);
+            if (isStripKind(nextKind)) {
+              strip.kind = nextKind;
+              if (strip.zone === "center" && !CENTER_STRIP_KINDS.has(strip.kind)) {
+                strip.kind = "drive_lane";
+              }
+              if ((strip.zone === "left" || strip.zone === "right") && !SIDE_STRIP_KINDS.has(strip.kind)) {
+                strip.kind = "nearroad_furnishing";
+              }
+              if (SIDE_STRIP_KINDS.has(strip.kind) || strip.kind === "median") {
+                strip.direction = "none";
+              }
+            }
+          } else if (field === "width_m" && input instanceof HTMLInputElement) {
+            strip.width_m = Math.max(0.1, asNumber(input.value, strip.width_m));
+          } else if (field === "direction" && input instanceof HTMLSelectElement) {
+            const nextDirection = asString(input.value, strip.direction);
+            strip.direction = isStripDirection(nextDirection) ? nextDirection : strip.direction;
+            if (SIDE_STRIP_KINDS.has(strip.kind) || strip.kind === "median") {
+              strip.direction = "none";
+            }
+          }
+          syncCenterlineDerivedFields(centerline);
+          markAnnotationChanged();
+          renderAll();
+        },
+        { signal },
+      );
+    }
+
+    for (const button of stripActionButtons) {
+      button.addEventListener(
+        "click",
+        () => {
+          const action = button.dataset.action;
+          if (!action) {
+            return;
+          }
+          if (action === "select-preview-strip") {
+            const previewStripId = button.dataset.stripId ?? null;
+            if (!previewStripId) {
+              return;
+            }
+            if (resolvedCrossSectionMode(centerline) !== CROSS_SECTION_MODE_DETAILED || centerline.cross_section_strips.length === 0) {
+              centerline.cross_section_strips = seedDetailedCrossSection(centerline);
+              centerline.street_furniture_instances = [];
+              syncCenterlineDerivedFields(centerline);
+              state.selectedStripId = centerline.cross_section_strips.find((strip) => strip.strip_id === previewStripId)?.strip_id
+                ?? centerline.cross_section_strips[0]?.strip_id
+                ?? null;
+              clearFurniturePlacement();
+              markAnnotationChanged(`Split ${centerline.id} into detailed cross-section strips.`);
+              renderAll();
+              return;
+            }
+            state.selectedStripId = previewStripId;
+            renderAll();
+            return;
+          }
+          if (action === "select-strip") {
+            state.selectedStripId = button.dataset.stripId ?? null;
+            renderAll();
+            return;
+          }
+          if (action === "split-centerline") {
+            centerline.cross_section_strips = seedDetailedCrossSection(centerline);
+            centerline.street_furniture_instances = [];
+            syncCenterlineDerivedFields(centerline);
+            state.selectedStripId = centerline.cross_section_strips[0]?.strip_id ?? null;
+            clearFurniturePlacement();
+            markAnnotationChanged(`Split ${centerline.id} into detailed cross-section strips.`);
+            renderAll();
+            return;
+          }
+          if (action === "collapse-centerline") {
+            centerline.cross_section_strips = [];
+            centerline.street_furniture_instances = [];
+            centerline.cross_section_mode = CROSS_SECTION_MODE_COARSE;
+            state.selectedStripId = null;
+            clearFurniturePlacement();
+            syncCenterlineDerivedFields(centerline);
+            markAnnotationChanged(`Collapsed ${centerline.id} back to coarse mode.`);
+            renderAll();
+            return;
+          }
+          if (action === "add-strip") {
+            const zoneValue = asString(button.dataset.zone, "center");
+            const zone: StripZone = isStripZone(zoneValue) ? zoneValue : "center";
+            centerline.cross_section_strips.push({
+              strip_id: nextStripId(centerline, zone),
+              zone,
+              kind: zone === "center" ? "drive_lane" : "nearroad_furnishing",
+              width_m: zone === "center" ? NOMINAL_STRIP_WIDTHS.drive_lane : NOMINAL_STRIP_WIDTHS.nearroad_furnishing,
+              direction: zone === "center" ? "forward" : "none",
+              order_index: centerline.cross_section_strips.filter((strip) => strip.zone === zone).length,
+            });
+            syncCenterlineDerivedFields(centerline);
+            state.selectedStripId = centerline.cross_section_strips[centerline.cross_section_strips.length - 1]?.strip_id ?? null;
+            markAnnotationChanged("Added strip.");
+            renderAll();
+            return;
+          }
+          if (action === "move-strip-up" || action === "move-strip-down") {
+            const stripId = button.dataset.stripId;
+            if (!stripId) {
+              return;
+            }
+            const strip = findStripById(stripId);
+            if (!strip) {
+              return;
+            }
+            const zoneStrips = sortedCrossSectionStrips(centerline.cross_section_strips).filter((item) => item.zone === strip.zone);
+            const currentIndex = zoneStrips.findIndex((item) => item.strip_id === stripId);
+            if (currentIndex < 0) {
+              return;
+            }
+            const swapIndex = action === "move-strip-up" ? currentIndex - 1 : currentIndex + 1;
+            if (swapIndex < 0 || swapIndex >= zoneStrips.length) {
+              return;
+            }
+            const swapStrip = zoneStrips[swapIndex];
+            const originalOrder = strip.order_index;
+            strip.order_index = swapStrip.order_index;
+            swapStrip.order_index = originalOrder;
+            syncCenterlineDerivedFields(centerline);
+            markAnnotationChanged("Reordered strip.");
+            renderAll();
+            return;
+          }
+          if (action === "delete-strip") {
+            const stripId = button.dataset.stripId;
+            if (!stripId) {
+              return;
+            }
+            centerline.cross_section_strips = centerline.cross_section_strips.filter((strip) => strip.strip_id !== stripId);
+            centerline.street_furniture_instances = centerline.street_furniture_instances.filter((item) => item.strip_id !== stripId);
+            if (state.selectedStripId === stripId) {
+              state.selectedStripId = null;
+            }
+            if (state.furniturePlacement?.stripId === stripId) {
+              clearFurniturePlacement();
+            }
+            syncCenterlineDerivedFields(centerline);
+            markAnnotationChanged("Deleted strip.");
+            renderAll();
+            return;
+          }
+          if (action === "arm-furniture-placement") {
+            const strip = selectedStrip(centerline);
+            if (!strip || !FURNITURE_COMPATIBLE_STRIP_KINDS.has(strip.kind)) {
+              return;
+            }
+            state.furniturePlacement = {
+              centerlineId: centerline.id,
+              stripId: strip.strip_id,
+              kind: state.pendingFurnitureKind,
+            };
+            setStatus(statusEl, `Placement armed for ${strip.strip_id}. Click on the canvas to place ${state.pendingFurnitureKind}.`, "neutral");
+            renderAll();
+            return;
+          }
+          if (action === "cancel-furniture-placement") {
+            clearFurniturePlacement();
+            setStatus(statusEl, "Furniture placement cancelled.", "neutral");
+            renderAll();
+            return;
+          }
+          if (action === "delete-furniture") {
+            const instanceId = button.dataset.instanceId;
+            if (!instanceId) {
+              return;
+            }
+            centerline.street_furniture_instances = centerline.street_furniture_instances.filter((item) => item.instance_id !== instanceId);
+            markAnnotationChanged("Deleted furniture instance.");
+            renderAll();
+          }
+        },
+        { signal },
+      );
+    }
+
+    for (const input of furnitureInputs) {
+      const eventName = input instanceof HTMLSelectElement ? "change" : "input";
+      input.addEventListener(
+        eventName,
+        () => {
+          const instanceId = input.dataset.instanceId;
+          const field = input.dataset.furnitureField;
+          if (!instanceId || !field) {
+            return;
+          }
+          const instance = centerline.street_furniture_instances.find((item) => item.instance_id === instanceId);
+          if (!instance) {
+            return;
+          }
+          if (field === "kind" && input instanceof HTMLSelectElement) {
+            const value = asString(input.value, instance.kind);
+            if (isFurnitureKind(value)) {
+              instance.kind = value;
+            }
+          } else if (field === "station_m" && input instanceof HTMLInputElement) {
+            instance.station_m = Math.max(0, asNumber(input.value, instance.station_m));
+          } else if (field === "lateral_offset_m" && input instanceof HTMLInputElement) {
+            instance.lateral_offset_m = asNumber(input.value, instance.lateral_offset_m);
+          } else if (field === "yaw_deg" && input instanceof HTMLInputElement) {
+            instance.yaw_deg = asNullableNumber(input.value);
+          }
+          syncCenterlineDerivedFields(centerline);
+          markAnnotationChanged();
+          renderAll();
+        },
+        { signal },
+      );
+    }
   }
 
   function renderOverlay(): void {
@@ -1230,7 +2816,12 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       updateStageVisibility();
       return;
     }
-    overlayHostEl.innerHTML = buildOverlayMarkup(state.annotation, state.draftCenterline, state.selection);
+    overlayHostEl.innerHTML = buildOverlayMarkup(
+      state.annotation,
+      state.draftCenterline,
+      state.selection,
+      state.selectedStripId,
+    );
     updateStageVisibility();
   }
 
@@ -1246,7 +2837,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     renderInspector();
     renderOverlay();
     imageMetaEl.textContent = state.currentImageUrl
-      ? `${state.annotation.plan_id || "custom"} · ${state.annotation.image_width_px} × ${state.annotation.image_height_px}px · ${state.annotation.pixels_per_meter.toFixed(1)} px/m · ${state.annotation.centerlines.length} roads · ${getFeatureCount(state.annotation)} features`
+      ? `${state.annotation.plan_id || "custom"} · ${state.annotation.image_width_px} × ${state.annotation.image_height_px}px · ${state.annotation.pixels_per_meter.toFixed(1)} px/m · ${state.annotation.centerlines.length} roads · ${state.annotation.centerlines.reduce((sum, item) => sum + item.cross_section_strips.length, 0)} strips · ${state.annotation.centerlines.reduce((sum, item) => sum + item.street_furniture_instances.length, 0)} furniture`
       : "选择参考 plan 或导入 PNG 后，就可以在图上开始标注。";
     finishCenterlineButton.disabled = state.draftCenterline.length < 2;
     undoPointButton.disabled = state.draftCenterline.length === 0;
@@ -1257,6 +2848,10 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
 
   function setTool(tool: Tool): void {
     state.selectedTool = tool;
+    state.drag = null;
+    if (tool !== "select") {
+      clearFurniturePlacement();
+    }
     renderAll();
   }
 
@@ -1310,27 +2905,40 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
   ): Promise<void> {
     const { planId, preserveFeatures } = options;
     const resolvedImageUrl = resolveApiUrl(imageUrl);
+    state.isReferenceImageLoading = true;
+    state.referenceImageLoadingMessage = `Loading reference image: ${planId || "custom"}...`;
     state.currentImageUrl = resolvedImageUrl;
-    await new Promise<void>((resolve, reject) => {
-      originalImageEl.onload = () => resolve();
-      originalImageEl.onerror = () => reject(new Error("Failed to load the selected image."));
-      originalImageEl.src = resolvedImageUrl;
-    });
-    const width = originalImageEl.naturalWidth;
-    const height = originalImageEl.naturalHeight;
-    if (preserveFeatures) {
-      state.annotation.image_width_px = width;
-      state.annotation.image_height_px = height;
-      state.annotation.image_path = imageUrl;
-      state.annotation.plan_id = planId || state.annotation.plan_id;
-    } else {
-      state.annotation = createEmptyAnnotation(planId, imageUrl, width, height);
-    }
-    state.selection = null;
-    state.draftCenterline = [];
-    clearGraphResult("Reference image updated. Convert again after annotating.");
-    setStatus(statusEl, `Loaded reference image: ${planId || "custom"}.`, "success");
     renderAll();
+    try {
+      await new Promise<void>((resolve, reject) => {
+        originalImageEl.onload = () => resolve();
+        originalImageEl.onerror = () => reject(new Error("Failed to load the selected image."));
+        originalImageEl.src = resolvedImageUrl;
+      });
+      const width = originalImageEl.naturalWidth;
+      const height = originalImageEl.naturalHeight;
+      if (preserveFeatures) {
+        state.annotation.image_width_px = width;
+        state.annotation.image_height_px = height;
+        state.annotation.image_path = imageUrl;
+        state.annotation.plan_id = planId || state.annotation.plan_id;
+      } else {
+        state.annotation = createEmptyAnnotation(planId, imageUrl, width, height);
+      }
+      state.selection = null;
+      state.selectedStripId = null;
+      state.draftCenterline = [];
+      clearFurniturePlacement();
+      clearGraphResult("Reference image updated. Convert again after annotating.");
+      setStatus(statusEl, `Loaded reference image: ${planId || "custom"}.`, "success");
+    } catch (error) {
+      state.currentImageUrl = "";
+      originalImageEl.removeAttribute("src");
+      throw error;
+    } finally {
+      state.isReferenceImageLoading = false;
+      renderAll();
+    }
   }
 
   async function applyReferencePlan(planId: string): Promise<void> {
@@ -1345,6 +2953,9 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
   }
 
   async function loadReferencePlans(): Promise<void> {
+    state.isReferenceImageLoading = true;
+    state.referenceImageLoadingMessage = "Loading reference plans...";
+    renderAll();
     const response = await fetch(`${API_BASE}/api/reference-plans`);
     if (!response.ok) {
       throw new Error(`Failed to load reference plans (${response.status}).`);
@@ -1362,7 +2973,10 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     if (defaultPlan) {
       planSelect.value = defaultPlan.plan_id;
       await applyReferencePlan(defaultPlan.plan_id);
+      return;
     }
+    state.isReferenceImageLoading = false;
+    renderAll();
   }
 
   function finalizeDraftCenterline(): void {
@@ -1383,11 +2997,14 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       bus_lane_count: 0,
       parking_lane_count: 0,
       highway_type: "annotated_centerline",
+      cross_section_mode: CROSS_SECTION_MODE_COARSE,
+      cross_section_strips: [],
+      street_furniture_instances: [],
     });
     state.selection = { kind: "centerline", id };
+    state.selectedStripId = null;
     state.draftCenterline = [];
-    clearGraphResult("Annotation changed. Re-run convert to refresh graph output.");
-    setStatus(statusEl, `Saved centerline ${id}.`, "success");
+    markAnnotationChanged(`Saved centerline ${id}.`);
     renderAll();
   }
 
@@ -1397,7 +3014,9 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     state.annotation.roundabouts = [];
     state.annotation.control_points = [];
     state.selection = null;
+    state.selectedStripId = null;
     state.draftCenterline = [];
+    clearFurniturePlacement();
     clearGraphResult("Annotation reset. Draw new features and convert again.");
     setStatus(statusEl, "Annotation cleared.", "neutral");
     renderAll();
@@ -1419,6 +3038,8 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
         } else {
           state.annotation.centerlines.splice(lineIndex, 1);
           state.selection = null;
+          state.selectedStripId = null;
+          clearFurniturePlacement();
           setStatus(statusEl, `Deleted centerline ${line.id}.`, "success");
         }
       }
@@ -1445,6 +3066,9 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       return;
     }
     setStatus(graphStatusEl, "Converting annotation to graph...", "neutral");
+    for (const centerline of state.annotation.centerlines) {
+      syncCenterlineDerivedFields(centerline);
+    }
     const response = await fetch(`${API_BASE}/api/reference-annotations/convert`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -1467,11 +3091,93 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
 
   function syncSelectionAfterMutation(): void {
     if (!state.selection) {
+      state.selectedStripId = null;
+      clearFurniturePlacement();
       return;
     }
-    if (!getSelectedFeature(state.annotation, state.selection)) {
+    const feature = getSelectedFeature(state.annotation, state.selection);
+    if (!feature) {
       state.selection = null;
+      state.selectedStripId = null;
+      clearFurniturePlacement();
+      return;
     }
+    if (state.selection.kind === "centerline") {
+      const centerline = feature as AnnotatedCenterline;
+      if (state.selectedStripId && !centerline.cross_section_strips.some((strip) => strip.strip_id === state.selectedStripId)) {
+        state.selectedStripId = null;
+      }
+      if (!state.selectedStripId && centerline.cross_section_strips.length > 0) {
+        state.selectedStripId = centerline.cross_section_strips[0]?.strip_id ?? null;
+      }
+      if (
+        state.furniturePlacement &&
+        (state.furniturePlacement.centerlineId !== centerline.id ||
+          !centerline.cross_section_strips.some((strip) => strip.strip_id === state.furniturePlacement?.stripId))
+      ) {
+        clearFurniturePlacement();
+      }
+    } else {
+      state.selectedStripId = null;
+      clearFurniturePlacement();
+    }
+  }
+
+  function nextFurnitureInstanceId(centerline: AnnotatedCenterline): string {
+    const used = new Set(centerline.street_furniture_instances.map((item) => item.instance_id));
+    let counter = centerline.street_furniture_instances.length + 1;
+    while (true) {
+      const candidate = `${centerline.id}_furniture_${String(counter).padStart(2, "0")}`;
+      if (!used.has(candidate)) {
+        return candidate;
+      }
+      counter += 1;
+    }
+  }
+
+  function placeFurnitureAtPoint(point: AnnotationPoint): boolean {
+    if (!state.furniturePlacement) {
+      return false;
+    }
+    const centerline = state.annotation.centerlines.find((item) => item.id === state.furniturePlacement?.centerlineId);
+    if (!centerline) {
+      clearFurniturePlacement();
+      return false;
+    }
+    const strip = centerline.cross_section_strips.find((item) => item.strip_id === state.furniturePlacement?.stripId);
+    if (!strip || !FURNITURE_COMPATIBLE_STRIP_KINDS.has(strip.kind)) {
+      clearFurniturePlacement();
+      return false;
+    }
+    const projection = projectPointOntoPolyline(centerline.points, point);
+    const ppm = Math.max(state.annotation.pixels_per_meter, 0.0001);
+    const stripBounds = stripCenterOffsetMeters(centerline)[strip.strip_id];
+    const halfWidthM = stripBounds ? stripBounds.widthM * 0.5 : strip.width_m * 0.5;
+    const centerOffsetM = stripBounds ? stripBounds.centerOffsetM : 0;
+    const absoluteLateralOffsetM = clamp(
+      projection.lateralPx / ppm,
+      centerOffsetM - halfWidthM,
+      centerOffsetM + halfWidthM,
+    );
+    const lateralOffsetM = absoluteLateralOffsetM - centerOffsetM;
+    centerline.street_furniture_instances.push({
+      instance_id: nextFurnitureInstanceId(centerline),
+      centerline_id: centerline.id,
+      strip_id: strip.strip_id,
+      kind: state.furniturePlacement.kind,
+      station_m: projection.stationPx / ppm,
+      lateral_offset_m: lateralOffsetM,
+      yaw_deg: null,
+    });
+    syncCenterlineDerivedFields(centerline);
+    clearGraphResult("Annotation changed. Re-run convert to refresh graph output.");
+    setStatus(
+      statusEl,
+      `Placed ${state.furniturePlacement.kind} on ${strip.strip_id}. Click again to place another, or cancel placement.`,
+      "success",
+    );
+    renderAll();
+    return true;
   }
 
   backButton.addEventListener(
@@ -1526,7 +3232,9 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       state.currentImageUrl = "";
       state.annotation = createEmptyAnnotation(state.annotation.plan_id);
       state.selection = null;
+      state.selectedStripId = null;
       state.draftCenterline = [];
+      clearFurniturePlacement();
       originalImageEl.removeAttribute("src");
       clearGraphResult("Image cleared. Load another reference plan to continue.");
       setStatus(statusEl, "Reference image cleared.", "neutral");
@@ -1619,13 +3327,39 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       const point = imagePointFromPointer(event);
 
       if (state.selectedTool === "select") {
+        if (state.furniturePlacement && point) {
+          if (placeFurnitureAtPoint(point)) {
+            return;
+          }
+        }
         state.selection = hit;
+        if (hit?.kind !== "centerline") {
+          state.selectedStripId = null;
+        }
+        state.drag = null;
+        syncSelectionAfterMutation();
+        renderAll();
+        return;
+      }
+
+      if (state.selectedTool === "adjust") {
+        state.selection = hit;
+        if (hit?.kind !== "centerline") {
+          state.selectedStripId = null;
+        }
         if (hit?.kind === "centerline" && hit.vertexIndex !== undefined) {
           state.drag = {
             kind: "centerline_vertex",
             id: hit.id,
             vertexIndex: hit.vertexIndex,
             pointerId: event.pointerId,
+          };
+        } else if (hit?.kind === "centerline" && point) {
+          state.drag = {
+            kind: "centerline_translate",
+            id: hit.id,
+            pointerId: event.pointerId,
+            lastPoint: point,
           };
         } else if (hit?.kind === "junction" || hit?.kind === "roundabout" || hit?.kind === "control_point") {
           state.drag = {
@@ -1637,6 +3371,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
         } else {
           state.drag = null;
         }
+        syncSelectionAfterMutation();
         renderAll();
         return;
       }
@@ -1648,6 +3383,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       if (state.selectedTool === "centerline") {
         state.draftCenterline.push(point);
         state.selection = null;
+        state.selectedStripId = null;
         renderAll();
         return;
       }
@@ -1656,6 +3392,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
         const id = nextFeatureId(state.annotation, "junction");
         state.annotation.junctions.push({ id, label: id, x: point.x, y: point.y, kind: "intersection" });
         state.selection = { kind: "junction", id };
+        state.selectedStripId = null;
         clearGraphResult("Annotation changed. Re-run convert to refresh graph output.");
         setStatus(statusEl, `Added junction ${id}.`, "success");
         renderAll();
@@ -1666,6 +3403,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
         const id = nextFeatureId(state.annotation, "control_point");
         state.annotation.control_points.push({ id, label: id, x: point.x, y: point.y, kind: "control_point" });
         state.selection = { kind: "control_point", id };
+        state.selectedStripId = null;
         clearGraphResult("Annotation changed. Re-run convert to refresh graph output.");
         setStatus(statusEl, `Added control point ${id}.`, "success");
         renderAll();
@@ -1682,6 +3420,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
           radius_px: state.defaultRoundaboutRadiusPx,
         });
         state.selection = { kind: "roundabout", id };
+        state.selectedStripId = null;
         clearGraphResult("Annotation changed. Re-run convert to refresh graph output.");
         setStatus(statusEl, `Added roundabout ${id}.`, "success");
         renderAll();
@@ -1709,6 +3448,18 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
           return;
         }
         centerline.points[state.drag.vertexIndex] = point;
+      } else if (state.drag.kind === "centerline_translate") {
+        const centerline = state.annotation.centerlines.find((item) => item.id === state.drag?.id);
+        if (!centerline) {
+          return;
+        }
+        const deltaX = point.x - state.drag.lastPoint.x;
+        const deltaY = point.y - state.drag.lastPoint.y;
+        centerline.points = centerline.points.map((vertex) => ({
+          x: vertex.x + deltaX,
+          y: vertex.y + deltaY,
+        }));
+        state.drag.lastPoint = point;
       } else {
         if (state.drag.markerKind === "junction") {
           const marker = state.annotation.junctions.find((item) => item.id === state.drag?.id);
@@ -1730,6 +3481,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
           }
         }
       }
+      syncSelectionAfterMutation();
       clearGraphResult("Annotation changed. Re-run convert to refresh graph output.");
       renderAll();
     },
@@ -1760,7 +3512,9 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
         const annotation = normalizeAnnotation(JSON.parse(text));
         state.annotation = annotation;
         state.selection = null;
+        state.selectedStripId = null;
         state.draftCenterline = [];
+        clearFurniturePlacement();
         if (annotation.image_path) {
           try {
             await loadImageFromUrl(annotation.image_path, { planId: annotation.plan_id, preserveFeatures: true });
@@ -1791,7 +3545,9 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
         const annotation = normalizeAnnotation(JSON.parse(jsonTextarea.value));
         state.annotation = annotation;
         state.selection = null;
+        state.selectedStripId = null;
         state.draftCenterline = [];
+        clearFurniturePlacement();
         clearGraphResult("Annotation JSON applied. Re-run convert to refresh graph output.");
         if (annotation.image_path) {
           try {
@@ -1859,6 +3615,8 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
 
   renderAll();
   void loadReferencePlans().catch((error) => {
+    state.isReferenceImageLoading = false;
+    renderAll();
     setStatus(statusEl, error instanceof Error ? error.message : "Failed to load reference plans.", "error");
   });
 
