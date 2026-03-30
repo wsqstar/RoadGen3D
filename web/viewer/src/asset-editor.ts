@@ -448,11 +448,12 @@ export function mountAssetEditor(root: HTMLElement): () => void {
             </select>
             <select id="ae-tier-filter" class="ae-filter-select">
               <option value="">All Tiers</option>
-              <option value="5">Tier 5</option>
-              <option value="4">Tier 4</option>
-              <option value="3">Tier 3</option>
-              <option value="2">Tier 2</option>
-              <option value="1">Tier 1</option>
+              <option value="5">T5 — Excellent</option>
+              <option value="4">T4 — Good</option>
+              <option value="3">T3 — Production</option>
+              <option value="2">T2 — Moderate</option>
+              <option value="1">T1 — Low-poly</option>
+              <option value="0">T0 — Unusable</option>
             </select>
           </div>
           <div class="ae-gallery-stats" id="ae-gallery-stats"></div>
