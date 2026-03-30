@@ -33,6 +33,17 @@ let cachedAssetDescriptionIndex: Map<string, JsonRecord> | null = null;
 
 function allowedRoots(): string[] {
   const roots = [repoRoot];
+  // Add common external asset caches so the dev server can serve them
+  const homeDir = process.env.HOME || process.env.USERPROFILE || "";
+  const knownCaches = [
+    homeDir && path.join(homeDir, ".objaverse"),
+    homeDir && path.join(homeDir, ".cache"),
+  ].filter(Boolean) as string[];
+  for (const cache of knownCaches) {
+    if (fs.existsSync(cache) && !roots.includes(cache)) {
+      roots.push(cache);
+    }
+  }
   const extra = (process.env.ROADGEN_VIEWER_ALLOWED_ROOTS ?? "")
     .split(path.delimiter)
     .map((item) => item.trim())
