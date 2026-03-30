@@ -37,10 +37,11 @@ type DesignDraft = {
 };
 
 type SceneContext = {
-  layout_mode: "template" | "osm" | "metaurban";
+  layout_mode: "template" | "osm" | "metaurban" | "graph_template";
   aoi_bbox: [number, number, number, number] | null;
   city_name_en: string | null;
   reference_plan_id: string | null;
+  graph_template_id: string | null;
 };
 
 type ChinaCity = {
@@ -71,6 +72,22 @@ type ReferencePlan = {
 
 type ReferencePlanResponse = {
   items: ReferencePlan[];
+};
+
+type GraphTemplate = {
+  template_id: string;
+  label: string;
+  description: string;
+  annotation_path: string;
+  image_path: string;
+  image_url: string;
+  source_format: string;
+  centerline_count: number;
+  junction_count: number;
+};
+
+type GraphTemplateResponse = {
+  items: GraphTemplate[];
 };
 
 type DraftResponse = {
@@ -168,6 +185,7 @@ const POLL_INTERVAL_MS = 1200;
 const TERMINAL_JOB_STATES = new Set(["succeeded", "failed"]);
 const DEFAULT_WORKBENCH_CITY = "guangzhou";
 const DEFAULT_REFERENCE_PLAN_ID = "hkust_gz_gate";
+const DEFAULT_GRAPH_TEMPLATE_ID = "hkust_gz_gate";
 const PEDESTRIAN_ALL_AGE_PRESET_PROMPT = "步行安全，全龄友好";
 const SUMMARY_OMIT_KEYS = new Set([
   "spatial_context",
@@ -213,14 +231,20 @@ export function mountWorkbench(app: HTMLDivElement): void {
     recentScenes: [] as SceneRecord[],
     cities: [] as ChinaCity[],
     referencePlans: [] as ReferencePlan[],
+    graphTemplates: [] as GraphTemplate[],
     knowledgeSources: [] as KnowledgeSourceStatus[],
     selectedKnowledgeSource: "graph_rag" as KnowledgeSourceKey,
     manualKnowledgeResults: [] as RagEvidence[],
+    knowledgeSourceLoadError: null as string | null,
+    cityLoadError: null as string | null,
+    graphTemplateLoadError: null as string | null,
+    referencePlanLoadError: null as string | null,
     sceneContext: {
-      layout_mode: "metaurban",
+      layout_mode: "graph_template",
       aoi_bbox: null,
       city_name_en: DEFAULT_WORKBENCH_CITY,
       reference_plan_id: DEFAULT_REFERENCE_PLAN_ID,
+      graph_template_id: DEFAULT_GRAPH_TEMPLATE_ID,
     } as SceneContext,
     bboxDirty: false,
   };
@@ -286,8 +310,9 @@ export function mountWorkbench(app: HTMLDivElement): void {
 	                <div class="field">
 	                  <label for="scene-layout-mode">Layout Mode</label>
 	                  <select id="scene-layout-mode">
+	                    <option value="graph_template" selected>graph_template</option>
 	                    <option value="osm">osm</option>
-	                    <option value="metaurban" selected>metaurban</option>
+	                    <option value="metaurban">metaurban</option>
 	                    <option value="template">template</option>
 	                  </select>
 	                </div>
@@ -295,6 +320,12 @@ export function mountWorkbench(app: HTMLDivElement): void {
 	                  <label for="scene-city">City</label>
 	                  <select id="scene-city">
 	                    <option value="">Loading cities...</option>
+	                  </select>
+	                </div>
+	                <div id="scene-graph-template-field" class="field" style="display:none;">
+	                  <label for="scene-graph-template">Graph Template</label>
+	                  <select id="scene-graph-template">
+	                    <option value="">Loading graph templates...</option>
 	                  </select>
 	                </div>
 	                <div id="scene-reference-field" class="field" style="display:none;">
@@ -324,8 +355,8 @@ export function mountWorkbench(app: HTMLDivElement): void {
 	                  </div>
 	                </div>
 	              </div>
-	              <div id="reference-plan-preview" class="reference-plan-preview" hidden></div>
-	              <div id="scene-setup-summary" class="summary-box">MetaUrban 模式会默认加载港科广门口参考平面，并直接走 3D corridor scene/export 链。</div>
+	              <div id="scene-template-preview" class="reference-plan-preview" hidden></div>
+	              <div id="scene-setup-summary" class="summary-box">Graph Template 模式会默认加载港科广门口街道 graph，并直接走 3D 场景导出链。</div>
 	            </div>
 	          </section>
 
@@ -397,10 +428,12 @@ export function mountWorkbench(app: HTMLDivElement): void {
   const sceneLayoutMode = requireElement<HTMLSelectElement>(app, "#scene-layout-mode");
   const sceneCity = requireElement<HTMLSelectElement>(app, "#scene-city");
   const sceneCityField = requireElement<HTMLDivElement>(app, "#scene-city-field");
+  const sceneGraphTemplateField = requireElement<HTMLDivElement>(app, "#scene-graph-template-field");
+  const sceneGraphTemplate = requireElement<HTMLSelectElement>(app, "#scene-graph-template");
   const sceneReferenceField = requireElement<HTMLDivElement>(app, "#scene-reference-field");
   const sceneReferencePlan = requireElement<HTMLSelectElement>(app, "#scene-reference-plan");
   const osmSceneFields = requireElement<HTMLDivElement>(app, "#osm-scene-fields");
-  const referencePlanPreview = requireElement<HTMLDivElement>(app, "#reference-plan-preview");
+  const sceneTemplatePreview = requireElement<HTMLDivElement>(app, "#scene-template-preview");
   const bboxMinLon = requireElement<HTMLInputElement>(app, "#bbox-min-lon");
   const bboxMinLat = requireElement<HTMLInputElement>(app, "#bbox-min-lat");
   const bboxMaxLon = requireElement<HTMLInputElement>(app, "#bbox-max-lon");
@@ -430,6 +463,10 @@ export function mountWorkbench(app: HTMLDivElement): void {
   });
 
   sceneReferencePlan.addEventListener("change", () => {
+    renderSceneSetup();
+  });
+
+  sceneGraphTemplate.addEventListener("change", () => {
     renderSceneSetup();
   });
 
@@ -555,7 +592,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
     presetPedestrianBtn.disabled = true;
     setStatus(
       autoGenerate
-        ? "正在读取“步行安全，全龄友好”的缓存分析，并准备直接执行 2D / 3D 生成..."
+        ? "正在尝试命中“步行安全，全龄友好”的缓存草案；若未命中，仍需先完成设计分析，然后再创建 2D / 3D 生成任务..."
         : "正在尝试加载缓存；若没有命中，再执行新的 LLM / GraphRAG 分析...",
     );
     try {
@@ -652,11 +689,36 @@ export function mountWorkbench(app: HTMLDivElement): void {
   }
 
   async function bootstrap(): Promise<void> {
+    const startupErrors: string[] = [];
+    const collectBootstrapError = (label: string, error: unknown): void => {
+      startupErrors.push(`${label}: ${formatBootstrapError(error)}`);
+    };
     try {
-      await loadKnowledgeSources();
-      await loadChinaCities();
-      await loadReferencePlans();
-      await refreshRecentScenes();
+      try {
+        await loadKnowledgeSources();
+      } catch (error) {
+        collectBootstrapError("知识源", error);
+      }
+      try {
+        await loadChinaCities();
+      } catch (error) {
+        collectBootstrapError("城市列表", error);
+      }
+      try {
+        await loadGraphTemplates();
+      } catch (error) {
+        collectBootstrapError("Graph Template", error);
+      }
+      try {
+        await loadReferencePlans();
+      } catch (error) {
+        collectBootstrapError("MetaUrban Reference Plan", error);
+      }
+      try {
+        await refreshRecentScenes();
+      } catch (error) {
+        collectBootstrapError("最近场景", error);
+      }
       const jobs = await getJson<SceneJobListResponse>("/api/scene/jobs");
       if (jobs.items.length) {
         state.currentJob = jobs.items[0];
@@ -671,74 +733,144 @@ export function mountWorkbench(app: HTMLDivElement): void {
           return;
         }
       }
-    } catch (_error) {
-      // Workbench should still render even if the API is not up yet.
+    } catch (error) {
+      collectBootstrapError("场景任务列表", error);
+    }
+    if (startupErrors.length) {
+      setStatus(
+        [
+          "Workbench 已加载，但后端 API 目前不可用或尚未完全启动。",
+          ...startupErrors,
+          `请检查 ${API_BASE}，或在仓库根目录运行 make workbench-api。`,
+        ].join("\n"),
+      );
     }
   }
 
   async function loadKnowledgeSources(): Promise<void> {
-    const payload = await getJson<KnowledgeSourceListResponse>("/api/knowledge/sources");
-    state.knowledgeSources = payload.items;
-    const optionsHtml = payload.items
-      .map((item) => `<option value="${escapeHtml(item.key)}" ${item.available ? "" : "disabled"}>${escapeHtml(item.label)}</option>`)
-      .join("");
-    if (optionsHtml) {
-      knowledgeSource.innerHTML = optionsHtml;
+    try {
+      const payload = await getJson<KnowledgeSourceListResponse>("/api/knowledge/sources");
+      state.knowledgeSources = payload.items;
+      state.knowledgeSourceLoadError = null;
+      const optionsHtml = payload.items
+        .map((item) => `<option value="${escapeHtml(item.key)}" ${item.available ? "" : "disabled"}>${escapeHtml(item.label)}</option>`)
+        .join("");
+      if (optionsHtml) {
+        knowledgeSource.innerHTML = optionsHtml;
+      }
+      const preferredSource =
+        payload.items.find((item) => item.key === "graph_rag" && item.available)
+        || payload.items.find((item) => item.key === "hybrid" && item.available)
+        || payload.items.find((item) => item.available)
+        || payload.items.find((item) => item.key === state.selectedKnowledgeSource)
+        || payload.items[0];
+      if (preferredSource) {
+        state.selectedKnowledgeSource = preferredSource.key;
+        knowledgeSource.value = preferredSource.key;
+      }
+      renderKnowledgeSourcePanel();
+    } catch (error) {
+      state.knowledgeSources = [];
+      state.knowledgeSourceLoadError = formatBootstrapError(error);
+      knowledgeSource.innerHTML = `<option value="graph_rag">graph_rag</option>`;
+      renderKnowledgeSourcePanel();
+      throw error;
     }
-    const preferredSource =
-      payload.items.find((item) => item.key === "graph_rag" && item.available)
-      || payload.items.find((item) => item.key === "hybrid" && item.available)
-      || payload.items.find((item) => item.available)
-      || payload.items.find((item) => item.key === state.selectedKnowledgeSource)
-      || payload.items[0];
-    if (preferredSource) {
-      state.selectedKnowledgeSource = preferredSource.key;
-      knowledgeSource.value = preferredSource.key;
-    }
-    renderKnowledgeSourcePanel();
   }
 
   async function loadChinaCities(): Promise<void> {
-    const payload = await getJson<ChinaCityResponse>("/api/geo/china-cities");
-    state.cities = payload.items;
-    sceneCity.innerHTML = state.cities
-      .map((item) => `<option value="${escapeHtml(item.name_en)}">${escapeHtml(`${item.name_zh} ${item.name_en}`)}</option>`)
-      .join("");
-    const preferredCity = state.cities.find((item) => item.name_en === state.sceneContext.city_name_en)
-      || state.cities.find((item) => item.name_en === DEFAULT_WORKBENCH_CITY)
-      || state.cities[0];
-    if (preferredCity) {
-      sceneCity.value = preferredCity.name_en;
-      if (!state.bboxDirty) {
-        setBboxInputs(preferredCity.bbox);
+    try {
+      const payload = await getJson<ChinaCityResponse>("/api/geo/china-cities");
+      state.cities = payload.items;
+      state.cityLoadError = null;
+      sceneCity.innerHTML = state.cities
+        .map((item) => `<option value="${escapeHtml(item.name_en)}">${escapeHtml(`${item.name_zh} ${item.name_en}`)}</option>`)
+        .join("");
+      const preferredCity = state.cities.find((item) => item.name_en === state.sceneContext.city_name_en)
+        || state.cities.find((item) => item.name_en === DEFAULT_WORKBENCH_CITY)
+        || state.cities[0];
+      if (preferredCity) {
+        sceneCity.value = preferredCity.name_en;
+        if (!state.bboxDirty) {
+          setBboxInputs(preferredCity.bbox);
+        }
+        state.sceneContext = {
+          ...state.sceneContext,
+          city_name_en: preferredCity.name_en,
+          aoi_bbox: state.sceneContext.layout_mode === "osm" ? preferredCity.bbox : state.sceneContext.aoi_bbox,
+        };
+        state.bboxDirty = false;
       }
-      state.sceneContext = {
-        ...state.sceneContext,
-        city_name_en: preferredCity.name_en,
-        aoi_bbox: state.sceneContext.layout_mode === "osm" ? preferredCity.bbox : state.sceneContext.aoi_bbox,
-      };
-      state.bboxDirty = false;
+      renderSceneSetup();
+    } catch (error) {
+      state.cities = [];
+      state.cityLoadError = formatBootstrapError(error);
+      sceneCity.innerHTML = `<option value="">Cities unavailable</option>`;
+      renderSceneSetup();
+      throw error;
     }
-    renderSceneSetup();
+  }
+
+  async function loadGraphTemplates(): Promise<void> {
+    try {
+      const payload = await getJson<GraphTemplateResponse>("/api/graph-templates");
+      state.graphTemplates = payload.items;
+      state.graphTemplateLoadError = null;
+      sceneGraphTemplate.innerHTML = state.graphTemplates.length
+        ? state.graphTemplates
+            .map((item) => `<option value="${escapeHtml(item.template_id)}">${escapeHtml(item.label)}</option>`)
+            .join("")
+        : `<option value="">No graph templates</option>`;
+      const preferredTemplate = state.graphTemplates.find((item) => item.template_id === state.sceneContext.graph_template_id)
+        || state.graphTemplates.find((item) => item.template_id === DEFAULT_GRAPH_TEMPLATE_ID)
+        || state.graphTemplates[0]
+        || null;
+      if (preferredTemplate) {
+        sceneGraphTemplate.value = preferredTemplate.template_id;
+        state.sceneContext.graph_template_id = preferredTemplate.template_id;
+      } else {
+        state.sceneContext.graph_template_id = null;
+      }
+      renderSceneSetup();
+    } catch (error) {
+      state.graphTemplates = [];
+      state.graphTemplateLoadError = formatBootstrapError(error);
+      state.sceneContext.graph_template_id = null;
+      sceneGraphTemplate.innerHTML = `<option value="">Graph templates unavailable</option>`;
+      renderSceneSetup();
+      throw error;
+    }
   }
 
   async function loadReferencePlans(): Promise<void> {
-    const payload = await getJson<ReferencePlanResponse>("/api/reference-plans");
-    state.referencePlans = payload.items;
-    sceneReferencePlan.innerHTML = state.referencePlans.length
-      ? state.referencePlans
-          .map((item) => `<option value="${escapeHtml(item.plan_id)}">${escapeHtml(item.label)}</option>`)
-          .join("")
-      : `<option value="">No reference plans</option>`;
-    const preferredPlan = state.referencePlans.find((item) => item.plan_id === state.sceneContext.reference_plan_id)
-      || state.referencePlans.find((item) => item.plan_id === DEFAULT_REFERENCE_PLAN_ID)
-      || state.referencePlans[0]
-      || null;
-    if (preferredPlan) {
-      sceneReferencePlan.value = preferredPlan.plan_id;
-      state.sceneContext.reference_plan_id = preferredPlan.plan_id;
+    try {
+      const payload = await getJson<ReferencePlanResponse>("/api/reference-plans");
+      state.referencePlans = payload.items;
+      state.referencePlanLoadError = null;
+      sceneReferencePlan.innerHTML = state.referencePlans.length
+        ? state.referencePlans
+            .map((item) => `<option value="${escapeHtml(item.plan_id)}">${escapeHtml(item.label)}</option>`)
+            .join("")
+        : `<option value="">No reference plans</option>`;
+      const preferredPlan = state.referencePlans.find((item) => item.plan_id === state.sceneContext.reference_plan_id)
+        || state.referencePlans.find((item) => item.plan_id === DEFAULT_REFERENCE_PLAN_ID)
+        || state.referencePlans[0]
+        || null;
+      if (preferredPlan) {
+        sceneReferencePlan.value = preferredPlan.plan_id;
+        state.sceneContext.reference_plan_id = preferredPlan.plan_id;
+      } else {
+        state.sceneContext.reference_plan_id = null;
+      }
+      renderSceneSetup();
+    } catch (error) {
+      state.referencePlans = [];
+      state.referencePlanLoadError = formatBootstrapError(error);
+      state.sceneContext.reference_plan_id = null;
+      sceneReferencePlan.innerHTML = `<option value="">Reference plans unavailable</option>`;
+      renderSceneSetup();
+      throw error;
     }
-    renderSceneSetup();
   }
 
   async function pollSceneJob(jobId: string): Promise<void> {
@@ -924,15 +1056,35 @@ export function mountWorkbench(app: HTMLDivElement): void {
     state.sceneContext = sceneContext;
     const isOsm = sceneContext.layout_mode === "osm";
     const isMetaUrban = sceneContext.layout_mode === "metaurban";
+    const isGraphTemplate = sceneContext.layout_mode === "graph_template";
     sceneCityField.style.display = isOsm ? "" : "none";
+    sceneGraphTemplateField.style.display = isGraphTemplate ? "" : "none";
     sceneReferenceField.style.display = isMetaUrban ? "" : "none";
     osmSceneFields.style.display = isOsm ? "" : "none";
-    referencePlanPreview.hidden = !isMetaUrban;
+    sceneTemplatePreview.hidden = !(isMetaUrban || isGraphTemplate);
+    if (isGraphTemplate) {
+      const template = state.graphTemplates.find((item) => item.template_id === sceneContext.graph_template_id) || null;
+      renderGraphTemplatePreview(template);
+      if (!template) {
+        sceneSetupSummary.textContent = state.graphTemplateLoadError
+          ? `Graph Template 模式加载失败。\n${state.graphTemplateLoadError}`
+          : "Graph Template 模式需要一个可用的内置 street graph，目前还没有加载到模板。";
+        return;
+      }
+      sceneSetupSummary.textContent =
+        "Graph Template 模式会直接基于内置 street graph 生成 3D street scene。"
+        + `\nTemplate: ${template.label}`
+        + `\nGraph: ${template.centerline_count} centerlines · ${template.junction_count} junctions`
+        + "\n会复用现有 compose/export/viewer 链路，不进入 Annotator，也不进入 MetaUrban 仿真 runtime。";
+      return;
+    }
     if (isMetaUrban) {
       const plan = state.referencePlans.find((item) => item.plan_id === sceneContext.reference_plan_id) || null;
       renderReferencePlanPreview(plan);
       if (!plan) {
-        sceneSetupSummary.textContent = "MetaUrban 模式需要一个可用的参考平面，目前还没有加载到预置。";
+        sceneSetupSummary.textContent = state.referencePlanLoadError
+          ? `MetaUrban 模式加载失败。\n${state.referencePlanLoadError}`
+          : "MetaUrban 模式需要一个可用的参考平面，目前还没有加载到预置。";
         return;
       }
       sceneSetupSummary.textContent =
@@ -942,7 +1094,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
         + "\n会复用 corridor 几何、周边建筑、scene export 和 viewer 链路，不再停在平面 layout。";
       return;
     }
-    referencePlanPreview.innerHTML = "";
+    sceneTemplatePreview.innerHTML = "";
     if (!isOsm) {
       sceneSetupSummary.textContent =
         "Template 模式会生成参数化直街模板，不会启用 OSM 走廊、自动选路或周边建筑链路。";
@@ -960,10 +1112,12 @@ export function mountWorkbench(app: HTMLDivElement): void {
 
   function renderReferencePlanPreview(plan: ReferencePlan | null): void {
     if (!plan) {
-      referencePlanPreview.innerHTML = `<div class="field-note">未加载到 MetaUrban reference plan。</div>`;
+      sceneTemplatePreview.innerHTML = `<div class="field-note">${
+        escapeHtml(state.referencePlanLoadError || "未加载到 MetaUrban reference plan。")
+      }</div>`;
       return;
     }
-    referencePlanPreview.innerHTML = `
+    sceneTemplatePreview.innerHTML = `
       <article class="reference-plan-card">
         <div class="reference-plan-meta">
           <div class="result-head">
@@ -981,6 +1135,35 @@ export function mountWorkbench(app: HTMLDivElement): void {
           class="reference-plan-image"
           src="${escapeHtml(resolveApiUrl(plan.image_url))}"
           alt="${escapeHtml(plan.label)} reference plan"
+        />
+      </article>
+    `;
+  }
+
+  function renderGraphTemplatePreview(template: GraphTemplate | null): void {
+    if (!template) {
+      sceneTemplatePreview.innerHTML = `<div class="field-note">${
+        escapeHtml(state.graphTemplateLoadError || "未加载到 graph template。")
+      }</div>`;
+      return;
+    }
+    sceneTemplatePreview.innerHTML = `
+      <article class="reference-plan-card">
+        <div class="reference-plan-meta">
+          <div class="result-head">
+            <strong>${escapeHtml(template.label)}</strong>
+            <span class="tag">${escapeHtml(template.source_format)}</span>
+          </div>
+          <div class="field-note">${escapeHtml(template.description)}</div>
+          <div class="tag-row">
+            <span class="tag">${escapeHtml(`${template.centerline_count} centerlines`)}</span>
+            <span class="tag">${escapeHtml(`${template.junction_count} junctions`)}</span>
+          </div>
+        </div>
+        <img
+          class="reference-plan-image"
+          src="${escapeHtml(resolveApiUrl(template.image_url))}"
+          alt="${escapeHtml(template.label)} graph template"
         />
       </article>
     `;
@@ -1137,6 +1320,7 @@ function buildDraftFromForm(baseDraft: DesignDraft, parameterForm: HTMLDivElemen
 function buildSceneContextFromForm(): SceneContext {
   const layoutModeEl = requireElement<HTMLSelectElement>(document, "#scene-layout-mode");
   const cityEl = requireElement<HTMLSelectElement>(document, "#scene-city");
+  const graphTemplateEl = requireElement<HTMLSelectElement>(document, "#scene-graph-template");
   const referencePlanEl = requireElement<HTMLSelectElement>(document, "#scene-reference-plan");
   const bboxFields = [
     requireElement<HTMLInputElement>(document, "#bbox-min-lon"),
@@ -1148,13 +1332,25 @@ function buildSceneContextFromForm(): SceneContext {
     ? "template"
     : layoutModeEl.value === "metaurban"
       ? "metaurban"
-      : "osm";
+      : layoutModeEl.value === "graph_template"
+        ? "graph_template"
+        : "osm";
+  if (layoutMode === "graph_template") {
+    return {
+      layout_mode: "graph_template",
+      aoi_bbox: null,
+      city_name_en: cityEl.value || null,
+      reference_plan_id: null,
+      graph_template_id: graphTemplateEl.value || null,
+    };
+  }
   if (layoutMode === "metaurban") {
     return {
       layout_mode: "metaurban",
       aoi_bbox: null,
       city_name_en: cityEl.value || null,
       reference_plan_id: referencePlanEl.value || null,
+      graph_template_id: null,
     };
   }
   if (layoutMode === "template") {
@@ -1163,6 +1359,7 @@ function buildSceneContextFromForm(): SceneContext {
       aoi_bbox: null,
       city_name_en: cityEl.value || null,
       reference_plan_id: null,
+      graph_template_id: null,
     };
   }
   const bbox = bboxFields.map((field) => Number(field.value.trim()));
@@ -1175,6 +1372,7 @@ function buildSceneContextFromForm(): SceneContext {
     aoi_bbox: isValid ? (bbox as [number, number, number, number]) : null,
     city_name_en: cityEl.value || null,
     reference_plan_id: null,
+    graph_template_id: null,
   };
 }
 
@@ -1222,6 +1420,11 @@ function renderSceneSummaryHighlights(summary: Record<string, unknown>): string 
     rows.push(`<div><strong>reference_plan</strong>: ${escapeHtml(String(summary.reference_plan_label))}</div>`);
   } else if (summary.reference_plan_id) {
     rows.push(`<div><strong>reference_plan_id</strong>: ${escapeHtml(String(summary.reference_plan_id))}</div>`);
+  }
+  if (summary.graph_template_label) {
+    rows.push(`<div><strong>graph_template</strong>: ${escapeHtml(String(summary.graph_template_label))}</div>`);
+  } else if (summary.graph_template_id) {
+    rows.push(`<div><strong>graph_template_id</strong>: ${escapeHtml(String(summary.graph_template_id))}</div>`);
   }
   if (summary.generation_stage) {
     rows.push(`<div><strong>generation_stage</strong>: ${escapeHtml(String(summary.generation_stage))}</div>`);
@@ -1412,4 +1615,15 @@ function asErrorMessage(error: unknown): string {
     return error.message;
   }
   return String(error);
+}
+
+function formatBootstrapError(error: unknown): string {
+  const message = asErrorMessage(error).trim();
+  if (!message) {
+    return `无法连接 API：${API_BASE}`;
+  }
+  if (/failed to fetch|networkerror|load failed|fetch failed|couldn't connect|cannot connect/i.test(message)) {
+    return `无法连接 API：${API_BASE}`;
+  }
+  return message;
 }

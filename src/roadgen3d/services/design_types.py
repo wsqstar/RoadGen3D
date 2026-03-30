@@ -207,6 +207,7 @@ class SceneContext:
     aoi_bbox: Tuple[float, float, float, float] | None = None
     city_name_en: str | None = None
     reference_plan_id: str | None = None
+    graph_template_id: str | None = None
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -214,6 +215,7 @@ class SceneContext:
             "aoi_bbox": list(self.aoi_bbox) if self.aoi_bbox is not None else None,
             "city_name_en": self.city_name_en,
             "reference_plan_id": self.reference_plan_id,
+            "graph_template_id": self.graph_template_id,
         }
 
 
@@ -224,15 +226,17 @@ def sanitize_scene_context(payload: Mapping[str, Any] | SceneContext | None) -> 
         return payload
     raw = dict(payload or {})
     layout_mode = str(raw.get("layout_mode", "template") or "template").strip().lower()
-    if layout_mode not in {"template", "osm", "metaurban"}:
+    if layout_mode not in {"template", "osm", "metaurban", "graph_template"}:
         layout_mode = "template"
     city_name_en = _clean_text(raw.get("city_name_en")) or None
     reference_plan_id = _clean_text(raw.get("reference_plan_id")) or None
+    graph_template_id = _clean_text(raw.get("graph_template_id")) or None
     return SceneContext(
         layout_mode=layout_mode,
         aoi_bbox=_coerce_bbox_tuple(raw.get("aoi_bbox")),
         city_name_en=city_name_en,
-        reference_plan_id=reference_plan_id,
+        reference_plan_id=reference_plan_id if layout_mode == "metaurban" else None,
+        graph_template_id=graph_template_id if layout_mode == "graph_template" else None,
     )
 
 

@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any, Dict, Mapping
 
 from ..json_safe import make_json_safe
+from ..graph_template_scene_bridge import build_graph_template_scene_bridge
 from ..metaurban_scene_bridge import build_metaurban_scene_bridge
 from ..street_layout import compose_street_scene
 from ..types import StreetComposeConfig
@@ -35,6 +36,7 @@ from .scene_context_service import ResolvedSceneContext, resolve_scene_context
 
 ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_METAURBAN_REFERENCE_PLAN_ID = "hkust_gz_gate"
+DEFAULT_GRAPH_TEMPLATE_ID = "hkust_gz_gate"
 DEFAULT_SCENE_GENERATION_OPTIONS = SceneGenerationOptions(
     manifest_path=(ROOT / "data" / "real" / "real_assets_manifest.jsonl").resolve(),
     artifacts_dir=(ROOT / "artifacts" / "real").resolve(),
@@ -235,6 +237,11 @@ def _build_metaurban_out_dir(base_out_dir: Path, plan_id: str) -> Path:
     return (Path(base_out_dir).expanduser().resolve() / "metaurban" / str(plan_id) / timestamp).resolve()
 
 
+def _build_graph_template_out_dir(base_out_dir: Path, template_id: str) -> Path:
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    return (Path(base_out_dir).expanduser().resolve() / "graph_template" / str(template_id) / timestamp).resolve()
+
+
 def _generate_metaurban_scene_from_draft(
     base_config: StreetComposeConfig,
     *,
@@ -280,6 +287,51 @@ def _generate_metaurban_scene_from_draft(
     )
 
 
+def _generate_graph_template_scene_from_draft(
+    base_config: StreetComposeConfig,
+    *,
+    options: SceneGenerationOptions,
+    scene_context: SceneContext,
+) -> SceneGenerationResult:
+    template_id = str(scene_context.graph_template_id or DEFAULT_GRAPH_TEMPLATE_ID).strip().lower()
+    try:
+        bridge = build_graph_template_scene_bridge(
+            base_config,
+            template_id=template_id,
+        )
+    except KeyError as exc:
+        raise RuntimeError(str(exc)) from exc
+    config = replace(base_config, layout_mode="graph_template")
+    graph_template_out_dir = _build_graph_template_out_dir(options.out_dir, template_id)
+    object_backend, ground_backend, sky_backend = _build_scene_backends(options)
+    result = compose_street_scene(
+        config=config,
+        manifest_path=options.manifest_path,
+        artifacts_dir=options.artifacts_dir,
+        model_name=options.model_name,
+        model_dir=options.model_dir,
+        local_files_only=bool(options.local_files_only),
+        device=options.device,
+        export_format=options.export_format,
+        out_dir=graph_template_out_dir,
+        placement_policy=options.placement_policy,
+        policy_ckpt=options.policy_ckpt,
+        program_ckpt=options.program_ckpt,
+        policy_temperature=float(options.policy_temperature),
+        object_asset_backend=object_backend,
+        ground_material_backend=ground_backend,
+        sky_backend=sky_backend,
+        road_segment_graph_override=bridge.road_segment_graph,
+        projected_features_override=bridge.projected_features,
+        placement_context_override=bridge.placement_context,
+    )
+    return _build_scene_generation_result(
+        config=config,
+        compose_result=result,
+        extra_summary=bridge.summary_metadata,
+    )
+
+
 def generate_scene_from_draft(
     draft: DesignDraft,
     *,
@@ -296,6 +348,12 @@ def generate_scene_from_draft(
     )
     base_config = build_compose_config_from_draft(draft, patch_overrides=patch_overrides)
     normalized_scene_context = sanitize_scene_context(scene_context)
+    if normalized_scene_context.layout_mode == "graph_template":
+        return _generate_graph_template_scene_from_draft(
+            base_config,
+            options=options,
+            scene_context=normalized_scene_context,
+        )
     if normalized_scene_context.layout_mode == "metaurban":
         return _generate_metaurban_scene_from_draft(
             base_config,

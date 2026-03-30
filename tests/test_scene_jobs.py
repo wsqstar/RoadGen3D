@@ -66,3 +66,32 @@ def test_scene_job_service_records_failure():
     assert status is not None
     assert status.status == "failed"
     assert "boom" in status.error
+
+
+def test_scene_job_service_preserves_graph_template_scene_context():
+    captured = {}
+
+    def _generator(draft, **kwargs):
+        captured["scene_context"] = kwargs.get("scene_context")
+        return SceneGenerationResult(
+            compose_config=draft.compose_config_patch,
+            summary={"instance_count": 3, "layout_mode": "graph_template"},
+            scene_layout_path="/tmp/layout.json",
+            scene_glb_path="/tmp/scene.glb",
+            scene_ply_path="/tmp/scene.ply",
+            viewer_url="http://127.0.0.1:4173/?layout=demo",
+        )
+
+    service = SceneJobService(generator=_generator)
+
+    result = service.run_job_sync(
+        draft=_draft(),
+        scene_context=SceneContext(
+            layout_mode="graph_template",
+            graph_template_id="hkust_gz_gate",
+        ),
+    )
+
+    assert result.summary["layout_mode"] == "graph_template"
+    assert captured["scene_context"].layout_mode == "graph_template"
+    assert captured["scene_context"].graph_template_id == "hkust_gz_gate"

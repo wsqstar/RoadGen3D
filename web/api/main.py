@@ -20,6 +20,7 @@ if str(SRC) not in sys.path:
 
 from roadgen3d.json_safe import make_json_safe  # noqa: E402
 from roadgen3d.llm import GLMConfigurationError, GLMResponseError  # noqa: E402
+from roadgen3d.graph_templates import get_graph_template, list_graph_templates  # noqa: E402
 from roadgen3d.metaurban_procedural import get_metaurban_reference_plan, list_metaurban_reference_plans  # noqa: E402
 from roadgen3d.reference_annotation import (  # noqa: E402
     build_reference_annotation_compose_config,
@@ -115,6 +116,25 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
         if not plan.image_path.exists():
             raise HTTPException(status_code=404, detail=f"Reference plan image not found: {plan.image_path}")
         return FileResponse(plan.image_path)
+
+    @app.get("/api/graph-templates")
+    def list_graph_template_items() -> Dict[str, Any]:
+        items = []
+        for template in list_graph_templates():
+            payload = template.to_dict()
+            payload["image_url"] = f"/api/graph-templates/{template.template_id}/image"
+            items.append(payload)
+        return make_json_safe({"items": items})
+
+    @app.get("/api/graph-templates/{template_id}/image")
+    def get_graph_template_image(template_id: str) -> FileResponse:
+        try:
+            template = get_graph_template(template_id)
+        except KeyError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+        if not template.image_path.exists():
+            raise HTTPException(status_code=404, detail=f"Graph template image not found: {template.image_path}")
+        return FileResponse(template.image_path)
 
     @app.post("/api/reference-annotations/convert")
     def convert_reference_annotation(request: ReferenceAnnotationConvertRequestModel) -> Dict[str, Any]:

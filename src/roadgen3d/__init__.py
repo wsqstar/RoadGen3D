@@ -28,6 +28,16 @@ from .eval_metrics import (
     compute_topology_validity,
     evaluate_topk_category_hits,
 )
+from .graph_template_scene_bridge import (
+    GraphTemplateSceneBridgeResult,
+    build_graph_template_scene_bridge,
+)
+from .graph_templates import (
+    GraphTemplate,
+    get_graph_template,
+    list_graph_templates,
+    load_graph_template_annotation_payload,
+)
 from .index_store import FaissIndexStore
 from .latent_store import LatentStore, load_asset_records
 from .layout_features import CandidateDescriptor, PolicyFeatureContext, build_candidate_feature
@@ -162,6 +172,8 @@ __all__ = [
     "FaissIndexStore",
     "GenerationQualityMetrics",
     "GenerationRequest",
+    "GraphTemplate",
+    "GraphTemplateSceneBridgeResult",
     "LayoutPolicyMLP",
     "LayoutPolicyRuntime",
     "LayoutSolverRuntime",
@@ -212,6 +224,7 @@ __all__ = [
     "WorkspaceReadiness",
     "aggregate_scene_rows",
     "build_candidate_feature",
+    "build_graph_template_scene_bridge",
     "build_metaurban_layout_payload",
     "build_metaurban_reference_config",
     "build_reference_annotation_compose_config",
@@ -247,13 +260,16 @@ __all__ = [
     "export_voxel_meshes",
     "fetch_osm_data",
     "generate_parametric_asset",
+    "get_graph_template",
     "infer_theme_segments",
     "infer_street_program",
     "InventorySummary",
     "list_constraint_profiles",
+    "list_graph_templates",
     "list_metaurban_reference_plans",
     "load_asset_records",
     "load_constraint_set",
+    "load_graph_template_annotation_payload",
     "load_rule_set",
     "parse_osm_features",
     "parse_reference_annotation",

@@ -297,6 +297,14 @@ def test_design_api_endpoints_return_expected_shapes():
     assert reference_plan_image_response.status_code == 200
     assert reference_plan_image_response.headers["content-type"].startswith("image/")
 
+    graph_template_response = client.get("/api/graph-templates")
+    assert graph_template_response.status_code == 200
+    assert any(item["template_id"] == "hkust_gz_gate" for item in graph_template_response.json()["items"])
+
+    graph_template_image_response = client.get("/api/graph-templates/hkust_gz_gate/image")
+    assert graph_template_image_response.status_code == 200
+    assert graph_template_image_response.headers["content-type"].startswith("image/")
+
     annotation_convert_response = client.post(
         "/api/reference-annotations/convert",
         json={
@@ -410,6 +418,27 @@ def test_design_api_endpoints_return_expected_shapes():
     assert metaurban_generate_response.json()["summary"]["layout_mode"] == "metaurban"
     assert service.last_scene_context is not None
     assert service.last_scene_context.reference_plan_id == "hkust_gz_gate"
+
+    graph_template_generate_response = client.post(
+        "/api/design/generate",
+        json={
+            "draft": {
+                "normalized_scene_query": "campus gateway boulevard",
+                "compose_config_patch": {"sidewalk_width_m": 4.0},
+                "citations_by_field": {},
+                "design_summary": "summary",
+                "risk_notes": [],
+            },
+            "scene_context": {
+                "layout_mode": "graph_template",
+                "graph_template_id": "hkust_gz_gate",
+            },
+        },
+    )
+    assert graph_template_generate_response.status_code == 200
+    assert graph_template_generate_response.json()["summary"]["layout_mode"] == "graph_template"
+    assert service.last_scene_context is not None
+    assert service.last_scene_context.graph_template_id == "hkust_gz_gate"
 
     invalid_osm_response = client.post(
         "/api/design/generate",
