@@ -938,6 +938,86 @@ def _globalize_theme_slot_plans(
     return tuple(updated_slots), slot_to_segment
 
 
+def _annotation_furniture_to_slot_plans(
+    road_segment_graph: object,
+    theme_segments: Sequence[object],
+) -> Tuple[List[object], Dict[str, object]]:
+    """Convert explicit annotation furniture instances to LayoutSlotPlan objects.
+
+    Reads ``street_furniture_instances`` from each :class:`RoadSegmentNode` in
+    *road_segment_graph* and returns equivalent ``LayoutSlotPlan`` objects that
+    can be injected directly into the slot-to-asset binding pipeline.
+    """
+
+    slots: List[object] = []
+    segment_lookup: Dict[str, object] = {}
+
+    if road_segment_graph is None:
+        return slots, segment_lookup
+
+    nodes = getattr(road_segment_graph, "nodes", ()) or ()
+
+    # Build theme_id lookup: segment_id -> theme_id
+    seg_to_theme: Dict[str, str] = {}
+    for ts in theme_segments:
+        for sid in getattr(ts, "segment_ids", ()):
+            seg_to_theme[str(sid)] = str(ts.theme_id)
+    default_theme = str(theme_segments[0].theme_id) if theme_segments else ""
+
+    for node in nodes:
+        instances = getattr(node, "street_furniture_instances", ()) or ()
+        if not instances:
+            continue
+
+        start_xy = tuple(float(v) for v in node.start_xy)
+        end_xy = tuple(float(v) for v in node.end_xy)
+        dx = end_xy[0] - start_xy[0]
+        dy = end_xy[1] - start_xy[1]
+        seg_len = math.hypot(dx, dy)
+        if seg_len < 1e-6:
+            continue
+
+        nx, ny = -dy / seg_len, dx / seg_len  # left normal
+        station_start = float(node.station_start_m)
+        node_len = float(node.length_m)
+        theme_id = seg_to_theme.get(node.segment_id, default_theme)
+
+        for inst in instances:
+            t = (float(inst.station_m) - station_start) / max(node_len, 1e-6)
+            t = max(0.0, min(1.0, t))
+            base_x = start_xy[0] + t * dx
+            base_y = start_xy[1] + t * dy
+            lat = float(inst.lateral_offset_m)
+            world_x = base_x + nx * lat
+            world_z = base_y + ny * lat
+
+            # Determine side from the strip zone when available
+            side = "left" if lat < 0 else "right"
+            for strip in getattr(node, "cross_section_strips", ()):
+                if getattr(strip, "strip_id", None) == inst.strip_id:
+                    side = "left" if getattr(strip, "zone", "right") == "left" else "right"
+                    break
+
+            slot_id = f"annot_{inst.instance_id}"
+            slot = LayoutSlotPlan(
+                slot_id=slot_id,
+                category=str(inst.kind),
+                band_name=f"{side}_furnishing",
+                x_center_m=world_x,
+                z_center_m=world_z,
+                spacing_m=DEFAULT_SPACING_M.get(str(inst.kind), 10.0),
+                side=side,
+                priority=1.0,
+                required=True,
+                anchor_position_xz=(world_x, world_z),
+                theme_id=theme_id,
+            )
+            slots.append(slot)
+            segment_lookup[slot_id] = node
+
+    return slots, segment_lookup
+
+
 def _sample_pose_osm_for_segment(
     category: str,
     placement_ctx: object,
@@ -5333,6 +5413,23 @@ def compose_street_scene(
                 "solver_backend_used": zone_solver_result.backend_used,
             }
         )
+
+    # -- Inject explicit annotation furniture instances --
+    if _is_corridor_layout_mode(config.layout_mode) and road_segment_graph is not None:
+        annot_slots, annot_seg_map = _annotation_furniture_to_slot_plans(
+            road_segment_graph, theme_segments,
+        )
+        if annot_slots:
+            slot_plans.extend(annot_slots)
+            slot_segment_lookup.update(annot_seg_map)
+            for aslot in annot_slots:
+                slot_band_lookup[str(aslot.slot_id)] = resolve_band_by_alias(
+                    base_program.bands if base_program is not None else (),
+                    band_name=str(aslot.band_name),
+                    side=str(aslot.side),
+                    profile_name=str(config.design_rule_profile),
+                )
+            logger.info("Injected %d annotation furniture slots.", len(annot_slots))
 
     if not slot_plans:
         raise RuntimeError(

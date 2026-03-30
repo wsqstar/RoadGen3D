@@ -25,7 +25,8 @@ type FurnitureKind =
   | "bollard"
   | "sign"
   | "hydrant"
-  | "bus_stop";
+  | "bus_stop"
+  | "tree";
 
 type AnnotatedCrossSectionStrip = {
   strip_id: string;
@@ -324,7 +325,7 @@ type MetaurbanAssetBadge = {
   shortLabel: string;
 };
 
-type Tool = "select" | "adjust" | "centerline" | "branch" | "cross" | "roundabout" | "control_point" | "building_region";
+type Tool = "select" | "adjust" | "centerline" | "branch" | "cross" | "roundabout" | "control_point" | "building_region" | "tree" | "lamp";
 
 type Selection =
   | {
@@ -460,6 +461,7 @@ const FURNITURE_KINDS: FurnitureKind[] = [
   "sign",
   "hydrant",
   "bus_stop",
+  "tree",
 ];
 const STRIP_DIRECTION_OPTIONS: StripDirection[] = ["forward", "reverse", "bidirectional", "none"];
 const NOMINAL_STRIP_WIDTHS: Record<StripKind, number> = {
@@ -571,6 +573,7 @@ const FURNITURE_KIND_LABELS: Record<FurnitureKind, string> = {
   sign: "Sign",
   hydrant: "Hydrant",
   bus_stop: "Bus Stop",
+  tree: "Tree",
 };
 
 function asNullableNumber(value: unknown): number | null {
@@ -6694,6 +6697,8 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
             <button id="annotation-tool-roundabout" class="scene-tool-button" data-tool="roundabout" type="button">Roundabout</button>
             <button id="annotation-tool-control-point" class="scene-tool-button" data-tool="control_point" type="button">Control Point</button>
             <button id="annotation-tool-building-region" class="scene-tool-button" data-tool="building_region" type="button">Building Region</button>
+            <button id="annotation-tool-tree" class="scene-tool-button" data-tool="tree" type="button">Tree</button>
+            <button id="annotation-tool-lamp" class="scene-tool-button" data-tool="lamp" type="button">Lamp</button>
           </div>
 
           <div class="scene-layer-controls scene-layer-controls-annotation">
@@ -7681,6 +7686,10 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       setStatus(statusEl, "Centerline Tool: draw approach roads only. Use Branch Tool or Cross Tool to create intersections explicitly.", "neutral");
     } else if (tool === "building_region") {
       setStatus(statusEl, "Building Region Tool: drag on the canvas to draw a rotatable building-generation region.", "neutral");
+    } else if (tool === "tree") {
+      setStatus(statusEl, "Tree Tool: click near a road to place a tree on the nearest furnishing strip.", "neutral");
+    } else if (tool === "lamp") {
+      setStatus(statusEl, "Lamp Tool: click near a road to place a lamp on the nearest furnishing strip.", "neutral");
     }
     renderAll();
   }
@@ -8557,6 +8566,70 @@ function buildingRegionHandleFromTarget(
     return true;
   }
 
+  function placeFurnitureQuick(point: AnnotationPoint, kind: FurnitureKind): boolean {
+    const ppm = Math.max(state.annotation.pixels_per_meter, 0.0001);
+    // 1. Find nearest centerline by projecting point onto each
+    let bestCenterline: AnnotatedCenterline | null = null;
+    let bestProjection: ReturnType<typeof projectPointOntoPolyline> | null = null;
+    for (const cl of state.annotation.centerlines) {
+      if (cl.points.length < 2) {
+        continue;
+      }
+      const proj = projectPointOntoPolyline(cl.points, point);
+      if (!bestProjection || proj.distancePx < bestProjection.distancePx) {
+        bestCenterline = cl;
+        bestProjection = proj;
+      }
+    }
+    if (!bestCenterline || !bestProjection || bestProjection.distancePx > 200) {
+      setStatus(statusEl, "No road nearby. Click closer to a centerline.", "error");
+      return false;
+    }
+    // 2. Find nearest furniture-compatible strip
+    const offsets = stripCenterOffsetMeters(bestCenterline);
+    const clickLateralM = bestProjection.lateralPx / ppm;
+    let bestStrip: AnnotatedCrossSectionStrip | null = null;
+    let bestDist = Infinity;
+    for (const strip of bestCenterline.cross_section_strips) {
+      if (!FURNITURE_COMPATIBLE_STRIP_KINDS.has(strip.kind)) {
+        continue;
+      }
+      const info = offsets[strip.strip_id];
+      if (!info) {
+        continue;
+      }
+      const dist = Math.abs(info.centerOffsetM - clickLateralM);
+      if (dist < bestDist) {
+        bestDist = dist;
+        bestStrip = strip;
+      }
+    }
+    if (!bestStrip) {
+      setStatus(statusEl, "No furnishing strip on this road. Add a nearroad_furnishing or frontage_reserve strip first.", "error");
+      return false;
+    }
+    // 3. Compute position and create instance
+    const stripBounds = offsets[bestStrip.strip_id];
+    const halfW = stripBounds ? stripBounds.widthM * 0.5 : bestStrip.width_m * 0.5;
+    const centerOff = stripBounds ? stripBounds.centerOffsetM : 0;
+    const absLateral = clamp(clickLateralM, centerOff - halfW, centerOff + halfW);
+    const lateralOffsetM = absLateral - centerOff;
+    bestCenterline.street_furniture_instances.push({
+      instance_id: nextFurnitureInstanceId(bestCenterline),
+      centerline_id: bestCenterline.id,
+      strip_id: bestStrip.strip_id,
+      kind,
+      station_m: bestProjection.stationPx / ppm,
+      lateral_offset_m: lateralOffsetM,
+      yaw_deg: null,
+    });
+    syncCenterlineDerivedFields(bestCenterline);
+    clearGraphResult("Annotation changed. Re-run convert to refresh graph output.");
+    setStatus(statusEl, `Placed ${FURNITURE_KIND_LABELS[kind]} on ${bestStrip.strip_id}.`, "success");
+    renderAll();
+    return true;
+  }
+
   backButton.addEventListener(
     "click",
     () => {
@@ -8934,6 +9007,15 @@ function buildingRegionHandleFromTarget(
           currentPoint: point,
         };
         renderAll();
+        return;
+      }
+
+      if (state.selectedTool === "tree") {
+        placeFurnitureQuick(point, "tree");
+        return;
+      }
+      if (state.selectedTool === "lamp") {
+        placeFurnitureQuick(point, "lamp");
         return;
       }
 

@@ -64,6 +64,7 @@ VALID_FURNITURE_KINDS = frozenset(
         "sign",
         "hydrant",
         "bus_stop",
+        "tree",
     }
 )
 NOMINAL_STRIP_WIDTHS: Dict[str, float] = {
