@@ -15,7 +15,21 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Dict, Iterable, List, Sequence, Tuple
 
-from .types import RoadSegmentBand, RoadSegmentEdge, RoadSegmentGraph, RoadSegmentNode
+from .reference_annotation import (
+    METAURBAN_STRIP_ASSET_HINTS,
+    METAURBAN_STRIP_DISPLAY_LABELS,
+    METAURBAN_STRIP_PLACEMENT_HINTS,
+    METAURBAN_STRIP_ZONE_HINTS,
+)
+from .street_band_semantics import detailed_strip_allowed_categories
+from .types import (
+    RoadSegmentBand,
+    RoadSegmentCrossSectionStrip,
+    RoadSegmentEdge,
+    RoadSegmentGraph,
+    RoadSegmentMetaUrbanAssetHint,
+    RoadSegmentNode,
+)
 
 ROOT = Path(__file__).resolve().parents[2]
 METAURBAN_V2_BLOCK_WEIGHTS: Dict[str, float] = {
@@ -36,6 +50,10 @@ DEFAULT_ALLOWED_CATEGORIES: Tuple[str, ...] = (
     "hydrant",
     "bollard",
 )
+
+DEFAULT_NEARROAD_FURNISHING_WIDTH_M = 1.5
+DEFAULT_MAIN_SIDEWALK_WIDTH_M = 2.5
+DEFAULT_VALID_REGION_WIDTH_M = 2.0
 
 
 @dataclass(frozen=True)
@@ -272,31 +290,119 @@ def _segment_bands(
     junction: bool,
     poi_types: Sequence[str],
 ) -> Tuple[RoadSegmentBand, ...]:
-    right_kind = "right_transit_edge" if "bus_stop" in set(poi_types) else "right_furnishing"
     nearest = tuple(str(value) for value in poi_types)
-    left_allowed = DEFAULT_ALLOWED_CATEGORIES
-    right_allowed = DEFAULT_ALLOWED_CATEGORIES if not junction else DEFAULT_ALLOWED_CATEGORIES + ("bus_stop",)
-    sidewalk_width = float(max(config.sidewalk_width_m, 1.2))
+    nearroad_allowed = detailed_strip_allowed_categories("nearroad_furnishing")
+    clear_allowed = detailed_strip_allowed_categories("clear_sidewalk")
+    frontage_allowed = detailed_strip_allowed_categories("frontage_reserve")
     return (
         RoadSegmentBand(
-            band_id=f"{segment_id}_left",
+            band_id=f"{segment_id}_left_nearroad",
             segment_id=segment_id,
             side="left",
-            kind="left_furnishing",
-            width_m=sidewalk_width,
-            allowed_categories=left_allowed,
+            kind="nearroad_furnishing",
+            width_m=float(DEFAULT_NEARROAD_FURNISHING_WIDTH_M),
+            allowed_categories=nearroad_allowed,
             nearest_poi_types=nearest,
         ),
         RoadSegmentBand(
-            band_id=f"{segment_id}_right",
+            band_id=f"{segment_id}_left_clear",
+            segment_id=segment_id,
+            side="left",
+            kind="clear_sidewalk",
+            width_m=float(DEFAULT_MAIN_SIDEWALK_WIDTH_M),
+            allowed_categories=clear_allowed,
+            nearest_poi_types=nearest,
+        ),
+        RoadSegmentBand(
+            band_id=f"{segment_id}_left_frontage",
+            segment_id=segment_id,
+            side="left",
+            kind="frontage_reserve",
+            width_m=float(DEFAULT_VALID_REGION_WIDTH_M),
+            allowed_categories=frontage_allowed,
+            nearest_poi_types=nearest,
+        ),
+        RoadSegmentBand(
+            band_id=f"{segment_id}_right_nearroad",
             segment_id=segment_id,
             side="right",
-            kind=right_kind,
-            width_m=sidewalk_width,
-            allowed_categories=right_allowed,
+            kind="nearroad_furnishing",
+            width_m=float(DEFAULT_NEARROAD_FURNISHING_WIDTH_M),
+            allowed_categories=nearroad_allowed if not junction else tuple(dict.fromkeys(nearroad_allowed + ("bus_stop",))),
+            nearest_poi_types=nearest,
+        ),
+        RoadSegmentBand(
+            band_id=f"{segment_id}_right_clear",
+            segment_id=segment_id,
+            side="right",
+            kind="clear_sidewalk",
+            width_m=float(DEFAULT_MAIN_SIDEWALK_WIDTH_M),
+            allowed_categories=clear_allowed,
+            nearest_poi_types=nearest,
+        ),
+        RoadSegmentBand(
+            band_id=f"{segment_id}_right_frontage",
+            segment_id=segment_id,
+            side="right",
+            kind="frontage_reserve",
+            width_m=float(DEFAULT_VALID_REGION_WIDTH_M),
+            allowed_categories=frontage_allowed,
             nearest_poi_types=nearest,
         ),
     )
+
+
+def _segment_cross_section_strips(config: MetaUrbanProceduralConfig) -> Tuple[RoadSegmentCrossSectionStrip, ...]:
+    lane_width_m = float(max(config.lane_width_m, 2.8))
+    center_lane_count = max(int(config.lane_count), 1)
+    strips: List[RoadSegmentCrossSectionStrip] = []
+
+    def _push(strip_id: str, zone: str, kind: str, width_m: float, order_index: int, direction: str = "none") -> None:
+        strips.append(
+            RoadSegmentCrossSectionStrip(
+                strip_id=str(strip_id),
+                zone=str(zone),
+                kind=str(kind),
+                width_m=float(width_m),
+                direction=str(direction),
+                order_index=int(order_index),
+            )
+        )
+
+    _push("left_nearroad", "left", "nearroad_furnishing", DEFAULT_NEARROAD_FURNISHING_WIDTH_M, 0)
+    _push("left_clear", "left", "clear_sidewalk", DEFAULT_MAIN_SIDEWALK_WIDTH_M, 1)
+    _push("left_frontage", "left", "frontage_reserve", DEFAULT_VALID_REGION_WIDTH_M, 2)
+
+    order_index = 0
+    for lane_index in range(center_lane_count):
+        direction = "reverse" if lane_index < center_lane_count / 2.0 else "forward"
+        _push(f"drive_lane_{lane_index:02d}", "center", "drive_lane", lane_width_m, order_index, direction)
+        order_index += 1
+
+    _push("right_nearroad", "right", "nearroad_furnishing", DEFAULT_NEARROAD_FURNISHING_WIDTH_M, 0)
+    _push("right_clear", "right", "clear_sidewalk", DEFAULT_MAIN_SIDEWALK_WIDTH_M, 1)
+    _push("right_frontage", "right", "frontage_reserve", DEFAULT_VALID_REGION_WIDTH_M, 2)
+    return tuple(strips)
+
+
+def _segment_metaurban_asset_hints(strips: Sequence[RoadSegmentCrossSectionStrip]) -> Tuple[RoadSegmentMetaUrbanAssetHint, ...]:
+    hints: List[RoadSegmentMetaUrbanAssetHint] = []
+    for strip in strips:
+        strip_kind = str(strip.kind)
+        hints.append(
+            RoadSegmentMetaUrbanAssetHint(
+                strip_id=str(strip.strip_id),
+                zone=str(strip.zone),
+                strip_kind=strip_kind,
+                metaurban_zone=str(METAURBAN_STRIP_ZONE_HINTS.get(strip_kind, "")),
+                display_label=str(METAURBAN_STRIP_DISPLAY_LABELS.get(strip_kind, strip_kind)),
+                suggested_assets=tuple(METAURBAN_STRIP_ASSET_HINTS.get(strip_kind, ())),
+                placement_hint=str(METAURBAN_STRIP_PLACEMENT_HINTS.get(strip_kind, "")),
+                asset_source="metaurban_asset_config",
+                asset_directory_status="hook_only",
+            )
+        )
+    return tuple(hints)
 
 
 class _GraphBuilder:
@@ -336,6 +442,15 @@ class _GraphBuilder:
                     (float(start_xy[0]) + float(end_xy[0])) / 2.0,
                     (float(start_xy[1]) + float(end_xy[1])) / 2.0,
                 )
+                cross_section_strips = _segment_cross_section_strips(self._config)
+                cross_section_width_m = float(sum(float(strip.width_m) for strip in cross_section_strips))
+                road_width_m = float(
+                    sum(
+                        float(strip.width_m)
+                        for strip in cross_section_strips
+                        if str(strip.zone).strip().lower() == "center"
+                    )
+                )
                 self._nodes.append(
                     RoadSegmentNode(
                         segment_id=segment_id,
@@ -357,6 +472,17 @@ class _GraphBuilder:
                         station_start_m=station_start,
                         station_end_m=station_end,
                         station_center_m=(station_start + station_end) / 2.0,
+                        road_width_m=float(road_width_m),
+                        lane_profile={
+                            "forward_drive_lane_count": int(max(int(math.ceil(self._config.lane_count / 2.0)), 1)),
+                            "reverse_drive_lane_count": int(max(int(self._config.lane_count // 2), 0)),
+                            "bike_lane_count": 0,
+                            "bus_lane_count": 0,
+                            "parking_lane_count": 0,
+                        },
+                        cross_section_strips=cross_section_strips,
+                        cross_section_width_m=float(cross_section_width_m),
+                        metaurban_asset_hints=_segment_metaurban_asset_hints(cross_section_strips),
                     )
                 )
                 if previous_segment_id:
@@ -401,6 +527,11 @@ class _GraphBuilder:
                 station_start_m=float(node.station_start_m) - half_length,
                 station_end_m=float(node.station_end_m) - half_length,
                 station_center_m=float(node.station_center_m) - half_length,
+                road_width_m=float(node.road_width_m),
+                lane_profile=dict(node.lane_profile),
+                cross_section_strips=tuple(node.cross_section_strips),
+                cross_section_width_m=float(node.cross_section_width_m),
+                metaurban_asset_hints=tuple(node.metaurban_asset_hints),
             )
             for node in self._nodes
         )

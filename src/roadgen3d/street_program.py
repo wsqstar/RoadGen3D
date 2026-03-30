@@ -11,6 +11,14 @@ from .poi_taxonomy import (
     extract_poi_points_by_type,
     normalize_poi_counts,
 )
+from .street_band_semantics import (
+    DETAILED_SIDE_STRIP_KINDS,
+    detailed_strip_allowed_categories,
+    detailed_strip_band_kind,
+    detailed_strip_band_name,
+    has_detailed_strip_profiles,
+    iter_detailed_strip_profiles,
+)
 from .street_priors import DEFAULT_CATEGORIES, DEFAULT_SPACING_M
 from .types import StreetBand, StreetComposeConfig, StreetProgram
 
@@ -276,6 +284,79 @@ def _build_cross_section_bands(
     )
 
 
+def _aggregate_detailed_strip_profiles(placement_context: object | None) -> Dict[Tuple[str, str], Dict[str, float]]:
+    aggregated: Dict[Tuple[str, str], Dict[str, float]] = {}
+    for profile in iter_detailed_strip_profiles(placement_context):
+        side = str(profile.get("side", "") or "").strip().lower()
+        strip_kind = str(profile.get("kind", "") or "").strip().lower()
+        if side not in {"left", "right"} or strip_kind not in DETAILED_SIDE_STRIP_KINDS:
+            continue
+        key = (side, strip_kind)
+        values = aggregated.setdefault(
+            key,
+            {
+                "width_sum": 0.0,
+                "center_sum": 0.0,
+                "count": 0.0,
+            },
+        )
+        values["width_sum"] += float(profile.get("width_m", 0.0) or 0.0)
+        values["center_sum"] += float(profile.get("center_offset_m", 0.0) or 0.0)
+        values["count"] += 1.0
+    return aggregated
+
+
+def _build_detailed_cross_section_bands(
+    *,
+    road_width_m: float,
+    placement_context: object | None,
+    profile_name: str,
+) -> Tuple[StreetBand, ...]:
+    aggregated = _aggregate_detailed_strip_profiles(placement_context)
+    if not aggregated:
+        return ()
+
+    bands: List[StreetBand] = []
+    for side in ("left", "right"):
+        for strip_kind in DETAILED_SIDE_STRIP_KINDS:
+            values = aggregated.get((side, strip_kind))
+            if not values or float(values.get("count", 0.0) or 0.0) <= 0.0:
+                continue
+            width_m = float(values["width_sum"]) / float(values["count"])
+            if width_m <= 0.0:
+                continue
+            z_center_m = float(values["center_sum"]) / float(values["count"])
+            bands.append(
+                StreetBand(
+                    name=detailed_strip_band_name(side, strip_kind),
+                    kind=detailed_strip_band_kind(strip_kind, side=side, profile_name=profile_name),
+                    side=side,
+                    width_m=float(width_m),
+                    z_center_m=float(z_center_m),
+                    allowed_categories=detailed_strip_allowed_categories(strip_kind),
+                )
+            )
+    bands.append(
+        StreetBand(
+            name="carriageway",
+            kind="carriageway",
+            side="center",
+            width_m=float(road_width_m),
+            z_center_m=0.0,
+            allowed_categories=(),
+        )
+    )
+    ordered = sorted(
+        bands,
+        key=lambda band: (
+            0 if band.side == "left" else 1 if band.side == "center" else 2,
+            -float(band.z_center_m) if band.side == "left" else float(band.z_center_m) if band.side == "right" else 0.0,
+            str(band.name),
+        ),
+    )
+    return tuple(ordered)
+
+
 def _estimate_furniture_requirements(
     *,
     query: str,
@@ -371,18 +452,46 @@ def _topology_requirements(profile_name: str, bands: Sequence[StreetBand]) -> Di
     band_names = {band.name for band in bands}
     adjacency: List[Dict[str, str]] = []
     separation: List[Dict[str, str]] = []
-    if "left_furnishing" in band_names and "left_clear_path" in band_names:
-        adjacency.append({"band_name": "left_clear_path", "adjacent_to": "left_furnishing"})
-    if "right_clear_path" in band_names and "right_furnishing" in band_names:
-        adjacency.append({"band_name": "right_clear_path", "adjacent_to": "right_furnishing"})
-    if "right_clear_path" in band_names and "right_transit_edge" in band_names:
-        adjacency.append({"band_name": "right_clear_path", "adjacent_to": "right_transit_edge"})
-    if "left_furnishing" in band_names and "left_clear_path" in band_names and "carriageway" in band_names:
-        separation.append({"left": "left_furnishing", "right": "carriageway", "separator": "left_clear_path"})
-    if "carriageway" in band_names and "right_clear_path" in band_names and "right_furnishing" in band_names:
-        separation.append({"left": "carriageway", "right": "right_furnishing", "separator": "right_clear_path"})
-    if "carriageway" in band_names and "right_clear_path" in band_names and "right_transit_edge" in band_names:
-        separation.append({"left": "carriageway", "right": "right_transit_edge", "separator": "right_clear_path"})
+    left_furnishing_name = next(
+        (
+            band.name
+            for band in bands
+            if band.side == "left" and band.kind in {"furnishing", "transit_edge"}
+        ),
+        "",
+    )
+    left_clear_name = next(
+        (
+            band.name
+            for band in bands
+            if band.side == "left" and band.kind == "clear_path"
+        ),
+        "",
+    )
+    right_edge_name = next(
+        (
+            band.name
+            for band in bands
+            if band.side == "right" and band.kind in {"furnishing", "transit_edge"}
+        ),
+        "",
+    )
+    right_clear_name = next(
+        (
+            band.name
+            for band in bands
+            if band.side == "right" and band.kind == "clear_path"
+        ),
+        "",
+    )
+    if left_furnishing_name and left_clear_name:
+        adjacency.append({"band_name": left_clear_name, "adjacent_to": left_furnishing_name})
+    if right_edge_name and right_clear_name:
+        adjacency.append({"band_name": right_clear_name, "adjacent_to": right_edge_name})
+    if left_furnishing_name and left_clear_name and "carriageway" in band_names:
+        separation.append({"left": left_furnishing_name, "right": "carriageway", "separator": left_clear_name})
+    if "carriageway" in band_names and right_edge_name and right_clear_name:
+        separation.append({"left": "carriageway", "right": right_edge_name, "separator": right_clear_name})
     return {
         "profile_name": str(profile_name),
         "adjacency_required": adjacency,
@@ -421,14 +530,21 @@ def infer_street_program(
     poi_fit_feasible = bool(getattr(placement_context, "poi_fit_feasible", True))
     poi_fit_report = dict(getattr(placement_context, "poi_fit_report", {}) or {})
 
-    bands = _build_cross_section_bands(
-        road_width_m=carriageway_width,
-        left_clear_path_width_m=left_clear_width,
-        right_clear_path_width_m=right_clear_width,
-        left_furnishing_width_m=left_furnishing_width,
-        right_edge_width_m=right_furnishing_width,
-        profile_name=profile_name,
-    )
+    if has_detailed_strip_profiles(placement_context):
+        bands = _build_detailed_cross_section_bands(
+            road_width_m=carriageway_width,
+            placement_context=placement_context,
+            profile_name=profile_name,
+        )
+    else:
+        bands = _build_cross_section_bands(
+            road_width_m=carriageway_width,
+            left_clear_path_width_m=left_clear_width,
+            right_clear_path_width_m=right_clear_width,
+            left_furnishing_width_m=left_furnishing_width,
+            right_edge_width_m=right_furnishing_width,
+            profile_name=profile_name,
+        )
     requirements = _estimate_furniture_requirements(
         query=config.query,
         length_m=float(config.length_m),

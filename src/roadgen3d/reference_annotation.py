@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Mapping, MutableMapping, Sequence, Tuple
 
 from .street_priors import DEFAULT_CATEGORIES
+from .street_band_semantics import detailed_strip_allowed_categories
 from .types import (
     RoadSegmentBand,
     RoadSegmentCrossSectionStrip,
@@ -1714,7 +1715,11 @@ def _segment_bands_for_centerline(
             side="left" if strip.zone == "left" else "right",
             kind=strip.kind,
             width_m=float(strip.width_m),
-            allowed_categories=tuple(DEFAULT_CATEGORIES),
+            allowed_categories=(
+                detailed_strip_allowed_categories(strip.kind)
+                if strip.kind in SIDE_STRIP_KINDS
+                else tuple(DEFAULT_CATEGORIES)
+            ),
             nearest_poi_types=tuple(poi_types),
         )
         for strip in centerline.cross_section_strips

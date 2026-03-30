@@ -8,7 +8,7 @@ import math
 import random
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 
 from .cross_section_synthesis import synthesize_poi_driven_cross_section
 from .poi_taxonomy import (
@@ -21,6 +21,7 @@ from .poi_taxonomy import (
     poi_breakdown_string,
     poi_weighted_score,
 )
+from .street_band_semantics import detailed_strip_band_name
 
 logger = logging.getLogger(__name__)
 EFFECTIVE_POI_EVALUATOR_VERSION = "v2"
@@ -71,6 +72,9 @@ class PlacementContext:
     required_right_width_m: float = 0.0
     junction_geometries: List[Dict[str, Any]] = field(default_factory=list)
     building_regions: List[Dict[str, Any]] = field(default_factory=list)
+    detailed_strip_profiles: List[Dict[str, Any]] = field(default_factory=list)
+    strip_zones: Dict[str, Any] = field(default_factory=dict)
+    segment_strip_zones: Dict[str, Dict[str, Any]] = field(default_factory=dict)
 
 
 # ---------------------------------------------------------------------------
@@ -346,6 +350,149 @@ def _road_profile_widths_from_graph(road_segment_graph: Any | None) -> Dict[int,
             "side_strip_layouts": side_strip_layouts,
         }
     return profiles
+
+
+def _node_side_strip_layouts(node: Any) -> Tuple[float, Dict[str, List[Dict[str, Any]]]]:
+    strips = tuple(getattr(node, "cross_section_strips", ()) or ())
+    center_width_m = sum(
+        max(float(getattr(strip, "width_m", 0.0) or 0.0), 0.0)
+        for strip in strips
+        if str(getattr(strip, "zone", "") or "").strip().lower() == "center"
+    )
+    if center_width_m <= 0.0:
+        center_width_m = max(float(getattr(node, "road_width_m", 0.0) or 0.0), 0.0)
+    half_carriageway_m = center_width_m * 0.5
+    layouts: Dict[str, List[Dict[str, Any]]] = {"left": [], "right": []}
+    for side, sign in (("left", 1.0), ("right", -1.0)):
+        side_strips = sorted(
+            (
+                strip
+                for strip in strips
+                if str(getattr(strip, "zone", "") or "").strip().lower() == side
+            ),
+            key=lambda item: int(getattr(item, "order_index", 0) or 0),
+        )
+        offset_from_carriageway_m = 0.0
+        for strip in side_strips:
+            width_m = max(float(getattr(strip, "width_m", 0.0) or 0.0), 0.0)
+            if width_m <= 0.0:
+                continue
+            inner_abs_m = half_carriageway_m + offset_from_carriageway_m
+            outer_abs_m = inner_abs_m + width_m
+            center_abs_m = (inner_abs_m + outer_abs_m) * 0.5
+            strip_kind = str(getattr(strip, "kind", "") or "").strip().lower()
+            layouts[side].append(
+                {
+                    "segment_id": str(getattr(node, "segment_id", "") or ""),
+                    "road_id": int(getattr(node, "road_id", 0) or 0),
+                    "strip_id": str(getattr(strip, "strip_id", "") or ""),
+                    "side": side,
+                    "kind": strip_kind,
+                    "band_name": detailed_strip_band_name(side, strip_kind),
+                    "width_m": float(width_m),
+                    "order_index": int(getattr(strip, "order_index", 0) or 0),
+                    "inner_abs_m": float(inner_abs_m),
+                    "outer_abs_m": float(outer_abs_m),
+                    "center_abs_m": float(center_abs_m),
+                    "inner_offset_m": float(inner_abs_m * sign),
+                    "outer_offset_m": float(outer_abs_m * sign),
+                    "center_offset_m": float(center_abs_m * sign),
+                }
+            )
+            offset_from_carriageway_m += width_m
+    return float(center_width_m), layouts
+
+
+def _merge_geometry_map(entries: Mapping[str, List[Any]], *, aoi_polygon: Any) -> Dict[str, Any]:
+    merged: Dict[str, Any] = {}
+    for key, geometries in entries.items():
+        merged[str(key)] = _merge_polygon_geometries(tuple(geometries), aoi_polygon=aoi_polygon)
+    return merged
+
+
+def _build_graph_strip_context(
+    road_segment_graph: Any | None,
+    *,
+    aoi_polygon: Any,
+) -> Tuple[List[Dict[str, Any]], Dict[str, Any], Dict[str, Dict[str, Any]], Dict[str, float]]:
+    if road_segment_graph is None:
+        return [], {}, {}, {}
+
+    try:
+        from shapely.geometry import LineString
+    except Exception:
+        return [], {}, {}, {}
+
+    profiles: List[Dict[str, Any]] = []
+    global_geometries: Dict[str, List[Any]] = {}
+    segment_geometries: Dict[str, Dict[str, List[Any]]] = {}
+    segment_widths: Dict[str, Dict[str, float]] = {}
+
+    for node in getattr(road_segment_graph, "nodes", ()) or ():
+        segment_id = str(getattr(node, "segment_id", "") or "")
+        if not segment_id:
+            continue
+        center_width_m, layouts = _node_side_strip_layouts(node)
+        if center_width_m <= 0.0:
+            continue
+        start_xy = tuple(float(value) for value in getattr(node, "start_xy", (0.0, 0.0)))
+        end_xy = tuple(float(value) for value in getattr(node, "end_xy", (0.0, 0.0)))
+        if math.hypot(float(end_xy[0]) - float(start_xy[0]), float(end_xy[1]) - float(start_xy[1])) <= 1e-6:
+            continue
+        line = LineString([start_xy, end_xy])
+        segment_widths[segment_id] = {
+            "carriageway_width_m": float(center_width_m),
+            "left_total_width_m": float(sum(float(item["width_m"]) for item in layouts.get("left", ()))),
+            "right_total_width_m": float(sum(float(item["width_m"]) for item in layouts.get("right", ()))),
+        }
+        for side in ("left", "right"):
+            sign = 1.0 if side == "left" else -1.0
+            for layout in layouts.get(side, ()):
+                outer = line.buffer(sign * float(layout["outer_abs_m"]), cap_style="flat", single_sided=True)
+                inner = line.buffer(sign * float(layout["inner_abs_m"]), cap_style="flat", single_sided=True)
+                strip_zone = _clip_to_aoi(outer.difference(inner), aoi_polygon)
+                if getattr(strip_zone, "is_empty", True):
+                    continue
+                band_name = str(layout["band_name"])
+                profile_record = {
+                    **dict(layout),
+                    "carriageway_width_m": float(center_width_m),
+                }
+                profiles.append(profile_record)
+                global_geometries.setdefault(band_name, []).append(strip_zone)
+                segment_geometries.setdefault(segment_id, {}).setdefault(band_name, []).append(strip_zone)
+
+    summary: Dict[str, float] = {}
+    if segment_widths:
+        summary["carriageway_width_m"] = float(
+            max(float(values.get("carriageway_width_m", 0.0) or 0.0) for values in segment_widths.values())
+        )
+        summary["left_total_width_m"] = float(
+            max(float(values.get("left_total_width_m", 0.0) or 0.0) for values in segment_widths.values())
+        )
+        summary["right_total_width_m"] = float(
+            max(float(values.get("right_total_width_m", 0.0) or 0.0) for values in segment_widths.values())
+        )
+    for side in ("left", "right"):
+        for strip_kind in ("nearroad_furnishing", "clear_sidewalk", "frontage_reserve"):
+            key = f"{side}_{strip_kind}_width_m"
+            values = [
+                float(profile["width_m"])
+                for profile in profiles
+                if str(profile.get("side", "")) == side and str(profile.get("kind", "")) == strip_kind
+            ]
+            if values:
+                summary[key] = float(max(values))
+
+    return (
+        profiles,
+        _merge_geometry_map(global_geometries, aoi_polygon=aoi_polygon),
+        {
+            segment_id: _merge_geometry_map(entries, aoi_polygon=aoi_polygon)
+            for segment_id, entries in segment_geometries.items()
+        },
+        summary,
+    )
 
 
 def _merge_polygon_geometries(polygons: Sequence[Any], *, aoi_polygon: Any | None = None) -> Any:
@@ -2152,6 +2299,10 @@ def build_placement_context(
 
     bbox_m = projected_features.bbox_m
     aoi_polygon = box(bbox_m[0], bbox_m[1], bbox_m[2], bbox_m[3])
+    detailed_strip_profiles, strip_zones, segment_strip_zones, strip_summary = _build_graph_strip_context(
+        road_segment_graph,
+        aoi_polygon=aoi_polygon,
+    )
     poi_points_by_type = extract_poi_points_by_type(projected_features)
     defaults = profile_defaults(str(getattr(config, "design_rule_profile", "balanced_complete_street_v1")))
     min_clear_path_width_m = float(defaults["min_clear_path_width_m"])
@@ -2170,17 +2321,50 @@ def build_placement_context(
         right_furnishing_min_width_m=right_edge_width_m,
     )
 
+    carriageway_width_m = float(cross_section.carriageway_width_m)
+    left_sidewalk_width_m = float(cross_section.left_sidewalk_width_m)
+    right_sidewalk_width_m = float(cross_section.right_sidewalk_width_m)
+    left_clear_path_width_m = float(cross_section.left_clear_path_width_m)
+    right_clear_path_width_m = float(cross_section.right_clear_path_width_m)
+    left_furnishing_width_m = float(cross_section.left_furnishing_width_m)
+    right_furnishing_width_m = float(cross_section.right_furnishing_width_m)
+    row_width_m = float(cross_section.row_width_m)
+    required_left_width_m = float(cross_section.required_left_width_m)
+    required_right_width_m = float(cross_section.required_right_width_m)
+
+    if strip_summary:
+        carriageway_width_m = float(strip_summary.get("carriageway_width_m", carriageway_width_m) or carriageway_width_m)
+        left_furnishing_width_m = float(
+            strip_summary.get("left_nearroad_furnishing_width_m", left_furnishing_width_m) or left_furnishing_width_m
+        )
+        right_furnishing_width_m = float(
+            strip_summary.get("right_nearroad_furnishing_width_m", right_furnishing_width_m) or right_furnishing_width_m
+        )
+        left_clear_path_width_m = float(
+            strip_summary.get("left_clear_sidewalk_width_m", left_clear_path_width_m) or left_clear_path_width_m
+        )
+        right_clear_path_width_m = float(
+            strip_summary.get("right_clear_sidewalk_width_m", right_clear_path_width_m) or right_clear_path_width_m
+        )
+        left_sidewalk_width_m = float(strip_summary.get("left_total_width_m", left_sidewalk_width_m) or left_sidewalk_width_m)
+        right_sidewalk_width_m = float(
+            strip_summary.get("right_total_width_m", right_sidewalk_width_m) or right_sidewalk_width_m
+        )
+        row_width_m = float(carriageway_width_m + left_sidewalk_width_m + right_sidewalk_width_m)
+        required_left_width_m = float(left_sidewalk_width_m)
+        required_right_width_m = float(right_sidewalk_width_m)
+
     carriageway_raw = build_carriageway_polygon_with_width(
         projected_features.roads,
-        cross_section.carriageway_width_m,
+        carriageway_width_m,
     )
     # Clip carriageway to AOI so roads don't extend far beyond the scene
     carriageway = _clip_to_aoi(carriageway_raw, aoi_polygon)
     left_sidewalk_zone, right_sidewalk_zone, sidewalk_zone = build_sidewalk_zones_from_roads(
         projected_features.roads,
-        carriageway_width_m=cross_section.carriageway_width_m,
-        left_sidewalk_width_m=cross_section.left_sidewalk_width_m,
-        right_sidewalk_width_m=cross_section.right_sidewalk_width_m,
+        carriageway_width_m=carriageway_width_m,
+        left_sidewalk_width_m=left_sidewalk_width_m,
+        right_sidewalk_width_m=right_sidewalk_width_m,
         aoi_polygon=aoi_polygon,
     )
 
@@ -2253,19 +2437,22 @@ def build_placement_context(
         carriageway_polygon=carriageway,
         road_reference=projected_features.roads[0] if projected_features.roads else None,
         road_references=list(projected_features.roads),
-        carriageway_width_m=float(cross_section.carriageway_width_m),
-        left_clear_path_width_m=float(cross_section.left_clear_path_width_m),
-        right_clear_path_width_m=float(cross_section.right_clear_path_width_m),
-        left_furnishing_width_m=float(cross_section.left_furnishing_width_m),
-        right_furnishing_width_m=float(cross_section.right_furnishing_width_m),
-        row_width_m=float(cross_section.row_width_m),
+        carriageway_width_m=float(carriageway_width_m),
+        left_clear_path_width_m=float(left_clear_path_width_m),
+        right_clear_path_width_m=float(right_clear_path_width_m),
+        left_furnishing_width_m=float(left_furnishing_width_m),
+        right_furnishing_width_m=float(right_furnishing_width_m),
+        row_width_m=float(row_width_m),
         width_expanded=bool(cross_section.width_expanded),
         width_reallocation_reason=str(cross_section.width_reallocation_reason),
         poi_fit_feasible=bool(cross_section.poi_fit_feasible),
         poi_fit_report=dict(cross_section.poi_fit_report),
-        required_left_width_m=float(cross_section.required_left_width_m),
-        required_right_width_m=float(cross_section.required_right_width_m),
+        required_left_width_m=float(required_left_width_m),
+        required_right_width_m=float(required_right_width_m),
         junction_geometries=list(junction_geometries),
+        detailed_strip_profiles=list(detailed_strip_profiles),
+        strip_zones=dict(strip_zones),
+        segment_strip_zones={key: dict(value) for key, value in segment_strip_zones.items()},
     )
 
 

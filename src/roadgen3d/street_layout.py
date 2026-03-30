@@ -99,6 +99,12 @@ from .spatial_viz import (
 )
 from .street_priors import DEFAULT_CATEGORIES, DEFAULT_SPACING_M, SIDE_PREF
 from .street_program import infer_street_program
+from .street_band_semantics import (
+    band_name_aliases,
+    coerce_band_rule_kinds,
+    detailed_strip_band_name,
+    resolve_band_by_alias,
+)
 from .theme_buildings import (
     assign_theme_id_for_point,
     build_zoning_grid_preview,
@@ -322,18 +328,27 @@ def _validate_curated_locked_assets(
     asset_by_id: Mapping[str, Mapping[str, object]],
     profile: str,
 ) -> Dict[str, str]:
-    locked_asset_ids = _curated_locked_asset_ids_for_profile(profile)
-    for category, asset_id in locked_asset_ids.items():
+    usable_locked_asset_ids: Dict[str, str] = {}
+    for category, asset_id in _curated_locked_asset_ids_for_profile(profile).items():
         row = asset_by_id.get(asset_id)
         if row is None:
-            raise RuntimeError(
-                f"Curated asset lock '{profile}' requires {category} asset '{asset_id}', but it is unavailable."
+            logger.warning(
+                "Curated asset lock '%s' is missing %s asset '%s'; falling back to category pool.",
+                profile,
+                category,
+                asset_id,
             )
+            continue
         if not _row_scene_eligible(row):
-            raise RuntimeError(
-                f"Curated asset lock '{profile}' requires {category} asset '{asset_id}', but it is not scene eligible."
+            logger.warning(
+                "Curated asset lock '%s' asset '%s' for %s is not scene eligible; falling back to category pool.",
+                profile,
+                asset_id,
+                category,
             )
-    return locked_asset_ids
+            continue
+        usable_locked_asset_ids[str(category)] = str(asset_id)
+    return usable_locked_asset_ids
 
 
 def _curated_locked_row_for_category(
@@ -348,9 +363,7 @@ def _curated_locked_row_for_category(
         return None
     row = asset_by_id.get(asset_id)
     if row is None or not _row_scene_eligible(row):
-        raise RuntimeError(
-            f"Curated asset lock requires category '{category}' to use '{asset_id}', but that asset is unavailable."
-        )
+        return None
     return row
 
 
@@ -912,18 +925,36 @@ def _sample_pose_osm_for_segment(
     *,
     segment_node: object | None = None,
     slot_side: str = "",
+    slot_band_name: str = "",
     band_width_m: float = 1.0,
     anchor_position_xz: Optional[Tuple[float, float]] = None,
 ) -> Optional[Tuple[float, float, float]]:
     from .placement_zones import compute_facing_angle, sample_slot_on_sidewalk
 
+    strip_zone = _target_strip_zone(
+        placement_ctx=placement_ctx,
+        segment_node=segment_node,
+        slot_side=slot_side,
+        band_name=slot_band_name,
+    )
     if anchor_position_xz is not None:
         point = (float(anchor_position_xz[0]), float(anchor_position_xz[1]))
+        if strip_zone is not None and not _point_in_zone(strip_zone, point):
+            return None
         yaw = _yaw_for_asset_category(
             category,
             compute_facing_angle(point, placement_ctx.carriageway),  # type: ignore[attr-defined]
         )
         return point[0], point[1], yaw
+
+    if strip_zone is not None and not getattr(strip_zone, "is_empty", False):
+        point = sample_slot_on_sidewalk(strip_zone, rng)
+        if point is not None:
+            yaw = _yaw_for_asset_category(
+                category,
+                compute_facing_angle(point, placement_ctx.carriageway),  # type: ignore[attr-defined]
+            )
+            return point[0], point[1], yaw
 
     if segment_node is not None:
         try:
@@ -952,6 +983,8 @@ def _sample_pose_osm_for_segment(
                 )
                 preferred_zone = getattr(placement_ctx, "left_sidewalk_zone", None) if sign > 0 else getattr(placement_ctx, "right_sidewalk_zone", None)
                 candidate_zone = preferred_zone if preferred_zone is not None and not getattr(preferred_zone, "is_empty", False) else placement_ctx.sidewalk_zone
+                if strip_zone is not None and not getattr(strip_zone, "is_empty", False):
+                    candidate_zone = strip_zone
                 if candidate_zone is not None and not getattr(candidate_zone, "is_empty", False) and candidate_zone.buffer(0.05).contains(ShapelyPoint(point)):
                     yaw = _yaw_for_asset_category(
                         category,
@@ -968,6 +1001,8 @@ def _sample_pose_osm_for_segment(
     else:
         preferred_zone = overall_zone
     zone = preferred_zone
+    if strip_zone is not None and not getattr(strip_zone, "is_empty", False):
+        zone = strip_zone
     if zone is None or getattr(zone, "is_empty", False):
         zone = overall_zone
     point = sample_slot_on_sidewalk(zone, rng)
@@ -3602,6 +3637,62 @@ def _point_side_matches_slot(
     return _point_in_zone(side_zone, point_xz), in_overall
 
 
+def _strip_zone_candidate_keys(slot_side: str, band_name: str) -> Tuple[str, ...]:
+    normalized_side = str(slot_side or "").strip().lower()
+    keys: List[str] = []
+    for alias in band_name_aliases(band_name=band_name, side=normalized_side):
+        if alias.startswith("left_") or alias.startswith("right_"):
+            if alias not in keys:
+                keys.append(alias)
+        elif normalized_side in {"left", "right"}:
+            detailed_key = detailed_strip_band_name(normalized_side, alias)
+            if detailed_key not in keys:
+                keys.append(detailed_key)
+    return tuple(keys)
+
+
+def _target_strip_zone(
+    *,
+    placement_ctx: object | None,
+    segment_node: object | None,
+    slot_side: str,
+    band_name: str,
+) -> object | None:
+    if placement_ctx is None:
+        return None
+    candidate_keys = _strip_zone_candidate_keys(slot_side, band_name)
+    segment_id = str(getattr(segment_node, "segment_id", "") or "")
+    if segment_id:
+        for key in candidate_keys:
+            zone = (getattr(placement_ctx, "segment_strip_zones", {}) or {}).get(segment_id, {}).get(key)
+            if zone is not None and not getattr(zone, "is_empty", False):
+                return zone
+    for key in candidate_keys:
+        zone = (getattr(placement_ctx, "strip_zones", {}) or {}).get(key)
+        if zone is not None and not getattr(zone, "is_empty", False):
+            return zone
+    return None
+
+
+def _point_matches_slot_band(
+    point_xz: Tuple[float, float],
+    *,
+    placement_ctx: object | None,
+    segment_node: object | None,
+    slot_side: str,
+    band_name: str,
+) -> bool:
+    zone = _target_strip_zone(
+        placement_ctx=placement_ctx,
+        segment_node=segment_node,
+        slot_side=slot_side,
+        band_name=band_name,
+    )
+    if zone is None:
+        return True
+    return _point_in_zone(zone, point_xz)
+
+
 def _segment_tangent_normal(segment_node: object | None) -> Optional[Tuple[Tuple[float, float], Tuple[float, float], float]]:
     if segment_node is None:
         return None
@@ -3871,6 +3962,31 @@ def _search_tier_theme_side_candidates(
     return tuple(candidates)
 
 
+def _filter_candidates_to_target_strip(
+    candidates: Sequence[Dict[str, object]],
+    *,
+    placement_ctx: object | None,
+    segment_node: object | None,
+    slot_side: str,
+    band_name: str,
+) -> Tuple[Dict[str, object], ...]:
+    filtered = [
+        dict(candidate)
+        for candidate in candidates
+        if _point_matches_slot_band(
+            (
+                float(candidate.get("point_xz", (0.0, 0.0))[0]),
+                float(candidate.get("point_xz", (0.0, 0.0))[1]),
+            ),
+            placement_ctx=placement_ctx,
+            segment_node=segment_node,
+            slot_side=slot_side,
+            band_name=band_name,
+        )
+    ]
+    return tuple(filtered)
+
+
 def _iter_slot_candidate_groups(
     *,
     slot: object,
@@ -3883,27 +3999,53 @@ def _iter_slot_candidate_groups(
     band_width_m: float,
     rng: random.Random,
 ) -> Tuple[Tuple[Dict[str, object], ...], ...]:
+    slot_side = str(getattr(slot, "side", "") or "")
+    slot_band_name = str(getattr(slot, "band_name", "") or "")
     anchor_target_xz = getattr(slot, "anchor_position_xz", None)
     if anchor_target_xz is not None and placement_ctx is not None and _is_corridor_layout_mode(config.layout_mode):
         target_point = (float(anchor_target_xz[0]), float(anchor_target_xz[1]))
         return (
-            _search_tier_exact_candidates(category=category, anchor_target_xz=target_point, placement_ctx=placement_ctx),
-            _search_tier_ring_candidates(category=category, anchor_target_xz=target_point, placement_ctx=placement_ctx),
-            _search_tier_segment_candidates(
-                category=category,
-                anchor_target_xz=target_point,
+            _filter_candidates_to_target_strip(
+                _search_tier_exact_candidates(category=category, anchor_target_xz=target_point, placement_ctx=placement_ctx),
+                placement_ctx=placement_ctx,
                 segment_node=segment_node,
-                placement_ctx=placement_ctx,
-                config=config,
+                slot_side=slot_side,
+                band_name=slot_band_name,
             ),
-            _search_tier_theme_side_candidates(
-                category=category,
-                anchor_target_xz=target_point,
+            _filter_candidates_to_target_strip(
+                _search_tier_ring_candidates(category=category, anchor_target_xz=target_point, placement_ctx=placement_ctx),
                 placement_ctx=placement_ctx,
-                theme_segment=theme_segment,
-                road_segment_graph=road_segment_graph,
-                slot_side=str(getattr(slot, "side", "") or ""),
-                band_width_m=float(band_width_m),
+                segment_node=segment_node,
+                slot_side=slot_side,
+                band_name=slot_band_name,
+            ),
+            _filter_candidates_to_target_strip(
+                _search_tier_segment_candidates(
+                    category=category,
+                    anchor_target_xz=target_point,
+                    segment_node=segment_node,
+                    placement_ctx=placement_ctx,
+                    config=config,
+                ),
+                placement_ctx=placement_ctx,
+                segment_node=segment_node,
+                slot_side=slot_side,
+                band_name=slot_band_name,
+            ),
+            _filter_candidates_to_target_strip(
+                _search_tier_theme_side_candidates(
+                    category=category,
+                    anchor_target_xz=target_point,
+                    placement_ctx=placement_ctx,
+                    theme_segment=theme_segment,
+                    road_segment_graph=road_segment_graph,
+                    slot_side=slot_side,
+                    band_width_m=float(band_width_m),
+                ),
+                placement_ctx=placement_ctx,
+                segment_node=segment_node,
+                slot_side=slot_side,
+                band_name=slot_band_name,
             ),
         )
     candidates: List[Dict[str, object]] = []
@@ -3914,7 +4056,8 @@ def _iter_slot_candidate_groups(
                 placement_ctx,
                 rng,
                 segment_node=segment_node,
-                slot_side=str(getattr(slot, "side", "") or ""),
+                slot_side=slot_side,
+                slot_band_name=slot_band_name,
                 band_width_m=float(band_width_m),
                 anchor_position_xz=None,
             )
@@ -3939,7 +4082,15 @@ def _iter_slot_candidate_groups(
                 "anchor_distance_m": None,
             }
         )
-    return (tuple(candidates),)
+    return (
+        _filter_candidates_to_target_strip(
+            tuple(candidates),
+            placement_ctx=placement_ctx,
+            segment_node=segment_node,
+            slot_side=slot_side,
+            band_name=slot_band_name,
+        ),
+    )
 
 
 def _evaluate_slot_candidate(
@@ -3963,6 +4114,7 @@ def _evaluate_slot_candidate(
     entrance_registry: PlacedAssetRegistry,
     carriageway_boundary: Optional[CarriagewayBoundary],
     entrance_points_xz: Sequence[Tuple[float, float]],
+    segment_node: object | None = None,
 ) -> Tuple[Optional[Dict[str, object]], Optional[str]]:
     point_xz = (
         float(candidate["point_xz"][0]),
@@ -3977,6 +4129,14 @@ def _evaluate_slot_candidate(
         return None, "out_of_sidewalk"
     if not side_matches:
         return None, "side_mismatch"
+    if not _point_matches_slot_band(
+        point_xz,
+        placement_ctx=placement_ctx,
+        segment_node=segment_node,
+        slot_side=str(getattr(slot, "side", "") or ""),
+        band_name=str(getattr(slot, "band_name", "") or ""),
+    ):
+        return None, "out_of_target_strip"
     if not _point_within_theme_segment(point_xz, theme_segment=theme_segment, road_segment_graph=road_segment_graph):
         return None, "out_of_theme_range"
 
@@ -4853,6 +5013,7 @@ def compose_street_scene(
     )
     rows = _inject_curated_virtual_assets(rows, mesh_cache, profile=curated_asset_profile)
     asset_by_id = {row["asset_id"]: row for row in rows}
+    configured_locked_asset_ids = _curated_locked_asset_ids_for_profile(curated_asset_profile)
     locked_asset_ids = _validate_curated_locked_assets(
         asset_by_id=asset_by_id,
         profile=curated_asset_profile,
@@ -4870,6 +5031,11 @@ def compose_street_scene(
     tree_assets_unavailable = not bool(category_to_rows.get("tree"))
 
     available_categories = [category for category, pool in category_to_rows.items() if pool]
+    fallback_blocked_categories = sorted(
+        str(category)
+        for category, asset_id in configured_locked_asset_ids.items()
+        if str(category) not in locked_asset_ids and not category_to_rows.get(str(category), [])
+    )
     if not available_categories:
         raise RuntimeError(
             f"No supported categories found in manifest: {manifest_path}. "
@@ -5119,9 +5285,13 @@ def compose_street_scene(
         zone_solver_results.append(zone_solver_result)
         slot_plans.extend(zone_slots)
         slot_segment_lookup.update(zone_slot_segments)
-        zone_band_by_name = {band.name: band for band in zone_solver_result.resolved_program.bands}
         for slot in zone_slots:
-            slot_band_lookup[str(slot.slot_id)] = zone_band_by_name.get(str(slot.band_name))
+            slot_band_lookup[str(slot.slot_id)] = resolve_band_by_alias(
+                zone_solver_result.resolved_program.bands,
+                band_name=str(getattr(slot, "band_name", "") or ""),
+                side=str(getattr(slot, "side", "") or ""),
+                profile_name=str(zone_config.design_rule_profile),
+            )
         composition_pass_reports.append(dict(zone_composition))
         theme_zone_programs.append(
             {
@@ -5536,6 +5706,7 @@ def compose_street_scene(
             "overlap_blocked": 0,
             "constraint_vetoed": 0,
             "out_of_sidewalk": 0,
+            "out_of_target_strip": 0,
             "out_of_theme_range": 0,
             "side_mismatch": 0,
             "no_candidate_after_search": 0,
@@ -5571,6 +5742,7 @@ def compose_street_scene(
                     entrance_registry=entrance_registry,
                     carriageway_boundary=carriageway_boundary,
                     entrance_points_xz=entrance_points_xz,
+                    segment_node=segment_node,
                 )
                 if blocked_reason is not None:
                     blocked_reason_counts[blocked_reason] = blocked_reason_counts.get(blocked_reason, 0) + 1
@@ -6680,7 +6852,7 @@ def compose_street_scene(
         "locked_asset_ids": dict(locked_asset_ids),
         "locked_asset_selection_counts": dict(locked_asset_selection_counts),
         "locked_asset_counts": dict(locked_asset_selection_counts),
-        "fallback_blocked_categories": sorted(str(category) for category in locked_asset_ids),
+        "fallback_blocked_categories": list(fallback_blocked_categories),
         "asset_lock_fallback_violations": dict(asset_lock_fallback_violations),
         "asset_scale_summary": asset_scale_summary,
         "selected_object_backend": str(object_backend_name),

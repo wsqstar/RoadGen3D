@@ -12,6 +12,12 @@ from .poi_taxonomy import (
     cluster_asset_backed_poi_points,
     extract_poi_points_by_type,
 )
+from .street_band_semantics import (
+    band_name_matches,
+    coerce_band_rule_kinds,
+    detailed_strip_kind_from_band_name,
+    resolve_band_by_alias,
+)
 from .street_priors import CATEGORY_SUBSTITUTIONS, SIDE_PREF
 from .types import (
     BandSolution,
@@ -90,6 +96,19 @@ def _recompute_bands(bands: Sequence[StreetBand]) -> Tuple[StreetBand, ...]:
     return tuple(rebuilt)
 
 
+def _band_width_for_alias(
+    bands: Sequence[StreetBand],
+    *,
+    band_name: str,
+    side: str = "",
+    fallback: float = 0.0,
+) -> float:
+    band = resolve_band_by_alias(bands, band_name=band_name, side=side)
+    if band is None:
+        return float(fallback)
+    return float(getattr(band, "width_m", fallback) or fallback)
+
+
 def _rebuild_program(
     program: StreetProgram,
     *,
@@ -98,20 +117,39 @@ def _rebuild_program(
     requirements: Dict[str, int],
 ) -> StreetProgram:
     rebuilt_bands = _recompute_bands(bands)
-    clear_widths = [float(band.width_m) for band in rebuilt_bands if band.kind == "clear_path"]
-    furnishing_widths = [float(band.width_m) for band in rebuilt_bands if band.kind in {"furnishing", "transit_edge"}]
-    left_clear_width = float(next((band.width_m for band in rebuilt_bands if band.name == "left_clear_path"), program.left_clear_path_width_m))
-    right_clear_width = float(next((band.width_m for band in rebuilt_bands if band.name == "right_clear_path"), program.right_clear_path_width_m))
-    left_furnishing_width = float(next((band.width_m for band in rebuilt_bands if band.name == "left_furnishing"), program.left_furnishing_width_m))
-    right_furnishing_width = float(
-        next(
-            (
-                band.width_m
-                for band in rebuilt_bands
-                if band.name in {"right_furnishing", "right_transit_edge"}
-            ),
-            program.right_furnishing_width_m,
-        )
+    clear_widths = [
+        float(band.width_m)
+        for band in rebuilt_bands
+        if "clear_path" in coerce_band_rule_kinds(band.name, band.kind)
+    ]
+    furnishing_widths = [
+        float(band.width_m)
+        for band in rebuilt_bands
+        if set(coerce_band_rule_kinds(band.name, band.kind)).intersection({"furnishing", "transit_edge"})
+    ]
+    left_clear_width = _band_width_for_alias(
+        rebuilt_bands,
+        band_name="clear_sidewalk",
+        side="left",
+        fallback=program.left_clear_path_width_m,
+    )
+    right_clear_width = _band_width_for_alias(
+        rebuilt_bands,
+        band_name="clear_sidewalk",
+        side="right",
+        fallback=program.right_clear_path_width_m,
+    )
+    left_furnishing_width = _band_width_for_alias(
+        rebuilt_bands,
+        band_name="nearroad_furnishing",
+        side="left",
+        fallback=program.left_furnishing_width_m,
+    )
+    right_furnishing_width = _band_width_for_alias(
+        rebuilt_bands,
+        band_name="nearroad_furnishing",
+        side="right",
+        fallback=program.right_furnishing_width_m,
     )
     carriageway_width = float(next((band.width_m for band in rebuilt_bands if band.kind == "carriageway"), program.road_width_m))
     return StreetProgram(
@@ -560,10 +598,15 @@ def _slot_violates_keepout(slot: LayoutSlotPlan, keepout_rules: Sequence[Dict[st
 
 
 def _band_order(program: StreetProgram) -> Tuple[str, ...]:
-    left = [band.name for band in program.bands if band.side == "left"]
-    center = [band.name for band in program.bands if band.side == "center"]
-    right = [band.name for band in program.bands if band.side == "right"]
-    return tuple(left + center + right)
+    ordered = sorted(
+        program.bands,
+        key=lambda band: (
+            0 if band.side == "left" else 1 if band.side == "center" else 2,
+            -float(band.z_center_m) if band.side == "left" else float(band.z_center_m) if band.side == "right" else 0.0,
+            str(band.name),
+        ),
+    )
+    return tuple(band.name for band in ordered)
 
 
 def _bands_are_adjacent(program: StreetProgram, left_name: str, right_name: str) -> bool:
@@ -623,7 +666,11 @@ def _apply_objective_profile_preferences(
 
 
 def _default_band_order(category: str, bands: Sequence[StreetBand]) -> List[StreetBand]:
-    placeable = [band for band in bands if band.kind in {"furnishing", "transit_edge"}]
+    placeable = [
+        band
+        for band in bands
+        if set(coerce_band_rule_kinds(band.name, band.kind)).intersection({"furnishing", "transit_edge"})
+    ]
     if category in {"bus_stop", "mailbox", "hydrant"}:
         priority = [
             band for band in placeable if band.side == "right" and category in band.allowed_categories
@@ -812,16 +859,18 @@ def _resolve_allowed_bands(
     specific_allowed = band_rules.get(category)
 
     def _band_allowed(band: StreetBand) -> bool:
-        if specific_allowed is not None and band.kind not in specific_allowed:
+        band_rule_kinds = set(coerce_band_rule_kinds(band.name, band.kind))
+        if specific_allowed is not None and not band_rule_kinds.intersection(set(specific_allowed)):
             return False
-        if all_allowed is not None and band.kind not in all_allowed:
+        if all_allowed is not None and not band_rule_kinds.intersection(set(all_allowed)):
             return False
         reserved_band_name = program_reserved_band_categories.get(band.name)
         if reserved_band_name and reserved_band_name != category:
             return False
-        reserved_category = reserved_bands.get(band.kind)
-        if reserved_category and reserved_category != category:
-            return False
+        for band_rule_kind in band_rule_kinds:
+            reserved_category = reserved_bands.get(band_rule_kind)
+            if reserved_category and reserved_category != category:
+                return False
         return True
 
     filtered = [band for band in default_bands if _band_allowed(band)]
@@ -1313,12 +1362,43 @@ def _evaluate_rule(
         allowed = tuple(str(item) for item in (rule.value or ()))
         target_category = str(_rule_parameter(rule, "category", "all"))
         relevant = [slot for slot in slot_plans if target_category == "all" or slot.category == target_category]
-        band_by_name = {band.name: band for band in resolved_program.bands}
-        satisfied = all(band_by_name.get(slot.band_name, StreetBand("", "", "", 0.0, 0.0)).kind in allowed for slot in relevant)
+        satisfied = all(
+            bool(
+                set(
+                    coerce_band_rule_kinds(
+                        str(getattr(resolve_band_by_alias(
+                            resolved_program.bands,
+                            band_name=slot.band_name,
+                            side=getattr(slot, "side", ""),
+                        ), "name", "") or slot.band_name),
+                        str(getattr(resolve_band_by_alias(
+                            resolved_program.bands,
+                            band_name=slot.band_name,
+                            side=getattr(slot, "side", ""),
+                        ), "kind", "") or ""),
+                    )
+                ).intersection(set(allowed))
+            )
+            for slot in relevant
+        )
     elif rule.target == "reserved_band_category":
         band_kind = str(_rule_parameter(rule, "band_kind", ""))
-        band_by_name = {band.name: band for band in resolved_program.bands}
-        relevant = [slot for slot in slot_plans if band_by_name.get(slot.band_name, StreetBand("", "", "", 0.0, 0.0)).kind == band_kind]
+        relevant = [
+            slot
+            for slot in slot_plans
+            if band_kind in coerce_band_rule_kinds(
+                str(getattr(resolve_band_by_alias(
+                    resolved_program.bands,
+                    band_name=slot.band_name,
+                    side=getattr(slot, "side", ""),
+                ), "name", "") or slot.band_name),
+                str(getattr(resolve_band_by_alias(
+                    resolved_program.bands,
+                    band_name=slot.band_name,
+                    side=getattr(slot, "side", ""),
+                ), "kind", "") or ""),
+            )
+        ]
         satisfied = all(slot.category == str(rule.value) for slot in relevant)
     elif rule.target == "total_row_width_budget":
         budget, _active = _row_width_budget(resolved_program, solver_input.constraint_set)

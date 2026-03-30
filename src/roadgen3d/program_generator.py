@@ -13,6 +13,7 @@ import numpy as np
 
 from .poi_taxonomy import asset_category_for_poi
 from .runtime_device import resolve_device_backend, resolve_torch_device
+from .street_band_semantics import resolve_band_by_alias
 from .street_priors import DEFAULT_CATEGORIES
 from .street_program import infer_street_program
 from .spatial_features import (
@@ -124,15 +125,37 @@ def vectorize_program_input(data: ProgramGenerationInput) -> np.ndarray:
 
 
 def _extract_band_widths(program: StreetProgram) -> Tuple[float, float, float, float]:
-    by_name = {band.name: band for band in program.bands}
-    left_furnishing = float(by_name.get("left_furnishing", StreetBand("", "", "", 0.0, 0.0)).width_m)
-    left_clear = float(by_name.get("left_clear_path", StreetBand("", "", "", 0.0, 0.0)).width_m)
-    right_clear = float(by_name.get("right_clear_path", StreetBand("", "", "", 0.0, 0.0)).width_m)
+    left_furnishing = float(
+        getattr(
+            resolve_band_by_alias(program.bands, band_name="nearroad_furnishing", side="left"),
+            "width_m",
+            0.0,
+        )
+        or 0.0
+    )
+    left_clear = float(
+        getattr(
+            resolve_band_by_alias(program.bands, band_name="clear_sidewalk", side="left"),
+            "width_m",
+            0.0,
+        )
+        or 0.0
+    )
+    right_clear = float(
+        getattr(
+            resolve_band_by_alias(program.bands, band_name="clear_sidewalk", side="right"),
+            "width_m",
+            0.0,
+        )
+        or 0.0
+    )
     right_edge = float(
-        by_name.get(
-            "right_transit_edge",
-            by_name.get("right_furnishing", StreetBand("", "", "", 0.0, 0.0)),
-        ).width_m
+        getattr(
+            resolve_band_by_alias(program.bands, band_name="nearroad_furnishing", side="right"),
+            "width_m",
+            0.0,
+        )
+        or 0.0
     )
     return left_furnishing, left_clear, right_clear, right_edge
 
@@ -219,13 +242,13 @@ def _apply_prediction_to_program(base: StreetProgram, prediction: Dict[str, np.n
     updated_bands: List[StreetBand] = []
     for band in base.bands:
         width = float(band.width_m)
-        if band.name == "left_furnishing":
+        if resolve_band_by_alias((band,), band_name="nearroad_furnishing", side="left") is band:
             width = max(0.6, float(band_widths[0]))
-        elif band.name == "left_clear_path":
+        elif resolve_band_by_alias((band,), band_name="clear_sidewalk", side="left") is band:
             width = max(1.5, float(band_widths[1]))
-        elif band.name == "right_clear_path":
+        elif resolve_band_by_alias((band,), band_name="clear_sidewalk", side="right") is band:
             width = max(1.5, float(band_widths[2]))
-        elif band.name in {"right_furnishing", "right_transit_edge"}:
+        elif resolve_band_by_alias((band,), band_name="nearroad_furnishing", side="right") is band:
             width = max(0.6, float(band_widths[3]))
         updated_bands.append(
             StreetBand(
