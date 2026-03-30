@@ -8,6 +8,7 @@ const viewerRoot = fileURLToPath(new URL(".", import.meta.url));
 const repoRoot = path.resolve(viewerRoot, "..", "..");
 const RECENT_LAYOUT_LIMIT = 20;
 const ASSET_MANIFEST_PATH = path.resolve(repoRoot, "data", "real", "real_assets_manifest.jsonl");
+const ASSET_MANIFESTS_DIR = path.resolve(repoRoot, "data", "real");
 const IGNORED_DISCOVERY_DIRS = new Set([
   ".git",
   ".venv",
@@ -593,10 +594,144 @@ function viewerApiPlugin(): Plugin {
           return;
         }
 
+        /* ── Asset Manifest API ─────────────────────────────────────── */
+
+        const isAssetManifestsRoute =
+          requestUrl.pathname === "/api/asset-manifests" ||
+          requestUrl.pathname === "/web-viewer/api/asset-manifests";
+        const isAssetManifestDataRoute =
+          requestUrl.pathname === "/api/asset-manifest" ||
+          requestUrl.pathname === "/web-viewer/api/asset-manifest";
+        const isAssetManifestSaveRoute =
+          requestUrl.pathname === "/api/asset-manifest/save" ||
+          requestUrl.pathname === "/web-viewer/api/asset-manifest/save";
+
+        if (isAssetManifestsRoute) {
+          const manifests: Array<{ name: string; label: string; count: number }> = [];
+          if (fs.existsSync(ASSET_MANIFESTS_DIR)) {
+            const entries = fs.readdirSync(ASSET_MANIFESTS_DIR);
+            for (const entry of entries) {
+              if (!entry.endsWith(".jsonl")) continue;
+              const fullPath = path.join(ASSET_MANIFESTS_DIR, entry);
+              if (!fs.statSync(fullPath).isFile()) continue;
+              const lines = fs.readFileSync(fullPath, "utf-8").split(/\r?\n/);
+              let count = 0;
+              for (const line of lines) {
+                if (line.trim()) count++;
+              }
+              const baseName = entry.replace(/\.jsonl$/, "").replace(/[_-]/g, " ");
+              const label = baseName.charAt(0).toUpperCase() + baseName.slice(1);
+              manifests.push({ name: entry, label, count });
+            }
+          }
+          jsonResponse(res, 200, { manifests });
+          return;
+        }
+
+        if (isAssetManifestDataRoute) {
+          const manifestName = requestUrl.searchParams.get("name") ?? "";
+          if (!manifestName) {
+            jsonResponse(res, 400, { error: "Missing 'name' query parameter." });
+            return;
+          }
+          const manifestPath = path.resolve(ASSET_MANIFESTS_DIR, manifestName);
+          const relative = path.relative(ASSET_MANIFESTS_DIR, manifestPath);
+          if (relative.startsWith("..") || path.isAbsolute(relative)) {
+            jsonResponse(res, 403, { error: "Invalid manifest name." });
+            return;
+          }
+          if (!fs.existsSync(manifestPath)) {
+            jsonResponse(res, 404, { error: `Manifest not found: ${manifestName}` });
+            return;
+          }
+          const lines = fs.readFileSync(manifestPath, "utf-8").split(/\r?\n/);
+          const assets: JsonRecord[] = [];
+          for (const line of lines) {
+            const trimmed = line.trim();
+            if (!trimmed) continue;
+            try {
+              assets.push(JSON.parse(trimmed) as JsonRecord);
+            } catch {
+              continue;
+            }
+          }
+          jsonResponse(res, 200, { assets });
+          return;
+        }
+
+        if (isAssetManifestSaveRoute) {
+          if (req.method !== "POST") {
+            jsonResponse(res, 405, { error: "Method not allowed. Use POST." });
+            return;
+          }
+          const body = await readRequestBody(req);
+          let parsed: { manifest_name?: string; asset_id?: string; updates?: JsonRecord };
+          try {
+            parsed = JSON.parse(body) as typeof parsed;
+          } catch {
+            jsonResponse(res, 400, { error: "Invalid JSON body." });
+            return;
+          }
+          const { manifest_name: mName, asset_id: aId, updates } = parsed;
+          if (!mName || !aId) {
+            jsonResponse(res, 400, { error: "Missing manifest_name or asset_id." });
+            return;
+          }
+          const manifestPath = path.resolve(ASSET_MANIFESTS_DIR, mName);
+          const rel = path.relative(ASSET_MANIFESTS_DIR, manifestPath);
+          if (rel.startsWith("..") || path.isAbsolute(rel)) {
+            jsonResponse(res, 403, { error: "Invalid manifest name." });
+            return;
+          }
+          if (!fs.existsSync(manifestPath)) {
+            jsonResponse(res, 404, { error: `Manifest not found: ${mName}` });
+            return;
+          }
+          const rawLines = fs.readFileSync(manifestPath, "utf-8").split(/\r?\n/);
+          const newLines: string[] = [];
+          let found = false;
+          for (const line of rawLines) {
+            const trimmed = line.trim();
+            if (!trimmed) {
+              newLines.push(line);
+              continue;
+            }
+            try {
+              const record = JSON.parse(trimmed) as JsonRecord;
+              if (String(record.asset_id ?? "") === aId) {
+                const merged = { ...record, ...(updates ?? {}) };
+                newLines.push(JSON.stringify(merged));
+                found = true;
+              } else {
+                newLines.push(trimmed);
+              }
+            } catch {
+              newLines.push(line);
+            }
+          }
+          if (!found) {
+            jsonResponse(res, 404, { error: `Asset not found: ${aId}` });
+            return;
+          }
+          fs.writeFileSync(manifestPath, newLines.join("\n"), "utf-8");
+          cachedAssetDescriptionIndex = null;
+          jsonResponse(res, 200, { ok: true });
+          return;
+        }
+
         next();
       });
     },
   };
+}
+
+function readRequestBody(req: any): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const chunks: Buffer[] = [];
+    req.on("data", (chunk: Buffer) => chunks.push(chunk));
+    req.on("end", () => resolve(Buffer.concat(chunks).toString("utf-8")));
+    req.on("error", reject);
+  });
 }
 
 export default defineConfig({

@@ -6664,6 +6664,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
           </p>
         </div>
         <div class="scene-page-actions">
+          <button id="scene-page-asset-editor" class="viewer-nav-button" type="button">Asset Editor</button>
           <button id="scene-page-back" class="viewer-nav-button" type="button">Back to Viewer</button>
         </div>
       </div>

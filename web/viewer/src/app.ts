@@ -729,6 +729,13 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
           >
             Annotation
           </button>
+          <button
+            id="viewer-asset-editor-link"
+            class="viewer-nav-button viewer-nav-button-secondary"
+            type="button"
+          >
+            Asset Editor
+          </button>
           <button id="viewer-settings-toggle" class="viewer-settings-toggle" type="button" aria-expanded="false">
             Settings
           </button>
@@ -817,6 +824,7 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
   const layoutSelectEl = requireElement<HTMLSelectElement>(root, "#layout-select");
   const selectEl = requireElement<HTMLSelectElement>(root, "#scene-select");
   const sceneGraphLinkEl = requireElement<HTMLButtonElement>(root, "#viewer-scene-graph-link");
+  const assetEditorLinkEl = requireElement<HTMLButtonElement>(root, "#viewer-asset-editor-link");
   const settingsToggleEl = requireElement<HTMLButtonElement>(root, "#viewer-settings-toggle");
   const settingsPanelEl = requireElement<HTMLElement>(root, "#viewer-settings-panel");
   const settingsCloseEl = requireElement<HTMLButtonElement>(root, "#viewer-settings-close");
@@ -1555,6 +1563,14 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
     "click",
     () => {
       window.location.hash = "#scene-graph";
+    },
+    { signal },
+  );
+
+  assetEditorLinkEl.addEventListener(
+    "click",
+    () => {
+      window.location.hash = "#asset-editor";
     },
     { signal },
   );

@@ -2,6 +2,7 @@ import "./style.css";
 
 import { mountViewer } from "./app";
 import { mountSceneGraphPage } from "./scene-graph";
+import { mountAssetEditor } from "./asset-editor";
 
 const appRoot = document.querySelector<HTMLElement>("#app");
 
@@ -11,13 +12,17 @@ if (!appRoot) {
 
 const root = appRoot;
 
+type Route = "viewer" | "scene-graph" | "asset-editor";
 type Teardown = () => void;
 
 let currentTeardown: Teardown | undefined;
 let currentRenderId = 0;
 
-function resolveRoute(): "viewer" | "scene-graph" {
-  return window.location.hash === "#scene-graph" ? "scene-graph" : "viewer";
+function resolveRoute(): Route {
+  const hash = window.location.hash;
+  if (hash === "#scene-graph") return "scene-graph";
+  if (hash === "#asset-editor") return "asset-editor";
+  return "viewer";
 }
 
 async function renderRoute(): Promise<void> {
@@ -27,7 +32,18 @@ async function renderRoute(): Promise<void> {
   root.innerHTML = "";
 
   const route = resolveRoute();
-  const teardown = route === "scene-graph" ? mountSceneGraphPage(root) : await mountViewer(root);
+  let teardown: Teardown;
+  switch (route) {
+    case "scene-graph":
+      teardown = mountSceneGraphPage(root);
+      break;
+    case "asset-editor":
+      teardown = mountAssetEditor(root);
+      break;
+    default:
+      teardown = await mountViewer(root);
+      break;
+  }
 
   if (renderId !== currentRenderId) {
     teardown();
