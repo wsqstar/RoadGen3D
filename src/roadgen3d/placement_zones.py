@@ -726,6 +726,238 @@ def _corner_connector_polyline(
     }
 
 
+def _normalize_vector(vector: Tuple[float, float]) -> Tuple[float, float] | None:
+    length = math.hypot(float(vector[0]), float(vector[1]))
+    if length <= 1e-6:
+        return None
+    return (float(vector[0]) / length, float(vector[1]) / length)
+
+
+def _midpoint(point_a: Tuple[float, float], point_b: Tuple[float, float]) -> Tuple[float, float]:
+    return (
+        (float(point_a[0]) + float(point_b[0])) * 0.5,
+        (float(point_a[1]) + float(point_b[1])) * 0.5,
+    )
+
+
+def _bisector_ray_intersection(
+    origin: Tuple[float, float],
+    bisector_direction: Tuple[float, float],
+    point: Tuple[float, float],
+    tangent: Tuple[float, float],
+) -> Tuple[float, float] | None:
+    hit = _line_intersection(origin, bisector_direction, point, tangent)
+    if hit is None:
+        return None
+    projection = (
+        (float(hit[0]) - float(origin[0])) * float(bisector_direction[0])
+        + (float(hit[1]) - float(origin[1])) * float(bisector_direction[1])
+    )
+    return hit if projection >= -1e-6 else None
+
+
+def _quadrant_spine(
+    *,
+    corner_center: Tuple[float, float],
+    arm: Dict[str, Any],
+    next_arm: Dict[str, Any],
+) -> Dict[str, Any] | None:
+    selected_kind = None
+    connector_a = None
+    connector_b = None
+    for kind in ("clear_sidewalk", "nearroad_furnishing", "frontage_reserve"):
+        candidate_a = _corner_strip_offset_range(arm, corner_center, kind)
+        candidate_b = _corner_strip_offset_range(next_arm, corner_center, kind)
+        if candidate_a is None or candidate_b is None:
+            continue
+        selected_kind = kind
+        connector_a = candidate_a
+        connector_b = candidate_b
+        break
+    if connector_a is None or connector_b is None or selected_kind is None:
+        return None
+    _zone_a, center_offset_a, _inner_offset_a, _outer_offset_a = connector_a
+    _zone_b, center_offset_b, _inner_offset_b, _outer_offset_b = connector_b
+    boundary_center_a = tuple(float(value) for value in arm["split_boundary_center"])
+    boundary_center_b = tuple(float(value) for value in next_arm["split_boundary_center"])
+    normal_a = tuple(float(value) for value in arm["normal"])
+    normal_b = tuple(float(value) for value in next_arm["normal"])
+    tangent_a = tuple(float(value) for value in arm["tangent"])
+    tangent_b = tuple(float(value) for value in next_arm["tangent"])
+    start_point = _point_on_boundary_with_offset(boundary_center_a, normal_a, center_offset_a)
+    end_point = _point_on_boundary_with_offset(boundary_center_b, normal_b, center_offset_b)
+    bisector_direction = (
+        _normalize_vector((float(tangent_a[0]) + float(tangent_b[0]), float(tangent_a[1]) + float(tangent_b[1])))
+        or _normalize_vector(
+            (
+                (float(start_point[0]) + float(end_point[0])) * 0.5 - float(corner_center[0]),
+                (float(start_point[1]) + float(end_point[1])) * 0.5 - float(corner_center[1]),
+            )
+        )
+        or (1.0, 0.0)
+    )
+    hit_a = _bisector_ray_intersection(corner_center, bisector_direction, start_point, tangent_a)
+    hit_b = _bisector_ray_intersection(corner_center, bisector_direction, end_point, tangent_b)
+    join_point = hit_a if hit_b is None else hit_b if hit_a is None else _midpoint(hit_a, hit_b)
+    if join_point is None:
+        join_point = _connector_join_point(start_point, tangent_a, end_point, tangent_b)
+    return {
+        "canonical_kind": selected_kind,
+        "points": [start_point, join_point, end_point],
+    }
+
+
+def _offset_point_along_normal(
+    point: Tuple[float, float],
+    normal: Tuple[float, float],
+    offset_m: float,
+) -> Tuple[float, float]:
+    return (
+        float(point[0]) + float(normal[0]) * float(offset_m),
+        float(point[1]) + float(normal[1]) * float(offset_m),
+    )
+
+
+def _limited_miter_join_point(
+    point: Tuple[float, float],
+    prev_normal: Tuple[float, float],
+    next_normal: Tuple[float, float],
+    offset_m: float,
+    max_join_distance: float,
+) -> Tuple[float, float] | None:
+    bisector = _normalize_vector(
+        (float(prev_normal[0]) + float(next_normal[0]), float(prev_normal[1]) + float(next_normal[1]))
+    )
+    if bisector is None:
+        return None
+    projection = float(bisector[0]) * float(prev_normal[0]) + float(bisector[1]) * float(prev_normal[1])
+    if abs(projection) <= 1e-6:
+        return None
+    raw_miter_length = float(offset_m) / projection
+    if not math.isfinite(raw_miter_length):
+        return None
+    clamped_miter_length = max(min(raw_miter_length, float(max_join_distance)), -float(max_join_distance))
+    return (
+        float(point[0]) + float(bisector[0]) * clamped_miter_length,
+        float(point[1]) + float(bisector[1]) * clamped_miter_length,
+    )
+
+
+def _offset_polyline(
+    points: Sequence[Tuple[float, float]],
+    offset_m: float,
+) -> List[Tuple[float, float]]:
+    if abs(float(offset_m)) <= 1e-6 or len(points) < 2:
+        return [(float(point[0]), float(point[1])) for point in points]
+    segments: List[Dict[str, Any]] = []
+    for index in range(len(points) - 1):
+        start = points[index]
+        end = points[index + 1]
+        dx = float(end[0]) - float(start[0])
+        dy = float(end[1]) - float(start[1])
+        length = math.hypot(dx, dy)
+        if length <= 1e-6:
+            continue
+        tangent = (dx / length, dy / length)
+        normal = (dy / length, -dx / length)
+        segments.append(
+            {
+                "start_index": index,
+                "end_index": index + 1,
+                "tangent": tangent,
+                "normal": normal,
+                "offset_start": _offset_point_along_normal(start, normal, offset_m),
+                "offset_end": _offset_point_along_normal(end, normal, offset_m),
+            }
+        )
+    if not segments:
+        return [(float(point[0]), float(point[1])) for point in points]
+    previous_segment_indices = [-1] * len(points)
+    next_segment_indices = [-1] * len(points)
+    previous_cursor = 0
+    previous_segment_index = -1
+    for point_index in range(len(points)):
+        while previous_cursor < len(segments) and int(segments[previous_cursor]["end_index"]) <= point_index:
+            previous_segment_index = previous_cursor
+            previous_cursor += 1
+        previous_segment_indices[point_index] = previous_segment_index
+    next_cursor = 0
+    for point_index in range(len(points)):
+        while next_cursor < len(segments) and int(segments[next_cursor]["start_index"]) < point_index:
+            next_cursor += 1
+        next_segment_indices[point_index] = next_cursor if next_cursor < len(segments) else -1
+    first_segment = segments[0]
+    last_segment = segments[-1]
+    max_join_distance = abs(float(offset_m)) * 4.0
+    offset_points: List[Tuple[float, float]] = []
+    for index, point in enumerate(points):
+        if index == 0:
+            offset_points.append(tuple(first_segment["offset_start"]))
+            continue
+        if index == len(points) - 1:
+            offset_points.append(tuple(last_segment["offset_end"]))
+            continue
+        previous_index = previous_segment_indices[index]
+        next_index = next_segment_indices[index]
+        if previous_index < 0 and next_index < 0:
+            offset_points.append((float(point[0]), float(point[1])))
+            continue
+        if previous_index < 0:
+            offset_points.append(_offset_point_along_normal(point, tuple(segments[next_index]["normal"]), offset_m))
+            continue
+        if next_index < 0:
+            offset_points.append(_offset_point_along_normal(point, tuple(segments[previous_index]["normal"]), offset_m))
+            continue
+        previous_segment = segments[previous_index]
+        next_segment = segments[next_index]
+        if previous_index == next_index:
+            offset_points.append(_offset_point_along_normal(point, tuple(previous_segment["normal"]), offset_m))
+            continue
+        previous_offset_point = _offset_point_along_normal(point, tuple(previous_segment["normal"]), offset_m)
+        next_offset_point = _offset_point_along_normal(point, tuple(next_segment["normal"]), offset_m)
+        join_point = _line_intersection(
+            previous_offset_point,
+            tuple(previous_segment["tangent"]),
+            next_offset_point,
+            tuple(next_segment["tangent"]),
+        )
+        if join_point is not None and _distance(join_point, point) <= max_join_distance + 1e-6:
+            offset_points.append(join_point)
+            continue
+        limited_join = _limited_miter_join_point(
+            point,
+            tuple(previous_segment["normal"]),
+            tuple(next_segment["normal"]),
+            offset_m,
+            max_join_distance,
+        )
+        offset_points.append(limited_join or previous_offset_point)
+    return offset_points
+
+
+def _polyline_from_shared_spine(
+    *,
+    shared_spine_points: Sequence[Tuple[float, float]],
+    start_point: Tuple[float, float],
+    end_point: Tuple[float, float],
+    offset_delta_m: float,
+) -> List[Tuple[float, float]]:
+    derived_points = (
+        [(float(point[0]), float(point[1])) for point in shared_spine_points]
+        if abs(float(offset_delta_m)) <= 1e-6
+        else _offset_polyline(shared_spine_points, offset_delta_m)
+    )
+    if len(derived_points) < 3:
+        derived_points = [
+            (float(start_point[0]), float(start_point[1])),
+            _midpoint(start_point, end_point),
+            (float(end_point[0]), float(end_point[1])),
+        ]
+    derived_points[0] = (float(start_point[0]), float(start_point[1]))
+    derived_points[-1] = (float(end_point[0]), float(end_point[1]))
+    return derived_points
+
+
 def _build_explicit_graph_junction_geometries(
     roads: Sequence[Any],
     *,
@@ -957,6 +1189,7 @@ def _build_explicit_graph_junction_geometries(
         sidewalk_corner_patches = []
         nearroad_corner_patches = []
         frontage_corner_patches = []
+        quadrant_spines = []
         sidewalk_corner_polylines = []
         nearroad_corner_polylines = []
         frontage_corner_polylines = []
@@ -971,6 +1204,8 @@ def _build_explicit_graph_junction_geometries(
             if sweep <= 5.0 or sweep >= 175.0:
                 continue
             trim_outside_corner = _should_trim_outside_corner(kind, sweep)
+            quadrant_id = f"{junction.junction_id}_{'quadrant' if kind == 'cross_junction' else 'corner'}_{arm_index:02d}"
+            spine_id = f"{quadrant_id}_spine"
             corner_center = _line_intersection(
                 tuple(float(value) for value in arm["split_boundary_center"]),
                 tuple(float(value) for value in arm["normal"]),
@@ -979,43 +1214,166 @@ def _build_explicit_graph_junction_geometries(
             )
             if corner_center is None:
                 continue
-            if kind == "cross_junction":
-                nearroad_polyline = _corner_connector_polyline(
-                    corner_center=corner_center,
-                    arm=arm,
-                    next_arm=next_arm,
-                    kind="nearroad_furnishing",
+            shared_spine = _quadrant_spine(corner_center=corner_center, arm=arm, next_arm=next_arm) if kind == "cross_junction" else None
+            shared_spine_points = list(shared_spine.get("points", [])) if shared_spine is not None else []
+            canonical_kind = str(shared_spine.get("canonical_kind", "clear_sidewalk") or "clear_sidewalk") if shared_spine is not None else "clear_sidewalk"
+            canonical_offsets_a = (
+                _corner_strip_offset_range(arm, corner_center, canonical_kind) if shared_spine is not None else None
+            )
+            canonical_offsets_b = (
+                _corner_strip_offset_range(next_arm, corner_center, canonical_kind) if shared_spine is not None else None
+            )
+            if shared_spine is not None:
+                quadrant_spines.append(
+                    {
+                        "spine_id": spine_id,
+                        "quadrant_id": quadrant_id,
+                        "road_a_id": int(arm["road_id"]),
+                        "road_b_id": int(next_arm["road_id"]),
+                        "centerline_a_id": str(arm.get("centerline_id", "") or ""),
+                        "centerline_b_id": str(next_arm.get("centerline_id", "") or ""),
+                        "points_xy": [
+                            [round(float(point[0]), 3), round(float(point[1]), 3)]
+                            for point in shared_spine_points
+                        ],
+                    }
                 )
+            if kind == "cross_junction":
+                nearroad_polyline = None
+                nearroad_offsets_a = _corner_strip_offset_range(arm, corner_center, "nearroad_furnishing")
+                nearroad_offsets_b = _corner_strip_offset_range(next_arm, corner_center, "nearroad_furnishing")
+                if (
+                    shared_spine is not None
+                    and canonical_offsets_a is not None
+                    and canonical_offsets_b is not None
+                    and nearroad_offsets_a is not None
+                    and nearroad_offsets_b is not None
+                ):
+                    nearroad_start = _point_on_boundary_with_offset(
+                        tuple(float(value) for value in arm["split_boundary_center"]),
+                        tuple(float(value) for value in arm["normal"]),
+                        float(nearroad_offsets_a[1]),
+                    )
+                    nearroad_end = _point_on_boundary_with_offset(
+                        tuple(float(value) for value in next_arm["split_boundary_center"]),
+                        tuple(float(value) for value in next_arm["normal"]),
+                        float(nearroad_offsets_b[1]),
+                    )
+                    nearroad_points = _polyline_from_shared_spine(
+                        shared_spine_points=shared_spine_points,
+                        start_point=nearroad_start,
+                        end_point=nearroad_end,
+                        offset_delta_m=((float(nearroad_offsets_a[1]) - float(canonical_offsets_a[1])) + (float(nearroad_offsets_b[1]) - float(canonical_offsets_b[1]))) * 0.5,
+                    )
+                    nearroad_polyline = {
+                        "points_xy": [
+                            [round(float(point[0]), 3), round(float(point[1]), 3)]
+                            for point in nearroad_points
+                        ],
+                        "width_m": round(
+                            max(
+                                (abs(float(nearroad_offsets_a[3]) - float(nearroad_offsets_a[2])) + abs(float(nearroad_offsets_b[3]) - float(nearroad_offsets_b[2]))) * 0.5,
+                                0.05,
+                            ),
+                            3,
+                        ),
+                    }
                 if nearroad_polyline is not None:
                     nearroad_corner_polylines.append(
                         {
                             "polyline_id": f"{junction.junction_id}_nearroad_{arm_index:02d}",
+                            "quadrant_id": quadrant_id,
+                            "spine_id": spine_id,
                             **nearroad_polyline,
                         }
                     )
-                sidewalk_polyline = _corner_connector_polyline(
-                    corner_center=corner_center,
-                    arm=arm,
-                    next_arm=next_arm,
-                    kind="clear_sidewalk",
-                )
+                sidewalk_polyline = None
+                sidewalk_offsets_a = _corner_strip_offset_range(arm, corner_center, "clear_sidewalk")
+                sidewalk_offsets_b = _corner_strip_offset_range(next_arm, corner_center, "clear_sidewalk")
+                if sidewalk_offsets_a is not None and sidewalk_offsets_b is not None and shared_spine is not None:
+                    sidewalk_start = _point_on_boundary_with_offset(
+                        tuple(float(value) for value in arm["split_boundary_center"]),
+                        tuple(float(value) for value in arm["normal"]),
+                        float(sidewalk_offsets_a[1]),
+                    )
+                    sidewalk_end = _point_on_boundary_with_offset(
+                        tuple(float(value) for value in next_arm["split_boundary_center"]),
+                        tuple(float(value) for value in next_arm["normal"]),
+                        float(sidewalk_offsets_b[1]),
+                    )
+                    sidewalk_points = _polyline_from_shared_spine(
+                        shared_spine_points=shared_spine_points,
+                        start_point=sidewalk_start,
+                        end_point=sidewalk_end,
+                        offset_delta_m=((float(sidewalk_offsets_a[1]) - float(canonical_offsets_a[1])) + (float(sidewalk_offsets_b[1]) - float(canonical_offsets_b[1]))) * 0.5 if canonical_offsets_a is not None and canonical_offsets_b is not None else 0.0,
+                    )
+                    sidewalk_polyline = {
+                        "points_xy": [
+                            [round(float(point[0]), 3), round(float(point[1]), 3)]
+                            for point in sidewalk_points
+                        ],
+                        "width_m": round(
+                            max(
+                                (abs(float(sidewalk_offsets_a[3]) - float(sidewalk_offsets_a[2])) + abs(float(sidewalk_offsets_b[3]) - float(sidewalk_offsets_b[2]))) * 0.5,
+                                0.05,
+                            ),
+                            3,
+                        ),
+                    }
                 if sidewalk_polyline is not None:
                     sidewalk_corner_polylines.append(
                         {
                             "polyline_id": f"{junction.junction_id}_sidewalk_{arm_index:02d}",
+                            "quadrant_id": quadrant_id,
+                            "spine_id": spine_id,
                             **sidewalk_polyline,
                         }
                     )
-                frontage_polyline = _corner_connector_polyline(
-                    corner_center=corner_center,
-                    arm=arm,
-                    next_arm=next_arm,
-                    kind="frontage_reserve",
-                )
+                frontage_polyline = None
+                frontage_offsets_a = _corner_strip_offset_range(arm, corner_center, "frontage_reserve")
+                frontage_offsets_b = _corner_strip_offset_range(next_arm, corner_center, "frontage_reserve")
+                if (
+                    shared_spine is not None
+                    and canonical_offsets_a is not None
+                    and canonical_offsets_b is not None
+                    and frontage_offsets_a is not None
+                    and frontage_offsets_b is not None
+                ):
+                    frontage_start = _point_on_boundary_with_offset(
+                        tuple(float(value) for value in arm["split_boundary_center"]),
+                        tuple(float(value) for value in arm["normal"]),
+                        float(frontage_offsets_a[1]),
+                    )
+                    frontage_end = _point_on_boundary_with_offset(
+                        tuple(float(value) for value in next_arm["split_boundary_center"]),
+                        tuple(float(value) for value in next_arm["normal"]),
+                        float(frontage_offsets_b[1]),
+                    )
+                    frontage_points = _polyline_from_shared_spine(
+                        shared_spine_points=shared_spine_points,
+                        start_point=frontage_start,
+                        end_point=frontage_end,
+                        offset_delta_m=((float(frontage_offsets_a[1]) - float(canonical_offsets_a[1])) + (float(frontage_offsets_b[1]) - float(canonical_offsets_b[1]))) * 0.5,
+                    )
+                    frontage_polyline = {
+                        "points_xy": [
+                            [round(float(point[0]), 3), round(float(point[1]), 3)]
+                            for point in frontage_points
+                        ],
+                        "width_m": round(
+                            max(
+                                (abs(float(frontage_offsets_a[3]) - float(frontage_offsets_a[2])) + abs(float(frontage_offsets_b[3]) - float(frontage_offsets_b[2]))) * 0.5,
+                                0.05,
+                            ),
+                            3,
+                        ),
+                    }
                 if frontage_polyline is not None:
                     frontage_corner_polylines.append(
                         {
                             "polyline_id": f"{junction.junction_id}_frontage_{arm_index:02d}",
+                            "quadrant_id": quadrant_id,
+                            "spine_id": spine_id,
                             **frontage_polyline,
                         }
                     )
@@ -1086,6 +1444,7 @@ def _build_explicit_graph_junction_geometries(
             "sidewalk_trim_zone": _merge_polygon_geometries(sidewalk_trim_polygons, aoi_polygon=aoi_polygon),
         }
         if kind == "cross_junction":
+            junction_geometry["quadrant_spines"] = quadrant_spines
             junction_geometry["sidewalk_corner_polylines"] = sidewalk_corner_polylines
             junction_geometry["nearroad_corner_polylines"] = nearroad_corner_polylines
             junction_geometry["frontage_corner_polylines"] = frontage_corner_polylines
@@ -1355,6 +1714,7 @@ def build_junction_geometries(
         sidewalk_corner_patches = []
         nearroad_corner_patches = []
         frontage_corner_patches = []
+        quadrant_spines = []
         sidewalk_corner_polylines = []
         nearroad_corner_polylines = []
         frontage_corner_polylines = []
@@ -1369,6 +1729,8 @@ def build_junction_geometries(
             if sweep <= 5.0 or sweep >= 175.0:
                 continue
             trim_outside_corner = _should_trim_outside_corner(kind, sweep)
+            quadrant_id = f"junction_{index:02d}_{'quadrant' if kind == 'cross_junction' else 'corner'}_{arm_index:02d}"
+            spine_id = f"{quadrant_id}_spine"
             corner_center = _line_intersection(
                 tuple(float(value) for value in arm["split_boundary_center"]),
                 tuple(float(value) for value in arm["normal"]),
@@ -1377,43 +1739,166 @@ def build_junction_geometries(
             )
             if corner_center is None:
                 continue
-            if kind == "cross_junction":
-                nearroad_polyline = _corner_connector_polyline(
-                    corner_center=corner_center,
-                    arm=arm,
-                    next_arm=next_arm,
-                    kind="nearroad_furnishing",
+            shared_spine = _quadrant_spine(corner_center=corner_center, arm=arm, next_arm=next_arm) if kind == "cross_junction" else None
+            shared_spine_points = list(shared_spine.get("points", [])) if shared_spine is not None else []
+            canonical_kind = str(shared_spine.get("canonical_kind", "clear_sidewalk") or "clear_sidewalk") if shared_spine is not None else "clear_sidewalk"
+            canonical_offsets_a = (
+                _corner_strip_offset_range(arm, corner_center, canonical_kind) if shared_spine is not None else None
+            )
+            canonical_offsets_b = (
+                _corner_strip_offset_range(next_arm, corner_center, canonical_kind) if shared_spine is not None else None
+            )
+            if shared_spine is not None:
+                quadrant_spines.append(
+                    {
+                        "spine_id": spine_id,
+                        "quadrant_id": quadrant_id,
+                        "road_a_id": int(arm["road_id"]),
+                        "road_b_id": int(next_arm["road_id"]),
+                        "centerline_a_id": str(arm.get("centerline_id", "") or ""),
+                        "centerline_b_id": str(next_arm.get("centerline_id", "") or ""),
+                        "points_xy": [
+                            [round(float(point[0]), 3), round(float(point[1]), 3)]
+                            for point in shared_spine_points
+                        ],
+                    }
                 )
+            if kind == "cross_junction":
+                nearroad_polyline = None
+                nearroad_offsets_a = _corner_strip_offset_range(arm, corner_center, "nearroad_furnishing")
+                nearroad_offsets_b = _corner_strip_offset_range(next_arm, corner_center, "nearroad_furnishing")
+                if (
+                    shared_spine is not None
+                    and canonical_offsets_a is not None
+                    and canonical_offsets_b is not None
+                    and nearroad_offsets_a is not None
+                    and nearroad_offsets_b is not None
+                ):
+                    nearroad_start = _point_on_boundary_with_offset(
+                        tuple(float(value) for value in arm["split_boundary_center"]),
+                        tuple(float(value) for value in arm["normal"]),
+                        float(nearroad_offsets_a[1]),
+                    )
+                    nearroad_end = _point_on_boundary_with_offset(
+                        tuple(float(value) for value in next_arm["split_boundary_center"]),
+                        tuple(float(value) for value in next_arm["normal"]),
+                        float(nearroad_offsets_b[1]),
+                    )
+                    nearroad_points = _polyline_from_shared_spine(
+                        shared_spine_points=shared_spine_points,
+                        start_point=nearroad_start,
+                        end_point=nearroad_end,
+                        offset_delta_m=((float(nearroad_offsets_a[1]) - float(canonical_offsets_a[1])) + (float(nearroad_offsets_b[1]) - float(canonical_offsets_b[1]))) * 0.5,
+                    )
+                    nearroad_polyline = {
+                        "points_xy": [
+                            [round(float(point[0]), 3), round(float(point[1]), 3)]
+                            for point in nearroad_points
+                        ],
+                        "width_m": round(
+                            max(
+                                (abs(float(nearroad_offsets_a[3]) - float(nearroad_offsets_a[2])) + abs(float(nearroad_offsets_b[3]) - float(nearroad_offsets_b[2]))) * 0.5,
+                                0.05,
+                            ),
+                            3,
+                        ),
+                    }
                 if nearroad_polyline is not None:
                     nearroad_corner_polylines.append(
                         {
                             "polyline_id": f"junction_{index:02d}_nearroad_{arm_index:02d}",
+                            "quadrant_id": quadrant_id,
+                            "spine_id": spine_id,
                             **nearroad_polyline,
                         }
                     )
-                sidewalk_polyline = _corner_connector_polyline(
-                    corner_center=corner_center,
-                    arm=arm,
-                    next_arm=next_arm,
-                    kind="clear_sidewalk",
-                )
+                sidewalk_polyline = None
+                sidewalk_offsets_a = _corner_strip_offset_range(arm, corner_center, "clear_sidewalk")
+                sidewalk_offsets_b = _corner_strip_offset_range(next_arm, corner_center, "clear_sidewalk")
+                if sidewalk_offsets_a is not None and sidewalk_offsets_b is not None and shared_spine is not None:
+                    sidewalk_start = _point_on_boundary_with_offset(
+                        tuple(float(value) for value in arm["split_boundary_center"]),
+                        tuple(float(value) for value in arm["normal"]),
+                        float(sidewalk_offsets_a[1]),
+                    )
+                    sidewalk_end = _point_on_boundary_with_offset(
+                        tuple(float(value) for value in next_arm["split_boundary_center"]),
+                        tuple(float(value) for value in next_arm["normal"]),
+                        float(sidewalk_offsets_b[1]),
+                    )
+                    sidewalk_points = _polyline_from_shared_spine(
+                        shared_spine_points=shared_spine_points,
+                        start_point=sidewalk_start,
+                        end_point=sidewalk_end,
+                        offset_delta_m=((float(sidewalk_offsets_a[1]) - float(canonical_offsets_a[1])) + (float(sidewalk_offsets_b[1]) - float(canonical_offsets_b[1]))) * 0.5 if canonical_offsets_a is not None and canonical_offsets_b is not None else 0.0,
+                    )
+                    sidewalk_polyline = {
+                        "points_xy": [
+                            [round(float(point[0]), 3), round(float(point[1]), 3)]
+                            for point in sidewalk_points
+                        ],
+                        "width_m": round(
+                            max(
+                                (abs(float(sidewalk_offsets_a[3]) - float(sidewalk_offsets_a[2])) + abs(float(sidewalk_offsets_b[3]) - float(sidewalk_offsets_b[2]))) * 0.5,
+                                0.05,
+                            ),
+                            3,
+                        ),
+                    }
                 if sidewalk_polyline is not None:
                     sidewalk_corner_polylines.append(
                         {
                             "polyline_id": f"junction_{index:02d}_sidewalk_{arm_index:02d}",
+                            "quadrant_id": quadrant_id,
+                            "spine_id": spine_id,
                             **sidewalk_polyline,
                         }
                     )
-                frontage_polyline = _corner_connector_polyline(
-                    corner_center=corner_center,
-                    arm=arm,
-                    next_arm=next_arm,
-                    kind="frontage_reserve",
-                )
+                frontage_polyline = None
+                frontage_offsets_a = _corner_strip_offset_range(arm, corner_center, "frontage_reserve")
+                frontage_offsets_b = _corner_strip_offset_range(next_arm, corner_center, "frontage_reserve")
+                if (
+                    shared_spine is not None
+                    and canonical_offsets_a is not None
+                    and canonical_offsets_b is not None
+                    and frontage_offsets_a is not None
+                    and frontage_offsets_b is not None
+                ):
+                    frontage_start = _point_on_boundary_with_offset(
+                        tuple(float(value) for value in arm["split_boundary_center"]),
+                        tuple(float(value) for value in arm["normal"]),
+                        float(frontage_offsets_a[1]),
+                    )
+                    frontage_end = _point_on_boundary_with_offset(
+                        tuple(float(value) for value in next_arm["split_boundary_center"]),
+                        tuple(float(value) for value in next_arm["normal"]),
+                        float(frontage_offsets_b[1]),
+                    )
+                    frontage_points = _polyline_from_shared_spine(
+                        shared_spine_points=shared_spine_points,
+                        start_point=frontage_start,
+                        end_point=frontage_end,
+                        offset_delta_m=((float(frontage_offsets_a[1]) - float(canonical_offsets_a[1])) + (float(frontage_offsets_b[1]) - float(canonical_offsets_b[1]))) * 0.5,
+                    )
+                    frontage_polyline = {
+                        "points_xy": [
+                            [round(float(point[0]), 3), round(float(point[1]), 3)]
+                            for point in frontage_points
+                        ],
+                        "width_m": round(
+                            max(
+                                (abs(float(frontage_offsets_a[3]) - float(frontage_offsets_a[2])) + abs(float(frontage_offsets_b[3]) - float(frontage_offsets_b[2]))) * 0.5,
+                                0.05,
+                            ),
+                            3,
+                        ),
+                    }
                 if frontage_polyline is not None:
                     frontage_corner_polylines.append(
                         {
                             "polyline_id": f"junction_{index:02d}_frontage_{arm_index:02d}",
+                            "quadrant_id": quadrant_id,
+                            "spine_id": spine_id,
                             **frontage_polyline,
                         }
                     )
@@ -1480,6 +1965,7 @@ def build_junction_geometries(
             "sidewalk_trim_zone": _merge_polygon_geometries(sidewalk_trim_polygons, aoi_polygon=aoi_polygon),
         }
         if kind == "cross_junction":
+            junction_geometry["quadrant_spines"] = quadrant_spines
             junction_geometry["sidewalk_corner_polylines"] = sidewalk_corner_polylines
             junction_geometry["nearroad_corner_polylines"] = nearroad_corner_polylines
             junction_geometry["frontage_corner_polylines"] = frontage_corner_polylines

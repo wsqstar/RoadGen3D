@@ -325,12 +325,19 @@ def test_reference_annotation_scene_bridge_builds_cross_corner_polylines_for_der
     assert "sidewalk_corner_patches" not in junction_geometry
     assert "nearroad_corner_patches" not in junction_geometry
     assert "frontage_corner_patches" not in junction_geometry
+    assert len(junction_geometry["quadrant_spines"]) == 4
+    assert all(len(spine["points_xy"]) == 3 for spine in junction_geometry["quadrant_spines"])
     assert len(junction_geometry["sidewalk_corner_polylines"]) == 4
     assert len(junction_geometry["nearroad_corner_polylines"]) == 4
     assert len(junction_geometry["frontage_corner_polylines"]) == 4
     assert all(len(polyline["points_xy"]) == 3 for polyline in junction_geometry["sidewalk_corner_polylines"])
     assert all(len(polyline["points_xy"]) == 3 for polyline in junction_geometry["nearroad_corner_polylines"])
     assert all(len(polyline["points_xy"]) == 3 for polyline in junction_geometry["frontage_corner_polylines"])
+    assert all(polyline["quadrant_id"] for polyline in junction_geometry["sidewalk_corner_polylines"])
+    assert all(polyline["spine_id"] for polyline in junction_geometry["sidewalk_corner_polylines"])
+    assert {polyline["spine_id"] for polyline in junction_geometry["sidewalk_corner_polylines"]} == {
+        spine["spine_id"] for spine in junction_geometry["quadrant_spines"]
+    }
 
 
 def test_osm_geometry_serialization_and_scene_include_junction_patches():
@@ -375,20 +382,26 @@ def test_cross_junction_serialization_and_scene_include_corner_polylines():
     junction_geometry = bridge.placement_context.junction_geometries[0]
     assert junction_geometry["kind"] == "cross_junction"
     assert "sidewalk_corner_patches" not in junction_geometry
+    assert len(junction_geometry["quadrant_spines"]) == 4
     assert len(junction_geometry["sidewalk_corner_polylines"]) == 4
     assert len(junction_geometry["nearroad_corner_polylines"]) == 4
     assert len(junction_geometry["frontage_corner_polylines"]) == 4
     assert all(len(polyline["points_xy"]) == 3 for polyline in junction_geometry["sidewalk_corner_polylines"])
+    assert all(polyline["quadrant_id"] for polyline in junction_geometry["frontage_corner_polylines"])
+    assert all(polyline["spine_id"] for polyline in junction_geometry["frontage_corner_polylines"])
 
     serialized = _serialize_osm_geometry(bridge.placement_context)
     assert len(serialized["junction_geometries"]) == 1
     serialized_junction = serialized["junction_geometries"][0]
     assert serialized_junction["kind"] == "cross_junction"
     assert "sidewalk_corner_patches" not in serialized_junction
+    assert len(serialized_junction["quadrant_spines"]) == 4
     assert len(serialized_junction["sidewalk_corner_polylines"]) == 4
     assert len(serialized_junction["nearroad_corner_polylines"]) == 4
     assert len(serialized_junction["frontage_corner_polylines"]) == 4
     assert all(len(polyline["points_xy"]) == 3 for polyline in serialized_junction["frontage_corner_polylines"])
+    assert all(polyline["quadrant_id"] for polyline in serialized_junction["sidewalk_corner_polylines"])
+    assert all(polyline["spine_id"] for polyline in serialized_junction["sidewalk_corner_polylines"])
 
     scene = _build_osm_base_scene(bridge.placement_context)
     node_names = set(scene.graph.nodes_geometry)
@@ -415,3 +428,4 @@ def test_explicit_junction_scene_bridge_serializes_split_lines_and_control_point
     assert len(serialized["junction_geometries"][0]["approach_split_lines"]) == 3
     assert len(serialized["junction_geometries"][0]["skeleton_foot_points"]) == 3
     assert len(serialized["junction_geometries"][0]["sub_lane_control_points"]) > 0
+    assert "quadrant_spines" not in serialized["junction_geometries"][0]

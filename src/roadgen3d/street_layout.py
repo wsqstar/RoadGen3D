@@ -3301,9 +3301,23 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
                 ],
             }
             if str(item.get("kind", "") or "") == "cross_junction":
+                junction_item["quadrant_spines"] = [
+                    {
+                        "spine_id": str(spine.get("spine_id", "") or ""),
+                        "quadrant_id": str(spine.get("quadrant_id", "") or ""),
+                        "road_a_id": int(spine.get("road_a_id", 0) or 0),
+                        "road_b_id": int(spine.get("road_b_id", 0) or 0),
+                        "centerline_a_id": str(spine.get("centerline_a_id", "") or ""),
+                        "centerline_b_id": str(spine.get("centerline_b_id", "") or ""),
+                        "points_xy": _serialize_polyline(spine.get("points_xy", [])),
+                    }
+                    for spine in item.get("quadrant_spines", []) or ()
+                ]
                 junction_item["sidewalk_corner_polylines"] = [
                     {
                         "polyline_id": str(polyline.get("polyline_id", "") or ""),
+                        "quadrant_id": str(polyline.get("quadrant_id", "") or ""),
+                        "spine_id": str(polyline.get("spine_id", "") or ""),
                         "points_xy": _serialize_polyline(polyline.get("points_xy", [])),
                         "width_m": round(float(polyline.get("width_m", 0.0) or 0.0), 3),
                     }
@@ -3312,6 +3326,8 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
                 junction_item["nearroad_corner_polylines"] = [
                     {
                         "polyline_id": str(polyline.get("polyline_id", "") or ""),
+                        "quadrant_id": str(polyline.get("quadrant_id", "") or ""),
+                        "spine_id": str(polyline.get("spine_id", "") or ""),
                         "points_xy": _serialize_polyline(polyline.get("points_xy", [])),
                         "width_m": round(float(polyline.get("width_m", 0.0) or 0.0), 3),
                     }
@@ -3320,6 +3336,8 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
                 junction_item["frontage_corner_polylines"] = [
                     {
                         "polyline_id": str(polyline.get("polyline_id", "") or ""),
+                        "quadrant_id": str(polyline.get("quadrant_id", "") or ""),
+                        "spine_id": str(polyline.get("spine_id", "") or ""),
                         "points_xy": _serialize_polyline(polyline.get("points_xy", [])),
                         "width_m": round(float(polyline.get("width_m", 0.0) or 0.0), 3),
                     }

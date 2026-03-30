@@ -1612,6 +1612,16 @@ body {
   pointer-events: none;
 }
 
+.annotation-junction-quadrant-spine {
+  fill: none;
+  stroke: rgba(45, 117, 220, 0.82);
+  stroke-width: 3;
+  stroke-dasharray: 10 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
 .annotation-junction-boundary {
   stroke: rgba(244, 248, 255, 0.92);
   stroke-width: 3.6;
@@ -1625,6 +1635,16 @@ body {
   paint-order: stroke;
   stroke: rgba(25, 31, 43, 0.8);
   stroke-width: 3px;
+}
+
+.annotation-junction-debug-label {
+  fill: #f8fbff;
+  font-size: 10px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: rgba(25, 31, 43, 0.88);
+  stroke-width: 3px;
+  pointer-events: none;
 }
 
 .annotation-junction-core-selected,
