@@ -362,6 +362,16 @@ def test_design_api_endpoints_return_expected_shapes():
                 "junctions": [{"x": 520, "y": 400, "kind": "intersection"}],
                 "roundabouts": [{"x": 980, "y": 360, "radius_px": 48}],
                 "control_points": [{"x": 120, "y": 400, "kind": "gateway"}],
+                "building_regions": [
+                    {
+                        "id": "building_region_01",
+                        "label": "North Court",
+                        "center_px": {"x": 320, "y": 260},
+                        "width_px": 180,
+                        "height_px": 120,
+                        "yaw_deg": 25,
+                    }
+                ],
             },
             "compose_config": {"segment_length_m": 9.0},
         },
@@ -375,11 +385,15 @@ def test_design_api_endpoints_return_expected_shapes():
     assert annotation_convert_response.json()["summary"]["topology_junction_count"] == 1
     assert annotation_convert_response.json()["summary"]["t_junction_count"] == 1
     assert annotation_convert_response.json()["summary"]["cross_junction_count"] == 0
+    assert annotation_convert_response.json()["summary"]["building_region_count"] == 1
     assert len(annotation_convert_response.json()["road_profiles"]) == 2
     assert len(annotation_convert_response.json()["cross_section_profiles"]) == 2
     assert len(annotation_convert_response.json()["street_furniture_instances"]) == 2
     assert len(annotation_convert_response.json()["derived_junctions"]) == 1
     assert len(annotation_convert_response.json()["metaurban_asset_hints"]) >= 2
+    assert len(annotation_convert_response.json()["annotation"]["building_regions"]) == 1
+    assert annotation_convert_response.json()["annotation"]["building_regions"][0]["id"] == "building_region_01"
+    assert annotation_convert_response.json()["annotation"]["building_regions"][0]["yaw_deg"] == pytest.approx(25.0)
     assert annotation_convert_response.json()["metaurban_asset_guide"]["download_command"].endswith("pull_asset.py --update")
     assert annotation_convert_response.json()["road_profiles"][0]["reference_width_px"] == 218.0
     assert annotation_convert_response.json()["road_profiles"][0]["carriageway_width_m"] == pytest.approx(12.3)

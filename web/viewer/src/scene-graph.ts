@@ -4283,6 +4283,10 @@ function stringifyAnnotation(annotation: ReferenceAnnotation): string {
   return JSON.stringify(annotation, null, 2);
 }
 
+function cloneAnnotation(annotation: ReferenceAnnotation): ReferenceAnnotation {
+  return normalizeAnnotation(JSON.parse(stringifyAnnotation(annotation)));
+}
+
 function setStatus(element: HTMLElement, message: string, tone: StatusTone): void {
   element.textContent = message;
   element.dataset.tone = tone;
@@ -8016,7 +8020,16 @@ function buildingRegionHandleFromTarget(
     if (!response.ok) {
       throw new Error(typeof payload === "object" && payload && "detail" in payload ? String(payload.detail) : "Graph conversion failed.");
     }
-    state.graphResult = payload as ConvertedGraphPayload;
+    const convertedPayload = payload as ConvertedGraphPayload;
+    const annotationSnapshot = cloneAnnotation(state.annotation);
+    state.graphResult = {
+      ...convertedPayload,
+      annotation: annotationSnapshot,
+      summary: {
+        ...convertedPayload.summary,
+        building_region_count: annotationSnapshot.building_regions.length,
+      },
+    };
     setStatus(graphStatusEl, "Graph conversion complete.", "success");
     renderAll();
   }
@@ -9246,7 +9259,16 @@ function buildingRegionHandleFromTarget(
       if (!state.graphResult) {
         return;
       }
-      downloadText(`${state.annotation.plan_id || "reference_annotation"}_graph.json`, JSON.stringify(state.graphResult, null, 2));
+      const annotationSnapshot = cloneAnnotation(state.annotation);
+      const exportPayload: ConvertedGraphPayload = {
+        ...state.graphResult,
+        annotation: annotationSnapshot,
+        summary: {
+          ...state.graphResult.summary,
+          building_region_count: annotationSnapshot.building_regions.length,
+        },
+      };
+      downloadText(`${state.annotation.plan_id || "reference_annotation"}_graph.json`, JSON.stringify(exportPayload, null, 2));
     },
     { signal },
   );
