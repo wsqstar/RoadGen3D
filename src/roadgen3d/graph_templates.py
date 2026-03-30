@@ -51,18 +51,28 @@ _GRAPH_TEMPLATE_DEFINITIONS: Dict[str, Dict[str, object]] = {
 }
 
 
+def _extract_annotation_payload(raw_payload: Dict[str, Any], template_id: str) -> Dict[str, Any]:
+    if isinstance(raw_payload.get("annotation"), dict):
+        payload = copy.deepcopy(raw_payload["annotation"])
+    else:
+        payload = copy.deepcopy(raw_payload)
+    if not isinstance(payload, dict):
+        raise ValueError(f"Graph template annotation payload must be a JSON object: {template_id}")
+    payload["plan_id"] = str(payload.get("plan_id") or template_id)
+    payload["image_path"] = f"/api/graph-templates/{str(template_id).strip().lower()}/image"
+    return payload
+
+
 @lru_cache(maxsize=None)
 def _load_template_payload(template_id: str) -> Dict[str, Any]:
     template = _GRAPH_TEMPLATE_DEFINITIONS.get(str(template_id or "").strip().lower())
     if template is None:
         raise KeyError(f"Unknown graph template: {template_id}")
     annotation_path = Path(template["annotation_path"]).expanduser().resolve()
-    payload = json.loads(annotation_path.read_text(encoding="utf-8"))
-    if not isinstance(payload, dict):
+    raw_payload = json.loads(annotation_path.read_text(encoding="utf-8"))
+    if not isinstance(raw_payload, dict):
         raise ValueError(f"Graph template payload must be a JSON object: {annotation_path}")
-    payload["plan_id"] = str(payload.get("plan_id") or template_id)
-    payload["image_path"] = f"/api/graph-templates/{str(template_id).strip().lower()}/image"
-    return payload
+    return _extract_annotation_payload(raw_payload, str(template_id).strip().lower())
 
 
 def _build_graph_template(template_id: str) -> GraphTemplate:

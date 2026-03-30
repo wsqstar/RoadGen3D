@@ -82,6 +82,24 @@ def _sample_annotation_payload():
         "junctions": [],
         "roundabouts": [],
         "control_points": [],
+        "building_regions": [
+            {
+                "id": "building_region_01",
+                "label": "North Plaza",
+                "center_px": {"x": 300, "y": 240},
+                "width_px": 180,
+                "height_px": 120,
+                "yaw_deg": 20,
+            },
+            {
+                "id": "building_region_02",
+                "label": "South Plaza",
+                "center_px": {"x": 760, "y": 560},
+                "width_px": 220,
+                "height_px": 160,
+                "yaw_deg": -35,
+            },
+        ],
     }
 
 
@@ -306,6 +324,11 @@ def test_reference_annotation_scene_bridge_builds_junction_geometry():
     anchor = bridge.placement_context.junction_geometries[0]["anchor_xy"]
     assert bridge.placement_context.junction_geometries[0]["junction_core_rect"].contains(Point(anchor[0], anchor[1]))
     assert not bridge.placement_context.carriageway.contains(Point(anchor[0], anchor[1]))
+    assert len(bridge.placement_context.building_regions) == 2
+    assert bridge.placement_context.building_regions[0]["region_id"] == "building_region_01"
+    assert bridge.placement_context.building_regions[0]["yaw_deg"] == pytest.approx(20.0)
+    assert len(bridge.placement_context.building_regions[0]["polygon_xz"]) == 5
+    assert bridge.summary_metadata["building_region_count"] == 2
 
 
 def test_reference_annotation_scene_bridge_builds_cross_corner_polylines_for_derived_cross():

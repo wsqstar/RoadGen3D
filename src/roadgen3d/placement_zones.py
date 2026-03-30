@@ -70,6 +70,7 @@ class PlacementContext:
     required_left_width_m: float = 0.0
     required_right_width_m: float = 0.0
     junction_geometries: List[Dict[str, Any]] = field(default_factory=list)
+    building_regions: List[Dict[str, Any]] = field(default_factory=list)
 
 
 # ---------------------------------------------------------------------------

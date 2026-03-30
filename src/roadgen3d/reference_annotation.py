@@ -720,6 +720,30 @@ class AnnotatedRoundabout:
 
 
 @dataclass(frozen=True)
+class AnnotatedBuildingRegion:
+    feature_id: str
+    label: str
+    center_x_px: float
+    center_y_px: float
+    width_px: float
+    height_px: float
+    yaw_deg: float = 0.0
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "id": self.feature_id,
+            "label": self.label,
+            "center_px": {
+                "x": float(self.center_x_px),
+                "y": float(self.center_y_px),
+            },
+            "width_px": float(self.width_px),
+            "height_px": float(self.height_px),
+            "yaw_deg": float(self.yaw_deg),
+        }
+
+
+@dataclass(frozen=True)
 class ReferenceAnnotation:
     version: str
     plan_id: str
@@ -731,6 +755,7 @@ class ReferenceAnnotation:
     junctions: Tuple[AnnotatedJunction, ...]
     roundabouts: Tuple[AnnotatedRoundabout, ...]
     control_points: Tuple[AnnotatedMarker, ...]
+    building_regions: Tuple[AnnotatedBuildingRegion, ...] = ()
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -744,6 +769,7 @@ class ReferenceAnnotation:
             "junctions": [item.to_dict() for item in self.junctions],
             "roundabouts": [item.to_dict() for item in self.roundabouts],
             "control_points": [item.to_dict() for item in self.control_points],
+            "building_regions": [item.to_dict() for item in self.building_regions],
         }
 
 
@@ -1141,6 +1167,33 @@ def _parse_roundabout(value: Any, index: int) -> AnnotatedRoundabout:
     )
 
 
+def _parse_building_region(value: Any, index: int) -> AnnotatedBuildingRegion:
+    if not _is_record(value):
+        raise ValueError(f"building_regions[{index}] must be an object.")
+    fallback_id = f"building_region_{index + 1:02d}"
+    feature_id = _as_string(value.get("id") or value.get("feature_id"), fallback_id)
+    label = _as_string(value.get("label"), feature_id)
+    center_raw = value.get("center_px")
+    if _is_record(center_raw):
+        center = _parse_point(center_raw, f"building_regions[{index}].center_px")
+        center_x_px = float(center.x)
+        center_y_px = float(center.y)
+    else:
+        center_x_px = _as_float(value.get("x"), f"building_regions[{index}].x", default=0.0)
+        center_y_px = _as_float(value.get("y"), f"building_regions[{index}].y", default=0.0)
+    return AnnotatedBuildingRegion(
+        feature_id=feature_id,
+        label=label,
+        center_x_px=float(center_x_px),
+        center_y_px=float(center_y_px),
+        width_px=max(1.0, _as_float(value.get("width_px"), f"building_regions[{index}].width_px", default=64.0)),
+        height_px=max(1.0, _as_float(value.get("height_px"), f"building_regions[{index}].height_px", default=48.0)),
+        yaw_deg=_normalize_angle_deg(
+            _as_float(value.get("yaw_deg"), f"building_regions[{index}].yaw_deg", default=0.0)
+        ),
+    )
+
+
 def _annotation_point_xy(point: AnnotationPoint) -> Tuple[float, float]:
     return (float(point.x), float(point.y))
 
@@ -1256,6 +1309,7 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
     junctions_raw = payload.get("junctions") or []
     roundabouts_raw = payload.get("roundabouts") or []
     control_points_raw = payload.get("control_points") or []
+    building_regions_raw = payload.get("building_regions") or []
 
     if not isinstance(centerlines_raw, Sequence) or isinstance(centerlines_raw, (str, bytes)):
         raise ValueError("centerlines must be an array.")
@@ -1265,6 +1319,8 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
         raise ValueError("roundabouts must be an array.")
     if not isinstance(control_points_raw, Sequence) or isinstance(control_points_raw, (str, bytes)):
         raise ValueError("control_points must be an array.")
+    if not isinstance(building_regions_raw, Sequence) or isinstance(building_regions_raw, (str, bytes)):
+        raise ValueError("building_regions must be an array.")
 
     centerlines = tuple(_parse_centerline(item, index) for index, item in enumerate(centerlines_raw))
     if not centerlines:
@@ -1293,6 +1349,10 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
         control_points=tuple(
             _parse_marker(item, index, collection="control_points", default_kind="control_point")
             for index, item in enumerate(control_points_raw)
+        ),
+        building_regions=tuple(
+            _parse_building_region(item, index)
+            for index, item in enumerate(building_regions_raw)
         ),
     )
     _validate_explicit_junction_model(annotation)
@@ -2162,6 +2222,16 @@ def summarize_reference_annotation(annotation_input: ReferenceAnnotation | Mappi
                 (center_xy[0] + radius_m, center_xy[1] + radius_m),
             ]
         )
+    for region in annotation.building_regions:
+        center_xy = _pixel_to_local(annotation, x=region.center_x_px, y=region.center_y_px)
+        half_width_m = float(region.width_px) / max(float(annotation.pixels_per_meter), 1.0) * 0.5
+        half_height_m = float(region.height_px) / max(float(annotation.pixels_per_meter), 1.0) * 0.5
+        points.extend(
+            [
+                (center_xy[0] - half_width_m, center_xy[1] - half_height_m),
+                (center_xy[0] + half_width_m, center_xy[1] + half_height_m),
+            ]
+        )
     if points:
         xs = [point[0] for point in points]
         ys = [point[1] for point in points]
@@ -2215,6 +2285,7 @@ def summarize_reference_annotation(annotation_input: ReferenceAnnotation | Mappi
         "roundabout_count": len(annotation.roundabouts),
         "control_point_count": len(annotation.control_points),
         "control_point_kinds": sorted({item.kind for item in annotation.control_points}),
+        "building_region_count": len(annotation.building_regions),
         "cross_section_strip_count": strip_count,
         "street_furniture_instance_count": len(furniture_instances),
         "total_drive_lane_count": sum(int(item["lane_profile"]["total_drive_lane_count"]) for item in road_profiles),
@@ -2291,6 +2362,7 @@ def build_reference_annotation_graph_payload(
 __all__ = [
     "ANNOTATION_SCHEMA_VERSION",
     "AnnotatedCenterline",
+    "AnnotatedBuildingRegion",
     "AnnotatedCrossSectionStrip",
     "AnnotatedJunction",
     "AnnotatedMarker",

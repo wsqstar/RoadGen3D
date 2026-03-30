@@ -90,6 +90,24 @@ def _sample_annotation_payload():
             {"id": "gate_01", "kind": "gateway", "x": 150, "y": 400},
             {"id": "entry_01", "kind": "entry", "x": 520, "y": 140},
         ],
+        "building_regions": [
+            {
+                "id": "building_region_01",
+                "label": "North Court",
+                "center_px": {"x": 320, "y": 250},
+                "width_px": 180,
+                "height_px": 120,
+                "yaw_deg": 30,
+            },
+            {
+                "id": "building_region_02",
+                "label": "South Court",
+                "center_px": {"x": 760, "y": 560},
+                "width_px": 220,
+                "height_px": 140,
+                "yaw_deg": -15,
+            },
+        ],
     }
 
 
@@ -185,6 +203,10 @@ def test_parse_reference_annotation_normalizes_payload():
     assert annotation.centerlines[0].cross_section_width_m() == pytest.approx(25.2)
     assert annotation.junctions[0].kind == "intersection"
     assert annotation.roundabouts[0].radius_px == 52.0
+    assert len(annotation.building_regions) == 2
+    assert annotation.building_regions[0].feature_id == "building_region_01"
+    assert annotation.building_regions[0].yaw_deg == pytest.approx(30.0)
+    assert annotation.to_dict()["building_regions"][1]["label"] == "South Court"
 
 
 def test_build_segment_graph_from_annotation_builds_junctions_and_roundabout():
@@ -255,9 +277,12 @@ def test_build_reference_annotation_graph_payload_returns_summary_and_graph():
     )
     assert payload["road_profiles"][1]["bus_lane_count"] == 1
     assert payload["summary"]["centerline_count"] == 2
+    assert payload["summary"]["building_region_count"] == 2
     assert payload["summary"]["annotation_road_count"] == 2
     assert payload["summary"]["road_profile_count"] == 2
     assert payload["summary"]["cross_section_profile_count"] == 2
+    assert len(payload["annotation"]["building_regions"]) == 2
+    assert payload["annotation"]["building_regions"][0]["yaw_deg"] == pytest.approx(30.0)
     assert payload["summary"]["street_furniture_instance_count"] == 2
     assert payload["summary"]["metaurban_asset_hint_count"] == len(payload["metaurban_asset_hints"])
     assert payload["summary"]["detailed_centerline_count"] == 1

@@ -1507,6 +1507,9 @@ body {
 .annotation-centerline,
 .annotation-road-band,
 .annotation-cross-strip,
+.annotation-building-region,
+.annotation-building-region-handle,
+.annotation-building-region-rotate-handle,
 .annotation-junction-core,
 .annotation-junction-crosswalk,
 .annotation-junction-sidewalk-corner,
@@ -1549,6 +1552,47 @@ body {
 .annotation-cross-strip-linked {
   filter: drop-shadow(0 0 7px rgba(38, 132, 255, 0.22));
   stroke: rgba(38, 132, 255, 0.72) !important;
+}
+
+.annotation-building-region {
+  fill: rgba(241, 196, 15, 0.14);
+  stroke: rgba(201, 146, 16, 0.94);
+  stroke-width: 2.4;
+  stroke-dasharray: 12 8;
+}
+
+.annotation-building-region-selected {
+  fill: rgba(241, 196, 15, 0.2);
+  stroke: rgba(180, 99, 14, 0.98);
+  filter: drop-shadow(0 0 12px rgba(212, 132, 34, 0.22));
+}
+
+.annotation-building-region-draft {
+  fill: rgba(241, 196, 15, 0.1);
+  stroke: rgba(201, 146, 16, 0.68);
+}
+
+.annotation-building-region-handle,
+.annotation-building-region-rotate-handle {
+  stroke-width: 2;
+}
+
+.annotation-building-region-handle {
+  fill: #fff9e8;
+  stroke: rgba(180, 99, 14, 0.96);
+}
+
+.annotation-building-region-rotate-guide {
+  fill: none;
+  stroke: rgba(180, 99, 14, 0.76);
+  stroke-width: 2;
+  stroke-dasharray: 6 4;
+  pointer-events: none;
+}
+
+.annotation-building-region-rotate-handle {
+  fill: rgba(180, 99, 14, 0.96);
+  stroke: #fff9e8;
 }
 
 .annotation-junction-core {

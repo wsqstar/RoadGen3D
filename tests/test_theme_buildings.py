@@ -14,7 +14,9 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from roadgen3d.theme_buildings import (
+    _explicit_streetwall_reference_from_graph,
     build_zoning_grid_preview,
+    collect_building_footprints,
     generate_frontage_infill_footprints,
     generate_grid_growth_lots,
     height_class_from_height_m,
@@ -367,6 +369,233 @@ def test_build_zoning_grid_preview_caps_overwide_streetwall_reference_widths():
     assert summary["streetwall_reference_raw_width_m"]["right"] > summary["streetwall_reference_width_m"]["right"]
 
 
+def test_build_zoning_grid_preview_uses_explicit_graph_streetwall_widths():
+    graph = RoadSegmentGraph(
+        nodes=(
+            RoadSegmentNode(
+                segment_id="seg_0000",
+                road_id=1,
+                start_xy=(0.0, 0.0),
+                end_xy=(10.0, 0.0),
+                center_xy=(5.0, 0.0),
+                length_m=10.0,
+                highway_type="tertiary",
+                station_start_m=0.0,
+                station_end_m=10.0,
+                station_center_m=5.0,
+                cross_section_strips=(
+                    SimpleNamespace(strip_id="left_furn", zone="left", kind="nearroad_furnishing", width_m=1.0, order_index=0),
+                    SimpleNamespace(strip_id="left_walk", zone="left", kind="clear_sidewalk", width_m=2.0, order_index=1),
+                    SimpleNamespace(strip_id="left_frontage", zone="left", kind="frontage_reserve", width_m=2.5, order_index=2),
+                    SimpleNamespace(strip_id="right_furn", zone="right", kind="nearroad_furnishing", width_m=1.0, order_index=0),
+                    SimpleNamespace(strip_id="right_walk", zone="right", kind="clear_sidewalk", width_m=2.0, order_index=1),
+                    SimpleNamespace(strip_id="right_frontage", zone="right", kind="frontage_reserve", width_m=2.5, order_index=2),
+                ),
+            ),
+        ),
+        edges=(),
+        mode="annotation",
+    )
+    placement_context = SimpleNamespace(
+        carriageway_width_m=8.0,
+        left_clear_path_width_m=1.8,
+        left_furnishing_width_m=0.7,
+        right_clear_path_width_m=1.8,
+        right_furnishing_width_m=0.7,
+    )
+
+    zoning_grid, summary = build_zoning_grid_preview(
+        config=_zoning_config(seed=11),
+        placement_context=placement_context,
+        road_segment_graph=graph,
+        theme_segments=_single_theme_segment("commercial"),
+        building_footprints=(),
+        road_buffer_m=35.0,
+    )
+
+    assert zoning_grid
+    assert _explicit_streetwall_reference_from_graph(graph)["left_frontage_reserve_m"] == pytest.approx(2.5)
+    assert summary["streetwall_reference_width_m"]["left"] == pytest.approx(5.5)
+    assert summary["streetwall_reference_width_m"]["right"] == pytest.approx(5.5)
+    left_cells = [cell for cell in zoning_grid if cell["lane_role"] == "left_building_buffer"]
+    right_cells = [cell for cell in zoning_grid if cell["lane_role"] == "right_building_buffer"]
+    assert left_cells
+    assert right_cells
+    assert min(point[1] for cell in left_cells for point in cell["polygon_xz"]) == pytest.approx(9.5)
+    assert max(point[1] for cell in right_cells for point in cell["polygon_xz"]) == pytest.approx(-9.5)
+
+
+def test_collect_building_footprints_fallback_starts_outside_frontage_reserve():
+    graph = RoadSegmentGraph(
+        nodes=(
+            RoadSegmentNode(
+                segment_id="seg_0000",
+                road_id=1,
+                start_xy=(0.0, 0.0),
+                end_xy=(20.0, 0.0),
+                center_xy=(10.0, 0.0),
+                length_m=20.0,
+                highway_type="tertiary",
+                station_start_m=0.0,
+                station_end_m=20.0,
+                station_center_m=10.0,
+                cross_section_strips=(
+                    SimpleNamespace(strip_id="left_furn", zone="left", kind="nearroad_furnishing", width_m=1.0, order_index=0),
+                    SimpleNamespace(strip_id="left_walk", zone="left", kind="clear_sidewalk", width_m=2.0, order_index=1),
+                    SimpleNamespace(strip_id="left_frontage", zone="left", kind="frontage_reserve", width_m=2.5, order_index=2),
+                    SimpleNamespace(strip_id="right_furn", zone="right", kind="nearroad_furnishing", width_m=1.0, order_index=0),
+                    SimpleNamespace(strip_id="right_walk", zone="right", kind="clear_sidewalk", width_m=2.0, order_index=1),
+                    SimpleNamespace(strip_id="right_frontage", zone="right", kind="frontage_reserve", width_m=2.5, order_index=2),
+                ),
+            ),
+        ),
+        edges=(),
+        mode="annotation",
+    )
+    placement_context = SimpleNamespace(
+        carriageway_width_m=8.0,
+        left_clear_path_width_m=1.8,
+        left_furnishing_width_m=0.7,
+        right_clear_path_width_m=1.8,
+        right_furnishing_width_m=0.7,
+    )
+
+    footprints = collect_building_footprints(
+        SimpleNamespace(buildings=()),
+        placement_context=placement_context,
+        theme_segments=_single_theme_segment("commercial"),
+        road_segment_graph=graph,
+        seed=11,
+    )
+
+    assert footprints
+    left_footprints = [footprint for footprint in footprints if footprint.side == "left"]
+    right_footprints = [footprint for footprint in footprints if footprint.side == "right"]
+    assert left_footprints
+    assert right_footprints
+    assert min(z for footprint in left_footprints for _x, z in footprint.polygon_xz) >= 9.5
+    assert max(z for footprint in right_footprints for _x, z in footprint.polygon_xz) <= -9.5
+
+
+def test_build_zoning_grid_preview_trims_buildable_area_near_junctions_and_road_ends():
+    graph = RoadSegmentGraph(
+        nodes=(
+            RoadSegmentNode(
+                segment_id="seg_0000",
+                road_id=1,
+                start_xy=(0.0, 0.0),
+                end_xy=(40.0, 0.0),
+                center_xy=(20.0, 0.0),
+                length_m=40.0,
+                highway_type="tertiary",
+                station_start_m=0.0,
+                station_end_m=40.0,
+                station_center_m=20.0,
+                start_junction_id="junction_01",
+                cross_section_strips=(
+                    SimpleNamespace(strip_id="left_furn", zone="left", kind="nearroad_furnishing", width_m=1.0, order_index=0),
+                    SimpleNamespace(strip_id="left_walk", zone="left", kind="clear_sidewalk", width_m=2.0, order_index=1),
+                    SimpleNamespace(strip_id="left_frontage", zone="left", kind="frontage_reserve", width_m=2.5, order_index=2),
+                    SimpleNamespace(strip_id="right_furn", zone="right", kind="nearroad_furnishing", width_m=1.0, order_index=0),
+                    SimpleNamespace(strip_id="right_walk", zone="right", kind="clear_sidewalk", width_m=2.0, order_index=1),
+                    SimpleNamespace(strip_id="right_frontage", zone="right", kind="frontage_reserve", width_m=2.5, order_index=2),
+                ),
+            ),
+        ),
+        edges=(),
+        mode="annotation",
+    )
+    placement_context = SimpleNamespace(
+        carriageway_width_m=8.0,
+        left_clear_path_width_m=1.8,
+        left_furnishing_width_m=0.7,
+        right_clear_path_width_m=1.8,
+        right_furnishing_width_m=0.7,
+        junction_geometries=[{"anchor_xy": [0.0, 0.0]}],
+    )
+
+    zoning_grid, summary = build_zoning_grid_preview(
+        config=_zoning_config(seed=11),
+        placement_context=placement_context,
+        road_segment_graph=graph,
+        theme_segments=_single_theme_segment("commercial"),
+        building_footprints=(),
+        road_buffer_m=35.0,
+    )
+
+    assert zoning_grid
+    left_cells = [cell for cell in zoning_grid if cell["lane_role"] == "left_building_buffer"]
+    right_cells = [cell for cell in zoning_grid if cell["lane_role"] == "right_building_buffer"]
+    assert left_cells
+    assert right_cells
+    assert min(point[0] for cell in left_cells for point in cell["polygon_xz"]) >= 10.0
+    assert max(point[0] for cell in left_cells for point in cell["polygon_xz"]) <= 30.0
+    assert min(point[0] for cell in right_cells for point in cell["polygon_xz"]) >= 10.0
+    assert max(point[0] for cell in right_cells for point in cell["polygon_xz"]) <= 30.0
+    assert summary["frontage_cell_count"] > 0
+
+
+def test_collect_building_footprints_filters_to_buildable_corridor():
+    from shapely.geometry import box
+
+    graph = RoadSegmentGraph(
+        nodes=(
+            RoadSegmentNode(
+                segment_id="seg_0000",
+                road_id=1,
+                start_xy=(0.0, 0.0),
+                end_xy=(40.0, 0.0),
+                center_xy=(20.0, 0.0),
+                length_m=40.0,
+                highway_type="tertiary",
+                station_start_m=0.0,
+                station_end_m=40.0,
+                station_center_m=20.0,
+                start_junction_id="junction_01",
+                cross_section_strips=(
+                    SimpleNamespace(strip_id="left_furn", zone="left", kind="nearroad_furnishing", width_m=1.0, order_index=0),
+                    SimpleNamespace(strip_id="left_walk", zone="left", kind="clear_sidewalk", width_m=2.0, order_index=1),
+                    SimpleNamespace(strip_id="left_frontage", zone="left", kind="frontage_reserve", width_m=2.5, order_index=2),
+                    SimpleNamespace(strip_id="right_furn", zone="right", kind="nearroad_furnishing", width_m=1.0, order_index=0),
+                    SimpleNamespace(strip_id="right_walk", zone="right", kind="clear_sidewalk", width_m=2.0, order_index=1),
+                    SimpleNamespace(strip_id="right_frontage", zone="right", kind="frontage_reserve", width_m=2.5, order_index=2),
+                ),
+            ),
+        ),
+        edges=(),
+        mode="annotation",
+    )
+    placement_context = SimpleNamespace(
+        carriageway=box(0.0, -4.0, 40.0, 4.0),
+        carriageway_width_m=8.0,
+        left_clear_path_width_m=1.8,
+        left_furnishing_width_m=0.7,
+        right_clear_path_width_m=1.8,
+        right_furnishing_width_m=0.7,
+        junction_geometries=[{"anchor_xy": [0.0, 0.0]}],
+    )
+    projected_features = SimpleNamespace(
+        buildings=[
+            SimpleNamespace(osm_id="near_junction", coords=[(1.0, 10.0), (5.0, 10.0), (5.0, 14.0), (1.0, 14.0), (1.0, 10.0)]),
+            SimpleNamespace(osm_id="valid_midblock", coords=[(15.0, 10.0), (19.0, 10.0), (19.0, 14.0), (15.0, 14.0), (15.0, 10.0)]),
+            SimpleNamespace(osm_id="near_road_end", coords=[(34.0, 10.0), (38.0, 10.0), (38.0, 14.0), (34.0, 14.0), (34.0, 10.0)]),
+        ]
+    )
+
+    footprints = collect_building_footprints(
+        projected_features,
+        placement_context=placement_context,
+        theme_segments=_single_theme_segment("commercial"),
+        road_segment_graph=graph,
+        road_buffer_m=35.0,
+        seed=11,
+    )
+
+    assert len(footprints) == 1
+    assert footprints[0].anchor_geom_id == "valid_midblock"
+    assert footprints[0].centroid_xz[0] == pytest.approx(17.0)
+
+
 def test_build_zoning_grid_preview_green_theme_keeps_streetwall_baseline_in_grid_growth():
     graph = _graph_for_theme(highway_type="residential", poi_types=())
     placement_context = SimpleNamespace(
@@ -696,3 +925,144 @@ def test_generate_grid_growth_lots_theme_random_produces_target_height():
         assert lot.target_height_m > 0.0
         assert lot.height_class == height_class_from_height_m(lot.target_height_m)
     assert "target_height_stats" in summary
+
+
+def test_collect_building_footprints_respects_building_regions_and_last_overlap_yaw():
+    pytest.importorskip("shapely")
+    from shapely.geometry import box
+
+    graph = RoadSegmentGraph(
+        nodes=(
+            RoadSegmentNode(
+                segment_id="seg_0000",
+                road_id=1,
+                start_xy=(0.0, 0.0),
+                end_xy=(40.0, 0.0),
+                center_xy=(20.0, 0.0),
+                length_m=40.0,
+                highway_type="tertiary",
+                station_start_m=0.0,
+                station_end_m=40.0,
+                station_center_m=20.0,
+                cross_section_strips=(
+                    SimpleNamespace(strip_id="left_furn", zone="left", kind="nearroad_furnishing", width_m=1.0, order_index=0),
+                    SimpleNamespace(strip_id="left_walk", zone="left", kind="clear_sidewalk", width_m=2.0, order_index=1),
+                    SimpleNamespace(strip_id="left_frontage", zone="left", kind="frontage_reserve", width_m=2.5, order_index=2),
+                    SimpleNamespace(strip_id="right_furn", zone="right", kind="nearroad_furnishing", width_m=1.0, order_index=0),
+                    SimpleNamespace(strip_id="right_walk", zone="right", kind="clear_sidewalk", width_m=2.0, order_index=1),
+                    SimpleNamespace(strip_id="right_frontage", zone="right", kind="frontage_reserve", width_m=2.5, order_index=2),
+                ),
+            ),
+        ),
+        edges=(),
+        mode="annotation",
+    )
+    placement_context = SimpleNamespace(
+        carriageway=box(0.0, -4.0, 40.0, 4.0),
+        carriageway_width_m=8.0,
+        left_clear_path_width_m=1.8,
+        left_furnishing_width_m=0.7,
+        right_clear_path_width_m=1.8,
+        right_furnishing_width_m=0.7,
+        building_regions=[
+            {
+                "region_id": "building_region_01",
+                "label": "Primary Court",
+                "order_index": 0,
+                "yaw_deg": 15.0,
+                "polygon_xz": ((10.0, 9.0), (22.0, 9.0), (22.0, 16.0), (10.0, 16.0), (10.0, 9.0)),
+            },
+            {
+                "region_id": "building_region_02",
+                "label": "Override Court",
+                "order_index": 1,
+                "yaw_deg": 60.0,
+                "polygon_xz": ((12.0, 10.0), (20.0, 10.0), (20.0, 15.0), (12.0, 15.0), (12.0, 10.0)),
+            },
+        ],
+    )
+    projected_features = SimpleNamespace(
+        buildings=[
+            SimpleNamespace(osm_id="inside_overlap", coords=[(14.0, 10.5), (18.0, 10.5), (18.0, 14.0), (14.0, 14.0), (14.0, 10.5)]),
+            SimpleNamespace(osm_id="outside_regions", coords=[(24.0, 10.0), (28.0, 10.0), (28.0, 14.0), (24.0, 14.0), (24.0, 10.0)]),
+        ]
+    )
+
+    footprints = collect_building_footprints(
+        projected_features,
+        placement_context=placement_context,
+        theme_segments=_single_theme_segment("commercial"),
+        road_segment_graph=graph,
+        road_buffer_m=35.0,
+        seed=11,
+    )
+
+    assert len(footprints) == 1
+    assert footprints[0].anchor_geom_id == "inside_overlap"
+    assert footprints[0].yaw_deg == pytest.approx(60.0)
+
+
+def test_build_zoning_grid_preview_limits_buildable_cells_to_building_regions_and_carries_region_yaw():
+    graph = RoadSegmentGraph(
+        nodes=(
+            RoadSegmentNode(
+                segment_id="seg_0000",
+                road_id=1,
+                start_xy=(0.0, 0.0),
+                end_xy=(40.0, 0.0),
+                center_xy=(20.0, 0.0),
+                length_m=40.0,
+                highway_type="tertiary",
+                station_start_m=0.0,
+                station_end_m=40.0,
+                station_center_m=20.0,
+                cross_section_strips=(
+                    SimpleNamespace(strip_id="left_furn", zone="left", kind="nearroad_furnishing", width_m=1.0, order_index=0),
+                    SimpleNamespace(strip_id="left_walk", zone="left", kind="clear_sidewalk", width_m=2.0, order_index=1),
+                    SimpleNamespace(strip_id="left_frontage", zone="left", kind="frontage_reserve", width_m=2.5, order_index=2),
+                    SimpleNamespace(strip_id="right_furn", zone="right", kind="nearroad_furnishing", width_m=1.0, order_index=0),
+                    SimpleNamespace(strip_id="right_walk", zone="right", kind="clear_sidewalk", width_m=2.0, order_index=1),
+                    SimpleNamespace(strip_id="right_frontage", zone="right", kind="frontage_reserve", width_m=2.5, order_index=2),
+                ),
+            ),
+        ),
+        edges=(),
+        mode="annotation",
+    )
+    placement_context = SimpleNamespace(
+        carriageway_width_m=8.0,
+        left_clear_path_width_m=1.8,
+        left_furnishing_width_m=0.7,
+        right_clear_path_width_m=1.8,
+        right_furnishing_width_m=0.7,
+        building_regions=[
+            {
+                "region_id": "building_region_left",
+                "label": "Left Court",
+                "order_index": 0,
+                "yaw_deg": 33.0,
+                "polygon_xz": ((10.0, 9.0), (30.0, 9.0), (30.0, 16.0), (10.0, 16.0), (10.0, 9.0)),
+            }
+        ],
+    )
+
+    zoning_grid, summary = build_zoning_grid_preview(
+        config=_zoning_config(seed=11),
+        placement_context=placement_context,
+        road_segment_graph=graph,
+        theme_segments=_single_theme_segment("commercial"),
+        building_footprints=(),
+        road_buffer_m=35.0,
+    )
+
+    left_cells = [cell for cell in zoning_grid if cell["lane_role"] == "left_building_buffer"]
+    right_cells = [cell for cell in zoning_grid if cell["lane_role"] == "right_building_buffer"]
+
+    assert left_cells
+    assert right_cells
+    assert any(cell["buildable"] for cell in left_cells)
+    assert all(cell["building_region_id"] == "building_region_left" for cell in left_cells if cell["buildable"])
+    assert all(cell["building_region_yaw_deg"] == pytest.approx(33.0) for cell in left_cells if cell["buildable"])
+    assert all(cell["buildable"] is False for cell in right_cells)
+    assert summary["building_region_count"] == 1
+    assert summary["active_building_region_count"] == 1

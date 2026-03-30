@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from typing import Any, Dict, List, Mapping, Sequence, Tuple
 
@@ -71,6 +72,48 @@ def _graph_bbox(
     )
 
 
+def _annotation_building_region_records(annotation: ReferenceAnnotation) -> List[Dict[str, Any]]:
+    ppm = max(float(annotation.pixels_per_meter), 1e-6)
+    regions: List[Dict[str, Any]] = []
+    for order_index, region in enumerate(annotation.building_regions):
+        center_x, center_y = (
+            (float(region.center_x_px) - float(annotation.image_width_px) * 0.5) / ppm,
+            (float(annotation.image_height_px) * 0.5 - float(region.center_y_px)) / ppm,
+        )
+        half_width_m = float(region.width_px) / ppm * 0.5
+        half_height_m = float(region.height_px) / ppm * 0.5
+        yaw_rad = math.radians(float(region.yaw_deg))
+        axis_x = (math.cos(yaw_rad), math.sin(yaw_rad))
+        axis_y = (-math.sin(yaw_rad), math.cos(yaw_rad))
+
+        def _offset(local_x: float, local_y: float) -> Tuple[float, float]:
+            return (
+                float(center_x + axis_x[0] * local_x + axis_y[0] * local_y),
+                float(center_y + axis_x[1] * local_x + axis_y[1] * local_y),
+            )
+
+        polygon_xz = (
+            _offset(-half_width_m, -half_height_m),
+            _offset(half_width_m, -half_height_m),
+            _offset(half_width_m, half_height_m),
+            _offset(-half_width_m, half_height_m),
+            _offset(-half_width_m, -half_height_m),
+        )
+        regions.append(
+            {
+                "region_id": str(region.feature_id),
+                "label": str(region.label),
+                "order_index": int(order_index),
+                "center_xz": (float(center_x), float(center_y)),
+                "width_m": float(half_width_m * 2.0),
+                "height_m": float(half_height_m * 2.0),
+                "yaw_deg": float(region.yaw_deg),
+                "polygon_xz": tuple((float(x), float(z)) for x, z in polygon_xz),
+            }
+        )
+    return regions
+
+
 def build_reference_annotation_scene_bridge(
     annotation_input: ReferenceAnnotation | Mapping[str, Any],
     *,
@@ -114,6 +157,7 @@ def build_reference_annotation_scene_bridge(
         resolved_config,
         road_segment_graph=road_segment_graph,
     )
+    placement_context.building_regions = _annotation_building_region_records(annotation)
     payload = build_reference_annotation_graph_payload(annotation, config=resolved_config)
     summary_metadata = {
         **dict(payload.get("summary", {}) or {}),

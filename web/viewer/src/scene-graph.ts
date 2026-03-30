@@ -104,6 +104,15 @@ type AnnotatedRoundabout = {
   radius_px: number;
 };
 
+type AnnotatedBuildingRegion = {
+  id: string;
+  label: string;
+  center_px: AnnotationPoint;
+  width_px: number;
+  height_px: number;
+  yaw_deg: number;
+};
+
 type ReferenceAnnotation = {
   version: string;
   plan_id: string;
@@ -115,6 +124,7 @@ type ReferenceAnnotation = {
   junctions: AnnotatedJunction[];
   roundabouts: AnnotatedRoundabout[];
   control_points: AnnotatedMarker[];
+  building_regions: AnnotatedBuildingRegion[];
 };
 
 type ReferencePlan = {
@@ -314,7 +324,7 @@ type MetaurbanAssetBadge = {
   shortLabel: string;
 };
 
-type Tool = "select" | "adjust" | "centerline" | "branch" | "cross" | "roundabout" | "control_point";
+type Tool = "select" | "adjust" | "centerline" | "branch" | "cross" | "roundabout" | "control_point" | "building_region";
 
 type Selection =
   | {
@@ -327,10 +337,12 @@ type Selection =
       id: string;
     }
   | {
-      kind: "junction" | "roundabout" | "control_point" | "derived_junction";
+      kind: "junction" | "roundabout" | "control_point" | "derived_junction" | "building_region";
       id: string;
     }
   | null;
+
+type BuildingRegionResizeHandle = "nw" | "ne" | "se" | "sw";
 
 type DragState =
   | {
@@ -350,6 +362,29 @@ type DragState =
       markerKind: "junction" | "roundabout" | "control_point";
       id: string;
       pointerId: number;
+    }
+  | {
+      kind: "building_region_translate";
+      id: string;
+      pointerId: number;
+      lastPoint: AnnotationPoint;
+    }
+  | {
+      kind: "building_region_resize";
+      id: string;
+      pointerId: number;
+      handle: BuildingRegionResizeHandle;
+    }
+  | {
+      kind: "building_region_rotate";
+      id: string;
+      pointerId: number;
+    }
+  | {
+      kind: "building_region_draw";
+      pointerId: number;
+      startPoint: AnnotationPoint;
+      currentPoint: AnnotationPoint;
     }
   | null;
 
@@ -380,6 +415,9 @@ const BRANCH_MIN_LENGTH_M = 4;
 const CROSS_MIN_HALF_LENGTH_M = 4;
 const STANDALONE_CROSS_ARM_LENGTH_M = 20;
 const ANNOTATION_MODEL_TOLERANCE_PX = 4;
+const BUILDING_REGION_MIN_SIZE_PX = 18;
+const BUILDING_REGION_ROTATE_HANDLE_OFFSET_PX = 28;
+const BUILDING_REGION_HANDLE_RADIUS_PX = 7;
 
 const STRIP_KINDS: StripKind[] = [
   "drive_lane",
@@ -2066,6 +2104,81 @@ function rectanglePolygonPoints(
     { x: center.x + tangent.x * halfLength + normal.x * halfWidth, y: center.y + tangent.y * halfLength + normal.y * halfWidth },
     { x: center.x + tangent.x * halfLength - normal.x * halfWidth, y: center.y + tangent.y * halfLength - normal.y * halfWidth },
   ];
+}
+
+function buildingRegionAxes(yawDeg: number): { axisX: AnnotationPoint; axisY: AnnotationPoint } {
+  const yawRad = (normalizeAngleDeg(yawDeg) * Math.PI) / 180;
+  return {
+    axisX: { x: Math.cos(yawRad), y: -Math.sin(yawRad) },
+    axisY: { x: -Math.sin(yawRad), y: -Math.cos(yawRad) },
+  };
+}
+
+function buildingRegionPolygonPoints(region: AnnotatedBuildingRegion): AnnotationPoint[] {
+  const { axisX, axisY } = buildingRegionAxes(region.yaw_deg);
+  const halfWidth = Math.max(region.width_px * 0.5, 0.5);
+  const halfHeight = Math.max(region.height_px * 0.5, 0.5);
+  const corners: Array<[number, number]> = [
+    [-halfWidth, -halfHeight],
+    [halfWidth, -halfHeight],
+    [halfWidth, halfHeight],
+    [-halfWidth, halfHeight],
+  ];
+  return corners.map(([localX, localY]) => ({
+    x: region.center_px.x + axisX.x * localX + axisY.x * localY,
+    y: region.center_px.y + axisX.y * localX + axisY.y * localY,
+  }));
+}
+
+function buildingRegionLocalPoint(region: AnnotatedBuildingRegion, point: AnnotationPoint): AnnotationPoint {
+  const { axisX, axisY } = buildingRegionAxes(region.yaw_deg);
+  const dx = point.x - region.center_px.x;
+  const dy = point.y - region.center_px.y;
+  return {
+    x: dx * axisX.x + dy * axisX.y,
+    y: dx * axisY.x + dy * axisY.y,
+  };
+}
+
+function buildingRegionResizeHandlePoint(region: AnnotatedBuildingRegion, handle: BuildingRegionResizeHandle): AnnotationPoint {
+  const localX = handle === "ne" || handle === "se" ? region.width_px * 0.5 : -region.width_px * 0.5;
+  const localY = handle === "se" || handle === "sw" ? -region.height_px * 0.5 : region.height_px * 0.5;
+  const { axisX, axisY } = buildingRegionAxes(region.yaw_deg);
+  return {
+    x: region.center_px.x + axisX.x * localX + axisY.x * localY,
+    y: region.center_px.y + axisX.y * localX + axisY.y * localY,
+  };
+}
+
+function buildingRegionRotateHandlePoint(region: AnnotatedBuildingRegion): AnnotationPoint {
+  const { axisY } = buildingRegionAxes(region.yaw_deg);
+  const distance = region.height_px * 0.5 + BUILDING_REGION_ROTATE_HANDLE_OFFSET_PX;
+  return {
+    x: region.center_px.x + axisY.x * distance,
+    y: region.center_px.y + axisY.y * distance,
+  };
+}
+
+function buildBuildingRegionFromDraft(
+  id: string,
+  startPoint: AnnotationPoint,
+  currentPoint: AnnotationPoint,
+): AnnotatedBuildingRegion {
+  const minX = Math.min(startPoint.x, currentPoint.x);
+  const maxX = Math.max(startPoint.x, currentPoint.x);
+  const minY = Math.min(startPoint.y, currentPoint.y);
+  const maxY = Math.max(startPoint.y, currentPoint.y);
+  return {
+    id,
+    label: id,
+    center_px: {
+      x: (minX + maxX) * 0.5,
+      y: (minY + maxY) * 0.5,
+    },
+    width_px: Math.max(maxX - minX, BUILDING_REGION_MIN_SIZE_PX),
+    height_px: Math.max(maxY - minY, BUILDING_REGION_MIN_SIZE_PX),
+    yaw_deg: 0,
+  };
 }
 
 function centerlineSideStripLayouts(centerline: AnnotatedCenterline): Record<StripZone, Array<{
@@ -3997,6 +4110,7 @@ function createEmptyAnnotation(planId = "", imagePath = "", imageWidthPx = 0, im
     junctions: [],
     roundabouts: [],
     control_points: [],
+    building_regions: [],
   };
 }
 
@@ -4113,6 +4227,26 @@ function normalizeRoundabout(value: unknown, index: number): AnnotatedRoundabout
   };
 }
 
+function normalizeBuildingRegion(value: unknown, index: number): AnnotatedBuildingRegion {
+  const record = value && typeof value === "object" ? (value as Record<string, unknown>) : {};
+  const centerRecord =
+    record.center_px && typeof record.center_px === "object"
+      ? (record.center_px as Record<string, unknown>)
+      : null;
+  const id = asString(record.id, `building_region_${String(index + 1).padStart(2, "0")}`);
+  return {
+    id,
+    label: asString(record.label, id),
+    center_px: {
+      x: asNumber(centerRecord?.x ?? record.x, 0),
+      y: asNumber(centerRecord?.y ?? record.y, 0),
+    },
+    width_px: Math.max(1, asNumber(record.width_px, 64)),
+    height_px: Math.max(1, asNumber(record.height_px, 48)),
+    yaw_deg: normalizeAngleDeg(asNumber(record.yaw_deg, 0)),
+  };
+}
+
 function normalizeAnnotation(value: unknown): ReferenceAnnotation {
   const record = value && typeof value === "object" ? (value as Record<string, unknown>) : {};
   const centerlines = Array.isArray(record.centerlines)
@@ -4127,6 +4261,9 @@ function normalizeAnnotation(value: unknown): ReferenceAnnotation {
   const controlPoints = Array.isArray(record.control_points)
     ? record.control_points.map((item, index) => normalizeMarker(item, index, "control_point"))
     : [];
+  const buildingRegions = Array.isArray(record.building_regions)
+    ? record.building_regions.map((item, index) => normalizeBuildingRegion(item, index))
+    : [];
   return {
     version: asString(record.version, ANNOTATION_SCHEMA_VERSION),
     plan_id: asString(record.plan_id, "custom_annotation"),
@@ -4138,6 +4275,7 @@ function normalizeAnnotation(value: unknown): ReferenceAnnotation {
     junctions,
     roundabouts,
     control_points: controlPoints,
+    building_regions: buildingRegions,
   };
 }
 
@@ -4164,6 +4302,9 @@ function nextFeatureId(annotation: ReferenceAnnotation, prefix: string): string 
   for (const item of annotation.control_points) {
     ids.add(item.id);
   }
+  for (const item of annotation.building_regions) {
+    ids.add(item.id);
+  }
   let counter = 1;
   while (true) {
     const candidate = `${prefix}_${String(counter).padStart(2, "0")}`;
@@ -4179,12 +4320,14 @@ function getFeatureCount(annotation: ReferenceAnnotation): number {
     annotation.centerlines.length +
     annotation.junctions.length +
     annotation.roundabouts.length +
-    annotation.control_points.length
+    annotation.control_points.length +
+    annotation.building_regions.length
   );
 }
 
 function getSelectedFeature(annotation: ReferenceAnnotation, selection: Selection):
   | AnnotatedCenterline
+  | AnnotatedBuildingRegion
   | AnnotatedJunction
   | AnnotatedMarker
   | AnnotatedRoundabout
@@ -4204,6 +4347,9 @@ function getSelectedFeature(annotation: ReferenceAnnotation, selection: Selectio
   }
   if (selection.kind === "roundabout") {
     return annotation.roundabouts.find((item) => item.id === selection.id) ?? null;
+  }
+  if (selection.kind === "building_region") {
+    return annotation.building_regions.find((item) => item.id === selection.id) ?? null;
   }
   if (selection.kind === "derived_junction") {
     return getJunctionOverlay(annotation, selection.id);
@@ -4386,6 +4532,7 @@ function buildAnnotationSummaryMarkup(annotation: ReferenceAnnotation): string {
   const detailedRoadCount = annotation.centerlines.filter((item) => resolvedCrossSectionMode(item) === CROSS_SECTION_MODE_DETAILED).length;
   const stripCount = annotation.centerlines.reduce((sum, item) => sum + item.cross_section_strips.length, 0);
   const furnitureCount = annotation.centerlines.reduce((sum, item) => sum + item.street_furniture_instances.length, 0);
+  const buildingRegionCount = annotation.building_regions.length;
   const junctionStats = deriveJunctionStats(annotation);
   return `
     <div>
@@ -4443,6 +4590,10 @@ function buildAnnotationSummaryMarkup(annotation: ReferenceAnnotation): string {
     <div>
       <span class="scene-metric-label">Furniture</span>
       <strong>${furnitureCount}</strong>
+    </div>
+    <div>
+      <span class="scene-metric-label">Bldg Regions</span>
+      <strong>${buildingRegionCount}</strong>
     </div>
     <div>
       <span class="scene-metric-label">Scale</span>
@@ -4579,6 +4730,16 @@ function buildFeatureTableMarkup(annotation: ReferenceAnnotation): string {
         <td>${escapeHtml(item.id)}</td>
         <td>${escapeHtml(item.label)}</td>
         <td>${escapeHtml(item.kind)} · (${item.x.toFixed(0)}, ${item.y.toFixed(0)})</td>
+      </tr>
+    `);
+  }
+  for (const item of annotation.building_regions) {
+    rows.push(`
+      <tr>
+        <td>building region</td>
+        <td>${escapeHtml(item.id)}</td>
+        <td>${escapeHtml(item.label)}</td>
+        <td>${item.width_px.toFixed(0)} × ${item.height_px.toFixed(0)}px · yaw ${item.yaw_deg.toFixed(0)}° · (${item.center_px.x.toFixed(0)}, ${item.center_px.y.toFixed(0)})</td>
       </tr>
     `);
   }
@@ -5029,6 +5190,59 @@ function buildFurnitureMarkup(
   `;
 }
 
+function buildBuildingRegionInspectorMarkup(region: AnnotatedBuildingRegion): string {
+  const widthM = region.width_px;
+  const heightM = region.height_px;
+  return `
+    <section class="annotation-cross-preview-section">
+      <div class="annotation-cross-preview-header">
+        <div>
+          <h3>Building Region</h3>
+          <div class="scene-micro-note">Rotated rectangle for building generation and orientation override.</div>
+        </div>
+        <div class="annotation-cross-preview-stats">
+          <span class="annotation-cross-preview-stat">${widthM.toFixed(0)}px × ${heightM.toFixed(0)}px</span>
+          <span class="annotation-cross-preview-stat">${region.yaw_deg.toFixed(0)}°</span>
+        </div>
+      </div>
+      <div class="scene-inspector-grid">
+        <label class="scene-form-field">
+          <span>ID</span>
+          <input id="annotation-region-id" type="text" value="${escapeHtml(region.id)}" />
+        </label>
+        <label class="scene-form-field scene-form-field-wide">
+          <span>Label</span>
+          <input id="annotation-region-label" type="text" value="${escapeHtml(region.label)}" />
+        </label>
+        <label class="scene-form-field">
+          <span>Center X</span>
+          <input id="annotation-region-center-x" type="number" step="1" value="${region.center_px.x.toFixed(0)}" />
+        </label>
+        <label class="scene-form-field">
+          <span>Center Y</span>
+          <input id="annotation-region-center-y" type="number" step="1" value="${region.center_px.y.toFixed(0)}" />
+        </label>
+        <label class="scene-form-field">
+          <span>Width (px)</span>
+          <input id="annotation-region-width" type="number" min="${BUILDING_REGION_MIN_SIZE_PX}" step="1" value="${region.width_px.toFixed(0)}" />
+        </label>
+        <label class="scene-form-field">
+          <span>Height (px)</span>
+          <input id="annotation-region-height" type="number" min="${BUILDING_REGION_MIN_SIZE_PX}" step="1" value="${region.height_px.toFixed(0)}" />
+        </label>
+        <label class="scene-form-field">
+          <span>Yaw (deg)</span>
+          <input id="annotation-region-yaw" type="number" step="1" value="${region.yaw_deg.toFixed(0)}" />
+        </label>
+        <div class="scene-fact-card scene-form-field-wide">
+          <span class="scene-fact-label">Generation Rule</span>
+          <strong>Buildings intersecting this region use its orientation. Later regions override earlier ones.</strong>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
 function buildJunctionInspectorMarkup(
   junction: AnnotatedJunction,
   overlay: DerivedJunctionOverlay | null,
@@ -5232,7 +5446,7 @@ function buildInspectorMarkup(
   isFurniturePlacementArmed: boolean,
 ): string {
   if (!selection) {
-    return `<div class="scene-empty-note">选择一条中心线、路口、环岛或控制点后，可以在这里编辑属性。</div>`;
+    return `<div class="scene-empty-note">选择一条中心线、路口、环岛、控制点或建筑区域后，可以在这里编辑属性。</div>`;
   }
   if (selection.kind === "road_collection") {
     return buildRoadCollectionInspectorMarkup(annotation);
@@ -5240,6 +5454,9 @@ function buildInspectorMarkup(
   const feature = getSelectedFeature(annotation, selection);
   if (!feature) {
     return `<div class="scene-empty-note">当前选择的要素已经不存在。</div>`;
+  }
+  if (selection.kind === "building_region") {
+    return buildBuildingRegionInspectorMarkup(feature as AnnotatedBuildingRegion);
   }
   if (selection.kind === "centerline") {
     const centerline = feature as AnnotatedCenterline;
@@ -5807,6 +6024,87 @@ function buildCenterlineOverlayMarkup(
   `;
 }
 
+function buildBuildingRegionOverlayMarkup(
+  region: AnnotatedBuildingRegion,
+  isSelected: boolean,
+): string {
+  const polygon = buildingRegionPolygonPoints(region);
+  const polygonPoints = polygon.map((point) => `${point.x},${point.y}`).join(" ");
+  const labelPoint = polygon[3] ?? region.center_px;
+  const resizeHandles: BuildingRegionResizeHandle[] = ["nw", "ne", "se", "sw"];
+  const resizeHandleMarkup = isSelected
+    ? resizeHandles
+        .map((handle) => {
+          const point = buildingRegionResizeHandlePoint(region, handle);
+          return `
+            <circle
+              class="annotation-building-region-handle"
+              cx="${point.x}"
+              cy="${point.y}"
+              r="${BUILDING_REGION_HANDLE_RADIUS_PX}"
+              data-feature-kind="building_region"
+              data-feature-id="${escapeHtml(region.id)}"
+              data-region-handle-kind="resize"
+              data-region-resize-handle="${handle}"
+            />
+          `;
+        })
+        .join("")
+    : "";
+  const rotateHandlePoint = buildingRegionRotateHandlePoint(region);
+  const rotateGuideMarkup = isSelected
+    ? `
+        <line
+          class="annotation-building-region-rotate-guide"
+          x1="${region.center_px.x}"
+          y1="${region.center_px.y}"
+          x2="${rotateHandlePoint.x}"
+          y2="${rotateHandlePoint.y}"
+        />
+        <circle
+          class="annotation-building-region-rotate-handle"
+          cx="${rotateHandlePoint.x}"
+          cy="${rotateHandlePoint.y}"
+          r="${BUILDING_REGION_HANDLE_RADIUS_PX}"
+          data-feature-kind="building_region"
+          data-feature-id="${escapeHtml(region.id)}"
+          data-region-handle-kind="rotate"
+        />
+      `
+    : "";
+  return `
+    <g class="annotation-feature-group">
+      <polygon
+        class="annotation-building-region${isSelected ? " annotation-building-region-selected" : ""}"
+        points="${polygonPoints}"
+        data-feature-kind="building_region"
+        data-feature-id="${escapeHtml(region.id)}"
+      />
+      <text class="annotation-label" x="${labelPoint.x}" y="${labelPoint.y - 10}">
+        ${escapeHtml(region.label || region.id)}
+      </text>
+      ${resizeHandleMarkup}
+      ${rotateGuideMarkup}
+    </g>
+  `;
+}
+
+function buildBuildingRegionDraftMarkup(drag: Extract<DragState, { kind: "building_region_draw" }> | null): string {
+  if (!drag) {
+    return "";
+  }
+  const preview = buildBuildingRegionFromDraft("__draft__", drag.startPoint, drag.currentPoint);
+  const polygon = buildingRegionPolygonPoints(preview);
+  return `
+    <g class="annotation-feature-group">
+      <polygon
+        class="annotation-building-region annotation-building-region-draft"
+        points="${polygon.map((point) => `${point.x},${point.y}`).join(" ")}"
+      />
+    </g>
+  `;
+}
+
 function buildBranchPreviewMarkup(
   branchHoverSnap: BranchSnapTarget | null,
   branchDraft: BranchDraft | null,
@@ -6190,6 +6488,7 @@ function buildOverlayMarkup(
   branchDraft: BranchDraft | null,
   crossHoverSnap: BranchSnapTarget | null,
   crossDraft: CrossDraft | null,
+  buildingRegionDraft: Extract<DragState, { kind: "building_region_draw" }> | null,
 ): string {
   const width = Math.max(annotation.image_width_px, 1);
   const height = Math.max(annotation.image_height_px, 1);
@@ -6281,6 +6580,10 @@ function buildOverlayMarkup(
     })
     .join("");
 
+  const buildingRegionMarkup = annotation.building_regions
+    .map((region) => buildBuildingRegionOverlayMarkup(region, selectedKey === `building_region:${region.id}`))
+    .join("");
+
   const draftMarkup =
     draftCenterline.length > 0
       ? `
@@ -6318,10 +6621,12 @@ function buildOverlayMarkup(
       <rect x="0" y="0" width="${width}" height="${height}" fill="transparent" />
       ${centerlineMarkup}
       ${derivedJunctionMarkup}
+      ${buildingRegionMarkup}
       ${markerMarkup}
       ${roundaboutMarkup}
       ${buildBranchPreviewMarkup(branchHoverSnap, branchDraft)}
       ${buildCrossPreviewMarkup(crossHoverSnap, crossDraft)}
+      ${buildBuildingRegionDraftMarkup(buildingRegionDraft)}
       ${draftMarkup}
     </svg>
   `;
@@ -6384,6 +6689,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
             <button id="annotation-tool-cross" class="scene-tool-button" data-tool="cross" type="button">Cross</button>
             <button id="annotation-tool-roundabout" class="scene-tool-button" data-tool="roundabout" type="button">Roundabout</button>
             <button id="annotation-tool-control-point" class="scene-tool-button" data-tool="control_point" type="button">Control Point</button>
+            <button id="annotation-tool-building-region" class="scene-tool-button" data-tool="building_region" type="button">Building Region</button>
           </div>
 
           <div class="scene-layer-controls scene-layer-controls-annotation">
@@ -6467,7 +6773,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
           <section class="scene-panel scene-panel-selected-feature">
             <div class="scene-panel-header">
               <h2>Selected Feature</h2>
-              <p>中心线支持 Coarse / Detailed 两阶段编辑。Detailed 模式下可以手工拆 strip、调方向，并在 furnishing/frontage 带上放置街道家具实例。</p>
+              <p>中心线支持 Coarse / Detailed 两阶段编辑。Detailed 模式下可以手工拆 strip、调方向、放置街道家具，也可以绘制建筑区域并手工指定建筑朝向。</p>
             </div>
             <div id="annotation-inspector" class="scene-inspector-wrap"></div>
           </section>
@@ -6795,6 +7101,57 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     );
     const selectedFeature = getSelectedFeature(state.annotation, state.selection);
     if (!selectedFeature || !state.selection) {
+      return;
+    }
+    if (state.selection.kind === "building_region") {
+      const region = selectedFeature as AnnotatedBuildingRegion;
+      const regionIdInput = inspectorEl.querySelector<HTMLInputElement>("#annotation-region-id");
+      const regionLabelInput = inspectorEl.querySelector<HTMLInputElement>("#annotation-region-label");
+      const regionCenterXInput = inspectorEl.querySelector<HTMLInputElement>("#annotation-region-center-x");
+      const regionCenterYInput = inspectorEl.querySelector<HTMLInputElement>("#annotation-region-center-y");
+      const regionWidthInput = inspectorEl.querySelector<HTMLInputElement>("#annotation-region-width");
+      const regionHeightInput = inspectorEl.querySelector<HTMLInputElement>("#annotation-region-height");
+      const regionYawInput = inspectorEl.querySelector<HTMLInputElement>("#annotation-region-yaw");
+      const updateRegion = (): void => {
+        if (regionIdInput) {
+          const nextId = regionIdInput.value.trim();
+          if (nextId) {
+            region.id = nextId;
+            state.selection = { kind: "building_region", id: nextId };
+          }
+        }
+        if (regionLabelInput) {
+          region.label = regionLabelInput.value.trim() || region.id;
+        }
+        if (regionCenterXInput) {
+          region.center_px.x = asNumber(regionCenterXInput.value, region.center_px.x);
+        }
+        if (regionCenterYInput) {
+          region.center_px.y = asNumber(regionCenterYInput.value, region.center_px.y);
+        }
+        if (regionWidthInput) {
+          region.width_px = Math.max(BUILDING_REGION_MIN_SIZE_PX, asNumber(regionWidthInput.value, region.width_px));
+        }
+        if (regionHeightInput) {
+          region.height_px = Math.max(BUILDING_REGION_MIN_SIZE_PX, asNumber(regionHeightInput.value, region.height_px));
+        }
+        if (regionYawInput) {
+          region.yaw_deg = normalizeAngleDeg(asNumber(regionYawInput.value, region.yaw_deg));
+        }
+        markAnnotationChanged();
+        renderAll();
+      };
+      for (const input of [
+        regionIdInput,
+        regionLabelInput,
+        regionCenterXInput,
+        regionCenterYInput,
+        regionWidthInput,
+        regionHeightInput,
+        regionYawInput,
+      ]) {
+        input?.addEventListener("input", updateRegion, { signal });
+      }
       return;
     }
     const idInput = inspectorEl.querySelector<HTMLInputElement>("#annotation-inspector-id");
@@ -7250,6 +7607,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       state.branchDraft,
       state.crossHoverSnap,
       state.crossDraft,
+      state.drag?.kind === "building_region_draw" ? state.drag : null,
     );
     updateStageVisibility();
   }
@@ -7280,7 +7638,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     imageMetaEl.textContent = showInlineLoading
       ? state.referenceImageLoadingMessage
       : state.currentImageUrl
-        ? `${state.annotation.plan_id || "custom"} · ${state.annotation.image_width_px} × ${state.annotation.image_height_px}px · ${state.annotation.pixels_per_meter.toFixed(1)} px/m · ${state.annotation.centerlines.length} roads · ${state.annotation.centerlines.reduce((sum, item) => sum + item.cross_section_strips.length, 0)} strips · ${state.annotation.centerlines.reduce((sum, item) => sum + item.street_furniture_instances.length, 0)} furniture`
+        ? `${state.annotation.plan_id || "custom"} · ${state.annotation.image_width_px} × ${state.annotation.image_height_px}px · ${state.annotation.pixels_per_meter.toFixed(1)} px/m · ${state.annotation.centerlines.length} roads · ${state.annotation.centerlines.reduce((sum, item) => sum + item.cross_section_strips.length, 0)} strips · ${state.annotation.centerlines.reduce((sum, item) => sum + item.street_furniture_instances.length, 0)} furniture · ${state.annotation.building_regions.length} building regions`
         : "选择参考 plan 或导入 PNG 后，就可以在图上开始标注。";
     finishCenterlineButton.disabled = state.draftCenterline.length < 2;
     selectAllRoadsButton.disabled = state.annotation.centerlines.length === 0;
@@ -7317,6 +7675,8 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       setStatus(statusEl, `Cross Tool: hover an existing road to snap and extend a cross from it, or click empty space to place a standalone ${STANDALONE_CROSS_ARM_LENGTH_M.toFixed(0)}m cross intersection.`, "neutral");
     } else if (tool === "centerline") {
       setStatus(statusEl, "Centerline Tool: draw approach roads only. Use Branch Tool or Cross Tool to create intersections explicitly.", "neutral");
+    } else if (tool === "building_region") {
+      setStatus(statusEl, "Building Region Tool: drag on the canvas to draw a rotatable building-generation region.", "neutral");
     }
     renderAll();
   }
@@ -7338,7 +7698,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     return { x, y };
   }
 
-  function hitFromTarget(target: EventTarget | null): Selection {
+function hitFromTarget(target: EventTarget | null): Selection {
     const element = target instanceof Element ? target.closest<HTMLElement>("[data-feature-kind][data-feature-id]") : null;
     if (!element) {
       return null;
@@ -7356,11 +7716,39 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       }
       return selection;
     }
-    if (featureKind === "junction" || featureKind === "roundabout" || featureKind === "control_point" || featureKind === "derived_junction") {
+    if (
+      featureKind === "junction" ||
+      featureKind === "roundabout" ||
+      featureKind === "control_point" ||
+      featureKind === "derived_junction" ||
+      featureKind === "building_region"
+    ) {
       return { kind: featureKind, id: featureId };
     }
     return null;
+}
+
+function buildingRegionHandleFromTarget(
+  target: EventTarget | null,
+): { regionId: string; handleKind: "resize" | "rotate"; resizeHandle?: BuildingRegionResizeHandle } | null {
+  const element = target instanceof Element ? target.closest<HTMLElement>("[data-region-handle-kind][data-feature-id]") : null;
+  if (!element) {
+    return null;
   }
+  const regionId = element.dataset.featureId;
+  const handleKind = element.dataset.regionHandleKind;
+  if (!regionId || (handleKind !== "resize" && handleKind !== "rotate")) {
+    return null;
+  }
+  if (handleKind === "resize") {
+    const resizeHandle = element.dataset.regionResizeHandle;
+    if (resizeHandle === "nw" || resizeHandle === "ne" || resizeHandle === "se" || resizeHandle === "sw") {
+      return { regionId, handleKind, resizeHandle };
+    }
+    return null;
+  }
+  return { regionId, handleKind };
+}
 
   async function loadImageFromUrl(
     imageUrl: string,
@@ -7538,6 +7926,7 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
     state.annotation.junctions = [];
     state.annotation.roundabouts = [];
     state.annotation.control_points = [];
+    state.annotation.building_regions = [];
     state.selection = null;
     state.selectedStripId = null;
     state.draftCenterline = [];
@@ -7587,6 +7976,10 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       state.annotation.control_points = state.annotation.control_points.filter((item) => item.id !== state.selection?.id);
       state.selection = null;
       setStatus(statusEl, "Deleted control point.", "success");
+    } else if (state.selection.kind === "building_region") {
+      state.annotation.building_regions = state.annotation.building_regions.filter((item) => item.id !== state.selection?.id);
+      state.selection = null;
+      setStatus(statusEl, "Deleted building region.", "success");
     } else if (state.selection.kind === "derived_junction") {
       setStatus(statusEl, "Derived junctions come from shared road vertices. Edit the connected centerlines instead.", "neutral");
     }
@@ -8403,11 +8796,37 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       }
 
       if (state.selectedTool === "adjust") {
+        const regionHandle = buildingRegionHandleFromTarget(event.target);
         state.selection = hit;
         if (hit?.kind !== "centerline") {
           state.selectedStripId = null;
         }
-        if (hit?.kind === "centerline" && hit.vertexIndex !== undefined) {
+        if (regionHandle) {
+          state.selection = { kind: "building_region", id: regionHandle.regionId };
+          state.selectedStripId = null;
+          state.drag =
+            regionHandle.handleKind === "resize"
+              ? {
+                  kind: "building_region_resize",
+                  id: regionHandle.regionId,
+                  pointerId: event.pointerId,
+                  handle: regionHandle.resizeHandle ?? "se",
+                }
+              : {
+                  kind: "building_region_rotate",
+                  id: regionHandle.regionId,
+                  pointerId: event.pointerId,
+                };
+          event.preventDefault();
+          event.stopPropagation();
+        } else if (hit?.kind === "building_region" && point) {
+          state.drag = {
+            kind: "building_region_translate",
+            id: hit.id,
+            pointerId: event.pointerId,
+            lastPoint: point,
+          };
+        } else if (hit?.kind === "centerline" && hit.vertexIndex !== undefined) {
           state.drag = {
             kind: "centerline_vertex",
             id: hit.id,
@@ -8491,6 +8910,20 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
         return;
       }
 
+      if (state.selectedTool === "building_region") {
+        state.selection = null;
+        state.selectedStripId = null;
+        clearFurniturePlacement();
+        state.drag = {
+          kind: "building_region_draw",
+          pointerId: event.pointerId,
+          startPoint: point,
+          currentPoint: point,
+        };
+        renderAll();
+        return;
+      }
+
       if (state.selectedTool === "control_point") {
         const id = nextFeatureId(state.annotation, "control_point");
         state.annotation.control_points.push({ id, label: id, x: point.x, y: point.y, kind: "control_point" });
@@ -8561,46 +8994,84 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
       if (!state.drag || state.drag.pointerId !== event.pointerId) {
         return;
       }
+      const drag = state.drag;
       const point = imagePointFromPointer(event);
+      if (!point && drag.kind !== "building_region_draw") {
+        return;
+      }
+      if (drag.kind === "building_region_draw") {
+        if (point) {
+          drag.currentPoint = point;
+          renderAll();
+        }
+        return;
+      }
       if (!point) {
         return;
       }
-      if (state.drag.kind === "centerline_vertex") {
-        const centerline = state.annotation.centerlines.find((item) => item.id === state.drag?.id);
+      if (drag.kind === "centerline_vertex") {
+        const centerline = state.annotation.centerlines.find((item) => item.id === drag.id);
         if (!centerline) {
           return;
         }
-        if (!centerline.points[state.drag.vertexIndex]) {
+        if (!centerline.points[drag.vertexIndex]) {
           return;
         }
-        centerline.points[state.drag.vertexIndex] = point;
-      } else if (state.drag.kind === "centerline_translate") {
-        const centerline = state.annotation.centerlines.find((item) => item.id === state.drag?.id);
+        centerline.points[drag.vertexIndex] = point;
+      } else if (drag.kind === "building_region_translate") {
+        const region = state.annotation.building_regions.find((item) => item.id === drag.id);
+        if (!region) {
+          return;
+        }
+        const deltaX = point.x - drag.lastPoint.x;
+        const deltaY = point.y - drag.lastPoint.y;
+        region.center_px = {
+          x: region.center_px.x + deltaX,
+          y: region.center_px.y + deltaY,
+        };
+        drag.lastPoint = point;
+      } else if (drag.kind === "building_region_resize") {
+        const region = state.annotation.building_regions.find((item) => item.id === drag.id);
+        if (!region) {
+          return;
+        }
+        const localPoint = buildingRegionLocalPoint(region, point);
+        region.width_px = Math.max(BUILDING_REGION_MIN_SIZE_PX, Math.abs(localPoint.x) * 2.0);
+        region.height_px = Math.max(BUILDING_REGION_MIN_SIZE_PX, Math.abs(localPoint.y) * 2.0);
+      } else if (drag.kind === "building_region_rotate") {
+        const region = state.annotation.building_regions.find((item) => item.id === drag.id);
+        if (!region) {
+          return;
+        }
+        const yawRad = Math.atan2(region.center_px.x - point.x, region.center_px.y - point.y);
+        region.yaw_deg = normalizeAngleDeg((yawRad * 180) / Math.PI);
+      } else if (drag.kind === "centerline_translate") {
+        const centerline = state.annotation.centerlines.find((item) => item.id === drag.id);
         if (!centerline) {
           return;
         }
-        const deltaX = point.x - state.drag.lastPoint.x;
-        const deltaY = point.y - state.drag.lastPoint.y;
+        const deltaX = point.x - drag.lastPoint.x;
+        const deltaY = point.y - drag.lastPoint.y;
         centerline.points = centerline.points.map((vertex) => ({
           x: vertex.x + deltaX,
           y: vertex.y + deltaY,
         }));
-        state.drag.lastPoint = point;
+        drag.lastPoint = point;
       } else {
-        if (state.drag.markerKind === "junction") {
-          const marker = state.annotation.junctions.find((item) => item.id === state.drag?.id);
+        if (drag.markerKind === "junction") {
+          const marker = state.annotation.junctions.find((item) => item.id === drag.id);
           if (marker) {
             marker.x = point.x;
             marker.y = point.y;
           }
-        } else if (state.drag.markerKind === "roundabout") {
-          const marker = state.annotation.roundabouts.find((item) => item.id === state.drag?.id);
+        } else if (drag.markerKind === "roundabout") {
+          const marker = state.annotation.roundabouts.find((item) => item.id === drag.id);
           if (marker) {
             marker.x = point.x;
             marker.y = point.y;
           }
         } else {
-          const marker = state.annotation.control_points.find((item) => item.id === state.drag?.id);
+          const marker = state.annotation.control_points.find((item) => item.id === drag.id);
           if (marker) {
             marker.x = point.x;
             marker.y = point.y;
@@ -8626,7 +9097,35 @@ export function mountSceneGraphPage(root: HTMLElement): () => void {
         renderAll();
         return;
       }
+      if (state.drag?.kind === "building_region_draw" && state.drag.pointerId === event.pointerId) {
+        const { startPoint, currentPoint } = state.drag;
+        const deltaX = Math.abs(currentPoint.x - startPoint.x);
+        const deltaY = Math.abs(currentPoint.y - startPoint.y);
+        if (Math.max(deltaX, deltaY) >= 6) {
+          const id = nextFeatureId(state.annotation, "building_region");
+          const region = buildBuildingRegionFromDraft(id, startPoint, currentPoint);
+          state.annotation.building_regions.push(region);
+          state.selection = { kind: "building_region", id };
+          state.selectedStripId = null;
+          clearFurniturePlacement();
+          state.drag = null;
+          markAnnotationChanged(`Added building region ${id}.`);
+          renderAll();
+          return;
+        }
+        state.drag = null;
+        setStatus(statusEl, "Building region drag was too small. Drag to define an area.", "neutral");
+        renderAll();
+        return;
+      }
       if (state.drag && state.drag.pointerId === event.pointerId) {
+        if (state.drag.kind === "building_region_translate") {
+          setStatus(statusEl, "Moved building region.", "success");
+        } else if (state.drag.kind === "building_region_resize") {
+          setStatus(statusEl, "Resized building region.", "success");
+        } else if (state.drag.kind === "building_region_rotate") {
+          setStatus(statusEl, "Updated building region orientation.", "success");
+        }
         state.drag = null;
         syncSelectionAfterMutation();
         renderAll();
