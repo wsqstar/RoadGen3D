@@ -29,6 +29,8 @@ from roadgen3d.types import (
     StreetPlacement,
 )
 from roadgen3d.asset_scale import compute_asset_scale
+from roadgen3d.reference_annotation import ANNOTATION_SCHEMA_VERSION, build_reference_annotation_compose_config
+from roadgen3d.reference_annotation_scene_bridge import build_reference_annotation_scene_bridge
 from roadgen3d.street_layout import compose_street_scene
 import roadgen3d.street_layout as street_layout
 from roadgen3d.poi_rules import PoiContext
@@ -272,6 +274,68 @@ def _build_osm_config(
         zoning_granularity=zoning_granularity,
         streetwall_continuity=streetwall_continuity,
         infill_policy=infill_policy,
+    )
+
+
+def _build_graph_template_bridge_with_building_regions():
+    annotation_payload = {
+        "version": ANNOTATION_SCHEMA_VERSION,
+        "plan_id": "region_only_graph_template",
+        "image_path": "/tmp/region_only_graph_template.png",
+        "image_width_px": 1200,
+        "image_height_px": 800,
+        "pixels_per_meter": 10.0,
+        "centerlines": [
+            {
+                "id": "main_axis",
+                "label": "Main Axis",
+                "road_width_m": 18.0,
+                "reference_width_px": 180.0,
+                "forward_drive_lane_count": 1,
+                "reverse_drive_lane_count": 1,
+                "cross_section_mode": "detailed",
+                "cross_section_strips": [
+                    {"strip_id": "left_furnishing", "zone": "left", "kind": "nearroad_furnishing", "width_m": 1.2, "direction": "none", "order_index": 0},
+                    {"strip_id": "left_sidewalk", "zone": "left", "kind": "clear_sidewalk", "width_m": 2.4, "direction": "none", "order_index": 1},
+                    {"strip_id": "left_frontage", "zone": "left", "kind": "frontage_reserve", "width_m": 2.0, "direction": "none", "order_index": 2},
+                    {"strip_id": "rev_drive", "zone": "center", "kind": "drive_lane", "width_m": 3.3, "direction": "reverse", "order_index": 0},
+                    {"strip_id": "median_01", "zone": "center", "kind": "median", "width_m": 0.3, "direction": "none", "order_index": 1},
+                    {"strip_id": "fwd_drive", "zone": "center", "kind": "drive_lane", "width_m": 3.3, "direction": "forward", "order_index": 2},
+                    {"strip_id": "right_furnishing", "zone": "right", "kind": "nearroad_furnishing", "width_m": 1.2, "direction": "none", "order_index": 0},
+                    {"strip_id": "right_sidewalk", "zone": "right", "kind": "clear_sidewalk", "width_m": 2.4, "direction": "none", "order_index": 1},
+                    {"strip_id": "right_frontage", "zone": "right", "kind": "frontage_reserve", "width_m": 2.0, "direction": "none", "order_index": 2},
+                ],
+                "points": [
+                    {"x": 160, "y": 400},
+                    {"x": 1040, "y": 400},
+                ],
+            }
+        ],
+        "junctions": [],
+        "roundabouts": [],
+        "control_points": [],
+        "building_regions": [
+            {
+                "id": "building_region_01",
+                "label": "North Court",
+                "center_px": {"x": 360, "y": 255},
+                "width_px": 180,
+                "height_px": 120,
+                "yaw_deg": 18.0,
+            },
+            {
+                "id": "building_region_02",
+                "label": "South Court",
+                "center_px": {"x": 820, "y": 555},
+                "width_px": 200,
+                "height_px": 140,
+                "yaw_deg": -22.0,
+            },
+        ],
+    }
+    return build_reference_annotation_scene_bridge(
+        annotation_payload,
+        compose_config=build_reference_annotation_compose_config({"segment_length_m": 9.0, "road_width_m": 18.0}),
     )
 
 
@@ -3466,6 +3530,82 @@ def test_osm_compose_building_fallback_survives_missing_assets_and_footprints(tm
     assert summary["frontage_parcel_count"] == len(payload["generated_lots"])
     assert summary["zoning_preview_mode"] == "parcel_first"
     assert summary["frontage_cell_count"] > len(summary["theme_segments"])
+
+
+def test_graph_template_building_regions_force_region_only_building_generation(tmp_path: Path, monkeypatch):
+    pytest.importorskip("trimesh")
+    pytest.importorskip("pyproj")
+    pytest.importorskip("shapely")
+
+    rows = _build_real_rows(tmp_path / "data", include_buildings=True)
+    manifest = tmp_path / "data" / "real_assets_manifest.jsonl"
+    _write_manifest(manifest, rows)
+    _setup_fake_retrieval(monkeypatch, [str(row["asset_id"]) for row in rows])
+    monkeypatch.setattr(street_layout, "render_presentation_views", lambda *args, **kwargs: [])
+
+    bridge = _build_graph_template_bridge_with_building_regions()
+    config = StreetComposeConfig(
+        query="campus gateway street",
+        length_m=96.0,
+        road_width_m=18.0,
+        sidewalk_width_m=3.0,
+        lane_count=2,
+        density=1.0,
+        seed=31,
+        topk_per_category=20,
+        max_trials_per_slot=20,
+        layout_mode="graph_template",
+        constraint_mode="off",
+        curated_street_assets_profile="disabled",
+        enable_surrounding_buildings=True,
+        surrounding_building_mode="grid_growth",
+        building_search_topk=3,
+    )
+
+    result = compose_street_scene(
+        config=config,
+        manifest_path=manifest,
+        artifacts_dir=tmp_path / "artifacts",
+        local_files_only=True,
+        device="cpu",
+        export_format="glb",
+        out_dir=tmp_path / "artifacts",
+        road_segment_graph_override=bridge.road_segment_graph,
+        projected_features_override=bridge.projected_features,
+        placement_context_override=bridge.placement_context,
+    )
+
+    payload = json.loads(Path(result.outputs["scene_layout"]).read_text(encoding="utf-8"))
+    summary = payload["summary"]
+    region_ids = {region["region_id"] for region in bridge.placement_context.building_regions}
+    step_ids = [step["step_id"] for step in payload["production_steps"]]
+
+    assert summary["building_generation_mode_requested"] == "grid_growth"
+    assert summary["building_generation_mode"] == "building_region_direct"
+    assert summary["building_generation_mode_used"] == "building_region_direct"
+    assert "building_regions present" in summary["building_generation_fallback_reason"]
+    assert summary["building_footprint_count"] == len(region_ids)
+    assert summary["building_region_count"] == len(region_ids)
+    assert payload["generated_lots"] == []
+    assert payload["zoning_grid"] == []
+    assert "land_use_zoning" not in step_ids
+    assert summary["frontage_parcel_count"] == 0
+    assert summary["zoning_preview_mode"] == "building_region_direct"
+    assert summary["land_use_summary"]["mode"] == "building_region_direct"
+    assert summary["building_summary"]["lot_count"] == 0
+    assert summary["building_summary"]["target_type"] == "footprint"
+    assert summary["building_summary"]["region_direct_mode"] is True
+    assert summary["building_summary"]["building_region_count"] == len(region_ids)
+    assert summary["infill_footprint_count"] == 0
+    assert summary["building_summary"]["infill_footprint_count"] == 0
+    assert len(payload["building_footprints"]) == len(region_ids)
+    assert {footprint["footprint_id"] for footprint in payload["building_footprints"]} == region_ids
+    assert all(footprint["source"] == "building_region" for footprint in payload["building_footprints"])
+    assert all(placement.anchor_geom_id in region_ids for placement in result.placements if placement.placement_group == "building")
+    assert all(plan["anchor_geom_id"] in region_ids for plan in payload["building_placements"])
+    assert all(plan["placement_strategy"] == "building_region" for plan in payload["building_placements"])
+    assert summary["zoning_preview_summary"]["building_region_count"] == len(region_ids)
+    assert summary["zoning_preview_summary"]["active_building_region_count"] == len(region_ids)
 
 
 def test_osm_compose_grid_growth_generates_lots_and_lot_based_buildings(tmp_path: Path, monkeypatch):

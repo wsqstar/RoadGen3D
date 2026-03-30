@@ -927,7 +927,7 @@ def test_generate_grid_growth_lots_theme_random_produces_target_height():
     assert "target_height_stats" in summary
 
 
-def test_collect_building_footprints_respects_building_regions_and_last_overlap_yaw():
+def test_collect_building_footprints_uses_building_region_records_in_declared_order():
     pytest.importorskip("shapely")
     from shapely.geometry import box
 
@@ -997,9 +997,86 @@ def test_collect_building_footprints_respects_building_regions_and_last_overlap_
         seed=11,
     )
 
-    assert len(footprints) == 1
-    assert footprints[0].anchor_geom_id == "inside_overlap"
-    assert footprints[0].yaw_deg == pytest.approx(60.0)
+    assert [footprint.footprint_id for footprint in footprints] == ["building_region_01", "building_region_02"]
+    assert [footprint.anchor_geom_id for footprint in footprints] == ["building_region_01", "building_region_02"]
+    assert [footprint.yaw_deg for footprint in footprints] == pytest.approx([15.0, 60.0])
+
+
+def test_collect_building_footprints_prefers_region_only_generation_when_building_regions_exist():
+    pytest.importorskip("shapely")
+    from shapely.geometry import box
+
+    graph = RoadSegmentGraph(
+        nodes=(
+            RoadSegmentNode(
+                segment_id="seg_0000",
+                road_id=1,
+                start_xy=(0.0, 0.0),
+                end_xy=(40.0, 0.0),
+                center_xy=(20.0, 0.0),
+                length_m=40.0,
+                highway_type="tertiary",
+                station_start_m=0.0,
+                station_end_m=40.0,
+                station_center_m=20.0,
+                cross_section_strips=(
+                    SimpleNamespace(strip_id="left_furn", zone="left", kind="nearroad_furnishing", width_m=1.0, order_index=0),
+                    SimpleNamespace(strip_id="left_walk", zone="left", kind="clear_sidewalk", width_m=2.0, order_index=1),
+                    SimpleNamespace(strip_id="left_frontage", zone="left", kind="frontage_reserve", width_m=2.5, order_index=2),
+                    SimpleNamespace(strip_id="right_furn", zone="right", kind="nearroad_furnishing", width_m=1.0, order_index=0),
+                    SimpleNamespace(strip_id="right_walk", zone="right", kind="clear_sidewalk", width_m=2.0, order_index=1),
+                    SimpleNamespace(strip_id="right_frontage", zone="right", kind="frontage_reserve", width_m=2.5, order_index=2),
+                ),
+            ),
+        ),
+        edges=(),
+        mode="annotation",
+    )
+    placement_context = SimpleNamespace(
+        carriageway=box(0.0, -4.0, 40.0, 4.0),
+        carriageway_width_m=8.0,
+        left_clear_path_width_m=1.8,
+        left_furnishing_width_m=0.7,
+        right_clear_path_width_m=1.8,
+        right_furnishing_width_m=0.7,
+        building_regions=[
+            {
+                "region_id": "building_region_01",
+                "label": "North Court",
+                "order_index": 0,
+                "yaw_deg": 15.0,
+                "polygon_xz": ((8.0, 9.0), (20.0, 9.0), (20.0, 16.0), (8.0, 16.0), (8.0, 9.0)),
+            },
+            {
+                "region_id": "building_region_02",
+                "label": "South Court",
+                "order_index": 1,
+                "yaw_deg": -20.0,
+                "polygon_xz": ((22.0, -16.0), (34.0, -16.0), (34.0, -9.0), (22.0, -9.0), (22.0, -16.0)),
+            },
+        ],
+    )
+    projected_features = SimpleNamespace(
+        buildings=[
+            SimpleNamespace(osm_id="inside_region", coords=[(10.0, 10.0), (14.0, 10.0), (14.0, 14.0), (10.0, 14.0), (10.0, 10.0)]),
+            SimpleNamespace(osm_id="outside_region", coords=[(24.0, 10.0), (28.0, 10.0), (28.0, 14.0), (24.0, 14.0), (24.0, 10.0)]),
+        ]
+    )
+
+    footprints = collect_building_footprints(
+        projected_features,
+        placement_context=placement_context,
+        theme_segments=_single_theme_segment("commercial"),
+        road_segment_graph=graph,
+        road_buffer_m=35.0,
+        seed=17,
+    )
+
+    assert [footprint.footprint_id for footprint in footprints] == ["building_region_01", "building_region_02"]
+    assert all(footprint.source == "building_region" for footprint in footprints)
+    assert [footprint.anchor_geom_id for footprint in footprints] == ["building_region_01", "building_region_02"]
+    assert [footprint.placement_strategy for footprint in footprints] == ["building_region", "building_region"]
+    assert [footprint.yaw_deg for footprint in footprints] == pytest.approx([15.0, -20.0])
 
 
 def test_build_zoning_grid_preview_limits_buildable_cells_to_building_regions_and_carries_region_yaw():

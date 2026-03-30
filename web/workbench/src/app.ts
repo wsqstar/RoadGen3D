@@ -1449,6 +1449,10 @@ function renderSceneSummaryHighlights(summary: Record<string, unknown>): string 
   if (summary.infill_footprint_count !== undefined) {
     rows.push(`<div><strong>infill_footprint_count</strong>: ${escapeHtml(String(summary.infill_footprint_count))}</div>`);
   }
+  const buildingGenerationMode = String(summary.building_generation_mode_used || summary.building_generation_mode || "");
+  if (buildingGenerationMode) {
+    rows.push(`<div><strong>building_generation_mode</strong>: ${escapeHtml(buildingGenerationMode)}</div>`);
+  }
   [
     { key: "total_network_length_m", label: "total_network_length_m", digits: 1 },
     { key: "junction_density_per_100m", label: "junction_density_per_100m", digits: 3 },

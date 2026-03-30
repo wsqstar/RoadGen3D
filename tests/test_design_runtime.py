@@ -57,18 +57,28 @@ def test_build_compose_config_from_draft_applies_explicit_beauty_fields():
 def test_generate_scene_from_draft_wraps_existing_scene_pipeline(tmp_path: Path, monkeypatch):
     layout_path = tmp_path / "scene_layout.json"
     layout_path.write_text(json.dumps({"summary": {"instance_count": 8, "dropped_slots": 1}}), encoding="utf-8")
+    captured: dict[str, object] = {}
 
     monkeypatch.setattr(
         runtime,
         "compose_street_scene",
-        lambda **kwargs: SimpleNamespace(
-            instance_count=8,
-            dropped_slots=1,
-            outputs={
-                "scene_layout": str(layout_path),
-                "scene_glb": str(tmp_path / "scene.glb"),
-                "scene_ply": str(tmp_path / "scene.ply"),
-            },
+        lambda **kwargs: (
+            captured.update(
+                {
+                    "model_name": kwargs.get("model_name"),
+                    "model_dir": kwargs.get("model_dir"),
+                    "local_files_only": kwargs.get("local_files_only"),
+                }
+            )
+            or SimpleNamespace(
+                instance_count=8,
+                dropped_slots=1,
+                outputs={
+                    "scene_layout": str(layout_path),
+                    "scene_glb": str(tmp_path / "scene.glb"),
+                    "scene_ply": str(tmp_path / "scene.ply"),
+                },
+            )
         ),
     )
     monkeypatch.setattr(runtime, "cache_scene_layout_for_viewer", lambda layout: Path(layout))
@@ -85,6 +95,9 @@ def test_generate_scene_from_draft_wraps_existing_scene_pipeline(tmp_path: Path,
     assert result.viewer_url.startswith("http://127.0.0.1:4173/")
     assert result.summary["instance_count"] == 8
     assert result.compose_config["road_width_m"] == 6.5
+    assert captured["model_name"] == "openai/clip-vit-base-patch32"
+    assert captured["model_dir"] == runtime.DEFAULT_CLIP_MODEL_DIR
+    assert captured["local_files_only"] is True
 
 
 def test_generate_scene_from_draft_uses_sanitized_cached_layout_summary(tmp_path: Path, monkeypatch):

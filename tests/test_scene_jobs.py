@@ -95,3 +95,48 @@ def test_scene_job_service_preserves_graph_template_scene_context():
     assert result.summary["layout_mode"] == "graph_template"
     assert captured["scene_context"].layout_mode == "graph_template"
     assert captured["scene_context"].graph_template_id == "hkust_gz_gate"
+
+
+def test_scene_job_service_records_graph_template_scene_summary_in_recent_scenes():
+    captured = {}
+
+    def _generator(draft, **kwargs):
+        captured["scene_context"] = kwargs.get("scene_context")
+        return SceneGenerationResult(
+            compose_config=draft.compose_config_patch,
+            summary={
+                "layout_mode": "graph_template",
+                "graph_template_id": "hkust_gz_gate",
+                "building_generation_mode": "building_region_direct",
+                "building_footprint_count": 2,
+                "infill_footprint_count": 0,
+            },
+            scene_layout_path="/tmp/layout.json",
+            scene_glb_path="/tmp/scene.glb",
+            scene_ply_path="/tmp/scene.ply",
+            viewer_url="http://127.0.0.1:4173/?layout=demo",
+        )
+
+    service = SceneJobService(generator=_generator)
+
+    created = service.submit_job(
+        draft=_draft(),
+        scene_context=SceneContext(
+            layout_mode="graph_template",
+            graph_template_id="hkust_gz_gate",
+        ),
+    )
+    status = service.wait_for_job(created.job_id, timeout_s=2.0)
+
+    assert status is not None
+    assert status.status == "succeeded"
+    assert captured["scene_context"].layout_mode == "graph_template"
+    assert captured["scene_context"].graph_template_id == "hkust_gz_gate"
+
+    recent = service.list_recent_scenes(limit=1)
+    assert len(recent) == 1
+    assert recent[0].job_id == created.job_id
+    assert recent[0].summary["layout_mode"] == "graph_template"
+    assert recent[0].summary["graph_template_id"] == "hkust_gz_gate"
+    assert recent[0].summary["building_generation_mode"] == "building_region_direct"
+    assert recent[0].summary["building_footprint_count"] == 2

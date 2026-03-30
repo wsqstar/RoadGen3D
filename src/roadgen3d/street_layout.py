@@ -2120,18 +2120,28 @@ def _export_scene(scene, out_dir: Path, export_format: str) -> Dict[str, str]:
     return outputs
 
 
-def _production_step_definitions(layout_mode: str) -> Tuple[Tuple[str, str], ...]:
+def _production_step_definitions(
+    layout_mode: str,
+    *,
+    include_land_use_zoning: bool = True,
+) -> Tuple[Tuple[str, str], ...]:
     if _is_corridor_layout_mode(layout_mode):
-        return (
+        steps: List[Tuple[str, str]] = [
             ("road_base", "Road Base"),
-            ("land_use_zoning", "Land Use / Zoning"),
-            ("buildings", "Buildings"),
-            ("poi_context", "POI Context"),
-            ("furniture_anchor", "Furniture Anchor"),
-            ("furniture_required", "Furniture Required"),
-            ("furniture_optional", "Furniture Optional"),
-            ("scene_preview", "Scene Preview"),
+        ]
+        if include_land_use_zoning:
+            steps.append(("land_use_zoning", "Land Use / Zoning"))
+        steps.extend(
+            [
+                ("buildings", "Buildings"),
+                ("poi_context", "POI Context"),
+                ("furniture_anchor", "Furniture Anchor"),
+                ("furniture_required", "Furniture Required"),
+                ("furniture_optional", "Furniture Optional"),
+                ("scene_preview", "Scene Preview"),
+            ]
         )
+        return tuple(steps)
     return (
         ("road_base", "Road Base"),
         ("furniture_required", "Furniture Required"),
@@ -2472,6 +2482,10 @@ def _build_production_steps(
     building_placements, anchor_placements, required_placements, optional_placements = _split_furniture_layers(placements)
     poi_points_by_type = extract_poi_points_by_type(poi_ctx, suffix="xz") if poi_ctx is not None else {}
     rough = surface_roughness(getattr(config, "style_preset", None))
+    region_direct_mode = bool(building_footprints) and not generated_lots and not zoning_grid and all(
+        str(footprint.source or "") == "building_region"
+        for footprint in building_footprints
+    )
 
     stage_visibility: Dict[str, Tuple[bool, bool, Tuple[StreetPlacement, ...], Tuple[str, ...]]] = {}
     if _is_corridor_layout_mode(config.layout_mode):
@@ -2531,7 +2545,12 @@ def _build_production_steps(
         }
 
     records: List[ProductionStepRecord] = []
-    for index, (step_id, title) in enumerate(_production_step_definitions(config.layout_mode)):
+    for index, (step_id, title) in enumerate(
+        _production_step_definitions(
+            config.layout_mode,
+            include_land_use_zoning=not region_direct_mode,
+        )
+    ):
         include_zoning, include_poi_overlays, visible_placements, delta_ids = stage_visibility[step_id]
         step_texture_tracker = create_scene_texture_tracker(str(getattr(config, "scene_texture_mode", "topdown_tiles_v1")))
         scene = _stage_scene_base(
@@ -4203,6 +4222,39 @@ def _lot_target_records(lots: Sequence[GeneratedLot]) -> List[Dict[str, object]]
     ]
 
 
+def _summarize_building_region_direct_footprints(
+    footprints: Sequence[BuildingFootprint],
+) -> Dict[str, object]:
+    land_use_counts = Counter(
+        str(footprint.land_use_type or "")
+        for footprint in footprints
+        if str(footprint.land_use_type or "")
+    )
+    source_counts = Counter(
+        str(footprint.source or "")
+        for footprint in footprints
+        if str(footprint.source or "")
+    )
+    return {
+        "mode": "building_region_direct",
+        "cell_counts": {},
+        "buildable_cell_counts": {},
+        "lane_role_counts": {},
+        "buildable_cell_count": 0,
+        "non_buildable_cell_count": 0,
+        "building_region_count": int(len(footprints)),
+        "footprint_count": int(len(footprints)),
+        "footprint_land_use_counts": {
+            key: int(value)
+            for key, value in sorted(land_use_counts.items())
+        },
+        "footprint_source_counts": {
+            key: int(value)
+            for key, value in sorted(source_counts.items())
+        },
+    }
+
+
 def _place_building_targets(
     *,
     targets: Sequence[Mapping[str, object]],
@@ -4465,7 +4517,13 @@ def _place_surrounding_buildings(
     requested_mode = str(getattr(config, "surrounding_building_mode", "grid_growth") or "grid_growth").strip().lower()
     mode = requested_mode
     generation_fallback_reason = ""
-    if str(config.layout_mode).strip().lower() == "metaurban" and mode == "footprint_based":
+    building_regions_present = bool(getattr(placement_ctx, "building_regions", ()) or ())
+    if building_regions_present:
+        mode = "footprint_based"
+        generation_fallback_reason = (
+            "building_regions present; bypassed land_use_zoning/grid generation and used region-only footprints."
+        )
+    elif str(config.layout_mode).strip().lower() == "metaurban" and mode == "footprint_based":
         mode = "grid_growth"
         generation_fallback_reason = (
             "metaurban v1 does not align real footprint imports yet; fell back to grid_growth."
@@ -4476,6 +4534,7 @@ def _place_surrounding_buildings(
     zoning_granularity = str(getattr(config, "zoning_granularity", "fine") or "fine")
     streetwall_continuity = float(getattr(config, "streetwall_continuity", 0.95) or 0.95)
     infill_policy = str(getattr(config, "infill_policy", "aggressive") or "aggressive")
+    region_direct_mode = bool(building_regions_present)
     footprint_frontage_summary: Dict[str, object] = {
         "real_footprint_count": 0,
         "infill_footprint_count": 0,
@@ -4507,17 +4566,44 @@ def _place_surrounding_buildings(
             )
         )
 
-    zoning_grid_base, zoning_preview_summary = build_zoning_grid_preview(
-        config=config,
-        placement_context=placement_ctx,
-        road_segment_graph=road_segment_graph,
-        theme_segments=theme_segments,
-        building_footprints=building_footprints,
-        road_buffer_m=35.0,
-    )
+    zoning_grid_base: Tuple[Dict[str, object], ...] = tuple()
+    zoning_preview_summary: Dict[str, object]
+    if region_direct_mode:
+        zoning_preview_summary = {
+            "enabled": False,
+            "cell_count": 0,
+            "theme_cell_counts": {},
+            "building_cell_counts": {},
+            "occupied_building_cells": 0,
+            "buildable_cell_count": 0,
+            "side_land_use_counts": {"left": {}, "right": {}},
+            "active_side_counts": {},
+            "building_buffer_width_m": {"left": 0.0, "right": 0.0},
+            "streetwall_reference_width_m": {"left": 0.0, "right": 0.0},
+            "streetwall_reference_gap_ratio": 0.0,
+            "asymmetry_strength": 0.0,
+            "left_right_bias": 0.0,
+            "building_region_count": int(len(building_footprints)),
+            "active_building_region_count": int(len(building_footprints)),
+            "zoning_preview_mode": "building_region_direct",
+            "frontage_cell_count": 0,
+            "theme_segment_count": int(len(theme_segments)),
+            "buildable_frontage_by_side": {"left": 0.0, "right": 0.0},
+            "generated_lot_count": 0,
+            "frontage_parcel_count": 0,
+        }
+    else:
+        zoning_grid_base, zoning_preview_summary = build_zoning_grid_preview(
+            config=config,
+            placement_context=placement_ctx,
+            road_segment_graph=road_segment_graph,
+            theme_segments=theme_segments,
+            building_footprints=building_footprints,
+            road_buffer_m=35.0,
+        )
     zoning_grid = zoning_grid_base
     lot_generation_summary: Dict[str, object] = {"lot_count": 0}
-    if mode == "footprint_based":
+    if mode == "footprint_based" and not building_regions_present:
         setback_min_raw = getattr(config, "building_front_setback_min_m", DEFAULT_BUILDING_FRONT_SETBACK_MIN_M)
         setback_max_raw = getattr(config, "building_front_setback_max_m", DEFAULT_BUILDING_FRONT_SETBACK_MAX_M)
         infill_footprints, footprint_frontage_summary = generate_frontage_infill_footprints(
@@ -4557,7 +4643,10 @@ def _place_surrounding_buildings(
             zoning_granularity=zoning_granularity,
             streetwall_continuity=streetwall_continuity,
         )
-    land_use_summary = summarize_land_use_grid(zoning_grid)
+    if region_direct_mode:
+        land_use_summary = _summarize_building_region_direct_footprints(building_footprints)
+    else:
+        land_use_summary = summarize_land_use_grid(zoning_grid)
 
     if mode == "grid_growth":
         target_records = _lot_target_records(generated_lots)
@@ -4590,7 +4679,13 @@ def _place_surrounding_buildings(
         **dict(zoning_preview_summary),
         "occupied_building_cells": int(occupied_building_cells),
         "generated_lot_count": int(len(generated_lots)),
-        "zoning_preview_mode": str(zoning_preview_summary.get("zoning_preview_mode", "parcel_first") or "parcel_first"),
+        "zoning_preview_mode": str(
+            zoning_preview_summary.get(
+                "zoning_preview_mode",
+                "building_region_direct" if region_direct_mode else "parcel_first",
+            )
+            or ("building_region_direct" if region_direct_mode else "parcel_first")
+        ),
         "frontage_cell_count": int(zoning_preview_summary.get("frontage_cell_count", 0) or 0),
         "theme_segment_count": int(zoning_preview_summary.get("theme_segment_count", len(theme_segments)) or len(theme_segments)),
         "frontage_parcel_count": int(
@@ -4607,9 +4702,9 @@ def _place_surrounding_buildings(
     building_summary = {
         **dict(placement_summary),
         "enabled": True,
-        "generation_mode": mode,
+        "generation_mode": "building_region_direct" if region_direct_mode else mode,
         "generation_mode_requested": requested_mode,
-        "generation_mode_used": mode,
+        "generation_mode_used": "building_region_direct" if region_direct_mode else mode,
         "generation_fallback_reason": generation_fallback_reason,
         "footprint_count": int(len(building_footprints)),
         "lot_count": int(len(generated_lots)),
@@ -4624,13 +4719,17 @@ def _place_surrounding_buildings(
         "building_balance_policy": str(
             lot_generation_summary.get("building_balance_policy", "balanced_default")
             if mode == "grid_growth"
-            else "manual_realistic_mode"
+            else ("building_region_direct" if region_direct_mode else "manual_realistic_mode")
         ),
         "building_balance_ok": bool(
-            lot_generation_summary.get("building_balance_ok", False) if mode == "grid_growth" else False
+            lot_generation_summary.get("building_balance_ok", False)
+            if mode == "grid_growth"
+            else region_direct_mode
         ),
         "building_balance_reason": str(
-            lot_generation_summary.get("building_balance_reason", "") if mode == "grid_growth" else "footprint_based mode"
+            lot_generation_summary.get("building_balance_reason", "")
+            if mode == "grid_growth"
+            else ("building_region_direct mode" if region_direct_mode else "footprint_based mode")
         ),
         "frontage_balance_gap": float(
             lot_generation_summary.get("frontage_balance_gap", 0.0)
@@ -4655,6 +4754,8 @@ def _place_surrounding_buildings(
         "infill_footprint_count": int(footprint_frontage_summary.get("infill_footprint_count", 0) or 0),
         "frontage_coverage_by_side": dict(frontage_metrics_source.get("frontage_coverage_by_side", {}) or {}),
         "frontage_gap_stats_by_side": dict(frontage_metrics_source.get("frontage_gap_stats_by_side", {}) or {}),
+        "building_region_count": int(len(building_footprints)) if region_direct_mode else 0,
+        "region_direct_mode": bool(region_direct_mode),
     }
     # Attach continuous height stats when available
     _all_heights: list[float] = []
@@ -6765,6 +6866,8 @@ def compose_street_scene(
             building_summary.get("generation_mode_used") or getattr(config, "surrounding_building_mode", "grid_growth")
         ),
         "building_generation_fallback_reason": str(building_summary.get("generation_fallback_reason", "") or ""),
+        "building_footprint_count": int(len(building_footprints)),
+        "building_region_count": int(building_summary.get("building_region_count", 0) or 0),
         "land_use_asymmetry_strength": float(0.0 if asymmetry_raw is None else asymmetry_raw),
         "left_right_bias": float(0.0 if bias_raw is None else bias_raw),
         "building_front_setback_min_m": float(DEFAULT_BUILDING_FRONT_SETBACK_MIN_M if setback_min_raw is None else setback_min_raw),

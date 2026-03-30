@@ -274,7 +274,7 @@ class SceneGenerationOptions:
     sky_manifest_path: Path | None = None
     model_name: str = "openai/clip-vit-base-patch32"
     model_dir: Path | None = None
-    local_files_only: bool = False
+    local_files_only: bool = True
     device: str = "cpu"
     export_format: str = "both"
     placement_policy: str = "rule"

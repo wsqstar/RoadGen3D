@@ -308,6 +308,17 @@ def collect_building_footprints(
 ) -> Tuple[BuildingFootprint, ...]:
     """Collect nearby OSM building footprints or fallback proxy footprints."""
 
+    building_regions = _normalized_building_region_records(placement_context)
+    if building_regions:
+        return _building_region_footprints(
+            placement_context=placement_context,
+            theme_segments=theme_segments,
+            road_segment_graph=road_segment_graph,
+            seed=seed,
+            height_mode=height_mode,
+            height_profile=height_profile,
+        )
+
     try:
         from shapely.geometry import Polygon as ShapelyPolygon
     except Exception:
@@ -334,7 +345,6 @@ def collect_building_footprints(
         fallback_right_streetwall_width_m=float(fallback_streetwall_reference["right_total_m"]),
         road_buffer_m=float(road_buffer_m),
     )
-    building_regions = _normalized_building_region_records(placement_context)
     footprints: List[BuildingFootprint] = []
     if road_geom is not None and not getattr(road_geom, "is_empty", True):
         road_buffer = road_geom.buffer(float(road_buffer_m))
@@ -593,6 +603,16 @@ def _normalized_building_region_records(
                 "region_id": str(region.get("region_id", "") if isinstance(region, Mapping) else ""),
                 "label": str(region.get("label", "") if isinstance(region, Mapping) else ""),
                 "order_index": int(region.get("order_index", order_index) if isinstance(region, Mapping) else order_index),
+                "center_xz": tuple(
+                    float(value)
+                    for value in (
+                        region.get("center_xz", _polygon_center(polygon_xz))
+                        if isinstance(region, Mapping)
+                        else _polygon_center(polygon_xz)
+                    )
+                ),
+                "width_m": float(region.get("width_m", 0.0) if isinstance(region, Mapping) else 0.0),
+                "height_m": float(region.get("height_m", 0.0) if isinstance(region, Mapping) else 0.0),
                 "yaw_deg": float(region.get("yaw_deg", 0.0) if isinstance(region, Mapping) else 0.0),
                 "polygon_xz": polygon_xz,
                 "bbox": _polygon_bbox(polygon_xz),
@@ -679,6 +699,106 @@ def _apply_building_region_constraints_to_footprints(
             )
         )
     return tuple(constrained)
+
+
+def _region_frontage_depth_metrics(region: Mapping[str, Any]) -> Tuple[float, float]:
+    width_m = max(float(region.get("width_m", 0.0) or 0.0), 0.0)
+    height_m = max(float(region.get("height_m", 0.0) or 0.0), 0.0)
+    polygon_xz = tuple(
+        (float(point[0]), float(point[1]))
+        for point in region.get("polygon_xz", ()) or ()
+        if len(point) >= 2
+    )
+    if width_m <= 1e-6 or height_m <= 1e-6:
+        if len(polygon_xz) >= 4:
+            edge_a = math.hypot(
+                float(polygon_xz[1][0]) - float(polygon_xz[0][0]),
+                float(polygon_xz[1][1]) - float(polygon_xz[0][1]),
+            )
+            edge_b = math.hypot(
+                float(polygon_xz[2][0]) - float(polygon_xz[1][0]),
+                float(polygon_xz[2][1]) - float(polygon_xz[1][1]),
+            )
+            if width_m <= 1e-6:
+                width_m = max(edge_a, edge_b)
+            if height_m <= 1e-6:
+                height_m = min(edge_a, edge_b)
+    frontage_width_m = float(max(width_m, height_m, 1.0))
+    depth_m = float(max(min(width_m, height_m) if min(width_m, height_m) > 1e-6 else max(width_m, height_m), 4.0))
+    return frontage_width_m, depth_m
+
+
+def _building_region_footprints(
+    *,
+    placement_context: object | None,
+    theme_segments: Sequence[ThemeSegment],
+    road_segment_graph: object | None,
+    seed: int = 0,
+    height_mode: str = "theme_random",
+    height_profile: str = "urban_default_v1",
+) -> Tuple[BuildingFootprint, ...]:
+    building_regions = _normalized_building_region_records(placement_context)
+    if not building_regions:
+        return tuple()
+    footprints: List[BuildingFootprint] = []
+    for index, region in enumerate(building_regions):
+        polygon_xz = tuple(
+            (float(point[0]), float(point[1]))
+            for point in region.get("polygon_xz", ()) or ()
+            if len(point) >= 2
+        )
+        if len(polygon_xz) < 4:
+            continue
+        center_xz_raw = tuple(region.get("center_xz", _polygon_center(polygon_xz)) or _polygon_center(polygon_xz))
+        centroid = (
+            float(center_xz_raw[0]) if len(center_xz_raw) >= 2 else 0.0,
+            float(center_xz_raw[1]) if len(center_xz_raw) >= 2 else 0.0,
+        )
+        theme_id = assign_theme_id_for_point(centroid, theme_segments, road_segment_graph)
+        theme_name = _resolve_theme_key(theme_id, theme_segments)
+        frontage_width_m, depth_m = _region_frontage_depth_metrics(region)
+        yaw_deg = float(region.get("yaw_deg", 0.0) or 0.0)
+        footprint_id = str(region.get("region_id", "") or f"building_region_{index:02d}")
+        if height_mode == "theme_random":
+            target_height_m = sample_building_target_height(
+                seed=seed,
+                target_id=footprint_id,
+                theme_name=theme_name,
+                land_use_type=land_use_for_theme(theme_name),
+                frontage_width_m=frontage_width_m,
+                depth_m=depth_m,
+                source="building_region",
+                height_profile=height_profile,
+            )
+            height_class = height_class_from_height_m(target_height_m)
+        else:
+            target_height_m = 0.0
+            area_m2 = abs(_polygon_signed_area(polygon_xz))
+            height_class = _height_class_from_area(area_m2)
+        footprints.append(
+            BuildingFootprint(
+                footprint_id=footprint_id,
+                source="building_region",
+                polygon_xz=polygon_xz,
+                centroid_xz=centroid,
+                frontage_width_m=float(frontage_width_m),
+                depth_m=float(depth_m),
+                yaw_deg=float(yaw_deg),
+                theme_id=theme_id,
+                land_use_type=land_use_for_theme(theme_name),
+                side="",
+                height_class=str(height_class),
+                target_height_m=float(target_height_m),
+                anchor_geom_id=str(region.get("region_id", footprint_id) or footprint_id),
+                size_class=_size_class(frontage_width_m, depth_m),
+                street_edge_xz=centroid,
+                placement_xz=centroid,
+                front_setback_m=0.0,
+                placement_strategy="building_region",
+                building_depth_m=float(depth_m),
+            )
+        )
+    return tuple(footprints)
 
 
 def land_use_for_theme(theme_name: str) -> str:
