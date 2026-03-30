@@ -1,226 +1,59 @@
-type ChatMessage = {
-  role: string;
-  content: string;
-};
-
-type KnowledgeSourceKey = "hybrid" | "pdf_rag" | "graph_rag";
-
-type DesignIntent = {
-  user_goals: string[];
-  style_preferences: string[];
-  safety_priorities: string[];
-  follow_up_questions: string[];
-  rag_queries: string[];
-};
-
-type RagEvidence = {
-  chunk_id: string;
-  doc_id: string;
-  section_title: string;
-  page_start: number;
-  page_end: number;
-  text: string;
-  source_path: string;
-  score: number;
-  relevance_reason: string;
-  knowledge_source?: string;
-  parameter_hints?: Record<string, string>;
-};
-
-type DesignDraft = {
-  normalized_scene_query: string;
-  compose_config_patch: Record<string, string | number>;
-  citations_by_field: Record<string, string[]>;
-  design_summary: string;
-  risk_notes: string[];
-  parameter_sources_by_field: Record<string, string>;
-};
-
-type SceneContext = {
-  layout_mode: "template" | "osm" | "metaurban" | "graph_template";
-  aoi_bbox: [number, number, number, number] | null;
-  city_name_en: string | null;
-  reference_plan_id: string | null;
-  graph_template_id: string | null;
-};
-
-type ChinaCity = {
-  name_zh: string;
-  name_en: string;
-  province: string;
-  bbox: [number, number, number, number];
-};
-
-type ChinaCityResponse = {
-  items: ChinaCity[];
-};
-
-type ReferencePlan = {
-  plan_id: string;
-  label: string;
-  description: string;
-  image_path: string;
-  image_url: string;
-  block_sequence: string;
-  seed: number;
-  straight_length_m: number;
-  intersection_span_m: number;
-  branch_length_m: number;
-  curve_radius_m: number;
-  curve_angle_deg: number;
-};
-
-type ReferencePlanResponse = {
-  items: ReferencePlan[];
-};
-
-type GraphTemplate = {
-  template_id: string;
-  label: string;
-  description: string;
-  annotation_path: string;
-  image_path: string;
-  image_url: string;
-  source_format: string;
-  centerline_count: number;
-  junction_count: number;
-};
-
-type GraphTemplateResponse = {
-  items: GraphTemplate[];
-};
-
-type DraftResponse = {
-  stage: "clarification_required" | "draft_ready";
-  intent: DesignIntent;
-  evidence: RagEvidence[];
-  draft: DesignDraft | null;
-  warnings: string[];
-  cache_hit?: boolean;
-};
-
-type KnowledgeSourceStatus = {
-  key: KnowledgeSourceKey;
-  label: string;
-  available: boolean;
-  description: string;
-  artifact_count?: number;
-  item_count?: number;
-  project_dir?: string;
-  output_dir?: string;
-  txt_dir?: string;
-  input_dir?: string;
-  cache_dir?: string;
-  last_build_status?: string;
-  runtime_error?: string;
-  artifact_dir?: string;
-  source_path?: string;
-  error?: string;
-};
-
-type KnowledgeSourceListResponse = {
-  items: KnowledgeSourceStatus[];
-};
-
-type KnowledgeSearchResponse = {
-  knowledge_source: KnowledgeSourceKey;
-  items: RagEvidence[];
-};
-
-type GenerationResponse = {
-  compose_config: Record<string, string | number>;
-  summary: Record<string, unknown>;
-  scene_layout_path: string;
-  scene_glb_path: string;
-  scene_ply_path: string;
-  viewer_url: string;
-};
-
-type SceneJobCreateResponse = {
-  job_id: string;
-  status: string;
-  created_at: string;
-};
-
-type SceneJobStatusResponse = {
-  job_id: string;
-  status: string;
-  created_at: string;
-  started_at: string;
-  finished_at: string;
-  error: string;
-  result: GenerationResponse | null;
-};
-
-type SceneRecord = {
-  job_id: string;
-  status: string;
-  created_at: string;
-  finished_at: string;
-  scene_layout_path: string;
-  scene_glb_path: string;
-  scene_ply_path: string;
-  viewer_url: string;
-  summary: Record<string, unknown>;
-};
-
-type SceneJobListResponse = {
-  items: SceneJobStatusResponse[];
-};
-
-type SceneRecentResponse = {
-  items: SceneRecord[];
-};
-
-type FieldConfig = {
-  key: string;
-  label: string;
-  type: "text" | "number" | "select";
-  options?: string[];
-};
-
-const API_BASE = (import.meta.env.VITE_ROADGEN_API_BASE as string | undefined) || "http://127.0.0.1:8010";
-const VIEWER_BASE = (import.meta.env.VITE_ROADGEN_VIEWER_BASE as string | undefined) || "http://127.0.0.1:4173";
-const POLL_INTERVAL_MS = 1200;
-const TERMINAL_JOB_STATES = new Set(["succeeded", "failed"]);
-const DEFAULT_WORKBENCH_CITY = "guangzhou";
-const DEFAULT_REFERENCE_PLAN_ID = "hkust_gz_gate";
-const DEFAULT_GRAPH_TEMPLATE_ID = "hkust_gz_gate";
-const PEDESTRIAN_ALL_AGE_PRESET_PROMPT = "步行安全，全龄友好";
-const SUMMARY_OMIT_KEYS = new Set([
-  "spatial_context",
-  "poi_exclusion_zones",
-  "poi_conflict_assets",
-  "scene_graph_available_categories",
-  "scene_graph_node_count",
-  "scene_graph_edge_count",
-  "scene_graph",
-  "render_views",
-  "theme_segments",
-  "road_segment_graph_summary",
-]);
-
-const FIELD_CONFIGS: FieldConfig[] = [
-  { key: "query", label: "Scene Query", type: "text" },
-  {
-    key: "design_rule_profile",
-    label: "Rule Profile",
-    type: "select",
-    options: ["balanced_complete_street_v1", "pedestrian_priority_v1", "transit_priority_v1"],
-  },
-  { key: "target_street_type", label: "Street Type", type: "text" },
-  { key: "objective_profile", label: "Objective", type: "select", options: ["balanced", "greening", "commerce", "transit"] },
-  { key: "city_context", label: "City Context", type: "text" },
-  { key: "length_m", label: "Length (m)", type: "number" },
-  { key: "road_width_m", label: "Road Width (m)", type: "number" },
-  { key: "sidewalk_width_m", label: "Sidewalk Width (m)", type: "number" },
-  { key: "lane_count", label: "Lane Count", type: "number" },
-  { key: "density", label: "Density", type: "number" },
-  { key: "ped_demand_level", label: "Ped Demand", type: "select", options: ["low", "medium", "high"] },
-  { key: "bike_demand_level", label: "Bike Demand", type: "select", options: ["low", "medium", "high"] },
-  { key: "transit_demand_level", label: "Transit Demand", type: "select", options: ["low", "medium", "high"] },
-  { key: "vehicle_demand_level", label: "Vehicle Demand", type: "select", options: ["low", "medium", "high"] },
-];
+import type {
+  ChatMessage,
+  KnowledgeSourceKey,
+  DesignIntent,
+  RagEvidence,
+  DesignDraft,
+  SceneContext,
+  ChinaCity,
+  ChinaCityResponse,
+  ReferencePlan,
+  ReferencePlanResponse,
+  GraphTemplate,
+  GraphTemplateResponse,
+  DraftResponse,
+  KnowledgeSourceStatus,
+  KnowledgeSourceListResponse,
+  KnowledgeSearchResponse,
+  GenerationResponse,
+  SceneJobCreateResponse,
+  SceneJobStatusResponse,
+  SceneRecord,
+  SceneJobListResponse,
+  SceneRecentResponse,
+} from "./types";
+import {
+  API_BASE,
+  VIEWER_BASE,
+  POLL_INTERVAL_MS,
+  TERMINAL_JOB_STATES,
+  DEFAULT_WORKBENCH_CITY,
+  DEFAULT_REFERENCE_PLAN_ID,
+  DEFAULT_GRAPH_TEMPLATE_ID,
+  PEDESTRIAN_ALL_AGE_PRESET_PROMPT,
+  FIELD_CONFIGS,
+} from "./types";
+import { requireElement, postJson, getJson, resolveApiUrl } from "./api";
+import {
+  escapeHtml,
+  asErrorMessage,
+  formatBootstrapError,
+  normalizeKnowledgeSourceKey,
+  formatKnowledgeSourceLabel,
+  formatParameterSourceLabel,
+  formatTimestamp,
+  sleep,
+  formatBbox,
+  formatMetricValue,
+  compactSceneSummary,
+  renderTagRow,
+  normalizeSceneLayoutPath,
+  resolveViewerUrl,
+  formatDraftSummary,
+  buildClarificationAssistantMessage,
+  buildDraftFromForm,
+  renderSceneSummaryHighlights,
+} from "./utils";
 
 export function mountWorkbench(app: HTMLDivElement): void {
   const state = {
@@ -1287,36 +1120,6 @@ export function mountWorkbench(app: HTMLDivElement): void {
   }
 }
 
-function buildDraftFromForm(baseDraft: DesignDraft, parameterForm: HTMLDivElement): DesignDraft {
-  const composeConfigPatch: Record<string, string | number> = {};
-  const citationsByField: Record<string, string[]> = { ...baseDraft.citations_by_field };
-  const parameterSourcesByField: Record<string, string> = { ...baseDraft.parameter_sources_by_field };
-  FIELD_CONFIGS.forEach((field) => {
-    const input = parameterForm.querySelector<HTMLInputElement | HTMLSelectElement>(`[data-key="${field.key}"]`);
-    if (!input) {
-      return;
-    }
-    const raw = input.value.trim();
-    if (!raw) {
-      return;
-    }
-    const nextValue = field.type === "number" ? Number(raw) : raw;
-    composeConfigPatch[field.key] = nextValue;
-    const baseValue = baseDraft.compose_config_patch[field.key];
-    if (String(baseValue ?? "") !== String(nextValue)) {
-      parameterSourcesByField[field.key] = "user_override";
-      delete citationsByField[field.key];
-    }
-  });
-  return {
-    ...baseDraft,
-    normalized_scene_query: String(composeConfigPatch.query || baseDraft.normalized_scene_query),
-    compose_config_patch: composeConfigPatch,
-    citations_by_field: citationsByField,
-    parameter_sources_by_field: parameterSourcesByField,
-  };
-}
-
 function buildSceneContextFromForm(): SceneContext {
   const layoutModeEl = requireElement<HTMLSelectElement>(document, "#scene-layout-mode");
   const cityEl = requireElement<HTMLSelectElement>(document, "#scene-city");
@@ -1376,258 +1179,9 @@ function buildSceneContextFromForm(): SceneContext {
   };
 }
 
-function formatDraftSummary(draft: DesignDraft): string {
-  return [
-    draft.design_summary || "No summary returned.",
-    draft.risk_notes.length ? `\nRisk Notes:\n- ${draft.risk_notes.join("\n- ")}` : "",
-  ].join("");
-}
-
-function buildClarificationAssistantMessage(questions: string[]): string {
-  if (!questions.length) {
-    return "我还需要补充一些关键信息后，才能继续生成设计草案。";
-  }
-  return [
-    "继续生成设计草案前，我还需要确认这些关键信息：",
-    ...questions.map((question, index) => `${index + 1}. ${question}`),
-  ].join("\n");
-}
-
 function setBboxInputs(bbox: [number, number, number, number]): void {
   requireElement<HTMLInputElement>(document, "#bbox-min-lon").value = String(bbox[0]);
   requireElement<HTMLInputElement>(document, "#bbox-min-lat").value = String(bbox[1]);
   requireElement<HTMLInputElement>(document, "#bbox-max-lon").value = String(bbox[2]);
   requireElement<HTMLInputElement>(document, "#bbox-max-lat").value = String(bbox[3]);
-}
-
-function formatBbox(bbox: [number, number, number, number]): string {
-  return `(${bbox.map((value) => value.toFixed(4)).join(", ")})`;
-}
-
-function compactSceneSummary(summary: Record<string, unknown>): Record<string, unknown> {
-  return Object.fromEntries(
-    Object.entries(summary || {}).filter(([key]) => !SUMMARY_OMIT_KEYS.has(key)),
-  );
-}
-
-function renderSceneSummaryHighlights(summary: Record<string, unknown>): string {
-  const rows: string[] = [];
-  const layoutMode = String(summary.layout_mode || "");
-  if (layoutMode) {
-    rows.push(`<div><strong>layout_mode</strong>: ${escapeHtml(layoutMode)}</div>`);
-  }
-  if (summary.reference_plan_label) {
-    rows.push(`<div><strong>reference_plan</strong>: ${escapeHtml(String(summary.reference_plan_label))}</div>`);
-  } else if (summary.reference_plan_id) {
-    rows.push(`<div><strong>reference_plan_id</strong>: ${escapeHtml(String(summary.reference_plan_id))}</div>`);
-  }
-  if (summary.graph_template_label) {
-    rows.push(`<div><strong>graph_template</strong>: ${escapeHtml(String(summary.graph_template_label))}</div>`);
-  } else if (summary.graph_template_id) {
-    rows.push(`<div><strong>graph_template_id</strong>: ${escapeHtml(String(summary.graph_template_id))}</div>`);
-  }
-  if (summary.generation_stage) {
-    rows.push(`<div><strong>generation_stage</strong>: ${escapeHtml(String(summary.generation_stage))}</div>`);
-  }
-  const requestedAoi = formatUnknownBbox(summary.requested_aoi_bbox);
-  if (requestedAoi) {
-    rows.push(`<div><strong>requested_aoi_bbox</strong>: ${escapeHtml(requestedAoi)}</div>`);
-  }
-  const effectiveAoi = formatUnknownBbox(summary.effective_aoi_bbox || summary.aoi_bbox);
-  if (effectiveAoi) {
-    rows.push(`<div><strong>effective_aoi_bbox</strong>: ${escapeHtml(effectiveAoi)}</div>`);
-  }
-  if (summary.selected_road_osm_id !== undefined && summary.selected_road_osm_id !== null) {
-    rows.push(`<div><strong>selected_road_osm_id</strong>: ${escapeHtml(String(summary.selected_road_osm_id))}</div>`);
-  }
-  if (summary.selected_highway_type) {
-    rows.push(`<div><strong>selected_highway_type</strong>: ${escapeHtml(String(summary.selected_highway_type))}</div>`);
-  }
-  if (summary.building_footprint_count !== undefined) {
-    rows.push(`<div><strong>building_footprint_count</strong>: ${escapeHtml(String(summary.building_footprint_count))}</div>`);
-  }
-  if (summary.infill_footprint_count !== undefined) {
-    rows.push(`<div><strong>infill_footprint_count</strong>: ${escapeHtml(String(summary.infill_footprint_count))}</div>`);
-  }
-  const buildingGenerationMode = String(summary.building_generation_mode_used || summary.building_generation_mode || "");
-  if (buildingGenerationMode) {
-    rows.push(`<div><strong>building_generation_mode</strong>: ${escapeHtml(buildingGenerationMode)}</div>`);
-  }
-  [
-    { key: "total_network_length_m", label: "total_network_length_m", digits: 1 },
-    { key: "junction_density_per_100m", label: "junction_density_per_100m", digits: 3 },
-    { key: "connectivity_ratio", label: "connectivity_ratio", digits: 3 },
-    { key: "network_width_m", label: "network_width_m", digits: 1 },
-    { key: "network_height_m", label: "network_height_m", digits: 1 },
-    { key: "branching_factor", label: "branching_factor", digits: 3 },
-  ].forEach((item) => {
-    const value = summary[item.key];
-    if (typeof value === "number" && Number.isFinite(value)) {
-      rows.push(`<div><strong>${escapeHtml(item.label)}</strong>: ${escapeHtml(formatMetricValue(value, item.digits))}</div>`);
-    }
-  });
-  if (!rows.length) {
-    return "";
-  }
-  return `<div class="summary-list">${rows.join("")}</div>`;
-}
-
-function formatUnknownBbox(value: unknown): string {
-  if (!Array.isArray(value) || value.length !== 4 || value.some((item) => typeof item !== "number" || !Number.isFinite(item))) {
-    return "";
-  }
-  return `(${value.map((item) => Number(item).toFixed(4)).join(", ")})`;
-}
-
-function formatMetricValue(value: number, digits = 2): string {
-  return Number(value)
-    .toFixed(digits)
-    .replace(/\.0+$/, "")
-    .replace(/(\.\d*?[1-9])0+$/, "$1");
-}
-
-function normalizeSceneLayoutPath(layoutPath: string): string {
-  const trimmed = String(layoutPath || "").trim();
-  if (!trimmed) {
-    return "";
-  }
-  if (/scene_layout\.json$/i.test(trimmed)) {
-    return trimmed;
-  }
-  return `${trimmed.replace(/\/+$/, "")}/scene_layout.json`;
-}
-
-function buildFallbackViewerUrl(layoutPath: string): string {
-  const normalizedLayoutPath = normalizeSceneLayoutPath(layoutPath);
-  if (!normalizedLayoutPath) {
-    return "";
-  }
-  return `${VIEWER_BASE}/?layout=${encodeURIComponent(normalizedLayoutPath)}`;
-}
-
-function resolveViewerUrl(viewerUrl: string, layoutPath: string): string {
-  return String(viewerUrl || "").trim() || buildFallbackViewerUrl(layoutPath);
-}
-
-function renderTagRow(items: string[]): string {
-  if (!items.length) {
-    return `<div class="field-note">none</div>`;
-  }
-  return `<div class="tag-row">${items.map((item) => `<span class="tag">${escapeHtml(item)}</span>`).join("")}</div>`;
-}
-
-function normalizeKnowledgeSourceKey(value: string): KnowledgeSourceKey {
-  if (value === "pdf_rag" || value === "graph_rag") {
-    return value;
-  }
-  return "hybrid";
-}
-
-function formatKnowledgeSourceLabel(source: string): string {
-  switch (source) {
-    case "pdf_rag":
-      return "PDF RAG";
-    case "graph_rag":
-      return "GraphRAG";
-    case "hybrid":
-      return "Hybrid";
-    default:
-      return source || "Unknown";
-  }
-}
-
-function formatParameterSourceLabel(source: string): string {
-  switch (source) {
-    case "rag":
-      return "RAG evidence";
-    case "llm_inferred":
-      return "LLM inference";
-    case "user_override":
-      return "User override";
-    case "system_default":
-      return "System default";
-    default:
-      return "Unknown";
-  }
-}
-
-function requireElement<T extends Element>(root: ParentNode, selector: string): T {
-  const element = root.querySelector<T>(selector);
-  if (!element) {
-    throw new Error(`Missing required element: ${selector}`);
-  }
-  return element;
-}
-
-async function postJson<T>(path: string, payload: unknown): Promise<T> {
-  const response = await fetch(`${API_BASE}${path}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-  return handleJsonResponse<T>(response);
-}
-
-async function getJson<T>(path: string): Promise<T> {
-  const response = await fetch(`${API_BASE}${path}`);
-  return handleJsonResponse<T>(response);
-}
-
-function resolveApiUrl(path: string): string {
-  if (/^https?:\/\//.test(path)) {
-    return path;
-  }
-  return `${API_BASE}${path.startsWith("/") ? path : `/${path}`}`;
-}
-
-async function handleJsonResponse<T>(response: Response): Promise<T> {
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(text || `Request failed with status ${response.status}`);
-  }
-  return (await response.json()) as T;
-}
-
-function formatTimestamp(value: string): string {
-  if (!value) {
-    return "";
-  }
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) {
-    return value;
-  }
-  return date.toLocaleString();
-}
-
-function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => {
-    window.setTimeout(resolve, ms);
-  });
-}
-
-function escapeHtml(text: string): string {
-  return text
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-function asErrorMessage(error: unknown): string {
-  if (error instanceof Error) {
-    return error.message;
-  }
-  return String(error);
-}
-
-function formatBootstrapError(error: unknown): string {
-  const message = asErrorMessage(error).trim();
-  if (!message) {
-    return `无法连接 API：${API_BASE}`;
-  }
-  if (/failed to fetch|networkerror|load failed|fetch failed|couldn't connect|cannot connect/i.test(message)) {
-    return `无法连接 API：${API_BASE}`;
-  }
-  return message;
 }
