@@ -53,7 +53,7 @@ def _annotation(
 
 
 def test_recommended_default_categories_focus_on_first_wave_street_assets():
-    assert recommended_default_categories() == ("bench", "lamp", "trash", "mailbox")
+    assert recommended_default_categories() == ("bench", "lamp", "trash", "mailbox", "tree")
 
 
 def test_default_target_specs_support_tree_imports_without_making_them_first_wave_default():

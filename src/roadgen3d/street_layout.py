@@ -187,6 +187,10 @@ def _resolve_path(path_text: object, base_dir: Path) -> str:
 
 _BLOCKED_ASSET_IDS = {
     "objaverse_tree_7c97aea203b34df6bb615d0d3567d984",
+    "objaverse_tree_352c29c013434d6585e74332699310e2",
+    "objaverse_tree_7a689370f9ec46cea2cbc94641c225e6",
+    "objaverse_tree_a90b8cca57b44f5492e796cf94d64e80",
+    "objaverse_tree_209a0ca9d736401da034fe1d29df010e",
 }
 
 
@@ -217,6 +221,7 @@ _CURATED_STREET_ASSET_IDS_FIXED_HQ = {
     "lamp": "lamp_modern_production",
     "trash": "objaverse_trash_f16b7d84113d4cba869412ee95769910",
     "bollard": "curated_railing_module_v1",
+    "tree": "objaverse_tree_843278c62cb9494bafda67e7c14c5707",
 }
 
 
@@ -5779,7 +5784,7 @@ def compose_street_scene(
 
         if band is None:
             strip_kind = detailed_strip_kind_from_band_name(band_name)
-            if strip_kind and _is_corridor_layout_mode(config.layout_mode):
+            if strip_kind:
                 band = StreetBand(
                     name=band_name or detailed_strip_band_name(side, strip_kind),
                     kind=detailed_strip_band_kind(strip_kind, side=side, profile_name=str(config.design_rule_profile)),

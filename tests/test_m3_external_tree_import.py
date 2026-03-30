@@ -356,19 +356,19 @@ def test_import_external_tree_assets_rejects_sideways_tree_without_rotation(tmp_
         ],
     )
 
-    with pytest.raises(ValueError, match="failed upright validation"):
-        tree_import.import_external_tree_assets(
-            input_manifest=input_manifest,
-            output_manifest=output_manifest,
-            mesh_out_dir=tmp_path / "data" / "meshes",
-            latents_dir=tmp_path / "data" / "latents",
-            artifacts_dir=tmp_path / "artifacts" / "real",
-            local_files_only=True,
-            device="cpu",
-            rebuild_index_enabled=False,
-        )
+    result = tree_import.import_external_tree_assets(
+        input_manifest=input_manifest,
+        output_manifest=output_manifest,
+        mesh_out_dir=tmp_path / "data" / "meshes",
+        latents_dir=tmp_path / "data" / "latents",
+        artifacts_dir=tmp_path / "artifacts" / "real",
+        local_files_only=True,
+        device="cpu",
+        rebuild_index_enabled=False,
+    )
 
-    assert not output_manifest.exists()
+    assert "tree_real_sideways" in result["skipped_asset_ids"]
+    assert "tree_real_sideways" not in result["imported_asset_ids"]
 
 
 def test_import_external_tree_assets_accepts_sideways_tree_with_rotation(tmp_path: Path):

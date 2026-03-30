@@ -244,6 +244,10 @@ def _mesh_face_count(row: Mapping[str, Any]) -> int:
 
 _BLOCKED_ASSET_IDS = {
     "objaverse_tree_7c97aea203b34df6bb615d0d3567d984",
+    "objaverse_tree_352c29c013434d6585e74332699310e2",
+    "objaverse_tree_7a689370f9ec46cea2cbc94641c225e6",
+    "objaverse_tree_a90b8cca57b44f5492e796cf94d64e80",
+    "objaverse_tree_209a0ca9d736401da034fe1d29df010e",
 }
 
 

@@ -18,7 +18,14 @@ if str(SRC) not in sys.path:
 
 from scripts import m3_04_clean_asset_manifest as manifest_cleaner
 from scripts import m3_05_seed_production_parametric_assets as production_seed
-from scripts.m2_10_ingest_assets import _load_mesh_as_single_mesh, normalize_grounded_mesh, validate_tree_upright
+from scripts.m2_10_ingest_assets import (
+    _load_as_filtered_scene,
+    _load_mesh_as_single_mesh,
+    normalize_grounded_mesh,
+    normalize_grounded_scene,
+    scene_to_merged_mesh,
+    validate_tree_upright,
+)
 
 
 REQUIRED_INPUT_FIELDS = (
@@ -77,8 +84,14 @@ def _write_placeholder_latent(latent_path: Path, mesh_path: Path) -> None:
     torch.save({"mesh_path": str(mesh_path)}, latent_path)
 
 
-def _mesh_face_count(mesh: object) -> int:
-    return int(len(getattr(mesh, "faces", ())))
+def _mesh_face_count(mesh_or_scene: object) -> int:
+    try:
+        import trimesh
+    except ImportError:
+        return int(len(getattr(mesh_or_scene, "faces", ())))
+    if isinstance(mesh_or_scene, trimesh.Scene):
+        return sum(int(len(getattr(g, "faces", ()))) for g in mesh_or_scene.geometry.values())
+    return int(len(getattr(mesh_or_scene, "faces", ())))
 
 
 def _validate_tree_for_scene_import(mesh: object) -> tuple[bool, Dict[str, Any]]:
@@ -206,6 +219,7 @@ def import_external_tree_assets(
     input_rows = _load_input_rows(input_manifest)
     imported_rows: List[Dict[str, Any]] = []
     imported_asset_ids: List[str] = []
+    skipped_asset_ids: List[str] = []
 
     for row in input_rows:
         asset_id = str(row["asset_id"]).strip()
@@ -213,23 +227,33 @@ def import_external_tree_assets(
         if not source_mesh_path.is_absolute():
             source_mesh_path = (input_manifest.parent / source_mesh_path).resolve()
         if not source_mesh_path.exists():
-            raise FileNotFoundError(f"tree mesh for asset '{asset_id}' not found: {source_mesh_path}")
+            print(f"[skip] tree mesh for asset '{asset_id}' not found: {source_mesh_path}", file=sys.stderr)
+            skipped_asset_ids.append(asset_id)
+            continue
 
+        # --- validation path (lossy merge) -----------------------------------
         mesh = _load_mesh_as_single_mesh(source_mesh_path)
         mesh = normalize_grounded_mesh(mesh, rotation_deg_xyz=row.get("import_rotation_deg_xyz"))
         is_upright, diagnostics = _validate_tree_for_scene_import(mesh)
         if not is_upright:
-            raise ValueError(
-                f"tree asset '{asset_id}' failed upright validation: "
-                f"{json.dumps(diagnostics, ensure_ascii=True, sort_keys=True)}"
+            print(
+                f"[skip] tree asset '{asset_id}' failed upright validation: "
+                f"{json.dumps(diagnostics, ensure_ascii=True, sort_keys=True)}",
+                file=sys.stderr,
             )
+            skipped_asset_ids.append(asset_id)
+            continue
+
+        # --- export path (Scene with PBR materials preserved) ----------------
+        scene = _load_as_filtered_scene(source_mesh_path)
+        scene = normalize_grounded_scene(scene, rotation_deg_xyz=row.get("import_rotation_deg_xyz"))
 
         target_mesh_path = (mesh_out_dir / f"{asset_id}.glb").resolve()
         target_latent_path = (latents_dir / f"{asset_id}.pt").resolve()
-        mesh.export(target_mesh_path)
+        scene.export(target_mesh_path)
         _write_placeholder_latent(target_latent_path, target_mesh_path)
 
-        face_count = _mesh_face_count(mesh)
+        face_count = _mesh_face_count(scene)
         imported_rows.append(
             _tree_manifest_row(
                 source_row=row,
@@ -259,6 +283,7 @@ def import_external_tree_assets(
 
     return {
         "imported_asset_ids": imported_asset_ids,
+        "skipped_asset_ids": skipped_asset_ids,
         "output_manifest": str(output_manifest),
         "manifest_summary": manifest_cleaner.summarize_rows(cleaned_rows),
         "rebuild_index": bool(rebuild_index_enabled),

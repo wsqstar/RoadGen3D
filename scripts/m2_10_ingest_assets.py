@@ -132,6 +132,142 @@ def normalize_grounded_mesh(mesh, rotation_deg_xyz=None):
     return normalized
 
 
+# ---------------------------------------------------------------------------
+# Scene-preserving import helpers (preserve PBR materials & textures)
+# ---------------------------------------------------------------------------
+
+
+def _filter_scene_geometry(scene):
+    """Remove non-model junk (backdrop spheres, ground planes) from a Scene.
+
+    Returns a new ``trimesh.Scene`` containing only the retained geometries.
+    Raises ``ValueError`` if *all* geometries would be removed.
+    """
+    import trimesh
+
+    geom_items = list(scene.geometry.items())
+    if len(geom_items) <= 1:
+        return scene  # nothing to filter
+
+    # Compute per-geometry bounding sphere radii.
+    radii: Dict[str, float] = {}
+    face_counts: Dict[str, int] = {}
+    for name, geom in geom_items:
+        bounds = np.asarray(geom.bounds, dtype=np.float64)
+        span = bounds[1] - bounds[0]
+        radii[name] = float(np.linalg.norm(span) / 2.0)
+        face_counts[name] = int(len(getattr(geom, "faces", ())))
+
+    sorted_radii = sorted(radii.values())
+    median_radius = float(sorted_radii[len(sorted_radii) // 2]) if sorted_radii else 0.0
+
+    keep_names: List[str] = []
+    for name, geom in geom_items:
+        # Skip geometries with very few faces (ground planes, helper quads).
+        if face_counts[name] < 20:
+            continue
+        # Skip geometries whose bounding sphere is disproportionately large
+        # (backdrop / environment spheres).
+        if median_radius > 1e-6 and radii[name] > 5.0 * median_radius:
+            continue
+        keep_names.append(name)
+
+    if not keep_names:
+        raise ValueError("all geometries filtered out; cannot produce a valid scene")
+
+    if len(keep_names) == len(geom_items):
+        return scene  # nothing removed
+
+    filtered = trimesh.Scene()
+    for name in keep_names:
+        filtered.add_geometry(scene.geometry[name], node_name=name)
+    return filtered
+
+
+def _load_as_filtered_scene(mesh_path: Path):
+    """Load a GLB as a ``trimesh.Scene`` with materials intact, filtering junk."""
+    try:
+        import trimesh
+    except ImportError as exc:
+        raise RuntimeError("`trimesh` is required for ingestion. Install requirements-m2.txt.") from exc
+
+    scene = trimesh.load(mesh_path, force="scene")
+    if isinstance(scene, trimesh.Scene):
+        if not scene.geometry:
+            raise ValueError(f"empty scene mesh: {mesh_path}")
+        return _filter_scene_geometry(scene)
+    # Single mesh -- wrap in a Scene to keep a uniform return type.
+    scene_wrap = trimesh.Scene()
+    scene_wrap.add_geometry(scene, node_name="geometry_0")
+    return scene_wrap
+
+
+def normalize_grounded_scene(scene, rotation_deg_xyz=None):
+    """Normalize a ``trimesh.Scene`` to unit cube grounded at Y=0.
+
+    Same mathematical operations as ``normalize_grounded_mesh`` but applied at
+    the Scene level so that sub-geometry visuals (PBR materials, textures, UVs)
+    are preserved.
+    """
+    try:
+        import trimesh
+    except ImportError as exc:
+        raise RuntimeError("`trimesh` is required for ingestion. Install requirements-m2.txt.") from exc
+
+    scene = scene.copy()
+
+    # --- optional rotation ---------------------------------------------------
+    if rotation_deg_xyz is not None:
+        angles = tuple(float(value) for value in rotation_deg_xyz)
+        if len(angles) != 3:
+            raise ValueError("rotation_deg_xyz must contain exactly 3 values")
+        for axis, angle_deg in zip(
+            ([1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]),
+            angles,
+        ):
+            if abs(float(angle_deg)) <= 1e-9:
+                continue
+            transform = trimesh.transformations.rotation_matrix(
+                np.deg2rad(float(angle_deg)),
+                axis,
+                [0.0, 0.0, 0.0],
+            )
+            scene.apply_transform(transform)
+
+    # --- normalize to unit cube centred at origin ----------------------------
+    bounds = np.asarray(scene.bounds, dtype=np.float64)
+    center = bounds.mean(axis=0)
+    span = bounds[1] - bounds[0]
+    max_span = float(max(span.max(), 1e-6))
+    scene.apply_translation(-center)
+    scene.apply_scale(1.0 / max_span)
+
+    # --- ground at Y=0 -------------------------------------------------------
+    bounds = np.asarray(scene.bounds, dtype=np.float64)
+    min_y = float(bounds[0][1])
+    scene.apply_translation([0.0, -min_y, 0.0])
+
+    return scene
+
+
+def scene_to_merged_mesh(scene):
+    """Concatenate all geometries of a Scene into a single Trimesh.
+
+    **This is intentionally lossy** -- PBR materials are discarded.  Use the
+    returned mesh only for validation (e.g. PCA trunk-axis checks).
+    """
+    try:
+        import trimesh
+    except ImportError as exc:
+        raise RuntimeError("`trimesh` is required for ingestion. Install requirements-m2.txt.") from exc
+
+    if isinstance(scene, trimesh.Scene):
+        if not scene.geometry:
+            raise ValueError("cannot merge empty scene")
+        return trimesh.util.concatenate(tuple(scene.geometry.values()))
+    return scene
+
+
 def validate_tree_upright(
     mesh,
     *,

@@ -72,12 +72,22 @@ _DEFAULT_TARGET_SPECS: Tuple[ObjaverseTargetSpec, ...] = (
             "street tree",
             "oak",
             "maple",
+            "birch",
+            "elm",
+            "willow",
+            "beech",
+            "linden",
+            "poplar",
+            "sycamore",
+            "ash tree",
+            "deciduous",
             "park",
             "urban",
             "outdoor",
             "stylized",
             "low poly",
             "lowpoly",
+            "game-ready",
         ),
         negative_keywords=(
             "bonsai",
@@ -94,11 +104,19 @@ _DEFAULT_TARGET_SPECS: Tuple[ObjaverseTargetSpec, ...] = (
             "pack",
             "stump",
             "treehouse",
+            "log",
+            "wood",
+            "plank",
+            "forest",
         ),
-        strict_name_keywords=("tree", "pine", "oak", "maple", "spruce", "evergreen", "conifer"),
+        strict_name_keywords=(
+            "tree", "pine", "oak", "maple", "spruce", "evergreen", "conifer",
+            "birch", "elm", "willow", "beech", "linden", "poplar",
+            "ash", "cedar", "cypress", "fir", "deciduous",
+        ),
         theme_tags=("green", "residential", "civic"),
         min_face_count=120,
-        max_face_count=40000,
+        max_face_count=80000,
     ),
     ObjaverseTargetSpec(
         roadgen_category="bench",
@@ -147,7 +165,7 @@ _DEFAULT_TARGET_SPECS: Tuple[ObjaverseTargetSpec, ...] = (
     ),
 )
 
-_RECOMMENDED_DEFAULT_CATEGORIES: Tuple[str, ...] = ("bench", "lamp", "trash", "mailbox")
+_RECOMMENDED_DEFAULT_CATEGORIES: Tuple[str, ...] = ("bench", "lamp", "trash", "mailbox", "tree")
 
 
 def default_target_specs(categories: Optional[Sequence[str]] = None) -> Tuple[ObjaverseTargetSpec, ...]:
