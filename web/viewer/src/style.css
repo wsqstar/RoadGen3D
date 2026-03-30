@@ -1564,21 +1564,45 @@ body {
 }
 
 .annotation-junction-sidewalk-corner {
-  fill: rgba(235, 224, 206, 0.68);
+  fill: rgba(235, 224, 206, 0.86);
   stroke: rgba(188, 177, 159, 0.72);
   stroke-width: 1;
 }
 
+.annotation-junction-sidewalk-connector {
+  fill: none;
+  stroke: rgba(235, 224, 206, 0.96);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
 .annotation-junction-nearroad-corner {
-  fill: rgba(126, 101, 71, 0.3);
+  fill: rgba(126, 101, 71, 0.56);
   stroke: rgba(103, 80, 56, 0.5);
   stroke-width: 1;
 }
 
+.annotation-junction-nearroad-connector {
+  fill: none;
+  stroke: rgba(126, 101, 71, 0.92);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
 .annotation-junction-frontage-corner {
-  fill: rgba(183, 212, 230, 0.3);
+  fill: rgba(183, 212, 230, 0.58);
   stroke: rgba(119, 160, 186, 0.46);
   stroke-width: 1;
+}
+
+.annotation-junction-frontage-connector {
+  fill: none;
+  stroke: rgba(183, 212, 230, 0.94);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
 }
 
 .annotation-junction-connector-line {
@@ -1629,16 +1653,31 @@ body {
   stroke-width: 1.6;
 }
 
+.annotation-junction-sidewalk-connector-selected {
+  filter: drop-shadow(0 0 12px rgba(29, 78, 216, 0.42));
+  stroke: rgba(78, 125, 210, 0.92);
+}
+
 .annotation-junction-nearroad-corner-selected {
   fill: rgba(153, 120, 80, 0.48);
   stroke: rgba(72, 113, 196, 0.82);
   stroke-width: 1.6;
 }
 
+.annotation-junction-nearroad-connector-selected {
+  filter: drop-shadow(0 0 12px rgba(29, 78, 216, 0.42));
+  stroke: rgba(72, 113, 196, 0.92);
+}
+
 .annotation-junction-frontage-corner-selected {
   fill: rgba(196, 225, 241, 0.48);
   stroke: rgba(72, 113, 196, 0.82);
   stroke-width: 1.6;
+}
+
+.annotation-junction-frontage-connector-selected {
+  filter: drop-shadow(0 0 12px rgba(29, 78, 216, 0.42));
+  stroke: rgba(72, 113, 196, 0.92);
 }
 
 .annotation-overlay-svg[data-hide-junction-outlines="true"] .annotation-junction-core,

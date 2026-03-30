@@ -237,10 +237,12 @@ type JunctionOverlayStripLinkEndpoint = {
 type JunctionOverlayStripLink = {
   linkId: string;
   junctionId: string;
+  quadrantId: string;
   stripKind: StripKind;
   start: JunctionOverlayStripLinkEndpoint;
   end: JunctionOverlayStripLinkEndpoint;
   points: AnnotationPoint[];
+  strokeWidthPx: number;
 };
 
 type DerivedJunctionOverlay = {
@@ -369,6 +371,11 @@ const CENTER_STRIP_KINDS = new Set<StripKind>([
   "bike_lane",
   "parking_lane",
   "median",
+]);
+const CORNER_LINK_STRIP_KINDS = new Set<StripKind>([
+  "nearroad_furnishing",
+  "clear_sidewalk",
+  "frontage_reserve",
 ]);
 const FURNITURE_COMPATIBLE_STRIP_KINDS = new Set<StripKind>(["nearroad_furnishing", "frontage_reserve"]);
 const FURNITURE_KINDS: FurnitureKind[] = [
@@ -782,6 +789,7 @@ function formatCrossSectionSummary(centerline: AnnotatedCenterline): string {
 type SelectedStripCornerConnection = {
   linkId: string;
   junctionId: string;
+  quadrantId: string;
   stripKind: StripKind;
   current: JunctionOverlayStripLinkEndpoint;
   peer: JunctionOverlayStripLinkEndpoint;
@@ -812,6 +820,7 @@ function selectedStripCornerConnections(
         connections.push({
           linkId: link.linkId,
           junctionId: link.junctionId,
+          quadrantId: link.quadrantId,
           stripKind: link.stripKind,
           current: link.start,
           peer: link.end,
@@ -823,6 +832,7 @@ function selectedStripCornerConnections(
         connections.push({
           linkId: link.linkId,
           junctionId: link.junctionId,
+          quadrantId: link.quadrantId,
           stripKind: link.stripKind,
           current: link.end,
           peer: link.start,
@@ -2436,6 +2446,7 @@ function deriveExplicitJunctionOverlayGeometries(annotation: ReferenceAnnotation
         continue;
       }
       const trimOutsideCorner = shouldTrimOutsideCornerTs(kind, sweep);
+      const quadrantId = `${junction.id}_${kind === "cross_junction" ? "quadrant" : "corner"}_${String(armIndex + 1).padStart(2, "0")}`;
       cornerFocusPoints.push({
         focusId: `${junction.id}_focus_${String(armIndex + 1).padStart(2, "0")}`,
         point: cornerCenter,
@@ -2469,16 +2480,21 @@ function deriveExplicitJunctionOverlayGeometries(annotation: ReferenceAnnotation
         const innerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.innerOffsetPx);
         const outerPointA = pointOnBoundaryWithOffsetTs(arm.splitBoundaryCenter, arm.normal, offsetsA.outerOffsetPx);
         const outerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.outerOffsetPx);
+        const strokeWidthPx = Math.max(
+          2,
+          (Math.abs(offsetsA.outerOffsetPx - offsetsA.innerOffsetPx) + Math.abs(offsetsB.outerOffsetPx - offsetsB.innerOffsetPx)) * 0.5,
+        );
         connectorCenterLines.push({
           connectorId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_centerline`,
           stripKind: spec.kind,
-          strokeWidthPx: Math.max(2, (Math.abs(offsetsA.outerOffsetPx - offsetsA.innerOffsetPx) + Math.abs(offsetsB.outerOffsetPx - offsetsB.innerOffsetPx)) * 0.5),
+          strokeWidthPx,
           points: [centerPointA, centerJoin, centerPointB],
         });
         if (offsetsA.stripId && offsetsB.stripId) {
           cornerStripLinks.push({
             linkId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_link`,
             junctionId: junction.id,
+            quadrantId,
             stripKind: spec.kind,
             start: {
               centerlineId: arm.centerlineId,
@@ -2493,6 +2509,7 @@ function deriveExplicitJunctionOverlayGeometries(annotation: ReferenceAnnotation
               stripZone: offsetsB.zone,
             },
             points: [clonePoint(centerPointA), clonePoint(centerJoin), clonePoint(centerPointB)],
+            strokeWidthPx,
           });
         }
         focusGuideLines.push(
@@ -2527,15 +2544,17 @@ function deriveExplicitJunctionOverlayGeometries(annotation: ReferenceAnnotation
             end: outerPointB,
           },
         );
-        const patchGeometry = cornerConnectorPatchGeometryTs(arm, nextArm, offsetsA, offsetsB, {
-          trimOutsideCorner,
-        });
-        if (patchGeometry && patchGeometry.points.length > 0) {
-          spec.bucket.push({
-            patchId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}`,
-            points: patchGeometry.points,
-            cutoutPoints: patchGeometry.cutoutPoints,
+        if (kind === "t_junction") {
+          const patchGeometry = cornerConnectorPatchGeometryTs(arm, nextArm, offsetsA, offsetsB, {
+            trimOutsideCorner,
           });
+          if (patchGeometry && patchGeometry.points.length > 0) {
+            spec.bucket.push({
+              patchId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}`,
+              points: patchGeometry.points,
+              cutoutPoints: patchGeometry.cutoutPoints,
+            });
+          }
         }
       }
     }
@@ -2829,6 +2848,7 @@ function deriveLegacyJunctionOverlayGeometries(
         continue;
       }
       const trimOutsideCorner = shouldTrimOutsideCornerTs(kind, sweep);
+      const quadrantId = `junction_overlay_${String(clusterIndex + 1).padStart(2, "0")}_${kind === "cross_junction" ? "quadrant" : "corner"}_${String(armIndex + 1).padStart(2, "0")}`;
       cornerFocusPoints.push({
         focusId: `junction_overlay_${clusterIndex + 1}_focus_${armIndex + 1}`,
         point: cornerCenter,
@@ -2862,16 +2882,21 @@ function deriveLegacyJunctionOverlayGeometries(
         const innerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.innerOffsetPx);
         const outerPointA = pointOnBoundaryWithOffsetTs(arm.splitBoundaryCenter, arm.normal, offsetsA.outerOffsetPx);
         const outerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.outerOffsetPx);
+        const strokeWidthPx = Math.max(
+          2,
+          (Math.abs(offsetsA.outerOffsetPx - offsetsA.innerOffsetPx) + Math.abs(offsetsB.outerOffsetPx - offsetsB.innerOffsetPx)) * 0.5,
+        );
         connectorCenterLines.push({
           connectorId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}_centerline`,
           stripKind: spec.kind,
-          strokeWidthPx: Math.max(2, (Math.abs(offsetsA.outerOffsetPx - offsetsA.innerOffsetPx) + Math.abs(offsetsB.outerOffsetPx - offsetsB.innerOffsetPx)) * 0.5),
+          strokeWidthPx,
           points: [centerPointA, centerJoin, centerPointB],
         });
         if (offsetsA.stripId && offsetsB.stripId) {
           cornerStripLinks.push({
             linkId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}_link`,
             junctionId: `junction_overlay_${String(clusterIndex + 1).padStart(2, "0")}`,
+            quadrantId,
             stripKind: spec.kind,
             start: {
               centerlineId: arm.centerlineId,
@@ -2886,6 +2911,7 @@ function deriveLegacyJunctionOverlayGeometries(
               stripZone: offsetsB.zone,
             },
             points: [clonePoint(centerPointA), clonePoint(centerJoin), clonePoint(centerPointB)],
+            strokeWidthPx,
           });
         }
         focusGuideLines.push(
@@ -2920,15 +2946,17 @@ function deriveLegacyJunctionOverlayGeometries(
             end: outerPointB,
           },
         );
-        const patchGeometry = cornerConnectorPatchGeometryTs(arm, nextArm, offsetsA, offsetsB, {
-          trimOutsideCorner,
-        });
-        if (patchGeometry && patchGeometry.points.length > 0) {
-          spec.bucket.push({
-            patchId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}`,
-            points: patchGeometry.points,
-            cutoutPoints: patchGeometry.cutoutPoints,
+        if (kind === "t_junction") {
+          const patchGeometry = cornerConnectorPatchGeometryTs(arm, nextArm, offsetsA, offsetsB, {
+            trimOutsideCorner,
           });
+          if (patchGeometry && patchGeometry.points.length > 0) {
+            spec.bucket.push({
+              patchId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}`,
+              points: patchGeometry.points,
+              cutoutPoints: patchGeometry.cutoutPoints,
+            });
+          }
         }
       }
     }
@@ -3993,6 +4021,14 @@ function stripZoneSideLabel(zone: StripZone): string {
   return "Center";
 }
 
+function cornerConnectionLabel(quadrantId: string): string {
+  const parts = quadrantId.split("_");
+  if (parts.length >= 2) {
+    return `${parts[parts.length - 2]} ${parts[parts.length - 1]}`;
+  }
+  return quadrantId.replace(/_/g, " ");
+}
+
 function normalizedConnectionPreviewPoints(
   points: AnnotationPoint[],
   width = 96,
@@ -4030,6 +4066,7 @@ function buildCornerConnectionCardMarkup(connection: SelectedStripCornerConnecti
   const polylinePoints = previewPoints.map((point) => `${point.x},${point.y}`).join(" ");
   const startPoint = previewPoints[0] ?? { x: 12, y: 36 };
   const endPoint = previewPoints[previewPoints.length - 1] ?? { x: 84, y: 36 };
+  const quadrantLabel = cornerConnectionLabel(connection.quadrantId);
   return `
     <button
       type="button"
@@ -4055,7 +4092,7 @@ function buildCornerConnectionCardMarkup(connection: SelectedStripCornerConnecti
       <div class="annotation-corner-link-copy">
         <strong>${escapeHtml(connection.peer.centerlineId)} · ${escapeHtml(connection.peer.stripId)}</strong>
         <span>${escapeHtml(metaurbanStripLabel(connection.peer.stripKind))} · ${escapeHtml(stripZoneSideLabel(connection.peer.stripZone))}</span>
-        <span class="annotation-corner-link-junction">via ${escapeHtml(connection.junctionId)}</span>
+        <span class="annotation-corner-link-junction">via ${escapeHtml(connection.junctionId)} · ${escapeHtml(quadrantLabel)}</span>
       </div>
     </button>
   `;
@@ -4069,7 +4106,7 @@ function buildStripCornerConnectionsMarkup(
   const selectedStrip = selectedStripId
     ? centerline.cross_section_strips.find((strip) => strip.strip_id === selectedStripId) ?? null
     : null;
-  if (!selectedStrip) {
+  if (!selectedStrip || !CORNER_LINK_STRIP_KINDS.has(selectedStrip.kind)) {
     return "";
   }
   const connections = selectedStripCornerConnections(junctionOverlays, centerline.id, selectedStrip.strip_id);
@@ -5273,6 +5310,15 @@ function buildDerivedJunctionOverlayMarkup(
   if (overlays.length === 0) {
     return "";
   }
+  const cornerConnectorClassName = (stripKind: StripKind): string => {
+    if (stripKind === "clear_sidewalk") {
+      return "annotation-junction-sidewalk-connector";
+    }
+    if (stripKind === "nearroad_furnishing") {
+      return "annotation-junction-nearroad-connector";
+    }
+    return "annotation-junction-frontage-connector";
+  };
   return overlays
     .map((overlay) => {
       const featureKind = overlay.sourceMode === "explicit" ? "junction" : "derived_junction";
@@ -5311,17 +5357,36 @@ function buildDerivedJunctionOverlayMarkup(
             `;
           })
           .join("");
-      const connectorLineMarkup = overlay.connectorCenterLines
-        .map(
-          (line) => `
-            <polyline
-              class="annotation-junction-connector-line"
-              points="${line.points.map((point) => `${point.x},${point.y}`).join(" ")}"
-              style="stroke: ${stripStrokeColor(line.stripKind)}; stroke-width: ${line.strokeWidthPx}px"
-            />
-          `,
-        )
-        .join("");
+      const cornerConnectorMarkup =
+        options.showJunctionConnectors && overlay.kind === "cross_junction"
+          ? overlay.cornerStripLinks
+              .map((link) => {
+                const className = cornerConnectorClassName(link.stripKind);
+                return `
+                  <polyline
+                    class="${className}${isSelected ? ` ${className}-selected` : ""}"
+                    points="${link.points.map((point) => `${point.x},${point.y}`).join(" ")}"
+                    style="stroke-width: ${link.strokeWidthPx}px"
+                    data-feature-kind="${featureKind}"
+                    data-feature-id="${escapeHtml(overlay.junctionId)}"
+                  />
+                `;
+              })
+              .join("")
+          : "";
+      const connectorLineMarkup = isSelected && options.showJunctionDebug
+        ? overlay.connectorCenterLines
+            .map(
+              (line) => `
+                <polyline
+                  class="annotation-junction-connector-line"
+                  points="${line.points.map((point) => `${point.x},${point.y}`).join(" ")}"
+                  style="stroke: ${stripStrokeColor(line.stripKind)}; stroke-width: ${line.strokeWidthPx}px"
+                />
+              `,
+            )
+            .join("")
+        : "";
       const boundaryMarkup = options.showJunctionBoundaries
         ? overlay.approachBoundaries
             .map(
@@ -5425,9 +5490,21 @@ function buildDerivedJunctionOverlayMarkup(
       return `
         <g class="annotation-feature-group">
           ${connectorLineMarkup}
-          ${options.showJunctionConnectors ? polygonMarkup(overlay.frontageCorners, "annotation-junction-frontage-corner") : ""}
-          ${options.showJunctionConnectors ? polygonMarkup(overlay.nearroadCorners, "annotation-junction-nearroad-corner") : ""}
-          ${options.showJunctionConnectors ? polygonMarkup(overlay.sidewalkCorners, "annotation-junction-sidewalk-corner") : ""}
+          ${
+            options.showJunctionConnectors && overlay.kind === "t_junction"
+              ? polygonMarkup(overlay.frontageCorners, "annotation-junction-frontage-corner")
+              : ""
+          }
+          ${
+            options.showJunctionConnectors && overlay.kind === "t_junction"
+              ? polygonMarkup(overlay.nearroadCorners, "annotation-junction-nearroad-corner")
+              : ""
+          }
+          ${
+            options.showJunctionConnectors && overlay.kind === "t_junction"
+              ? polygonMarkup(overlay.sidewalkCorners, "annotation-junction-sidewalk-corner")
+              : ""
+          }
           ${
             options.showJunctionCore
               ? `
@@ -5440,6 +5517,7 @@ function buildDerivedJunctionOverlayMarkup(
               : ""
           }
           ${options.showJunctionCrosswalks ? polygonMarkup(overlay.crosswalks, "annotation-junction-crosswalk") : ""}
+          ${cornerConnectorMarkup}
           ${boundaryMarkup}
           ${controlPointMarkup}
           ${

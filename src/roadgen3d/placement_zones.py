@@ -690,6 +690,42 @@ def _corner_connector_patch(
     return patch
 
 
+def _corner_connector_polyline(
+    *,
+    corner_center: Tuple[float, float],
+    arm: Dict[str, Any],
+    next_arm: Dict[str, Any],
+    kind: str,
+) -> Dict[str, Any] | None:
+    connector_a = _corner_strip_offset_range(arm, corner_center, kind)
+    connector_b = _corner_strip_offset_range(next_arm, corner_center, kind)
+    if connector_a is None or connector_b is None:
+        return None
+    _zone_a, center_offset_a, inner_offset_a, outer_offset_a = connector_a
+    _zone_b, center_offset_b, inner_offset_b, outer_offset_b = connector_b
+    boundary_center_a = tuple(float(value) for value in arm["split_boundary_center"])
+    boundary_center_b = tuple(float(value) for value in next_arm["split_boundary_center"])
+    normal_a = tuple(float(value) for value in arm["normal"])
+    normal_b = tuple(float(value) for value in next_arm["normal"])
+    tangent_a = tuple(float(value) for value in arm["tangent"])
+    tangent_b = tuple(float(value) for value in next_arm["tangent"])
+    center_point_a = _point_on_boundary_with_offset(boundary_center_a, normal_a, center_offset_a)
+    center_point_b = _point_on_boundary_with_offset(boundary_center_b, normal_b, center_offset_b)
+    join_point = _connector_join_point(center_point_a, tangent_a, center_point_b, tangent_b)
+    width_m = max(
+        (abs(float(outer_offset_a) - float(inner_offset_a)) + abs(float(outer_offset_b) - float(inner_offset_b))) * 0.5,
+        0.05,
+    )
+    return {
+        "points_xy": [
+            [round(float(center_point_a[0]), 3), round(float(center_point_a[1]), 3)],
+            [round(float(join_point[0]), 3), round(float(join_point[1]), 3)],
+            [round(float(center_point_b[0]), 3), round(float(center_point_b[1]), 3)],
+        ],
+        "width_m": round(float(width_m), 3),
+    }
+
+
 def _build_explicit_graph_junction_geometries(
     roads: Sequence[Any],
     *,
@@ -921,6 +957,9 @@ def _build_explicit_graph_junction_geometries(
         sidewalk_corner_patches = []
         nearroad_corner_patches = []
         frontage_corner_patches = []
+        sidewalk_corner_polylines = []
+        nearroad_corner_polylines = []
+        frontage_corner_polylines = []
         ordered_arms = sorted(arms, key=lambda item: float(item["angle_deg"]))
         for arm_index, arm in enumerate(ordered_arms):
             next_arm = ordered_arms[(arm_index + 1) % len(ordered_arms)]
@@ -939,6 +978,47 @@ def _build_explicit_graph_junction_geometries(
                 tuple(float(value) for value in next_arm["normal"]),
             )
             if corner_center is None:
+                continue
+            if kind == "cross_junction":
+                nearroad_polyline = _corner_connector_polyline(
+                    corner_center=corner_center,
+                    arm=arm,
+                    next_arm=next_arm,
+                    kind="nearroad_furnishing",
+                )
+                if nearroad_polyline is not None:
+                    nearroad_corner_polylines.append(
+                        {
+                            "polyline_id": f"{junction.junction_id}_nearroad_{arm_index:02d}",
+                            **nearroad_polyline,
+                        }
+                    )
+                sidewalk_polyline = _corner_connector_polyline(
+                    corner_center=corner_center,
+                    arm=arm,
+                    next_arm=next_arm,
+                    kind="clear_sidewalk",
+                )
+                if sidewalk_polyline is not None:
+                    sidewalk_corner_polylines.append(
+                        {
+                            "polyline_id": f"{junction.junction_id}_sidewalk_{arm_index:02d}",
+                            **sidewalk_polyline,
+                        }
+                    )
+                frontage_polyline = _corner_connector_polyline(
+                    corner_center=corner_center,
+                    arm=arm,
+                    next_arm=next_arm,
+                    kind="frontage_reserve",
+                )
+                if frontage_polyline is not None:
+                    frontage_corner_polylines.append(
+                        {
+                            "polyline_id": f"{junction.junction_id}_frontage_{arm_index:02d}",
+                            **frontage_polyline,
+                        }
+                    )
                 continue
             nearroad_patch = _corner_connector_patch(
                 corner_center=corner_center,
@@ -989,27 +1069,31 @@ def _build_explicit_graph_junction_geometries(
                     }
                 )
 
-        junctions.append(
-            {
-                "junction_id": str(junction.junction_id),
-                "kind": kind,
-                "anchor_xy": [round(anchor[0], 3), round(anchor[1], 3)],
-                "arm_count": int(len(arms)),
-                "connected_road_ids": sorted(int(item["road_id"]) for item in arms),
-                "connected_centerline_ids": sorted(str(item["centerline_id"]) for item in arms),
-                "junction_core_rect": junction_core_rect,
-                "carriageway_core": carriageway_core,
-                "approach_boundaries": approach_boundaries,
-                "approach_split_lines": list(approach_boundaries),
-                "skeleton_foot_points": skeleton_foot_points,
-                "sub_lane_control_points": sub_lane_control_points,
-                "crosswalk_patches": crosswalk_patches,
-                "sidewalk_corner_patches": sidewalk_corner_patches,
-                "nearroad_corner_patches": nearroad_corner_patches,
-                "frontage_corner_patches": frontage_corner_patches,
-                "sidewalk_trim_zone": _merge_polygon_geometries(sidewalk_trim_polygons, aoi_polygon=aoi_polygon),
-            }
-        )
+        junction_geometry = {
+            "junction_id": str(junction.junction_id),
+            "kind": kind,
+            "anchor_xy": [round(anchor[0], 3), round(anchor[1], 3)],
+            "arm_count": int(len(arms)),
+            "connected_road_ids": sorted(int(item["road_id"]) for item in arms),
+            "connected_centerline_ids": sorted(str(item["centerline_id"]) for item in arms),
+            "junction_core_rect": junction_core_rect,
+            "carriageway_core": carriageway_core,
+            "approach_boundaries": approach_boundaries,
+            "approach_split_lines": list(approach_boundaries),
+            "skeleton_foot_points": skeleton_foot_points,
+            "sub_lane_control_points": sub_lane_control_points,
+            "crosswalk_patches": crosswalk_patches,
+            "sidewalk_trim_zone": _merge_polygon_geometries(sidewalk_trim_polygons, aoi_polygon=aoi_polygon),
+        }
+        if kind == "cross_junction":
+            junction_geometry["sidewalk_corner_polylines"] = sidewalk_corner_polylines
+            junction_geometry["nearroad_corner_polylines"] = nearroad_corner_polylines
+            junction_geometry["frontage_corner_polylines"] = frontage_corner_polylines
+        else:
+            junction_geometry["sidewalk_corner_patches"] = sidewalk_corner_patches
+            junction_geometry["nearroad_corner_patches"] = nearroad_corner_patches
+            junction_geometry["frontage_corner_patches"] = frontage_corner_patches
+        junctions.append(junction_geometry)
     return junctions
 
 
@@ -1271,6 +1355,9 @@ def build_junction_geometries(
         sidewalk_corner_patches = []
         nearroad_corner_patches = []
         frontage_corner_patches = []
+        sidewalk_corner_polylines = []
+        nearroad_corner_polylines = []
+        frontage_corner_polylines = []
         ordered_arms = sorted(arms, key=lambda item: float(item["angle_deg"]))
         for arm_index, arm in enumerate(ordered_arms):
             next_arm = ordered_arms[(arm_index + 1) % len(ordered_arms)]
@@ -1289,6 +1376,47 @@ def build_junction_geometries(
                 tuple(float(value) for value in next_arm["normal"]),
             )
             if corner_center is None:
+                continue
+            if kind == "cross_junction":
+                nearroad_polyline = _corner_connector_polyline(
+                    corner_center=corner_center,
+                    arm=arm,
+                    next_arm=next_arm,
+                    kind="nearroad_furnishing",
+                )
+                if nearroad_polyline is not None:
+                    nearroad_corner_polylines.append(
+                        {
+                            "polyline_id": f"junction_{index:02d}_nearroad_{arm_index:02d}",
+                            **nearroad_polyline,
+                        }
+                    )
+                sidewalk_polyline = _corner_connector_polyline(
+                    corner_center=corner_center,
+                    arm=arm,
+                    next_arm=next_arm,
+                    kind="clear_sidewalk",
+                )
+                if sidewalk_polyline is not None:
+                    sidewalk_corner_polylines.append(
+                        {
+                            "polyline_id": f"junction_{index:02d}_sidewalk_{arm_index:02d}",
+                            **sidewalk_polyline,
+                        }
+                    )
+                frontage_polyline = _corner_connector_polyline(
+                    corner_center=corner_center,
+                    arm=arm,
+                    next_arm=next_arm,
+                    kind="frontage_reserve",
+                )
+                if frontage_polyline is not None:
+                    frontage_corner_polylines.append(
+                        {
+                            "polyline_id": f"junction_{index:02d}_frontage_{arm_index:02d}",
+                            **frontage_polyline,
+                        }
+                    )
                 continue
             nearroad_patch = _corner_connector_patch(
                 corner_center=corner_center,
@@ -1339,23 +1467,27 @@ def build_junction_geometries(
                     }
                 )
 
-        junctions.append(
-            {
-                "junction_id": f"junction_{index:02d}",
-                "kind": kind,
-                "anchor_xy": [round(anchor[0], 3), round(anchor[1], 3)],
-                "arm_count": int(arm_count),
-                "connected_road_ids": connected_road_ids,
-                "junction_core_rect": junction_core_rect,
-                "carriageway_core": carriageway_core,
-                "approach_boundaries": approach_boundaries,
-                "crosswalk_patches": crosswalk_patches,
-                "sidewalk_corner_patches": sidewalk_corner_patches,
-                "nearroad_corner_patches": nearroad_corner_patches,
-                "frontage_corner_patches": frontage_corner_patches,
-                "sidewalk_trim_zone": _merge_polygon_geometries(sidewalk_trim_polygons, aoi_polygon=aoi_polygon),
-            }
-        )
+        junction_geometry = {
+            "junction_id": f"junction_{index:02d}",
+            "kind": kind,
+            "anchor_xy": [round(anchor[0], 3), round(anchor[1], 3)],
+            "arm_count": int(arm_count),
+            "connected_road_ids": connected_road_ids,
+            "junction_core_rect": junction_core_rect,
+            "carriageway_core": carriageway_core,
+            "approach_boundaries": approach_boundaries,
+            "crosswalk_patches": crosswalk_patches,
+            "sidewalk_trim_zone": _merge_polygon_geometries(sidewalk_trim_polygons, aoi_polygon=aoi_polygon),
+        }
+        if kind == "cross_junction":
+            junction_geometry["sidewalk_corner_polylines"] = sidewalk_corner_polylines
+            junction_geometry["nearroad_corner_polylines"] = nearroad_corner_polylines
+            junction_geometry["frontage_corner_polylines"] = frontage_corner_polylines
+        else:
+            junction_geometry["sidewalk_corner_patches"] = sidewalk_corner_patches
+            junction_geometry["nearroad_corner_patches"] = nearroad_corner_patches
+            junction_geometry["frontage_corner_patches"] = frontage_corner_patches
+        junctions.append(junction_geometry)
     return junctions
 
 

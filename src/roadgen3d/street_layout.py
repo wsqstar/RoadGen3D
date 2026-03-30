@@ -2811,6 +2811,52 @@ def _build_osm_base_scene(
                 logger.debug("Skipping degenerate %s polygon %d", name_prefix, idx)
                 continue
 
+    def _add_polyline_segments(
+        polylines,
+        *,
+        default_width_m: float,
+        height_m: float,
+        color,
+        name_prefix: str,
+        y_offset: float = 0.0,
+        roughness_key: str = "",
+        surface_role: str = "",
+    ) -> None:
+        for polyline_index, polyline in enumerate(polylines or ()):
+            points = [
+                (float(point[0]), float(point[1]))
+                for point in (polyline.get("points_xy", []) or ())
+                if len(point) >= 2
+            ]
+            if len(points) < 2:
+                continue
+            width_m = max(float(polyline.get("width_m", default_width_m) or default_width_m), 0.05)
+            for segment_index, (start, end) in enumerate(zip(points, points[1:])):
+                dx = float(end[0]) - float(start[0])
+                dz = float(end[1]) - float(start[1])
+                segment_length_m = math.hypot(dx, dz)
+                if segment_length_m <= 1e-6:
+                    continue
+                _add_road_box(
+                    scene,
+                    length_m=float(segment_length_m),
+                    width_m=float(width_m),
+                    height_m=float(height_m),
+                    local_x_m=0.0,
+                    local_z_m=0.0,
+                    road_center_x_m=(float(start[0]) + float(end[0])) * 0.5,
+                    road_center_z_m=(float(start[1]) + float(end[1])) * 0.5,
+                    road_yaw_deg=math.degrees(math.atan2(dz, dx)),
+                    y_min_m=float(y_offset),
+                    color=color,
+                    surface_role=surface_role,
+                    node_name=f"{name_prefix}_{polyline_index}_{segment_index}",
+                    roughness=(roughness or {}).get(roughness_key or surface_role or "sidewalk", 0.9),
+                    texture_mode=texture_mode,
+                    texture_tracker=texture_tracker,
+                    texture_overrides=texture_overrides,
+                )
+
     if not carriageway.is_empty:
         _extrude_polygon(
             carriageway,
@@ -2843,6 +2889,7 @@ def _build_osm_base_scene(
     junction_geometries = list(getattr(placement_ctx, "junction_geometries", []) or [])
     if junction_geometries:
         for junction_index, junction in enumerate(junction_geometries):
+            junction_kind = str(junction.get("kind", "") or "")
             carriageway_core = junction.get("junction_core_rect") or junction.get("carriageway_core")
             if carriageway_core is not None and not getattr(carriageway_core, "is_empty", True):
                 _extrude_polygon(
@@ -2867,45 +2914,77 @@ def _build_osm_base_scene(
                     roughness_key="lane_mark",
                     surface_role="lane_mark",
                 )
-            for patch_index, patch in enumerate(junction.get("sidewalk_corner_patches", []) or ()):
-                geometry = patch.get("geometry")
-                if geometry is None or getattr(geometry, "is_empty", True):
-                    continue
-                _extrude_polygon(
-                    geometry,
-                    0.08,
-                    list(colors.get("sidewalk", (165, 168, 172, 255))),
-                    f"junction_sidewalk_corner_{junction_index}_{patch_index}",
+            if junction_kind == "cross_junction":
+                _add_polyline_segments(
+                    junction.get("sidewalk_corner_polylines", []) or (),
+                    default_width_m=2.5,
+                    height_m=0.08,
+                    color=list(colors.get("sidewalk", (165, 168, 172, 255))),
+                    name_prefix=f"junction_sidewalk_corner_polyline_{junction_index}",
                     y_offset=SIDEWALK_ELEVATION_M,
                     roughness_key="sidewalk",
                     surface_role="sidewalk",
                 )
-            for patch_index, patch in enumerate(junction.get("nearroad_corner_patches", []) or ()):
-                geometry = patch.get("geometry")
-                if geometry is None or getattr(geometry, "is_empty", True):
-                    continue
-                _extrude_polygon(
-                    geometry,
-                    0.05,
-                    list(colors.get("furnishing", colors.get("sidewalk", (165, 168, 172, 255)))),
-                    f"junction_nearroad_corner_{junction_index}_{patch_index}",
+                _add_polyline_segments(
+                    junction.get("nearroad_corner_polylines", []) or (),
+                    default_width_m=1.5,
+                    height_m=0.05,
+                    color=list(colors.get("furnishing", colors.get("sidewalk", (165, 168, 172, 255)))),
+                    name_prefix=f"junction_nearroad_corner_polyline_{junction_index}",
                     y_offset=SIDEWALK_ELEVATION_M,
                     roughness_key="furnishing",
                     surface_role="furnishing",
                 )
-            for patch_index, patch in enumerate(junction.get("frontage_corner_patches", []) or ()):
-                geometry = patch.get("geometry")
-                if geometry is None or getattr(geometry, "is_empty", True):
-                    continue
-                _extrude_polygon(
-                    geometry,
-                    0.05,
-                    list(colors.get("context_ground", (168, 163, 150, 255))),
-                    f"junction_frontage_corner_{junction_index}_{patch_index}",
+                _add_polyline_segments(
+                    junction.get("frontage_corner_polylines", []) or (),
+                    default_width_m=2.0,
+                    height_m=0.05,
+                    color=list(colors.get("context_ground", (168, 163, 150, 255))),
+                    name_prefix=f"junction_frontage_corner_polyline_{junction_index}",
                     y_offset=SIDEWALK_ELEVATION_M,
                     roughness_key="context_ground",
                     surface_role="context_ground",
                 )
+            else:
+                for patch_index, patch in enumerate(junction.get("sidewalk_corner_patches", []) or ()):
+                    geometry = patch.get("geometry")
+                    if geometry is None or getattr(geometry, "is_empty", True):
+                        continue
+                    _extrude_polygon(
+                        geometry,
+                        0.08,
+                        list(colors.get("sidewalk", (165, 168, 172, 255))),
+                        f"junction_sidewalk_corner_{junction_index}_{patch_index}",
+                        y_offset=SIDEWALK_ELEVATION_M,
+                        roughness_key="sidewalk",
+                        surface_role="sidewalk",
+                    )
+                for patch_index, patch in enumerate(junction.get("nearroad_corner_patches", []) or ()):
+                    geometry = patch.get("geometry")
+                    if geometry is None or getattr(geometry, "is_empty", True):
+                        continue
+                    _extrude_polygon(
+                        geometry,
+                        0.05,
+                        list(colors.get("furnishing", colors.get("sidewalk", (165, 168, 172, 255)))),
+                        f"junction_nearroad_corner_{junction_index}_{patch_index}",
+                        y_offset=SIDEWALK_ELEVATION_M,
+                        roughness_key="furnishing",
+                        surface_role="furnishing",
+                    )
+                for patch_index, patch in enumerate(junction.get("frontage_corner_patches", []) or ()):
+                    geometry = patch.get("geometry")
+                    if geometry is None or getattr(geometry, "is_empty", True):
+                        continue
+                    _extrude_polygon(
+                        geometry,
+                        0.05,
+                        list(colors.get("context_ground", (168, 163, 150, 255))),
+                        f"junction_frontage_corner_{junction_index}_{patch_index}",
+                        y_offset=SIDEWALK_ELEVATION_M,
+                        roughness_key="context_ground",
+                        surface_role="context_ground",
+                    )
 
     fallback_length_m = 20.0
     if scene_bounds:
@@ -3107,6 +3186,13 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
             rings.append([[round(c[0], 2), round(c[1], 2)] for c in coords])
         return rings
 
+    def _serialize_polyline(points) -> list:
+        return [
+            [round(float(point[0]), 3), round(float(point[1]), 3)]
+            for point in (points or ())
+            if len(point) >= 2
+        ]
+
     result: dict = {}
     carriageway = placement_ctx.carriageway  # type: ignore[attr-defined]
     sidewalk = placement_ctx.sidewalk_zone  # type: ignore[attr-defined]
@@ -3128,115 +3214,140 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
     if junction_geometries:
         result["junction_geometries"] = []
         for item in junction_geometries:
-            result["junction_geometries"].append(
-                {
-                    "junction_id": str(item.get("junction_id", "") or ""),
-                    "kind": str(item.get("kind", "") or ""),
-                    "anchor_xy": [round(float(value), 3) for value in item.get("anchor_xy", [0.0, 0.0])[:2]],
-                    "arm_count": int(item.get("arm_count", 0) or 0),
-                    "connected_road_ids": [int(value) for value in item.get("connected_road_ids", []) or ()],
-                    "junction_core_rect_rings": _extract_rings(item.get("junction_core_rect")),
-                    "carriageway_core_rings": _extract_rings(item.get("junction_core_rect") or item.get("carriageway_core")),
-                    "approach_boundaries": [
-                        {
-                            "boundary_id": str(boundary.get("boundary_id", "") or ""),
-                            "road_id": int(boundary.get("road_id", 0) or 0),
-                            "centerline_id": str(boundary.get("centerline_id", "") or ""),
-                            "center_xy": [
-                                round(float(value), 3)
-                                for value in boundary.get("center_xy", [0.0, 0.0])[:2]
-                            ],
-                            "start_xy": [
-                                round(float(value), 3)
-                                for value in boundary.get("start_xy", [0.0, 0.0])[:2]
-                            ],
-                            "end_xy": [
-                                round(float(value), 3)
-                                for value in boundary.get("end_xy", [0.0, 0.0])[:2]
-                            ],
-                            "exit_distance_m": round(float(boundary.get("exit_distance_m", 0.0) or 0.0), 3),
-                        }
-                        for boundary in item.get("approach_boundaries", []) or ()
-                    ],
-                    "approach_split_lines": [
-                        {
-                            "boundary_id": str(boundary.get("boundary_id", "") or ""),
-                            "road_id": int(boundary.get("road_id", 0) or 0),
-                            "centerline_id": str(boundary.get("centerline_id", "") or ""),
-                            "center_xy": [
-                                round(float(value), 3)
-                                for value in boundary.get("center_xy", [0.0, 0.0])[:2]
-                            ],
-                            "start_xy": [
-                                round(float(value), 3)
-                                for value in boundary.get("start_xy", [0.0, 0.0])[:2]
-                            ],
-                            "end_xy": [
-                                round(float(value), 3)
-                                for value in boundary.get("end_xy", [0.0, 0.0])[:2]
-                            ],
-                            "exit_distance_m": round(float(boundary.get("exit_distance_m", 0.0) or 0.0), 3),
-                        }
-                        for boundary in item.get("approach_split_lines", []) or ()
-                    ],
-                    "skeleton_foot_points": [
-                        {
-                            "foot_id": str(foot.get("foot_id", "") or ""),
-                            "road_id": int(foot.get("road_id", 0) or 0),
-                            "centerline_id": str(foot.get("centerline_id", "") or ""),
-                            "xy": [
-                                round(float(value), 3)
-                                for value in foot.get("xy", [0.0, 0.0])[:2]
-                            ],
-                        }
-                        for foot in item.get("skeleton_foot_points", []) or ()
-                    ],
-                    "sub_lane_control_points": [
-                        {
-                            "control_id": str(control.get("control_id", "") or ""),
-                            "road_id": int(control.get("road_id", 0) or 0),
-                            "centerline_id": str(control.get("centerline_id", "") or ""),
-                            "strip_kind": str(control.get("strip_kind", "") or ""),
-                            "strip_zone": str(control.get("strip_zone", "") or ""),
-                            "point_kind": str(control.get("point_kind", "") or ""),
-                            "xy": [
-                                round(float(value), 3)
-                                for value in control.get("xy", [0.0, 0.0])[:2]
-                            ],
-                        }
-                        for control in item.get("sub_lane_control_points", []) or ()
-                    ],
-                    "crosswalk_patches": [
-                        {
-                            "patch_id": str(patch.get("patch_id", "") or ""),
-                            "road_id": int(patch.get("road_id", 0) or 0),
-                            "rings": _extract_rings(patch.get("geometry")),
-                        }
-                        for patch in item.get("crosswalk_patches", []) or ()
-                    ],
-                    "sidewalk_corner_patches": [
-                        {
-                            "patch_id": str(patch.get("patch_id", "") or ""),
-                            "rings": _extract_rings(patch.get("geometry")),
-                        }
-                        for patch in item.get("sidewalk_corner_patches", []) or ()
-                    ],
-                    "nearroad_corner_patches": [
-                        {
-                            "patch_id": str(patch.get("patch_id", "") or ""),
-                            "rings": _extract_rings(patch.get("geometry")),
-                        }
-                        for patch in item.get("nearroad_corner_patches", []) or ()
-                    ],
-                    "frontage_corner_patches": [
-                        {
-                            "patch_id": str(patch.get("patch_id", "") or ""),
-                            "rings": _extract_rings(patch.get("geometry")),
-                        }
-                        for patch in item.get("frontage_corner_patches", []) or ()
-                    ],
-                }
-            )
+            junction_item = {
+                "junction_id": str(item.get("junction_id", "") or ""),
+                "kind": str(item.get("kind", "") or ""),
+                "anchor_xy": [round(float(value), 3) for value in item.get("anchor_xy", [0.0, 0.0])[:2]],
+                "arm_count": int(item.get("arm_count", 0) or 0),
+                "connected_road_ids": [int(value) for value in item.get("connected_road_ids", []) or ()],
+                "junction_core_rect_rings": _extract_rings(item.get("junction_core_rect")),
+                "carriageway_core_rings": _extract_rings(item.get("junction_core_rect") or item.get("carriageway_core")),
+                "approach_boundaries": [
+                    {
+                        "boundary_id": str(boundary.get("boundary_id", "") or ""),
+                        "road_id": int(boundary.get("road_id", 0) or 0),
+                        "centerline_id": str(boundary.get("centerline_id", "") or ""),
+                        "center_xy": [
+                            round(float(value), 3)
+                            for value in boundary.get("center_xy", [0.0, 0.0])[:2]
+                        ],
+                        "start_xy": [
+                            round(float(value), 3)
+                            for value in boundary.get("start_xy", [0.0, 0.0])[:2]
+                        ],
+                        "end_xy": [
+                            round(float(value), 3)
+                            for value in boundary.get("end_xy", [0.0, 0.0])[:2]
+                        ],
+                        "exit_distance_m": round(float(boundary.get("exit_distance_m", 0.0) or 0.0), 3),
+                    }
+                    for boundary in item.get("approach_boundaries", []) or ()
+                ],
+                "approach_split_lines": [
+                    {
+                        "boundary_id": str(boundary.get("boundary_id", "") or ""),
+                        "road_id": int(boundary.get("road_id", 0) or 0),
+                        "centerline_id": str(boundary.get("centerline_id", "") or ""),
+                        "center_xy": [
+                            round(float(value), 3)
+                            for value in boundary.get("center_xy", [0.0, 0.0])[:2]
+                        ],
+                        "start_xy": [
+                            round(float(value), 3)
+                            for value in boundary.get("start_xy", [0.0, 0.0])[:2]
+                        ],
+                        "end_xy": [
+                            round(float(value), 3)
+                            for value in boundary.get("end_xy", [0.0, 0.0])[:2]
+                        ],
+                        "exit_distance_m": round(float(boundary.get("exit_distance_m", 0.0) or 0.0), 3),
+                    }
+                    for boundary in item.get("approach_split_lines", []) or ()
+                ],
+                "skeleton_foot_points": [
+                    {
+                        "foot_id": str(foot.get("foot_id", "") or ""),
+                        "road_id": int(foot.get("road_id", 0) or 0),
+                        "centerline_id": str(foot.get("centerline_id", "") or ""),
+                        "xy": [
+                            round(float(value), 3)
+                            for value in foot.get("xy", [0.0, 0.0])[:2]
+                        ],
+                    }
+                    for foot in item.get("skeleton_foot_points", []) or ()
+                ],
+                "sub_lane_control_points": [
+                    {
+                        "control_id": str(control.get("control_id", "") or ""),
+                        "road_id": int(control.get("road_id", 0) or 0),
+                        "centerline_id": str(control.get("centerline_id", "") or ""),
+                        "strip_kind": str(control.get("strip_kind", "") or ""),
+                        "strip_zone": str(control.get("strip_zone", "") or ""),
+                        "point_kind": str(control.get("point_kind", "") or ""),
+                        "xy": [
+                            round(float(value), 3)
+                            for value in control.get("xy", [0.0, 0.0])[:2]
+                        ],
+                    }
+                    for control in item.get("sub_lane_control_points", []) or ()
+                ],
+                "crosswalk_patches": [
+                    {
+                        "patch_id": str(patch.get("patch_id", "") or ""),
+                        "road_id": int(patch.get("road_id", 0) or 0),
+                        "rings": _extract_rings(patch.get("geometry")),
+                    }
+                    for patch in item.get("crosswalk_patches", []) or ()
+                ],
+            }
+            if str(item.get("kind", "") or "") == "cross_junction":
+                junction_item["sidewalk_corner_polylines"] = [
+                    {
+                        "polyline_id": str(polyline.get("polyline_id", "") or ""),
+                        "points_xy": _serialize_polyline(polyline.get("points_xy", [])),
+                        "width_m": round(float(polyline.get("width_m", 0.0) or 0.0), 3),
+                    }
+                    for polyline in item.get("sidewalk_corner_polylines", []) or ()
+                ]
+                junction_item["nearroad_corner_polylines"] = [
+                    {
+                        "polyline_id": str(polyline.get("polyline_id", "") or ""),
+                        "points_xy": _serialize_polyline(polyline.get("points_xy", [])),
+                        "width_m": round(float(polyline.get("width_m", 0.0) or 0.0), 3),
+                    }
+                    for polyline in item.get("nearroad_corner_polylines", []) or ()
+                ]
+                junction_item["frontage_corner_polylines"] = [
+                    {
+                        "polyline_id": str(polyline.get("polyline_id", "") or ""),
+                        "points_xy": _serialize_polyline(polyline.get("points_xy", [])),
+                        "width_m": round(float(polyline.get("width_m", 0.0) or 0.0), 3),
+                    }
+                    for polyline in item.get("frontage_corner_polylines", []) or ()
+                ]
+            else:
+                junction_item["sidewalk_corner_patches"] = [
+                    {
+                        "patch_id": str(patch.get("patch_id", "") or ""),
+                        "rings": _extract_rings(patch.get("geometry")),
+                    }
+                    for patch in item.get("sidewalk_corner_patches", []) or ()
+                ]
+                junction_item["nearroad_corner_patches"] = [
+                    {
+                        "patch_id": str(patch.get("patch_id", "") or ""),
+                        "rings": _extract_rings(patch.get("geometry")),
+                    }
+                    for patch in item.get("nearroad_corner_patches", []) or ()
+                ]
+                junction_item["frontage_corner_patches"] = [
+                    {
+                        "patch_id": str(patch.get("patch_id", "") or ""),
+                        "rings": _extract_rings(patch.get("geometry")),
+                    }
+                    for patch in item.get("frontage_corner_patches", []) or ()
+                ]
+            result["junction_geometries"].append(junction_item)
     return result
 
 
