@@ -220,12 +220,18 @@ type JunctionOverlayGuideLine = {
   end: AnnotationPoint;
 };
 
-type JunctionOverlayQuadrantSpine = {
-  spineId: string;
+type JunctionOverlayCornerKernel = {
+  kernelId: string;
   quadrantId: string;
   junctionId: string;
   startCenterlineId: string;
   endCenterlineId: string;
+  kernelKind: "circular_arc" | "polyline_fallback";
+  center: AnnotationPoint;
+  radiusPx: number;
+  startHeadingDeg: number;
+  endHeadingDeg: number;
+  clockwise: boolean | null;
   points: AnnotationPoint[];
 };
 
@@ -233,7 +239,7 @@ type DerivedJunctionOverlayConnectorLine = {
   connectorId: string;
   stripKind: StripKind;
   quadrantId: string;
-  spineId: string | null;
+  kernelId: string | null;
   strokeWidthPx: number;
   points: AnnotationPoint[];
 };
@@ -249,7 +255,7 @@ type JunctionOverlayStripLink = {
   linkId: string;
   junctionId: string;
   quadrantId: string;
-  spineId: string | null;
+  kernelId: string | null;
   stripKind: StripKind;
   start: JunctionOverlayStripLinkEndpoint;
   end: JunctionOverlayStripLinkEndpoint;
@@ -275,9 +281,25 @@ type DerivedJunctionOverlay = {
   cornerFocusPoints: JunctionOverlayCornerFocus[];
   boundaryExtensionLines: JunctionOverlayGuideLine[];
   focusGuideLines: JunctionOverlayGuideLine[];
-  quadrantSpines: JunctionOverlayQuadrantSpine[];
+  quadrantCornerKernels: JunctionOverlayCornerKernel[];
   connectorCenterLines: DerivedJunctionOverlayConnectorLine[];
   cornerStripLinks: JunctionOverlayStripLink[];
+};
+
+type DerivedJunctionOverlayArm = {
+  centerlineId: string;
+  angleDeg: number;
+  tangent: AnnotationPoint;
+  normal: AnnotationPoint;
+  reverseOffsets: boolean;
+  carriagewayWidthPx: number;
+  nearroadBufferWidthPx: number;
+  nearroadFurnishingWidthPx: number;
+  clearSidewalkWidthPx: number;
+  farfromroadBufferWidthPx: number;
+  frontageReserveWidthPx: number;
+  sideStripLayouts: ReturnType<typeof centerlineSideStripLayouts>;
+  splitBoundaryCenter: AnnotationPoint;
 };
 
 type ClippedDisplaySegment = {
@@ -803,7 +825,7 @@ type SelectedStripCornerConnection = {
   linkId: string;
   junctionId: string;
   quadrantId: string;
-  spineId: string | null;
+  kernelId: string | null;
   stripKind: StripKind;
   current: JunctionOverlayStripLinkEndpoint;
   peer: JunctionOverlayStripLinkEndpoint;
@@ -814,7 +836,7 @@ type SelectedStripCornerFamilyTarget = {
   targetId: string;
   junctionId: string;
   quadrantId: string;
-  spineId: string | null;
+  kernelId: string | null;
   stripKind: StripKind;
   target: JunctionOverlayStripLinkEndpoint;
   points: AnnotationPoint[];
@@ -845,7 +867,7 @@ function selectedStripCornerConnections(
           linkId: link.linkId,
           junctionId: link.junctionId,
           quadrantId: link.quadrantId,
-          spineId: link.spineId,
+          kernelId: link.kernelId,
           stripKind: link.stripKind,
           current: link.start,
           peer: link.end,
@@ -858,7 +880,7 @@ function selectedStripCornerConnections(
           linkId: link.linkId,
           junctionId: link.junctionId,
           quadrantId: link.quadrantId,
-          spineId: link.spineId,
+          kernelId: link.kernelId,
           stripKind: link.stripKind,
           current: link.end,
           peer: link.start,
@@ -871,10 +893,10 @@ function selectedStripCornerConnections(
 }
 
 function cornerFamilyIdentity(link: JunctionOverlayStripLink): string | null {
-  if (!link.spineId) {
+  if (!link.kernelId) {
     return null;
   }
-  return `${link.junctionId}::${link.quadrantId}::${link.spineId}`;
+  return `${link.junctionId}::${link.quadrantId}::${link.kernelId}`;
 }
 
 function selectedStripCornerFamilyTargets(
@@ -904,7 +926,7 @@ function selectedStripCornerFamilyTargets(
       targetId: `${connection.linkId}:${connection.peer.centerlineId}:${connection.peer.stripId}`,
       junctionId: connection.junctionId,
       quadrantId: connection.quadrantId,
-      spineId: connection.spineId,
+      kernelId: connection.kernelId,
       stripKind: connection.stripKind,
       target: connection.peer,
       points: connection.points.map((point) => clonePoint(point)),
@@ -937,7 +959,7 @@ function selectedStripCornerFamilyTargets(
           targetId,
           junctionId: link.junctionId,
           quadrantId: link.quadrantId,
-          spineId: link.spineId,
+          kernelId: link.kernelId,
           stripKind: link.stripKind,
           target: endpoint,
           points: points.map((point) => clonePoint(point)),
@@ -2277,80 +2299,433 @@ function midpointTs(pointA: AnnotationPoint, pointB: AnnotationPoint): Annotatio
   };
 }
 
-function bisectorRayIntersectionTs(
-  origin: AnnotationPoint,
-  bisectorDirection: AnnotationPoint,
-  point: AnnotationPoint,
-  tangent: AnnotationPoint,
-): AnnotationPoint | null {
-  const hit = lineIntersectionTs(origin, bisectorDirection, point, tangent);
-  if (!hit) {
-    return null;
+function dotProductTs(a: AnnotationPoint, b: AnnotationPoint): number {
+  return a.x * b.x + a.y * b.y;
+}
+
+function subtractPointTs(a: AnnotationPoint, b: AnnotationPoint): AnnotationPoint {
+  return { x: a.x - b.x, y: a.y - b.y };
+}
+
+function perpendicularDirectionsTs(direction: AnnotationPoint): [AnnotationPoint, AnnotationPoint] {
+  return [
+    { x: -direction.y, y: direction.x },
+    { x: direction.y, y: -direction.x },
+  ];
+}
+
+function headingDegForVectorTs(direction: AnnotationPoint): number {
+  return angleDegTs({ x: 0, y: 0 }, direction);
+}
+
+function arcSweepRadiansTs(startAngle: number, endAngle: number, clockwise: boolean): number {
+  let sweep = clockwise ? startAngle - endAngle : endAngle - startAngle;
+  while (sweep <= 0) {
+    sweep += Math.PI * 2;
   }
-  const projection =
-    (hit.x - origin.x) * bisectorDirection.x +
-    (hit.y - origin.y) * bisectorDirection.y;
-  return projection >= -1e-6 ? hit : null;
+  return sweep;
 }
 
-function quadrantBisectorDirectionTs(
-  cornerCenter: AnnotationPoint,
-  tangentA: AnnotationPoint,
-  tangentB: AnnotationPoint,
+function sampleCircularArcPointsTs(
+  center: AnnotationPoint,
+  radiusPx: number,
+  startAngle: number,
+  endAngle: number,
+  clockwise: boolean,
   startPoint: AnnotationPoint,
   endPoint: AnnotationPoint,
-): AnnotationPoint {
-  return (
-    normalizeVector({
-      x: tangentA.x + tangentB.x,
-      y: tangentA.y + tangentB.y,
-    }) ??
-    normalizeVector({
-      x: (startPoint.x + endPoint.x) * 0.5 - cornerCenter.x,
-      y: (startPoint.y + endPoint.y) * 0.5 - cornerCenter.y,
-    }) ?? { x: 1, y: 0 }
-  );
-}
-
-function quadrantSpineGeometryTs(
-  cornerCenter: AnnotationPoint,
-  tangentA: AnnotationPoint,
-  tangentB: AnnotationPoint,
-  startPoint: AnnotationPoint,
-  endPoint: AnnotationPoint,
-): {
-  points: AnnotationPoint[];
-  bisectorDirection: AnnotationPoint;
-} {
-  const bisectorDirection = quadrantBisectorDirectionTs(cornerCenter, tangentA, tangentB, startPoint, endPoint);
-  const hitA = bisectorRayIntersectionTs(cornerCenter, bisectorDirection, startPoint, tangentA);
-  const hitB = bisectorRayIntersectionTs(cornerCenter, bisectorDirection, endPoint, tangentB);
-  const joinPoint =
-    hitA && hitB
-      ? midpointTs(hitA, hitB)
-      : hitA ?? hitB ?? connectorJoinPointTs(startPoint, tangentA, endPoint, tangentB);
-  return {
-    points: [clonePoint(startPoint), clonePoint(joinPoint), clonePoint(endPoint)],
-    bisectorDirection,
-  };
-}
-
-function derivePolylineFromSharedSpineTs(
-  sharedSpinePoints: AnnotationPoint[],
-  startPoint: AnnotationPoint,
-  endPoint: AnnotationPoint,
-  offsetDeltaPx: number,
+  targetSegmentLengthPx: number,
 ): AnnotationPoint[] {
-  const derivedPoints =
-    Math.abs(offsetDeltaPx) <= 1e-6
-      ? sharedSpinePoints.map((point) => clonePoint(point))
-      : offsetPolyline(sharedSpinePoints, offsetDeltaPx);
-  const points = derivedPoints.length >= 3
-    ? derivedPoints.map((point) => clonePoint(point))
-    : [clonePoint(startPoint), midpointTs(startPoint, endPoint), clonePoint(endPoint)];
+  const sweep = arcSweepRadiansTs(startAngle, endAngle, clockwise);
+  const arcLength = Math.max(radiusPx * sweep, 0);
+  let pointCount = Math.ceil(arcLength / Math.max(targetSegmentLengthPx, 1e-6)) + 1;
+  pointCount = clamp(pointCount, 8, 24);
+  pointCount = Math.max(pointCount, 3);
+  const direction = clockwise ? -1 : 1;
+  const points: AnnotationPoint[] = [];
+  for (let index = 0; index < pointCount; index += 1) {
+    const ratio = index / Math.max(pointCount - 1, 1);
+    const angle = startAngle + direction * sweep * ratio;
+    points.push({
+      x: center.x + Math.cos(angle) * radiusPx,
+      y: center.y + Math.sin(angle) * radiusPx,
+    });
+  }
   points[0] = clonePoint(startPoint);
   points[points.length - 1] = clonePoint(endPoint);
   return points;
+}
+
+function fallbackCornerKernelGeometryTs(
+  startPoint: AnnotationPoint,
+  endPoint: AnnotationPoint,
+  startTangent: AnnotationPoint,
+  endTangent: AnnotationPoint,
+): {
+  kernelKind: "polyline_fallback";
+  center: AnnotationPoint;
+  radiusPx: number;
+  startHeadingDeg: number;
+  endHeadingDeg: number;
+  clockwise: null;
+  sampledPoints: AnnotationPoint[];
+} {
+  const joinPoint = connectorJoinPointTs(startPoint, startTangent, endPoint, endTangent);
+  return {
+    kernelKind: "polyline_fallback",
+    center: clonePoint(joinPoint),
+    radiusPx: 0,
+    startHeadingDeg: headingDegForVectorTs(startTangent),
+    endHeadingDeg: headingDegForVectorTs(endTangent),
+    clockwise: null,
+    sampledPoints: [clonePoint(startPoint), clonePoint(joinPoint), clonePoint(endPoint)],
+  };
+}
+
+function cornerLaneKernelGeometryTs(
+  startPoint: AnnotationPoint,
+  endPoint: AnnotationPoint,
+  startTangent: AnnotationPoint,
+  endTangent: AnnotationPoint,
+  cornerCenter: AnnotationPoint | null,
+  targetSegmentLengthPx: number,
+  minRadiusPx: number,
+): {
+  kernelKind: "circular_arc" | "polyline_fallback";
+  center: AnnotationPoint;
+  radiusPx: number;
+  startHeadingDeg: number;
+  endHeadingDeg: number;
+  clockwise: boolean | null;
+  sampledPoints: AnnotationPoint[];
+} {
+  const normalizedStart = normalizeVector(startTangent);
+  const normalizedEnd = normalizeVector(endTangent);
+  const fallback = fallbackCornerKernelGeometryTs(startPoint, endPoint, startTangent, endTangent);
+  if (!normalizedStart || !normalizedEnd) {
+    return fallback;
+  }
+
+  let bestCandidate:
+    | {
+        score: number;
+        center: AnnotationPoint;
+        radiusPx: number;
+        startAngle: number;
+        endAngle: number;
+        startHeadingDeg: number;
+        endHeadingDeg: number;
+        clockwise: boolean;
+      }
+    | null = null;
+
+  for (const normalStart of perpendicularDirectionsTs(normalizedStart)) {
+    for (const normalEnd of perpendicularDirectionsTs(normalizedEnd)) {
+      const center = lineIntersectionTs(startPoint, normalStart, endPoint, normalEnd);
+      if (!center) {
+        continue;
+      }
+      const radiusStart = pointDistance(center, startPoint);
+      const radiusEnd = pointDistance(center, endPoint);
+      const radiusPx = (radiusStart + radiusEnd) * 0.5;
+      if (radiusPx < minRadiusPx) {
+        continue;
+      }
+      if (Math.abs(radiusStart - radiusEnd) > Math.max(0.05, radiusPx * 0.05)) {
+        continue;
+      }
+      const radialStart = normalizeVector(subtractPointTs(startPoint, center));
+      const radialEnd = normalizeVector(subtractPointTs(endPoint, center));
+      if (!radialStart || !radialEnd) {
+        continue;
+      }
+      const startAngle = Math.atan2(startPoint.y - center.y, startPoint.x - center.x);
+      const endAngle = Math.atan2(endPoint.y - center.y, endPoint.x - center.x);
+      const candidates = [
+        {
+          clockwise: true,
+          tangentStart: { x: radialStart.y, y: -radialStart.x },
+          tangentEnd: { x: radialEnd.y, y: -radialEnd.x },
+        },
+        {
+          clockwise: false,
+          tangentStart: { x: -radialStart.y, y: radialStart.x },
+          tangentEnd: { x: -radialEnd.y, y: radialEnd.x },
+        },
+      ] as const;
+      for (const candidate of candidates) {
+        const alignStart = Math.abs(dotProductTs(candidate.tangentStart, normalizedStart));
+        const alignEnd = Math.abs(dotProductTs(candidate.tangentEnd, normalizedEnd));
+        const minAlign = Math.min(alignStart, alignEnd);
+        if (minAlign < 0.5) {
+          continue;
+        }
+        const sweep = arcSweepRadiansTs(startAngle, endAngle, candidate.clockwise);
+        if (sweep <= 1e-6 || sweep > Math.PI + (5 * Math.PI) / 180) {
+          continue;
+        }
+        const midpointAngle = startAngle + (candidate.clockwise ? -0.5 : 0.5) * sweep;
+        const midpoint = {
+          x: center.x + Math.cos(midpointAngle) * radiusPx,
+          y: center.y + Math.sin(midpointAngle) * radiusPx,
+        };
+        let score = minAlign * 10 + alignStart + alignEnd - radiusPx * 0.05;
+        if (cornerCenter) {
+          score -= pointDistance(midpoint, cornerCenter) * 0.5;
+        }
+        if (!bestCandidate || score > bestCandidate.score) {
+          bestCandidate = {
+            score,
+            center: clonePoint(center),
+            radiusPx,
+            startAngle,
+            endAngle,
+            startHeadingDeg: headingDegForVectorTs(candidate.tangentStart),
+            endHeadingDeg: headingDegForVectorTs(candidate.tangentEnd),
+            clockwise: candidate.clockwise,
+          };
+        }
+      }
+    }
+  }
+
+  if (!bestCandidate) {
+    return fallback;
+  }
+
+  return {
+    kernelKind: "circular_arc",
+    center: clonePoint(bestCandidate.center),
+    radiusPx: bestCandidate.radiusPx,
+    startHeadingDeg: bestCandidate.startHeadingDeg,
+    endHeadingDeg: bestCandidate.endHeadingDeg,
+    clockwise: bestCandidate.clockwise,
+    sampledPoints: sampleCircularArcPointsTs(
+      bestCandidate.center,
+      bestCandidate.radiusPx,
+      bestCandidate.startAngle,
+      bestCandidate.endAngle,
+      bestCandidate.clockwise,
+      startPoint,
+      endPoint,
+      targetSegmentLengthPx,
+    ),
+  };
+}
+
+function buildCrossCornerOverlayTs(
+  junctionId: string,
+  orderedArms: DerivedJunctionOverlayArm[],
+  ppm: number,
+): {
+  quadrantCornerKernels: JunctionOverlayCornerKernel[];
+  connectorCenterLines: DerivedJunctionOverlayConnectorLine[];
+  cornerStripLinks: JunctionOverlayStripLink[];
+  cornerFocusPoints: JunctionOverlayCornerFocus[];
+  boundaryExtensionLines: JunctionOverlayGuideLine[];
+  focusGuideLines: JunctionOverlayGuideLine[];
+} {
+  const quadrantCornerKernels: JunctionOverlayCornerKernel[] = [];
+  const connectorCenterLines: DerivedJunctionOverlayConnectorLine[] = [];
+  const cornerStripLinks: JunctionOverlayStripLink[] = [];
+  const cornerFocusPoints: JunctionOverlayCornerFocus[] = [];
+  const boundaryExtensionLines: JunctionOverlayGuideLine[] = [];
+  const focusGuideLines: JunctionOverlayGuideLine[] = [];
+  const targetSegmentLengthPx = Math.max(ppm * 0.75, 1);
+  const minRadiusPx = Math.max(ppm * 0.25, 0.25);
+
+  for (let armIndex = 0; armIndex < orderedArms.length; armIndex += 1) {
+    const arm = orderedArms[armIndex];
+    const nextArm = orderedArms[(armIndex + 1) % orderedArms.length];
+    let sweep = nextArm.angleDeg - arm.angleDeg;
+    if (sweep <= 0) {
+      sweep += 360;
+    }
+    if (sweep <= 5 || sweep >= 175) {
+      continue;
+    }
+    const cornerCenter = lineIntersectionTs(
+      arm.splitBoundaryCenter,
+      arm.normal,
+      nextArm.splitBoundaryCenter,
+      nextArm.normal,
+    );
+    if (!cornerCenter) {
+      continue;
+    }
+    const quadrantId = `${junctionId}_quadrant_${String(armIndex + 1).padStart(2, "0")}`;
+    const kernelId = `${quadrantId}_kernel`;
+    const startTangent = { x: -arm.tangent.x, y: -arm.tangent.y };
+    const endTangent = clonePoint(nextArm.tangent);
+
+    cornerFocusPoints.push({
+      focusId: `${junctionId}_focus_${String(armIndex + 1).padStart(2, "0")}`,
+      point: clonePoint(cornerCenter),
+    });
+    boundaryExtensionLines.push(
+      {
+        guideId: `${junctionId}_boundary_extension_${String(armIndex + 1).padStart(2, "0")}_a`,
+        start: clonePoint(cornerCenter),
+        end: clonePoint(arm.splitBoundaryCenter),
+      },
+      {
+        guideId: `${junctionId}_boundary_extension_${String(armIndex + 1).padStart(2, "0")}_b`,
+        start: clonePoint(cornerCenter),
+        end: clonePoint(nextArm.splitBoundaryCenter),
+      },
+    );
+
+    let canonicalStartPoint: AnnotationPoint | null = null;
+    let canonicalEndPoint: AnnotationPoint | null = null;
+    for (const kind of ["clear_sidewalk", "nearroad_furnishing", "frontage_reserve"] as const) {
+      const offsetsA = cornerStripOffsetRangeTs(arm, cornerCenter, kind, ppm);
+      const offsetsB = cornerStripOffsetRangeTs(nextArm, cornerCenter, kind, ppm);
+      if (!offsetsA || !offsetsB) {
+        continue;
+      }
+      canonicalStartPoint = pointOnBoundaryWithOffsetTs(
+        arm.splitBoundaryCenter,
+        arm.normal,
+        offsetsA.centerOffsetPx,
+      );
+      canonicalEndPoint = pointOnBoundaryWithOffsetTs(
+        nextArm.splitBoundaryCenter,
+        nextArm.normal,
+        offsetsB.centerOffsetPx,
+      );
+      break;
+    }
+    if (!canonicalStartPoint || !canonicalEndPoint) {
+      continue;
+    }
+
+    const canonicalKernel = cornerLaneKernelGeometryTs(
+      canonicalStartPoint,
+      canonicalEndPoint,
+      startTangent,
+      endTangent,
+      cornerCenter,
+      targetSegmentLengthPx,
+      minRadiusPx,
+    );
+    quadrantCornerKernels.push({
+      kernelId,
+      quadrantId,
+      junctionId,
+      startCenterlineId: arm.centerlineId,
+      endCenterlineId: nextArm.centerlineId,
+      kernelKind: canonicalKernel.kernelKind,
+      center: clonePoint(canonicalKernel.center),
+      radiusPx: canonicalKernel.radiusPx,
+      startHeadingDeg: canonicalKernel.startHeadingDeg,
+      endHeadingDeg: canonicalKernel.endHeadingDeg,
+      clockwise: canonicalKernel.clockwise,
+      points: canonicalKernel.sampledPoints.map((point) => clonePoint(point)),
+    });
+
+    for (const spec of [
+      { kind: "nearroad_furnishing" as const, patchPrefix: "nearroad" },
+      { kind: "clear_sidewalk" as const, patchPrefix: "sidewalk" },
+      { kind: "frontage_reserve" as const, patchPrefix: "frontage" },
+    ]) {
+      const offsetsA = cornerStripOffsetRangeTs(arm, cornerCenter, spec.kind, ppm);
+      const offsetsB = cornerStripOffsetRangeTs(nextArm, cornerCenter, spec.kind, ppm);
+      if (!offsetsA || !offsetsB) {
+        continue;
+      }
+      const centerPointA = pointOnBoundaryWithOffsetTs(arm.splitBoundaryCenter, arm.normal, offsetsA.centerOffsetPx);
+      const centerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.centerOffsetPx);
+      const innerPointA = pointOnBoundaryWithOffsetTs(arm.splitBoundaryCenter, arm.normal, offsetsA.innerOffsetPx);
+      const innerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.innerOffsetPx);
+      const outerPointA = pointOnBoundaryWithOffsetTs(arm.splitBoundaryCenter, arm.normal, offsetsA.outerOffsetPx);
+      const outerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.outerOffsetPx);
+      const strokeWidthPx = Math.max(
+        2,
+        (Math.abs(offsetsA.outerOffsetPx - offsetsA.innerOffsetPx) + Math.abs(offsetsB.outerOffsetPx - offsetsB.innerOffsetPx)) * 0.5,
+      );
+      const lineKernel = cornerLaneKernelGeometryTs(
+        centerPointA,
+        centerPointB,
+        startTangent,
+        endTangent,
+        cornerCenter,
+        targetSegmentLengthPx,
+        minRadiusPx,
+      );
+      connectorCenterLines.push({
+        connectorId: `${junctionId}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_centerline`,
+        stripKind: spec.kind,
+        quadrantId,
+        kernelId,
+        strokeWidthPx,
+        points: lineKernel.sampledPoints.map((point) => clonePoint(point)),
+      });
+      if (offsetsA.stripId && offsetsB.stripId) {
+        cornerStripLinks.push({
+          linkId: `${junctionId}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_link`,
+          junctionId,
+          quadrantId,
+          kernelId,
+          stripKind: spec.kind,
+          start: {
+            centerlineId: arm.centerlineId,
+            stripId: offsetsA.stripId,
+            stripKind: spec.kind,
+            stripZone: offsetsA.zone,
+          },
+          end: {
+            centerlineId: nextArm.centerlineId,
+            stripId: offsetsB.stripId,
+            stripKind: spec.kind,
+            stripZone: offsetsB.zone,
+          },
+          points: lineKernel.sampledPoints.map((point) => clonePoint(point)),
+          strokeWidthPx,
+        });
+      }
+      focusGuideLines.push(
+        {
+          guideId: `${junctionId}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_center_a`,
+          start: clonePoint(cornerCenter),
+          end: clonePoint(centerPointA),
+        },
+        {
+          guideId: `${junctionId}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_center_b`,
+          start: clonePoint(cornerCenter),
+          end: clonePoint(centerPointB),
+        },
+        {
+          guideId: `${junctionId}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_inner_a`,
+          start: clonePoint(cornerCenter),
+          end: clonePoint(innerPointA),
+        },
+        {
+          guideId: `${junctionId}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_inner_b`,
+          start: clonePoint(cornerCenter),
+          end: clonePoint(innerPointB),
+        },
+        {
+          guideId: `${junctionId}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_outer_a`,
+          start: clonePoint(cornerCenter),
+          end: clonePoint(outerPointA),
+        },
+        {
+          guideId: `${junctionId}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_outer_b`,
+          start: clonePoint(cornerCenter),
+          end: clonePoint(outerPointB),
+        },
+      );
+    }
+  }
+
+  return {
+    quadrantCornerKernels,
+    connectorCenterLines,
+    cornerStripLinks,
+    cornerFocusPoints,
+    boundaryExtensionLines,
+    focusGuideLines,
+  };
 }
 
 function shouldTrimOutsideCornerTs(
@@ -2624,172 +2999,137 @@ function deriveExplicitJunctionOverlayGeometries(annotation: ReferenceAnnotation
     const sidewalkCorners: DerivedJunctionOverlayPatch[] = [];
     const nearroadCorners: DerivedJunctionOverlayPatch[] = [];
     const frontageCorners: DerivedJunctionOverlayPatch[] = [];
-    const quadrantSpines: JunctionOverlayQuadrantSpine[] = [];
+    const quadrantCornerKernels: JunctionOverlayCornerKernel[] = [];
     const connectorCenterLines: DerivedJunctionOverlayConnectorLine[] = [];
     const cornerStripLinks: JunctionOverlayStripLink[] = [];
     const cornerFocusPoints: JunctionOverlayCornerFocus[] = [];
     const boundaryExtensionLines: JunctionOverlayGuideLine[] = [];
     const focusGuideLines: JunctionOverlayGuideLine[] = [];
-    for (let armIndex = 0; armIndex < orderedArms.length; armIndex += 1) {
-      const arm = orderedArms[armIndex];
-      const nextArm = orderedArms[(armIndex + 1) % orderedArms.length];
-      let sweep = nextArm.angleDeg - arm.angleDeg;
-      if (sweep <= 0) {
-        sweep += 360;
-      }
-      if (sweep <= 5 || sweep >= 175) {
-        continue;
-      }
-      const cornerCenter = lineIntersectionTs(arm.splitBoundaryCenter, arm.normal, nextArm.splitBoundaryCenter, nextArm.normal);
-      if (!cornerCenter) {
-        continue;
-      }
-      const trimOutsideCorner = shouldTrimOutsideCornerTs(kind, sweep);
-      const quadrantId = `${junction.id}_${kind === "cross_junction" ? "quadrant" : "corner"}_${String(armIndex + 1).padStart(2, "0")}`;
-      const spineId = `${quadrantId}_spine`;
-      cornerFocusPoints.push({
-        focusId: `${junction.id}_focus_${String(armIndex + 1).padStart(2, "0")}`,
-        point: cornerCenter,
-      });
-      boundaryExtensionLines.push(
-        {
-          guideId: `${junction.id}_boundary_extension_${String(armIndex + 1).padStart(2, "0")}_a`,
-          start: cornerCenter,
-          end: arm.splitBoundaryCenter,
-        },
-        {
-          guideId: `${junction.id}_boundary_extension_${String(armIndex + 1).padStart(2, "0")}_b`,
-          start: cornerCenter,
-          end: nextArm.splitBoundaryCenter,
-        },
-      );
-      const sidewalkOffsetsA = cornerStripOffsetRangeTs(arm, cornerCenter, "clear_sidewalk", ppm);
-      const sidewalkOffsetsB = cornerStripOffsetRangeTs(nextArm, cornerCenter, "clear_sidewalk", ppm);
-      let sharedSpinePoints: AnnotationPoint[] | null = null;
-      let sharedSpineId: string | null = null;
-      if (kind === "cross_junction" && sidewalkOffsetsA && sidewalkOffsetsB) {
-        const sidewalkStartPoint = pointOnBoundaryWithOffsetTs(
-          arm.splitBoundaryCenter,
-          arm.normal,
-          sidewalkOffsetsA.centerOffsetPx,
-        );
-        const sidewalkEndPoint = pointOnBoundaryWithOffsetTs(
-          nextArm.splitBoundaryCenter,
-          nextArm.normal,
-          sidewalkOffsetsB.centerOffsetPx,
-        );
-        const sharedSpine = quadrantSpineGeometryTs(
-          cornerCenter,
-          arm.tangent,
-          nextArm.tangent,
-          sidewalkStartPoint,
-          sidewalkEndPoint,
-        );
-        sharedSpinePoints = sharedSpine.points;
-        sharedSpineId = spineId;
-        quadrantSpines.push({
-          spineId,
-          quadrantId,
-          junctionId: junction.id,
-          startCenterlineId: arm.centerlineId,
-          endCenterlineId: nextArm.centerlineId,
-          points: sharedSpine.points.map((point) => clonePoint(point)),
-        });
-      }
-      for (const spec of [
-        { kind: "nearroad_furnishing" as const, bucket: nearroadCorners, patchPrefix: "nearroad" },
-        { kind: "clear_sidewalk" as const, bucket: sidewalkCorners, patchPrefix: "sidewalk" },
-        { kind: "frontage_reserve" as const, bucket: frontageCorners, patchPrefix: "frontage" },
-      ]) {
-        const offsetsA = cornerStripOffsetRangeTs(arm, cornerCenter, spec.kind, ppm);
-        const offsetsB = cornerStripOffsetRangeTs(nextArm, cornerCenter, spec.kind, ppm);
-        if (!offsetsA || !offsetsB) {
+    if (kind === "cross_junction") {
+      const crossCornerData = buildCrossCornerOverlayTs(junction.id, orderedArms, ppm);
+      quadrantCornerKernels.push(...crossCornerData.quadrantCornerKernels);
+      connectorCenterLines.push(...crossCornerData.connectorCenterLines);
+      cornerStripLinks.push(...crossCornerData.cornerStripLinks);
+      cornerFocusPoints.push(...crossCornerData.cornerFocusPoints);
+      boundaryExtensionLines.push(...crossCornerData.boundaryExtensionLines);
+      focusGuideLines.push(...crossCornerData.focusGuideLines);
+    } else {
+      for (let armIndex = 0; armIndex < orderedArms.length; armIndex += 1) {
+        const arm = orderedArms[armIndex];
+        const nextArm = orderedArms[(armIndex + 1) % orderedArms.length];
+        let sweep = nextArm.angleDeg - arm.angleDeg;
+        if (sweep <= 0) {
+          sweep += 360;
+        }
+        if (sweep <= 5 || sweep >= 175) {
           continue;
         }
-        const centerPointA = pointOnBoundaryWithOffsetTs(arm.splitBoundaryCenter, arm.normal, offsetsA.centerOffsetPx);
-        const centerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.centerOffsetPx);
-        const innerPointA = pointOnBoundaryWithOffsetTs(arm.splitBoundaryCenter, arm.normal, offsetsA.innerOffsetPx);
-        const innerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.innerOffsetPx);
-        const outerPointA = pointOnBoundaryWithOffsetTs(arm.splitBoundaryCenter, arm.normal, offsetsA.outerOffsetPx);
-        const outerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.outerOffsetPx);
-        const strokeWidthPx = Math.max(
-          2,
-          (Math.abs(offsetsA.outerOffsetPx - offsetsA.innerOffsetPx) + Math.abs(offsetsB.outerOffsetPx - offsetsB.innerOffsetPx)) * 0.5,
-        );
-        const linePoints =
-          kind === "cross_junction" && sharedSpinePoints && sidewalkOffsetsA && sidewalkOffsetsB
-            ? derivePolylineFromSharedSpineTs(
-                sharedSpinePoints,
-                centerPointA,
-                centerPointB,
-                ((offsetsA.centerOffsetPx - sidewalkOffsetsA.centerOffsetPx) +
-                  (offsetsB.centerOffsetPx - sidewalkOffsetsB.centerOffsetPx)) * 0.5,
-              )
-            : [centerPointA, connectorJoinPointTs(centerPointA, arm.tangent, centerPointB, nextArm.tangent), centerPointB];
-        connectorCenterLines.push({
-          connectorId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_centerline`,
-          stripKind: spec.kind,
-          quadrantId,
-          spineId: kind === "cross_junction" ? sharedSpineId : null,
-          strokeWidthPx,
-          points: linePoints.map((point) => clonePoint(point)),
-        });
-        if (offsetsA.stripId && offsetsB.stripId) {
-          cornerStripLinks.push({
-            linkId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_link`,
-            junctionId: junction.id,
-            quadrantId,
-            spineId: kind === "cross_junction" ? sharedSpineId : null,
-            stripKind: spec.kind,
-            start: {
-              centerlineId: arm.centerlineId,
-              stripId: offsetsA.stripId,
-              stripKind: spec.kind,
-              stripZone: offsetsA.zone,
-            },
-            end: {
-              centerlineId: nextArm.centerlineId,
-              stripId: offsetsB.stripId,
-              stripKind: spec.kind,
-              stripZone: offsetsB.zone,
-            },
-            points: linePoints.map((point) => clonePoint(point)),
-            strokeWidthPx,
-          });
+        const cornerCenter = lineIntersectionTs(arm.splitBoundaryCenter, arm.normal, nextArm.splitBoundaryCenter, nextArm.normal);
+        if (!cornerCenter) {
+          continue;
         }
-        focusGuideLines.push(
+        const trimOutsideCorner = shouldTrimOutsideCornerTs(kind, sweep);
+        const quadrantId = `${junction.id}_corner_${String(armIndex + 1).padStart(2, "0")}`;
+        cornerFocusPoints.push({
+          focusId: `${junction.id}_focus_${String(armIndex + 1).padStart(2, "0")}`,
+          point: cornerCenter,
+        });
+        boundaryExtensionLines.push(
           {
-            guideId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_center_a`,
+            guideId: `${junction.id}_boundary_extension_${String(armIndex + 1).padStart(2, "0")}_a`,
             start: cornerCenter,
-            end: centerPointA,
+            end: arm.splitBoundaryCenter,
           },
           {
-            guideId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_center_b`,
+            guideId: `${junction.id}_boundary_extension_${String(armIndex + 1).padStart(2, "0")}_b`,
             start: cornerCenter,
-            end: centerPointB,
-          },
-          {
-            guideId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_inner_a`,
-            start: cornerCenter,
-            end: innerPointA,
-          },
-          {
-            guideId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_inner_b`,
-            start: cornerCenter,
-            end: innerPointB,
-          },
-          {
-            guideId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_outer_a`,
-            start: cornerCenter,
-            end: outerPointA,
-          },
-          {
-            guideId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_outer_b`,
-            start: cornerCenter,
-            end: outerPointB,
+            end: nextArm.splitBoundaryCenter,
           },
         );
-        if (kind === "t_junction") {
+        for (const spec of [
+          { kind: "nearroad_furnishing" as const, bucket: nearroadCorners, patchPrefix: "nearroad" },
+          { kind: "clear_sidewalk" as const, bucket: sidewalkCorners, patchPrefix: "sidewalk" },
+          { kind: "frontage_reserve" as const, bucket: frontageCorners, patchPrefix: "frontage" },
+        ]) {
+          const offsetsA = cornerStripOffsetRangeTs(arm, cornerCenter, spec.kind, ppm);
+          const offsetsB = cornerStripOffsetRangeTs(nextArm, cornerCenter, spec.kind, ppm);
+          if (!offsetsA || !offsetsB) {
+            continue;
+          }
+          const centerPointA = pointOnBoundaryWithOffsetTs(arm.splitBoundaryCenter, arm.normal, offsetsA.centerOffsetPx);
+          const centerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.centerOffsetPx);
+          const innerPointA = pointOnBoundaryWithOffsetTs(arm.splitBoundaryCenter, arm.normal, offsetsA.innerOffsetPx);
+          const innerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.innerOffsetPx);
+          const outerPointA = pointOnBoundaryWithOffsetTs(arm.splitBoundaryCenter, arm.normal, offsetsA.outerOffsetPx);
+          const outerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.outerOffsetPx);
+          const strokeWidthPx = Math.max(
+            2,
+            (Math.abs(offsetsA.outerOffsetPx - offsetsA.innerOffsetPx) + Math.abs(offsetsB.outerOffsetPx - offsetsB.innerOffsetPx)) * 0.5,
+          );
+          const linePoints = [centerPointA, connectorJoinPointTs(centerPointA, arm.tangent, centerPointB, nextArm.tangent), centerPointB];
+          connectorCenterLines.push({
+            connectorId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_centerline`,
+            stripKind: spec.kind,
+            quadrantId,
+            kernelId: null,
+            strokeWidthPx,
+            points: linePoints.map((point) => clonePoint(point)),
+          });
+          if (offsetsA.stripId && offsetsB.stripId) {
+            cornerStripLinks.push({
+              linkId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_link`,
+              junctionId: junction.id,
+              quadrantId,
+              kernelId: null,
+              stripKind: spec.kind,
+              start: {
+                centerlineId: arm.centerlineId,
+                stripId: offsetsA.stripId,
+                stripKind: spec.kind,
+                stripZone: offsetsA.zone,
+              },
+              end: {
+                centerlineId: nextArm.centerlineId,
+                stripId: offsetsB.stripId,
+                stripKind: spec.kind,
+                stripZone: offsetsB.zone,
+              },
+              points: linePoints.map((point) => clonePoint(point)),
+              strokeWidthPx,
+            });
+          }
+          focusGuideLines.push(
+            {
+              guideId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_center_a`,
+              start: cornerCenter,
+              end: centerPointA,
+            },
+            {
+              guideId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_center_b`,
+              start: cornerCenter,
+              end: centerPointB,
+            },
+            {
+              guideId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_inner_a`,
+              start: cornerCenter,
+              end: innerPointA,
+            },
+            {
+              guideId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_inner_b`,
+              start: cornerCenter,
+              end: innerPointB,
+            },
+            {
+              guideId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_outer_a`,
+              start: cornerCenter,
+              end: outerPointA,
+            },
+            {
+              guideId: `${junction.id}_${spec.patchPrefix}_${String(armIndex + 1).padStart(2, "0")}_outer_b`,
+              start: cornerCenter,
+              end: outerPointB,
+            },
+          );
           const patchGeometry = cornerConnectorPatchGeometryTs(arm, nextArm, offsetsA, offsetsB, {
             trimOutsideCorner,
           });
@@ -2822,7 +3162,7 @@ function deriveExplicitJunctionOverlayGeometries(annotation: ReferenceAnnotation
       cornerFocusPoints,
       boundaryExtensionLines,
       focusGuideLines,
-      quadrantSpines,
+      quadrantCornerKernels,
       connectorCenterLines,
       cornerStripLinks,
     });
@@ -3074,172 +3414,138 @@ function deriveLegacyJunctionOverlayGeometries(
     const sidewalkCorners: DerivedJunctionOverlayPatch[] = [];
     const nearroadCorners: DerivedJunctionOverlayPatch[] = [];
     const frontageCorners: DerivedJunctionOverlayPatch[] = [];
-    const quadrantSpines: JunctionOverlayQuadrantSpine[] = [];
+    const quadrantCornerKernels: JunctionOverlayCornerKernel[] = [];
     const connectorCenterLines: DerivedJunctionOverlayConnectorLine[] = [];
     const cornerStripLinks: JunctionOverlayStripLink[] = [];
     const cornerFocusPoints: JunctionOverlayCornerFocus[] = [];
     const boundaryExtensionLines: JunctionOverlayGuideLine[] = [];
     const focusGuideLines: JunctionOverlayGuideLine[] = [];
-    for (let armIndex = 0; armIndex < orderedArms.length; armIndex += 1) {
-      const arm = orderedArms[armIndex];
-      const nextArm = orderedArms[(armIndex + 1) % orderedArms.length];
-      let sweep = nextArm.angleDeg - arm.angleDeg;
-      if (sweep <= 0) {
-        sweep += 360;
-      }
-      if (sweep <= 5 || sweep >= 175) {
-        continue;
-      }
-      const cornerCenter = lineIntersectionTs(arm.splitBoundaryCenter, arm.normal, nextArm.splitBoundaryCenter, nextArm.normal);
-      if (!cornerCenter) {
-        continue;
-      }
-      const trimOutsideCorner = shouldTrimOutsideCornerTs(kind, sweep);
-      const quadrantId = `junction_overlay_${String(clusterIndex + 1).padStart(2, "0")}_${kind === "cross_junction" ? "quadrant" : "corner"}_${String(armIndex + 1).padStart(2, "0")}`;
-      const spineId = `${quadrantId}_spine`;
-      cornerFocusPoints.push({
-        focusId: `junction_overlay_${clusterIndex + 1}_focus_${armIndex + 1}`,
-        point: cornerCenter,
-      });
-      boundaryExtensionLines.push(
-        {
-          guideId: `junction_overlay_${clusterIndex + 1}_boundary_extension_${armIndex + 1}_a`,
-          start: cornerCenter,
-          end: arm.splitBoundaryCenter,
-        },
-        {
-          guideId: `junction_overlay_${clusterIndex + 1}_boundary_extension_${armIndex + 1}_b`,
-          start: cornerCenter,
-          end: nextArm.splitBoundaryCenter,
-        },
-      );
-      const sidewalkOffsetsA = cornerStripOffsetRangeTs(arm, cornerCenter, "clear_sidewalk", annotation.pixels_per_meter);
-      const sidewalkOffsetsB = cornerStripOffsetRangeTs(nextArm, cornerCenter, "clear_sidewalk", annotation.pixels_per_meter);
-      let sharedSpinePoints: AnnotationPoint[] | null = null;
-      let sharedSpineId: string | null = null;
-      if (kind === "cross_junction" && sidewalkOffsetsA && sidewalkOffsetsB) {
-        const sidewalkStartPoint = pointOnBoundaryWithOffsetTs(
-          arm.splitBoundaryCenter,
-          arm.normal,
-          sidewalkOffsetsA.centerOffsetPx,
-        );
-        const sidewalkEndPoint = pointOnBoundaryWithOffsetTs(
-          nextArm.splitBoundaryCenter,
-          nextArm.normal,
-          sidewalkOffsetsB.centerOffsetPx,
-        );
-        const sharedSpine = quadrantSpineGeometryTs(
-          cornerCenter,
-          arm.tangent,
-          nextArm.tangent,
-          sidewalkStartPoint,
-          sidewalkEndPoint,
-        );
-        sharedSpinePoints = sharedSpine.points;
-        sharedSpineId = spineId;
-        quadrantSpines.push({
-          spineId,
-          quadrantId,
-          junctionId: `junction_overlay_${String(clusterIndex + 1).padStart(2, "0")}`,
-          startCenterlineId: arm.centerlineId,
-          endCenterlineId: nextArm.centerlineId,
-          points: sharedSpine.points.map((point) => clonePoint(point)),
-        });
-      }
-      for (const spec of [
-        { kind: "nearroad_furnishing" as const, bucket: nearroadCorners, patchPrefix: "nearroad" },
-        { kind: "clear_sidewalk" as const, bucket: sidewalkCorners, patchPrefix: "sidewalk" },
-        { kind: "frontage_reserve" as const, bucket: frontageCorners, patchPrefix: "frontage" },
-      ]) {
-        const offsetsA = cornerStripOffsetRangeTs(arm, cornerCenter, spec.kind, annotation.pixels_per_meter);
-        const offsetsB = cornerStripOffsetRangeTs(nextArm, cornerCenter, spec.kind, annotation.pixels_per_meter);
-        if (!offsetsA || !offsetsB) {
+    const overlayJunctionId = `junction_overlay_${String(clusterIndex + 1).padStart(2, "0")}`;
+    if (kind === "cross_junction") {
+      const crossCornerData = buildCrossCornerOverlayTs(overlayJunctionId, orderedArms, annotation.pixels_per_meter);
+      quadrantCornerKernels.push(...crossCornerData.quadrantCornerKernels);
+      connectorCenterLines.push(...crossCornerData.connectorCenterLines);
+      cornerStripLinks.push(...crossCornerData.cornerStripLinks);
+      cornerFocusPoints.push(...crossCornerData.cornerFocusPoints);
+      boundaryExtensionLines.push(...crossCornerData.boundaryExtensionLines);
+      focusGuideLines.push(...crossCornerData.focusGuideLines);
+    } else {
+      for (let armIndex = 0; armIndex < orderedArms.length; armIndex += 1) {
+        const arm = orderedArms[armIndex];
+        const nextArm = orderedArms[(armIndex + 1) % orderedArms.length];
+        let sweep = nextArm.angleDeg - arm.angleDeg;
+        if (sweep <= 0) {
+          sweep += 360;
+        }
+        if (sweep <= 5 || sweep >= 175) {
           continue;
         }
-        const centerPointA = pointOnBoundaryWithOffsetTs(arm.splitBoundaryCenter, arm.normal, offsetsA.centerOffsetPx);
-        const centerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.centerOffsetPx);
-        const innerPointA = pointOnBoundaryWithOffsetTs(arm.splitBoundaryCenter, arm.normal, offsetsA.innerOffsetPx);
-        const innerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.innerOffsetPx);
-        const outerPointA = pointOnBoundaryWithOffsetTs(arm.splitBoundaryCenter, arm.normal, offsetsA.outerOffsetPx);
-        const outerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.outerOffsetPx);
-        const strokeWidthPx = Math.max(
-          2,
-          (Math.abs(offsetsA.outerOffsetPx - offsetsA.innerOffsetPx) + Math.abs(offsetsB.outerOffsetPx - offsetsB.innerOffsetPx)) * 0.5,
-        );
-        const linePoints =
-          kind === "cross_junction" && sharedSpinePoints && sidewalkOffsetsA && sidewalkOffsetsB
-            ? derivePolylineFromSharedSpineTs(
-                sharedSpinePoints,
-                centerPointA,
-                centerPointB,
-                ((offsetsA.centerOffsetPx - sidewalkOffsetsA.centerOffsetPx) +
-                  (offsetsB.centerOffsetPx - sidewalkOffsetsB.centerOffsetPx)) * 0.5,
-              )
-            : [centerPointA, connectorJoinPointTs(centerPointA, arm.tangent, centerPointB, nextArm.tangent), centerPointB];
-        connectorCenterLines.push({
-          connectorId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}_centerline`,
-          stripKind: spec.kind,
-          quadrantId,
-          spineId: kind === "cross_junction" ? sharedSpineId : null,
-          strokeWidthPx,
-          points: linePoints.map((point) => clonePoint(point)),
-        });
-        if (offsetsA.stripId && offsetsB.stripId) {
-          cornerStripLinks.push({
-            linkId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}_link`,
-            junctionId: `junction_overlay_${String(clusterIndex + 1).padStart(2, "0")}`,
-            quadrantId,
-            spineId: kind === "cross_junction" ? sharedSpineId : null,
-            stripKind: spec.kind,
-            start: {
-              centerlineId: arm.centerlineId,
-              stripId: offsetsA.stripId,
-              stripKind: spec.kind,
-              stripZone: offsetsA.zone,
-            },
-            end: {
-              centerlineId: nextArm.centerlineId,
-              stripId: offsetsB.stripId,
-              stripKind: spec.kind,
-              stripZone: offsetsB.zone,
-            },
-            points: linePoints.map((point) => clonePoint(point)),
-            strokeWidthPx,
-          });
+        const cornerCenter = lineIntersectionTs(arm.splitBoundaryCenter, arm.normal, nextArm.splitBoundaryCenter, nextArm.normal);
+        if (!cornerCenter) {
+          continue;
         }
-        focusGuideLines.push(
+        const trimOutsideCorner = shouldTrimOutsideCornerTs(kind, sweep);
+        const quadrantId = `${overlayJunctionId}_corner_${String(armIndex + 1).padStart(2, "0")}`;
+        cornerFocusPoints.push({
+          focusId: `junction_overlay_${clusterIndex + 1}_focus_${armIndex + 1}`,
+          point: cornerCenter,
+        });
+        boundaryExtensionLines.push(
           {
-            guideId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}_center_a`,
+            guideId: `junction_overlay_${clusterIndex + 1}_boundary_extension_${armIndex + 1}_a`,
             start: cornerCenter,
-            end: centerPointA,
+            end: arm.splitBoundaryCenter,
           },
           {
-            guideId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}_center_b`,
+            guideId: `junction_overlay_${clusterIndex + 1}_boundary_extension_${armIndex + 1}_b`,
             start: cornerCenter,
-            end: centerPointB,
-          },
-          {
-            guideId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}_inner_a`,
-            start: cornerCenter,
-            end: innerPointA,
-          },
-          {
-            guideId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}_inner_b`,
-            start: cornerCenter,
-            end: innerPointB,
-          },
-          {
-            guideId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}_outer_a`,
-            start: cornerCenter,
-            end: outerPointA,
-          },
-          {
-            guideId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}_outer_b`,
-            start: cornerCenter,
-            end: outerPointB,
+            end: nextArm.splitBoundaryCenter,
           },
         );
-        if (kind === "t_junction") {
+        for (const spec of [
+          { kind: "nearroad_furnishing" as const, bucket: nearroadCorners, patchPrefix: "nearroad" },
+          { kind: "clear_sidewalk" as const, bucket: sidewalkCorners, patchPrefix: "sidewalk" },
+          { kind: "frontage_reserve" as const, bucket: frontageCorners, patchPrefix: "frontage" },
+        ]) {
+          const offsetsA = cornerStripOffsetRangeTs(arm, cornerCenter, spec.kind, annotation.pixels_per_meter);
+          const offsetsB = cornerStripOffsetRangeTs(nextArm, cornerCenter, spec.kind, annotation.pixels_per_meter);
+          if (!offsetsA || !offsetsB) {
+            continue;
+          }
+          const centerPointA = pointOnBoundaryWithOffsetTs(arm.splitBoundaryCenter, arm.normal, offsetsA.centerOffsetPx);
+          const centerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.centerOffsetPx);
+          const innerPointA = pointOnBoundaryWithOffsetTs(arm.splitBoundaryCenter, arm.normal, offsetsA.innerOffsetPx);
+          const innerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.innerOffsetPx);
+          const outerPointA = pointOnBoundaryWithOffsetTs(arm.splitBoundaryCenter, arm.normal, offsetsA.outerOffsetPx);
+          const outerPointB = pointOnBoundaryWithOffsetTs(nextArm.splitBoundaryCenter, nextArm.normal, offsetsB.outerOffsetPx);
+          const strokeWidthPx = Math.max(
+            2,
+            (Math.abs(offsetsA.outerOffsetPx - offsetsA.innerOffsetPx) + Math.abs(offsetsB.outerOffsetPx - offsetsB.innerOffsetPx)) * 0.5,
+          );
+          const linePoints = [centerPointA, connectorJoinPointTs(centerPointA, arm.tangent, centerPointB, nextArm.tangent), centerPointB];
+          connectorCenterLines.push({
+            connectorId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}_centerline`,
+            stripKind: spec.kind,
+            quadrantId,
+            kernelId: null,
+            strokeWidthPx,
+            points: linePoints.map((point) => clonePoint(point)),
+          });
+          if (offsetsA.stripId && offsetsB.stripId) {
+            cornerStripLinks.push({
+              linkId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}_link`,
+              junctionId: overlayJunctionId,
+              quadrantId,
+              kernelId: null,
+              stripKind: spec.kind,
+              start: {
+                centerlineId: arm.centerlineId,
+                stripId: offsetsA.stripId,
+                stripKind: spec.kind,
+                stripZone: offsetsA.zone,
+              },
+              end: {
+                centerlineId: nextArm.centerlineId,
+                stripId: offsetsB.stripId,
+                stripKind: spec.kind,
+                stripZone: offsetsB.zone,
+              },
+              points: linePoints.map((point) => clonePoint(point)),
+              strokeWidthPx,
+            });
+          }
+          focusGuideLines.push(
+            {
+              guideId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}_center_a`,
+              start: cornerCenter,
+              end: centerPointA,
+            },
+            {
+              guideId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}_center_b`,
+              start: cornerCenter,
+              end: centerPointB,
+            },
+            {
+              guideId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}_inner_a`,
+              start: cornerCenter,
+              end: innerPointA,
+            },
+            {
+              guideId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}_inner_b`,
+              start: cornerCenter,
+              end: innerPointB,
+            },
+            {
+              guideId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}_outer_a`,
+              start: cornerCenter,
+              end: outerPointA,
+            },
+            {
+              guideId: `junction_overlay_${clusterIndex + 1}_${spec.patchPrefix}_${armIndex + 1}_outer_b`,
+              start: cornerCenter,
+              end: outerPointB,
+            },
+          );
           const patchGeometry = cornerConnectorPatchGeometryTs(arm, nextArm, offsetsA, offsetsB, {
             trimOutsideCorner,
           });
@@ -3255,7 +3561,7 @@ function deriveLegacyJunctionOverlayGeometries(
     }
 
     overlays.push({
-      junctionId: `junction_overlay_${String(clusterIndex + 1).padStart(2, "0")}`,
+      junctionId: overlayJunctionId,
       kind,
       sourceMode: "derived",
       core,
@@ -3272,7 +3578,7 @@ function deriveLegacyJunctionOverlayGeometries(
       cornerFocusPoints,
       boundaryExtensionLines,
       focusGuideLines,
-      quadrantSpines,
+      quadrantCornerKernels,
       connectorCenterLines,
       cornerStripLinks,
     });
@@ -4420,7 +4726,7 @@ function buildStripCornerConnectionsMarkup(
               ${targets.map((target) => buildCornerConnectionCardMarkup(target)).join("")}
             </div>
           `
-          : `<div class="scene-empty-note">No quadrant-spine family is derived for this strip yet.</div>`
+          : `<div class="scene-empty-note">No corner-kernel family is derived for this strip yet.</div>`
       }
     </section>
   `;
@@ -5681,13 +5987,13 @@ function buildDerivedJunctionOverlayMarkup(
             )
             .join("")
         : "";
-      const quadrantSpineMarkup = isSelected && options.showJunctionDebug && overlay.kind === "cross_junction"
-        ? overlay.quadrantSpines
+      const quadrantCornerKernelMarkup = isSelected && options.showJunctionDebug && overlay.kind === "cross_junction"
+        ? overlay.quadrantCornerKernels
             .map(
-              (spine) => `
+              (kernel) => `
                 <polyline
-                  class="annotation-junction-quadrant-spine"
-                  points="${spine.points.map((point) => `${point.x},${point.y}`).join(" ")}"
+                  class="annotation-junction-corner-kernel"
+                  points="${kernel.points.map((point) => `${point.x},${point.y}`).join(" ")}"
                 />
               `,
             )
@@ -5696,7 +6002,7 @@ function buildDerivedJunctionOverlayMarkup(
       const connectorDebugLabelMarkup = isSelected && options.showJunctionDebug && overlay.kind === "cross_junction"
         ? overlay.connectorCenterLines
             .map((line) => {
-              const anchorPoint = line.points[1] ?? line.points[0];
+              const anchorPoint = line.points[Math.floor(line.points.length * 0.5)] ?? line.points[0];
               const stripLabel = metaurbanStripLabel(line.stripKind);
               return `
                 <text
@@ -5705,7 +6011,7 @@ function buildDerivedJunctionOverlayMarkup(
                   y="${(anchorPoint?.y ?? 0) - 8}"
                   text-anchor="middle"
                 >
-                  ${escapeHtml(`${cornerConnectionLabel(line.quadrantId)} / ${line.spineId ?? "no-spine"} / ${stripLabel}`)}
+                  ${escapeHtml(`${cornerConnectionLabel(line.quadrantId)} / ${line.kernelId ?? "no-kernel"} / ${stripLabel}`)}
                 </text>
               `;
             })
@@ -5814,7 +6120,7 @@ function buildDerivedJunctionOverlayMarkup(
       return `
         <g class="annotation-feature-group">
           ${connectorLineMarkup}
-          ${quadrantSpineMarkup}
+      ${quadrantCornerKernelMarkup}
           ${connectorDebugLabelMarkup}
           ${
             options.showJunctionConnectors && overlay.kind === "t_junction"
