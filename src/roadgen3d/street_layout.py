@@ -102,7 +102,9 @@ from .street_program import infer_street_program
 from .street_band_semantics import (
     band_name_aliases,
     coerce_band_rule_kinds,
+    detailed_strip_band_kind,
     detailed_strip_band_name,
+    detailed_strip_kind_from_band_name,
     resolve_band_by_alias,
 )
 from .theme_buildings import (
@@ -129,6 +131,7 @@ from .types import (
     LayoutSolverResult,
     ProductionStepRecord,
     ProgramGenerationInput,
+    StreetBand,
     ThemeSegment,
     StreetComposeConfig,
     StreetComposeResult,
@@ -691,7 +694,7 @@ def _bbox_intrudes_carriageway(
         except Exception:
             carriageway_geom = None
         else:
-            intersection = carriageway_geom.intersection(
+            intersection = carriageway_geom.buffer(-0.1).intersection(
                 shapely_box(float(bbox[0]), float(bbox[2]), float(bbox[1]), float(bbox[3]))
             )
             return bool(float(getattr(intersection, "area", 0.0) or 0.0) > 1e-6)
@@ -900,8 +903,25 @@ def _globalize_theme_slot_plans(
         elif theme_nodes:
             node_idx = min(int(math.floor(idx * len(theme_nodes) / max(len(ordered_slots), 1))), len(theme_nodes) - 1)
             node = theme_nodes[node_idx]
-            slot_x = float(getattr(node, "center_xy", (0.0, 0.0))[0])
-            slot_z = float(getattr(node, "center_xy", (0.0, 0.0))[1])
+            center_x = float(getattr(node, "center_xy", (0.0, 0.0))[0])
+            center_y = float(getattr(node, "center_xy", (0.0, 0.0))[1])
+            original_z_center = float(getattr(slot, "z_center_m", 0.0))
+            if abs(original_z_center) > 1e-6:
+                start_xy = tuple(float(v) for v in getattr(node, "start_xy", (0.0, 0.0)))
+                end_xy = tuple(float(v) for v in getattr(node, "end_xy", (0.0, 0.0)))
+                dx = end_xy[0] - start_xy[0]
+                dy = end_xy[1] - start_xy[1]
+                seg_len = math.hypot(dx, dy)
+                if seg_len > 1e-6:
+                    left_normal = (-dy / seg_len, dx / seg_len)
+                    slot_x = center_x + left_normal[0] * original_z_center
+                    slot_z = center_y + left_normal[1] * original_z_center
+                else:
+                    slot_x = center_x
+                    slot_z = center_y
+            else:
+                slot_x = center_x
+                slot_z = center_y
         else:
             slot_x = float(getattr(slot, "x_center_m", 0.0)) + float(theme_segment.center_x_m)
             slot_z = float(getattr(slot, "z_center_m", 0.0))
@@ -5292,6 +5312,13 @@ def compose_street_scene(
                 side=str(getattr(slot, "side", "") or ""),
                 profile_name=str(zone_config.design_rule_profile),
             )
+            if slot_band_lookup[str(slot.slot_id)] is None:
+                slot_band_lookup[str(slot.slot_id)] = resolve_band_by_alias(
+                    resolved_program.bands,
+                    band_name=str(getattr(slot, "band_name", "") or ""),
+                    side=str(getattr(slot, "side", "") or ""),
+                    profile_name=str(config.design_rule_profile),
+                )
         composition_pass_reports.append(dict(zone_composition))
         theme_zone_programs.append(
             {
@@ -5654,34 +5681,51 @@ def compose_street_scene(
                 attempted_assets.append(str(row["asset_id"]))
 
         if band is None:
-            _append_placement_decision_event(
-                decision_events,
-                event_type="placement_skipped",
-                slot_id=str(getattr(slot, "slot_id", "")),
-                category=category,
-                theme_id=theme_id,
-                side=side,
-                band_name=band_name,
-                reason_code="no_candidate_after_search",
-                reason_detail="slot band missing",
-                candidate_asset_id=str(row["asset_id"]),
-                anchor_poi_type=anchor_poi_type,
-                extra={"repair_phase": bool(repair_phase)},
-            )
-            return {
-                "placed": False,
-                "required_like": bool(required_like),
-                "failure_reason": "no_candidate_after_search",
-                "blocked_reason_counts": {},
-                "search_tier_reached": "tier_optional_sampling",
-                "best_anchor_distance_m": -1.0,
-                "side": side,
-                "band_name": band_name,
-                "theme_id": theme_id,
-                "anchor_poi_type": anchor_poi_type,
-                "placement_status": _placement_status(None, required=bool(required_like), placed=False),
-                "asset_id": str(row["asset_id"]),
-            }
+            strip_kind = detailed_strip_kind_from_band_name(band_name)
+            if strip_kind and _is_corridor_layout_mode(config.layout_mode):
+                band = StreetBand(
+                    name=band_name or detailed_strip_band_name(side, strip_kind),
+                    kind=detailed_strip_band_kind(strip_kind, side=side, profile_name=str(config.design_rule_profile)),
+                    side=side,
+                    width_m=1.5,
+                    z_center_m=0.0,
+                    allowed_categories=(),
+                )
+                logger.debug(
+                    "Synthesized fallback band for slot %s band_name=%s strip_kind=%s",
+                    str(getattr(slot, "slot_id", "")),
+                    band_name,
+                    strip_kind,
+                )
+            else:
+                _append_placement_decision_event(
+                    decision_events,
+                    event_type="placement_skipped",
+                    slot_id=str(getattr(slot, "slot_id", "")),
+                    category=category,
+                    theme_id=theme_id,
+                    side=side,
+                    band_name=band_name,
+                    reason_code="no_candidate_after_search",
+                    reason_detail="slot band missing",
+                    candidate_asset_id=str(row["asset_id"]),
+                    anchor_poi_type=anchor_poi_type,
+                    extra={"repair_phase": bool(repair_phase)},
+                )
+                return {
+                    "placed": False,
+                    "required_like": bool(required_like),
+                    "failure_reason": "no_candidate_after_search",
+                    "blocked_reason_counts": {},
+                    "search_tier_reached": "tier_optional_sampling",
+                    "best_anchor_distance_m": -1.0,
+                    "side": side,
+                    "band_name": band_name,
+                    "theme_id": theme_id,
+                    "anchor_poi_type": anchor_poi_type,
+                    "placement_status": _placement_status(None, required=bool(required_like), placed=False),
+                    "asset_id": str(row["asset_id"]),
+                }
 
         entry = mesh_cache[row["asset_id"]]
         scale_info = _street_furniture_scale_info(

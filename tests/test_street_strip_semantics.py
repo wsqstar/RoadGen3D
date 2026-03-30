@@ -24,7 +24,7 @@ from roadgen3d.street_layout import (
     _validate_curated_locked_assets,
 )
 from roadgen3d.street_program import infer_street_program
-from roadgen3d.types import StreetComposeConfig
+from roadgen3d.types import StreetBand, StreetComposeConfig
 
 
 def _build_config(*, layout_mode: str = "graph_template") -> StreetComposeConfig:
@@ -163,3 +163,104 @@ def test_curated_asset_lock_falls_back_when_locked_asset_is_missing():
         )
         is None
     )
+
+
+def test_default_band_order_includes_clear_path_bands_for_bench():
+    """Fix 1: _default_band_order should return clear_sidewalk bands for bench/mailbox."""
+    from roadgen3d.layout_solver import _default_band_order
+
+    bands = (
+        StreetBand(
+            name="left_nearroad_furnishing",
+            kind="furnishing",
+            side="left",
+            width_m=1.5,
+            z_center_m=4.0,
+            allowed_categories=("lamp", "trash", "hydrant", "bollard", "bus_stop", "tree"),
+        ),
+        StreetBand(
+            name="left_clear_sidewalk",
+            kind="clear_path",
+            side="left",
+            width_m=2.5,
+            z_center_m=6.0,
+            allowed_categories=("mailbox", "bench"),
+        ),
+        StreetBand(
+            name="right_nearroad_furnishing",
+            kind="furnishing",
+            side="right",
+            width_m=1.5,
+            z_center_m=-4.0,
+            allowed_categories=("lamp", "trash", "hydrant", "bollard", "bus_stop", "tree"),
+        ),
+        StreetBand(
+            name="right_clear_sidewalk",
+            kind="clear_path",
+            side="right",
+            width_m=2.5,
+            z_center_m=-6.0,
+            allowed_categories=("mailbox", "bench"),
+        ),
+    )
+
+    lamp_bands = _default_band_order("lamp", bands)
+    assert len(lamp_bands) >= 2
+    assert all("nearroad_furnishing" in band.name for band in lamp_bands)
+
+    bench_bands = _default_band_order("bench", bands)
+    assert len(bench_bands) >= 2
+    assert all("clear_sidewalk" in band.name for band in bench_bands)
+
+    mailbox_bands = _default_band_order("mailbox", bands)
+    assert len(mailbox_bands) >= 1
+    assert all("clear_sidewalk" in band.name for band in mailbox_bands)
+
+
+def test_globalize_theme_slot_plans_preserves_lateral_offset():
+    """Fix 4: Non-anchor slots should keep lateral offset when globalized."""
+    from roadgen3d.street_layout import _globalize_theme_slot_plans
+    from roadgen3d.types import LayoutSlotPlan, ThemeSegment, RoadSegmentGraph, RoadSegmentNode
+
+    node = RoadSegmentNode(
+        segment_id="seg_001",
+        road_id=1,
+        start_xy=(0.0, 0.0),
+        end_xy=(12.0, 0.0),
+        center_xy=(6.0, 0.0),
+        length_m=12.0,
+    )
+    graph = RoadSegmentGraph(nodes=(node,), edges=())
+    theme_segment = ThemeSegment(
+        theme_id="theme_000",
+        theme_name="commercial",
+        x_start_m=0.0,
+        x_end_m=12.0,
+        center_x_m=6.0,
+        length_m=12.0,
+        design_rule_profile="balanced_complete_street_v1",
+        style_preset="civic_clean_v1",
+        segment_ids=("seg_001",),
+    )
+    slot = LayoutSlotPlan(
+        slot_id="lamp_000",
+        category="lamp",
+        band_name="left_nearroad_furnishing",
+        x_center_m=0.0,
+        z_center_m=5.0,
+        spacing_m=12.0,
+        side="left",
+        priority=1.0,
+        required=False,
+    )
+
+    result_slots, segment_lookup = _globalize_theme_slot_plans(
+        [slot],
+        theme_segment=theme_segment,
+        road_segment_graph=graph,
+    )
+
+    assert len(result_slots) == 1
+    placed = result_slots[0]
+    assert abs(placed.x_center_m - 6.0) < 1.0
+    assert abs(placed.z_center_m - 5.0) < 0.5

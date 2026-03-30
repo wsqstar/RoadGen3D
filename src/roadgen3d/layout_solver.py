@@ -665,11 +665,14 @@ def _apply_objective_profile_preferences(
         )
 
 
+_PLACEABLE_BAND_RULE_KINDS = frozenset({"furnishing", "transit_edge", "clear_path"})
+
+
 def _default_band_order(category: str, bands: Sequence[StreetBand]) -> List[StreetBand]:
     placeable = [
         band
         for band in bands
-        if set(coerce_band_rule_kinds(band.name, band.kind)).intersection({"furnishing", "transit_edge"})
+        if set(coerce_band_rule_kinds(band.name, band.kind)).intersection(_PLACEABLE_BAND_RULE_KINDS)
     ]
     if category in {"bus_stop", "mailbox", "hydrant"}:
         priority = [

@@ -107,11 +107,11 @@ _BALANCED_RULES: Tuple[DesignRuleSpec, ...] = (
     ),
     DesignRuleSpec(
         name="furniture_buffer_allocation",
-        description="Street furniture should occupy furnishing or transit-edge bands, not the pedestrian clear path.",
+        description="Street furniture should occupy furnishing, transit-edge, or designated sidewalk bands, not the carriageway.",
         target="category_allowed_band",
         mode="hard",
         operator="in",
-        value=("furnishing", "transit_edge"),
+        value=("furnishing", "transit_edge", "clear_path"),
         parameters={"category": "all"},
     ),
 )
@@ -356,11 +356,11 @@ _NOISE_AWARE_RULES: Tuple[DesignRuleSpec, ...] = (
     ),
     DesignRuleSpec(
         name="furniture_buffer_allocation",
-        description="Street furniture should occupy furnishing or transit-edge bands, not the pedestrian clear path.",
+        description="Street furniture should occupy furnishing, transit-edge, or designated sidewalk bands, not the carriageway.",
         target="category_allowed_band",
         mode="hard",
         operator="in",
-        value=("furnishing", "transit_edge"),
+        value=("furnishing", "transit_edge", "clear_path"),
         parameters={"category": "all"},
     ),
     DesignRuleSpec(
