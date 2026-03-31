@@ -2077,6 +2077,44 @@ body {
   cursor: crosshair;
 }
 
+/* ── Load More Section ─────────────────────────────── */
+
+.ae-load-more-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-top: 1px solid rgba(107, 114, 128, 0.2);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.ae-load-more-btn {
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 999px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.ae-load-more-btn:hover:not([disabled]) {
+  background: #1d4ed8;
+}
+
+.ae-load-more-btn[disabled] {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.ae-load-more-info {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
 /* ── Asset Editor ───────────────────────────────────────────────────── */
 
 .scene-page-actions {

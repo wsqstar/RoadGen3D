@@ -59,6 +59,11 @@ type AssetEditorState = {
   sceneChildren: SceneChildInfo[];
   selectionMode: boolean;
   selectedMeshes: Set<THREE.Mesh>;
+  // Pagination state
+  totalAssets: number;
+  loadedOffset: number;
+  hasMoreAssets: boolean;
+  isLoadingMore: boolean;
 };
 
 /* ── Helpers ───────────────────────────────────────────────────────── */
@@ -103,11 +108,31 @@ async function fetchManifests(): Promise<ManifestInfo[]> {
   return data.manifests ?? [];
 }
 
-async function fetchManifestAssets(name: string): Promise<AssetRecord[]> {
-  const res = await fetch(`/api/asset-manifest?name=${encodeURIComponent(name)}`);
+type ManifestAssetsResponse = {
+  assets: AssetRecord[];
+  total: number;
+  offset: number;
+  limit: number;
+  hasMore: boolean;
+};
+
+async function fetchManifestAssets(
+  name: string,
+  offset: number = 0,
+  limit: number = 100,
+): Promise<ManifestAssetsResponse> {
+  const res = await fetch(
+    `/api/asset-manifest?name=${encodeURIComponent(name)}&offset=${offset}&limit=${limit}`,
+  );
   if (!res.ok) throw new Error(`Failed to fetch manifest: ${res.status}`);
   const data = await res.json();
-  return data.assets ?? [];
+  return {
+    assets: data.assets ?? [],
+    total: data.total ?? 0,
+    offset: data.offset ?? offset,
+    limit: data.limit ?? limit,
+    hasMore: data.hasMore ?? false,
+  };
 }
 
 async function saveAssetMetadata(
@@ -569,6 +594,10 @@ export function mountAssetEditor(root: HTMLElement): () => void {
     sceneChildren: [],
     selectionMode: false,
     selectedMeshes: new Set(),
+    totalAssets: 0,
+    loadedOffset: 0,
+    hasMoreAssets: false,
+    isLoadingMore: false,
   };
 
   let previewCtx: PreviewContext | null = null;
@@ -610,6 +639,10 @@ export function mountAssetEditor(root: HTMLElement): () => void {
           </div>
           <div class="ae-gallery-stats" id="ae-gallery-stats"></div>
           <div class="ae-gallery-grid" id="ae-gallery-grid"></div>
+          <div class="ae-load-more-section" id="ae-load-more-section" style="display:none;">
+            <button id="ae-load-more-btn" class="ae-load-more-btn" type="button">Load More</button>
+            <span id="ae-load-more-info" class="ae-load-more-info"></span>
+          </div>
         </div>
 
         <!-- Right: Detail -->
@@ -694,6 +727,9 @@ export function mountAssetEditor(root: HTMLElement): () => void {
   const zoomFitBtn = qs<HTMLButtonElement>(root, "#ae-zoom-fit");
   const toggleSelectBtn = qs<HTMLButtonElement>(root, "#ae-toggle-select");
   const deleteSelectedBtn = qs<HTMLButtonElement>(root, "#ae-delete-selected");
+  const loadMoreSection = qs<HTMLDivElement>(root, "#ae-load-more-section");
+  const loadMoreBtn = qs<HTMLButtonElement>(root, "#ae-load-more-btn");
+  const loadMoreInfo = qs<HTMLSpanElement>(root, "#ae-load-more-info");
 
   /* ── Navigation ────────────────────────────────────────────────── */
   backBtn.addEventListener("click", () => {
@@ -721,13 +757,59 @@ export function mountAssetEditor(root: HTMLElement): () => void {
     state.manifestName = name;
     state.selectedAssetId = null;
     state.selectedObjects.clear();
+    state.assets = [];
+    state.loadedOffset = 0;
+    state.hasMoreAssets = false;
     showEmptyState();
+    
     try {
-      state.assets = await fetchManifestAssets(name);
+      const response = await fetchManifestAssets(name, 0, 100);
+      state.assets = response.assets;
+      state.totalAssets = response.total;
+      state.loadedOffset = response.offset + response.assets.length;
+      state.hasMoreAssets = response.hasMore;
+      
       updateCategoryFilter();
       applyFilters();
+      updateLoadMoreSection();
     } catch (err) {
       showToast(root, `Failed to load manifest: ${err}`, "error");
+    }
+  });
+
+  /* ── Load More ─────────────────────────────────────────────────── */
+  function updateLoadMoreSection() {
+    if (state.hasMoreAssets) {
+      loadMoreSection.style.display = "";
+      loadMoreBtn.disabled = state.isLoadingMore;
+      loadMoreInfo.textContent = `Loaded ${state.assets.length} of ${state.totalAssets.toLocaleString()} assets`;
+    } else {
+      loadMoreSection.style.display = "none";
+    }
+  }
+
+  loadMoreBtn.addEventListener("click", async () => {
+    if (!state.manifestName || state.isLoadingMore || !state.hasMoreAssets) return;
+    
+    state.isLoadingMore = true;
+    loadMoreBtn.disabled = true;
+    loadMoreBtn.textContent = "Loading...";
+    
+    try {
+      const response = await fetchManifestAssets(state.manifestName, state.loadedOffset, 100);
+      state.assets = [...state.assets, ...response.assets];
+      state.loadedOffset += response.assets.length;
+      state.hasMoreAssets = response.hasMore;
+      
+      updateCategoryFilter();
+      applyFilters();
+      updateLoadMoreSection();
+    } catch (err) {
+      showToast(root, `Failed to load more: ${err}`, "error");
+    } finally {
+      state.isLoadingMore = false;
+      loadMoreBtn.disabled = false;
+      loadMoreBtn.textContent = "Load More";
     }
   });
 
@@ -781,7 +863,12 @@ export function mountAssetEditor(root: HTMLElement): () => void {
   /* ── Gallery rendering ─────────────────────────────────────────── */
   function renderGallery() {
     galleryGrid.innerHTML = "";
-    galleryStats.textContent = `${state.filteredAssets.length} of ${state.assets.length} assets`;
+    
+    // Show loaded count vs total count
+    const loadedText = state.totalAssets > state.assets.length
+      ? `${state.assets.length.toLocaleString()} loaded of ${state.totalAssets.toLocaleString()} total`
+      : `${state.assets.length.toLocaleString()}`;
+    galleryStats.textContent = `${state.filteredAssets.length} shown · ${loadedText} assets`;
 
     for (const asset of state.filteredAssets) {
       const card = document.createElement("div");

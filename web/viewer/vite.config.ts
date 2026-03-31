@@ -698,18 +698,41 @@ function viewerApiPlugin(): Plugin {
             jsonResponse(res, 404, { error: `Manifest not found: ${manifestName}` });
             return;
           }
+          
+          // Parse pagination parameters
+          const offset = Math.max(0, parseInt(requestUrl.searchParams.get("offset") ?? "0", 10) || 0);
+          const limit = Math.min(500, Math.max(1, parseInt(requestUrl.searchParams.get("limit") ?? "100", 10) || 100));
+          
           const lines = fs.readFileSync(manifestPath, "utf-8").split(/\r?\n/);
+          let totalCount = 0;
           const assets: JsonRecord[] = [];
+          let currentLine = 0;
+          
           for (const line of lines) {
             const trimmed = line.trim();
             if (!trimmed) continue;
-            try {
-              assets.push(JSON.parse(trimmed) as JsonRecord);
-            } catch {
-              continue;
+            
+            // Count total valid entries
+            totalCount++;
+            
+            // Only parse entries within the requested range
+            if (currentLine >= offset && assets.length < limit) {
+              try {
+                assets.push(JSON.parse(trimmed) as JsonRecord);
+              } catch {
+                // Skip invalid JSON
+              }
             }
+            currentLine++;
           }
-          jsonResponse(res, 200, { assets });
+          
+          jsonResponse(res, 200, { 
+            assets, 
+            total: totalCount,
+            offset,
+            limit,
+            hasMore: offset + assets.length < totalCount
+          });
           return;
         }
 
