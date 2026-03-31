@@ -9,6 +9,9 @@ const repoRoot = path.resolve(viewerRoot, "..", "..");
 const RECENT_LAYOUT_LIMIT = 20;
 const ASSET_MANIFEST_PATH = path.resolve(repoRoot, "data", "real", "real_assets_manifest.jsonl");
 const ASSET_MANIFESTS_DIR = path.resolve(repoRoot, "data", "real");
+const EXTRA_ASSET_MANIFEST_DIRS = [
+  path.resolve(repoRoot, "data", "street_furniture"),
+];
 const IGNORED_DISCOVERY_DIRS = new Set([
   ".git",
   ".venv",
@@ -619,11 +622,14 @@ function viewerApiPlugin(): Plugin {
 
         if (isAssetManifestsRoute) {
           const manifests: Array<{ name: string; label: string; count: number }> = [];
-          if (fs.existsSync(ASSET_MANIFESTS_DIR)) {
-            const entries = fs.readdirSync(ASSET_MANIFESTS_DIR);
+          
+          // Helper function to scan a directory for manifests
+          const scanManifestDir = (dirPath: string, prefix: string = "") => {
+            if (!fs.existsSync(dirPath)) return;
+            const entries = fs.readdirSync(dirPath);
             for (const entry of entries) {
               if (!entry.endsWith(".jsonl")) continue;
-              const fullPath = path.join(ASSET_MANIFESTS_DIR, entry);
+              const fullPath = path.join(dirPath, entry);
               if (!fs.statSync(fullPath).isFile()) continue;
               const lines = fs.readFileSync(fullPath, "utf-8").split(/\r?\n/);
               let count = 0;
@@ -632,9 +638,21 @@ function viewerApiPlugin(): Plugin {
               }
               const baseName = entry.replace(/\.jsonl$/, "").replace(/[_-]/g, " ");
               const label = baseName.charAt(0).toUpperCase() + baseName.slice(1);
-              manifests.push({ name: entry, label, count });
+              // Use prefix in name to distinguish manifests from different directories
+              const name = prefix ? `${prefix}/${entry}` : entry;
+              manifests.push({ name, label: prefix ? `[${prefix}] ${label}` : label, count });
             }
+          };
+          
+          // Scan main directory
+          scanManifestDir(ASSET_MANIFESTS_DIR);
+          
+          // Scan extra directories with prefix
+          for (const extraDir of EXTRA_ASSET_MANIFEST_DIRS) {
+            const dirName = path.basename(extraDir);
+            scanManifestDir(extraDir, dirName);
           }
+          
           jsonResponse(res, 200, { manifests });
           return;
         }
@@ -645,9 +663,34 @@ function viewerApiPlugin(): Plugin {
             jsonResponse(res, 400, { error: "Missing 'name' query parameter." });
             return;
           }
-          const manifestPath = path.resolve(ASSET_MANIFESTS_DIR, manifestName);
-          const relative = path.relative(ASSET_MANIFESTS_DIR, manifestPath);
-          if (relative.startsWith("..") || path.isAbsolute(relative)) {
+          
+          // Resolve manifest path - check if it has a prefix (e.g., "street_furniture/file.jsonl")
+          let manifestPath: string | null = null;
+          
+          if (manifestName.includes("/")) {
+            // Has prefix - look in extra directories
+            const [prefix, fileName] = manifestName.split("/", 2);
+            const extraDir = EXTRA_ASSET_MANIFEST_DIRS.find(
+              (dir) => path.basename(dir) === prefix
+            );
+            if (extraDir) {
+              const candidate = path.join(extraDir, fileName);
+              // Ensure path is within the extra directory
+              const relative = path.relative(extraDir, candidate);
+              if (!relative.startsWith("..") && !path.isAbsolute(relative)) {
+                manifestPath = candidate;
+              }
+            }
+          } else {
+            // No prefix - look in main directory
+            const candidate = path.resolve(ASSET_MANIFESTS_DIR, manifestName);
+            const relative = path.relative(ASSET_MANIFESTS_DIR, candidate);
+            if (!relative.startsWith("..") && !path.isAbsolute(relative)) {
+              manifestPath = candidate;
+            }
+          }
+          
+          if (!manifestPath) {
             jsonResponse(res, 403, { error: "Invalid manifest name." });
             return;
           }
@@ -688,9 +731,33 @@ function viewerApiPlugin(): Plugin {
             jsonResponse(res, 400, { error: "Missing manifest_name or asset_id." });
             return;
           }
-          const manifestPath = path.resolve(ASSET_MANIFESTS_DIR, mName);
-          const rel = path.relative(ASSET_MANIFESTS_DIR, manifestPath);
-          if (rel.startsWith("..") || path.isAbsolute(rel)) {
+          
+          // Resolve manifest path - check if it has a prefix
+          let manifestPath: string | null = null;
+          
+          if (mName.includes("/")) {
+            // Has prefix - look in extra directories
+            const [prefix, fileName] = mName.split("/", 2);
+            const extraDir = EXTRA_ASSET_MANIFEST_DIRS.find(
+              (dir) => path.basename(dir) === prefix
+            );
+            if (extraDir) {
+              const candidate = path.join(extraDir, fileName);
+              const relative = path.relative(extraDir, candidate);
+              if (!relative.startsWith("..") && !path.isAbsolute(relative)) {
+                manifestPath = candidate;
+              }
+            }
+          } else {
+            // No prefix - look in main directory
+            const candidate = path.resolve(ASSET_MANIFESTS_DIR, mName);
+            const relative = path.relative(ASSET_MANIFESTS_DIR, candidate);
+            if (!relative.startsWith("..") && !path.isAbsolute(relative)) {
+              manifestPath = candidate;
+            }
+          }
+          
+          if (!manifestPath) {
             jsonResponse(res, 403, { error: "Invalid manifest name." });
             return;
           }

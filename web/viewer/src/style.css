@@ -2043,6 +2043,40 @@ body {
   }
 }
 
+/* ── Asset Editor Selection Box Styles ─────────────────────────────── */
+
+.ae-btn-danger {
+  background: #dc2626 !important;
+  color: #ffffff !important;
+}
+
+.ae-btn-danger:hover:not([disabled]) {
+  background: #b91c1c !important;
+}
+
+.ae-btn-danger[disabled] {
+  background: #9ca3af !important;
+  cursor: not-allowed;
+}
+
+.ae-toolbar-btn.active {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+/* Selection box overlay */
+.ae-preview-canvas canvas {
+  cursor: grab;
+}
+
+.ae-preview-canvas canvas:active {
+  cursor: grabbing;
+}
+
+.ae-preview-canvas[data-selection-mode="true"] canvas {
+  cursor: crosshair;
+}
+
 /* ── Asset Editor ───────────────────────────────────────────────────── */
 
 .scene-page-actions {

@@ -57,6 +57,8 @@ type AssetEditorState = {
   categoryFilter: string;
   qualityTierFilter: string;
   sceneChildren: SceneChildInfo[];
+  selectionMode: boolean;
+  selectedMeshes: Set<THREE.Mesh>;
 };
 
 /* ── Helpers ───────────────────────────────────────────────────────── */
@@ -137,6 +139,24 @@ type PreviewContext = {
   gridHelper: THREE.GridHelper;
   wireframeMaterial: THREE.MeshBasicMaterial;
   originalMaterials: Map<THREE.Mesh, THREE.Material | THREE.Material[]>;
+  selectionBox: SelectionBox | null;
+  selectionHelper: SelectionHelper | null;
+};
+
+type SelectionBox = {
+  startPoint: THREE.Vector2;
+  endPoint: THREE.Vector2;
+  isSelecting: boolean;
+  domElement: HTMLElement;
+};
+
+type SelectionHelper = {
+  element: HTMLDivElement;
+  startPoint: THREE.Vector2;
+  pointTopLeft: THREE.Vector2;
+  pointBottomRight: THREE.Vector2;
+  isDown: boolean;
+  enabled: boolean;
 };
 
 function createPreviewScene(container: HTMLElement): PreviewContext {
@@ -176,6 +196,8 @@ function createPreviewScene(container: HTMLElement): PreviewContext {
     wireframe: true,
   });
 
+  const selectionHelper = createSelectionHelper(container);
+
   const ctx: PreviewContext = {
     renderer,
     scene,
@@ -187,6 +209,8 @@ function createPreviewScene(container: HTMLElement): PreviewContext {
     gridHelper,
     wireframeMaterial,
     originalMaterials: new Map(),
+    selectionBox: null,
+    selectionHelper,
   };
 
   function animate() {
@@ -382,6 +406,132 @@ function triggerDownload(data: ArrayBuffer, filename: string) {
   URL.revokeObjectURL(url);
 }
 
+/* ── Selection Box (Rectangle Selection) ──────────────────────────── */
+
+function createSelectionHelper(container: HTMLElement): SelectionHelper {
+  const element = document.createElement("div");
+  element.style.cssText = `
+    position: absolute;
+    border: 2px dashed #00a8ff;
+    background: rgba(0, 168, 255, 0.1);
+    pointer-events: none;
+    display: none;
+    z-index: 100;
+  `;
+  container.style.position = "relative";
+  container.appendChild(element);
+
+  return {
+    element,
+    startPoint: new THREE.Vector2(),
+    pointTopLeft: new THREE.Vector2(),
+    pointBottomRight: new THREE.Vector2(),
+    isDown: false,
+    enabled: true,
+  };
+}
+
+function updateSelectionBox(
+  helper: SelectionHelper,
+  startX: number,
+  startY: number,
+  currentX: number,
+  currentY: number,
+) {
+  const x = Math.min(startX, currentX);
+  const y = Math.min(startY, currentY);
+  const width = Math.abs(currentX - startX);
+  const height = Math.abs(currentY - startY);
+
+  helper.element.style.left = `${x}px`;
+  helper.element.style.top = `${y}px`;
+  helper.element.style.width = `${width}px`;
+  helper.element.style.height = `${height}px`;
+  helper.element.style.display = "block";
+
+  helper.pointTopLeft.set(x, y);
+  helper.pointBottomRight.set(x + width, y + height);
+}
+
+function hideSelectionBox(helper: SelectionHelper) {
+  helper.element.style.display = "none";
+  helper.isDown = false;
+}
+
+function getMeshesInSelectionArea(
+  ctx: PreviewContext,
+  helper: SelectionHelper,
+): THREE.Mesh[] {
+  if (!ctx.currentModel) return [];
+
+  const rect = ctx.renderer.domElement.getBoundingClientRect();
+  const selectedMeshes: THREE.Mesh[] = [];
+
+  ctx.currentModel.traverse((child) => {
+    if (!(child as THREE.Mesh).isMesh) return;
+    const mesh = child as THREE.Mesh;
+
+    // Get mesh bounding box center in screen space
+    const box = new THREE.Box3().setFromObject(mesh);
+    const center = box.getCenter(new THREE.Vector3());
+    center.project(ctx.camera);
+
+    const screenX = (center.x * 0.5 + 0.5) * rect.width;
+    const screenY = (-center.y * 0.5 + 0.5) * rect.height;
+
+    // Check if center is within selection box
+    if (
+      screenX >= helper.pointTopLeft.x &&
+      screenX <= helper.pointBottomRight.x &&
+      screenY >= helper.pointTopLeft.y &&
+      screenY <= helper.pointBottomRight.y
+    ) {
+      selectedMeshes.push(mesh);
+    }
+  });
+
+  return selectedMeshes;
+}
+
+function highlightMesh(ctx: PreviewContext, mesh: THREE.Mesh, highlighted: boolean) {
+  if (highlighted) {
+    if (!ctx.originalMaterials.has(mesh)) {
+      ctx.originalMaterials.set(mesh, mesh.material as THREE.Material | THREE.Material[]);
+    }
+    const highlightMaterial = new THREE.MeshBasicMaterial({
+      color: 0x00ff88,
+      transparent: true,
+      opacity: 0.5,
+    });
+    mesh.material = highlightMaterial;
+  } else {
+    const original = ctx.originalMaterials.get(mesh);
+    if (original) {
+      mesh.material = original;
+    }
+  }
+}
+
+function deleteSelectedMeshes(ctx: PreviewContext, meshes: THREE.Mesh[]): number {
+  let deletedCount = 0;
+  for (const mesh of meshes) {
+    if (mesh.parent) {
+      mesh.parent.remove(mesh);
+      if (mesh.geometry) mesh.geometry.dispose();
+      if (mesh.material) {
+        if (Array.isArray(mesh.material)) {
+          mesh.material.forEach((m) => m.dispose());
+        } else {
+          mesh.material.dispose();
+        }
+      }
+      deletedCount++;
+    }
+  }
+  ctx.originalMaterials.clear();
+  return deletedCount;
+}
+
 /* ── Toast ─────────────────────────────────────────────────────────── */
 
 function showToast(root: HTMLElement, message: string, type: "success" | "error" = "success") {
@@ -417,6 +567,8 @@ export function mountAssetEditor(root: HTMLElement): () => void {
     categoryFilter: "",
     qualityTierFilter: "",
     sceneChildren: [],
+    selectionMode: false,
+    selectedMeshes: new Set(),
   };
 
   let previewCtx: PreviewContext | null = null;
@@ -476,6 +628,9 @@ export function mountAssetEditor(root: HTMLElement): () => void {
                 <span class="ae-toolbar-sep"></span>
                 <button id="ae-toggle-bbox" class="ae-toolbar-btn" title="Bounding box">BBox</button>
                 <button id="ae-zoom-fit" class="ae-toolbar-btn" title="Zoom to fit">Fit</button>
+                <span class="ae-toolbar-sep"></span>
+                <button id="ae-toggle-select" class="ae-toolbar-btn" title="Rectangle selection mode">Select</button>
+                <button id="ae-delete-selected" class="ae-toolbar-btn ae-btn-danger" title="Delete selected objects" disabled>Delete</button>
               </div>
               <div class="ae-preview-canvas" id="ae-preview-canvas"></div>
             </div>
@@ -537,6 +692,8 @@ export function mountAssetEditor(root: HTMLElement): () => void {
   const modeWire = qs<HTMLButtonElement>(root, "#ae-mode-wire");
   const toggleBboxBtn = qs<HTMLButtonElement>(root, "#ae-toggle-bbox");
   const zoomFitBtn = qs<HTMLButtonElement>(root, "#ae-zoom-fit");
+  const toggleSelectBtn = qs<HTMLButtonElement>(root, "#ae-toggle-select");
+  const deleteSelectedBtn = qs<HTMLButtonElement>(root, "#ae-delete-selected");
 
   /* ── Navigation ────────────────────────────────────────────────── */
   backBtn.addEventListener("click", () => {
@@ -830,6 +987,120 @@ export function mountAssetEditor(root: HTMLElement): () => void {
 
   zoomFitBtn.addEventListener("click", () => {
     if (previewCtx) zoomToFit(previewCtx);
+  });
+
+  /* ── Selection Box (Rectangle Selection) ───────────────────────── */
+  function updateDeleteButtonState() {
+    deleteSelectedBtn.disabled = state.selectedMeshes.size === 0;
+  }
+
+  function clearMeshSelection() {
+    if (!previewCtx) return;
+    for (const mesh of state.selectedMeshes) {
+      highlightMesh(previewCtx, mesh, false);
+    }
+    state.selectedMeshes.clear();
+    updateDeleteButtonState();
+  }
+
+  function setupSelectionEvents() {
+    if (!previewCtx?.selectionHelper) return;
+
+    const canvas = previewCtx.renderer.domElement;
+    const helper = previewCtx.selectionHelper;
+
+    canvas.addEventListener("pointerdown", (e) => {
+      if (!state.selectionMode || e.button !== 0) return;
+
+      // Don't start selection if clicking on controls
+      if ((e.target as HTMLElement).closest(".ae-preview-toolbar")) return;
+
+      helper.isDown = true;
+      helper.startPoint.set(e.offsetX, e.offsetY);
+      e.preventDefault();
+    });
+
+    canvas.addEventListener("pointermove", (e) => {
+      if (!state.selectionMode || !helper.isDown) return;
+
+      updateSelectionBox(helper, helper.startPoint.x, helper.startPoint.y, e.offsetX, e.offsetY);
+    });
+
+    canvas.addEventListener("pointerup", (e) => {
+      if (!state.selectionMode || !helper.isDown) return;
+
+      hideSelectionBox(helper);
+
+      // Get meshes in selection area
+      if (previewCtx) {
+        const selectedMeshes = getMeshesInSelectionArea(previewCtx, helper);
+
+        // Clear previous selection if not holding Ctrl/Cmd
+        if (!e.ctrlKey && !e.metaKey) {
+          clearMeshSelection();
+        }
+
+        // Add new selection
+        for (const mesh of selectedMeshes) {
+          if (!state.selectedMeshes.has(mesh)) {
+            state.selectedMeshes.add(mesh);
+            highlightMesh(previewCtx, mesh, true);
+          }
+        }
+
+        updateDeleteButtonState();
+
+        if (selectedMeshes.length > 0) {
+          showToast(root, `Selected ${state.selectedMeshes.size} object(s)`);
+        }
+      }
+    });
+
+    // Cancel selection on pointer leave
+    canvas.addEventListener("pointerleave", () => {
+      if (helper.isDown) {
+        hideSelectionBox(helper);
+      }
+    });
+  }
+
+  toggleSelectBtn.addEventListener("click", () => {
+    state.selectionMode = !state.selectionMode;
+    toggleSelectBtn.classList.toggle("active", state.selectionMode);
+
+    if (previewCtx) {
+      // Disable orbit controls when in selection mode
+      previewCtx.controls.enabled = !state.selectionMode;
+
+      if (state.selectionMode) {
+        previewCtx.renderer.domElement.style.cursor = "crosshair";
+        showToast(root, "Selection mode: Drag to select objects");
+        setupSelectionEvents();
+      } else {
+        previewCtx.renderer.domElement.style.cursor = "";
+        clearMeshSelection();
+      }
+    }
+  });
+
+  deleteSelectedBtn.addEventListener("click", () => {
+    if (!previewCtx || state.selectedMeshes.size === 0) return;
+
+    const meshesToDelete = Array.from(state.selectedMeshes);
+    const deletedCount = deleteSelectedMeshes(previewCtx, meshesToDelete);
+
+    // Update state
+    state.selectedMeshes.clear();
+    updateDeleteButtonState();
+
+    // Re-analyze scene
+    if (previewCtx.currentModel) {
+      state.sceneChildren = analyzeChildren(previewCtx.currentModel);
+      renderObjectList();
+      updateActionButtons();
+    }
+
+    showToast(root, `Deleted ${deletedCount} object(s)`);
   });
 
   /* ── Scale ─────────────────────────────────────────────────────── */
