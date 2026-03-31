@@ -820,6 +820,93 @@ function viewerApiPlugin(): Plugin {
           return;
         }
 
+        /* ── Asset Manifest Delete API ─────────────────────────────── */
+        const isAssetManifestDeleteRoute =
+          requestUrl.pathname === "/api/asset-manifest/delete" ||
+          requestUrl.pathname === "/web-viewer/api/asset-manifest/delete";
+
+        if (isAssetManifestDeleteRoute) {
+          if (req.method !== "POST") {
+            jsonResponse(res, 405, { error: "Method not allowed. Use POST." });
+            return;
+          }
+          const body = await readRequestBody(req);
+          let parsed: { manifest_name?: string; asset_id?: string };
+          try {
+            parsed = JSON.parse(body) as typeof parsed;
+          } catch {
+            jsonResponse(res, 400, { error: "Invalid JSON body." });
+            return;
+          }
+          const { manifest_name: mName, asset_id: aId } = parsed;
+          if (!mName || !aId) {
+            jsonResponse(res, 400, { error: "Missing manifest_name or asset_id." });
+            return;
+          }
+          
+          // Resolve manifest path
+          let manifestPath: string | null = null;
+          
+          if (mName.includes("/")) {
+            const [prefix, fileName] = mName.split("/", 2);
+            const extraDir = EXTRA_ASSET_MANIFEST_DIRS.find(
+              (dir) => path.basename(dir) === prefix
+            );
+            if (extraDir) {
+              const candidate = path.join(extraDir, fileName);
+              const relative = path.relative(extraDir, candidate);
+              if (!relative.startsWith("..") && !path.isAbsolute(relative)) {
+                manifestPath = candidate;
+              }
+            }
+          } else {
+            const candidate = path.resolve(ASSET_MANIFESTS_DIR, mName);
+            const relative = path.relative(ASSET_MANIFESTS_DIR, candidate);
+            if (!relative.startsWith("..") && !path.isAbsolute(relative)) {
+              manifestPath = candidate;
+            }
+          }
+          
+          if (!manifestPath) {
+            jsonResponse(res, 403, { error: "Invalid manifest name." });
+            return;
+          }
+          if (!fs.existsSync(manifestPath)) {
+            jsonResponse(res, 404, { error: `Manifest not found: ${mName}` });
+            return;
+          }
+          
+          const rawLines = fs.readFileSync(manifestPath, "utf-8").split(/\r?\n/);
+          const newLines: string[] = [];
+          let found = false;
+          for (const line of rawLines) {
+            const trimmed = line.trim();
+            if (!trimmed) {
+              newLines.push(line);
+              continue;
+            }
+            try {
+              const record = JSON.parse(trimmed) as JsonRecord;
+              if (String(record.asset_id ?? "") === aId) {
+                found = true;
+                // Skip this line (delete it)
+              } else {
+                newLines.push(trimmed);
+              }
+            } catch {
+              newLines.push(line);
+            }
+          }
+          if (!found) {
+            jsonResponse(res, 404, { error: `Asset not found: ${aId}` });
+            return;
+          }
+          fs.writeFileSync(manifestPath, newLines.join("\n"), "utf-8");
+          cachedAssetDescriptionIndex = null;
+          jsonResponse(res, 200, { ok: true });
+          return;
+        }
+
         next();
       });
     },

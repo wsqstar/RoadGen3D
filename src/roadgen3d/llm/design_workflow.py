@@ -15,16 +15,16 @@ from ..knowledge import (
     PdfKnowledgeBaseRetriever,
 )
 from ..knowledge.pdf_rag import KnowledgeSearchHit
-from ..llm import (
+from . import (
     GLMClient,
     build_parameter_followup_query_messages,
     build_design_draft_messages,
     build_design_intent_messages,
     build_rag_query_translation_messages,
 )
-from .design_runtime import generate_scene_from_draft
-from .scene_jobs import SceneJobService
-from .design_types import (
+from ..services.design_runtime import generate_scene_from_draft
+from ..services.scene_jobs import SceneJobService
+from ..services.design_types import (
     ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS,
     ChatMessage,
     DEFAULT_COMPOSE_CONFIG_PATCH_VALUES,
@@ -40,7 +40,7 @@ from .design_types import (
     sanitize_compose_config_patch,
     sanitize_scene_context,
 )
-from .scene_context_service import list_china_cities_payload
+from ..services.scene_context_service import list_china_cities_payload
 
 
 ROOT = Path(__file__).resolve().parents[3]

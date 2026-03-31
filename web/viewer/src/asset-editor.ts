@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { GLTFExporter } from "three/examples/jsm/exporters/GLTFExporter.js";
+import { CSS2DRenderer, CSS2DObject } from "three/examples/jsm/renderers/CSS2DRenderer.js";
 
 /* ── Types ─────────────────────────────────────────────────────────── */
 
@@ -25,6 +26,12 @@ type AssetRecord = {
   tags?: string[];
   face_count?: number;
   vertex_count?: number;
+  // Scale and orientation fields
+  scale?: number;
+  scale_xyz?: [number, number, number];
+  yaw_deg?: number;
+  canonical_front?: string; // e.g., "+X", "-Z"
+  dimensions_m?: { width?: number; height?: number; depth?: number };
   [key: string]: unknown;
 };
 
@@ -64,6 +71,10 @@ type AssetEditorState = {
   loadedOffset: number;
   hasMoreAssets: boolean;
   isLoadingMore: boolean;
+  // Scale and orientation state
+  yawValue: number;
+  frontDirection: string;
+  modelDimensions: { width?: number; height?: number; depth?: number } | null;
 };
 
 /* ── Helpers ───────────────────────────────────────────────────────── */
@@ -151,6 +162,21 @@ async function saveAssetMetadata(
   }
 }
 
+async function deleteAssetRecord(
+  manifestName: string,
+  assetId: string,
+): Promise<void> {
+  const res = await fetch("/api/asset-manifest/delete", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ manifest_name: manifestName, asset_id: assetId }),
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ error: res.statusText }));
+    throw new Error(err.error ?? `Delete failed: ${res.status}`);
+  }
+}
+
 /* ── Three.js Preview ──────────────────────────────────────────────── */
 
 type PreviewContext = {
@@ -166,6 +192,10 @@ type PreviewContext = {
   originalMaterials: Map<THREE.Mesh, THREE.Material | THREE.Material[]>;
   selectionBox: SelectionBox | null;
   selectionHelper: SelectionHelper | null;
+  // Scale bar and orientation
+  labelRenderer: CSS2DRenderer;
+  scaleBarGroup: THREE.Group | null;
+  frontArrow: THREE.ArrowHelper | null;
 };
 
 type SelectionBox = {
@@ -183,6 +213,83 @@ type SelectionHelper = {
   isDown: boolean;
   enabled: boolean;
 };
+
+/* ── Scale Bar Helper ──────────────────────────────────────────────── */
+
+function createScaleBar(scene: THREE.Scene): THREE.Group {
+  const group = new THREE.Group();
+  group.name = "scaleBar";
+
+  const length = 5; // 5 meters
+  const tickInterval = 1; // 1 meter ticks
+  const tickHeight = 0.1;
+  const majorTickHeight = 0.2;
+
+  // Main line along X-axis
+  const mainLineGeometry = new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(0, 0.01, 0),
+    new THREE.Vector3(length, 0.01, 0),
+  ]);
+  const mainLineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff, linewidth: 2 });
+  const mainLine = new THREE.Line(mainLineGeometry, mainLineMaterial);
+  group.add(mainLine);
+
+  // Create tick marks and labels
+  for (let i = 0; i <= length; i += tickInterval) {
+    const isMajor = i % 1 === 0;
+    const height = isMajor ? majorTickHeight : tickHeight;
+
+    // Tick mark
+    const tickGeometry = new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(i, 0.01, 0),
+      new THREE.Vector3(i, 0.01, -height),
+    ]);
+    const tickMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
+    const tick = new THREE.Line(tickGeometry, tickMaterial);
+    group.add(tick);
+
+    // Label for major ticks
+    if (isMajor && i > 0) {
+      const labelDiv = document.createElement("div");
+      labelDiv.className = "ae-ruler-label";
+      labelDiv.textContent = `${i}m`;
+      labelDiv.style.cssText = `
+        color: #ffffff;
+        font-family: "SF Mono", "Roboto Mono", monospace;
+        font-size: 11px;
+        font-weight: 600;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 2px 4px;
+        border-radius: 3px;
+        white-space: nowrap;
+      `;
+      const label = new CSS2DObject(labelDiv);
+      label.position.set(i, 0.01, -height - 0.15);
+      group.add(label);
+    }
+  }
+
+  // Origin label
+  const originLabelDiv = document.createElement("div");
+  originLabelDiv.className = "ae-ruler-label";
+  originLabelDiv.textContent = "0";
+  originLabelDiv.style.cssText = `
+    color: #ffffff;
+    font-family: "SF Mono", "Roboto Mono", monospace;
+    font-size: 10px;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 2px 4px;
+    border-radius: 3px;
+    white-space: nowrap;
+  `;
+  const originLabel = new CSS2DObject(originLabelDiv);
+  originLabel.position.set(0, 0.01, -majorTickHeight - 0.15);
+  group.add(originLabel);
+
+  scene.add(group);
+  return group;
+}
 
 function createPreviewScene(container: HTMLElement): PreviewContext {
   const width = container.clientWidth || 600;
@@ -216,6 +323,29 @@ function createPreviewScene(container: HTMLElement): PreviewContext {
   const gridHelper = new THREE.GridHelper(10, 20, 0x555555, 0x333333);
   scene.add(gridHelper);
 
+  // CSS2D Renderer for labels
+  const labelRenderer = new CSS2DRenderer();
+  labelRenderer.setSize(width, height);
+  labelRenderer.domElement.style.position = "absolute";
+  labelRenderer.domElement.style.top = "0";
+  labelRenderer.domElement.style.pointerEvents = "none";
+  container.appendChild(labelRenderer.domElement);
+
+  // Scale bar
+  const scaleBarGroup = createScaleBar(scene);
+
+  // Front direction arrow (initially hidden)
+  const frontArrow = new THREE.ArrowHelper(
+    new THREE.Vector3(0, 0, 1), // +Z direction
+    new THREE.Vector3(0, 0, 0),
+    1, // length
+    0x00ff88, // color
+    0.2, // head length
+    0.1, // head width
+  );
+  frontArrow.visible = false;
+  scene.add(frontArrow);
+
   const wireframeMaterial = new THREE.MeshBasicMaterial({
     color: 0x88ccff,
     wireframe: true,
@@ -236,12 +366,16 @@ function createPreviewScene(container: HTMLElement): PreviewContext {
     originalMaterials: new Map(),
     selectionBox: null,
     selectionHelper,
+    labelRenderer,
+    scaleBarGroup,
+    frontArrow,
   };
 
   function animate() {
     ctx.animId = requestAnimationFrame(animate);
     controls.update();
     renderer.render(scene, camera);
+    labelRenderer.render(scene, camera);
   }
   animate();
 
@@ -251,6 +385,7 @@ function createPreviewScene(container: HTMLElement): PreviewContext {
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     renderer.setSize(w, h);
+    labelRenderer.setSize(w, h);
   };
   const resizeObs = new ResizeObserver(onResize);
   resizeObs.observe(container);
@@ -405,6 +540,45 @@ function applyScale(ctx: PreviewContext, factor: number) {
   if (!ctx.currentModel) return;
   ctx.currentModel.scale.setScalar(factor);
   zoomToFit(ctx);
+}
+
+function applyYaw(ctx: PreviewContext, yawDeg: number) {
+  if (!ctx.currentModel) return;
+  // Normalize yaw to [0, 360)
+  const normalizedYaw = ((yawDeg % 360) + 360) % 360;
+  ctx.currentModel.rotation.y = (normalizedYaw * Math.PI) / 180;
+  // Update front arrow rotation if visible
+  if (ctx.frontArrow) {
+    ctx.frontArrow.rotation.y = (normalizedYaw * Math.PI) / 180;
+  }
+}
+
+function updateFrontArrow(ctx: PreviewContext, frontDirection: string, yawDeg: number = 0) {
+  if (!ctx.frontArrow) return;
+
+  // Direction vectors for each canonical front
+  const directions: Record<string, THREE.Vector3> = {
+    "+X": new THREE.Vector3(1, 0, 0),
+    "-X": new THREE.Vector3(-1, 0, 0),
+    "+Z": new THREE.Vector3(0, 0, 1),
+    "-Z": new THREE.Vector3(0, 0, -1),
+  };
+
+  const dir = directions[frontDirection] || directions["+Z"];
+  ctx.frontArrow.setDirection(dir);
+  ctx.frontArrow.rotation.y = (yawDeg * Math.PI) / 180;
+  ctx.frontArrow.visible = true;
+}
+
+function getModelDimensions(ctx: PreviewContext): { width: number; height: number; depth: number } | null {
+  if (!ctx.currentModel) return null;
+  const box = new THREE.Box3().setFromObject(ctx.currentModel);
+  const size = box.getSize(new THREE.Vector3());
+  return {
+    width: +size.x.toFixed(3),
+    height: +size.y.toFixed(3),
+    depth: +size.z.toFixed(3),
+  };
 }
 
 function exportGlb(scene: THREE.Object3D): Promise<ArrayBuffer> {
@@ -598,6 +772,9 @@ export function mountAssetEditor(root: HTMLElement): () => void {
     loadedOffset: 0,
     hasMoreAssets: false,
     isLoadingMore: false,
+    yawValue: 0,
+    frontDirection: "+Z",
+    modelDimensions: null,
   };
 
   let previewCtx: PreviewContext | null = null;
@@ -664,6 +841,8 @@ export function mountAssetEditor(root: HTMLElement): () => void {
                 <span class="ae-toolbar-sep"></span>
                 <button id="ae-toggle-select" class="ae-toolbar-btn" title="Rectangle selection mode">Select</button>
                 <button id="ae-delete-selected" class="ae-toolbar-btn ae-btn-danger" title="Delete selected objects" disabled>Delete</button>
+                <span class="ae-toolbar-sep"></span>
+                <button id="ae-delete-record" class="ae-toolbar-btn ae-btn-danger" title="Delete this asset from manifest" disabled>Del Record</button>
               </div>
               <div class="ae-preview-canvas" id="ae-preview-canvas"></div>
             </div>
@@ -688,6 +867,20 @@ export function mountAssetEditor(root: HTMLElement): () => void {
                 <input id="ae-scale-input" type="number" class="ae-scale-input" value="1" min="0.01" max="100" step="0.1" />
                 <button id="ae-apply-scale" class="ae-action-btn">Apply</button>
                 <button id="ae-export-btn" class="ae-action-btn">Export GLB</button>
+              </div>
+              <div class="ae-orientation-group">
+                <label class="ae-yaw-label">Yaw (°):</label>
+                <input id="ae-yaw-input" type="number" class="ae-yaw-input" value="0" min="-180" max="360" step="1" />
+                <button id="ae-apply-yaw" class="ae-action-btn">Apply</button>
+              </div>
+              <div class="ae-front-group">
+                <label class="ae-front-label">Front:</label>
+                <select id="ae-front-select" class="ae-front-select">
+                  <option value="+X">+X</option>
+                  <option value="-X">-X</option>
+                  <option value="+Z" selected>+Z</option>
+                  <option value="-Z">-Z</option>
+                </select>
               </div>
               <span class="ae-actions-sep"></span>
               <button id="ae-remove-dups-btn" class="ae-action-btn ae-btn-warning" disabled>Remove Duplicates</button>
@@ -727,9 +920,13 @@ export function mountAssetEditor(root: HTMLElement): () => void {
   const zoomFitBtn = qs<HTMLButtonElement>(root, "#ae-zoom-fit");
   const toggleSelectBtn = qs<HTMLButtonElement>(root, "#ae-toggle-select");
   const deleteSelectedBtn = qs<HTMLButtonElement>(root, "#ae-delete-selected");
+  const deleteRecordBtn = qs<HTMLButtonElement>(root, "#ae-delete-record");
   const loadMoreSection = qs<HTMLDivElement>(root, "#ae-load-more-section");
   const loadMoreBtn = qs<HTMLButtonElement>(root, "#ae-load-more-btn");
   const loadMoreInfo = qs<HTMLSpanElement>(root, "#ae-load-more-info");
+  const yawInput = qs<HTMLInputElement>(root, "#ae-yaw-input");
+  const applyYawBtn = qs<HTMLButtonElement>(root, "#ae-apply-yaw");
+  const frontSelect = qs<HTMLSelectElement>(root, "#ae-front-select");
 
   /* ── Navigation ────────────────────────────────────────────────── */
   backBtn.addEventListener("click", () => {
@@ -911,20 +1108,29 @@ export function mountAssetEditor(root: HTMLElement): () => void {
     state.selectedAssetId = assetId;
     state.selectedObjects.clear();
     state.sceneChildren = [];
-    state.scaleValue = 1;
-    scaleInput.value = "1";
+
+    // Load existing scale, yaw, and front direction from asset record
+    const asset = state.assets.find((a) => a.asset_id === assetId);
+    state.scaleValue = asset?.scale ?? 1;
+    state.yawValue = asset?.yaw_deg ?? 0;
+    state.frontDirection = asset?.canonical_front ?? "+Z";
+    state.modelDimensions = asset?.dimensions_m ?? null;
+
+    scaleInput.value = String(state.scaleValue);
+    yawInput.value = String(state.yawValue);
+    frontSelect.value = state.frontDirection;
 
     // Update gallery selection
     galleryGrid.querySelectorAll(".ae-asset-card").forEach((el) => {
       el.classList.toggle("active", (el as HTMLElement).dataset.assetId === assetId);
     });
 
-    const asset = state.assets.find((a) => a.asset_id === assetId);
     if (!asset) return;
 
     emptyState.style.display = "none";
     detailContent.style.display = "";
     saveBtn.disabled = false;
+    deleteRecordBtn.disabled = false;
 
     // Render info
     renderInfoPanel(asset);
@@ -943,6 +1149,22 @@ export function mountAssetEditor(root: HTMLElement): () => void {
         state.sceneChildren = children;
         renderObjectList();
         updateActionButtons();
+
+        // Compute and store model dimensions
+        const dims = getModelDimensions(previewCtx);
+        if (dims) {
+          state.modelDimensions = dims;
+          // Update dimensions display
+          updateDimensionsDisplay(dims);
+        }
+
+        // Apply existing yaw from asset record
+        if (state.yawValue !== 0) {
+          applyYaw(previewCtx, state.yawValue);
+        }
+
+        // Show front arrow with saved direction
+        updateFrontArrow(previewCtx, state.frontDirection, state.yawValue);
       } catch (err) {
         showToast(root, `Failed to load GLB: ${err}`, "error");
       }
@@ -953,12 +1175,25 @@ export function mountAssetEditor(root: HTMLElement): () => void {
     emptyState.style.display = "";
     detailContent.style.display = "none";
     saveBtn.disabled = true;
+    deleteRecordBtn.disabled = true;
+  }
+
+  /* ── Dimensions display ──────────────────────────────────────────── */
+  function updateDimensionsDisplay(dims: { width?: number; height?: number; depth?: number } | null) {
+    const dimsEl = document.getElementById("ae-dimensions-value");
+    if (dimsEl && dims) {
+      dimsEl.textContent = `${(dims.width ?? 0).toFixed(2)} × ${(dims.height ?? 0).toFixed(2)} × ${(dims.depth ?? 0).toFixed(2)}`;
+    }
   }
 
   /* ── Info panel ────────────────────────────────────────────────── */
   function renderInfoPanel(asset: AssetRecord) {
     const fCount = asset.face_count ?? asset.mesh_face_count ?? 0;
     const vCount = asset.vertex_count ?? asset.quality_metrics?.vertex_count ?? 0;
+    const dims = asset.dimensions_m ?? state.modelDimensions;
+    const dimsText = dims
+      ? `${(dims.width ?? 0).toFixed(2)} × ${(dims.height ?? 0).toFixed(2)} × ${(dims.depth ?? 0).toFixed(2)}`
+      : "—";
 
     infoGrid.innerHTML = `
       <div class="ae-info-row ae-info-label">Asset ID</div>
@@ -975,6 +1210,9 @@ export function mountAssetEditor(root: HTMLElement): () => void {
 
       <div class="ae-info-row ae-info-label">Faces / Vertices</div>
       <div class="ae-info-row ae-info-value ae-mono">${fCount.toLocaleString()} / ${vCount.toLocaleString()}</div>
+
+      <div class="ae-info-row ae-info-label">Dimensions (m)</div>
+      <div class="ae-info-row ae-info-value ae-mono" id="ae-dimensions-value">W×H×D: ${dimsText}</div>
 
       <div class="ae-info-row ae-info-label">Mesh Path</div>
       <div class="ae-info-row ae-info-value ae-mono ae-path">${asset.mesh_path ?? "-"}</div>
@@ -1190,6 +1428,42 @@ export function mountAssetEditor(root: HTMLElement): () => void {
     showToast(root, `Deleted ${deletedCount} object(s)`);
   });
 
+  /* ── Delete asset record ───────────────────────────────────────── */
+  deleteRecordBtn.addEventListener("click", async () => {
+    if (!state.selectedAssetId || !state.manifestName) return;
+    
+    const asset = state.assets.find((a) => a.asset_id === state.selectedAssetId);
+    if (!asset) return;
+    
+    // Confirm deletion
+    const confirmed = confirm(
+      `Delete this asset from manifest?\n\nAsset ID: ${asset.asset_id}\nCategory: ${asset.category || "unknown"}\n\nThis action cannot be undone.`
+    );
+    if (!confirmed) return;
+    
+    try {
+      await deleteAssetRecord(state.manifestName, state.selectedAssetId);
+      
+      // Remove from local state
+      const idx = state.assets.findIndex((a) => a.asset_id === state.selectedAssetId);
+      if (idx !== -1) {
+        state.assets.splice(idx, 1);
+        state.totalAssets--;
+      }
+      
+      // Clear selection
+      state.selectedAssetId = null;
+      showEmptyState();
+      
+      // Re-render gallery
+      applyFilters();
+      
+      showToast(root, "Asset record deleted");
+    } catch (err) {
+      showToast(root, `Delete failed: ${err}`, "error");
+    }
+  });
+
   /* ── Scale ─────────────────────────────────────────────────────── */
   applyScaleBtn.addEventListener("click", () => {
     const val = parseFloat(scaleInput.value);
@@ -1199,6 +1473,33 @@ export function mountAssetEditor(root: HTMLElement): () => void {
     }
     state.scaleValue = val;
     if (previewCtx) applyScale(previewCtx, val);
+  });
+
+  /* ── Yaw (Orientation) ─────────────────────────────────────────── */
+  applyYawBtn.addEventListener("click", () => {
+    const val = parseFloat(yawInput.value);
+    if (isNaN(val)) {
+      showToast(root, "Yaw must be a number", "error");
+      return;
+    }
+    // Normalize to [0, 360)
+    const normalizedYaw = ((val % 360) + 360) % 360;
+    state.yawValue = normalizedYaw;
+    yawInput.value = String(normalizedYaw);
+    if (previewCtx) {
+      applyYaw(previewCtx, normalizedYaw);
+      updateFrontArrow(previewCtx, state.frontDirection, normalizedYaw);
+    }
+    showToast(root, `Yaw set to ${normalizedYaw}°`);
+  });
+
+  /* ── Front Direction ───────────────────────────────────────────── */
+  frontSelect.addEventListener("change", () => {
+    state.frontDirection = frontSelect.value;
+    if (previewCtx) {
+      updateFrontArrow(previewCtx, state.frontDirection, state.yawValue);
+      showToast(root, `Front direction set to ${state.frontDirection}`);
+    }
   });
 
   /* ── Export ─────────────────────────────────────────────────────── */
@@ -1231,6 +1532,24 @@ export function mountAssetEditor(root: HTMLElement): () => void {
     updates.scene_eligible = eligibleEl.checked;
     updates.tags = tagsEl.value.split(",").map((t) => t.trim()).filter(Boolean);
 
+    // Add scale, yaw, front direction, and dimensions
+    if (state.scaleValue !== 1) {
+      updates.scale = state.scaleValue;
+    }
+    if (state.yawValue !== 0) {
+      updates.yaw_deg = state.yawValue;
+    }
+    if (state.frontDirection !== "+Z") {
+      updates.canonical_front = state.frontDirection;
+    }
+    if (state.modelDimensions) {
+      updates.dimensions_m = {
+        width: state.modelDimensions.width,
+        height: state.modelDimensions.height,
+        depth: state.modelDimensions.depth,
+      };
+    }
+
     try {
       await saveAssetMetadata(state.manifestName, state.selectedAssetId, updates);
       // Update local state
@@ -1239,6 +1558,10 @@ export function mountAssetEditor(root: HTMLElement): () => void {
         if (tierVal !== undefined) asset.quality_tier = tierVal;
         asset.scene_eligible = eligibleEl.checked;
         asset.tags = updates.tags as string[];
+        if (updates.scale) asset.scale = updates.scale as number;
+        if (updates.yaw_deg) asset.yaw_deg = updates.yaw_deg as number;
+        if (updates.canonical_front) asset.canonical_front = updates.canonical_front as string;
+        if (updates.dimensions_m) asset.dimensions_m = updates.dimensions_m as { width?: number; height?: number; depth?: number };
       }
       renderGallery();
       showToast(root, "Metadata saved");

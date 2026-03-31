@@ -2666,6 +2666,77 @@ body {
   font-family: "SF Mono", "Roboto Mono", monospace;
 }
 
+.ae-orientation-group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.ae-yaw-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #5f6d56;
+}
+
+.ae-yaw-input {
+  width: 4.5rem;
+  min-height: 2.2rem;
+  padding: 0.3rem 0.55rem;
+  border: 1px solid rgba(83, 99, 70, 0.18);
+  border-radius: 0.65rem;
+  background: rgba(247, 245, 238, 0.95);
+  color: #213021;
+  font-size: 0.84rem;
+  font-family: "SF Mono", "Roboto Mono", monospace;
+}
+
+.ae-front-group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.ae-front-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #5f6d56;
+}
+
+.ae-front-select {
+  width: 4rem;
+  min-height: 2.2rem;
+  padding: 0.3rem 0.45rem;
+  border: 1px solid rgba(83, 99, 70, 0.18);
+  border-radius: 0.65rem;
+  background: rgba(247, 245, 238, 0.95);
+  color: #213021;
+  font-size: 0.84rem;
+  font-family: "SF Mono", "Roboto Mono", monospace;
+}
+
+.ae-dimension-display {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 0.55rem;
+  background: rgba(236, 241, 227, 0.72);
+  font-size: 0.8rem;
+  font-family: "SF Mono", "Roboto Mono", monospace;
+  color: #243223;
+}
+
+.ae-ruler-label {
+  color: #ffffff;
+  font-family: "SF Mono", "Roboto Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2px 4px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
 .ae-actions-sep {
   width: 1px;
   height: 1.4rem;

@@ -8,6 +8,9 @@ from .prompts import (
     build_rag_query_translation_messages,
 )
 
+# Optional: LLM-based design workflow (requires knowledge base)
+# from .design_workflow import DesignAssistantService
+
 __all__ = [
     "GLMClient",
     "GLMConfigurationError",
