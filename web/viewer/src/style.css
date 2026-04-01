@@ -26,7 +26,21 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  background: #f7f6f3;
+  background:
+    radial-gradient(circle at top left, rgba(211, 224, 196, 0.9), transparent 24%),
+    linear-gradient(180deg, #f3eee2 0%, #ebe6d8 100%);
+}
+
+/* Viewer uses scene-page-topbar but needs absolute positioning to float over canvas */
+.viewer-shell > .scene-page-topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  padding: 0.85rem 1rem;
+  background: linear-gradient(180deg, rgba(243, 238, 226, 0.96), rgba(243, 238, 226, 0.72));
+  backdrop-filter: blur(10px);
 }
 
 .viewer-topbar {
@@ -433,7 +447,7 @@ body {
 }
 
 @media (max-width: 1100px) {
-  .viewer-topbar {
+  .viewer-shell > .scene-page-topbar {
     flex-direction: column;
     align-items: stretch;
   }

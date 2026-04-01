@@ -90,7 +90,8 @@ type MovementState = {
   sprint: boolean;
 };
 
-type CameraMode = "first_person" | "third_person" | "frame";
+type CameraMode = "first_person" | "third_person" | "frame" | "graph_overlay";
+
 
 type LightingPresetValues = {
   exposure: number;
@@ -707,31 +708,36 @@ function mountViewer(root: HTMLElement): Promise<() => void> {
 async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
   root.innerHTML = `
     <div class="viewer-shell">
-      <div class="viewer-topbar">
-        <div class="viewer-controls-group">
-          <div class="viewer-controls">
-            <label class="viewer-label" for="layout-select">Recent Result</label>
-            <select id="layout-select" class="viewer-select"></select>
-          </div>
-          <div class="viewer-controls">
-            <label class="viewer-label" for="scene-select">Scene</label>
-            <select id="scene-select" class="viewer-select"></select>
+      <div class="scene-page-topbar">
+        <div>
+          <div class="scene-page-kicker">Viewer / 3D Viewer</div>
+          <h1 class="scene-page-title">3D Road Viewer</h1>
+          <p class="scene-page-subtitle">Navigate through road scenes with WASD movement, inspect assets, and explore detailed urban environments.</p>
+          <div class="viewer-controls-group">
+            <div class="viewer-controls">
+              <label class="viewer-label" for="layout-select">Recent Result</label>
+              <select id="layout-select" class="viewer-select"></select>
+            </div>
+            <div class="viewer-controls">
+              <label class="viewer-label" for="scene-select">Scene</label>
+              <select id="scene-select" class="viewer-select"></select>
+            </div>
           </div>
         </div>
-        <div class="viewer-actions">
+        <div class="scene-page-actions">
           <div class="viewer-help">
-            Click to capture mouse · WASD move · Shift sprint · Esc unlock · R reset · P panel · Ctrl/Cmd+C copy target · Frame mode shows asset boundaries
+            Click to capture mouse · WASD move · Shift sprint · Esc unlock · R reset · P panel · Ctrl/Cmd+C copy target
           </div>
           <button
             id="viewer-scene-graph-link"
-            class="viewer-nav-button viewer-nav-button-secondary"
+            class="viewer-nav-button"
             type="button"
           >
             Annotation
           </button>
           <button
             id="viewer-asset-editor-link"
-            class="viewer-nav-button viewer-nav-button-secondary"
+            class="viewer-nav-button"
             type="button"
           >
             Asset Editor
