@@ -226,6 +226,26 @@ const FALLBACK_CATEGORY_INTRO: Record<string, string> = {
   building: "用于塑造沿街界面和空间围合。",
 };
 
+const CATEGORY_BBOX_COLORS: Record<string, number> = {
+  tree: 0x22c55e,
+  lamp: 0xeab308,
+  bench: 0x92400e,
+  trash: 0x6b7280,
+  bollard: 0xef4444,
+  mailbox: 0x3b82f6,
+  hydrant: 0xdc2626,
+  bus_stop: 0x8b5cf6,
+  building: 0xa78bfa,
+  road: 0x64748b,
+  roadway: 0x64748b,
+  sidewalk: 0x94a3b8,
+  marking: 0xfbbf24,
+  crossing: 0xfde68a,
+  transit: 0x7c3aed,
+  landscape: 0x4ade80,
+  scene_object: 0x38bdf8,
+};
+
 function requireElement<T extends Element>(root: ParentNode, selector: string): T {
   const element = root.querySelector<T>(selector);
   if (!element) {
@@ -817,6 +837,12 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
           </label>
         </div>
         <div class="viewer-settings-section">
+          <label class="viewer-toggle-row" for="asset-bbox-enabled">
+            <span>Asset BBoxes</span>
+            <input id="asset-bbox-enabled" type="checkbox" />
+          </label>
+        </div>
+        <div class="viewer-settings-section">
           <label class="viewer-toggle-row" for="laser-pointer-enabled">
             <span>Laser Pointer</span>
             <input id="laser-pointer-enabled" type="checkbox" />
@@ -857,6 +883,7 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
   const shadowValueEl = requireElement<HTMLElement>(root, "#lighting-shadow-value");
   const thirdPersonToggleEl = requireElement<HTMLInputElement>(root, "#third-person-enabled");
   const frameModeToggleEl = requireElement<HTMLInputElement>(root, "#frame-mode-enabled");
+  const assetBboxToggleEl = requireElement<HTMLInputElement>(root, "#asset-bbox-enabled");
   const laserToggleEl = requireElement<HTMLInputElement>(root, "#laser-pointer-enabled");
 
   const scene = new THREE.Scene();
@@ -1474,9 +1501,9 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
       disposeObject(currentRoot);
       currentRoot = null;
     }
-    // Clear existing frame helpers
+    // Clear existing frame helpers and asset bbox helpers
     scene.traverse((child) => {
-      if (child.userData.isFrameHelper) {
+      if (child.userData.isFrameHelper || child.userData.isAssetBboxHelper) {
         scene.remove(child);
         if (child instanceof THREE.LineSegments) {
           child.geometry.dispose();
@@ -1505,6 +1532,32 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
         if (size.length() > 0.1) {
           const helper = new THREE.BoxHelper(child, 0x00ff00);
           helper.userData.isFrameHelper = true;
+          helper.visible = true;
+          scene.add(helper);
+        }
+      });
+    }
+
+    // Create per-asset bounding box helpers
+    if (assetBboxToggleEl.checked && currentRoot) {
+      const instances = currentManifest?.instances;
+      currentRoot.traverse((child) => {
+        if (!child.name) return;
+        const instanceId = resolveInstanceIdFromName(child.name);
+        if (!instanceId) return;
+
+        const instanceInfo = instances?.[instanceId];
+        const category = instanceInfo?.category?.trim().toLowerCase() ?? "";
+        const color = CATEGORY_BBOX_COLORS[category] ?? 0x38bdf8;
+
+        const bbox = new THREE.Box3().setFromObject(child);
+        const size = new THREE.Vector3();
+        bbox.getSize(size);
+        if (size.length() > 0.01) {
+          const helper = new THREE.BoxHelper(child, color);
+          helper.userData.isAssetBboxHelper = true;
+          helper.userData.assetInstanceId = instanceId;
+          helper.userData.assetCategory = category;
           helper.visible = true;
           scene.add(helper);
         }
@@ -1728,10 +1781,91 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
     },
     { signal },
   );
+  function removeAssetBboxHelpers(): void {
+    scene.traverse((child) => {
+      if (child.userData.isAssetBboxHelper) {
+        scene.remove(child);
+        if (child instanceof THREE.LineSegments) {
+          child.geometry.dispose();
+          (child.material as THREE.Material).dispose();
+        }
+      }
+    });
+  }
+
+  function createAssetBboxHelpers(): void {
+    if (!currentRoot || !currentManifest) return;
+
+    removeAssetBboxHelpers();
+    return;
+    currentRoot.traverse((child) => {
+      const name = child.name || "";
+      const instanceId = resolveInstanceIdFromName(name);
+      if (!instanceId) return;
+      const instanceInfo = currentManifest.instances?.[instanceId];
+      if (!instanceInfo) return;
+      const category = String(instanceInfo.category || "").trim().toLowerCase();
+      const color = CATEGORY_BBOX_COLORS[category] ?? 0x38bdf8;
+
+      const bbox = new THREE.Box3().setFromObject(child);
+      const size = new THREE.Vector3();
+      bbox.getSize(size);
+      if (size.length() > 0.01) {
+        const helper = new THREE.BoxHelper(child, color);
+        helper.userData.isAssetBboxHelper = true;
+        helper.userData.assetInstanceId = instanceId;
+        helper.userData.assetCategory = category;
+        helper.visible = true;
+        scene.add(helper);
+      }
+    });
+  }
+
+  function updateAssetBboxHelpers(): void {
+    scene.traverse((child) => {
+      if (child.userData.isAssetBboxHelper && child instanceof THREE.BoxHelper) {
+        child.update();
+      }
+    });
+  }
+
+  assetBboxToggleEl.addEventListener(
+    "change",
+    () => {
+      if (assetBboxToggleEl.checked) {
+        createAssetBboxHelpers();
+      } else {
+        removeAssetBboxHelpers();
+      }
+    },
+    { signal },
+  );
+
   frameModeToggleEl.addEventListener(
     "change",
     async () => {
       // Reload current scene to apply/remove frame helpers
+      const currentOption = optionsByKey.get(selectEl.value);
+      if (currentOption && currentRoot) {
+        await loadScene(currentOption);
+      }
+    },
+    { signal },
+  );
+  assetBboxToggleEl.addEventListener(
+    "change",
+    async () => {
+      // Reload current scene to apply/remove asset bbox helpers
+      const currentOption = optionsByKey.get(selectEl.value);
+      if (currentOption && currentRoot) {
+        await loadScene(currentOption);
+      }
+    },
+    { signal },
+  );
+  assetBboxToggleEl.addEventListener(
+    "change",
+    async () => {
       const currentOption = optionsByKey.get(selectEl.value);
       if (currentOption && currentRoot) {
         await loadScene(currentOption);
@@ -1773,12 +1907,12 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
       if (!nextOption) {
         return;
       }
-    try {
-      selectEl.title = nextOption.label;
-      await loadScene(nextOption);
-    } catch (error) {
-      const message = error instanceof Error ? error.message : "Failed to load GLB.";
-      setError(errorEl, message);
+      try {
+        selectEl.title = nextOption.label;
+        await loadScene(nextOption);
+      } catch (error) {
+        const message = error instanceof Error ? error.message : "Failed to load GLB.";
+        setError(errorEl, message);
         setStatus("Scene load failed");
       }
     },
@@ -1805,12 +1939,12 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
       currentAvatarPosition.y = Math.max(0, currentSpawn.y - AVATAR_EYE_HEIGHT_M);
       syncCameraRig();
     }
+    updateAssetBboxHelpers();
     updateLaserPointer();
     renderer.render(scene, camera);
     renderMinimap();
     animationFrameId = requestAnimationFrame(animate);
   }
-
   try {
     syncLightingUi();
     const requestedLayoutPath = parseQueryLayoutPath();
