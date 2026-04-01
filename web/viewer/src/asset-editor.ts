@@ -863,17 +863,16 @@ export function mountAssetEditor(root: HTMLElement): () => void {
 
             <!-- Actions -->
             <div class="ae-actions-bar">
-              <button id="ae-save-btn" class="ae-action-btn ae-btn-primary" disabled>Save Metadata</button>
+              <button id="ae-save-btn" class="ae-action-btn ae-btn-primary" disabled>Save</button>
+              <button id="ae-export-btn" class="ae-action-btn">Export GLB</button>
+              <span class="ae-actions-sep"></span>
               <div class="ae-scale-group">
                 <label class="ae-scale-label">Scale:</label>
                 <input id="ae-scale-input" type="number" class="ae-scale-input" value="1" min="0.01" max="100" step="0.1" />
-                <button id="ae-apply-scale" class="ae-action-btn">Apply</button>
-                <button id="ae-export-btn" class="ae-action-btn">Export GLB</button>
               </div>
               <div class="ae-orientation-group">
                 <label class="ae-yaw-label">Yaw (°):</label>
                 <input id="ae-yaw-input" type="number" class="ae-yaw-input" value="0" min="-180" max="360" step="1" />
-                <button id="ae-apply-yaw" class="ae-action-btn">Apply</button>
               </div>
               <div class="ae-front-group">
                 <label class="ae-front-label">Front:</label>
@@ -912,7 +911,6 @@ export function mountAssetEditor(root: HTMLElement): () => void {
   const dupCount = qs<HTMLSpanElement>(root, "#ae-dup-count");
   const saveBtn = qs<HTMLButtonElement>(root, "#ae-save-btn");
   const scaleInput = qs<HTMLInputElement>(root, "#ae-scale-input");
-  const applyScaleBtn = qs<HTMLButtonElement>(root, "#ae-apply-scale");
   const exportBtn = qs<HTMLButtonElement>(root, "#ae-export-btn");
   const removeDupsBtn = qs<HTMLButtonElement>(root, "#ae-remove-dups-btn");
   const splitBtn = qs<HTMLButtonElement>(root, "#ae-split-btn");
@@ -927,7 +925,6 @@ export function mountAssetEditor(root: HTMLElement): () => void {
   const loadMoreBtn = qs<HTMLButtonElement>(root, "#ae-load-more-btn");
   const loadMoreInfo = qs<HTMLSpanElement>(root, "#ae-load-more-info");
   const yawInput = qs<HTMLInputElement>(root, "#ae-yaw-input");
-  const applyYawBtn = qs<HTMLButtonElement>(root, "#ae-apply-yaw");
   const frontSelect = qs<HTMLSelectElement>(root, "#ae-front-select");
 
   /* ── Navigation ────────────────────────────────────────────────── */
@@ -1197,9 +1194,12 @@ export function mountAssetEditor(root: HTMLElement): () => void {
     const wInput = document.getElementById("ae-dim-w") as HTMLInputElement | null;
     const hInput = document.getElementById("ae-dim-h") as HTMLInputElement | null;
     const dInput = document.getElementById("ae-dim-d") as HTMLInputElement | null;
-    if (wInput && dims) wInput.value = (dims.width ?? 0).toFixed(2);
-    if (hInput && dims) hInput.value = (dims.height ?? 0).toFixed(2);
-    if (dInput && dims) dInput.value = (dims.depth ?? 0).toFixed(2);
+    const slider = document.getElementById("ae-dims-slider") as HTMLInputElement | null;
+    if (!dims) return;
+    if (wInput) { wInput.value = (dims.width ?? 0).toFixed(2); wInput.disabled = false; }
+    if (hInput) { hInput.value = (dims.height ?? 0).toFixed(2); hInput.disabled = false; }
+    if (dInput) { dInput.value = (dims.depth ?? 0).toFixed(2); dInput.disabled = false; }
+    if (slider) slider.disabled = false;
   }
 
   /* ── Info panel ────────────────────────────────────────────────── */
@@ -1502,16 +1502,12 @@ export function mountAssetEditor(root: HTMLElement): () => void {
     }
   });
 
-  /* ── Scale ─────────────────────────────────────────────────────── */
-  applyScaleBtn.addEventListener("click", () => {
+  /* ── Scale input → live preview ───────────────────────────────── */
+  scaleInput.addEventListener("input", () => {
     const val = parseFloat(scaleInput.value);
-    if (isNaN(val) || val <= 0) {
-      showToast(root, "Scale must be a positive number", "error");
-      return;
-    }
+    if (isNaN(val) || val <= 0) return;
     state.scaleValue = val;
     if (previewCtx) applyScale(previewCtx, val);
-    // Sync dimensions after scale change
     if (state.originalDimensions) {
       state.modelDimensions = {
         width: state.originalDimensions.width * val,
@@ -1520,14 +1516,13 @@ export function mountAssetEditor(root: HTMLElement): () => void {
       };
       updateDimensionsDisplay(state.modelDimensions);
     }
-    // Sync slider
     const slider = document.getElementById("ae-dims-slider") as HTMLInputElement | null;
     const sliderVal = document.getElementById("ae-dims-slider-val");
     if (slider) slider.value = String(Math.min(val, 5));
     if (sliderVal) sliderVal.textContent = `${val.toFixed(2)}x`;
   });
 
-  /* ── Proportional dimension scaling ─────────────────────────────── */
+  /* ── Proportional dimension scaling (live preview) ─────────────── */
   function applyProportionalScale(ratio: number) {
     if (!state.originalDimensions) return;
     const orig = state.originalDimensions;
@@ -1540,11 +1535,7 @@ export function mountAssetEditor(root: HTMLElement): () => void {
     state.scaleValue = ratio;
     scaleInput.value = ratio.toFixed(2);
     updateDimensionsDisplay(newDims);
-
-    // Apply to 3D preview
     if (previewCtx) applyScale(previewCtx, ratio);
-
-    // Sync slider
     const slider = document.getElementById("ae-dims-slider") as HTMLInputElement | null;
     const sliderVal = document.getElementById("ae-dims-slider-val");
     if (slider) slider.value = String(Math.min(Math.max(ratio, 0.1), 5));
@@ -1571,13 +1562,10 @@ export function mountAssetEditor(root: HTMLElement): () => void {
       newValue = parseFloat(dInput.value);
       originalValue = orig.depth;
     }
-
     if (isNaN(newValue) || newValue <= 0 || originalValue <= 0) return;
-    const ratio = newValue / originalValue;
-    applyProportionalScale(ratio);
+    applyProportionalScale(newValue / originalValue);
   }
 
-  // Use event delegation for dimension inputs since the info panel is re-rendered
   root.addEventListener("input", (e) => {
     const target = e.target as HTMLElement;
     if (target.id === "ae-dim-w") handleDimInputChange("w");
@@ -1589,30 +1577,23 @@ export function mountAssetEditor(root: HTMLElement): () => void {
     }
   });
 
-  /* ── Yaw (Orientation) ─────────────────────────────────────────── */
-  applyYawBtn.addEventListener("click", () => {
+  /* ── Yaw → live preview ───────────────────────────────────────── */
+  yawInput.addEventListener("input", () => {
     const val = parseFloat(yawInput.value);
-    if (isNaN(val)) {
-      showToast(root, "Yaw must be a number", "error");
-      return;
-    }
-    // Normalize to [0, 360)
+    if (isNaN(val)) return;
     const normalizedYaw = ((val % 360) + 360) % 360;
     state.yawValue = normalizedYaw;
-    yawInput.value = String(normalizedYaw);
     if (previewCtx) {
       applyYaw(previewCtx, normalizedYaw);
       updateFrontArrow(previewCtx, state.frontDirection, normalizedYaw);
     }
-    showToast(root, `Yaw set to ${normalizedYaw}°`);
   });
 
-  /* ── Front Direction ───────────────────────────────────────────── */
+  /* ── Front Direction → live preview ───────────────────────────── */
   frontSelect.addEventListener("change", () => {
     state.frontDirection = frontSelect.value;
     if (previewCtx) {
       updateFrontArrow(previewCtx, state.frontDirection, state.yawValue);
-      showToast(root, `Front direction set to ${state.frontDirection}`);
     }
   });
 
@@ -1631,7 +1612,7 @@ export function mountAssetEditor(root: HTMLElement): () => void {
     }
   });
 
-  /* ── Save metadata ─────────────────────────────────────────────── */
+  /* ── Unified Save ──────────────────────────────────────────────── */
   saveBtn.addEventListener("click", async () => {
     if (!state.selectedAssetId || !state.manifestName) return;
 
@@ -1645,14 +1626,8 @@ export function mountAssetEditor(root: HTMLElement): () => void {
     if (tierVal !== undefined) updates.quality_tier = tierVal;
     updates.scene_eligible = eligibleEl.checked;
     updates.tags = tagsEl.value.split(",").map((t) => t.trim()).filter(Boolean);
-
-    // Add scale, yaw, front direction, and dimensions
-    if (state.scaleValue !== 1) {
-      updates.scale = state.scaleValue;
-    }
-    if (state.yawValue !== 0) {
-      updates.yaw_deg = state.yawValue;
-    }
+    updates.scale = state.scaleValue;
+    updates.yaw_deg = state.yawValue;
     if (state.frontDirection !== "+Z") {
       updates.canonical_front = state.frontDirection;
     }
@@ -1666,19 +1641,18 @@ export function mountAssetEditor(root: HTMLElement): () => void {
 
     try {
       await saveAssetMetadata(state.manifestName, state.selectedAssetId, updates);
-      // Update local state
       const asset = state.assets.find((a) => a.asset_id === state.selectedAssetId);
       if (asset) {
         if (tierVal !== undefined) asset.quality_tier = tierVal;
         asset.scene_eligible = eligibleEl.checked;
         asset.tags = updates.tags as string[];
-        if (updates.scale) asset.scale = updates.scale as number;
-        if (updates.yaw_deg) asset.yaw_deg = updates.yaw_deg as number;
+        asset.scale = state.scaleValue;
+        asset.yaw_deg = state.yawValue;
         if (updates.canonical_front) asset.canonical_front = updates.canonical_front as string;
         if (updates.dimensions_m) asset.dimensions_m = updates.dimensions_m as { width?: number; height?: number; depth?: number };
       }
       renderGallery();
-      showToast(root, "Metadata saved");
+      showToast(root, "Saved");
     } catch (err) {
       showToast(root, `Save failed: ${err}`, "error");
     }
