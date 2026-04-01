@@ -644,10 +644,17 @@ def _load_real_manifest(manifest_path: Path) -> List[Dict[str, object]]:
 
 
 def _load_mesh_cache(rows: List[Dict[str, str]]) -> Dict[str, _MeshCacheEntry]:
+    """Load mesh cache with automatic Y-axis normalization.
+    
+    CRITICAL: Normalizes all meshes so their base sits at Y=0. This is essential
+    for consistent canonical scaling. Handles Objaverse assets that weren't 
+    normalized during import (unlike Urbanverse assets which are pre-normalized).
+    """
     trimesh = _require_trimesh()
     cache: Dict[str, _MeshCacheEntry] = {}
     for row in rows:
         asset_id = row["asset_id"]
+        category = row.get("category", "").strip().lower()
         mesh_path = Path(row["mesh_path"]).resolve()
         if not mesh_path.exists():
             raise FileNotFoundError(f"mesh missing for asset '{asset_id}': {mesh_path}")
@@ -656,12 +663,59 @@ def _load_mesh_cache(rows: List[Dict[str, str]]) -> Dict[str, _MeshCacheEntry]:
             if not mesh_or_scene.geometry:
                 raise ValueError(f"empty mesh scene for asset '{asset_id}': {mesh_path}")
             display_geom = mesh_or_scene
+            
+            # Get initial bounds
+            bounds = np.asarray(display_geom.bounds, dtype=np.float64)
+            min_y_val = float(bounds[0][1])
+            max_y_val = float(bounds[1][1])
+            height = max_y_val - min_y_val
+            span_x = float(bounds[1][0] - bounds[0][0])
+            span_z = float(bounds[1][2] - bounds[0][2])
+            span_xz = max(span_x, span_z)
+            
+            # Detect abnormal geometry: height >> width/depth suggests disjoint clusters
+            # Common in poorly-authored Objaverse trees where canopy floats above trunk
+            has_disjoint_geometry = (
+                height > 3.0 and  # Significant height
+                height > span_xz * 2.5 and  # Much taller than wide
+                min_y_val < -0.1  # Has geometry below origin
+            )
+            
+            if has_disjoint_geometry:
+                # For trees with disjoint geometry, find ground-level vertices
+                # and align those to Y=0, ignoring floating canopy clusters
+                all_vertices = []
+                for geom in display_geom.geometry.values():
+                    if hasattr(geom, 'vertices'):
+                        all_vertices.append(np.asarray(geom.vertices))
+                
+                if all_vertices:
+                    all_verts = np.vstack(all_vertices)
+                    y_coords = all_verts[:, 1]
+                    
+                    # Find the "ground level" - use lower quartile to ignore outliers
+                    ground_level = float(np.percentile(y_coords, 5))
+                    
+                    # Translate so ground level is at Y=0
+                    if abs(ground_level) > 1e-6:
+                        display_geom.apply_translation([0.0, -ground_level, 0.0])
+            elif abs(min_y_val) > 1e-6:
+                # Standard case: translate so minimum Y is at 0
+                display_geom.apply_translation([0.0, -min_y_val, 0.0])
+            
+            # Re-compute bounds after normalization
             bounds = np.asarray(display_geom.bounds, dtype=np.float64)
             is_scene = True
         else:
             if mesh_or_scene.is_empty:
                 raise ValueError(f"empty mesh for asset '{asset_id}': {mesh_path}")
             display_geom = mesh_or_scene
+            # Normalize mesh so base is at Y=0 (critical for proper scaling)
+            bounds = np.asarray(display_geom.bounds, dtype=np.float64)
+            min_y_val = float(bounds[0][1])
+            if abs(min_y_val) > 1e-6:
+                display_geom.apply_translation([0.0, -min_y_val, 0.0])
+            # Re-compute bounds after normalization
             bounds = np.asarray(display_geom.bounds, dtype=np.float64)
             is_scene = False
         span = bounds[1] - bounds[0]
@@ -669,7 +723,7 @@ def _load_mesh_cache(rows: List[Dict[str, str]]) -> Dict[str, _MeshCacheEntry]:
             mesh=display_geom,
             half_x=float(max(span[0] / 2.0, 1e-3)),
             half_z=float(max(span[2] / 2.0, 1e-3)),
-            min_y=float(bounds[0][1]),
+            min_y=float(bounds[0][1]),  # Should now be ~0.0
             center_x=float((bounds[0][0] + bounds[1][0]) / 2.0),
             center_z=float((bounds[0][2] + bounds[1][2]) / 2.0),
             is_scene=bool(is_scene),
