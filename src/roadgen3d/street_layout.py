@@ -216,6 +216,14 @@ def _row_scene_eligible(row: Mapping[str, object]) -> bool:
 
 
 _PARALLEL_TO_CARRIAGEWAY_CATEGORIES = {"bench", "bus_stop", "bollard"}
+# Ground-level categories whose full bounding box must stay out of the carriageway
+# and must not overlap other placed objects.  Tall / overhanging categories
+# (tree, lamp) only need their center point to land in the correct slot.
+_GROUND_LEVEL_CATEGORIES = frozenset({"bench", "trash", "bollard", "bus_stop"})
+# Ground-level categories whose full bounding box must stay out of the carriageway
+# and must not overlap other placed objects.  Tall / overhanging categories
+# (tree, lamp) only need their center point to land in the correct slot.
+_GROUND_LEVEL_CATEGORIES = frozenset({"bench", "trash", "bollard", "bus_stop"})
 _CURATED_STREET_ASSET_PROFILES = {"fixed_hq_v1", "disabled"}
 _CURATED_STREET_ASSET_IDS_FIXED_HQ = {
     "lamp": "lamp_modern_production",
@@ -4308,14 +4316,15 @@ def _evaluate_slot_candidate(
         scale=float(scale_info.get("applied_scale", 1.0) or 1.0),
         clearance=0.2,
     )
-    if _bbox_intrudes_carriageway(
+    _needs_bbox_checks = category in _GROUND_LEVEL_CATEGORIES
+    if _needs_bbox_checks and _bbox_intrudes_carriageway(
         bbox,
         placement_ctx=placement_ctx,
         config=config,
     ):
         return None, "intrudes_carriageway"
     neighbor_bbox_indices = spatial_hash.query_bbox(bbox)
-    if any(_bbox_intersects(bbox, existing_bboxes[int(idx)]) for idx in neighbor_bbox_indices):
+    if _needs_bbox_checks and any(_bbox_intersects(bbox, existing_bboxes[int(idx)]) for idx in neighbor_bbox_indices):
         return None, "overlap_blocked"
 
     poi_repulsion = 0.0

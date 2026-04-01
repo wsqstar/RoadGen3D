@@ -26,7 +26,7 @@ from roadgen3d.reference_annotation import (  # noqa: E402
     build_reference_annotation_compose_config,
     build_reference_annotation_graph_payload,
 )
-from roadgen3d.services.design_assistant import DesignAssistantService, parse_design_draft  # noqa: E402
+from roadgen3d.llm.design_workflow import DesignAssistantService, parse_design_draft  # noqa: E402
 from roadgen3d.services.design_types import sanitize_scene_context  # noqa: E402
 
 

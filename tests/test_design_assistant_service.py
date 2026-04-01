@@ -12,7 +12,7 @@ if str(SRC) not in sys.path:
 
 from roadgen3d.knowledge.pdf_rag import KnowledgeChunk, KnowledgeSearchHit
 from roadgen3d.services.design_types import ALLOWED_COMPOSE_CONFIG_PATCH_FIELDS
-from roadgen3d.services.design_assistant import DesignAssistantService
+from roadgen3d.llm.design_workflow import DesignAssistantService
 
 
 class _FakeLLM:
