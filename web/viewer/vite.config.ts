@@ -130,7 +130,23 @@ function displayPathFor(filePath: string, roots: string[]): string {
 function buildRecentLayoutsPayload(limit: number): { results: Array<Record<string, unknown>> } {
   const roots = allowedRoots();
   const safeLimit = Math.max(1, Number.isFinite(limit) ? Math.trunc(limit) : RECENT_LAYOUT_LIMIT);
+  
+  // Filter out L0 quality layouts (real_assets and v2 assets are low quality)
+  const isHighQualityLayout = (layoutPath: string): boolean => {
+    const pathLower = layoutPath.toLowerCase();
+    // Exclude real_assets manifest based layouts (L0 quality)
+    if (pathLower.includes("real_assets") || pathLower.includes("real-assets")) {
+      return false;
+    }
+    // Exclude v2 asset layouts (L0 quality)
+    if (pathLower.includes("_v2") || pathLower.includes("-v2") || pathLower.includes("/v2/")) {
+      return false;
+    }
+    return true;
+  };
+  
   const results = discoverSceneLayoutPaths(roots)
+    .filter(isHighQualityLayout)
     .map((layoutPath) => {
       const stats = fs.statSync(layoutPath);
       const relativePath = displayPathFor(layoutPath, roots);
@@ -210,6 +226,25 @@ function loadAssetDescriptionIndex(): Map<string, JsonRecord> {
     try {
       const parsed = JSON.parse(trimmed) as JsonRecord;
       const assetId = String(parsed.asset_id ?? "").trim();
+      
+      // Filter out L0 quality assets
+      const source = String(parsed.source ?? "").toLowerCase();
+      const generatorType = String(parsed.generator_type ?? "").toLowerCase();
+      const qualityTier = Number(parsed.quality_tier ?? 999);
+      
+      // Skip real_assets imports (L0 quality)
+      if (source.includes("real_asset") || source.includes("urbanverse_import")) {
+        continue;
+      }
+      // Skip v2 generation assets (L0 quality)
+      if (generatorType.includes("_v2") || generatorType.includes("-v2")) {
+        continue;
+      }
+      // Skip low quality tier (0 = L0, lower is worse)
+      if (qualityTier === 0) {
+        continue;
+      }
+      
       if (assetId) {
         index.set(assetId, parsed);
       }
