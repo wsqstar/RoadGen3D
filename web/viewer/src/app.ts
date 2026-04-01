@@ -90,7 +90,7 @@ type MovementState = {
   sprint: boolean;
 };
 
-type CameraMode = "first_person" | "third_person";
+type CameraMode = "first_person" | "third_person" | "frame";
 
 type LightingPresetValues = {
   exposure: number;
@@ -720,7 +720,7 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
         </div>
         <div class="viewer-actions">
           <div class="viewer-help">
-            Click to capture mouse · WASD move · Shift sprint · Esc unlock · R reset · P panel · Ctrl/Cmd+C copy target
+            Click to capture mouse · WASD move · Shift sprint · Esc unlock · R reset · P panel · Ctrl/Cmd+C copy target · Frame mode shows asset boundaries
           </div>
           <button
             id="viewer-scene-graph-link"
@@ -805,6 +805,12 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
           </label>
         </div>
         <div class="viewer-settings-section">
+          <label class="viewer-toggle-row" for="frame-mode-enabled">
+            <span>Frame Mode (Show Boundaries)</span>
+            <input id="frame-mode-enabled" type="checkbox" />
+          </label>
+        </div>
+        <div class="viewer-settings-section">
           <label class="viewer-toggle-row" for="laser-pointer-enabled">
             <span>Laser Pointer</span>
             <input id="laser-pointer-enabled" type="checkbox" />
@@ -844,6 +850,7 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
   const warmthValueEl = requireElement<HTMLElement>(root, "#lighting-warmth-value");
   const shadowValueEl = requireElement<HTMLElement>(root, "#lighting-shadow-value");
   const thirdPersonToggleEl = requireElement<HTMLInputElement>(root, "#third-person-enabled");
+  const frameModeToggleEl = requireElement<HTMLInputElement>(root, "#frame-mode-enabled");
   const laserToggleEl = requireElement<HTMLInputElement>(root, "#laser-pointer-enabled");
 
   const scene = new THREE.Scene();
@@ -1461,6 +1468,17 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
       disposeObject(currentRoot);
       currentRoot = null;
     }
+    // Clear existing frame helpers
+    scene.traverse((child) => {
+      if (child.userData.isFrameHelper) {
+        scene.remove(child);
+        if (child instanceof THREE.LineSegments) {
+          child.geometry.dispose();
+          (child.material as THREE.Material).dispose();
+        }
+      }
+    });
+    
     clearInfoCard();
     currentLaserHitPoint = null;
     laserHitDot.visible = false;
@@ -1470,6 +1488,22 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
     currentRoot = gltf.scene;
     configureSceneObjectShadows(currentRoot);
     scene.add(currentRoot);
+
+    // Create bounding box helpers for top-level children (assets)
+    if (frameModeToggleEl.checked && currentRoot) {
+      currentRoot.children.forEach((child, index) => {
+        const bbox = new THREE.Box3().setFromObject(child);
+        const size = new THREE.Vector3();
+        bbox.getSize(size);
+        // Only show frames for objects with meaningful size
+        if (size.length() > 0.1) {
+          const helper = new THREE.BoxHelper(child, 0x00ff00);
+          helper.userData.isFrameHelper = true;
+          helper.visible = true;
+          scene.add(helper);
+        }
+      });
+    }
 
     const bbox = new THREE.Box3().setFromObject(currentRoot);
     const spawn = inferSpawnFromBbox(bbox, currentManifest ?? {
@@ -1684,6 +1718,17 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
         laserBeam.visible = false;
         laserHitDot.visible = false;
         currentLaserHitPoint = null;
+      }
+    },
+    { signal },
+  );
+  frameModeToggleEl.addEventListener(
+    "change",
+    async () => {
+      // Reload current scene to apply/remove frame helpers
+      const currentOption = optionsByKey.get(selectEl.value);
+      if (currentOption && currentRoot) {
+        await loadScene(currentOption);
       }
     },
     { signal },

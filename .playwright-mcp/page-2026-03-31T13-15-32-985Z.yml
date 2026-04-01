@@ -1,0 +1,31 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: Viewer / 3D Asset Editor
+      - heading "3D Asset Editor" [level=1] [ref=e7]
+      - paragraph [ref=e8]: Browse, inspect, and manage project 3D assets
+    - generic [ref=e9]:
+      - combobox [ref=e10]:
+        - option "-- Select Manifest --"
+        - option "Objaverse assets manifest (8)"
+        - option "Objaverse tree assets manifest (20)"
+        - option "Real assets manifest (147)" [selected]
+        - option "Real assets manifest v2 (5)"
+        - option "[street_furniture] Street furniture manifest (247)"
+      - button "Back to Viewer" [ref=e11] [cursor=pointer]
+  - generic [ref=e12]:
+    - generic [ref=e14]:
+      - textbox "Search assets..." [ref=e15]
+      - combobox [ref=e16]:
+        - option "All Categories" [selected]
+      - combobox [ref=e17]:
+        - option "All Tiers" [selected]
+        - option "T5 — Excellent"
+        - option "T4 — Good"
+        - option "T3 — Production"
+        - option "T2 — Moderate"
+        - option "T1 — Low-poly"
+        - option "T0 — Unusable"
+    - generic [ref=e21]:
+      - generic [ref=e22]: ⚙
+      - paragraph [ref=e23]: Select an asset from the gallery to inspect
