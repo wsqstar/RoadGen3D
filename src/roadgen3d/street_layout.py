@@ -194,9 +194,27 @@ _BLOCKED_ASSET_IDS = {
 }
 
 
+def _safe_int(value: object, default: int = 0) -> int:
+    try:
+        return int(value)  # type: ignore[arg-type]
+    except (TypeError, ValueError):
+        return int(default)
+
+
 def _row_scene_eligible(row: Mapping[str, object]) -> bool:
     asset_id = str(row.get("asset_id", "") or "").strip()
     if asset_id in _BLOCKED_ASSET_IDS:
+        return False
+    # Filter out real_asset / urbanverse_import sources (L0 quality)
+    source = str(row.get("source", "") or "").strip().lower()
+    if "real_asset" in source or "urbanverse_import" in source:
+        return False
+    # Filter out v2 generator types (L0 quality)
+    generator_type = str(row.get("generator_type", "") or "").strip().lower()
+    if "_v2" in generator_type or "-v2" in generator_type:
+        return False
+    # Filter out L0 quality tier assets
+    if _safe_int(row.get("quality_tier"), 1) < 1:
         return False
     value = row.get("scene_eligible")
     if isinstance(value, bool):

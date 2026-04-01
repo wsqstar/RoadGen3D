@@ -75,6 +75,7 @@ type AssetEditorState = {
   yawValue: number;
   frontDirection: string;
   modelDimensions: { width?: number; height?: number; depth?: number } | null;
+  originalDimensions: { width: number; height: number; depth: number } | null;
 };
 
 /* ── Helpers ───────────────────────────────────────────────────────── */
@@ -775,6 +776,7 @@ export function mountAssetEditor(root: HTMLElement): () => void {
     yawValue: 0,
     frontDirection: "+Z",
     modelDimensions: null,
+    originalDimensions: null,
   };
 
   let previewCtx: PreviewContext | null = null;
@@ -1153,9 +1155,21 @@ export function mountAssetEditor(root: HTMLElement): () => void {
         // Compute and store model dimensions
         const dims = getModelDimensions(previewCtx);
         if (dims) {
+          // Store original (unscaled) dimensions for proportional scaling
+          const currentScale = state.scaleValue || 1;
+          state.originalDimensions = {
+            width: dims.width / currentScale,
+            height: dims.height / currentScale,
+            depth: dims.depth / currentScale,
+          };
           state.modelDimensions = dims;
           // Update dimensions display
           updateDimensionsDisplay(dims);
+          // Reset the slider to reflect current scale
+          const slider = document.getElementById("ae-dims-slider") as HTMLInputElement | null;
+          const sliderVal = document.getElementById("ae-dims-slider-val");
+          if (slider) slider.value = String(currentScale);
+          if (sliderVal) sliderVal.textContent = `${currentScale.toFixed(2)}x`;
         }
 
         // Apply existing yaw from asset record
@@ -1180,10 +1194,12 @@ export function mountAssetEditor(root: HTMLElement): () => void {
 
   /* ── Dimensions display ──────────────────────────────────────────── */
   function updateDimensionsDisplay(dims: { width?: number; height?: number; depth?: number } | null) {
-    const dimsEl = document.getElementById("ae-dimensions-value");
-    if (dimsEl && dims) {
-      dimsEl.textContent = `${(dims.width ?? 0).toFixed(2)} × ${(dims.height ?? 0).toFixed(2)} × ${(dims.depth ?? 0).toFixed(2)}`;
-    }
+    const wInput = document.getElementById("ae-dim-w") as HTMLInputElement | null;
+    const hInput = document.getElementById("ae-dim-h") as HTMLInputElement | null;
+    const dInput = document.getElementById("ae-dim-d") as HTMLInputElement | null;
+    if (wInput && dims) wInput.value = (dims.width ?? 0).toFixed(2);
+    if (hInput && dims) hInput.value = (dims.height ?? 0).toFixed(2);
+    if (dInput && dims) dInput.value = (dims.depth ?? 0).toFixed(2);
   }
 
   /* ── Info panel ────────────────────────────────────────────────── */
@@ -1212,7 +1228,29 @@ export function mountAssetEditor(root: HTMLElement): () => void {
       <div class="ae-info-row ae-info-value ae-mono">${fCount.toLocaleString()} / ${vCount.toLocaleString()}</div>
 
       <div class="ae-info-row ae-info-label">Dimensions (m)</div>
-      <div class="ae-info-row ae-info-value ae-mono" id="ae-dimensions-value">W×H×D: ${dimsText}</div>
+      <div class="ae-info-row ae-info-value">
+        <div class="ae-dims-scaler" id="ae-dims-scaler">
+          <div class="ae-dims-inputs">
+            <label class="ae-dims-field">
+              <span class="ae-dims-field-label">W</span>
+              <input type="number" id="ae-dim-w" class="ae-dims-input" step="0.01" min="0.01" value="${(dims?.width ?? 0).toFixed(2)}" ${dims ? "" : "disabled"} />
+            </label>
+            <label class="ae-dims-field">
+              <span class="ae-dims-field-label">H</span>
+              <input type="number" id="ae-dim-h" class="ae-dims-input" step="0.01" min="0.01" value="${(dims?.height ?? 0).toFixed(2)}" ${dims ? "" : "disabled"} />
+            </label>
+            <label class="ae-dims-field">
+              <span class="ae-dims-field-label">D</span>
+              <input type="number" id="ae-dim-d" class="ae-dims-input" step="0.01" min="0.01" value="${(dims?.depth ?? 0).toFixed(2)}" ${dims ? "" : "disabled"} />
+            </label>
+          </div>
+          <div class="ae-dims-slider-row">
+            <span class="ae-dims-slider-label">Scale</span>
+            <input type="range" id="ae-dims-slider" class="ae-dims-slider" min="0.1" max="5" step="0.01" value="1" ${dims ? "" : "disabled"} />
+            <span class="ae-dims-slider-value" id="ae-dims-slider-val">1.00x</span>
+          </div>
+        </div>
+      </div>
 
       <div class="ae-info-row ae-info-label">Mesh Path</div>
       <div class="ae-info-row ae-info-value ae-mono ae-path">${asset.mesh_path ?? "-"}</div>
@@ -1473,6 +1511,82 @@ export function mountAssetEditor(root: HTMLElement): () => void {
     }
     state.scaleValue = val;
     if (previewCtx) applyScale(previewCtx, val);
+    // Sync dimensions after scale change
+    if (state.originalDimensions) {
+      state.modelDimensions = {
+        width: state.originalDimensions.width * val,
+        height: state.originalDimensions.height * val,
+        depth: state.originalDimensions.depth * val,
+      };
+      updateDimensionsDisplay(state.modelDimensions);
+    }
+    // Sync slider
+    const slider = document.getElementById("ae-dims-slider") as HTMLInputElement | null;
+    const sliderVal = document.getElementById("ae-dims-slider-val");
+    if (slider) slider.value = String(Math.min(val, 5));
+    if (sliderVal) sliderVal.textContent = `${val.toFixed(2)}x`;
+  });
+
+  /* ── Proportional dimension scaling ─────────────────────────────── */
+  function applyProportionalScale(ratio: number) {
+    if (!state.originalDimensions) return;
+    const orig = state.originalDimensions;
+    const newDims = {
+      width: +(orig.width * ratio).toFixed(4),
+      height: +(orig.height * ratio).toFixed(4),
+      depth: +(orig.depth * ratio).toFixed(4),
+    };
+    state.modelDimensions = newDims;
+    state.scaleValue = ratio;
+    scaleInput.value = ratio.toFixed(2);
+    updateDimensionsDisplay(newDims);
+
+    // Apply to 3D preview
+    if (previewCtx) applyScale(previewCtx, ratio);
+
+    // Sync slider
+    const slider = document.getElementById("ae-dims-slider") as HTMLInputElement | null;
+    const sliderVal = document.getElementById("ae-dims-slider-val");
+    if (slider) slider.value = String(Math.min(Math.max(ratio, 0.1), 5));
+    if (sliderVal) sliderVal.textContent = `${ratio.toFixed(2)}x`;
+  }
+
+  function handleDimInputChange(changedAxis: "w" | "h" | "d") {
+    if (!state.originalDimensions) return;
+    const orig = state.originalDimensions;
+    const wInput = document.getElementById("ae-dim-w") as HTMLInputElement | null;
+    const hInput = document.getElementById("ae-dim-h") as HTMLInputElement | null;
+    const dInput = document.getElementById("ae-dim-d") as HTMLInputElement | null;
+    if (!wInput || !hInput || !dInput) return;
+
+    let newValue: number;
+    let originalValue: number;
+    if (changedAxis === "w") {
+      newValue = parseFloat(wInput.value);
+      originalValue = orig.width;
+    } else if (changedAxis === "h") {
+      newValue = parseFloat(hInput.value);
+      originalValue = orig.height;
+    } else {
+      newValue = parseFloat(dInput.value);
+      originalValue = orig.depth;
+    }
+
+    if (isNaN(newValue) || newValue <= 0 || originalValue <= 0) return;
+    const ratio = newValue / originalValue;
+    applyProportionalScale(ratio);
+  }
+
+  // Use event delegation for dimension inputs since the info panel is re-rendered
+  root.addEventListener("input", (e) => {
+    const target = e.target as HTMLElement;
+    if (target.id === "ae-dim-w") handleDimInputChange("w");
+    else if (target.id === "ae-dim-h") handleDimInputChange("h");
+    else if (target.id === "ae-dim-d") handleDimInputChange("d");
+    else if (target.id === "ae-dims-slider") {
+      const val = parseFloat((target as HTMLInputElement).value);
+      if (!isNaN(val) && val > 0) applyProportionalScale(val);
+    }
   });
 
   /* ── Yaw (Orientation) ─────────────────────────────────────────── */

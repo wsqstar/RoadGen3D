@@ -2662,6 +2662,116 @@ body {
   gap: 0.4rem;
 }
 
+/* ── Dimension scaler ──────────────────────────────────────── */
+.ae-dims-scaler {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  width: 100%;
+}
+
+.ae-dims-inputs {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.ae-dims-field {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.ae-dims-field-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #5f6d56;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  min-width: 1rem;
+}
+
+.ae-dims-input {
+  width: 4.2rem;
+  min-height: 2rem;
+  padding: 0.25rem 0.45rem;
+  border: 1px solid rgba(83, 99, 70, 0.18);
+  border-radius: 0.5rem;
+  background: rgba(247, 245, 238, 0.95);
+  color: #213021;
+  font-size: 0.8rem;
+  font-family: "SF Mono", "Roboto Mono", monospace;
+  text-align: right;
+}
+.ae-dims-input:focus {
+  outline: none;
+  border-color: rgba(83, 99, 70, 0.45);
+  box-shadow: 0 0 0 2px rgba(83, 99, 70, 0.1);
+}
+.ae-dims-input:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ae-dims-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ae-dims-slider-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #5f6d56;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.ae-dims-slider {
+  flex: 1;
+  min-width: 0;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(83, 99, 70, 0.15);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+.ae-dims-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #5f6d56;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.ae-dims-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #5f6d56;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.ae-dims-slider:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.ae-dims-slider-value {
+  font-size: 0.78rem;
+  font-family: "SF Mono", "Roboto Mono", monospace;
+  color: #5f6d56;
+  min-width: 3.2rem;
+  text-align: right;
+  flex-shrink: 0;
+}
+
 .ae-scale-label {
   font-size: 0.78rem;
   font-weight: 600;

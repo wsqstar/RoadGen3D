@@ -246,6 +246,33 @@ const CATEGORY_BBOX_COLORS: Record<string, number> = {
   scene_object: 0x38bdf8,
 };
 
+function createTextSprite(text: string, color: number = 0xffffff): THREE.Sprite {
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d")!;
+  const fontSize = 64;
+  ctx.font = `bold ${fontSize}px monospace`;
+  const textWidth = ctx.measureText(text).width;
+  canvas.width = Math.ceil(textWidth) + 20;
+  canvas.height = fontSize + 16;
+
+  ctx.font = `bold ${fontSize}px monospace`;
+  ctx.fillStyle = "rgba(0,0,0,0.7)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  const colorHex = "#" + color.toString(16).padStart(6, "0");
+  ctx.fillStyle = colorHex;
+  ctx.textBaseline = "top";
+  ctx.fillText(text, 10, 8);
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.minFilter = THREE.LinearFilter;
+  const material = new THREE.SpriteMaterial({ map: texture, depthTest: false, sizeAttenuation: true });
+  const sprite = new THREE.Sprite(material);
+  sprite.userData.isAssetLabel = true;
+  const aspect = canvas.width / canvas.height;
+  sprite.scale.set(aspect * 1.2, 1.2, 1);
+  return sprite;
+}
+
 function requireElement<T extends Element>(root: ParentNode, selector: string): T {
   const element = root.querySelector<T>(selector);
   if (!element) {
@@ -1538,7 +1565,7 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
       });
     }
 
-    // Create per-asset bounding box helpers
+    // Create per-asset bounding box helpers with asset_id labels
     if (assetBboxToggleEl.checked && currentRoot) {
       const instances = currentManifest?.instances;
       currentRoot.traverse((child) => {
@@ -1548,6 +1575,7 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
 
         const instanceInfo = instances?.[instanceId];
         const category = instanceInfo?.category?.trim().toLowerCase() ?? "";
+        const assetId = instanceInfo?.asset_id?.trim() ?? instanceId;
         const color = CATEGORY_BBOX_COLORS[category] ?? 0x38bdf8;
 
         const bbox = new THREE.Box3().setFromObject(child);
@@ -1560,6 +1588,14 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
           helper.userData.assetCategory = category;
           helper.visible = true;
           scene.add(helper);
+
+          // Add text label showing asset_id above the bounding box
+          const center = new THREE.Vector3();
+          bbox.getCenter(center);
+          const label = createTextSprite(assetId, color);
+          label.position.set(center.x, bbox.max.y + 0.5, center.z);
+          label.userData.isAssetLabel = true;
+          scene.add(label);
         }
       });
     }
@@ -1783,11 +1819,15 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
   );
   function removeAssetBboxHelpers(): void {
     scene.traverse((child) => {
-      if (child.userData.isAssetBboxHelper) {
+      if (child.userData.isAssetBboxHelper || child.userData.isAssetLabel) {
         scene.remove(child);
         if (child instanceof THREE.LineSegments) {
           child.geometry.dispose();
           (child.material as THREE.Material).dispose();
+        }
+        if (child instanceof THREE.Sprite) {
+          child.material.map?.dispose();
+          child.material.dispose();
         }
       }
     });
@@ -1797,14 +1837,15 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
     if (!currentRoot || !currentManifest) return;
 
     removeAssetBboxHelpers();
-    return;
+    const instances = currentManifest.instances;
     currentRoot.traverse((child) => {
       const name = child.name || "";
       const instanceId = resolveInstanceIdFromName(name);
       if (!instanceId) return;
-      const instanceInfo = currentManifest.instances?.[instanceId];
+      const instanceInfo = instances?.[instanceId];
       if (!instanceInfo) return;
       const category = String(instanceInfo.category || "").trim().toLowerCase();
+      const assetId = String(instanceInfo.asset_id || "").trim() || instanceId;
       const color = CATEGORY_BBOX_COLORS[category] ?? 0x38bdf8;
 
       const bbox = new THREE.Box3().setFromObject(child);
@@ -1817,6 +1858,14 @@ async function mountViewerImpl(root: HTMLElement): Promise<() => void> {
         helper.userData.assetCategory = category;
         helper.visible = true;
         scene.add(helper);
+
+        // Add text label showing asset_id above the bounding box
+        const center = new THREE.Vector3();
+        bbox.getCenter(center);
+        const label = createTextSprite(assetId, color);
+        label.position.set(center.x, bbox.max.y + 0.5, center.z);
+        label.userData.isAssetLabel = true;
+        scene.add(label);
       }
     });
   }
