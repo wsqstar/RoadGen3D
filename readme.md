@@ -257,6 +257,8 @@ make viewer-install
 make viewer-web
 ```
 
+> **Note:** `web/viewer/` is a git submodule pointing to [GIStudio/Viewer](https://github.com/GIStudio/Viewer). After cloning, run `git submodule update --init` to fetch it.
+
 默认地址：
 - API: `http://127.0.0.1:8010/api/health`
 - Workbench: `http://127.0.0.1:4174`
