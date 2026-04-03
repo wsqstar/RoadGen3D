@@ -257,7 +257,9 @@ make viewer-install
 make viewer-web
 ```
 
-> **Note:** `web/viewer/` is a git submodule pointing to [GIStudio/Viewer](https://github.com/GIStudio/Viewer). After cloning, run `git submodule update --init` to fetch it.
+> **Note:** This project uses git submodules. After cloning, run `git submodule update --init` to fetch them:
+> - `web/viewer/` → [GIStudio/Viewer](https://github.com/GIStudio/Viewer) — browser-based 3D scene viewer
+> - `tools/download3dAssets/` → [GIStudio/download3dAssets](https://github.com/GIStudio/download3dAssets) — UrbanVerse 3D asset batch downloader
 
 默认地址：
 - API: `http://127.0.0.1:8010/api/health`
