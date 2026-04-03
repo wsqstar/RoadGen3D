@@ -394,3 +394,66 @@ def generate_scene_from_draft(
         compose_result=result,
         extra_summary=resolved_scene_context.to_summary_metadata(),
     )
+
+
+def generate_scene_from_graph_context(
+    *,
+    compose_config_patch: Mapping[str, Any],
+    road_segment_graph_override: Any,
+    projected_features_override: Any,
+    placement_context_override: Any,
+    generation_options: Mapping[str, Any] | SceneGenerationOptions | None = None,
+    extra_summary: Mapping[str, Any] | None = None,
+) -> SceneGenerationResult:
+    """Run the scene pipeline using pre-built graph overrides directly.
+
+    This is the main entry-point for the auto-pipeline iteration loop.  It
+    bypasses ``DesignDraft`` and ``SceneContext`` resolution because the graph
+    overrides are already materialised.
+    """
+    options = (
+        generation_options
+        if isinstance(generation_options, SceneGenerationOptions)
+        else normalize_scene_generation_options(generation_options)
+    )
+    # Build a minimal DesignDraft → config
+    draft = DesignDraft(
+        normalized_scene_query=str(compose_config_patch.get("query", "auto pipeline")),
+        compose_config_patch=sanitize_compose_config_patch(compose_config_patch),
+        citations_by_field={},
+        design_summary="Auto-pipeline graph-based scene generation",
+    )
+    base_config = build_compose_config_from_draft(draft)
+    config = replace(base_config, layout_mode="graph_template")
+
+    object_backend, ground_backend, sky_backend = _build_scene_backends(options)
+
+    iter_out_dir = options.out_dir
+    iter_out_dir.mkdir(parents=True, exist_ok=True)
+
+    result = compose_street_scene(
+        config=config,
+        manifest_path=options.manifest_path,
+        artifacts_dir=options.artifacts_dir,
+        model_name=options.model_name,
+        model_dir=options.model_dir,
+        local_files_only=bool(options.local_files_only),
+        device=options.device,
+        export_format=options.export_format,
+        out_dir=iter_out_dir,
+        placement_policy=options.placement_policy,
+        policy_ckpt=options.policy_ckpt,
+        program_ckpt=options.program_ckpt,
+        policy_temperature=float(options.policy_temperature),
+        object_asset_backend=object_backend,
+        ground_material_backend=ground_backend,
+        sky_backend=sky_backend,
+        road_segment_graph_override=road_segment_graph_override,
+        projected_features_override=projected_features_override,
+        placement_context_override=placement_context_override,
+    )
+    return _build_scene_generation_result(
+        config=config,
+        compose_result=result,
+        extra_summary=extra_summary,
+    )

@@ -20,6 +20,7 @@ from . import (
     build_parameter_followup_query_messages,
     build_design_draft_messages,
     build_design_intent_messages,
+    build_graph_aware_design_messages,
     build_rag_query_translation_messages,
 )
 from ..services.design_runtime import generate_scene_from_draft
@@ -346,6 +347,39 @@ class DesignAssistantService:
             "score": float(eval_payload.get("score", 0) or 0),
             "suggestions": list(eval_payload.get("suggestions", []) or []),
             "config_patch": dict(eval_payload.get("config_patch", {}) or {}),
+        }
+
+    def generate_initial_config_from_graph(
+        self,
+        *,
+        graph_summary: Mapping[str, Any],
+        base_map_data_url: str | None = None,
+        user_prompt: str = "",
+        current_patch: Mapping[str, Any] | None = None,
+    ) -> Dict[str, Any]:
+        """Ask the LLM to propose initial design parameters from a graph context.
+
+        Returns a dict with ``compose_config_patch`` and ``design_summary``.
+        """
+        llm = self._get_llm_client()
+        messages = build_graph_aware_design_messages(
+            graph_summary=dict(graph_summary),
+            base_map_data_url=base_map_data_url,
+            user_prompt=user_prompt,
+            current_patch=current_patch,
+        )
+        payload = llm.chat_json(messages)
+        patch = sanitize_compose_config_patch(payload.get("compose_config_patch"))
+        design_summary = str(payload.get("design_summary", "") or "").strip()
+        # Fill defaults for any missing fields
+        for field_name, default_value in DEFAULT_COMPOSE_CONFIG_PATCH_VALUES.items():
+            if field_name not in patch:
+                patch[field_name] = default_value
+        if user_prompt and "query" not in patch:
+            patch["query"] = str(user_prompt).strip()
+        return {
+            "compose_config_patch": patch,
+            "design_summary": design_summary,
         }
 
     def _get_llm_client(self) -> GLMClient | Any:
