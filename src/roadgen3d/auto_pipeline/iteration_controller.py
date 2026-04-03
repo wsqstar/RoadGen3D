@@ -1,0 +1,262 @@
+"""Auto-iteration controller: generate → render → evaluate → improve loop."""
+
+from __future__ import annotations
+
+import base64
+import json
+import shutil
+from dataclasses import dataclass, field, replace
+from pathlib import Path
+from typing import Any, Dict, List, Mapping
+
+from ..llm.design_workflow import DesignAssistantService
+from ..services.design_runtime import generate_scene_from_graph_context
+from ..services.design_types import (
+    SceneGenerationOptions,
+    sanitize_compose_config_patch,
+)
+from .graph_loader import GraphSceneContext
+from .scene_renderer import render_topdown_preview
+
+
+@dataclass
+class IterationSnapshot:
+    """Record of a single iteration in the auto-pipeline loop."""
+
+    iteration: int
+    config_patch: Dict[str, Any]
+    score: float
+    evaluation: str
+    suggestions: List[str]
+    layout_path: str
+    preview_path: str
+    scene_path: str
+
+
+@dataclass
+class IterationResult:
+    """Final result of the auto-pipeline iteration loop."""
+
+    iterations: List[IterationSnapshot]
+    best_iteration: int
+    best_score: float
+    best_layout_path: str
+    best_scene_path: str
+    total_iterations: int
+
+
+class AutoIterationController:
+    """Orchestrate the generate → render → evaluate → improve loop."""
+
+    def __init__(
+        self,
+        graph_ctx: GraphSceneContext,
+        *,
+        base_map_path: str | None = None,
+        manifest_path: str = "data/real/real_assets_manifest.jsonl",
+        artifacts_dir: str = "artifacts/auto_pipeline",
+        output_dir: str = "artifacts/auto_pipeline/scene",
+        max_iterations: int = 5,
+        model_dir: str = "models/clip-vit-base-patch32",
+        local_files_only: bool = False,
+        device: str = "cpu",
+        query: str = "modern clean urban street",
+        design_service: DesignAssistantService | None = None,
+    ) -> None:
+        self.graph_ctx = graph_ctx
+        self.base_map_path = Path(base_map_path) if base_map_path else None
+        self.max_iterations = max(1, int(max_iterations))
+        self.query = query
+
+        root = Path(__file__).resolve().parents[3]
+        self.output_dir = Path(output_dir).expanduser().resolve()
+
+        self.generation_options = SceneGenerationOptions(
+            manifest_path=Path(manifest_path).expanduser().resolve(),
+            artifacts_dir=Path(artifacts_dir).expanduser().resolve(),
+            out_dir=self.output_dir,
+            model_dir=Path(model_dir).expanduser().resolve() if model_dir else None,
+            local_files_only=local_files_only,
+            device=device,
+        )
+
+        self.design_service = design_service or DesignAssistantService()
+
+    # ------------------------------------------------------------------
+    # Public API
+    # ------------------------------------------------------------------
+
+    def run(self) -> IterationResult:
+        """Execute the full auto-iteration flow and return the best result."""
+        snapshots: List[IterationSnapshot] = []
+
+        # Step A – Generate initial design parameters via LLM
+        base_map_data_url = self._load_base_map_data_url()
+        initial_result = self.design_service.generate_initial_config_from_graph(
+            graph_summary=self.graph_ctx.graph_summary,
+            base_map_data_url=base_map_data_url,
+            user_prompt=self.query,
+        )
+        current_patch: Dict[str, Any] = dict(initial_result.get("compose_config_patch", {}))
+        if self.query and "query" not in current_patch:
+            current_patch["query"] = self.query
+
+        best_score = -1.0
+        best_iteration = 0
+        no_improvement_count = 0
+
+        for i in range(self.max_iterations):
+            iter_dir = self.output_dir / f"iter_{i:02d}"
+            iter_dir.mkdir(parents=True, exist_ok=True)
+
+            # Override out_dir for this iteration
+            iter_options = replace(self.generation_options, out_dir=iter_dir)
+
+            # Save config patch
+            config_patch_path = iter_dir / "config_patch.json"
+            config_patch_path.write_text(
+                json.dumps(current_patch, ensure_ascii=False, indent=2), encoding="utf-8"
+            )
+
+            print(f"[auto_pipeline] Iteration {i}: generating scene ...")
+            scene_result = generate_scene_from_graph_context(
+                compose_config_patch=current_patch,
+                road_segment_graph_override=self.graph_ctx.road_segment_graph,
+                projected_features_override=self.graph_ctx.projected_features,
+                placement_context_override=self.graph_ctx.placement_context,
+                generation_options=iter_options,
+            )
+
+            layout_path = scene_result.scene_layout_path
+            scene_path = scene_result.scene_glb_path
+
+            # Step – Render preview
+            preview_path = str(iter_dir / "preview.png")
+            try:
+                render_topdown_preview(layout_path, preview_path)
+            except Exception as exc:
+                print(f"[auto_pipeline] Warning: preview rendering failed: {exc}")
+                preview_path = ""
+
+            # Step – LLM evaluation
+            print(f"[auto_pipeline] Iteration {i}: evaluating scene ...")
+            eval_result = self.design_service.evaluate_scene(
+                layout_path=layout_path,
+                image_path=preview_path or None,
+            )
+
+            score = float(eval_result.get("score", 0))
+            evaluation_text = str(eval_result.get("evaluation", ""))
+            suggestions = list(eval_result.get("suggestions", []) or [])
+
+            # Save evaluation
+            eval_path = iter_dir / "evaluation.json"
+            eval_path.write_text(
+                json.dumps(eval_result, ensure_ascii=False, indent=2), encoding="utf-8"
+            )
+
+            snapshot = IterationSnapshot(
+                iteration=i,
+                config_patch=dict(current_patch),
+                score=score,
+                evaluation=evaluation_text,
+                suggestions=suggestions,
+                layout_path=layout_path,
+                preview_path=preview_path,
+                scene_path=scene_path,
+            )
+            snapshots.append(snapshot)
+
+            print(
+                f"[auto_pipeline] Iteration {i}: score={score:.1f}/10"
+                f"  (best={best_score:.1f})"
+            )
+
+            # Track best
+            if score > best_score:
+                best_score = score
+                best_iteration = i
+                no_improvement_count = 0
+            else:
+                no_improvement_count += 1
+
+            # Early stop: consecutive rounds without improvement
+            if no_improvement_count >= 2:
+                print("[auto_pipeline] Early stopping: no score improvement for 2 consecutive rounds.")
+                break
+
+            # Apply LLM-suggested config_patch for next iteration
+            suggested_patch = sanitize_compose_config_patch(eval_result.get("config_patch"))
+            if suggested_patch:
+                current_patch.update(suggested_patch)
+
+        # Copy best result to final/
+        best_snap = snapshots[best_iteration]
+        final_dir = self.output_dir / "final"
+        final_dir.mkdir(parents=True, exist_ok=True)
+        for src_path, name in [
+            (best_snap.layout_path, "scene_layout.json"),
+            (best_snap.scene_path, "scene.glb"),
+            (best_snap.preview_path, "preview.png"),
+        ]:
+            if src_path and Path(src_path).exists():
+                shutil.copy2(src_path, final_dir / name)
+
+        result = IterationResult(
+            iterations=snapshots,
+            best_iteration=best_iteration,
+            best_score=best_score,
+            best_layout_path=str(final_dir / "scene_layout.json"),
+            best_scene_path=str(final_dir / "scene.glb"),
+            total_iterations=len(snapshots),
+        )
+
+        # Save global iteration log
+        log_path = self.output_dir / "iteration_log.json"
+        log_path.write_text(
+            json.dumps(_result_to_log(result), ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+
+        print(
+            f"[auto_pipeline] Done. {result.total_iterations} iterations, "
+            f"best score={result.best_score:.1f} at iteration {result.best_iteration}."
+        )
+        return result
+
+    # ------------------------------------------------------------------
+    # Internal helpers
+    # ------------------------------------------------------------------
+
+    def _load_base_map_data_url(self) -> str | None:
+        if self.base_map_path is None or not self.base_map_path.exists():
+            return None
+        try:
+            data = self.base_map_path.read_bytes()
+            return f"data:image/png;base64,{base64.b64encode(data).decode('ascii')}"
+        except Exception:
+            return None
+
+
+def _result_to_log(result: IterationResult) -> Dict[str, Any]:
+    """Serialise *IterationResult* to a JSON-friendly log dict."""
+    return {
+        "total_iterations": result.total_iterations,
+        "best_iteration": result.best_iteration,
+        "best_score": result.best_score,
+        "best_layout_path": result.best_layout_path,
+        "best_scene_path": result.best_scene_path,
+        "iterations": [
+            {
+                "iteration": s.iteration,
+                "score": s.score,
+                "evaluation": s.evaluation,
+                "suggestions": s.suggestions,
+                "config_patch": s.config_patch,
+                "layout_path": s.layout_path,
+                "preview_path": s.preview_path,
+                "scene_path": s.scene_path,
+            }
+            for s in result.iterations
+        ],
+    }
