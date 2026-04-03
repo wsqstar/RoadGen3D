@@ -73,6 +73,11 @@ class ReferenceAnnotationConvertRequestModel(BaseModel):
     compose_config: Dict[str, Any] = Field(default_factory=dict)
 
 
+class EvaluateRequestModel(BaseModel):
+    layout_path: str
+    image_path: str | None = None
+
+
 def create_app(*, design_service: DesignAssistantService | Any | None = None) -> FastAPI:
     app = FastAPI(title="RoadGen3D Design Assistant API", version="0.2.0")
     app.add_middleware(
@@ -246,6 +251,18 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
             "knowledge_source": request.knowledge_source,
             "items": [item.to_dict() for item in items],
         })
+
+    @app.post("/api/design/evaluate")
+    def evaluate_scene(request: EvaluateRequestModel) -> Dict[str, Any]:
+        service = app.state.design_service
+        try:
+            result = service.evaluate_scene(
+                layout_path=request.layout_path,
+                image_path=request.image_path,
+            )
+        except RuntimeError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        return make_json_safe(result)
 
     return app
 

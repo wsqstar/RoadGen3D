@@ -162,3 +162,50 @@ def build_design_draft_messages(
     }
     messages.append({"role": "user", "content": json.dumps(user_payload, ensure_ascii=False)})
     return messages
+
+
+def build_scene_evaluation_messages(
+    *,
+    summary: dict,
+    placement_summary: list[dict],
+    image_data_url: str | None = None,
+) -> list[Dict[str, str]]:
+    system_prompt = (
+        "你是 RoadGen3D 的场景评价专家。"
+        "请基于场景截图和评估指标，输出一个 JSON 对象。"
+        "你只能输出 JSON。"
+        "字段必须包含："
+        "`evaluation`(string，中文自然语言评价)、"
+        "`score`(number，0-10 综合评分)、"
+        "`suggestions`(string[]，具体改进建议列表)、"
+        "`config_patch`(object，可选的配置修改建议)。"
+        "请按以下维度评价：\n"
+        "1. 视觉美观度与协调性\n"
+        "2. 空间布局合理性\n"
+        "3. 多样性与丰富度\n"
+        "4. 规范合规性\n"
+        "5. 行人友好性\n"
+        "config_patch 只能使用这些字段："
+        "query, design_rule_profile, target_street_type, objective_profile, city_context, "
+        "style_preset, beauty_mode, "
+        "length_m, road_width_m, sidewalk_width_m, lane_count, density, "
+        "ped_demand_level, bike_demand_level, transit_demand_level, vehicle_demand_level。"
+    )
+    user_content: list[dict] = []
+    user_content.append({
+        "type": "text",
+        "text": json.dumps({
+            "summary": summary,
+            "placements_preview": placement_summary,
+            "instruction": "请评价这个街道场景的质量并给出改进建议。",
+        }, ensure_ascii=False),
+    })
+    if image_data_url:
+        user_content.append({
+            "type": "image_url",
+            "image_url": {"url": image_data_url},
+        })
+    return [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_content},  # type: ignore[list-item]
+    ]

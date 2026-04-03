@@ -307,6 +307,47 @@ class DesignAssistantService:
     def list_china_cities(self) -> List[Dict[str, Any]]:
         return list_china_cities_payload()
 
+    def evaluate_scene(
+        self,
+        *,
+        layout_path: str,
+        image_path: str | None = None,
+    ) -> Dict[str, Any]:
+        import base64
+        layout = Path(layout_path).expanduser().resolve()
+        if not layout.exists():
+            raise RuntimeError(f"Layout file not found: {layout}")
+        payload = json.loads(layout.read_text(encoding="utf-8"))
+        summary = payload.get("summary", {}) or {}
+        placements = payload.get("placements", []) or []
+        llm = self._get_llm_client()
+        placement_summary = []
+        for p in placements[:20]:
+            placement_summary.append({
+                "instance_id": p.get("instance_id", ""),
+                "category": p.get("category", ""),
+                "asset_id": p.get("asset_id", ""),
+                "position_xyz": p.get("position_xyz"),
+            })
+        image_data_url = None
+        if image_path:
+            img = Path(image_path).expanduser().resolve()
+            if img.exists():
+                image_data_url = f"data:image/png;base64,{base64.b64encode(img.read_bytes()).decode('ascii')}"
+        from .prompts import build_scene_evaluation_messages
+        messages = build_scene_evaluation_messages(
+            summary=summary,
+            placement_summary=placement_summary,
+            image_data_url=image_data_url,
+        )
+        eval_payload = llm.chat_json(messages)
+        return {
+            "evaluation": str(eval_payload.get("evaluation", "")),
+            "score": float(eval_payload.get("score", 0) or 0),
+            "suggestions": list(eval_payload.get("suggestions", []) or []),
+            "config_patch": dict(eval_payload.get("config_patch", {}) or {}),
+        }
+
     def _get_llm_client(self) -> GLMClient | Any:
         if self.llm_client is None:
             self.llm_client = GLMClient()
