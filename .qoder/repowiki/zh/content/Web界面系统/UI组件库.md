@@ -67,7 +67,7 @@ VR_AE --> VR_STYLE
 - [web/workbench/src/app.ts:1-12](file://web/workbench/src/app.ts#L1-L12)
 - [web/workbench/src/types.ts:1-228](file://web/workbench/src/types.ts#L1-L228)
 - [web/workbench/src/utils.ts:1-245](file://web/workbench/src/utils.ts#L1-L245)
-- [web/workbench/src/style.css:1-490](file://web/workbench/src/style.css#L1-L490)
+- [web/workbench/src/style.css:1-587](file://web/workbench/src/style.css#L1-L587)
 - [web/viewer/src/main.ts:1-61](file://web/viewer/src/main.ts#L1-L61)
 - [web/viewer/src/app.ts:1-800](file://web/viewer/src/app.ts#L1-L800)
 - [web/viewer/src/scene-graph.ts:1-800](file://web/viewer/src/scene-graph.ts#L1-L800)
@@ -89,6 +89,8 @@ VR_AE --> VR_STYLE
   - 知识搜索面板：查询 PDF/GraphRAG 等知识源，展示证据卡片。
   - 设计草案面板：参数表单、参数来源标注、摘要展示。
   - 任务面板：场景作业状态轮询、结果展示与链接。
+  - **新增** 英雄芯片：流程步骤指示器，显示当前步骤与完成状态。
+  - **新增** 配置栏：布局模式与知识源选择，快速配置生成参数。
 
 - 查看器组件
   - 场景控制器：相机控制、光照预设、最小地图、信息卡片。
@@ -96,6 +98,7 @@ VR_AE --> VR_STYLE
   - 工具栏：场景切换、设置面板开关、帮助信息。
   - 场景图编辑器：参考注释解析、交叉断面建模、标注与布局。
   - 资产编辑器：网格浏览、缩放旋转、线框/实体渲染、批量操作。
+  - **新增** 内联预览：3D 场景内嵌预览，支持全屏查看与关闭。
 
 **章节来源**
 - [web/workbench/src/app.ts:58-288](file://web/workbench/src/app.ts#L58-L288)
@@ -382,7 +385,7 @@ VR->>API : 加载布局与场景
 **章节来源**
 - [web/workbench/src/types.ts:186-227](file://web/workbench/src/types.ts#L186-L227)
 - [web/workbench/src/utils.ts:1-245](file://web/workbench/src/utils.ts#L1-L245)
-- [web/workbench/src/style.css:1-490](file://web/workbench/src/style.css#L1-L490)
+- [web/workbench/src/style.css:1-587](file://web/workbench/src/style.css#L1-L587)
 - [web/viewer/src/main.ts:21-61](file://web/viewer/src/main.ts#L21-L61)
 
 ### 样式系统、主题定制与响应式设计
@@ -396,7 +399,7 @@ VR->>API : 加载布局与场景
   - 查看器：针对小屏设备调整工具栏与信息面板尺寸与位置。
 
 **章节来源**
-- [web/workbench/src/style.css:1-490](file://web/workbench/src/style.css#L1-L490)
+- [web/workbench/src/style.css:1-587](file://web/workbench/src/style.css#L1-L587)
 - [web/viewer/src/style.css:1-800](file://web/viewer/src/style.css#L1-L800)
 
 ### 组件测试方法、文档生成与版本管理策略
@@ -454,8 +457,6 @@ VR_AE --> VR_STYLE
   - 场景图编辑器与资产编辑器提供选择框与高亮反馈，提升交互效率。
   - 查看器最小地图与信息卡片采用透明背景与模糊效果，在保证可读性的同时降低视觉干扰。
 
-[本节为通用指导，无需特定文件引用]
-
 ## 故障排除指南
 - 启动与连接
   - 若工作台无法连接 API，检查 API 基础地址与网络连通性；工具函数提供格式化错误信息以便定位问题。
@@ -475,18 +476,14 @@ VR_AE --> VR_STYLE
 ## 结论
 RoadGen3D UI 组件库通过清晰的模块划分与统一的类型定义，实现了工作台与查看器的高效协作。组件具备良好的可复用性与扩展性，配合主题化与响应式设计，能够满足多样化场景需求。建议在后续迭代中持续完善测试体系与文档生成流程，确保代码质量与可维护性。
 
-[本节为总结性内容，无需特定文件引用]
-
 ## 附录
 - 关键文件清单
   - 工作台入口与主控制器：[web/workbench/src/main.ts:1-12](file://web/workbench/src/main.ts#L1-L12)，[web/workbench/src/app.ts:1-12](file://web/workbench/src/app.ts#L1-L12)
   - 类型定义与常量：[web/workbench/src/types.ts:1-228](file://web/workbench/src/types.ts#L1-L228)
   - 工具函数：[web/workbench/src/utils.ts:1-245](file://web/workbench/src/utils.ts#L1-L245)
-  - 样式文件：[web/workbench/src/style.css:1-490](file://web/workbench/src/style.css#L1-L490)
+  - 样式文件：[web/workbench/src/style.css:1-587](file://web/workbench/src/style.css#L1-L587)
   - 查看器入口与主逻辑：[web/viewer/src/main.ts:1-61](file://web/viewer/src/main.ts#L1-L61)，[web/viewer/src/app.ts:1-800](file://web/viewer/src/app.ts#L1-L800)
   - 场景图编辑器：[web/viewer/src/scene-graph.ts:1-800](file://web/viewer/src/scene-graph.ts#L1-L800)
   - 资产编辑器：[web/viewer/src/asset-editor.ts:1-800](file://web/viewer/src/asset-editor.ts#L1-L800)
   - 查看器样式：[web/viewer/src/style.css:1-800](file://web/viewer/src/style.css#L1-L800)
   - 查看器依赖：[web/viewer/package.json:1-20](file://web/viewer/package.json#L1-L20)
-
-[本节为附录性内容，无需特定文件引用]

@@ -81,6 +81,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
     } as SceneContext,
     bboxDirty: false,
     previewVisible: false,
+    activeTab: 0,  // 0=Conversation, 1=Scene Setup, 2=Evidence, 3=Design Draft, 4=Scene Jobs
   };
 
   function computePipelineStep(): number {
@@ -90,6 +91,21 @@ export function mountWorkbench(app: HTMLDivElement): void {
     return 1;
   }
 
+  function pipelineStepToTab(step: number): number {
+    const mapping: Record<number, number> = { 1: 0, 2: 2, 3: 3, 4: 4 };
+    return mapping[step] ?? 0;
+  }
+
+  function switchTab(index: number): void {
+    state.activeTab = index;
+    app.querySelectorAll<HTMLButtonElement>(".tab-btn").forEach((btn) => {
+      btn.classList.toggle("active", Number(btn.dataset.tab) === index);
+    });
+    app.querySelectorAll<HTMLDivElement>(".tab-content").forEach((el) => {
+      el.style.display = Number(el.dataset.tab) === index ? "" : "none";
+    });
+  }
+
   function renderHeroSteps(): void {
     const step = computePipelineStep();
     app.querySelectorAll<HTMLDivElement>(".hero-chip").forEach((chip) => {
@@ -97,6 +113,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
       chip.classList.toggle("completed", chipStep < step);
       chip.classList.toggle("active", chipStep === step);
     });
+    switchTab(pipelineStepToTab(step));
   }
 
   app.innerHTML = `
@@ -142,149 +159,161 @@ export function mountWorkbench(app: HTMLDivElement): void {
         </div>
       </div>
 
-	      <div class="layout">
-	        <div class="stack">
-	          <section class="panel">
-            <div class="panel-head">
-              <h2>Conversation</h2>
-              <div class="intent-row">
-                <span class="tag">API: ${escapeHtml(API_BASE)}</span>
-                <span class="tag">Viewer: ${escapeHtml(VIEWER_BASE)}</span>
-              </div>
-            </div>
-            <div class="panel-body">
-              <div id="timeline" class="timeline"></div>
-              <div class="composer">
-                <textarea id="prompt-input" placeholder="例如：我想做一条步行安全、全龄友好的完整街道，公交可达性要好，机动车不要太强势。"></textarea>
-                <div class="scene-setup-grid">
-                  <div class="field">
-                    <label for="knowledge-source">Knowledge Mode</label>
-                    <select id="knowledge-source">
-                      <option value="graph_rag" selected>graph_rag</option>
-                      <option value="hybrid">hybrid</option>
-                      <option value="pdf_rag">pdf_rag</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="actions">
-                  <button id="draft-btn" class="btn primary">生成设计建议</button>
-                  <button id="preset-pedestrian-btn" class="btn secondary" type="button">步行安全，全龄友好</button>
-                  <button id="rebuild-btn" class="btn secondary">重建 PDF 知识库</button>
-                </div>
-                <div id="status-box" class="status-box">等待输入。</div>
-              </div>
-	            </div>
-	          </section>
+      <div class="tab-bar">
+        <button class="tab-btn active" data-tab="0">Conversation</button>
+        <button class="tab-btn" data-tab="1">Scene Setup</button>
+        <button class="tab-btn" data-tab="2">Evidence</button>
+        <button class="tab-btn" data-tab="3">Design Draft</button>
+        <button class="tab-btn" data-tab="4">Scene Jobs</button>
+      </div>
 
-	          <section class="panel">
-	            <div class="panel-head">
-	              <h2>Scene Setup</h2>
-	            </div>
-	            <div class="panel-body">
-	              <div class="scene-setup-grid">
-	                <div class="field">
-	                  <label for="scene-layout-mode">Layout Mode</label>
-	                  <select id="scene-layout-mode">
-	                    <option value="graph_template" selected>graph_template</option>
-	                    <option value="osm">osm</option>
-	                    <option value="metaurban">metaurban</option>
-	                    <option value="template">template</option>
-	                  </select>
-	                </div>
-	                <div id="scene-city-field" class="field">
-	                  <label for="scene-city">City</label>
-	                  <select id="scene-city">
-	                    <option value="">Loading cities...</option>
-	                  </select>
-	                </div>
-	                <div id="scene-graph-template-field" class="field" style="display:none;">
-	                  <label for="scene-graph-template">Graph Template</label>
-	                  <select id="scene-graph-template">
-	                    <option value="">Loading graph templates...</option>
-	                  </select>
-	                </div>
-	                <div id="scene-reference-field" class="field" style="display:none;">
-	                  <label for="scene-reference-plan">Reference Plan</label>
-	                  <select id="scene-reference-plan">
-	                    <option value="">Loading reference plans...</option>
-	                  </select>
-	                </div>
-	              </div>
-	              <div id="osm-scene-fields" class="scene-setup-stack">
-	                <div class="scene-setup-grid bbox-grid">
-	                  <div class="field">
-	                    <label for="bbox-min-lon">AOI Min Lon</label>
-	                    <input id="bbox-min-lon" type="number" step="0.0001" />
-	                  </div>
-	                  <div class="field">
-	                    <label for="bbox-min-lat">AOI Min Lat</label>
-	                    <input id="bbox-min-lat" type="number" step="0.0001" />
-	                  </div>
-	                  <div class="field">
-	                    <label for="bbox-max-lon">AOI Max Lon</label>
-	                    <input id="bbox-max-lon" type="number" step="0.0001" />
-	                  </div>
-	                  <div class="field">
-	                    <label for="bbox-max-lat">AOI Max Lat</label>
-	                    <input id="bbox-max-lat" type="number" step="0.0001" />
-	                  </div>
-	                </div>
-	              </div>
-	              <div id="scene-template-preview" class="reference-plan-preview" hidden></div>
-	              <div id="scene-setup-summary" class="summary-box">Graph Template 模式会默认加载港科广门口街道 graph，并直接走 3D 场景导出链。</div>
-	            </div>
-	          </section>
-
-          <section class="panel">
-            <div class="panel-head">
-              <h2>Knowledge Search</h2>
+      <div class="tab-content" data-tab="0">
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Conversation</h2>
+            <div class="intent-row">
+              <span class="tag">API: ${escapeHtml(API_BASE)}</span>
+              <span class="tag">Viewer: ${escapeHtml(VIEWER_BASE)}</span>
             </div>
-            <div class="panel-body">
-              <div id="knowledge-source-summary" class="summary-box">正在检查知识源状态...</div>
-              <div class="composer knowledge-composer">
-                <textarea id="knowledge-query" placeholder="例如：minimum sidewalk width near transit stops，或者 输入中文问题来手动核对 GraphRAG / PDF 证据。"></textarea>
-                <div class="actions">
-                  <button id="knowledge-search-btn" class="btn secondary" type="button">查询知识</button>
+          </div>
+          <div class="panel-body">
+            <div id="timeline" class="timeline"></div>
+            <div class="composer">
+              <textarea id="prompt-input" placeholder="例如：我想做一条步行安全、全龄友好的完整街道，公交可达性要好，机动车不要太强势。"></textarea>
+              <div class="scene-setup-grid">
+                <div class="field">
+                  <label for="knowledge-source">Knowledge Mode</label>
+                  <select id="knowledge-source">
+                    <option value="graph_rag" selected>graph_rag</option>
+                    <option value="hybrid">hybrid</option>
+                    <option value="pdf_rag">pdf_rag</option>
+                  </select>
                 </div>
               </div>
-              <div id="knowledge-search-results" class="evidence-list"></div>
-            </div>
-          </section>
-
-	          <section class="panel">
-	            <div class="panel-head">
-              <h2>Evidence</h2>
-            </div>
-            <div class="panel-body">
-              <div id="intent-box" class="summary-box">尚未生成设计意图。</div>
-              <div id="evidence-list" class="evidence-list"></div>
-            </div>
-          </section>
-        </div>
-
-        <div class="stack">
-          <section class="panel">
-            <div class="panel-head">
-              <h2>Design Draft</h2>
-            </div>
-            <div class="panel-body">
-              <div id="draft-summary" class="summary-box">等待设计草案。</div>
-              <div id="parameter-form" class="form-grid"></div>
               <div class="actions">
-                <button id="generate-btn" class="btn primary" disabled>确认参数并创建生成任务</button>
+                <button id="draft-btn" class="btn primary">生成设计建议</button>
+                <button id="preset-pedestrian-btn" class="btn secondary" type="button">步行安全，全龄友好</button>
+                <button id="rebuild-btn" class="btn secondary">重建 PDF 知识库</button>
+              </div>
+              <div id="status-box" class="status-box">等待输入。</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="tab-content" data-tab="1" style="display:none">
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Scene Setup</h2>
+          </div>
+          <div class="panel-body">
+            <div class="scene-setup-grid">
+              <div class="field">
+                <label for="scene-layout-mode">Layout Mode</label>
+                <select id="scene-layout-mode">
+                  <option value="graph_template" selected>graph_template</option>
+                  <option value="osm">osm</option>
+                  <option value="metaurban">metaurban</option>
+                  <option value="template">template</option>
+                </select>
+              </div>
+              <div id="scene-city-field" class="field">
+                <label for="scene-city">City</label>
+                <select id="scene-city">
+                  <option value="">Loading cities...</option>
+                </select>
+              </div>
+              <div id="scene-graph-template-field" class="field" style="display:none;">
+                <label for="scene-graph-template">Graph Template</label>
+                <select id="scene-graph-template">
+                  <option value="">Loading graph templates...</option>
+                </select>
+              </div>
+              <div id="scene-reference-field" class="field" style="display:none;">
+                <label for="scene-reference-plan">Reference Plan</label>
+                <select id="scene-reference-plan">
+                  <option value="">Loading reference plans...</option>
+                </select>
               </div>
             </div>
-          </section>
+            <div id="osm-scene-fields" class="scene-setup-stack">
+              <div class="scene-setup-grid bbox-grid">
+                <div class="field">
+                  <label for="bbox-min-lon">AOI Min Lon</label>
+                  <input id="bbox-min-lon" type="number" step="0.0001" />
+                </div>
+                <div class="field">
+                  <label for="bbox-min-lat">AOI Min Lat</label>
+                  <input id="bbox-min-lat" type="number" step="0.0001" />
+                </div>
+                <div class="field">
+                  <label for="bbox-max-lon">AOI Max Lon</label>
+                  <input id="bbox-max-lon" type="number" step="0.0001" />
+                </div>
+                <div class="field">
+                  <label for="bbox-max-lat">AOI Max Lat</label>
+                  <input id="bbox-max-lat" type="number" step="0.0001" />
+                </div>
+              </div>
+            </div>
+            <div id="scene-template-preview" class="reference-plan-preview" hidden></div>
+            <div id="scene-setup-summary" class="summary-box">Graph Template 模式会默认加载港科广门口街道 graph，并直接走 3D 场景导出链。</div>
+          </div>
+        </section>
+      </div>
 
-          <section class="panel">
-            <div class="panel-head">
-              <h2>Scene Jobs</h2>
+      <div class="tab-content tab-stack" data-tab="2" style="display:none">
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Knowledge Search</h2>
+          </div>
+          <div class="panel-body">
+            <div id="knowledge-source-summary" class="summary-box">正在检查知识源状态...</div>
+            <div class="composer knowledge-composer">
+              <textarea id="knowledge-query" placeholder="例如：minimum sidewalk width near transit stops，或者 输入中文问题来手动核对 GraphRAG / PDF 证据。"></textarea>
+              <div class="actions">
+                <button id="knowledge-search-btn" class="btn secondary" type="button">查询知识</button>
+              </div>
             </div>
-            <div class="panel-body">
-              <div id="generation-result" class="result-box">尚未触发生成任务。</div>
+            <div id="knowledge-search-results" class="evidence-list"></div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Evidence</h2>
+          </div>
+          <div class="panel-body">
+            <div id="intent-box" class="summary-box">尚未生成设计意图。</div>
+            <div id="evidence-list" class="evidence-list"></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="tab-content" data-tab="3" style="display:none">
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Design Draft</h2>
+          </div>
+          <div class="panel-body">
+            <div id="draft-summary" class="summary-box">等待设计草案。</div>
+            <div id="parameter-form" class="form-grid"></div>
+            <div class="actions">
+              <button id="generate-btn" class="btn primary" disabled>确认参数并创建生成任务</button>
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="tab-content" data-tab="4" style="display:none">
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Scene Jobs</h2>
+          </div>
+          <div class="panel-body">
+            <div id="generation-result" class="result-box">尚未触发生成任务。</div>
+          </div>
+        </section>
       </div>
     </div>
   `;
@@ -332,6 +361,21 @@ export function mountWorkbench(app: HTMLDivElement): void {
   renderJobPanel();
   renderHeroSteps();
   void bootstrap();
+
+  // Tab button click handlers
+  app.querySelectorAll<HTMLButtonElement>(".tab-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      switchTab(Number(btn.dataset.tab));
+    });
+  });
+
+  // Hero pipeline step chips are also clickable
+  app.querySelectorAll<HTMLDivElement>(".hero-chip").forEach((chip) => {
+    chip.style.cursor = "pointer";
+    chip.addEventListener("click", () => {
+      switchTab(pipelineStepToTab(Number(chip.dataset.step)));
+    });
+  });
 
   knowledgeSource.addEventListener("change", () => {
     state.selectedKnowledgeSource = normalizeKnowledgeSourceKey(knowledgeSource.value);

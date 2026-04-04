@@ -174,12 +174,6 @@ select {
   font-size: 0.88rem;
 }
 
-.layout {
-  display: grid;
-  grid-template-columns: minmax(320px, 1.05fr) minmax(320px, 1fr);
-  gap: 18px;
-}
-
 .stack {
   display: grid;
   gap: 18px;
@@ -572,15 +566,77 @@ select {
 }
 
 @media (max-width: 1080px) {
-  .layout {
-    grid-template-columns: 1fr;
-  }
-
   body {
     padding: 16px;
   }
 
   .hero {
     padding: 22px;
+  }
+}
+
+/* ── Tab Bar ─────────────────────────────────────────── */
+.tab-bar {
+  display: flex;
+  flex-wrap: wrap;
+  background: var(--bg-paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.tab-btn {
+  flex: 1 1 auto;
+  min-width: 120px;
+  padding: 14px 18px;
+  border: none;
+  border-right: 1px solid var(--line);
+  background: transparent;
+  color: rgba(23, 33, 29, 0.72);
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tab-btn:last-child {
+  border-right: none;
+}
+
+.tab-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.tab-btn.active {
+  background: rgba(182, 82, 47, 0.1);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ── Tab Content ─────────────────────────────────────── */
+.tab-content {
+  display: grid;
+  gap: 18px;
+}
+
+.tab-content.tab-stack {
+  display: grid;
+  gap: 18px;
+}
+
+/* ── Responsive tab bar ──────────────────────────────── */
+@media (max-width: 1080px) {
+  .tab-bar {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tab-btn {
+    flex: 0 0 auto;
+    min-width: 100px;
+    padding: 12px 14px;
+    font-size: 0.86rem;
   }
 }
