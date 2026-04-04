@@ -110,6 +110,68 @@ select {
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.4);
   font-size: 0.92rem;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+
+.hero-chip.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  font-weight: 700;
+}
+
+.hero-chip.completed {
+  background: var(--forest);
+  color: #fff;
+  border-color: var(--forest);
+}
+
+.hero-chip.completed::after {
+  content: " \2713";
+}
+
+.config-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 18px;
+  background: var(--bg-paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.config-bar-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.config-bar-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(23,33,29,0.58);
+}
+
+.config-bar-select {
+  min-height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.6);
+  padding: 6px 10px;
+}
+
+.config-bar-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.btn-sm {
+  padding: 8px 14px;
+  font-size: 0.88rem;
 }
 
 .layout {
@@ -438,6 +500,41 @@ select {
 .status-pill.failed {
   background: rgba(171, 44, 44, 0.12);
   color: #982727;
+}
+
+.status-pill.running {
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity:1; }
+  50% { opacity:0.55; }
+}
+
+.phase-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.preview-iframe {
+  width: 100%;
+  height: 480px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #1a1a1a;
+}
+
+#preview-container {
+  margin-top: 12px;
 }
 
 .scene-list {

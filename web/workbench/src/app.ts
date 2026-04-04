@@ -80,7 +80,24 @@ export function mountWorkbench(app: HTMLDivElement): void {
       graph_template_id: DEFAULT_GRAPH_TEMPLATE_ID,
     } as SceneContext,
     bboxDirty: false,
+    previewVisible: false,
   };
+
+  function computePipelineStep(): number {
+    if (state.currentJob) return 4;
+    if (state.lastDraft?.draft) return 3;
+    if (state.lastDraft && state.lastDraft.evidence?.length > 0) return 2;
+    return 1;
+  }
+
+  function renderHeroSteps(): void {
+    const step = computePipelineStep();
+    app.querySelectorAll<HTMLDivElement>(".hero-chip").forEach((chip) => {
+      const chipStep = Number(chip.dataset.step);
+      chip.classList.toggle("completed", chipStep < step);
+      chip.classList.toggle("active", chipStep === step);
+    });
+  }
 
   app.innerHTML = `
     <div class="shell">
@@ -90,15 +107,40 @@ export function mountWorkbench(app: HTMLDivElement): void {
           生成工作台和 3D viewer 分开运行。这里负责对话、RAG、参数确认和任务触发；空间浏览与漫游交给独立 viewer。
         </p>
         <div class="hero-grid">
-          <div class="hero-chip">1. Intent Clarification</div>
-          <div class="hero-chip">2. GraphRAG Evidence</div>
-          <div class="hero-chip">3. Parameter Confirmation</div>
-          <div class="hero-chip">4. Scene Job</div>
+          <div class="hero-chip" data-step="1">1. Intent Clarification</div>
+          <div class="hero-chip" data-step="2">2. GraphRAG Evidence</div>
+          <div class="hero-chip" data-step="3">3. Parameter Confirmation</div>
+          <div class="hero-chip" data-step="4">4. Scene Job</div>
         </div>
         <div class="hero-actions">
           <a class="hero-link" href="${escapeHtml(VIEWER_BASE)}" target="_blank" rel="noreferrer">Open Standalone Viewer</a>
         </div>
       </section>
+
+      <div class="config-bar">
+        <div class="config-bar-group">
+          <span class="config-bar-label">Layout</span>
+          <select id="config-bar-layout" class="config-bar-select">
+            <option value="graph_template" selected>graph_template</option>
+            <option value="osm">osm</option>
+            <option value="metaurban">metaurban</option>
+            <option value="template">template</option>
+          </select>
+        </div>
+        <div class="config-bar-group">
+          <span class="config-bar-label">Knowledge</span>
+          <select id="config-bar-knowledge" class="config-bar-select">
+            <option value="graph_rag" selected>graph_rag</option>
+            <option value="hybrid">hybrid</option>
+            <option value="pdf_rag">pdf_rag</option>
+          </select>
+        </div>
+        <div class="config-bar-actions">
+          <button id="config-bar-draft-btn" class="btn primary btn-sm">Generate Draft</button>
+          <button id="config-bar-generate-btn" class="btn secondary btn-sm" disabled>Create Scene Job</button>
+          <a class="hero-link btn-sm" href="${escapeHtml(VIEWER_BASE)}" target="_blank" rel="noreferrer">Open Viewer</a>
+        </div>
+      </div>
 
 	      <div class="layout">
 	        <div class="stack">
@@ -278,20 +320,38 @@ export function mountWorkbench(app: HTMLDivElement): void {
   const parameterForm = requireElement<HTMLDivElement>(app, "#parameter-form");
   const generateBtn = requireElement<HTMLButtonElement>(app, "#generate-btn");
   const generationResult = requireElement<HTMLDivElement>(app, "#generation-result");
+  const configBarLayout = requireElement<HTMLSelectElement>(app, "#config-bar-layout");
+  const configBarKnowledge = requireElement<HTMLSelectElement>(app, "#config-bar-knowledge");
+  const configBarDraftBtn = requireElement<HTMLButtonElement>(app, "#config-bar-draft-btn");
+  const configBarGenerateBtn = requireElement<HTMLButtonElement>(app, "#config-bar-generate-btn");
 
   renderTimeline();
   renderParameterForm({});
   renderSceneSetup();
   renderKnowledgeSourcePanel();
   renderJobPanel();
+  renderHeroSteps();
   void bootstrap();
 
   knowledgeSource.addEventListener("change", () => {
     state.selectedKnowledgeSource = normalizeKnowledgeSourceKey(knowledgeSource.value);
+    configBarKnowledge.value = knowledgeSource.value;
+    renderKnowledgeSourcePanel();
+  });
+
+  configBarKnowledge.addEventListener("change", () => {
+    state.selectedKnowledgeSource = normalizeKnowledgeSourceKey(configBarKnowledge.value);
+    knowledgeSource.value = configBarKnowledge.value;
     renderKnowledgeSourcePanel();
   });
 
   sceneLayoutMode.addEventListener("change", () => {
+    configBarLayout.value = sceneLayoutMode.value;
+    renderSceneSetup();
+  });
+
+  configBarLayout.addEventListener("change", () => {
+    sceneLayoutMode.value = configBarLayout.value;
     renderSceneSetup();
   });
 
@@ -317,6 +377,14 @@ export function mountWorkbench(app: HTMLDivElement): void {
       renderSceneSetup();
     });
   });
+
+  configBarDraftBtn.addEventListener("click", () => { draftBtn.click(); });
+  configBarGenerateBtn.addEventListener("click", () => { generateBtn.click(); });
+
+  function syncButtons(): void {
+    configBarGenerateBtn.disabled = generateBtn.disabled;
+    configBarDraftBtn.disabled = draftBtn.disabled;
+  }
 
   draftBtn.addEventListener("click", async () => {
     const prompt = promptInput.value.trim();
@@ -478,6 +546,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
       generateBtn.disabled = false;
       draftBtn.disabled = false;
       presetPedestrianBtn.disabled = false;
+      syncButtons();
     }
   }
 
@@ -490,6 +559,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
     generateBtn.disabled = true;
     presetPedestrianBtn.disabled = true;
     draftBtn.disabled = true;
+    syncButtons();
     setStatus("正在创建场景生成任务...");
     try {
       const sceneContext = buildSceneContextFromForm();
@@ -518,6 +588,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
       generateBtn.disabled = false;
       draftBtn.disabled = false;
       presetPedestrianBtn.disabled = false;
+      syncButtons();
     }
   }
 
@@ -559,8 +630,10 @@ export function mountWorkbench(app: HTMLDivElement): void {
           state.lastGeneration = state.currentJob.result;
         }
         renderJobPanel();
+        renderHeroSteps();
         if (!TERMINAL_JOB_STATES.has(state.currentJob.status)) {
           generateBtn.disabled = true;
+          syncButtons();
           setStatus("检测到未完成任务，继续同步状态...");
           await pollSceneJob(state.currentJob.job_id);
           return;
@@ -714,8 +787,10 @@ export function mountWorkbench(app: HTMLDivElement): void {
         state.lastGeneration = payload.result;
       }
       renderJobPanel();
+      renderHeroSteps();
       if (TERMINAL_JOB_STATES.has(payload.status)) {
         generateBtn.disabled = false;
+        syncButtons();
         if (payload.status === "succeeded" && payload.result) {
           await refreshRecentScenes();
           setStatus("生成完成，可以在独立 viewer 中查看结果。");
@@ -767,9 +842,11 @@ export function mountWorkbench(app: HTMLDivElement): void {
   function renderDraftResponse(payload: DraftResponse): void {
     if (payload.stage === "clarification_required" || !payload.draft) {
       renderClarification(payload);
+      renderHeroSteps();
       return;
     }
     generateBtn.disabled = false;
+    syncButtons();
     renderIntent(payload.intent);
     renderEvidence(payload.evidence, payload.draft.citations_by_field);
     renderParameterForm(
@@ -778,10 +855,12 @@ export function mountWorkbench(app: HTMLDivElement): void {
       payload.draft.parameter_sources_by_field,
     );
     draftSummary.textContent = formatDraftSummary(payload.draft);
+    renderHeroSteps();
   }
 
   function renderClarification(payload: DraftResponse): void {
     generateBtn.disabled = true;
+    syncButtons();
     renderIntent(payload.intent);
     evidenceList.innerHTML = `<div class="field-note">澄清轮次暂不执行 RAG 检索，请先回答问题。</div>`;
     renderParameterForm({});
@@ -789,6 +868,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
       "需要先确认以下信息后，才能继续生成设计草案：",
       ...payload.intent.follow_up_questions.map((item, index) => `${index + 1}. ${item}`),
     ].join("\n");
+    renderHeroSteps();
   }
 
   function renderIntent(intent: DesignIntent): void {
@@ -851,6 +931,11 @@ export function mountWorkbench(app: HTMLDivElement): void {
     citationsByField: Record<string, string[]> = {},
     parameterSourcesByField: Record<string, string> = {},
   ): void {
+    const hasPatch = patch && Object.keys(patch).length > 0;
+    if (!hasPatch) {
+      parameterForm.innerHTML = `<div class="field-note" style="text-align:center;padding:12px 0;">等待生成设计草案后填充参数。</div>`;
+      return;
+    }
     parameterForm.innerHTML = FIELD_CONFIGS.map((field) => {
       const value = patch[field.key] ?? "";
       const citations = (citationsByField[field.key] || []).join(", ");
@@ -1002,6 +1087,71 @@ export function mountWorkbench(app: HTMLDivElement): void {
     `;
   }
 
+  function renderPhaseInfo(status: string, result: GenerationResponse | null): string {
+    const statusPill = `<span class="status-pill ${escapeHtml(status)}">${escapeHtml(status)}</span>`;
+    if (status === "queued") {
+      return `<div class="phase-row">${statusPill}<span class="field-note">Waiting...</span></div>`;
+    }
+    if (status === "running") {
+      return `<div class="phase-row">${statusPill}<span class="field-note">Generating scene...</span></div>`;
+    }
+    if (status === "failed") {
+      return `<div class="phase-row">${statusPill}<span class="field-note" style="color:#982727;">Failed</span></div>`;
+    }
+    if (status === "succeeded" && result) {
+      const normalizedLayoutPath = normalizeSceneLayoutPath(result.scene_layout_path);
+      const viewerUrl = resolveViewerUrl(result.viewer_url, result.scene_layout_path);
+      const layoutHtml = normalizedLayoutPath
+        ? `<div class="mono field-note">layout: ${escapeHtml(normalizedLayoutPath)}</div>`
+        : "";
+      const glbHtml = result.scene_glb_path
+        ? `<div class="mono field-note">glb: ${escapeHtml(result.scene_glb_path)}</div>`
+        : "";
+      const previewBtnHtml = viewerUrl
+        ? `<button class="btn secondary btn-sm preview-btn" data-viewer-url="${escapeHtml(viewerUrl)}">Preview 3D</button>`
+        : "";
+      const viewerLinkHtml = viewerUrl
+        ? `<a href="${escapeHtml(viewerUrl)}" target="_blank" rel="noreferrer">Open Viewer</a>`
+        : "";
+      return `
+        <div class="phase-row">${statusPill}</div>
+        ${layoutHtml}
+        ${glbHtml}
+        <div class="actions" style="margin-top:6px;">
+          ${previewBtnHtml}
+          ${viewerLinkHtml}
+        </div>
+      `;
+    }
+    return `<div class="phase-row">${statusPill}</div>`;
+  }
+
+  function toggleInlinePreview(viewerUrl: string): void {
+    const container = generationResult.querySelector<HTMLDivElement>("#preview-container");
+    if (!container) return;
+    if (state.previewVisible) {
+      container.innerHTML = "";
+      container.style.display = "none";
+      state.previewVisible = false;
+      return;
+    }
+    container.innerHTML = `
+      <div class="preview-header">
+        <strong>3D Preview</strong>
+        <button class="btn secondary btn-sm preview-close-btn">Close</button>
+      </div>
+      <iframe class="preview-iframe" src="${escapeHtml(viewerUrl)}" allowfullscreen></iframe>
+    `;
+    container.style.display = "";
+    state.previewVisible = true;
+    const closeBtn = container.querySelector<HTMLButtonElement>(".preview-close-btn");
+    closeBtn?.addEventListener("click", () => {
+      state.previewVisible = false;
+      container.innerHTML = "";
+      container.style.display = "none";
+    });
+  }
+
   function renderJobPanel(): void {
     const currentJob = state.currentJob;
     const currentJobHtml = currentJob
@@ -1009,8 +1159,8 @@ export function mountWorkbench(app: HTMLDivElement): void {
           <div class="result-section">
             <div class="result-head">
               <strong>Current Job</strong>
-              <span class="status-pill ${escapeHtml(currentJob.status)}">${escapeHtml(currentJob.status)}</span>
             </div>
+            ${renderPhaseInfo(currentJob.status, currentJob.result)}
             <div class="field-note">job_id: <span class="mono">${escapeHtml(currentJob.job_id)}</span></div>
             <div class="field-note">created: ${escapeHtml(formatTimestamp(currentJob.created_at))}</div>
             ${currentJob.started_at ? `<div class="field-note">started: ${escapeHtml(formatTimestamp(currentJob.started_at))}</div>` : ""}
@@ -1051,6 +1201,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
 
     generationResult.innerHTML = `
       ${currentJobHtml}
+      <div id="preview-container" style="display:none"></div>
       <div class="result-section">
         <div class="result-head">
           <strong>Recent Scenes</strong>
@@ -1072,6 +1223,16 @@ export function mountWorkbench(app: HTMLDivElement): void {
         refreshBtn.disabled = false;
       }
     });
+
+    generationResult.querySelectorAll<HTMLButtonElement>(".preview-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const viewerUrl = btn.dataset.viewerUrl;
+        if (viewerUrl) {
+          toggleInlinePreview(viewerUrl);
+        }
+      });
+    });
+    renderHeroSteps();
   }
 
   function renderGenerationCard(result: GenerationResponse): string {
@@ -1081,6 +1242,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
     const links: string[] = [];
     if (viewerUrl) {
       links.push(`<div><a href="${escapeHtml(viewerUrl)}" target="_blank" rel="noreferrer">Open Viewer</a></div>`);
+      links.push(`<button class="btn secondary btn-sm preview-btn" data-viewer-url="${escapeHtml(viewerUrl)}">Preview 3D</button>`);
     } else {
       links.push(`<div class="field-note">Viewer 链接暂不可用，请直接检查导出的 scene 文件。</div>`);
     }
