@@ -34,6 +34,16 @@ _INT_FIELDS = frozenset({"lane_count"})
 _STRING_FIELDS = _PATCH_FIELD_SET - _FLOAT_FIELDS - _INT_FIELDS
 _EMPTY_TEXT_MARKERS = frozenset({"", "none", "null", "n/a", "na", "unspecified", "not specified"})
 
+# Enum fields: value (lowercased) must be one of these sets, otherwise dropped.
+_ENUM_VALID_VALUES: Dict[str, frozenset] = {
+    "objective_profile": frozenset({"balanced", "greening", "commerce", "transit"}),
+    "ped_demand_level": frozenset({"low", "medium", "high"}),
+    "bike_demand_level": frozenset({"low", "medium", "high"}),
+    "transit_demand_level": frozenset({"low", "medium", "high"}),
+    "vehicle_demand_level": frozenset({"low", "medium", "high"}),
+    "beauty_mode": frozenset({"presentation_v1"}),
+}
+
 DEFAULT_COMPOSE_CONFIG_PATCH_VALUES: Dict[str, Any] = {
     "design_rule_profile": "balanced_complete_street_v1",
     "target_street_type": "mixed_use",
@@ -79,8 +89,12 @@ def sanitize_compose_config_patch(payload: Mapping[str, Any] | None) -> Dict[str
                 continue
         elif key in _STRING_FIELDS:
             text = _clean_text(value)
-            if text:
-                patch[key] = text
+            if not text:
+                continue
+            if key in _ENUM_VALID_VALUES:
+                if text.lower() not in _ENUM_VALID_VALUES[key]:
+                    continue
+            patch[key] = text
     return patch
 
 

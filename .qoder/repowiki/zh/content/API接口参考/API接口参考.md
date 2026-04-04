@@ -14,6 +14,14 @@
 - [tests/test_design_api.py](file://tests/test_design_api.py)
 </cite>
 
+## 更新摘要
+**变更内容**
+- 基于Applied Changes中的Web API章节，更新了FastAPI端点的详细说明和方法映射
+- 完善了工作台端点和直接生成端点的FastAPI路由结构
+- 更新了数据类型定义和请求/响应模型
+- 增强了错误处理和状态管理的文档说明
+- 补充了完整的端点参数规范和示例
+
 ## 目录
 1. [简介](#简介)
 2. [项目结构](#项目结构)
@@ -84,7 +92,7 @@ TD -.-> WA
 - [ui/api/main.py:1-6](file://ui/api/main.py#L1-L6)
 - [src/roadgen3d/services/generation_api.py:1-294](file://src/roadgen3d/services/generation_api.py#L1-L294)
 - [src/roadgen3d/services/scene_jobs.py:1-205](file://src/roadgen3d/services/scene_jobs.py#L1-L205)
-- [src/roadgen3d/services/design_types.py:1-368](file://src/roadgen3d/services/design_types.py#L1-L368)
+- [src/roadgen3d/services/design_types.py:1-382](file://src/roadgen3d/services/design_types.py#L1-L382)
 - [src/roadgen3d/services/design_runtime.py:1-460](file://src/roadgen3d/services/design_runtime.py#L1-L460)
 - [src/roadgen3d/services/generation_core.py:1-445](file://src/roadgen3d/services/generation_core.py#L1-L445)
 - [requirements-ui.txt:1-12](file://requirements-ui.txt#L1-L12)
@@ -103,7 +111,7 @@ TD -.-> WA
 - [web/api/main.py:81-267](file://web/api/main.py#L81-L267)
 - [src/roadgen3d/services/generation_api.py:27-294](file://src/roadgen3d/services/generation_api.py#L27-L294)
 - [src/roadgen3d/services/scene_jobs.py:42-205](file://src/roadgen3d/services/scene_jobs.py#L42-L205)
-- [src/roadgen3d/services/design_types.py:131-368](file://src/roadgen3d/services/design_types.py#L131-L368)
+- [src/roadgen3d/services/design_types.py:131-382](file://src/roadgen3d/services/design_types.py#L131-L382)
 - [src/roadgen3d/services/design_runtime.py:1-460](file://src/roadgen3d/services/design_runtime.py#L1-L460)
 - [src/roadgen3d/services/generation_core.py:1-445](file://src/roadgen3d/services/generation_core.py#L1-L445)
 
@@ -498,6 +506,131 @@ Failed --> [*]
 - program_ckpt: Optional[Path]
 - policy_temperature: float
 
+#### 直接生成参数（MetaurbanDesignParams）
+- reference_plan_id: str
+- lane_count: int
+- lane_width_m: float
+- sidewalk_width_m: float
+- road_width_m: Optional[float]
+- segment_length_m: float
+- start_heading_deg: float
+- block_sequence: Optional[str]
+- block_count: int
+- seed: int
+
+#### 直接生成参数（TemplateDesignParams）
+- template_id: str
+- lane_count: int
+- lane_width_m: float
+- sidewalk_width_m: float
+- road_width_m: float
+- length_m: float
+- seed: int
+
+#### 直接生成参数（OsmDesignParams）
+- city_name_en: str
+- lane_count: int
+- lane_width_m: float
+- sidewalk_width_m: float
+- road_width_m: float
+- length_m: float
+- aoi_bbox: Optional[List[float]]
+- road_selection: str
+- seed: int
+
 **章节来源**
-- [src/roadgen3d/services/design_types.py:202-368](file://src/roadgen3d/services/design_types.py#L202-L368)
+- [src/roadgen3d/services/design_types.py:202-382](file://src/roadgen3d/services/design_types.py#L202-L382)
 - [src/roadgen3d/services/generation_core.py:84-135](file://src/roadgen3d/services/generation_core.py#L84-L135)
+
+### FastAPI端点详细说明
+
+#### 工作台端点（web/api/main.py）
+- GET /api/health
+  - 功能：健康检查
+  - 响应：JSON对象，包含服务状态和默认路径
+- GET /api/reference-plans
+  - 功能：获取参考规划列表
+  - 响应：包含计划ID和图像URL的列表
+- GET /api/reference-plans/{plan_id}/image
+  - 功能：获取参考规划图像
+  - 参数：plan_id（路径参数）
+  - 响应：图片文件
+- GET /api/graph-templates
+  - 功能：获取图形模板列表
+  - 响应：包含模板ID和图像URL的列表
+- GET /api/graph-templates/{template_id}/image
+  - 功能：获取图形模板图像
+  - 参数：template_id（路径参数）
+  - 响应：图片文件
+- POST /api/reference-annotations/convert
+  - 功能：转换参考标注
+  - 请求体：annotation和compose_config
+  - 响应：转换后的图形数据
+- POST /api/design/draft
+  - 功能：生成设计草稿
+  - 请求体：messages、user_input、current_patch、topk、knowledge_source
+  - 响应：设计草稿包
+- POST /api/design/generate
+  - 功能：生成场景
+  - 请求体：draft、scene_context、patch_overrides、generation_options
+  - 响应：生成结果
+- POST /api/scene/jobs
+  - 功能：创建场景作业
+  - 请求体：draft、scene_context、patch_overrides、generation_options
+  - 响应：作业创建响应
+- GET /api/scene/jobs
+  - 功能：获取场景作业列表
+  - 查询参数：limit
+  - 响应：作业列表
+- GET /api/scene/jobs/{job_id}
+  - 功能：获取特定场景作业
+  - 参数：job_id（路径参数）
+  - 响应：作业状态
+- GET /api/scenes/recent
+  - 功能：获取最近场景
+  - 查询参数：limit
+  - 响应：场景列表
+- POST /api/knowledge/rebuild
+  - 功能：重建知识库
+  - 请求体：pdf_path、artifact_dir
+  - 响应：重建结果
+- GET /api/knowledge/sources
+  - 功能：获取知识源列表
+  - 响应：知识源清单
+- POST /api/knowledge/search
+  - 功能：搜索知识
+  - 请求体：query、topk、knowledge_source
+  - 响应：匹配证据列表
+- POST /api/design/evaluate
+  - 功能：评估场景
+  - 请求体：layout_path、image_path
+  - 响应：评估结果
+
+#### 直接生成端点（src/roadgen3d/services/generation_api.py）
+- POST /api/designs/metaurban
+  - 功能：生成MetaUrban风格设计
+  - 请求体：参考方案参数
+  - 响应：job_id和状态
+- POST /api/designs/template
+  - 功能：生成图形模板设计
+  - 请求体：模板参数
+  - 响应：job_id和状态
+- POST /api/designs/osm
+  - 功能：生成OSM基础设计
+  - 请求体：OSM参数
+  - 响应：job_id和状态（当前占位）
+- GET /api/designs/{job_id}/status
+  - 功能：获取设计状态
+  - 参数：job_id（路径参数）
+  - 响应：作业状态详情
+- GET /api/scenes/{job_id}
+  - 功能：获取场景结果
+  - 参数：job_id（路径参数）
+  - 响应：完整场景结果
+- GET /api/designs/health
+  - 功能：生成API健康检查
+  - 响应：健康状态
+
+**章节来源**
+- [web/api/main.py:92-267](file://web/api/main.py#L92-L267)
+- [src/roadgen3d/services/generation_api.py:131-294](file://src/roadgen3d/services/generation_api.py#L131-L294)

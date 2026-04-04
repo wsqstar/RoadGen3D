@@ -94,11 +94,13 @@ eval:
 SNAPSHOT_QUERY ?= "modern pedestrian-friendly street with trees and benches"
 SNAPSHOT_ITERS ?= 3
 
+SF_MANIFEST := data/street_furniture/street_furniture_manifest.jsonl
+
 snapshot-diff:
 	$(PYTHON) scripts/snapshot_diff.py \
 		--query $(SNAPSHOT_QUERY) \
 		--max-iterations $(SNAPSHOT_ITERS) \
-		--manifest $(MANIFEST) \
+		--manifest $(SF_MANIFEST) \
 		--model-dir $(MODEL_DIR) \
 		--local-files-only \
 		--device cpu
