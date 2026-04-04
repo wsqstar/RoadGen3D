@@ -174,6 +174,76 @@ artifacts/auto_pipeline/my_scene/
 
 Stop conditions: early stop after 2 consecutive rounds without score improvement, or when `--max-iterations` is reached.
 
+### Multi-Version Auto Evaluation (CLI)
+
+Run multiple design queries through the full pipeline in one shot. Each query goes through the LLM-driven generate → evaluate → iterate loop, renders presentation views for the best result, and produces a consolidated evaluation report.
+
+```bash
+.venv/bin/python scripts/run_auto_eval.py \
+  --output-dir artifacts/auto_eval_$(date +%Y%m%d_%H%M%S) \
+  --max-iterations 3 \
+  --queries "modern transit boulevard" \
+            "pedestrian-friendly green street" \
+            "commercial shopping district street" \
+  --manifest data/real/real_assets_manifest.jsonl \
+  --model-dir models/clip-vit-base-patch32 \
+  --local-files-only \
+  --device cpu
+```
+
+| Parameter | Description | Default |
+|-----------|-------------|---------|
+| `--output-dir` | Root output directory | `artifacts/auto_eval_<timestamp>` |
+| `--max-iterations` | Max iterations per query | `3` |
+| `--queries` | Design queries (space-separated) | 3 built-in queries |
+| `--template-id` | Graph template ID | `hkust_gz_gate` |
+| `--manifest` | Asset manifest JSONL path | `data/real/real_assets_manifest.jsonl` |
+| `--model-dir` | CLIP model directory | `models/clip-vit-base-patch32` |
+| `--local-files-only` | Offline mode | `False` |
+| `--device` | Torch device | `cpu` |
+
+Output structure:
+
+```
+artifacts/auto_eval_<timestamp>/
+├── version_00_modern_transit_boulevard/
+│   ├── iter_00/ ... iter_02/
+│   ├── final/
+│   │   ├── scene_layout.json
+│   │   ├── scene.glb
+│   │   ├── preview.png
+│   │   └── presentation_views/
+│   │       ├── final_plan_axonometric.png
+│   │       ├── final_oblique_45_axonometric.png
+│   │       ├── hero_left.png
+│   │       ├── hero_right.png
+│   │       └── overview_top_design.png
+│   └── iteration_log.json
+├── version_01_pedestrian_friendly_green_street/
+├── version_02_commercial_shopping_district_street/
+└── eval_report.json
+```
+
+### Automated Pipeline Tests
+
+The test suite in `tests/test_auto_eval.py` validates the full pipeline end-to-end. Tests 1–4 call the real LLM API (auto-skipped if `glm_base_url` and `key` are not set in `.env`), while test 5 uses a mock service for deterministic early-stop verification.
+
+```bash
+# Run all tests (real-LLM tests auto-skip without API credentials)
+.venv/bin/python -m pytest tests/test_auto_eval.py -v
+
+# Force-skip real-LLM tests (only mock + presentation tests)
+GLM_SKIP=1 .venv/bin/python -m pytest tests/test_auto_eval.py -v
+```
+
+| Test | LLM | What it verifies |
+|------|-----|-----------------|
+| `TestAutoEvalGeneratesMultipleVersions` | Real | Multiple queries produce distinct iteration dirs, final/, and different config patches |
+| `TestAutoEvalSavesIterationLogs` | Real | `iteration_log.json` has correct structure (score, evaluation, suggestions, config_patch) |
+| `TestAutoEvalRendersPresentationViews` | None | `render_presentation_views()` outputs valid view dicts |
+| `TestAutoEvalProducesEvalReport` | Real | `eval_report.json` aggregates all versions with plausible scores in [0, 10] |
+| `TestAutoEvalLLMIterationsImproveOrStop` | Mock | Controller stops after ≤3 iterations when scores stagnate |
+
 ### Single Asset Pipeline (CLI)
 
 ```bash
