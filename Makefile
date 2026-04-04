@@ -10,7 +10,7 @@ WORKBENCH_WEB_PORT := 4174
 VIEWER_HOST := 127.0.0.1
 VIEWER_PORT := 4173
 
-.PHONY: dev gradio-dev ui-api workbench-api workbench-web workbench-install viewer-web viewer-install ui-web ui-install knowledge-build train collect eval help
+.PHONY: dev gradio-dev ui-api workbench-api workbench-web workbench-install viewer-web viewer-install ui-web ui-install knowledge-build train collect eval snapshot-diff help
 
 help:
 	@echo "make dev               - Launch workbench API + workbench web + viewer web"
@@ -25,6 +25,7 @@ help:
 	@echo "make collect   - Collect M4 policy training data"
 	@echo "make train     - Train layout policy (M4)"
 	@echo "make eval      - Run M4 engineering evaluation"
+	@echo "make snapshot-diff - Run snapshot diff pipeline (real LLM, single query)"
 
 dev:
 	@trap 'kill 0' INT TERM EXIT; \
@@ -89,3 +90,15 @@ eval:
 		--placement-policy learned --policy-ckpt $(M4_DIR)/layout_policy.pt \
 		--compare-rule --manifest $(MANIFEST) --artifacts $(ARTIFACTS) \
 		--out-dir $(M4_DIR) --model-dir $(MODEL_DIR) --local-files-only
+
+SNAPSHOT_QUERY ?= "modern pedestrian-friendly street with trees and benches"
+SNAPSHOT_ITERS ?= 3
+
+snapshot-diff:
+	$(PYTHON) scripts/snapshot_diff.py \
+		--query $(SNAPSHOT_QUERY) \
+		--max-iterations $(SNAPSHOT_ITERS) \
+		--manifest $(MANIFEST) \
+		--model-dir $(MODEL_DIR) \
+		--local-files-only \
+		--device cpu

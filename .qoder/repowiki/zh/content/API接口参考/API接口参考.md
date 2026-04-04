@@ -9,10 +9,9 @@
 - [src/roadgen3d/services/design_types.py](file://src/roadgen3d/services/design_types.py)
 - [src/roadgen3d/services/design_runtime.py](file://src/roadgen3d/services/design_runtime.py)
 - [src/roadgen3d/services/generation_core.py](file://src/roadgen3d/services/generation_core.py)
-- [API_GUIDE.md](file://API_GUIDE.md)
+- [requirements-ui.txt](file://requirements-ui.txt)
 - [test_generation_api.py](file://test_generation_api.py)
 - [tests/test_design_api.py](file://tests/test_design_api.py)
-- [requirements-ui.txt](file://requirements-ui.txt)
 </cite>
 
 ## 目录
@@ -36,7 +35,7 @@
 - 图形模板：GET /api/graph-templates；GET /api/graph-templates/{template_id}/image
 - 参考标注转换：POST /api/reference-annotations/convert
 - 直接生成（Web Viewer 专用）：POST /api/designs/metaurban；POST /api/designs/template；POST /api/designs/osm；GET /api/designs/{job_id}/status；GET /api/scenes/{job_id}
-- 健康检查：GET /api/health
+- 健康检查：GET /api/health；GET /api/designs/health
 
 同时提供认证、速率限制、版本控制、客户端实现示例、错误处理策略、异步作业轮询机制、迁移指南与向后兼容性说明。
 
@@ -48,7 +47,6 @@
 - 数据类型与生成选项位于 src/roadgen3d/services/design_types.py。
 - 场景生成运行时位于 src/roadgen3d/services/design_runtime.py。
 - 生成核心逻辑位于 src/roadgen3d/services/generation_core.py。
-- 示例与迁移指南见 API_GUIDE.md。
 - 单元测试覆盖了设计 API 的行为与路由结构。
 
 ```mermaid
@@ -64,8 +62,8 @@ DT["src/roadgen3d/services/design_types.py<br/>数据类型"]
 DR["src/roadgen3d/services/design_runtime.py<br/>场景生成运行时"]
 GC["src/roadgen3d/services/generation_core.py<br/>生成核心逻辑"]
 end
-subgraph "文档与测试"
-DG["API_GUIDE.md<br/>示例与迁移"]
+subgraph "测试与依赖"
+REQ["requirements-ui.txt<br/>依赖声明"]
 TG["test_generation_api.py<br/>路由与结构验证"]
 TD["tests/test_design_api.py<br/>工作台端点测试"]
 end
@@ -75,8 +73,8 @@ GA --> DT
 GA --> SJ
 GA --> GC
 DR --> GC
-DG -.-> WA
-DG -.-> GA
+REQ -.-> WA
+REQ -.-> GA
 TG -.-> GA
 TD -.-> WA
 ```
@@ -89,19 +87,7 @@ TD -.-> WA
 - [src/roadgen3d/services/design_types.py:1-368](file://src/roadgen3d/services/design_types.py#L1-L368)
 - [src/roadgen3d/services/design_runtime.py:1-460](file://src/roadgen3d/services/design_runtime.py#L1-L460)
 - [src/roadgen3d/services/generation_core.py:1-445](file://src/roadgen3d/services/generation_core.py#L1-L445)
-- [API_GUIDE.md:1-337](file://API_GUIDE.md#L1-L337)
-- [test_generation_api.py:1-146](file://test_generation_api.py#L1-L146)
-- [tests/test_design_api.py:1-523](file://tests/test_design_api.py#L1-L523)
-
-**章节来源**
-- [web/api/main.py:1-286](file://web/api/main.py#L1-L286)
-- [ui/api/main.py:1-6](file://ui/api/main.py#L1-L6)
-- [src/roadgen3d/services/generation_api.py:1-294](file://src/roadgen3d/services/generation_api.py#L1-L294)
-- [src/roadgen3d/services/scene_jobs.py:1-205](file://src/roadgen3d/services/scene_jobs.py#L1-L205)
-- [src/roadgen3d/services/design_types.py:1-368](file://src/roadgen3d/services/design_types.py#L1-L368)
-- [src/roadgen3d/services/design_runtime.py:1-460](file://src/roadgen3d/services/design_runtime.py#L1-L460)
-- [src/roadgen3d/services/generation_core.py:1-445](file://src/roadgen3d/services/generation_core.py#L1-L445)
-- [API_GUIDE.md:1-337](file://API_GUIDE.md#L1-L337)
+- [requirements-ui.txt:1-12](file://requirements-ui.txt#L1-L12)
 - [test_generation_api.py:1-146](file://test_generation_api.py#L1-L146)
 - [tests/test_design_api.py:1-523](file://tests/test_design_api.py#L1-L523)
 
@@ -354,7 +340,6 @@ GA-->>C : 完整结果
 
 **章节来源**
 - [src/roadgen3d/services/generation_api.py:131-284](file://src/roadgen3d/services/generation_api.py#L131-L284)
-- [API_GUIDE.md:79-167](file://API_GUIDE.md#L79-L167)
 
 ### 健康检查
 - GET /api/health
@@ -418,7 +403,7 @@ UAPI["ui/api/main.py<br/>兼容入口"] --> WAPI
   - /api/designs/osm 端点当前返回失败状态
 
 **章节来源**
-- [API_GUIDE.md:303-327](file://API_GUIDE.md#L303-L327)
+- [test_generation_api.py:110-146](file://test_generation_api.py#L110-L146)
 
 ## 结论
 本接口文档系统性梳理了 RoadGen3D 的 REST API，涵盖工作台与直接生成两类路径，并对异步作业、知识检索、参考规划、图形模板与错误处理进行了详细说明。建议在生产环境中引入后台任务队列与持久化存储，以提升可靠性与扩展性。
@@ -431,20 +416,19 @@ UAPI["ui/api/main.py<br/>兼容入口"] --> WAPI
 - 速率限制
   - 未内置速率限制；建议在网关或反向代理层配置限速策略
 - 版本控制
-  - 应用版本号在 web/api/main.py 中声明；直接生成端点遵循 API_GUIDE.md 的版本语义
+  - 应用版本号在 web/api/main.py 中声明；直接生成端点遵循 API 结构
 
 **章节来源**
 - [web/api/main.py:82](file://web/api/main.py#L82)
-- [API_GUIDE.md:1-13](file://API_GUIDE.md#L1-L13)
 
 ### 客户端实现示例
 - Python SDK 示例（轮询状态、获取查看器URL）
-  - 参考 API_GUIDE.md 中的示例脚本与注释
+  - 参考 test_generation_api.py 中的测试用例与注释
 - FastAPI 测试客户端
   - tests/test_design_api.py 展示了如何使用 TestClient 调用工作台端点
 
 **章节来源**
-- [API_GUIDE.md:227-266](file://API_GUIDE.md#L227-L266)
+- [test_generation_api.py:110-146](file://test_generation_api.py#L110-L146)
 - [tests/test_design_api.py:183-307](file://tests/test_design_api.py#L183-L307)
 
 ### 异步作业状态轮询机制
@@ -478,7 +462,7 @@ Failed --> [*]
   - 如需 LLM 辅助设计，按需启用可选 LLM 模块
 
 **章节来源**
-- [API_GUIDE.md:269-300](file://API_GUIDE.md#L269-L300)
+- [test_generation_api.py:110-146](file://test_generation_api.py#L110-L146)
 
 ### 数据类型与参数规范
 
