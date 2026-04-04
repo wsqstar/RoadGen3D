@@ -8,6 +8,7 @@ import math
 import random
 import time
 from collections import Counter
+import dataclasses
 from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
@@ -2337,6 +2338,167 @@ def _export_scene(scene, out_dir: Path, export_format: str) -> Dict[str, str]:
         scene_mesh = scene.to_geometry()
         scene_mesh.export(ply_path)
         outputs["scene_ply"] = str(ply_path)
+    return outputs
+
+
+def rebuild_glb_from_layout(
+    layout_path: Path,
+    manifest_path: Path,
+    out_dir: Path | None = None,
+) -> Dict[str, str]:
+    """Lightweight GLB re-export from a modified scene_layout.json.
+
+    Reconstructs the minimum state needed to call _build_base_scene,
+    _add_instance_meshes, and _export_scene without re-running the
+    expensive placement pipeline (CLIP embedding, FAISS retrieval,
+    collision detection).
+
+    For asset_ids not found in the manifest (e.g. LLM-invented like
+    ``flower_bed_llm_edit``), a coloured box placeholder mesh is created.
+
+    Parameters
+    ----------
+    layout_path:
+        Path to scene_layout.json.
+    manifest_path:
+        Path to the asset manifest JSONL (used to load real meshes).
+    out_dir:
+        Directory for the exported GLB.  Defaults to the parent of
+        *layout_path*.
+
+    Returns
+    -------
+    dict  with key ``"scene_glb"`` mapping to the exported file path.
+    """
+    trimesh = _require_trimesh()
+
+    layout_payload = json.loads(Path(layout_path).read_text(encoding="utf-8"))
+    if out_dir is None:
+        out_dir = Path(layout_path).parent / "rebuild"
+    out_dir = Path(out_dir).resolve()
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    # --- 1. Reconstruct StreetComposeConfig from serialized config dict ---
+    config_dict: Dict[str, Any] = layout_payload.get("config") or {}
+    valid_fields = {f.name for f in dataclasses.fields(StreetComposeConfig)}
+    filtered_config = {k: v for k, v in config_dict.items() if k in valid_fields}
+    config = StreetComposeConfig(**filtered_config)
+
+    # --- 2. Reconstruct a StreetProgram-like namespace from bands ---
+    sp_dict: Dict[str, Any] = layout_payload.get("street_program") or {}
+    bands_data = sp_dict.get("bands") or []
+
+    class _BandProxy:
+        """Minimal namespace matching StreetBand fields used by _build_base_scene."""
+        pass
+
+    class _ProgramProxy:
+        pass
+
+    proxy_bands = []
+    for b in bands_data:
+        bp = _BandProxy()
+        bp.name = str(b.get("name", ""))
+        bp.kind = str(b.get("kind", ""))
+        bp.side = str(b.get("side", ""))
+        bp.width_m = float(b.get("width_m", 0))
+        bp.z_center_m = float(b.get("z_center_m", 0))
+        bp.allowed_categories = tuple(b.get("allowed_categories") or ())
+        proxy_bands.append(bp)
+
+    program_proxy = _ProgramProxy()
+    program_proxy.bands = tuple(proxy_bands)
+    # Also expose other fields that _build_base_scene may read
+    for attr in ("road_width_m", "sidewalk_width_m", "furnishing_width_m",
+                  "left_furnishing_width_m", "right_furnishing_width_m",
+                  "left_clear_path_width_m", "right_clear_path_width_m"):
+        if attr in sp_dict:
+            setattr(program_proxy, attr, float(sp_dict[attr]))
+
+    # --- 3. Load manifest rows, filter to referenced asset_ids ---
+    placements_data: List[Dict[str, Any]] = layout_payload.get("placements") or []
+    referenced_asset_ids = {str(p.get("asset_id", "")) for p in placements_data}
+
+    rows = _load_real_manifest(Path(manifest_path))
+    filtered_rows = [r for r in rows if str(r["asset_id"]) in referenced_asset_ids]
+
+    # --- 4. Build mesh cache for referenced assets ---
+    mesh_cache: Dict[str, _MeshCacheEntry] = {}
+    if filtered_rows:
+        mesh_cache = _load_mesh_cache(filtered_rows)
+
+    # --- 5. Create placeholder meshes for LLM-invented asset_ids ---
+    placeholder_ids = referenced_asset_ids - set(mesh_cache.keys())
+    for pid in placeholder_ids:
+        box = trimesh.creation.box(extents=(0.8, 0.4, 0.8))
+        box.visual = trimesh.visual.ColorVisuals(
+            mesh=box,
+            vertex_colors=np.tile([100, 180, 100, 220], (len(box.vertices), 1)),
+        )
+        mesh_cache[pid] = _MeshCacheEntry(
+            mesh=box,
+            half_x=0.4,
+            half_z=0.4,
+            min_y=0.0,
+            center_x=0.0,
+            center_z=0.0,
+            is_scene=False,
+            native_height_y=0.4,
+        )
+
+    # --- 6. Reconstruct StreetPlacement objects ---
+    placements: List[StreetPlacement] = []
+    for p in placements_data:
+        pl = StreetPlacement(
+            instance_id=str(p.get("instance_id", "")),
+            asset_id=str(p.get("asset_id", "")),
+            category=str(p.get("category", "unknown")),
+            score=float(p.get("score", 1.0) or 1.0),
+            position_xyz=[float(v) for v in (p.get("position_xyz") or [0, 0, 0])],
+            yaw_deg=float(p.get("yaw_deg", 0.0) or 0.0),
+            scale=float(p.get("scale", 1.0) or 1.0),
+            bbox_xz=[float(v) for v in (p.get("bbox_xz") or [])],
+            selection_source=str(p.get("selection_source", "llm_layout_edit")),
+            placement_group=str(p.get("placement_group", "street_furniture")),
+            constraint_penalty=float(p.get("constraint_penalty", 0.0)),
+            feasibility_score=float(p.get("feasibility_score", 1.0)),
+            violated_rules=tuple(p.get("violated_rules") or ()),
+        )
+        placements.append(pl)
+
+    # --- 7. Rebuild building plans if present ---
+    building_plans_by_instance: Dict[str, Any] = {}
+    bp_data = layout_payload.get("building_placements") or []
+    for bp in bp_data:
+        iid = str(bp.get("instance_id", ""))
+        if iid:
+            building_plans_by_instance[iid] = bp
+
+    # --- 8. Build base scene ---
+    length_m = float(config.length_m)
+    road_width_m = float(sp_dict.get("road_width_m", config.road_width_m))
+    left_sw = float(sp_dict.get("sidewalk_width_m", config.sidewalk_width_m))
+    right_sw = float(sp_dict.get("sidewalk_width_m", config.sidewalk_width_m))
+
+    scene = _build_base_scene(
+        length_m=length_m,
+        road_width_m=road_width_m,
+        left_side_width_m=left_sw,
+        right_side_width_m=right_sw,
+        street_program=program_proxy,
+    )
+
+    # --- 9. Add instance meshes ---
+    _add_instance_meshes(
+        scene,
+        placements=placements,
+        mesh_cache=mesh_cache,
+        building_plans_by_instance=building_plans_by_instance or None,
+    )
+
+    # --- 10. Export ---
+    outputs = _export_scene(scene, out_dir, export_format="glb")
+    print(f"[rebuild_glb] Exported → {outputs.get('scene_glb', '')}")
     return outputs
 
 

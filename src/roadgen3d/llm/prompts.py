@@ -211,6 +211,149 @@ def build_scene_evaluation_messages(
     ]
 
 
+def build_layout_edit_messages(
+    image_data_url: str,
+    layout_summary: str,
+    user_query: str,
+    iteration: int,
+    score_history: list[float] | None = None,
+) -> list[Dict[str, str]]:
+    """Build messages for LLM to propose layout edits.
+
+    The LLM sees a top-down preview image and the current layout summary,
+    then proposes a JSON patch to add/remove placements or resize bands.
+    """
+    system_prompt = (
+        "你是 RoadGen3D 的场景编辑专家。"
+        "你看到一个街道场景的俯视预览图和当前布局摘要。"
+        "你需要根据用户的设计需求和当前场景状态，提出具体的布局修改建议。"
+        "你只能输出 JSON。"
+        "字段必须包含："
+        "`add_placements`(array)、`remove_placements`(array)、"
+        "`resize_bands`(array)、`batch_add_along_street`(array)、"
+        "`adjust_sub_lanes`(array)、`reasoning`(string)。"
+        "\n"
+        "add_placements 中每个元素必须包含："
+        "`category`(string, 如 tree/bench/lamp/trash/bollard/hydrant/mailbox/bus_stop/"
+        "flower_bed/planter/shrub)、"
+        "`position_xyz`(array of 3 numbers)、"
+        "`yaw_deg`(number, 默认0)、`scale`(number, 默认1.0)。"
+        "\n"
+        "remove_placements 是要删除的 instance_id 字符串数组。"
+        "\n"
+        "resize_bands 中每个元素必须包含："
+        "`band_name`(string, 如 left_furnishing/right_furnishing/carriageway)、"
+        "`width_m`(number, 新宽度)。"
+        "\n"
+        "batch_add_along_street 批量沿街道等距添加元素，每个元素必须包含："
+        "`category`(string, 如 tree/flower_bed/planter/shrub)、"
+        "`side`(string, left 或 right)、"
+        "`band_name`(string, 参考 layout_summary 中 Bands 部分的 band 名称)、"
+        "`spacing_m`(number, 间距，默认8.0)、"
+        "`count`(integer, 数量，0表示按间距自动计算)、"
+        "`yaw_deg`(number, 默认0)、`scale`(number, 默认1.0)。"
+        "\n"
+        "adjust_sub_lanes 调整车道数量和宽度，每个元素必须包含："
+        "`side`(string, 如 left)、"
+        "`width_m`(number, 目标车行道总宽度)、"
+        "`lane_count`(integer, 可选，目标车道数)。"
+        "\n"
+        "注意事项：\n"
+        "1. 新增元素的位置必须在合理的空间范围内（参考已有元素的坐标范围）。\n"
+        "2. 道路中央（carriageway）不应放置家具。\n"
+        "3. left_furnishing 的 z 坐标为正值，right_furnishing 的 z 坐标为负值。\n"
+        "4. 每次修改不要太多，保持渐进式改进。\n"
+        "5. 如果场景已经很好，可以返回空数组不做修改。\n"
+        "6. 使用 batch_add_along_street 时，务必参照 layout_summary 中 Bands 部分的 band_name "
+        "来确保元素放置在正确的 band 上。\n"
+        "7. flower_bed/planter/shrub 适合放在 furnishing band 上增加绿化。"
+    )
+
+    history_text = ""
+    if score_history:
+        history_text = f"\n历史评分: {', '.join(f'{s:.1f}' for s in score_history)}"
+
+    user_content: list[Dict[str, Any]] = [
+        {
+            "type": "text",
+            "text": json.dumps({
+                "user_query": user_query,
+                "iteration": iteration,
+                "layout_summary": layout_summary,
+                "score_history_note": history_text,
+                "instruction": (
+                    "基于预览图和布局摘要，提出具体的布局修改。"
+                    "重点关注：多样性、美观度、行人友好性。"
+                ),
+            }, ensure_ascii=False),
+        },
+    ]
+    if image_data_url:
+        user_content.append({
+            "type": "image_url",
+            "image_url": {"url": image_data_url},
+        })
+
+    return [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_content},  # type: ignore[list-item]
+    ]
+
+
+def build_layout_evaluation_messages(
+    image_data_url: str,
+    layout_summary: str,
+    user_query: str,
+    previous_reasoning: str | None = None,
+) -> list[Dict[str, str]]:
+    """Build messages for LLM to evaluate an edited layout.
+
+    Returns a JSON object with evaluation, score (0-10), and feedback.
+    """
+    system_prompt = (
+        "你是 RoadGen3D 的场景评价专家。"
+        "你看到一个经过编辑的街道场景俯视预览图。"
+        "请评价编辑后的场景质量。"
+        "你只能输出 JSON。"
+        "字段必须包含："
+        "`evaluation`(string，中文自然语言评价)、"
+        "`score`(number，0-10 综合评分)、"
+        "`feedback`(string，具体反馈和改进建议)。"
+        "请按以下维度评价：\n"
+        "1. 视觉美观度与协调性\n"
+        "2. 空间布局合理性\n"
+        "3. 多样性与丰富度\n"
+        "4. 行人友好性\n"
+        "5. 编辑是否改善了场景"
+    )
+
+    reasoning_text = ""
+    if previous_reasoning:
+        reasoning_text = f"\n编辑原因: {previous_reasoning}"
+
+    user_content: list[Dict[str, Any]] = [
+        {
+            "type": "text",
+            "text": json.dumps({
+                "user_query": user_query,
+                "layout_summary": layout_summary,
+                "edit_reasoning": reasoning_text,
+                "instruction": "请评价这个编辑后的街道场景质量。",
+            }, ensure_ascii=False),
+        },
+    ]
+    if image_data_url:
+        user_content.append({
+            "type": "image_url",
+            "image_url": {"url": image_data_url},
+        })
+
+    return [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_content},  # type: ignore[list-item]
+    ]
+
+
 def build_graph_aware_design_messages(
     *,
     graph_summary: dict,

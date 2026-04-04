@@ -22,8 +22,10 @@ from __future__ import annotations
 
 import argparse
 import base64
+import copy
 import json
 import sys
+import webbrowser
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List
@@ -41,15 +43,23 @@ from roadgen3d.auto_pipeline.iteration_controller import (
     AutoIterationController,
     IterationResult,
 )
+from roadgen3d.auto_pipeline.scene_renderer import render_topdown_preview
 from roadgen3d.beauty import render_presentation_views
 from roadgen3d.embedder import ClipTextEmbedder
 from roadgen3d.graph_template_scene_bridge import build_graph_template_scene_bridge
 from roadgen3d.index_store import FaissIndexStore
+from roadgen3d.llm.glm_client import GLMClient
+from roadgen3d.llm.prompts import (
+    build_layout_edit_messages,
+    build_layout_evaluation_messages,
+)
+from roadgen3d.scene_layout_editor import apply_scene_patch, build_layout_summary
 from roadgen3d.services.design_runtime import build_compose_config_from_draft
 from roadgen3d.services.design_types import (
     DesignDraft,
     sanitize_compose_config_patch,
 )
+from roadgen3d.street_layout import rebuild_glb_from_layout
 from roadgen3d.types import StreetComposeConfig
 
 # ---------------------------------------------------------------------------
@@ -240,6 +250,9 @@ def build_html_report(
     diff_paths: List[str],
     compare_paths: List[str],
     score_chart_path: str,
+    *,
+    glb_paths: List[str] | None = None,
+    viewer_url: str = "",
 ) -> str:
     """Build a self-contained HTML report embedding all images as base64."""
     total_iters = result["total_iterations"]
@@ -254,6 +267,22 @@ def build_html_report(
         f"<strong>Best iteration:</strong> {best_iter}  |  "
         f"<strong>Best score:</strong> {best_score:.1f}/10</p>"
     )
+
+    # 3D Viewer section
+    if viewer_url:
+        sections.append("<h2>3D Viewer</h2>")
+        sections.append(
+            f'<p><a href="{viewer_url}" target="_blank">'
+            f"Open 3D Viewer</a></p>"
+        )
+    if glb_paths:
+        sections.append("<h3>GLB Downloads</h3>")
+        sections.append("<ul>")
+        for glb in glb_paths:
+            if glb:
+                name = Path(glb).name
+                sections.append(f"<li><code>{name}</code>: {glb}</li>")
+        sections.append("</ul>")
 
     # Score progression chart
     if Path(score_chart_path).exists():
@@ -332,6 +361,209 @@ def build_html_report(
 
 
 # ---------------------------------------------------------------------------
+# Phase 2: Layout Edit Loop (LLM-as-Scene-Editor)
+# ---------------------------------------------------------------------------
+
+def run_layout_edit_loop(
+    layout_path: Path,
+    output_dir: Path,
+    user_query: str,
+    max_edit_iterations: int = 3,
+    manifest_path: str = "",
+) -> Dict[str, Any]:
+    """Phase 2: Iterative layout editing via LLM.
+
+    Renders a top-down preview → LLM proposes JSON patch → apply patch →
+    re-render → evaluate → keep or revert.
+
+    When *manifest_path* is provided, also re-exports a 3D GLB after each
+    successful edit and produces a final GLB with viewer URL at the end.
+    """
+    client = GLMClient()
+    edit_dir = output_dir / "layout_edits"
+    edit_dir.mkdir(parents=True, exist_ok=True)
+
+    # Load initial layout
+    layout: Dict[str, Any] = json.loads(layout_path.read_text(encoding="utf-8"))
+    best_layout = copy.deepcopy(layout)
+    best_score = 0.0
+    results: List[Dict[str, Any]] = []
+    score_history: List[float] = []
+
+    print(f"[snapshot_diff] Phase 2: Layout edit loop ({max_edit_iterations} iterations) ...")
+
+    for i in range(max_edit_iterations):
+        iter_dir = edit_dir / f"edit_{i:02d}"
+        iter_dir.mkdir(parents=True, exist_ok=True)
+
+        # 1. Render "before" preview from current layout
+        before_preview = str(iter_dir / "preview_before.png")
+        try:
+            # Write current layout to a temp path for rendering
+            temp_layout = iter_dir / "scene_layout_before.json"
+            temp_layout.write_text(json.dumps(layout, ensure_ascii=False, indent=2), encoding="utf-8")
+            render_topdown_preview(temp_layout, before_preview)
+        except Exception as exc:
+            print(f"[snapshot_diff]   Edit {i}: preview rendering failed: {exc}")
+            before_preview = ""
+
+        # 2. Build layout summary
+        summary = build_layout_summary(layout)
+
+        # 3. LLM proposes edits
+        image_data_url = ""
+        if before_preview and Path(before_preview).exists():
+            img_bytes = Path(before_preview).read_bytes()
+            image_data_url = f"data:image/png;base64,{base64.b64encode(img_bytes).decode('ascii')}"
+
+        edit_messages = build_layout_edit_messages(
+            image_data_url=image_data_url,
+            layout_summary=summary,
+            user_query=user_query,
+            iteration=i,
+            score_history=score_history or None,
+        )
+        try:
+            patch = client.chat_json(edit_messages)
+        except Exception as exc:
+            print(f"[snapshot_diff]   Edit {i}: LLM edit request failed: {exc}")
+            results.append({"iteration": i, "error": str(exc), "score": best_score})
+            continue
+
+        # 4. Apply patch
+        try:
+            new_layout, changelog = apply_scene_patch(layout, patch)
+        except Exception as exc:
+            print(f"[snapshot_diff]   Edit {i}: patch application failed: {exc}")
+            results.append({"iteration": i, "error": str(exc), "score": best_score})
+            continue
+
+        # Save modified layout
+        edited_layout_path = iter_dir / "scene_layout_edited.json"
+        edited_layout_path.write_text(
+            json.dumps(new_layout, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+
+        # 5. Re-render and evaluate
+        after_preview = str(iter_dir / "preview_after.png")
+        try:
+            render_topdown_preview(edited_layout_path, after_preview)
+        except Exception as exc:
+            print(f"[snapshot_diff]   Edit {i}: after-preview rendering failed: {exc}")
+            after_preview = ""
+
+        after_data_url = ""
+        if after_preview and Path(after_preview).exists():
+            img_bytes = Path(after_preview).read_bytes()
+            after_data_url = f"data:image/png;base64,{base64.b64encode(img_bytes).decode('ascii')}"
+
+        edited_summary = build_layout_summary(new_layout)
+        eval_messages = build_layout_evaluation_messages(
+            image_data_url=after_data_url,
+            layout_summary=edited_summary,
+            user_query=user_query,
+            previous_reasoning=patch.get("reasoning"),
+        )
+        try:
+            eval_result = client.chat_json(eval_messages)
+            score = float(eval_result.get("score", 0) or 0)
+        except Exception as exc:
+            print(f"[snapshot_diff]   Edit {i}: evaluation failed: {exc}")
+            score = best_score
+            eval_result = {"evaluation": f"Evaluation failed: {exc}", "score": score}
+
+        score_history.append(score)
+
+        # 6. Track best / revert if needed
+        changelog_str = "; ".join(changelog) if changelog else "no changes"
+        if score > best_score:
+            best_score = score
+            best_layout = copy.deepcopy(new_layout)
+            # Update the main layout_path with the best version
+            layout_path.write_text(
+                json.dumps(best_layout, ensure_ascii=False, indent=2), encoding="utf-8"
+            )
+            layout = new_layout
+
+            # Rebuild 3D GLB for the improved layout
+            edit_glb_path = ""
+            if manifest_path:
+                try:
+                    glb_out = iter_dir / "rebuild"
+                    rebuild_glb_from_layout(
+                        layout_path=layout_path,
+                        manifest_path=Path(manifest_path),
+                        out_dir=glb_out,
+                    )
+                    edit_glb_path = str(glb_out / "scene.glb")
+                except Exception as exc:
+                    print(f"[snapshot_diff]   Edit {i}: GLB rebuild failed: {exc}")
+
+            print(
+                f"[snapshot_diff]   Edit {i}: {changelog_str} → score={score:.1f} (improved)"
+            )
+        else:
+            # Revert to best
+            layout = copy.deepcopy(best_layout)
+            print(
+                f"[snapshot_diff]   Edit {i}: {changelog_str} → score={score:.1f} (reverted, best={best_score:.1f})"
+            )
+
+        # Save evaluation
+        eval_path = iter_dir / "evaluation.json"
+        eval_path.write_text(
+            json.dumps(eval_result, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+
+        # Save patch
+        patch_path = iter_dir / "patch.json"
+        patch_path.write_text(
+            json.dumps(patch, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+
+        results.append({
+            "iteration": i,
+            "changelog": changelog,
+            "reasoning": patch.get("reasoning", ""),
+            "score": score,
+            "evaluation": eval_result.get("evaluation", ""),
+            "feedback": eval_result.get("feedback", ""),
+            "before_preview": before_preview,
+            "after_preview": after_preview,
+        })
+
+    print(
+        f"[snapshot_diff] Phase 2 done. Best score={best_score:.1f} "
+        f"across {len(results)} edit iteration(s)"
+    )
+
+    # Generate final GLB from the best layout
+    final_glb_path = ""
+    viewer_url = ""
+    if manifest_path:
+        try:
+            final_glb_dir = edit_dir / "final_rebuild"
+            rebuild_glb_from_layout(
+                layout_path=layout_path,
+                manifest_path=Path(manifest_path),
+                out_dir=final_glb_dir,
+            )
+            final_glb_path = str(final_glb_dir / "scene.glb")
+            # Build viewer URL (assumes web/viewer is served at localhost:5173)
+            viewer_url = f"http://localhost:5173?glb={final_glb_path}"
+        except Exception as exc:
+            print(f"[snapshot_diff] Final GLB rebuild failed: {exc}")
+
+    return {
+        "best_score": best_score,
+        "iterations": results,
+        "edit_dir": str(edit_dir),
+        "final_glb_path": final_glb_path,
+        "viewer_url": viewer_url,
+    }
+
+
+# ---------------------------------------------------------------------------
 # Core pipeline function (extracted for testability)
 # ---------------------------------------------------------------------------
 
@@ -346,6 +578,8 @@ def run_snapshot_pipeline(
     local_files_only: bool,
     device: str,
     design_service: Any | None = None,
+    max_edit_iterations: int = 3,
+    no_edit_loop: bool = False,
 ) -> Dict[str, Any]:
     """Run the full snapshot-diff pipeline and return structured result."""
     output_dir = Path(output_dir).resolve()
@@ -462,7 +696,46 @@ def run_snapshot_pipeline(
         json.dumps(eval_report, ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
-    # --- Step 5: Build HTML report ---
+    # --- Step 5: Ensure GLB exists for best result ---
+    best_glb_path = ""
+    best_layout_file = Path(result.best_layout_path)
+    if best_layout_file.exists():
+        existing_glb = best_layout_file.parent / "scene.glb"
+        if existing_glb.exists():
+            best_glb_path = str(existing_glb)
+        else:
+            try:
+                glb_outputs = rebuild_glb_from_layout(
+                    layout_path=best_layout_file,
+                    manifest_path=Path(manifest_path),
+                )
+                best_glb_path = glb_outputs.get("scene_glb", "")
+            except Exception as exc:
+                print(f"[snapshot_diff] Warning: GLB rebuild failed: {exc}")
+
+    # --- Step 6: Phase 2 — Layout edit loop ---
+    edit_result: Dict[str, Any] = {}
+    if not no_edit_loop and best_layout_file.exists():
+        try:
+            edit_result = run_layout_edit_loop(
+                layout_path=best_layout_file,
+                output_dir=output_dir,
+                user_query=query,
+                max_edit_iterations=max_edit_iterations,
+                manifest_path=manifest_path,
+            )
+        except Exception as exc:
+            print(f"[snapshot_diff] Warning: Phase 2 layout edit loop failed: {exc}")
+
+    final_glb = edit_result.get("final_glb_path", "") or best_glb_path
+    viewer_url = edit_result.get("viewer_url", "")
+    if not viewer_url and final_glb:
+        viewer_url = f"http://localhost:5173?glb={final_glb}"
+
+    # --- Step 7: Build HTML report ---
+    glb_paths = [best_glb_path]
+    if edit_result.get("final_glb_path"):
+        glb_paths.append(edit_result["final_glb_path"])
     try:
         html = build_html_report(
             output_dir=output_dir,
@@ -471,6 +744,8 @@ def run_snapshot_pipeline(
             diff_paths=diff_paths,
             compare_paths=compare_paths,
             score_chart_path=score_chart_path,
+            glb_paths=glb_paths,
+            viewer_url=viewer_url,
         )
         html_path = output_dir / "report.html"
         html_path.write_text(html, encoding="utf-8")
@@ -484,6 +759,7 @@ def run_snapshot_pipeline(
         "best_iteration": result.best_iteration,
         "best_layout_path": result.best_layout_path,
         "best_scene_path": result.best_scene_path,
+        "best_glb_path": best_glb_path,
         "views": views,
         "config_diffs": config_diffs,
         "compare_paths": compare_paths,
@@ -491,6 +767,9 @@ def run_snapshot_pipeline(
         "html_report_path": str(output_dir / "report.html"),
         "eval_report_path": str(eval_report_path),
         "iteration_log_path": str(output_dir / "iteration_log.json"),
+        "edit_result": edit_result,
+        "final_glb_path": final_glb,
+        "viewer_url": viewer_url,
     }
 
 
@@ -516,7 +795,19 @@ def parse_args() -> argparse.Namespace:
         "--max-iterations",
         type=int,
         default=3,
-        help="Max iterations (default: 3).",
+        help="Max Phase 1 iterations (default: 3).",
+    )
+    p.add_argument(
+        "--max-edit-iterations",
+        type=int,
+        default=3,
+        help="Max Phase 2 layout-edit iterations (default: 3).",
+    )
+    p.add_argument(
+        "--no-edit-loop",
+        action="store_true",
+        default=False,
+        help="Skip Phase 2 layout edit loop.",
     )
     p.add_argument(
         "--template-id",
@@ -544,6 +835,12 @@ def parse_args() -> argparse.Namespace:
         default="cpu",
         help="Torch device (default: cpu).",
     )
+    p.add_argument(
+        "--open",
+        action="store_true",
+        default=False,
+        help="Open viewer URL in browser after completion.",
+    )
     return p.parse_args()
 
 
@@ -563,6 +860,7 @@ def main() -> None:
     print(f"[snapshot_diff] Output directory: {output_dir}")
     print(f"[snapshot_diff] Query: {args.query}")
     print(f"[snapshot_diff] Max iterations: {args.max_iterations}")
+    print(f"[snapshot_diff] Max edit iterations: {args.max_edit_iterations}")
     print(f"[snapshot_diff] Template: {args.template_id}")
 
     # Step 1 – Build graph context from template
@@ -585,6 +883,8 @@ def main() -> None:
         model_dir=model_dir,
         local_files_only=args.local_files_only,
         device=args.device,
+        max_edit_iterations=args.max_edit_iterations,
+        no_edit_loop=args.no_edit_loop,
     )
 
     # Step 3 – Print summary
@@ -598,9 +898,19 @@ def main() -> None:
     print(f"  Config diffs:     {len(pipeline_result['config_diffs'])}")
     print(f"  Comparisons:      {len(pipeline_result['compare_paths'])}")
     print(f"  Views rendered:   {len(pipeline_result['views'])}")
+    print(f"  Best GLB:         {pipeline_result.get('best_glb_path', '')}")
+    print(f"  Final GLB:        {pipeline_result.get('final_glb_path', '')}")
+    if pipeline_result.get("viewer_url"):
+        print(f"  3D Viewer:        {pipeline_result['viewer_url']}")
     print(f"  HTML report:      {pipeline_result['html_report_path']}")
     print(f"  Eval report:      {pipeline_result['eval_report_path']}")
     print("=" * 60)
+
+    # Step 4 – Optionally open browser
+    viewer_url = pipeline_result.get("viewer_url", "")
+    if args.open and viewer_url:
+        print(f"[snapshot_diff] Opening viewer: {viewer_url}")
+        webbrowser.open(viewer_url)
 
 
 if __name__ == "__main__":
