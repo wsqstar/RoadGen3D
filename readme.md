@@ -88,6 +88,10 @@ git submodule update --init
 # Frontend dependencies
 make workbench-install
 make viewer-install
+
+# Download CLIP model (offline)
+huggingface-cli download openai/clip-vit-base-patch32 \
+  --local-dir models/clip-vit-base-patch32
 ```
 
 ### Run
@@ -105,7 +109,9 @@ This launches three services:
 
 Or start individual services via `make workbench-api`, `make workbench-web`, `make viewer-web`.
 
-### Generate a Street Scene (CLI)
+## CLI Usage
+
+### Generate a Street Scene
 
 ```bash
 .venv/bin/python scripts/m3_01_compose_street.py \
@@ -126,7 +132,7 @@ Or start individual services via `make workbench-api`, `make workbench-web`, `ma
 
 Output: `artifacts/real/scene.glb`, `artifacts/real/scene_layout.json`
 
-### Auto Scene Pipeline (CLI)
+### Auto Scene Pipeline
 
 Automatically generate, evaluate, and iteratively improve a street scene from a Viewer-exported graph JSON:
 
@@ -174,7 +180,7 @@ artifacts/auto_pipeline/my_scene/
 
 Stop conditions: early stop after 2 consecutive rounds without score improvement, or when `--max-iterations` is reached.
 
-### Multi-Version Auto Evaluation (CLI)
+### Multi-Version Auto Evaluation
 
 Run multiple design queries through the full pipeline in one shot. Each query goes through the LLM-driven generate → evaluate → iterate loop, renders presentation views for the best result, and produces a consolidated evaluation report.
 
@@ -224,27 +230,7 @@ artifacts/auto_eval_<timestamp>/
 └── eval_report.json
 ```
 
-### Automated Pipeline Tests
-
-The test suite in `tests/test_auto_eval.py` validates the full pipeline end-to-end. Tests 1–4 call the real LLM API (auto-skipped if `glm_base_url` and `key` are not set in `.env`), while test 5 uses a mock service for deterministic early-stop verification.
-
-```bash
-# Run all tests (real-LLM tests auto-skip without API credentials)
-.venv/bin/python -m pytest tests/test_auto_eval.py -v
-
-# Force-skip real-LLM tests (only mock + presentation tests)
-GLM_SKIP=1 .venv/bin/python -m pytest tests/test_auto_eval.py -v
-```
-
-| Test | LLM | What it verifies |
-|------|-----|-----------------|
-| `TestAutoEvalGeneratesMultipleVersions` | Real | Multiple queries produce distinct iteration dirs, final/, and different config patches |
-| `TestAutoEvalSavesIterationLogs` | Real | `iteration_log.json` has correct structure (score, evaluation, suggestions, config_patch) |
-| `TestAutoEvalRendersPresentationViews` | None | `render_presentation_views()` outputs valid view dicts |
-| `TestAutoEvalProducesEvalReport` | Real | `eval_report.json` aggregates all versions with plausible scores in [0, 10] |
-| `TestAutoEvalLLMIterationsImproveOrStop` | Mock | Controller stops after ≤3 iterations when scores stagnate |
-
-### Single Asset Pipeline (CLI)
+### Single Asset Pipeline
 
 ```bash
 .venv/bin/python scripts/m1_06_run_pipeline.py \
@@ -257,6 +243,133 @@ GLM_SKIP=1 .venv/bin/python -m pytest tests/test_auto_eval.py -v
   --decoder placeholder \
   --export-format both
 ```
+
+### M1 Step-by-Step Pipeline
+
+```bash
+# 1. Environment check
+.venv/bin/python scripts/m1_00_check_env.py --out artifacts/m1/env_report.json
+
+# 2. Generate mock data
+.venv/bin/python scripts/m1_01_seed_assets.py --out-dir data/m1 --num-assets 8 --seed 42
+
+# 3. Encode asset texts
+.venv/bin/python scripts/m1_02_embed_texts.py \
+  --assets data/m1/assets.jsonl \
+  --out artifacts/m1 \
+  --model-dir models/clip-vit-base-patch32 \
+  --local-files-only
+
+# 4. Build FAISS index
+.venv/bin/python scripts/m1_03_build_faiss.py \
+  --embeds artifacts/m1/asset_text_embeds.npy \
+  --asset-ids artifacts/m1/asset_ids.json \
+  --out artifacts/m1
+
+# 5. Standalone retrieval verification
+.venv/bin/python scripts/m1_04_retrieve.py \
+  --query "a wooden park bench" \
+  --topk 3 \
+  --artifacts artifacts/m1 \
+  --model-dir models/clip-vit-base-patch32 \
+  --local-files-only
+
+# 6. Full single-asset pipeline
+.venv/bin/python scripts/m1_06_run_pipeline.py \
+  --query "a wooden park bench" \
+  --topk 1 \
+  --data-dir data/m1 \
+  --artifacts artifacts/m1 \
+  --model-dir models/clip-vit-base-patch32 \
+  --local-files-only
+```
+
+### Learnable Layout Policy (M4)
+
+```bash
+# Collect distilled policy data
+.venv/bin/python scripts/m4_01_collect_policy_data.py \
+  --manifest data/real/real_assets_manifest.jsonl \
+  --artifacts artifacts/real \
+  --out artifacts/m4/policy_train.jsonl \
+  --model-dir models/clip-vit-base-patch32 \
+  --local-files-only
+
+# Train layout policy
+.venv/bin/python scripts/m4_02_train_layout_policy.py \
+  --data artifacts/m4/policy_train.jsonl \
+  --out-dir artifacts/m4 \
+  --device cpu
+
+# Use learned policy
+.venv/bin/python scripts/m3_01_compose_street.py \
+  --query "modern clean urban street" \
+  --manifest data/real/real_assets_manifest.jsonl \
+  --artifacts artifacts/real \
+  --out-dir artifacts/real \
+  --placement-policy learned \
+  --policy-ckpt artifacts/m4/layout_policy.pt \
+  --policy-temperature 0.12 \
+  --model-dir models/clip-vit-base-patch32 \
+  --local-files-only
+
+# Evaluate engineering metrics
+.venv/bin/python scripts/m4_10_eval_engineering.py \
+  --queries data/eval/queries_m4.txt \
+  --manifest data/real/real_assets_manifest.jsonl \
+  --artifacts artifacts/real \
+  --out-dir artifacts/m4 \
+  --placement-policy learned \
+  --policy-ckpt artifacts/m4/layout_policy.pt \
+  --compare-rule \
+  --model-dir models/clip-vit-base-patch32 \
+  --local-files-only
+```
+
+Key metrics: `diversity_ratio`, `dropped_slot_rate`, `overlap_rate`, `retrieval_top3_category_hit`, `latency_ms`
+
+Reports: `artifacts/m4/eval_report.json`, `artifacts/m4/eval_per_scene.csv`
+
+### OSM + POI Street Scene (M5)
+
+```bash
+# Fetch OSM data for an AOI
+.venv/bin/python scripts/m5_01_fetch_osm.py --bbox 116.39 39.90 116.40 39.91
+
+# Generate with real OSM geometry + POI constraints
+.venv/bin/python scripts/m3_01_compose_street.py \
+  --query "urban residential" \
+  --layout-mode osm \
+  --constraint-mode soft \
+  --aoi-bbox 116.39 39.90 116.40 39.91 \
+  --manifest data/real/real_assets_manifest.jsonl \
+  --artifacts artifacts/real \
+  --out-dir artifacts/real \
+  --model-dir models/clip-vit-base-patch32 \
+  --local-files-only
+
+# Evaluate POI compliance
+.venv/bin/python scripts/m5_10_eval_compliance.py \
+  --scene-dir artifacts/m4/eval_scenes/rule
+```
+
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--layout-mode` | `template` | `template` (straight road) or `osm` (real geometry) |
+| `--constraint-mode` | `soft` | `off` or `soft` (POI penalty scoring) |
+| `--aoi-bbox` | None | `MIN_LON MIN_LAT MAX_LON MAX_LAT` (required for osm mode) |
+| `--poi-rule-set` | `entrance_fire_bus_stop_v1` | Rule set name |
+
+### Scene-Ready Asset Curation
+
+Refresh manifest metadata after adding or replacing assets:
+
+```bash
+.venv/bin/python scripts/m3_04_clean_asset_manifest.py \
+  --manifest data/real/real_assets_manifest.jsonl --write
+```
+
+The cleaner computes `mesh_face_count`, assigns `quality_tier`, flags `scene_eligible`, and writes `quality_notes`.
 
 ## Project Structure
 
@@ -272,9 +385,20 @@ RoadGen3D/
 │   │   ├── scene_renderer.py       # Matplotlib top-down preview rendering
 │   │   ├── iteration_controller.py # Generate → evaluate → improve loop
 │   │   └── cli.py                  # (entry point via scripts/)
+│   ├── llm/                # LLM design assistant (optional)
+│   │   ├── glm_client.py
+│   │   ├── prompts.py
+│   │   └── design_workflow.py
+│   ├── services/           # API & runtime services
+│   │   ├── generation_core.py      # Scene generation logic
+│   │   ├── generation_api.py       # FastAPI routes
+│   │   ├── design_runtime.py       # LLM design runtime
+│   │   ├── design_types.py         # Data types
+│   │   └── scene_jobs.py           # Async job queue
 │   └── ...
 ├── scripts/                # CLI tools (m1_*, m2_*, m3_*, m4_*, m5_*)
-│   └── auto_scene_pipeline.py      # Auto pipeline CLI entry point
+│   ├── auto_scene_pipeline.py      # Auto pipeline CLI entry point
+│   └── run_auto_eval.py            # Multi-version auto evaluation
 ├── web/
 │   ├── api/                # FastAPI backend service
 │   ├── workbench/          # Vite + React generation workbench
@@ -283,7 +407,6 @@ RoadGen3D/
 ├── knowledge/              # Complete Streets design guide + RAG index
 ├── models/                 # Pre-trained CLIP model
 ├── artifacts/              # Generated outputs (scenes, meshes, eval reports)
-├── docs/                   # Architecture decisions, roadmap, system review
 ├── tests/                  # Test suites
 └── tools/
     └── download3dAssets/   # UrbanVerse asset batch downloader (submodule)
@@ -328,6 +451,18 @@ Built-in design rule profiles:
 - `pedestrian_priority_v1`
 - `transit_priority_v1`
 
+### OSM + POI Integration (M5)
+
+The system integrates real-world spatial data:
+
+1. **OSM Ingest** — Fetches Overpass data, parses roads/buildings/POI, projects to local metric coordinates
+2. **Road Discovery** — Scores candidate roads by POI density, length, and relevance
+3. **POI-Driven Cross-Section** — Adjusts sidewalk widths based on nearby POI (transit, entrance, parking, etc.)
+4. **Segment Graph** — Discretizes roads into segment/node graph with band/POI context
+5. **Placement Context** — Generates road polygons, sidewalk polygons, valid placement zones
+
+Normalized POI types: `entrance`, `bus_stop`, `fire_hydrant`, `crossing`, `traffic_signals`, `parking_entrance`, `subway_entrance`, `post_box`, `waste_basket`, `bollard`
+
 ### Auto Scene Pipeline
 
 An LLM-driven closed-loop system that accepts a Viewer-exported road network graph and iteratively produces optimal street scenes:
@@ -339,28 +474,35 @@ An LLM-driven closed-loop system that accepts a Viewer-exported road network gra
 5. **LLM Evaluation** — Reuses `evaluate_scene()` to score the scene and suggest parameter adjustments.
 6. **Iteration Controller** (`iteration_controller.py`) — Loops steps 3–5, applying LLM-suggested config patches. Stops early after 2 consecutive rounds without score improvement.
 
-### Learnable Layout Policy (M4)
+### Key Architecture Decisions
 
-Trains an MLP (`32 → 64 → 32 → 1`) to learn per-slot asset selection from distilled supervision data:
+- **OSM mode is the primary generation path.** `template` mode is retained for compatibility and debugging.
+- **StreetProgram → ConstraintSet → LayoutSolver** is the explicit intermediate backbone. No direct query-to-slot black box.
+- **POI is a hard generation input**, not just visualization. Asset-backed POI bind to anchored slots; missing categories cause explicit failure, not silent degradation.
+- **Sidewalk widths are POI-driven** in OSM mode, not fixed. Cross-section synthesis adjusts widths based on POI pressure.
+- **Learned backends** (program generator, layout policy) are enhancement layers. The system always falls back to heuristic/rule defaults when checkpoints are unavailable.
+
+## Testing
+
+### Automated Pipeline Tests
+
+The test suite in `tests/test_auto_eval.py` validates the full pipeline end-to-end. Tests 1–4 call the real LLM API (auto-skipped if `glm_base_url` and `key` are not set in `.env`), while test 5 uses a mock service for deterministic early-stop verification.
 
 ```bash
-make collect                                          # Collect training data
-make train                                            # Train layout policy
-.venv/bin/python scripts/m3_01_compose_street.py \
-  --placement-policy learned \
-  --policy-ckpt artifacts/m4/layout_policy.pt \
-  ...                                                 # Use learned policy
+# Run all tests (real-LLM tests auto-skip without API credentials)
+.venv/bin/python -m pytest tests/test_auto_eval.py -v
+
+# Force-skip real-LLM tests (only mock + presentation tests)
+GLM_SKIP=1 .venv/bin/python -m pytest tests/test_auto_eval.py -v
 ```
 
-### Evaluation (M4)
-
-```bash
-make eval
-```
-
-Key metrics: `diversity_ratio`, `dropped_slot_rate`, `overlap_rate`, `retrieval_top3_category_hit`, `latency_ms`
-
-Reports: `artifacts/m4/eval_report.json`, `artifacts/m4/eval_per_scene.csv`
+| Test | LLM | What it verifies |
+|------|-----|-----------------|
+| `TestAutoEvalGeneratesMultipleVersions` | Real | Multiple queries produce distinct iteration dirs, final/, and different config patches |
+| `TestAutoEvalSavesIterationLogs` | Real | `iteration_log.json` has correct structure (score, evaluation, suggestions, config_patch) |
+| `TestAutoEvalRendersPresentationViews` | None | `render_presentation_views()` outputs valid view dicts |
+| `TestAutoEvalProducesEvalReport` | Real | `eval_report.json` aggregates all versions with plausible scores in [0, 10] |
+| `TestAutoEvalLLMIterationsImproveOrStop` | Mock | Controller stops after ≤3 iterations when scores stagnate |
 
 ## Web API
 
@@ -374,7 +516,7 @@ The canonical API entry point is `web/api/main.py`. Scene generation runs as asy
 | GET | `/api/scenes/recent` | List recent scenes |
 | POST | `/api/design/generate` | Legacy synchronous endpoint |
 
-See `API_GUIDE.md` for full documentation.
+Swagger UI: `http://127.0.0.1:8010/docs`
 
 ## Environment Variables
 
@@ -401,6 +543,33 @@ make train                # Train layout policy
 make eval                 # Run engineering evaluation
 ```
 
+## Roadmap
+
+### Near-term
+
+- Stabilize OSM + POI + width synthesis as the default generation path
+- Strengthen constraint-type POI influence on layout (crossing, traffic_signals, subway_entrance, parking_entrance)
+- Improve cross-section synthesis readability in UI summaries
+
+### Mid-term
+
+- Expand POI taxonomy to more complete street furniture system
+- Make segment-level graph participate in layout (not just global bands)
+- Deepen learned program generator integration as a strong backend
+
+### Long-term
+
+- Support small street networks (multi-road, junctions)
+- Evolve from "asset placement" to a full "street design system" with editable cross-section presets
+- Standardize research loop with versioned training data, fixed evaluation protocols, and result dashboards
+
+### Not prioritized
+
+- Full building geometry generation
+- Large-scale city-level road network modeling
+- Removing all heuristic/rule fallbacks
+- Complex multi-agent traffic simulation
+
 ## Current Limitations
 
 - No cross-modal training (OpenShape/ULIP) — retrieval is CLIP text-only
@@ -408,20 +577,6 @@ make eval                 # Run engineering evaluation
 - M3 is single-segment straight road template — no complex intersections or curved networks
 - `StreetProgram` uses heuristic generator (`heuristic_v1`) — not yet replaced by a learned program generator
 - Layout solver uses `banded` heuristic — not MILP or diffusion-based
-
-## Documentation
-
-| Document | Description |
-|----------|-------------|
-| `README_M1.md` | Single-asset pipeline runbook |
-| `API_GUIDE.md` | REST API usage guide |
-| `docs/current_system_review.md` | System overview |
-| `docs/architecture_decisions.md` | Architecture decision records |
-| `docs/roadmap.md` | Development roadmap |
-| `docs/manual_download.md` | Manual model download instructions |
-| `docs/shapee_setup.md` | Shape-E environment setup |
-| `docs/m6_neurosymbolic_street_generation.md` | Neuro-symbolic system design |
-| `docs/m4_learning_and_evaluation.md` | Learning & evaluation system |
 
 ## License
 
