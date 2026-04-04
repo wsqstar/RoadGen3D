@@ -414,12 +414,21 @@ def list_constraint_profiles() -> Tuple[str, ...]:
 
 
 def load_constraint_set(name: str = "balanced_complete_street_v1") -> ConstraintSet:
-    """Load a named declarative design-rule profile."""
+    """Load a named declarative design-rule profile.
+
+    Falls back to *balanced_complete_street_v1* when *name* is unknown so that
+    LLM-generated profile names are handled gracefully.
+    """
 
     key = str(name).strip().lower() or "balanced_complete_street_v1"
     constraint_set = _CONSTRAINT_SETS.get(key)
     if constraint_set is None:
-        raise ValueError(f"Unknown design rule profile: {name!r}. Available: {list_constraint_profiles()}")
+        import logging
+        logging.getLogger(__name__).warning(
+            "Unknown design rule profile %r, falling back to 'balanced_complete_street_v1'. "
+            "Available: %s", name, list_constraint_profiles(),
+        )
+        constraint_set = _CONSTRAINT_SETS["balanced_complete_street_v1"]
     return constraint_set
 
 

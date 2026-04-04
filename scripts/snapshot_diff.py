@@ -42,7 +42,9 @@ from roadgen3d.auto_pipeline.iteration_controller import (
     IterationResult,
 )
 from roadgen3d.beauty import render_presentation_views
+from roadgen3d.embedder import ClipTextEmbedder
 from roadgen3d.graph_template_scene_bridge import build_graph_template_scene_bridge
+from roadgen3d.index_store import FaissIndexStore
 from roadgen3d.services.design_runtime import build_compose_config_from_draft
 from roadgen3d.services.design_types import (
     DesignDraft,
@@ -55,6 +57,55 @@ from roadgen3d.types import StreetComposeConfig
 # ---------------------------------------------------------------------------
 DEFAULT_TEMPLATE_ID = "hkust_gz_gate"
 DEFAULT_QUERY = "modern pedestrian-friendly street with trees and benches"
+
+
+# ---------------------------------------------------------------------------
+# Index builder (auto-builds FAISS index if missing in artifacts dir)
+# ---------------------------------------------------------------------------
+
+def _ensure_index(
+    manifest_path: str,
+    artifacts_dir: Path,
+    model_dir: str,
+    local_files_only: bool,
+    device: str,
+) -> None:
+    """Build a CLIP+FAISS index into *artifacts_dir* if it does not exist yet."""
+    index_path = artifacts_dir / "index_ip.faiss"
+    id_map_path = artifacts_dir / "id_map.json"
+    if index_path.exists() and id_map_path.exists():
+        return
+
+    artifacts_dir.mkdir(parents=True, exist_ok=True)
+    print(f"[snapshot_diff] Building FAISS index from manifest …")
+
+    # Load manifest rows
+    rows: List[Dict[str, Any]] = []
+    base_dir = Path(manifest_path).parent.resolve()
+    for line in Path(manifest_path).read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        payload = json.loads(line)
+        rows.append(payload)
+
+    if not rows:
+        raise ValueError(f"Manifest is empty: {manifest_path}")
+
+    asset_ids = [str(r["asset_id"]) for r in rows]
+    descriptions = [str(r["text_desc"]) for r in rows]
+
+    embedder = ClipTextEmbedder(
+        model_name="openai/clip-vit-base-patch32",
+        model_dir=Path(model_dir) if model_dir else None,
+        local_files_only=local_files_only,
+        device=device,
+    )
+    embeddings = embedder.encode_texts(descriptions)
+
+    store = FaissIndexStore.build(embeddings=embeddings, asset_ids=asset_ids)
+    store.save(index_path=index_path, id_map_path=id_map_path)
+    print(f"[snapshot_diff] Index built: {len(rows)} assets → {index_path}")
 
 
 # ---------------------------------------------------------------------------
@@ -299,6 +350,16 @@ def run_snapshot_pipeline(
     """Run the full snapshot-diff pipeline and return structured result."""
     output_dir = Path(output_dir).resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
+
+    # --- Step 0: Ensure FAISS index exists in _shared_artifacts ---
+    shared_artifacts = output_dir / "_shared_artifacts"
+    _ensure_index(
+        manifest_path=manifest_path,
+        artifacts_dir=shared_artifacts,
+        model_dir=model_dir,
+        local_files_only=local_files_only,
+        device=device,
+    )
 
     # --- Step 1: Run AutoIterationController ---
     controller = AutoIterationController(
