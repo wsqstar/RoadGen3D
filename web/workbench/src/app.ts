@@ -134,31 +134,6 @@ export function mountWorkbench(app: HTMLDivElement): void {
         </div>
       </section>
 
-      <div class="config-bar">
-        <div class="config-bar-group">
-          <span class="config-bar-label">Layout</span>
-          <select id="config-bar-layout" class="config-bar-select">
-            <option value="graph_template" selected>graph_template</option>
-            <option value="osm">osm</option>
-            <option value="metaurban">metaurban</option>
-            <option value="template">template</option>
-          </select>
-        </div>
-        <div class="config-bar-group">
-          <span class="config-bar-label">Knowledge</span>
-          <select id="config-bar-knowledge" class="config-bar-select">
-            <option value="graph_rag" selected>graph_rag</option>
-            <option value="hybrid">hybrid</option>
-            <option value="pdf_rag">pdf_rag</option>
-          </select>
-        </div>
-        <div class="config-bar-actions">
-          <button id="config-bar-draft-btn" class="btn primary btn-sm">Generate Draft</button>
-          <button id="config-bar-generate-btn" class="btn secondary btn-sm" disabled>Create Scene Job</button>
-          <a class="hero-link btn-sm" href="${escapeHtml(VIEWER_BASE)}" target="_blank" rel="noreferrer">Open Viewer</a>
-        </div>
-      </div>
-
       <div class="tab-bar">
         <button class="tab-btn active" data-tab="0">Conversation</button>
         <button class="tab-btn" data-tab="1">Scene Setup</button>
@@ -349,10 +324,6 @@ export function mountWorkbench(app: HTMLDivElement): void {
   const parameterForm = requireElement<HTMLDivElement>(app, "#parameter-form");
   const generateBtn = requireElement<HTMLButtonElement>(app, "#generate-btn");
   const generationResult = requireElement<HTMLDivElement>(app, "#generation-result");
-  const configBarLayout = requireElement<HTMLSelectElement>(app, "#config-bar-layout");
-  const configBarKnowledge = requireElement<HTMLSelectElement>(app, "#config-bar-knowledge");
-  const configBarDraftBtn = requireElement<HTMLButtonElement>(app, "#config-bar-draft-btn");
-  const configBarGenerateBtn = requireElement<HTMLButtonElement>(app, "#config-bar-generate-btn");
 
   renderTimeline();
   renderParameterForm({});
@@ -360,6 +331,37 @@ export function mountWorkbench(app: HTMLDivElement): void {
   renderKnowledgeSourcePanel();
   renderJobPanel();
   renderHeroSteps();
+  // Event delegation for expandable citations in parameter form
+  parameterForm.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+    const fieldEl = target.closest<HTMLElement>(".field");
+    if (!fieldEl) return;
+
+    // RAG citation chip toggle — scope lookup to parent .field only
+    if (target.classList.contains("citation-chip") && target.dataset.chunkId) {
+      const chunkId = target.dataset.chunkId;
+      const detail = fieldEl.querySelector<HTMLElement>(
+        `.citation-detail[data-chunk-id="${chunkId}"]`
+      );
+      if (detail) {
+        const isHidden = detail.style.display === "none";
+        detail.style.display = isHidden ? "" : "none";
+        target.classList.toggle("expanded", isHidden);
+      }
+      return;
+    }
+    // LLM context toggle — scope lookup to parent .field only
+    if (target.classList.contains("llm-toggle")) {
+      const detail = fieldEl.querySelector<HTMLElement>(".llm-detail");
+      if (detail) {
+        const isHidden = detail.style.display === "none";
+        detail.style.display = isHidden ? "" : "none";
+        target.classList.toggle("expanded", isHidden);
+        target.textContent = isHidden ? "Hide LLM context" : "Show LLM context";
+      }
+    }
+  });
+
   void bootstrap();
 
   // Tab button click handlers
@@ -379,23 +381,10 @@ export function mountWorkbench(app: HTMLDivElement): void {
 
   knowledgeSource.addEventListener("change", () => {
     state.selectedKnowledgeSource = normalizeKnowledgeSourceKey(knowledgeSource.value);
-    configBarKnowledge.value = knowledgeSource.value;
-    renderKnowledgeSourcePanel();
-  });
-
-  configBarKnowledge.addEventListener("change", () => {
-    state.selectedKnowledgeSource = normalizeKnowledgeSourceKey(configBarKnowledge.value);
-    knowledgeSource.value = configBarKnowledge.value;
     renderKnowledgeSourcePanel();
   });
 
   sceneLayoutMode.addEventListener("change", () => {
-    configBarLayout.value = sceneLayoutMode.value;
-    renderSceneSetup();
-  });
-
-  configBarLayout.addEventListener("change", () => {
-    sceneLayoutMode.value = configBarLayout.value;
     renderSceneSetup();
   });
 
@@ -421,14 +410,6 @@ export function mountWorkbench(app: HTMLDivElement): void {
       renderSceneSetup();
     });
   });
-
-  configBarDraftBtn.addEventListener("click", () => { draftBtn.click(); });
-  configBarGenerateBtn.addEventListener("click", () => { generateBtn.click(); });
-
-  function syncButtons(): void {
-    configBarGenerateBtn.disabled = generateBtn.disabled;
-    configBarDraftBtn.disabled = draftBtn.disabled;
-  }
 
   draftBtn.addEventListener("click", async () => {
     const prompt = promptInput.value.trim();
@@ -590,7 +571,6 @@ export function mountWorkbench(app: HTMLDivElement): void {
       generateBtn.disabled = false;
       draftBtn.disabled = false;
       presetPedestrianBtn.disabled = false;
-      syncButtons();
     }
   }
 
@@ -603,7 +583,6 @@ export function mountWorkbench(app: HTMLDivElement): void {
     generateBtn.disabled = true;
     presetPedestrianBtn.disabled = true;
     draftBtn.disabled = true;
-    syncButtons();
     setStatus("正在创建场景生成任务...");
     try {
       const sceneContext = buildSceneContextFromForm();
@@ -632,7 +611,6 @@ export function mountWorkbench(app: HTMLDivElement): void {
       generateBtn.disabled = false;
       draftBtn.disabled = false;
       presetPedestrianBtn.disabled = false;
-      syncButtons();
     }
   }
 
@@ -677,8 +655,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
         renderHeroSteps();
         if (!TERMINAL_JOB_STATES.has(state.currentJob.status)) {
           generateBtn.disabled = true;
-          syncButtons();
-          setStatus("检测到未完成任务，继续同步状态...");
+              setStatus("检测到未完成任务，继续同步状态...");
           await pollSceneJob(state.currentJob.job_id);
           return;
         }
@@ -834,8 +811,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
       renderHeroSteps();
       if (TERMINAL_JOB_STATES.has(payload.status)) {
         generateBtn.disabled = false;
-        syncButtons();
-        if (payload.status === "succeeded" && payload.result) {
+          if (payload.status === "succeeded" && payload.result) {
           await refreshRecentScenes();
           setStatus("生成完成，可以在独立 viewer 中查看结果。");
         } else {
@@ -890,13 +866,13 @@ export function mountWorkbench(app: HTMLDivElement): void {
       return;
     }
     generateBtn.disabled = false;
-    syncButtons();
     renderIntent(payload.intent);
     renderEvidence(payload.evidence, payload.draft.citations_by_field);
     renderParameterForm(
       payload.draft.compose_config_patch,
       payload.draft.citations_by_field,
       payload.draft.parameter_sources_by_field,
+      payload.evidence,
     );
     draftSummary.textContent = formatDraftSummary(payload.draft);
     renderHeroSteps();
@@ -904,7 +880,6 @@ export function mountWorkbench(app: HTMLDivElement): void {
 
   function renderClarification(payload: DraftResponse): void {
     generateBtn.disabled = true;
-    syncButtons();
     renderIntent(payload.intent);
     evidenceList.innerHTML = `<div class="field-note">澄清轮次暂不执行 RAG 检索，请先回答问题。</div>`;
     renderParameterForm({});
@@ -970,44 +945,111 @@ export function mountWorkbench(app: HTMLDivElement): void {
       .join("");
   }
 
+  function buildCitationHtml(
+    fieldKey: string,
+    chunkIds: string[],
+    evidenceMap: Map<string, RagEvidence>,
+  ): string {
+    if (!chunkIds.length) return `<div class="field-note">citations: none</div>`;
+    const chips = chunkIds.map((id) => {
+      const ev = evidenceMap.get(id);
+      const label = ev ? (ev.section_title || ev.chunk_id) : id;
+      return `<span class="citation-chip" data-chunk-id="${escapeHtml(id)}" title="${escapeHtml(label)}">${escapeHtml(label)}</span>`;
+    }).join("");
+    const cards = chunkIds.map((id) => {
+      const ev = evidenceMap.get(id);
+      if (!ev) return "";
+      const pageLabel = ev.page_start > 0 && ev.page_end > 0 ? `<span>pp. ${ev.page_start}-${ev.page_end}</span>` : "";
+      const sourceLabel = `<span class="tag">${escapeHtml(formatKnowledgeSourceLabel(ev.knowledge_source || "pdf_rag"))}</span>`;
+      const hints = Object.entries(ev.parameter_hints || {})
+        .map(([k, v]) => `<span class="hint">${escapeHtml(k)}: ${escapeHtml(v)}</span>`)
+        .join("");
+      return `
+        <div class="citation-detail" data-chunk-id="${escapeHtml(id)}" style="display:none">
+          <div class="evidence-meta">
+            <span><strong>${escapeHtml(ev.section_title || ev.chunk_id)}</strong></span>
+            <span>${escapeHtml(ev.doc_id)}</span>
+            ${pageLabel}
+            <span>score ${ev.score.toFixed(3)}</span>
+            ${sourceLabel}
+          </div>
+          <div class="field-note">${escapeHtml(ev.relevance_reason)}</div>
+          <p class="evidence-text">${escapeHtml(ev.text)}</p>
+          ${hints ? `<div class="hint-row">${hints}</div>` : ""}
+        </div>
+      `;
+    }).join("");
+    return `<div class="citation-chips">${chips}</div>${cards}`;
+  }
+
+  function buildLlmContextHtml(fieldKey: string): string {
+    const draft = state.lastDraft;
+    if (!draft || !draft.intent) return `<div class="field-note">LLM inference — no context available</div>`;
+    const intent = draft.intent;
+    const summary = draft.draft?.design_summary || "";
+    return `
+      <div class="llm-toggle">Show LLM context</div>
+      <div class="citation-detail llm-detail" style="display:none">
+        <div class="field-note"><strong>Design Summary</strong></div>
+        <p class="evidence-text">${escapeHtml(summary)}</p>
+        <div class="field-note"><strong>User Goals</strong></div>
+        ${renderTagRow(intent.user_goals)}
+        <div class="field-note"><strong>Safety Priorities</strong></div>
+        ${renderTagRow(intent.safety_priorities)}
+        <div class="field-note"><strong>Style Preferences</strong></div>
+        ${renderTagRow(intent.style_preferences)}
+        ${draft.draft?.risk_notes?.length ? `<div class="field-note"><strong>Risk Notes</strong></div><div class="field-note">${escapeHtml(draft.draft.risk_notes.join("; "))}</div>` : ""}
+      </div>
+    `;
+  }
+
   function renderParameterForm(
     patch: Record<string, string | number>,
     citationsByField: Record<string, string[]> = {},
     parameterSourcesByField: Record<string, string> = {},
+    evidence: RagEvidence[] = [],
   ): void {
     const hasPatch = patch && Object.keys(patch).length > 0;
     if (!hasPatch) {
       parameterForm.innerHTML = `<div class="field-note" style="text-align:center;padding:12px 0;">等待生成设计草案后填充参数。</div>`;
       return;
     }
+    const evidenceMap = new Map<string, RagEvidence>();
+    evidence.forEach((ev) => evidenceMap.set(ev.chunk_id, ev));
+
     parameterForm.innerHTML = FIELD_CONFIGS.map((field) => {
       const value = patch[field.key] ?? "";
-      const citations = (citationsByField[field.key] || []).join(", ");
+      const chunkIds = citationsByField[field.key] || [];
       const source = parameterSourcesByField[field.key] || "unknown";
       const sourceLabel = formatParameterSourceLabel(source);
-      if (field.type === "select") {
-        const options = (field.options || [])
-          .map((option) => `<option value="${escapeHtml(option)}" ${option === value ? "selected" : ""}>${escapeHtml(option)}</option>`)
-          .join("");
-        return `
-          <div class="field">
-            <label for="field-${field.key}">${escapeHtml(field.label)}</label>
-            <select id="field-${field.key}" data-key="${escapeHtml(field.key)}">${options}</select>
-            <div class="tag-row">
-              <span class="tag source-tag ${escapeHtml(source)}">source: ${escapeHtml(sourceLabel)}</span>
-            </div>
-            <div class="field-note">citations: ${escapeHtml(citations || "none")}</div>
-          </div>
-        `;
+
+      let sourceDetailHtml = "";
+      if (source === "rag") {
+        sourceDetailHtml = buildCitationHtml(field.key, chunkIds, evidenceMap);
+      } else if (source === "llm_inferred") {
+        sourceDetailHtml = buildLlmContextHtml(field.key);
+      } else {
+        sourceDetailHtml = `<div class="field-note">source: ${escapeHtml(sourceLabel)}</div>`;
       }
+
+      const controlHtml = field.type === "select"
+        ? `<select id="field-${field.key}" data-key="${escapeHtml(field.key)}">${(field.options || [])
+            .map((option) => `<option value="${escapeHtml(option)}" ${option === value ? "selected" : ""}>${escapeHtml(option)}</option>`)
+            .join("")}</select>`
+        : `<input id="field-${field.key}" data-key="${escapeHtml(field.key)}" type="${field.type}" value="${escapeHtml(String(value))}" />`;
+
       return `
         <div class="field">
-          <label for="field-${field.key}">${escapeHtml(field.label)}</label>
-          <input id="field-${field.key}" data-key="${escapeHtml(field.key)}" type="${field.type}" value="${escapeHtml(String(value))}" />
-          <div class="tag-row">
-            <span class="tag source-tag ${escapeHtml(source)}">source: ${escapeHtml(sourceLabel)}</span>
+          <div class="field-row">
+            <div class="field-control">
+              <label for="field-${field.key}">${escapeHtml(field.label)}</label>
+              ${controlHtml}
+            </div>
+            <div class="field-meta">
+              <span class="tag source-tag ${escapeHtml(source)}">source: ${escapeHtml(sourceLabel)}</span>
+            </div>
           </div>
-          <div class="field-note">citations: ${escapeHtml(citations || "none")}</div>
+          ${sourceDetailHtml}
         </div>
       `;
     }).join("");

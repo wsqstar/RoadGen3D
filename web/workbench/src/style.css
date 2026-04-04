@@ -130,45 +130,6 @@ select {
   content: " \2713";
 }
 
-.config-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 16px;
-  padding: 12px 18px;
-  background: var(--bg-paper);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
-}
-
-.config-bar-group {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.config-bar-label {
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(23,33,29,0.58);
-}
-
-.config-bar-select {
-  min-height: 36px;
-  border-radius: 10px;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,0.6);
-  padding: 6px 10px;
-}
-
-.config-bar-actions {
-  display: flex;
-  gap: 8px;
-  margin-left: auto;
-}
-
 .btn-sm {
   padding: 8px 14px;
   font-size: 0.88rem;
@@ -359,8 +320,7 @@ select {
 
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 12px;
+  gap: 14px;
 }
 
 .scene-setup-grid {
@@ -411,6 +371,25 @@ select {
   gap: 8px;
 }
 
+.field-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.field-control {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.field-meta {
+  flex-shrink: 0;
+  align-self: flex-end;
+  padding-bottom: 6px;
+}
+
 .field label {
   font-size: 0.82rem;
   letter-spacing: 0.06em;
@@ -430,6 +409,106 @@ select {
 .field-note {
   color: rgba(23, 33, 29, 0.62);
   font-size: 0.82rem;
+}
+
+/* ── Expandable Citation Chips ───────────────────────── */
+.citation-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.citation-chip {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(45, 74, 66, 0.25);
+  background: var(--forest-soft);
+  color: var(--forest);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  user-select: none;
+  white-space: nowrap;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.citation-chip:hover {
+  background: rgba(45, 74, 66, 0.22);
+}
+
+.citation-chip.expanded {
+  background: var(--forest);
+  color: #fff;
+  border-color: var(--forest);
+}
+
+.citation-detail {
+  margin-top: 6px;
+  padding: 10px 14px;
+  border: 1px solid rgba(45, 74, 66, 0.2);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.6);
+  display: grid;
+  gap: 6px;
+  max-height: 260px;
+  overflow: auto;
+  animation: citation-expand 0.12s ease-out;
+}
+
+.citation-detail .evidence-text {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  max-height: 120px;
+  overflow: auto;
+  margin: 0;
+}
+
+@keyframes citation-expand {
+  from { opacity: 0; transform: translateY(-3px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.llm-toggle {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(182, 82, 47, 0.25);
+  background: rgba(182, 82, 47, 0.08);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  user-select: none;
+  margin-top: 2px;
+}
+
+.llm-toggle:hover {
+  background: rgba(182, 82, 47, 0.18);
+}
+
+.llm-toggle.expanded {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.llm-detail {
+  margin-top: 6px;
+  padding: 10px 14px;
+  border: 1px solid rgba(182, 82, 47, 0.18);
+  border-radius: var(--radius-md);
+  background: rgba(182, 82, 47, 0.04);
+  display: grid;
+  gap: 6px;
+  max-height: 260px;
+  overflow: auto;
+  animation: citation-expand 0.12s ease-out;
 }
 
 .summary-box,
