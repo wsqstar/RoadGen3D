@@ -119,18 +119,20 @@ export function mountWorkbench(app: HTMLDivElement): void {
   app.innerHTML = `
     <div class="shell">
       <section class="hero">
-        <h1>RoadGen3D Street Workbench</h1>
-        <p>
-          生成工作台和 3D viewer 分开运行。这里负责对话、RAG、参数确认和任务触发；空间浏览与漫游交给独立 viewer。
-        </p>
-        <div class="hero-grid">
+        <div class="hero-left">
+          <h1>RoadGen3D Street Workbench</h1>
+          <p>
+            生成工作台和 3D viewer 分开运行。这里负责对话、RAG、参数确认和任务触发；空间浏览与漫游交给独立 viewer。
+          </p>
+          <div class="hero-actions">
+            <a class="hero-link" href="${escapeHtml(VIEWER_BASE)}" target="_blank" rel="noreferrer">Open Standalone Viewer</a>
+          </div>
+        </div>
+        <div class="hero-steps">
           <div class="hero-chip" data-step="1">1. Intent Clarification</div>
           <div class="hero-chip" data-step="2">2. GraphRAG Evidence</div>
           <div class="hero-chip" data-step="3">3. Parameter Confirmation</div>
           <div class="hero-chip" data-step="4">4. Scene Job</div>
-        </div>
-        <div class="hero-actions">
-          <a class="hero-link" href="${escapeHtml(VIEWER_BASE)}" target="_blank" rel="noreferrer">Open Standalone Viewer</a>
         </div>
       </section>
 
