@@ -32,6 +32,7 @@ import {
   DEFAULT_GRAPH_TEMPLATE_ID,
   PEDESTRIAN_ALL_AGE_PRESET_PROMPT,
   FIELD_CONFIGS,
+  SCENE_PRESETS,
 } from "./types";
 import { requireElement, postJson, getJson, resolveApiUrl } from "./api";
 import {
@@ -81,6 +82,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
     } as SceneContext,
     bboxDirty: false,
     previewVisible: false,
+    presetId: null as string | null,
     activeTab: 0,  // 0=Conversation, 1=Scene Setup, 2=Evidence, 3=Design Draft, 4=Scene Jobs
   };
 
@@ -184,6 +186,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
             <h2>Scene Setup</h2>
           </div>
           <div class="panel-body">
+            <div id="scene-presets-grid" class="scene-preset-grid"></div>
             <div class="scene-setup-grid">
               <div class="field">
                 <label for="scene-layout-mode">Layout Mode</label>
@@ -326,6 +329,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
   const parameterForm = requireElement<HTMLDivElement>(app, "#parameter-form");
   const generateBtn = requireElement<HTMLButtonElement>(app, "#generate-btn");
   const generationResult = requireElement<HTMLDivElement>(app, "#generation-result");
+  const scenePresetsGrid = requireElement<HTMLDivElement>(app, "#scene-presets-grid");
 
   renderTimeline();
   renderParameterForm({});
@@ -333,6 +337,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
   renderKnowledgeSourcePanel();
   renderJobPanel();
   renderHeroSteps();
+  renderPresetsGrid();
   // Event delegation for expandable citations in parameter form
   parameterForm.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;
@@ -362,6 +367,33 @@ export function mountWorkbench(app: HTMLDivElement): void {
         target.textContent = isHidden ? "Hide LLM context" : "Show LLM context";
       }
     }
+  });
+
+  function renderPresetsGrid(): void {
+    scenePresetsGrid.innerHTML = SCENE_PRESETS.map((preset) => `
+      <button class="scene-preset-card" data-preset-id="${escapeHtml(preset.id)}" type="button">
+        <div class="scene-preset-name">${escapeHtml(preset.name)}</div>
+        <div class="scene-preset-desc">${escapeHtml(preset.description)}</div>
+      </button>
+    `).join("");
+  }
+
+  scenePresetsGrid.addEventListener("click", (e) => {
+    const card = (e.target as HTMLElement).closest<HTMLElement>("[data-preset-id]");
+    if (!card?.dataset.presetId) return;
+    const preset = SCENE_PRESETS.find((p) => p.id === card.dataset.presetId);
+    if (!preset) return;
+    state.presetId = preset.id;
+    state.selectedKnowledgeSource = "graph_rag";
+    knowledgeSource.value = "graph_rag";
+    renderKnowledgeSourcePanel();
+    promptInput.value = preset.prompt;
+    void requestDesignDraft({
+      prompt: preset.prompt,
+      currentPatch: preset.configPatch,
+      knowledgeSource: "graph_rag",
+      autoGenerate: true,
+    });
   });
 
   void bootstrap();
@@ -595,7 +627,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
         draft,
         scene_context: sceneContext,
         patch_overrides: {},
-        generation_options: {},
+        generation_options: state.presetId ? { preset_id: state.presetId } : {},
       });
       state.currentJob = {
         job_id: created.job_id,

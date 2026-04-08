@@ -197,7 +197,7 @@ DesignAssistantService --> GraphLoader : "图感知设计"
 
 **更新** GLM客户端经过重大改进，现在具备了更强的鲁棒性和可靠性。新版本提供了以下核心功能：
 
-- **双凭证管理系统**：优先使用GRAPHRAG_API_KEY/GRAPHRAG_API_BASE环境变量，回退到传统glm_base_url/key
+- **双凭证管理系统**：优先使用GRAPHRAG_API_KEY/GRAPHRAG_API_BASE环境变量，回退到传统llm_base_url/key
 - **指数退避重试机制**：支持可配置的最大重试次数和基础延迟时间
 - **HTTP 429速率限制处理**：智能处理429 Too Many Requests错误
 - **增强的错误处理**：提供详细的错误类型和异常处理
@@ -627,7 +627,7 @@ end
 - 检查`GRAPHRAG_API_BASE`和`GRAPHRAG_API_KEY`环境变量（首选）
 - 验证GLM服务端点的有效性
 - 确认API密钥的正确性和权限
-- 如果使用旧版本，检查`glm_base_url`和`key`环境变量
+- 如果使用旧版本，检查`llm_base_url`和`key`环境变量
 
 #### 2. 知识库构建失败
 **症状**：PDF知识库构建过程中出现错误

@@ -199,7 +199,7 @@ GLMClient --> GLMResponseError : 抛出
 
 2. **传统环境变量**：
    - `key` - API密钥
-   - `glm_base_url` - API基础URL
+   - `llm_base_url` - API基础URL
    - `glm_model` - 模型名称
 
 #### 重试机制
@@ -384,7 +384,7 @@ GLM客户端使用httpx的连接池来优化网络请求性能：
 **解决方案**：
 1. 检查环境变量是否正确设置
 2. 验证GRAPHRAG_API_KEY和GRAPHRAG_API_BASE
-3. 确认legacy变量（key和glm_base_url）作为后备选项
+3. 确认legacy变量（key和llm_base_url）作为后备选项
 
 #### 网络连接问题
 

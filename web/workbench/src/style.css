@@ -633,6 +633,50 @@ select {
   gap: 10px;
 }
 
+/* ── Scene Preset Cards ─────────────────────────────── */
+.scene-preset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.scene-preset-card {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.46);
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: var(--bg-ink);
+  transition: box-shadow 0.12s ease, transform 0.12s ease, border-color 0.12s ease;
+}
+
+.scene-preset-card:hover {
+  box-shadow: 0 8px 22px rgba(33, 29, 20, 0.08);
+  transform: translateY(-1px);
+  border-color: var(--line-strong);
+}
+
+.scene-preset-card.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.scene-preset-name {
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.scene-preset-desc {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: rgba(23, 33, 29, 0.62);
+}
+
 .scene-summary {
   margin: 0;
   max-height: 240px;

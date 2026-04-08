@@ -225,3 +225,56 @@ export const FIELD_CONFIGS: FieldConfig[] = [
   { key: "transit_demand_level", label: "Transit Demand", type: "select", options: ["low", "medium", "high"] },
   { key: "vehicle_demand_level", label: "Vehicle Demand", type: "select", options: ["low", "medium", "high"] },
 ];
+
+export type ScenePreset = {
+  id: string;
+  name: string;
+  description: string;
+  prompt: string;
+  configPatch: Record<string, string | number>;
+};
+
+export const SCENE_PRESETS: ScenePreset[] = [
+  {
+    id: "urban_downtown",
+    name: "Urban Downtown",
+    description: "Dense urban core with mixed-use streetscape, heavy pedestrian flow",
+    prompt: "高密度城市核心区，混合功能街道，行人流量大，公交可达性高，完整街道设计，行人优先、商业活跃、街道家具齐全",
+    configPatch: { design_rule_profile: "balanced_complete_street_v1", objective_profile: "commerce", density: 0.9, ped_demand_level: "high", bike_demand_level: "high", transit_demand_level: "high", vehicle_demand_level: "medium" },
+  },
+  {
+    id: "residential_quiet",
+    name: "Quiet Residential",
+    description: "Low-density residential street with trees and minimal furniture",
+    prompt: "低密度住宅区安静街道，行人和自行车友好的居住区道路，以绿化为主，街道家具简约，步行安全和全龄友好",
+    configPatch: { design_rule_profile: "pedestrian_priority_v1", objective_profile: "greening", density: 0.3, ped_demand_level: "low", bike_demand_level: "medium", transit_demand_level: "low", vehicle_demand_level: "low" },
+  },
+  {
+    id: "waterfront_promenade",
+    name: "Waterfront Promenade",
+    description: "Scenic waterfront walkway with benches, lamps, and landscape",
+    prompt: "滨水步道，景观休闲为主，配备座椅、路灯和绿化景观，行人优先，宽阔人行道和观景空间，自行车道分离",
+    configPatch: { design_rule_profile: "pedestrian_priority_v1", objective_profile: "greening", density: 0.5, ped_demand_level: "medium", bike_demand_level: "medium", transit_demand_level: "low", vehicle_demand_level: "low" },
+  },
+  {
+    id: "commercial_strip",
+    name: "Commercial Strip",
+    description: "Busy commercial street with bus stops, signage, and heavy furniture",
+    prompt: "繁忙商业街，公交站点、标志牌和街道家具齐全，商业活跃度高，平衡机动车通行和行人购物体验，宽阔人行道",
+    configPatch: { design_rule_profile: "balanced_complete_street_v1", objective_profile: "commerce", density: 0.8, ped_demand_level: "high", bike_demand_level: "medium", transit_demand_level: "high", vehicle_demand_level: "medium" },
+  },
+  {
+    id: "park_pathway",
+    name: "Park Pathway",
+    description: "Green park pathway with scattered trees and landscape elements",
+    prompt: "公园绿道，自然景观为主，散布树木和绿化元素，步行和自行车友好，无机动车，强调生态和休闲功能",
+    configPatch: { design_rule_profile: "pedestrian_priority_v1", objective_profile: "greening", density: 0.2, ped_demand_level: "medium", bike_demand_level: "medium", transit_demand_level: "low", vehicle_demand_level: "low" },
+  },
+  {
+    id: "transit_corridor",
+    name: "Transit Corridor",
+    description: "Transit-oriented corridor with bus stops, shelters, and wide sidewalks",
+    prompt: "公交导向走廊，配备公交站、候车亭和宽阔人行道，公交专用道并行，高密度开发，公交可达性和换乘便利",
+    configPatch: { design_rule_profile: "transit_priority_v1", objective_profile: "transit", density: 0.85, ped_demand_level: "high", bike_demand_level: "medium", transit_demand_level: "high", vehicle_demand_level: "high" },
+  },
+];

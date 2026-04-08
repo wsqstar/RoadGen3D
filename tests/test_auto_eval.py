@@ -7,7 +7,7 @@ queries and evaluates them meaningfully.
 
 Test 5 uses a mock service to deterministically verify the early-stop logic.
 
-Set environment variables ``glm_base_url`` and ``key`` (as read by
+Set environment variables ``llm_base_url`` and ``key`` (as read by
 ``GLMSettings.from_env()``) to run the real-LLM tests.  They will be
 automatically skipped otherwise.
 """
@@ -54,14 +54,14 @@ def _llm_available() -> bool:
         load_dotenv()
     except ImportError:
         pass
-    return bool(os.environ.get("glm_base_url", "").strip()) and bool(
+    return bool(os.environ.get("llm_base_url", "").strip()) and bool(
         os.environ.get("key", "").strip()
     )
 
 
 requires_llm = pytest.mark.skipif(
     not _llm_available(),
-    reason="LLM API not configured (need glm_base_url and key env vars)",
+    reason="LLM API not configured (need llm_base_url and key env vars)",
 )
 
 # ---------------------------------------------------------------------------

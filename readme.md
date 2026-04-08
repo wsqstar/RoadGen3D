@@ -376,7 +376,7 @@ Swagger UI: `http://127.0.0.1:8010/docs`
 
 ## Testing
 
-The test suite in `tests/test_auto_eval.py` validates the full pipeline end-to-end. Tests 1–4 call the real LLM API (auto-skipped if `glm_base_url` and `key` are not set in `.env`), while test 5 uses a mock service for deterministic early-stop verification.
+The test suite in `tests/test_auto_eval.py` validates the full pipeline end-to-end. Tests 1–4 call the real LLM API (auto-skipped if `llm_base_url` and `key` are not set in `.env`), while test 5 uses a mock service for deterministic early-stop verification.
 
 ```bash
 # Run all tests (real-LLM tests auto-skip without API credentials)
@@ -400,7 +400,7 @@ Create a `.env` file in the project root:
 
 ```bash
 key=your_api_key
-glm_base_url=https://open.bigmodel.cn/api/coding/paas/v4
+llm_base_url=https://open.bigmodel.cn/api/coding/paas/v4
 GRAPHRAG_API_KEY=your_graphrag_key
 GRAPHRAG_API_BASE=https://api.example.com/v1/
 ```

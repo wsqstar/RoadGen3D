@@ -2,7 +2,7 @@
 
 Supports any OpenAI-compatible API (GLM, Gemini via proxy, etc.).
 Reads credentials from ``GRAPHRAG_API_KEY`` / ``GRAPHRAG_API_BASE`` (preferred)
-or the legacy ``glm_base_url`` / ``key`` environment variables.
+or the legacy ``llm_base_url`` / ``key`` environment variables.
 """
 
 from __future__ import annotations
@@ -43,7 +43,7 @@ class GLMSettings:
         # Prefer GRAPHRAG_ vars; fall back to legacy glm_ vars
         base_url = (
             str(os.environ.get("GRAPHRAG_API_BASE", "")).strip().rstrip("/")
-            or str(os.environ.get("glm_base_url", "")).strip().rstrip("/")
+            or str(os.environ.get("llm_base_url", "")).strip().rstrip("/")
         )
         api_key = (
             str(os.environ.get("GRAPHRAG_API_KEY", "")).strip()
@@ -57,7 +57,7 @@ class GLMSettings:
         if not base_url or not api_key:
             raise GLMConfigurationError(
                 "Missing LLM configuration. Set GRAPHRAG_API_BASE + GRAPHRAG_API_KEY "
-                "(or legacy glm_base_url + key) in the environment or .env."
+                "(or legacy llm_base_url + key) in the environment or .env."
             )
         return cls(base_url=base_url.rstrip("/"), api_key=api_key, model=model)
 
