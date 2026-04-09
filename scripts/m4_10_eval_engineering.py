@@ -8,7 +8,7 @@ import csv
 import json
 import sys
 from pathlib import Path
-from typing import Dict, List, Sequence
+from typing import Any, Dict, List, Sequence
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
@@ -21,6 +21,13 @@ from roadgen3d.eval_metrics import (  # noqa: E402
     compute_balance_score,
     compute_spacing_uniformity,
     compute_style_consistency,
+)
+from roadgen3d.eval_quality import (  # noqa: E402
+    compute_structured_beauty_report,
+    compute_structured_safety_report,
+    compute_walkability_indicators,
+    write_json_report,
+    write_walkability_report,
 )
 from roadgen3d.street_layout import compose_street_scene  # noqa: E402
 from roadgen3d.types import StreetComposeConfig  # noqa: E402
@@ -183,10 +190,34 @@ def _run_mode(
             )
 
             layout_path = Path(result.outputs.get("scene_layout", "")).resolve()
-            summary = {}
+            summary: Dict[str, Any] = {}
+            walkability = None
+            walkability_report_path = ""
+            safety_report = None
+            safety_report_path = ""
+            beauty_report = None
+            beauty_report_path = ""
             if layout_path.exists():
                 payload = json.loads(layout_path.read_text(encoding="utf-8"))
                 summary = payload.get("summary", {}) or {}
+                try:
+                    walkability = compute_walkability_indicators(payload)
+                    walkability_report_path = str((scene_out / "walkability.json").resolve())
+                    write_walkability_report(walkability, Path(walkability_report_path))
+                except Exception as walk_err:  # pragma: no cover - defensive logging
+                    print(f"[warn] walkability computation failed for {scene_id}: {walk_err}", file=sys.stderr)
+                try:
+                    safety_report = compute_structured_safety_report(payload, walkability=walkability)
+                    safety_report_path = str((scene_out / "safety_structured.json").resolve())
+                    write_json_report(safety_report, Path(safety_report_path))
+                except Exception as safety_err:  # pragma: no cover
+                    print(f"[warn] safety computation failed for {scene_id}: {safety_err}", file=sys.stderr)
+                try:
+                    beauty_report = compute_structured_beauty_report(payload)
+                    beauty_report_path = str((scene_out / "beauty_structured.json").resolve())
+                    write_json_report(beauty_report, Path(beauty_report_path))
+                except Exception as beauty_err:  # pragma: no cover
+                    print(f"[warn] beauty computation failed for {scene_id}: {beauty_err}", file=sys.stderr)
 
             row = {
                 "scene_id": scene_id,
@@ -217,6 +248,25 @@ def _run_mode(
                 "scene_glb": str(result.outputs.get("scene_glb", "")),
                 "scene_ply": str(result.outputs.get("scene_ply", "")),
             }
+            row["walkability_report"] = walkability_report_path
+            if walkability is not None:
+                row["walkability_index"] = walkability.walkability_index
+                for key, value in walkability.indicators.items():
+                    row[f"walk_{key.lower()}"] = value
+                for key, value in walkability.pillar_scores.items():
+                    row[f"walk_pillar_{key.lower()}"] = value
+            row["safety_report_path"] = safety_report_path
+            if safety_report is not None:
+                row["safety_score"] = safety_report.get("final_score", 0.0)
+                row["safety_structural_score"] = safety_report.get("structural_score", 0.0)
+                for key, value in (safety_report.get("features") or {}).items():
+                    row[f"safety_{key.lower()}"] = value
+            row["beauty_report_path"] = beauty_report_path
+            if beauty_report is not None:
+                row["beauty_score"] = beauty_report.get("final_score", 0.0)
+                row["beauty_structural_score"] = beauty_report.get("structural_score", 0.0)
+                for key, value in (beauty_report.get("features") or {}).items():
+                    row[f"beauty_{key.lower()}"] = value
             rows.append(row)
     return rows
 
