@@ -12,8 +12,16 @@
 - [src/roadgen3d/knowledge/graphrag.py](file://src/roadgen3d/knowledge/graphrag.py)
 - [src/roadgen3d/knowledge/pdf_rag.py](file://src/roadgen3d/knowledge/pdf_rag.py)
 - [tests/test_glm_client.py](file://tests/test_glm_client.py)
+- [tests/test_auto_eval.py](file://tests/test_auto_eval.py)
 - [readme.md](file://readme.md)
 </cite>
+
+## 更新摘要
+**变更内容**
+- 更新配置系统章节，反映环境变量从 `glm_base_url` 到 `llm_base_url` 的标准化
+- 改进错误消息说明，提供更清晰的配置指导
+- 维护向后兼容性说明，确保旧配置继续工作
+- 更新故障排除指南中的配置问题章节
 
 ## 目录
 1. [简介](#简介)
@@ -21,10 +29,11 @@
 3. [核心组件](#核心组件)
 4. [架构概览](#架构概览)
 5. [详细组件分析](#详细组件分析)
-6. [依赖关系分析](#依赖关系分析)
-7. [性能考虑](#性能考虑)
-8. [故障排除指南](#故障排除指南)
-9. [结论](#结论)
+6. [配置系统](#配置系统)
+7. [依赖关系分析](#依赖关系分析)
+8. [性能考虑](#性能考虑)
+9. [故障排除指南](#故障排除指南)
+10. [结论](#结论)
 
 ## 简介
 
@@ -190,17 +199,19 @@ GLMClient --> GLMResponseError : 抛出
 
 #### 配置管理机制
 
-客户端支持两种配置方式：
+**更新** 客户端支持两种配置方式，现已标准化环境变量命名：
 
-1. **现代环境变量**：
+1. **现代环境变量**（推荐）：
    - `GRAPHRAG_API_KEY` - API密钥
    - `GRAPHRAG_API_BASE` - API基础URL
    - `LLM_MODEL` - 模型名称
 
-2. **传统环境变量**：
+2. **传统环境变量**（向后兼容）：
    - `key` - API密钥
-   - `llm_base_url` - API基础URL
+   - `llm_base_url` - API基础URL（已标准化）
    - `glm_model` - 模型名称
+
+配置优先级：现代环境变量优先于传统环境变量，但传统变量仍被支持以确保向后兼容性。
 
 #### 重试机制
 
@@ -299,6 +310,69 @@ System --> Output
 - [src/roadgen3d/llm/prompts.py:113-164](file://src/roadgen3d/llm/prompts.py#L113-L164)
 - [src/roadgen3d/llm/prompts.py:167-211](file://src/roadgen3d/llm/prompts.py#L167-L211)
 
+## 配置系统
+
+**更新** 增强Glm客户端的配置系统经过重大改进，实现了环境变量的标准化和向后兼容性。
+
+### 环境变量标准化
+
+**主要变更**：将环境变量命名从 `glm_base_url` 标准化为 `llm_base_url`，以更好地反映其通用用途。
+
+#### 现代环境变量（推荐）
+
+- `GRAPHRAG_API_KEY` - API密钥
+- `GRAPHRAG_API_BASE` - API基础URL
+- `LLM_MODEL` - 模型名称
+
+#### 传统环境变量（向后兼容）
+
+- `key` - API密钥
+- `llm_base_url` - API基础URL（已标准化）
+- `glm_model` - 模型名称
+
+### 配置优先级和回退机制
+
+配置系统采用智能优先级机制：
+
+```mermaid
+flowchart TD
+Start([启动配置]) --> LoadEnv[加载环境变量]
+LoadEnv --> ModernCheck{检查现代变量}
+ModernCheck --> |存在| UseModern[使用现代变量]
+ModernCheck --> |不存在| LegacyCheck{检查传统变量}
+LegacyCheck --> |存在| UseLegacy[使用传统变量]
+LegacyCheck --> |不存在| Error[抛出配置错误]
+UseModern --> Validate[验证配置]
+UseLegacy --> Validate
+Validate --> Success[配置成功]
+Error --> End([结束])
+Success --> End
+```
+
+**图表来源**
+- [src/roadgen3d/llm/glm_client.py:40-62](file://src/roadgen3d/llm/glm_client.py#L40-L62)
+
+### 错误消息改进
+
+**更新** 错误消息现在更加清晰和具体：
+
+- **配置错误**：明确指示需要设置 `GRAPHRAG_API_BASE + GRAPHRAG_API_KEY` 或 `llm_base_url + key`
+- **响应错误**：提供更详细的JSON解析失败信息
+- **速率限制**：包含重试尝试次数和延迟信息
+
+### 向后兼容性保证
+
+为了确保现有部署的平滑迁移，配置系统保持完全向后兼容：
+
+- 传统环境变量 `llm_base_url` 仍然被识别
+- 传统环境变量 `key` 仍然被识别
+- 传统环境变量 `glm_model` 仍然被识别
+- 所有现有配置将继续正常工作
+
+**章节来源**
+- [src/roadgen3d/llm/glm_client.py:40-62](file://src/roadgen3d/llm/glm_client.py#L40-L62)
+- [src/roadgen3d/llm/glm_client.py:58-61](file://src/roadgen3d/llm/glm_client.py#L58-L61)
+
 ## 依赖关系分析
 
 增强Glm客户端的依赖关系相对简洁，主要依赖于标准库和第三方库：
@@ -383,8 +457,9 @@ GLM客户端使用httpx的连接池来优化网络请求性能：
 
 **解决方案**：
 1. 检查环境变量是否正确设置
-2. 验证GRAPHRAG_API_KEY和GRAPHRAG_API_BASE
-3. 确认legacy变量（key和llm_base_url）作为后备选项
+2. 验证现代变量 `GRAPHRAG_API_KEY` 和 `GRAPHRAG_API_BASE`
+3. 确认传统变量 `key` 和 `llm_base_url` 作为后备选项
+4. 注意：`llm_base_url` 是标准化后的名称，替代了旧的 `glm_base_url`
 
 #### 网络连接问题
 
@@ -403,7 +478,7 @@ GLM客户端使用httpx的连接池来优化网络请求性能：
 **问题**：客户端无法解析LLM响应
 
 **解决方案**：
-1. 检查extract_json_payload函数
+1. 检查 `extract_json_payload` 函数
 2. 验证LLM返回格式
 3. 确认响应包含有效的JSON负载
 
@@ -417,19 +492,36 @@ GLM客户端使用httpx的连接池来优化网络请求性能：
 3. 调整请求频率
 4. 考虑使用付费API计划
 
+### 配置迁移指南
+
+**更新** 对于从旧配置迁移到新配置的用户：
+
+1. **短期迁移**：同时设置新旧环境变量，确保系统正常运行
+2. **长期迁移**：逐步替换为现代环境变量
+3. **验证**：确认所有功能正常工作
+4. **清理**：移除不再使用的传统环境变量
+
 **章节来源**
 - [tests/test_glm_client.py:18-47](file://tests/test_glm_client.py#L18-L47)
+- [tests/test_auto_eval.py:50-65](file://tests/test_auto_eval.py#L50-L65)
 
 ## 结论
 
 增强Glm客户端是RoadGen3D项目中的关键通信组件，它提供了稳定、高效的LLM集成能力。通过精心设计的架构和完善的错误处理机制，该客户端能够可靠地处理各种生产环境中的挑战。
 
-主要优势包括：
+**主要优势包括**：
 
 1. **可靠性**：内置重试机制和错误恢复
 2. **灵活性**：支持多种配置方式和环境变量
 3. **性能**：优化的连接池和缓存策略
 4. **可维护性**：清晰的代码结构和详细的文档
-5. **扩展性**：易于集成新的LLM提供商和功能
+5. **扩展性**：易于集成新的LLM提供商
+6. **向后兼容性**：平滑的配置迁移路径
+
+**更新亮点**：
+- 环境变量命名标准化，提升一致性
+- 改进的错误消息，便于故障诊断
+- 完全向后兼容，确保平滑迁移
+- 更清晰的配置优先级机制
 
 该客户端为整个RoadGen3D系统的文本到3D场景生成功能奠定了坚实的基础，是实现高质量城市街道设计自动化的重要工具。
