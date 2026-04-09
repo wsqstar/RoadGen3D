@@ -20,10 +20,11 @@ git clone https://github.com/GIStudio/RoadGen3D.git
 cd RoadGen3D
 git submodule update --init
 
-# Python dependencies
-.venv/bin/python -m pip install -r requirements-m1.txt
-.venv/bin/python -m pip install -r requirements-m2.txt
-.venv/bin/python -m pip install -r requirements-ui.txt
+# Install uv (if not already installed)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Python dependencies via uv
+uv sync
 
 # Frontend dependencies
 make workbench-install
@@ -202,7 +203,7 @@ Normalized POI types: `entrance`, `bus_stop`, `fire_hydrant`, `crossing`, `traff
 ### Generate a Street Scene
 
 ```bash
-.venv/bin/python scripts/m3_01_compose_street.py \
+uv run python scripts/m3_01_compose_street.py \
   --query "modern clean urban street" \
   --manifest data/real/real_assets_manifest.jsonl \
   --artifacts artifacts/real \
@@ -224,10 +225,10 @@ Output: `artifacts/real/scene.glb`, `artifacts/real/scene_layout.json`
 
 ```bash
 # Fetch OSM data for an AOI
-.venv/bin/python scripts/m5_01_fetch_osm.py --bbox 116.39 39.90 116.40 39.91
+uv run python scripts/m5_01_fetch_osm.py --bbox 116.39 39.90 116.40 39.91
 
 # Generate with real OSM geometry + POI constraints
-.venv/bin/python scripts/m3_01_compose_street.py \
+uv run python scripts/m3_01_compose_street.py \
   --query "urban residential" \
   --layout-mode osm \
   --constraint-mode soft \
@@ -239,7 +240,7 @@ Output: `artifacts/real/scene.glb`, `artifacts/real/scene_layout.json`
   --local-files-only
 
 # Evaluate POI compliance
-.venv/bin/python scripts/m5_10_eval_compliance.py \
+uv run python scripts/m5_10_eval_compliance.py \
   --scene-dir artifacts/m4/eval_scenes/rule
 ```
 
@@ -252,10 +253,20 @@ Output: `artifacts/real/scene.glb`, `artifacts/real/scene_layout.json`
 
 ### Auto Scene Pipeline
 
-Automatically generate, evaluate, and iteratively improve a street scene from a Viewer-exported graph JSON:
+Automatically generate, evaluate, and iteratively improve a street scene from a Viewer-exported graph JSON or a built-in Graph Template:
 
 ```bash
-.venv/bin/python scripts/auto_scene_pipeline.py \
+# Using built-in Graph Template (HKUST-GZ Gate)
+uv run python scripts/auto_scene_pipeline.py \
+  --graph-json assets/graph_templates/hkust_gz_gate/annotation.json \
+  --max-iterations 1 \
+  --local-files-only \
+  --device cpu \
+  --query "modern clean urban street" \
+  --manifest data/real/real_assets_manifest.jsonl
+
+# Using Viewer-exported graph JSON
+uv run python scripts/auto_scene_pipeline.py \
   --graph-json path/to/exported_graph.json \
   --base-map path/to/reference.png \
   --output-dir artifacts/auto_pipeline/my_scene \
@@ -291,7 +302,7 @@ Stop conditions: early stop after 2 consecutive rounds without score improvement
 Run multiple design queries through the full pipeline in one shot:
 
 ```bash
-.venv/bin/python scripts/run_auto_eval.py \
+uv run python scripts/run_auto_eval.py \
   --output-dir artifacts/auto_eval_$(date +%Y%m%d_%H%M%S) \
   --max-iterations 3 \
   --queries "modern transit boulevard" \
@@ -307,7 +318,7 @@ Run multiple design queries through the full pipeline in one shot:
 
 ```bash
 # Collect distilled policy data
-.venv/bin/python scripts/m4_01_collect_policy_data.py \
+uv run python scripts/m4_01_collect_policy_data.py \
   --manifest data/real/real_assets_manifest.jsonl \
   --artifacts artifacts/real \
   --out artifacts/m4/policy_train.jsonl \
@@ -315,20 +326,20 @@ Run multiple design queries through the full pipeline in one shot:
   --local-files-only
 
 # Train layout policy (MLP: 32 → 64 → 32 → 1)
-.venv/bin/python scripts/m4_02_train_layout_policy.py \
+uv run python scripts/m4_02_train_layout_policy.py \
   --data artifacts/m4/policy_train.jsonl \
   --out-dir artifacts/m4 \
   --device cpu
 
 # Use learned policy
-.venv/bin/python scripts/m3_01_compose_street.py \
+uv run python scripts/m3_01_compose_street.py \
   --placement-policy learned \
   --policy-ckpt artifacts/m4/layout_policy.pt \
   --policy-temperature 0.12 \
   ...
 
 # Evaluate engineering metrics
-.venv/bin/python scripts/m4_10_eval_engineering.py \
+uv run python scripts/m4_10_eval_engineering.py \
   --queries data/eval/queries_m4.txt \
   --manifest data/real/real_assets_manifest.jsonl \
   --artifacts artifacts/real \
@@ -349,7 +360,7 @@ Reports: `artifacts/m4/eval_report.json`, `artifacts/m4/eval_per_scene.csv`
 Refresh manifest metadata after adding or replacing assets:
 
 ```bash
-.venv/bin/python scripts/m3_04_clean_asset_manifest.py \
+uv run python scripts/m3_04_clean_asset_manifest.py \
   --manifest data/real/real_assets_manifest.jsonl --write
 ```
 
@@ -380,10 +391,10 @@ The test suite in `tests/test_auto_eval.py` validates the full pipeline end-to-e
 
 ```bash
 # Run all tests (real-LLM tests auto-skip without API credentials)
-.venv/bin/python -m pytest tests/test_auto_eval.py -v
+uv run pytest tests/test_auto_eval.py -v
 
 # Force-skip real-LLM tests (only mock + presentation tests)
-GLM_SKIP=1 .venv/bin/python -m pytest tests/test_auto_eval.py -v
+GLM_SKIP=1 uv run pytest tests/test_auto_eval.py -v
 ```
 
 | Test | LLM | What it verifies |
@@ -399,10 +410,22 @@ GLM_SKIP=1 .venv/bin/python -m pytest tests/test_auto_eval.py -v
 Create a `.env` file in the project root:
 
 ```bash
-key=your_api_key
-llm_base_url=https://open.bigmodel.cn/api/coding/paas/v4
 GRAPHRAG_API_KEY=your_graphrag_key
-GRAPHRAG_API_BASE=https://api.example.com/v1/
+GRAPHRAG_API_BASE=https://api.zetatechs.com/v1/
+LLM_MODEL=gpt-4o-mini
+```
+
+### Test LLM API
+
+```bash
+# Test API connectivity
+./scripts/test_llm_api.sh
+
+# Test with specific model
+./scripts/test_llm_api.sh gpt-4
+
+# List available models
+./scripts/test_llm_api.sh --list
 ```
 
 ## Make Targets

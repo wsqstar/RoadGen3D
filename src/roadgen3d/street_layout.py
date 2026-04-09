@@ -5398,9 +5398,18 @@ def compose_street_scene(
         local_files_only=bool(local_files_only),
         device=device,
     )
+    # FAISS index: use artifacts_dir if present, otherwise fallback to artifacts/m1
+    index_path = artifacts_dir / "index_ip.faiss"
+    id_map_path = artifacts_dir / "id_map.json"
+    if not index_path.exists():
+        fallback_index = ROOT / "artifacts" / "m1" / "index_ip.faiss"
+        fallback_id_map = ROOT / "artifacts" / "m1" / "id_map.json"
+        if fallback_index.exists():
+            index_path = fallback_index
+            id_map_path = fallback_id_map
     index_store = FaissIndexStore.load(
-        index_path=artifacts_dir / "index_ip.faiss",
-        id_map_path=artifacts_dir / "id_map.json",
+        index_path=index_path,
+        id_map_path=id_map_path,
     )
 
     policy_runtime: Optional[LayoutPolicyRuntime] = None
