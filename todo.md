@@ -1,63 +1,34 @@
-研究区域指定，然后构建3d场景。
+# RoadGen3D 开发待办
 
-# todo
-- [ ] todo
-- [ ] metrics
-- [ ] LLM评价，当前只有LLM生成plan
-- [ ] 场景图叠加到3D场景中展示。
-- [ ] png图+json文件的前后对比。
-- [ ] 十个预设的场景结果
-- [ ] 3d场景前后对比
+## 进行中
 
+- [ ] **LLM 评估接入** — 接入真实 LLM 评估 API
+  - 使用 zetatechs 或 yizhan api 中转站
+  - 替换当前的 mock 评估数据
+  - 评估维度：步行性(45%)、安全性(35%)、美观性(20%)
 
----
+## 待办
 
-### 1. 输入部分 (Input Section)
+- [ ] **场景图叠加到 3D** — 将 2D 场景图叠加到 3D 场景中展示
+  - 在 Viewer 中可视化场景图拓扑
+  - 显示节点、边、标注信息
 
-该阶段为系统提供原始数据和设计约束：
+- [ ] **png + json 前后对比** — 方案对比功能
+  - 支持选择两个方案进行对比
+  - 并排显示渲染预览图和场景布局
 
-- **城市背景 (Urban Context)：** 包含街道平面图（Street Plan）和兴趣点（POI）数据。
-    
-- **设计手册 (Design Handbook)：** 提供平面约束（Plan constraint）和设施约束（Furniture Constraint）。
-    
-- **外部输入：** 接收用户提示词（Prompt），所有信息共同输入至核心 **LLM**。
-    
+## 暂不处理
 
-### 2. 街道布局生成 (Street Layout Generation)
-
-LLM 根据输入生成街道的逻辑结构与物体配置：
-
-- **图层生成 (Layers Generation)：** 生成有效区域（Valid Region）、车行道（Drive Lane）、主人行道（Main Sidewalk）及近路设计（Near-road Furnishing）。
-    
-- **物体放置 (Object Placement)：** 确定城市家具（Urban Furniture）的布局。该过程支持“人机回环”（Human in the loop）干预或由 LLM 随机生成（LLM Randomly）。
-    
-
-### 3. 三维场景生成 (3D Scene Generation)
-
-将二维布局转化为可视化三维模型：
-
-- **资源调用：** 从 **3D 物体库 (3D Object Repository)** 匹配模型。
-    
-- **放置与定位：** 结合物体位置信息进行空间配置。
-    
-- **图层渲染 (Layer Rendering)：** 对路基（Road Base）、建筑（Buildings）和家具资产（Furniture Asset）进行渲染，最终生成 **场景预览 (Scene Preview)**。
-    
-
-### 4. 生成评估 (Generation Evaluation)
-
-对生成的场景进行质量受控的分析与优化：
-
-- **指标评分：** 引入“完整街道指标”（Complete Street Indicators），通过 LLM 进行自动化评分。
-    
-- **可视化与反馈：** 进行得分可视化（Score Visualization），并由 LLM 提供改进建议（Refine Suggestions）。
-    
-- **反思环路 (Reflection)：** 评估结果作为“反思”信号反馈给初始 LLM，形成设计迭代。
-    
+- [ ] ~~研究区域指定 (OSM)~~ — 暂时不办，当前使用预设模板模式
+- [ ] ~~3D 场景前后对比~~ — 暂时不办
+- [ ] ~~十个预设场景~~ — 使用现有 6 个预设（步行友好、商业活力、公交优先、公园景观、安静居住、平衡街道）
 
 ---
 
-**最终输出：** 经过优化后的全设计街道场景（Fully Designed Street Scenes）。
-# References
-- xcube https://github.com/nv-tlabs/XCube
-	- nvidia 的 3d生成
-- 
+## 已完成
+
+- [x] 简化 Workbench UI (5-tab → 3-step)
+- [x] 评估可视化（雷达图、柱状图）
+- [x] 方案对比（多方案生成与排序）
+- [x] Viewer URL 透传
+- [x] 项目结构整理
