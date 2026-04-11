@@ -9,6 +9,14 @@ from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any, Dict, List, Mapping
 
+from ..eval_quality import (
+    WalkabilityResult,
+    compute_walkability_indicators,
+    compute_structured_safety_report,
+    compute_structured_beauty_report,
+    write_walkability_report,
+    write_json_report,
+)
 from ..llm.design_workflow import DesignAssistantService
 from ..services.design_runtime import generate_scene_from_graph_context
 from ..services.design_types import (
@@ -31,6 +39,11 @@ class IterationSnapshot:
     layout_path: str
     preview_path: str
     scene_path: str
+    # Evaluation module fields
+    walkability: WalkabilityResult | None = None
+    safety_report: Dict[str, Any] | None = None
+    beauty_report: Dict[str, Any] | None = None
+    evaluation_score: float = 0.0  # Combined evaluation score
 
 
 @dataclass
@@ -149,11 +162,40 @@ class AutoIterationController:
             evaluation_text = str(eval_result.get("evaluation", ""))
             suggestions = list(eval_result.get("suggestions", []) or [])
 
-            # Save evaluation
+            # Step – Compute structured evaluation metrics (walkability, safety, beauty)
+            print(f"[auto_pipeline] Iteration {i}: computing evaluation metrics ...")
+            layout_payload = json.loads(Path(layout_path).read_text(encoding="utf-8"))
+            
+            walkability = compute_walkability_indicators(layout_payload)
+            safety_report = compute_structured_safety_report(layout_payload, walkability)
+            beauty_report = compute_structured_beauty_report(layout_payload)
+
+            # Compute combined evaluation score (0-10)
+            # EvaluationScore = 0.45 * WalkabilityIndex + 0.35 * SafetyScore + 0.20 * BeautyScore
+            walkability_index = float(walkability.walkability_index)
+            safety_score = float(safety_report.get("final_score", 0.0))
+            beauty_score = float(beauty_report.get("final_score", 0.0))
+            evaluation_score = round(
+                0.45 * walkability_index + 0.35 * safety_score + 0.20 * beauty_score, 4
+            )
+
+            # Save evaluation reports
             eval_path = iter_dir / "evaluation.json"
             eval_path.write_text(
                 json.dumps(eval_result, ensure_ascii=False, indent=2), encoding="utf-8"
             )
+
+            # Save walkability report
+            walkability_path = iter_dir / "walkability.json"
+            write_walkability_report(walkability, walkability_path)
+
+            # Save safety report
+            safety_path = iter_dir / "safety.json"
+            write_json_report(safety_report, safety_path)
+
+            # Save beauty report
+            beauty_path = iter_dir / "beauty.json"
+            write_json_report(beauty_report, beauty_path)
 
             snapshot = IterationSnapshot(
                 iteration=i,
@@ -164,17 +206,23 @@ class AutoIterationController:
                 layout_path=layout_path,
                 preview_path=preview_path,
                 scene_path=scene_path,
+                walkability=walkability,
+                safety_report=safety_report,
+                beauty_report=beauty_report,
+                evaluation_score=evaluation_score,
             )
             snapshots.append(snapshot)
 
             print(
-                f"[auto_pipeline] Iteration {i}: score={score:.1f}/10"
-                f"  (best={best_score:.1f})"
+                f"[auto_pipeline] Iteration {i}: "
+                f"LLM_score={score:.1f}/10, "
+                f"Evaluation={evaluation_score:.2f} "
+                f"(Walk={walkability_index:.2f}, Safety={safety_score:.2f}, Beauty={beauty_score:.2f})"
             )
 
-            # Track best
-            if score > best_score:
-                best_score = score
+            # Track best by evaluation_score (combined metric)
+            if evaluation_score > best_score:
+                best_score = evaluation_score
                 best_iteration = i
                 no_improvement_count = 0
             else:
@@ -240,23 +288,32 @@ class AutoIterationController:
 
 def _result_to_log(result: IterationResult) -> Dict[str, Any]:
     """Serialise *IterationResult* to a JSON-friendly log dict."""
+    iterations_data = []
+    for s in result.iterations:
+        iter_data = {
+            "iteration": s.iteration,
+            "score": s.score,
+            "evaluation": s.evaluation,
+            "suggestions": s.suggestions,
+            "config_patch": s.config_patch,
+            "layout_path": s.layout_path,
+            "preview_path": s.preview_path,
+            "scene_path": s.scene_path,
+            "evaluation_score": s.evaluation_score,
+        }
+        if s.walkability:
+            iter_data["walkability"] = s.walkability.to_dict()
+        if s.safety_report:
+            iter_data["safety"] = s.safety_report
+        if s.beauty_report:
+            iter_data["beauty"] = s.beauty_report
+        iterations_data.append(iter_data)
+    
     return {
         "total_iterations": result.total_iterations,
         "best_iteration": result.best_iteration,
         "best_score": result.best_score,
         "best_layout_path": result.best_layout_path,
         "best_scene_path": result.best_scene_path,
-        "iterations": [
-            {
-                "iteration": s.iteration,
-                "score": s.score,
-                "evaluation": s.evaluation,
-                "suggestions": s.suggestions,
-                "config_patch": s.config_patch,
-                "layout_path": s.layout_path,
-                "preview_path": s.preview_path,
-                "scene_path": s.scene_path,
-            }
-            for s in result.iterations
-        ],
+        "iterations": iterations_data,
     }
