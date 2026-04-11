@@ -261,6 +261,11 @@ def aggregate_scene_rows(rows: Sequence[Dict[str, object]]) -> Dict[str, float]:
         if any(key in item for item in rows):
             result[key] = _mean(key)
 
+    _quality_keys = ("walkability_index", "safety_score", "beauty_score")
+    for key in _quality_keys:
+        if any(key in item for item in rows):
+            result[key] = _mean(key)
+
     return result
 
 

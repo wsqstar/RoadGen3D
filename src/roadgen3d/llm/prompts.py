@@ -210,8 +210,6 @@ def build_scene_evaluation_messages(
         {"role": "user", "content": user_content},  # type: ignore[list-item]
     ]
 
-
-def build_layout_edit_messages(
     image_data_url: str,
     layout_summary: str,
     user_query: str,
