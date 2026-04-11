@@ -52,18 +52,36 @@ Or start individual services via `make workbench-api`, `make workbench-web`, `ma
 
 ### Workflow
 
-1. Open the **Workbench** at `http://127.0.0.1:4174`
-2. Describe your design goal in the **Conversation Panel** (e.g., "步行安全，全龄友好")
-3. The system searches the **knowledge base** for relevant design guidance and evidence
-4. Review the generated **Design Draft** — editable parameters with citations
-5. Confirm to submit a **Scene Generation Job**
-6. Open the **Viewer** at `http://127.0.0.1:4173` to explore the 3D result
+**简化的 3 步设计流程：**
 
-The workbench supports four layout modes:
-- **Graph Template** — Predefined street graph (e.g., HKUST Guangzhou campus entrance)
-- **OSM** — Extract real streets from OpenStreetMap with a bounding box
-- **MetaUrban** — Block-based reference plans
-- **Template** — Simple parameterized straight street
+1. **模板选择** — 从预设模板中选择场景类型（校园入口、商业街、住宅区、公园道路）
+2. **方案生成** — 系统生成多个不同的 3D 街道布局方案
+3. **评估与预览** — 查看各方案的评估得分（步行性、安全性、美观性），选择满意方案进行 3D 预览
+
+```
+┌─────────────┐     ┌─────────────┐     ┌─────────────────────┐
+│  模板选择    │ ──▶ │  方案生成    │ ──▶ │  评估 & 3D 预览      │
+│  Template   │     │  Generate   │     │  Evaluate & View    │
+└─────────────┘     └─────────────┘     └─────────────────────┘
+```
+
+启动服务：
+
+```bash
+make dev
+```
+
+访问地址：
+- **Workbench** — `http://127.0.0.1:4174` (主界面)
+- **Viewer** — `http://127.0.0.1:4173` (3D 预览)
+
+### 场景模板
+
+Workbench 提供四种预设模板：
+- **校园入口** — HKUST 广州校区入口道路
+- **商业街** — 繁华商业区街道
+- **住宅区** — 宁静住宅区道路
+- **公园道路** — 绿色休闲步道
 
 ## Project Structure
 
@@ -385,6 +403,31 @@ The canonical API entry point is `web/api/main.py`. Scene generation runs as asy
 
 Swagger UI: `http://127.0.0.1:8010/docs`
 
+## 评估可视化
+
+Workbench 提供交互式评估可视化功能：
+
+### 评估维度
+
+| 维度 | 权重 | 说明 |
+|------|------|------|
+| 步行性 (Walkability) | 45% | 人行道宽度、无障碍设施、步行舒适度 |
+| 安全性 (Safety) | 35% | 交通隔离、照明、安全设施覆盖 |
+| 美观性 (Beauty) | 20% | 植物配置、街道家具协调性 |
+
+### 可视化组件
+
+- **雷达图** — 多维度综合评分可视化
+- **柱状图** — 各维度得分对比
+- **综合评分** — 加权总分 (0-100)
+
+### 3D 预览
+
+点击任意方案卡片上的 **"3D 预览"** 按钮，在 Viewer 中查看该方案的 3D 渲染效果。Viewer 支持：
+- 轨道控制 (旋转、缩放、平移)
+- 场景布局路径透传
+- 最近场景历史记录
+
 ## Testing
 
 The test suite in `tests/test_auto_eval.py` validates the full pipeline end-to-end. Tests 1–4 call the real LLM API (auto-skipped if `llm_base_url` and `key` are not set in `.env`), while test 5 uses a mock service for deterministic early-stop verification.
@@ -443,6 +486,13 @@ make eval                 # Run engineering evaluation
 ```
 
 ## Roadmap
+
+### Completed ✓
+
+- **简化 Workbench UI** — 从 5-tab 架构简化为 3-step 流程 (模板选择 → 方案生成 → 评估预览)
+- **评估可视化** — 雷达图、柱状图、综合评分展示
+- **方案对比** — 多方案并行生成与评分排序
+- **Viewer URL 透传** — 正确传递场景布局路径到 3D 预览器
 
 ### Near-term
 
