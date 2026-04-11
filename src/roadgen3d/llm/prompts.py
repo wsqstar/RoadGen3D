@@ -211,6 +211,62 @@ def build_scene_evaluation_messages(
     ]
 
 
+def build_unified_evaluation_messages(
+    *,
+    summary: dict,
+    placement_summary: list[dict],
+    image_data_url: str | None = None,
+) -> list[Dict[str, str]]:
+    """Build evaluation prompt with unified 3-dimension output.
+
+    Returns:
+        walkability: 0-100 score for pedestrian-friendliness
+        safety: 0-100 score for safety features
+        beauty: 0-100 score for aesthetics
+        overall: 0-100 weighted total score
+        evaluation: text summary in Chinese
+        suggestions: improvement suggestions
+        indicators: detailed walkability indicators
+    """
+    system_prompt = (
+        "你是 RoadGen3D 的场景评价专家。"
+        "请基于街道场景布局信息，输出一个 JSON 对象。"
+        "你只能输出 JSON，不能输出其他内容。"
+        "\n"
+        "评估维度（必须全部输出）：\n"
+        "1. walkability (步行性，0-100): 人行道宽度、净空连续性、家具密度、照明均匀、绿化遮荫\n"
+        "2. safety (安全性，0-100): 交通隔离、过街设施、缓冲带、安全感知\n"
+        "3. beauty (美观性，0-100): 植物配置协调性、街道家具风格统一、空间丰富度\n"
+        "4. overall (综合分，0-100): 基于步行性45%、安全性35%、美观性20%的加权总分\n"
+        "\n"
+        "必须返回的字段：\n"
+        "walkability (int, 0-100)\n"
+        "safety (int, 0-100)\n"
+        "beauty (int, 0-100)\n"
+        "overall (int, 0-100): 必须是 walkability*0.45 + safety*0.35 + beauty*0.20\n"
+        "evaluation (string): 中文评价，简要说明该方案的优缺点\n"
+        "suggestions (string[]): 1-3条具体改进建议\n"
+        "\n"
+        "可选字段：\n"
+        "indicators (object): 详细指标，仅当有足够信息时提供\n"
+    )
+    user_payload = {
+        "summary": summary,
+        "placements_preview": placement_summary[:30],  # Limit to 30 placements
+        "instruction": "请评价这个街道场景，给出步行性、安全性、美观性三个维度的评分(0-100)，并计算综合分。",
+    }
+    user_content: list[dict] = [{"type": "text", "text": json.dumps(user_payload, ensure_ascii=False)}]
+    if image_data_url:
+        user_content.append({
+            "type": "image_url",
+            "image_url": {"url": image_data_url},
+        })
+    return [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_content},  # type: ignore[list-item]
+    ]
+
+
 def build_layout_edit_messages(
     image_data_url: str,
     layout_summary: str,

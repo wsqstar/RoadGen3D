@@ -21,7 +21,7 @@ import {
   CHART_CONFIG,
   GENERATION_POLL_INTERVAL_MS,
 } from "./constants";
-import { requireElement, postJson, getJson, resolveApiUrl } from "./api";
+import { requireElement, postJson, getJson, resolveApiUrl, evaluateScene } from "./api";
 import { escapeHtml, sleep, formatTimestamp, resolveViewerUrl, normalizeSceneLayoutPath } from "./utils";
 
 export function mountWorkbench(app: HTMLDivElement): void {
@@ -275,8 +275,16 @@ export function mountWorkbench(app: HTMLDivElement): void {
         scheme.viewerUrl = resolveViewerUrl(result.viewer_url, result.scene_layout_path);
         scheme.previewUrl = resolveApiUrl(result.scene_layout_path);
 
-        // Generate mock evaluation scores based on preset
-        scheme.evaluation = generateMockEvaluation(state.selectedPreset!);
+        // Call LLM evaluation API
+        try {
+          setStatus(`正在评估方案 ${scheme.id}...`);
+          scheme.evaluation = await evaluateScene(scheme.layoutPath);
+        } catch (evalError) {
+          console.warn(`Evaluation failed for ${scheme.id}:`, evalError);
+          // Fallback to zeros if evaluation fails
+          scheme.evaluation = { walkability: 0, safety: 0, beauty: 0, overall: 0 };
+        }
+
         scheme.status = "ready";
         scheme.progress = 100;
 
@@ -378,37 +386,6 @@ export function mountWorkbench(app: HTMLDivElement): void {
       await sleep(GENERATION_POLL_INTERVAL_MS);
     }
     throw new Error("Job timed out");
-  }
-
-  function generateMockEvaluation(preset: ScenePreset): EvaluationScores {
-    // Generate realistic mock scores based on preset characteristics
-    const baseScores: Record<string, { w: number; s: number; b: number }> = {
-      pedestrian_friendly: { w: 85, s: 80, b: 75 },
-      commercial_vitality: { w: 72, s: 68, b: 82 },
-      transit_priority: { w: 78, s: 75, b: 70 },
-      park_landscape: { w: 80, s: 85, b: 90 },
-      quiet_residential: { w: 82, s: 88, b: 78 },
-      balanced_complete: { w: 75, s: 72, b: 74 },
-    };
-
-    const base = baseScores[preset.id] || { w: 70, s: 70, b: 70 };
-    const variance = () => (Math.random() - 0.5) * 10;
-
-    const w = Math.min(100, Math.max(0, base.w + variance()));
-    const s = Math.min(100, Math.max(0, base.s + variance()));
-    const b = Math.min(100, Math.max(0, base.b + variance()));
-    const overall = Math.round(
-      w * EVALUATION_WEIGHTS.walkability +
-      s * EVALUATION_WEIGHTS.safety +
-      b * EVALUATION_WEIGHTS.beauty
-    );
-
-    return {
-      walkability: Math.round(w),
-      safety: Math.round(s),
-      beauty: Math.round(b),
-      overall,
-    };
   }
 
   function renderSchemeGrid(): void {

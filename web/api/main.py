@@ -264,6 +264,19 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
             raise HTTPException(status_code=400, detail=str(exc)) from exc
         return make_json_safe(result)
 
+    @app.post("/api/design/evaluate/unified")
+    def evaluate_scene_unified(request: EvaluateRequestModel) -> Dict[str, Any]:
+        """Unified evaluation endpoint returning walkability/safety/beauty scores."""
+        service = app.state.design_service
+        try:
+            result = service.evaluate_scene_unified(
+                layout_path=request.layout_path,
+                image_path=request.image_path,
+            )
+        except RuntimeError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        return make_json_safe(result)
+
     return app
 
 

@@ -349,6 +349,70 @@ class DesignAssistantService:
             "config_patch": dict(eval_payload.get("config_patch", {}) or {}),
         }
 
+    def evaluate_scene_unified(
+        self,
+        *,
+        layout_path: str,
+        image_path: str | None = None,
+    ) -> Dict[str, Any]:
+        """Evaluate scene with unified 3-dimension scores (walkability/safety/beauty).
+
+        Args:
+            layout_path: Path to scene_layout.json
+            image_path: Optional path to rendered preview image
+
+        Returns:
+            Dict with walkability, safety, beauty (0-100), overall (0-100), evaluation, suggestions
+        """
+        import base64
+        layout = Path(layout_path).expanduser().resolve()
+        if not layout.exists():
+            raise RuntimeError(f"Layout file not found: {layout}")
+        payload = json.loads(layout.read_text(encoding="utf-8"))
+        summary = payload.get("summary", {}) or {}
+        placements = payload.get("placements", []) or []
+        llm = self._get_llm_client()
+        placement_summary = []
+        for p in placements[:30]:
+            placement_summary.append({
+                "instance_id": p.get("instance_id", ""),
+                "category": p.get("category", ""),
+                "asset_id": p.get("asset_id", ""),
+                "position_xyz": p.get("position_xyz"),
+            })
+        image_data_url = None
+        if image_path:
+            img = Path(image_path).expanduser().resolve()
+            if img.exists():
+                image_data_url = f"data:image/png;base64,{base64.b64encode(img.read_bytes()).decode('ascii')}"
+        from .prompts import build_unified_evaluation_messages
+        messages = build_unified_evaluation_messages(
+            summary=summary,
+            placement_summary=placement_summary,
+            image_data_url=image_data_url,
+        )
+        eval_payload = llm.chat_json(messages)
+
+        # Extract scores with defaults
+        walkability = int(eval_payload.get("walkability", 0) or 0)
+        safety = int(eval_payload.get("safety", 0) or 0)
+        beauty = int(eval_payload.get("beauty", 0) or 0)
+
+        # Calculate overall score if not provided
+        overall = int(eval_payload.get("overall", 0) or 0)
+        if overall == 0:
+            overall = int(walkability * 0.45 + safety * 0.35 + beauty * 0.20)
+
+        return {
+            "walkability": max(0, min(100, walkability)),
+            "safety": max(0, min(100, safety)),
+            "beauty": max(0, min(100, beauty)),
+            "overall": max(0, min(100, overall)),
+            "evaluation": str(eval_payload.get("evaluation", "")),
+            "suggestions": list(eval_payload.get("suggestions", []) or []),
+            "indicators": dict(eval_payload.get("indicators", {}) or {}),
+        }
+
     def generate_initial_config_from_graph(
         self,
         *,

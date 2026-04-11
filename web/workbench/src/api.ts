@@ -1,4 +1,4 @@
-import { API_BASE } from "./types";
+import { API_BASE, EvaluationScores } from "./types";
 
 export function requireElement<T extends Element>(root: ParentNode, selector: string): T {
   const element = root.querySelector<T>(selector);
@@ -35,4 +35,28 @@ async function handleJsonResponse<T>(response: Response): Promise<T> {
     throw new Error(text || `Request failed with status ${response.status}`);
   }
   return (await response.json()) as T;
+}
+
+/**
+ * Call unified evaluation API to get walkability/safety/beauty scores.
+ */
+export async function evaluateScene(layoutPath: string): Promise<EvaluationScores> {
+  const response = await postJson<{
+    walkability: number;
+    safety: number;
+    beauty: number;
+    overall: number;
+    evaluation: string;
+    suggestions: string[];
+  }>("/api/design/evaluate/unified", {
+    layout_path: layoutPath,
+    image_path: null,
+  });
+
+  return {
+    walkability: response.walkability,
+    safety: response.safety,
+    beauty: response.beauty,
+    overall: response.overall,
+  };
 }
