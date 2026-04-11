@@ -6,7 +6,9 @@ __pycache__/
 # Archived legacy files
 .archive/
 
-.venv/
+# Generated outputs
+artifacts/
+
 .uv-cache/
 .uv-python/
 
@@ -16,14 +18,8 @@ shap_e_model_cache/
 models/*
 !models/.gitkeep
 
-artifacts/m1/*
-!artifacts/m1/.gitkeep
-
 data/m1/*
 !data/m1/.gitkeep
-
-artifacts/real/*
-!artifacts/real/.gitkeep
 
 data/real/meshes/*
 !data/real/meshes/.gitkeep
