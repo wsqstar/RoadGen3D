@@ -338,10 +338,12 @@ export function mountWorkbench(app: HTMLDivElement): void {
       return result;
     } catch (error) {
       // Return mock data for demo purposes
+      const mockLayoutDir = `/tmp/scene_${preset.id}_${seedSuffix}`;
+      const mockLayoutPath = `${mockLayoutDir}/scene_layout.json`;
       return {
-        scene_layout_path: `/tmp/scene_${preset.id}_${seedSuffix}.json`,
-        scene_glb_path: `/tmp/scene_${preset.id}_${seedSuffix}.glb`,
-        viewer_url: `${VIEWER_BASE}/?layout=/tmp/scene_${preset.id}_${seedSuffix}.json`,
+        scene_layout_path: mockLayoutPath,
+        scene_glb_path: `${mockLayoutDir}/scene.glb`,
+        viewer_url: `${VIEWER_BASE}/?layout=${encodeURIComponent(mockLayoutPath)}`,
       };
     }
   }
