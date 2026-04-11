@@ -1,4 +1,6 @@
-// ── Type definitions ──
+// ── Type definitions for Simplified Workbench ──
+
+// ── Core Types ────────────────────────────────────────────────────────────────
 
 export type ChatMessage = {
   role: string;
@@ -226,55 +228,222 @@ export const FIELD_CONFIGS: FieldConfig[] = [
   { key: "vehicle_demand_level", label: "Vehicle Demand", type: "select", options: ["low", "medium", "high"] },
 ];
 
+// ── Simplified Workbench Types ────────────────────────────────────────────────
+
+/**
+ * Evaluation scores for a single dimension (0-100)
+ */
+export interface EvaluationScores {
+  walkability: number;
+  safety: number;
+  beauty: number;
+  overall: number;
+}
+
+/**
+ * Detailed walkability indicators from eval_quality.py
+ */
+export interface WalkabilityIndicators {
+  SID_CLR: number;      // 人行道净宽
+  CLEAR_CONT: number;   // 净空连续性
+  FURN_D: number;       // 街道家具密度
+  LIGHT_UNI: number;    // 照明均匀度
+  TREE_SHADE: number;   // 绿化遮荫率
+  BUFFER_RATIO: number; // 缓冲带比例
+  TRANSIT_PROX: number; // 公交站可达性
+  CROSS_PROV: number;   // 过街设施
+  ENTR_DENS: number;    // 入口密度
+  POI_MIX: number;      // POI 混合度
+  MICRO_ENV: number;    // 微气候环境
+}
+
+/**
+ * Complete evaluation result for a scheme
+ */
+export interface EvaluationResult {
+  sceneId: string;
+  scores: EvaluationScores;
+  indicators: WalkabilityIndicators;
+  pillarScores: {
+    Protection: number;
+    Comfort: number;
+    Delight: number;
+  };
+}
+
+/**
+ * Data structure for radar chart visualization
+ */
+export interface RadarChartData {
+  labels: string[];
+  datasets: {
+    label: string;
+    data: number[];
+    color: string;
+  }[];
+}
+
+/**
+ * Data structure for bar chart visualization
+ */
+export interface BarChartData {
+  labels: string[];
+  datasets: {
+    label: string;
+    data: number[];
+    color: string;
+  }[];
+}
+
+/**
+ * Generation status for a scheme
+ */
+export type SchemeStatus = "idle" | "generating" | "ready" | "failed";
+
+/**
+ * A single generated scheme in the comparison grid
+ */
+export interface GeneratedScheme {
+  id: string;           // "A", "B", "C"
+  name: string;         // "方案 A"
+  presetId: string;     // 对应的预设ID
+  layoutPath: string;    // 场景布局路径
+  previewUrl: string;   // 预览图 URL
+  viewerUrl: string;    // 3D Viewer URL
+  evaluation: EvaluationScores;
+  status: SchemeStatus;
+  progress: number;     // 0-100
+}
+
+/**
+ * Simplified scene preset for template selection
+ */
 export type ScenePreset = {
   id: string;
   name: string;
+  nameEn: string;
   description: string;
+  icon: string;
+  color: string;
   prompt: string;
   configPatch: Record<string, string | number>;
 };
 
+/**
+ * Step in the 3-step workflow
+ */
+export type WorkflowStep = 1 | 2 | 3;
+
+/**
+ * Simplified scene presets for template selection
+ */
 export const SCENE_PRESETS: ScenePreset[] = [
   {
-    id: "urban_downtown",
-    name: "Urban Downtown",
-    description: "Dense urban core with mixed-use streetscape, heavy pedestrian flow",
-    prompt: "高密度城市核心区，混合功能街道，行人流量大，公交可达性高，完整街道设计，行人优先、商业活跃、街道家具齐全",
-    configPatch: { design_rule_profile: "balanced_complete_street_v1", objective_profile: "commerce", density: 0.9, ped_demand_level: "high", bike_demand_level: "high", transit_demand_level: "high", vehicle_demand_level: "medium" },
+    id: "pedestrian_friendly",
+    name: "步行友好",
+    nameEn: "Pedestrian Friendly",
+    description: "行人优先，安全舒适",
+    icon: "🚶",
+    color: "#4CAF50",
+    prompt: "步行安全，全龄友好的完整街道，安静、安全、舒适",
+    configPatch: {
+      design_rule_profile: "pedestrian_priority_v1",
+      objective_profile: "balanced",
+      density: 0.5,
+      ped_demand_level: "high",
+      bike_demand_level: "medium",
+      transit_demand_level: "medium",
+      vehicle_demand_level: "low"
+    },
   },
   {
-    id: "residential_quiet",
-    name: "Quiet Residential",
-    description: "Low-density residential street with trees and minimal furniture",
-    prompt: "低密度住宅区安静街道，行人和自行车友好的居住区道路，以绿化为主，街道家具简约，步行安全和全龄友好",
-    configPatch: { design_rule_profile: "pedestrian_priority_v1", objective_profile: "greening", density: 0.3, ped_demand_level: "low", bike_demand_level: "medium", transit_demand_level: "low", vehicle_demand_level: "low" },
+    id: "commercial_vitality",
+    name: "商业活力",
+    nameEn: "Commercial Vitality",
+    description: "商业活跃，人流密集",
+    icon: "🛍️",
+    color: "#FF9800",
+    prompt: "商业活跃的街道，商业设施密集，人流穿梭",
+    configPatch: {
+      design_rule_profile: "balanced_complete_street_v1",
+      objective_profile: "commerce",
+      density: 0.9,
+      ped_demand_level: "high",
+      bike_demand_level: "medium",
+      transit_demand_level: "high",
+      vehicle_demand_level: "medium"
+    },
   },
   {
-    id: "waterfront_promenade",
-    name: "Waterfront Promenade",
-    description: "Scenic waterfront walkway with benches, lamps, and landscape",
-    prompt: "滨水步道，景观休闲为主，配备座椅、路灯和绿化景观，行人优先，宽阔人行道和观景空间，自行车道分离",
-    configPatch: { design_rule_profile: "pedestrian_priority_v1", objective_profile: "greening", density: 0.5, ped_demand_level: "medium", bike_demand_level: "medium", transit_demand_level: "low", vehicle_demand_level: "low" },
+    id: "transit_priority",
+    name: "公交优先",
+    nameEn: "Transit Priority",
+    description: "公交导向，换乘便利",
+    icon: "🚌",
+    color: "#2196F3",
+    prompt: "公交优先的街道，公交可达性高，换乘便利",
+    configPatch: {
+      design_rule_profile: "transit_priority_v1",
+      objective_profile: "transit",
+      density: 0.85,
+      ped_demand_level: "high",
+      bike_demand_level: "medium",
+      transit_demand_level: "high",
+      vehicle_demand_level: "high"
+    },
   },
   {
-    id: "commercial_strip",
-    name: "Commercial Strip",
-    description: "Busy commercial street with bus stops, signage, and heavy furniture",
-    prompt: "繁忙商业街，公交站点、标志牌和街道家具齐全，商业活跃度高，平衡机动车通行和行人购物体验，宽阔人行道",
-    configPatch: { design_rule_profile: "balanced_complete_street_v1", objective_profile: "commerce", density: 0.8, ped_demand_level: "high", bike_demand_level: "medium", transit_demand_level: "high", vehicle_demand_level: "medium" },
+    id: "park_landscape",
+    name: "公园景观",
+    nameEn: "Park Landscape",
+    description: "绿化为主，休闲舒适",
+    icon: "🌳",
+    color: "#8BC34A",
+    prompt: "公园景观街道，绿化丰富，自然生态，休闲舒适",
+    configPatch: {
+      design_rule_profile: "pedestrian_priority_v1",
+      objective_profile: "greening",
+      density: 0.2,
+      ped_demand_level: "medium",
+      bike_demand_level: "medium",
+      transit_demand_level: "low",
+      vehicle_demand_level: "low"
+    },
   },
   {
-    id: "park_pathway",
-    name: "Park Pathway",
-    description: "Green park pathway with scattered trees and landscape elements",
-    prompt: "公园绿道，自然景观为主，散布树木和绿化元素，步行和自行车友好，无机动车，强调生态和休闲功能",
-    configPatch: { design_rule_profile: "pedestrian_priority_v1", objective_profile: "greening", density: 0.2, ped_demand_level: "medium", bike_demand_level: "medium", transit_demand_level: "low", vehicle_demand_level: "low" },
+    id: "quiet_residential",
+    name: "安静居住",
+    nameEn: "Quiet Residential",
+    description: "住宅区安静，绿树成荫",
+    icon: "🏠",
+    color: "#9C27B0",
+    prompt: "安静居住街道，绿树成荫，步行安全，适合全龄",
+    configPatch: {
+      design_rule_profile: "pedestrian_priority_v1",
+      objective_profile: "greening",
+      density: 0.3,
+      ped_demand_level: "low",
+      bike_demand_level: "medium",
+      transit_demand_level: "low",
+      vehicle_demand_level: "low"
+    },
   },
   {
-    id: "transit_corridor",
-    name: "Transit Corridor",
-    description: "Transit-oriented corridor with bus stops, shelters, and wide sidewalks",
-    prompt: "公交导向走廊，配备公交站、候车亭和宽阔人行道，公交专用道并行，高密度开发，公交可达性和换乘便利",
-    configPatch: { design_rule_profile: "transit_priority_v1", objective_profile: "transit", density: 0.85, ped_demand_level: "high", bike_demand_level: "medium", transit_demand_level: "high", vehicle_demand_level: "high" },
+    id: "balanced_complete",
+    name: "平衡街道",
+    nameEn: "Balanced Complete",
+    description: "各类使用者平衡",
+    icon: "⚖️",
+    color: "#607D8B",
+    prompt: "各类使用者平衡的完整街道，行人、自行车、公交、机动车和谐共处",
+    configPatch: {
+      design_rule_profile: "balanced_complete_street_v1",
+      objective_profile: "balanced",
+      density: 0.6,
+      ped_demand_level: "medium",
+      bike_demand_level: "medium",
+      transit_demand_level: "medium",
+      vehicle_demand_level: "medium"
+    },
   },
 ];

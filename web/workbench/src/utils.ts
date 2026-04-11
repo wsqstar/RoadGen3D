@@ -1,5 +1,9 @@
-import type { KnowledgeSourceKey, DesignDraft } from "./types";
+import { EVALUATION_WEIGHTS } from "./constants";
+import type { KnowledgeSourceKey, DesignDraft, EvaluationScores, RadarChartData, BarChartData, WalkabilityIndicators } from "./types";
 import { API_BASE, SUMMARY_OMIT_KEYS, VIEWER_BASE, FIELD_CONFIGS } from "./types";
+import { EVALUATION_COLORS, SCHEME_COLORS } from "./constants";
+
+// ── HTML Utilities ────────────────────────────────────────────────────────────
 
 export function escapeHtml(text: string): string {
   return text
@@ -9,6 +13,8 @@ export function escapeHtml(text: string): string {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
 }
+
+// ── Error Handling ─────────────────────────────────────────────────────────────
 
 export function asErrorMessage(error: unknown): string {
   if (error instanceof Error) {
@@ -27,6 +33,8 @@ export function formatBootstrapError(error: unknown): string {
   }
   return message;
 }
+
+// ── Knowledge Source Utilities ─────────────────────────────────────────────────
 
 export function normalizeKnowledgeSourceKey(value: string): KnowledgeSourceKey {
   if (value === "pdf_rag" || value === "graph_rag") {
@@ -63,6 +71,8 @@ export function formatParameterSourceLabel(source: string): string {
   }
 }
 
+// ── Time Utilities ─────────────────────────────────────────────────────────────
+
 export function formatTimestamp(value: string): string {
   if (!value) {
     return "";
@@ -80,6 +90,8 @@ export function sleep(ms: number): Promise<void> {
   });
 }
 
+// ── Geometry Utilities ─────────────────────────────────────────────────────────
+
 export function formatBbox(bbox: [number, number, number, number]): string {
   return `(${bbox.map((value) => value.toFixed(4)).join(", ")})`;
 }
@@ -90,6 +102,8 @@ export function formatMetricValue(value: number, digits = 2): string {
     .replace(/\.0+$/, "")
     .replace(/(\.\d*?[1-9])0+$/, "$1");
 }
+
+// ── Scene Summary Utilities ───────────────────────────────────────────────────
 
 export function compactSceneSummary(summary: Record<string, unknown>): Record<string, unknown> {
   return Object.fromEntries(
@@ -110,6 +124,8 @@ export function renderTagRow(items: string[]): string {
   }
   return `<div class="tag-row">${items.map((item) => `<span class="tag">${escapeHtml(item)}</span>`).join("")}</div>`;
 }
+
+// ── Viewer URL Utilities ──────────────────────────────────────────────────────
 
 export function normalizeSceneLayoutPath(layoutPath: string): string {
   const trimmed = String(layoutPath || "").trim();
@@ -133,6 +149,8 @@ export function buildFallbackViewerUrl(layoutPath: string): string {
 export function resolveViewerUrl(viewerUrl: string, layoutPath: string): string {
   return String(viewerUrl || "").trim() || buildFallbackViewerUrl(layoutPath);
 }
+
+// ── Draft Utilities ───────────────────────────────────────────────────────────
 
 export function formatDraftSummary(draft: DesignDraft): string {
   return [
@@ -180,6 +198,8 @@ export function buildDraftFromForm(baseDraft: DesignDraft, parameterForm: HTMLDi
     parameter_sources_by_field: parameterSourcesByField,
   };
 }
+
+// ── Scene Summary Highlight Utilities ─────────────────────────────────────────
 
 export function renderSceneSummaryHighlights(summary: Record<string, unknown>): string {
   const rows: string[] = [];
@@ -241,4 +261,111 @@ export function renderSceneSummaryHighlights(summary: Record<string, unknown>): 
     return "";
   }
   return `<div class="summary-list">${rows.join("")}</div>`;
+}
+
+// ── Evaluation Utilities ────────────────────────────────────────────────────────
+
+/**
+ * Calculate overall score from individual dimension scores
+ */
+export function calculateOverallScore(scores: EvaluationScores): number {
+  return Math.round(
+    scores.walkability * EVALUATION_WEIGHTS.walkability +
+    scores.safety * EVALUATION_WEIGHTS.safety +
+    scores.beauty * EVALUATION_WEIGHTS.beauty
+  );
+}
+
+/**
+ * Get color for score value (red -> yellow -> green)
+ */
+export function getScoreColor(value: number): string {
+  if (value >= 85) return "#10B981"; // Green
+  if (value >= 70) return "#F59E0B"; // Amber
+  if (value >= 50) return "#EF4444"; // Red
+  return "#6B7280"; // Gray
+}
+
+/**
+ * Get CSS class for score category
+ */
+export function getScoreCategory(value: number): "excellent" | "good" | "fair" | "poor" {
+  if (value >= 85) return "excellent";
+  if (value >= 70) return "good";
+  if (value >= 50) return "fair";
+  return "poor";
+}
+
+/**
+ * Convert evaluation data to radar chart format
+ */
+export function toRadarChartData(schemes: { id: string; scores: EvaluationScores }[]): RadarChartData {
+  const colors = [SCHEME_COLORS.A, SCHEME_COLORS.B, SCHEME_COLORS.C];
+  return {
+    labels: ["步行性", "安全性", "美观度"],
+    datasets: schemes.map((scheme, index) => ({
+      label: `方案 ${scheme.id}`,
+      data: [scheme.scores.walkability, scheme.scores.safety, scheme.scores.beauty],
+      color: colors[index % 3],
+    })),
+  };
+}
+
+/**
+ * Convert evaluation data to bar chart format
+ */
+export function toBarChartData(schemes: { id: string; scores: EvaluationScores }[]): BarChartData {
+  const colors = [SCHEME_COLORS.A, SCHEME_COLORS.B, SCHEME_COLORS.C];
+  return {
+    labels: ["步行性", "安全性", "美观度"],
+    datasets: schemes.map((scheme, index) => ({
+      label: `方案 ${scheme.id}`,
+      data: [scheme.scores.walkability, scheme.scores.safety, scheme.scores.beauty],
+      color: colors[index % 3],
+    })),
+  };
+}
+
+/**
+ * Format percentage for display
+ */
+export function formatPercent(value: number, decimals = 0): string {
+  return `${(value * 100).toFixed(decimals)}%`;
+}
+
+/**
+ * Get dimension label with color indicator
+ */
+export function getDimensionLabel(dimension: "walkability" | "safety" | "beauty"): { label: string; color: string } {
+  switch (dimension) {
+    case "walkability":
+      return { label: "步行性", color: EVALUATION_COLORS.walkability.primary };
+    case "safety":
+      return { label: "安全性", color: EVALUATION_COLORS.safety.primary };
+    case "beauty":
+      return { label: "美观度", color: EVALUATION_COLORS.beauty.primary };
+  }
+}
+
+/**
+ * Rank schemes by overall score
+ */
+export function rankSchemes(schemes: { id: string; scores: EvaluationScores }[]): { id: string; rank: number; scores: EvaluationScores }[] {
+  const sorted = [...schemes].sort((a, b) => {
+    const aOverall = calculateOverallScore(a.scores);
+    const bOverall = calculateOverallScore(b.scores);
+    return bOverall - aOverall;
+  });
+
+  let currentRank = 1;
+  return sorted.map((scheme, index) => {
+    if (index > 0) {
+      const prevOverall = calculateOverallScore(sorted[index - 1].scores);
+      const currentOverall = calculateOverallScore(scheme.scores);
+      if (currentOverall < prevOverall) {
+        currentRank = index + 1;
+      }
+    }
+    return { ...scheme, rank: currentRank };
+  });
 }
