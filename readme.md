@@ -1,5 +1,9 @@
 # RoadGen3D
 
+> **本项目使用 [uv](https://github.com/astral-sh/uv) 管理 Python 依赖和运行环境。**
+>
+> 所有 Python 命令通过 `uv run python` 或 `uv run pytest` 执行，无需手动创建虚拟环境或安装依赖。
+
 **Text-to-3D Urban Street Scene Generation**
 
 RoadGen3D is a neuro-symbolic system that transforms text descriptions into detailed 3D urban street scenes. A user describes a design goal (e.g., *"步行安全、全龄友好的完整街道"*), the workbench retrieves design knowledge via RAG, generates a parameterized street layout with design-rule constraints, and exports a 3D scene viewable in the built-in Viewer.
@@ -565,6 +569,53 @@ make eval                 # Run engineering evaluation
 - Single-segment straight road template — no complex intersections or curved networks
 - `StreetProgram` uses heuristic generator (`heuristic_v1`) — not yet replaced by a learned program generator
 - Layout solver uses `banded` heuristic — not MILP or diffusion-based
+
+## GraphRAG Knowledge Base
+
+The knowledge base uses **GraphRAG** (Graph-based Retrieval Augmented Generation) to provide structured design knowledge from the Complete Streets Design Handbook.
+
+### Data Source
+
+| Source | Records | Description |
+|--------|---------|-------------|
+| Txt corpus | 75 | Merged text chunks from the handbook |
+| Community reports | 60 | LLM-generated community summaries at multiple levels |
+| Text units | 108 | Source text segments linked to entities |
+| Entities | 431 | Design-relevant entities (organizations, locations, events) |
+| Relationships | 570 | Entity relationships with weights |
+
+### Quality Characteristics
+
+- **Community reports**: Avg 487 chars summary, 3657 chars full content
+- **Entity descriptions**: Avg 399 chars with detailed context
+- **Hierarchical structure**: Level 0-3 communities for multi-granularity search
+
+### Knowledge Sources in Design Flow
+
+```python
+# Hybrid mode (PDF RAG + GraphRAG combined)
+service.search_knowledge(query="sidewalk width pedestrian safety", knowledge_source="hybrid")
+
+# GraphRAG only (uses graph structure for context-aware retrieval)
+service.search_knowledge(query="bicycle infrastructure design", knowledge_source="graph_rag")
+```
+
+### Updating the Knowledge Base
+
+When new knowledge is added to `knowledge/graphRAG/graphrag_txt/`:
+
+```bash
+# Trigger rebuild via API
+curl -X POST http://127.0.0.1:8010/api/knowledge/rebuild
+```
+
+Or rebuild programmatically:
+
+```python
+from roadgen3d.knowledge.graphrag import GraphRagKnowledgeRetriever
+retriever = GraphRagKnowledgeRetriever(project_dir="knowledge/graphRAG")
+retriever.ensure_runtime_artifacts(force=True)
+```
 
 ## License
 
