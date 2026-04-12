@@ -77,11 +77,57 @@ make dev
 
 ### 场景模板
 
-Workbench 提供四种预设模板：
-- **校园入口** — HKUST 广州校区入口道路
-- **商业街** — 繁华商业区街道
-- **住宅区** — 宁静住宅区道路
-- **公园道路** — 绿色休闲步道
+Workbench 提供六种预设模板：
+- **步行友好** — 行人优先，安全舒适
+- **商业活力** — 商业活跃，人流密集
+- **公交优先** — 公交导向，换乘便利
+- **公园景观** — 绿化为主，休闲舒适
+- **安静居住** — 住宅区安静，绿树成荫
+- **平衡街道** — 各类使用者平衡
+
+### 自动化测试 Pipeline
+
+持续测试整个工作流，确保系统稳定运行：
+
+```bash
+# 完整 Pipeline：启动 API → 运行测试 → 生成报告
+make test-pipeline
+
+# 后台运行测试（持续监控）
+nohup make test-pipeline > artifacts/test_reports/pipeline.log 2>&1 &
+echo "PID: $!"
+
+# 或者使用 watch 定期执行
+watch -n 300 make test-single  # 每 5 分钟执行一次
+
+# 查看汇总报告
+make test-report
+
+# 查看日志
+tail -f artifacts/test_reports/pipeline.log
+```
+
+**报告输出目录**: `artifacts/test_reports/`
+
+```
+artifacts/test_reports/
+├── test_2026-04-12_15-30-00.md   # 单次测试报告
+├── test_2026-04-12_16-00-00.md
+├── SUMMARY.md                       # 汇总报告
+└── pipeline.log                     # Pipeline 运行日志
+```
+
+**汇总报告内容**:
+- 总测试数、通过率、失败率
+- 平均耗时、平均评分
+- 最近 10 次测试详情
+- 所有测试报告链接
+
+**单次测试报告内容**:
+- 选择的模板和任务 ID
+- 场景生成状态和路径
+- LLM 评估分数（步行性、安全性、美观性、综合）
+- 详细指标和建议
 
 ## Project Structure
 
