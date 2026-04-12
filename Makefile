@@ -10,7 +10,7 @@ WORKBENCH_WEB_PORT := 4174
 VIEWER_HOST := 127.0.0.1
 VIEWER_PORT := 4173
 
-.PHONY: dev gradio-dev ui-api workbench-api workbench-web workbench-install viewer-web viewer-install ui-web ui-install knowledge-build train collect eval snapshot-diff help
+.PHONY: dev gradio-dev ui-api workbench-api workbench-web workbench-install viewer-web viewer-install ui-web ui-install knowledge-build train collect eval snapshot-diff test-pipeline test-single help
 
 help:
 	@echo "make dev               - Launch workbench API + workbench web + viewer web"
@@ -21,11 +21,14 @@ help:
 	@echo "make viewer-web        - Launch the standalone web viewer"
 	@echo "make viewer-install    - Install web/viewer dependencies"
 	@echo "make ui-api/ui-web/ui-install - Backward-compatible aliases"
-	@echo "make knowledge-build - Build the complete-streets PDF knowledge base"
-	@echo "make collect   - Collect M4 policy training data"
-	@echo "make train     - Train layout policy (M4)"
-	@echo "make eval      - Run M4 engineering evaluation"
-	@echo "make snapshot-diff - Run snapshot diff pipeline (real LLM, single query)"
+	@echo "make knowledge-build   - Build the complete-streets PDF knowledge base"
+	@echo "make collect           - Collect M4 policy training data"
+	@echo "make train             - Train layout policy (M4)"
+	@echo "make eval              - Run M4 engineering evaluation"
+	@echo "make snapshot-diff     - Run snapshot diff pipeline (real LLM, single query)"
+	@echo ""
+	@echo "make test-pipeline     - Run automated test pipeline (starts API, runs tests, generates report)"
+	@echo "make test-single       - Run single automated test with random preset"
 
 dev:
 	@trap 'kill 0' INT TERM EXIT; \
@@ -104,3 +107,67 @@ snapshot-diff:
 		--model-dir $(MODEL_DIR) \
 		--local-files-only \
 		--device cpu
+
+# ── Test Pipeline ──────────────────────────────────────────────────────────────
+
+TEST_REPORTS_DIR := artifacts/test_reports
+
+# Run full automated test pipeline: start API, run test, generate report
+test-pipeline:
+	@echo "=========================================="
+	@echo "Workbench 自动化测试 Pipeline"
+	@echo "=========================================="
+	@echo ""
+	@mkdir -p $(TEST_REPORTS_DIR)
+	@echo "[1/3] 启动 API 服务..."
+	@trap 'kill 0' INT TERM EXIT; \
+	$(MAKE) workbench-api & \
+	sleep 3 && \
+	echo "[2/3] 等待 API 就绪..." && \
+	for i in 1 2 3 4 5; do \
+		if curl -s http://$(UI_API_HOST):$(UI_API_PORT)/api/health > /dev/null 2>&1; then \
+			echo "[2/3] ✓ API 已就绪"; \
+			break; \
+		fi; \
+		echo "    等待中... ($$i/5)"; \
+		sleep 2; \
+	done; \
+	echo ""; \
+	echo "[3/3] 运行测试..."; \
+	$(PYTHON) scripts/test_workflow.py --output $(TEST_REPORTS_DIR); \
+	TEST_EXIT=$$?; \
+	echo ""; \
+	echo "[汇总] 生成报告汇总..."; \
+	$(PYTHON) scripts/test_pipeline.py; \
+	echo ""; \
+	echo "=========================================="; \
+	echo "Pipeline 完成!"; \
+	echo "报告目录: $(TEST_REPORTS_DIR)"; \
+	echo "汇总报告: $(TEST_REPORTS_DIR)/SUMMARY.md"; \
+	echo "=========================================="; \
+	exit $$TEST_EXIT
+
+# Run single test with random preset (requires API to be running)
+test-single:
+	@mkdir -p $(TEST_REPORTS_DIR)
+	@echo "=========================================="
+	@echo "运行单次自动化测试"
+	@echo "=========================================="
+	@$(PYTHON) scripts/test_workflow.py --output $(TEST_REPORTS_DIR); \
+	EXIT=$$?; \
+	$(PYTHON) scripts/test_pipeline.py; \
+	exit $$EXIT
+
+# Run test with specific preset
+test-preset:
+	@mkdir -p $(TEST_REPORTS_DIR)
+	@$(PYTHON) scripts/test_workflow.py --preset $(PRESET) --output $(TEST_REPORTS_DIR); \
+	$(PYTHON) scripts/test_pipeline.py
+
+# View latest test report
+test-report:
+	@if [ -f $(TEST_REPORTS_DIR)/SUMMARY.md ]; then \
+		cat $(TEST_REPORTS_DIR)/SUMMARY.md; \
+	else \
+		echo "未找到汇总报告，请先运行 'make test-pipeline'"; \
+	fi
