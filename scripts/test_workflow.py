@@ -1,26 +1,37 @@
 #!/usr/bin/env python3
 """
-Workbench 自动化测试脚本
+Workbench 自动化测试脚本 (科研版)
 
 随机选择一个预设模板，执行完整的场景生成流程，并生成测试报告。
+
+特性:
+- 可重复性: 全局随机种子设置
+- 指标验证: 重复运行对比机制
+- 性能监控: 系统级超时管理
 
 Usage:
     uv run python scripts/test_workflow.py
     uv run python scripts/test_workflow.py --preset pedestrian_friendly
+    uv run python scripts/test_workflow.py --verify-repeat    # 重复运行验证
+    uv run python scripts/test_workflow.py --seed 42          # 指定随机种子
     uv run python scripts/test_workflow.py --help
 """
 
 from __future__ import annotations
 
 import argparse
+import contextlib
 import json
+import os
 import random
+import signal
 import sys
+import threading
 import time
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable, Generator
 
 try:
     import httpx
@@ -130,6 +141,229 @@ SCENE_PRESETS = [
 ]
 
 DEFAULT_GRAPH_TEMPLATE_ID = "hkust_gz_gate"
+DEFAULT_RANDOM_SEED = 42
+
+
+# ── Random Seed Management ──────────────────────────────────────────────────────
+
+def set_global_seed(seed: int) -> None:
+    """
+    设置全局随机种子，确保实验可重复性。
+
+    Args:
+        seed: 随机种子值
+    """
+    # Python random
+    random.seed(seed)
+
+    # NumPy (if available)
+    try:
+        import numpy as np
+        np.random.seed(seed)
+    except ImportError:
+        pass
+
+    # PyTorch (if available)
+    try:
+        import torch
+        torch.manual_seed(seed)
+        if torch.cuda.is_available():
+            torch.cuda.manual_seed_all(seed)
+    except ImportError:
+        pass
+
+    print(f"[Seed] 全局随机种子已设置为: {seed}")
+
+
+# ── Timeout Context Manager ────────────────────────────────────────────────────
+
+class TimeoutError(Exception):
+    """运行超时异常"""
+    pass
+
+
+@contextlib.contextmanager
+def timeout_context(seconds: float, task_name: str = "任务") -> Generator[None, None, None]:
+    """
+    超时上下文管理器。
+
+    Args:
+        seconds: 超时秒数
+        task_name: 任务名称（用于错误消息）
+
+    Raises:
+        TimeoutError: 超时时抛出
+
+    Example:
+        with timeout_context(30, "API调用"):
+            # 执行可能超时的操作
+            pass
+    """
+    def timeout_handler(signum, frame):
+        raise TimeoutError(f"{task_name} 超时 ({seconds}秒)")
+
+    # 设置信号处理器
+    old_handler = signal.signal(signal.SIGALRM, timeout_handler)
+    signal.alarm(int(seconds))
+
+    try:
+        yield
+    finally:
+        # 恢复原来的处理器
+        signal.alarm(0)
+        signal.signal(signal.SIGALRM, old_handler)
+
+
+class RunnerTimeout:
+    """线程安全的超时运行器"""
+
+    def __init__(self, seconds: float):
+        self.seconds = seconds
+        self.result = None
+        self.error = None
+
+    def run_with_timeout(self, func: Callable, *args, **kwargs) -> Any:
+        """
+        在超时限制内运行函数。
+
+        Args:
+            func: 要运行的函数
+            *args, **kwargs: 函数参数
+
+        Returns:
+            函数返回值
+
+        Raises:
+            TimeoutError: 超时时抛出
+        """
+        result = [None]
+        error = [None]
+
+        def wrapper():
+            try:
+                result[0] = func(*args, **kwargs)
+            except Exception as e:
+                error[0] = e
+
+        thread = threading.Thread(target=wrapper)
+        thread.daemon = True
+        thread.start()
+        thread.join(timeout=self.seconds)
+
+        if thread.is_alive():
+            raise TimeoutError(f"函数执行超时 ({self.seconds}秒)")
+
+        if error[0]:
+            raise error[0]
+
+        return result[0]
+
+
+# ── Metrics Validator ──────────────────────────────────────────────────────────
+
+@dataclass
+class MetricsValidator:
+    """
+    指标验证器，确保实验结果符合预期。
+
+    Attributes:
+        tolerance: 容差阈值（默认 0.01）
+        repeat_tolerance: 重复运行容差（默认 1e-6）
+    """
+    tolerance: float = 0.01
+    repeat_tolerance: float = 1e-6
+
+    def validate_score_range(
+        self,
+        score: float,
+        field_name: str,
+        min_val: float = 0.0,
+        max_val: float = 100.0
+    ) -> bool:
+        """
+        验证分数是否在有效范围内。
+
+        Args:
+            score: 分数值
+            field_name: 字段名称
+            min_val: 最小值
+            max_val: 最大值
+
+        Returns:
+            是否有效
+        """
+        if not (min_val <= score <= max_val):
+            print(f"[警告] {field_name} 分数 {score} 超出范围 [{min_val}, {max_val}]")
+            return False
+        return True
+
+    def validate_formula(
+        self,
+        walkability: float,
+        safety: float,
+        beauty: float,
+        overall: float
+    ) -> bool:
+        """
+        验证综合评分公式: overall = walkability*0.45 + safety*0.35 + beauty*0.20
+
+        Args:
+            walkability: 步行性分数
+            safety: 安全性分数
+            beauty: 美观性分数
+            overall: 综合分数
+
+        Returns:
+            是否符合公式
+        """
+        expected = walkability * 0.45 + safety * 0.35 + beauty * 0.20
+        diff = abs(overall - expected)
+
+        if diff > self.tolerance:
+            print(f"[警告] 综合评分公式验证失败: {overall} != {expected:.2f} (差值: {diff:.4f})")
+            return False
+        return True
+
+    def validate_repeatability(
+        self,
+        result1: dict,
+        result2: dict,
+        metric_keys: list[str] = None
+    ) -> tuple[bool, dict]:
+        """
+        验证重复运行结果的一致性。
+
+        Args:
+            result1: 第一次运行结果
+            result2: 第二次运行结果
+            metric_keys: 要比较的指标键列表
+
+        Returns:
+            (是否一致, 差异详情)
+        """
+        if metric_keys is None:
+            metric_keys = ["walkability", "safety", "beauty", "overall"]
+
+        differences = {}
+        all_match = True
+
+        for key in metric_keys:
+            val1 = result1.get(key)
+            val2 = result2.get(key)
+
+            if val1 is not None and val2 is not None:
+                diff = abs(float(val1) - float(val2))
+                differences[key] = {
+                    "run1": val1,
+                    "run2": val2,
+                    "difference": diff,
+                    "within_tolerance": diff < self.repeat_tolerance
+                }
+                if diff >= self.repeat_tolerance:
+                    all_match = False
+
+        return all_match, differences
+
 
 # ── Data Classes ────────────────────────────────────────────────────────────────
 
@@ -156,6 +390,17 @@ class TestResult:
 
     # Report path
     report_path: str
+
+
+@dataclass
+class RepeatVerificationResult:
+    """重复运行验证结果"""
+    preset: dict
+    run1: TestResult
+    run2: TestResult
+    repeatability_passed: bool
+    metric_differences: dict
+    timestamp: str = field(default_factory=lambda: datetime.now().isoformat())
 
 
 # ── API Client ─────────────────────────────────────────────────────────────────
@@ -294,6 +539,23 @@ def run_test(
         print(f"[3/4] 调用 LLM 评估...")
         try:
             result.evaluation = client.evaluate_scene(result.scene_layout_path)
+
+            # 验证评估结果
+            validator = MetricsValidator()
+            if result.evaluation:
+                eval_data = result.evaluation
+                for key in ["walkability", "safety", "beauty", "overall"]:
+                    validator.validate_score_range(
+                        eval_data.get(key, 0),
+                        key
+                    )
+                if all(k in eval_data for k in ["walkability", "safety", "beauty", "overall"]):
+                    validator.validate_formula(
+                        eval_data["walkability"],
+                        eval_data["safety"],
+                        eval_data["beauty"],
+                        eval_data["overall"]
+                    )
             print(f"      评估完成!")
         except Exception as e:
             print(f"      评估失败: {e}")
@@ -315,6 +577,70 @@ def run_test(
         print(f"\n❌ 错误: {e}")
     finally:
         result.duration_seconds = time.time() - start_time
+
+    return result
+
+
+def run_verify_repeatability(
+    client: WorkbenchClient,
+    preset: dict,
+    timeout: float = 300.0,
+) -> RepeatVerificationResult:
+    """
+    运行重复验证测试。
+
+    Args:
+        client: API 客户端
+        preset: 预设配置
+        timeout: 单次运行超时
+
+    Returns:
+        RepeatVerificationResult: 验证结果
+    """
+    print("\n" + "=" * 60)
+    print("重复运行可重复性验证")
+    print("=" * 60)
+    print(f"模板: {preset['name']} ({preset['id']})")
+    print()
+
+    # 第一次运行
+    print("[运行 1/2] 开始第一次运行...")
+    run1 = run_test(client, preset, timeout=timeout)
+    print(f"第一次运行状态: {run1.status}")
+    print()
+
+    # 第二次运行（使用相同的随机种子）
+    print("[运行 2/2] 开始第二次运行...")
+    run2 = run_test(client, preset, timeout=timeout)
+    print(f"第二次运行状态: {run2.status}")
+    print()
+
+    # 比较结果
+    validator = MetricsValidator()
+    eval1 = run1.evaluation or {}
+    eval2 = run2.evaluation or {}
+
+    repeatability_passed, metric_differences = validator.validate_repeatability(eval1, eval2)
+
+    result = RepeatVerificationResult(
+        preset=preset,
+        run1=run1,
+        run2=run2,
+        repeatability_passed=repeatability_passed,
+        metric_differences=metric_differences
+    )
+
+    # 打印比较结果
+    print("=" * 60)
+    print("可重复性验证结果")
+    print("=" * 60)
+    print(f"验证状态: {'✅ 通过' if repeatability_passed else '❌ 失败'}")
+    print()
+    print("指标对比:")
+    for key, diff in metric_differences.items():
+        status = "✅" if diff["within_tolerance"] else "❌"
+        print(f"  {status} {key}: {diff['run1']:.2f} vs {diff['run2']:.2f} (差值: {diff['difference']:.6f})")
+    print("=" * 60)
 
     return result
 
@@ -452,9 +778,9 @@ def generate_report(result: TestResult, output_dir: Path) -> str:
         lines.extend([
             "## 错误信息",
             "",
-            f"```",
+            "```",
             f"{result.error_message}",
-            f"```",
+            "```",
             "",
         ])
 
@@ -476,16 +802,64 @@ def generate_report(result: TestResult, output_dir: Path) -> str:
     return str(filepath)
 
 
+def generate_repeat_report(result: RepeatVerificationResult, output_dir: Path) -> str:
+    """Generate repeatability verification report."""
+    output_dir.mkdir(parents=True, exist_ok=True)
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    filename = f"repeat_verify_{timestamp}.md"
+    filepath = output_dir / filename
+
+    status_emoji = "✅" if result.repeatability_passed else "❌"
+
+    lines = [
+        "# 重复运行可重复性验证报告",
+        "",
+        f"**测试时间**: {result.timestamp}",
+        f"**模板**: {result.preset['name']} (`{result.preset['id']}`)",
+        f"**验证状态**: {status_emoji} {'通过' if result.repeatability_passed else '失败'}",
+        "",
+        "## 运行摘要",
+        "",
+        "| 运行 | 状态 | 耗时 | 综合评分 |",
+        "|------|------|------|----------|",
+        f"| 运行 1 | {result.run1.status} | {result.run1.duration_seconds:.1f}s | {result.run1.evaluation.get('overall', 'N/A') if result.run1.evaluation else 'N/A'} |",
+        f"| 运行 2 | {result.run2.status} | {result.run2.duration_seconds:.1f}s | {result.run2.evaluation.get('overall', 'N/A') if result.run2.evaluation else 'N/A'} |",
+        "",
+        "## 指标对比",
+        "",
+        "| 指标 | 运行 1 | 运行 2 | 差值 | 容差内 |",
+        "|------|--------|--------|------|--------|",
+    ]
+
+    for key, diff in result.metric_differences.items():
+        lines.append(
+            f"| {key} | {diff['run1']:.2f} | {diff['run2']:.2f} | {diff['difference']:.6f} | "
+            f"{'✅' if diff['within_tolerance'] else '❌'} |"
+        )
+
+    lines.extend([
+        "",
+        "---",
+        "",
+        "*由 test_workflow.py 自动生成*",
+    ])
+
+    filepath.write_text("\n".join(lines), encoding="utf-8")
+    return str(filepath)
+
+
 # ── Main ───────────────────────────────────────────────────────────────────────
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Workbench 自动化测试脚本",
+        description="Workbench 自动化测试脚本 (科研版)",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
   uv run python scripts/test_workflow.py
   uv run python scripts/test_workflow.py --preset pedestrian_friendly
+  uv run python scripts/test_workflow.py --verify-repeat
+  uv run python scripts/test_workflow.py --seed 42 --verify-repeat
   uv run python scripts/test_workflow.py --api-base http://127.0.0.1:8010 --timeout 600
         """,
     )
@@ -512,8 +886,22 @@ Examples:
         default=Path("artifacts/test_reports"),
         help="报告输出目录 (默认: artifacts/test_reports)",
     )
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=DEFAULT_RANDOM_SEED,
+        help=f"随机种子 (默认: {DEFAULT_RANDOM_SEED})",
+    )
+    parser.add_argument(
+        "--verify-repeat",
+        action="store_true",
+        help="运行重复验证 (执行两次并对比结果)",
+    )
 
     args = parser.parse_args()
+
+    # 设置全局随机种子
+    set_global_seed(args.seed)
 
     # Load .env if available
     if load_dotenv:
@@ -526,11 +914,12 @@ Examples:
         preset = random.choice(SCENE_PRESETS)
 
     print("=" * 60)
-    print("Workbench 自动化测试")
+    print("Workbench 自动化测试 (科研版)")
     print("=" * 60)
     print(f"模板: {preset['name']} ({preset['id']})")
     print(f"API: {args.api_base}")
     print(f"超时: {args.timeout}s")
+    print(f"随机种子: {args.seed}")
     print("-" * 60)
 
     # Create client
@@ -546,29 +935,36 @@ Examples:
         print("✓ API 连接正常")
         print()
 
-        # Run test
-        result = run_test(client, preset, timeout=args.timeout)
+        if args.verify_repeat:
+            # 重复验证模式
+            result = run_verify_repeatability(client, preset, timeout=args.timeout)
+            report_path = generate_repeat_report(result, args.output)
+            print(f"\n验证报告已生成: {report_path}")
+            sys.exit(0 if result.repeatability_passed else 1)
+        else:
+            # 普通测试模式
+            result = run_test(client, preset, timeout=args.timeout)
 
-        # Generate report
-        print()
-        print("-" * 60)
-        report_path = generate_report(result, args.output)
-        print(f"报告已生成: {report_path}")
-        print()
+            # Generate report
+            print()
+            print("-" * 60)
+            report_path = generate_report(result, args.output)
+            print(f"报告已生成: {report_path}")
+            print()
 
-        # Print summary
-        print("=" * 60)
-        print("测试摘要")
-        print("=" * 60)
-        status_emoji = {"passed": "✅", "failed": "❌", "timeout": "⏱️"}.get(result.status, "❓")
-        print(f"状态: {status_emoji} {result.status.upper()}")
-        print(f"耗时: {result.duration_seconds:.1f}s")
-        if result.evaluation:
-            print(f"综合评分: {result.evaluation.get('overall', 'N/A')}")
-        print("=" * 60)
+            # Print summary
+            print("=" * 60)
+            print("测试摘要")
+            print("=" * 60)
+            status_emoji = {"passed": "✅", "failed": "❌", "timeout": "⏱️"}.get(result.status, "❓")
+            print(f"状态: {status_emoji} {result.status.upper()}")
+            print(f"耗时: {result.duration_seconds:.1f}s")
+            if result.evaluation:
+                print(f"综合评分: {result.evaluation.get('overall', 'N/A')}")
+            print("=" * 60)
 
-        # Exit code
-        sys.exit(0 if result.status == "passed" else 1)
+            # Exit code
+            sys.exit(0 if result.status == "passed" else 1)
 
     finally:
         client.close()
