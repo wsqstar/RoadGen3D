@@ -316,11 +316,10 @@ class MetricsValidator:
         Returns:
             是否符合公式
         """
-        expected = walkability * 0.45 + safety * 0.35 + beauty * 0.20
-        diff = abs(overall - expected)
+        expected = round(walkability * 0.45 + safety * 0.35 + beauty * 0.20)
 
-        if diff > self.tolerance:
-            print(f"[警告] 综合评分公式验证失败: {overall} != {expected:.2f} (差值: {diff:.4f})")
+        if overall != expected:
+            print(f"[警告] 综合评分公式验证失败: {overall} != {expected} (差值: {abs(overall - expected)})")
             return False
         return True
 

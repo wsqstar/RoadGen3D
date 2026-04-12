@@ -71,6 +71,7 @@ class PlacementContext:
     required_left_width_m: float = 0.0
     required_right_width_m: float = 0.0
     junction_geometries: List[Dict[str, Any]] = field(default_factory=list)
+    road_arm_geometries: List[Any] = field(default_factory=list)
     building_regions: List[Dict[str, Any]] = field(default_factory=list)
     detailed_strip_profiles: List[Dict[str, Any]] = field(default_factory=list)
     strip_zones: Dict[str, Any] = field(default_factory=dict)
@@ -2406,6 +2407,8 @@ def build_placement_context(
         aoi_polygon=aoi_polygon,
     )
 
+    from shapely.geometry import LineString
+
     if junction_geometries:
         carriageway_trim = _merge_polygon_geometries(
             [item.get("junction_core_rect") for item in junction_geometries],
@@ -2422,6 +2425,27 @@ def build_placement_context(
             left_sidewalk_zone = _clip_to_aoi(left_sidewalk_zone.difference(sidewalk_trim), aoi_polygon)
             right_sidewalk_zone = _clip_to_aoi(right_sidewalk_zone.difference(sidewalk_trim), aoi_polygon)
             sidewalk_zone = _clip_to_aoi(sidewalk_zone.difference(sidewalk_trim), aoi_polygon)
+
+    # Build individual road arm geometries for granular 3D mesh naming
+    road_arm_geometries: List[Any] = []
+    half_w = max(float(carriageway_width_m) / 2.0, 0.5)
+    for road in projected_features.roads:
+        if len(road.coords) < 2:
+            continue
+        line = LineString(road.coords)
+        poly = line.buffer(half_w, cap_style="flat")
+        if poly.is_empty:
+            continue
+        poly = _clip_to_aoi(poly, aoi_polygon)
+        if junction_geometries:
+            carriageway_trim = _merge_polygon_geometries(
+                [item.get("junction_core_rect") for item in junction_geometries],
+                aoi_polygon=aoi_polygon,
+            )
+            if carriageway_trim is not None and not getattr(carriageway_trim, "is_empty", True):
+                poly = _clip_to_aoi(poly.difference(carriageway_trim), aoi_polygon)
+        if not poly.is_empty:
+            road_arm_geometries.append(poly)
 
     return PlacementContext(
         sidewalk_zone=sidewalk_zone,
@@ -2445,6 +2469,7 @@ def build_placement_context(
         row_width_m=float(row_width_m),
         width_expanded=bool(cross_section.width_expanded),
         width_reallocation_reason=str(cross_section.width_reallocation_reason),
+        road_arm_geometries=road_arm_geometries,
         poi_fit_feasible=bool(cross_section.poi_fit_feasible),
         poi_fit_report=dict(cross_section.poi_fit_report),
         required_left_width_m=float(required_left_width_m),

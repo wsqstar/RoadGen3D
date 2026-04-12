@@ -107,7 +107,7 @@ class GenerationOptions:
     model_dir: Optional[Path] = field(default_factory=lambda: DEFAULT_CLIP_MODEL_DIR)
     local_files_only: bool = True
     device: str = "cpu"
-    export_format: str = "both"  # "glb", "ply", "both"
+    export_format: str = "glb"  # "glb", "ply", "both"
     placement_policy: str = "rule"  # "rule" or "policy"
     policy_ckpt: Optional[Path] = None
     program_ckpt: Optional[Path] = None

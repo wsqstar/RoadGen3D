@@ -398,10 +398,8 @@ class DesignAssistantService:
         safety = int(eval_payload.get("safety", 0) or 0)
         beauty = int(eval_payload.get("beauty", 0) or 0)
 
-        # Calculate overall score if not provided
-        overall = int(eval_payload.get("overall", 0) or 0)
-        if overall == 0:
-            overall = int(walkability * 0.45 + safety * 0.35 + beauty * 0.20)
+        # Always compute overall deterministically from the three dimensions
+        overall = round(walkability * 0.45 + safety * 0.35 + beauty * 0.20)
 
         return {
             "walkability": max(0, min(100, walkability)),

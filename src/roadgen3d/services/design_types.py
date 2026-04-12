@@ -290,7 +290,7 @@ class SceneGenerationOptions:
     model_dir: Path | None = None
     local_files_only: bool = True
     device: str = "cpu"
-    export_format: str = "both"
+    export_format: str = "glb"
     placement_policy: str = "rule"
     policy_ckpt: Path | None = None
     program_ckpt: Path | None = None

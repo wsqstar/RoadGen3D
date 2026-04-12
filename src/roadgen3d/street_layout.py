@@ -424,7 +424,7 @@ _CURATED_STREET_ASSET_IDS_FIXED_HQ = {
     "lamp": "lamp_modern_production",
     "trash": "objaverse_trash_f16b7d84113d4cba869412ee95769910",
     "bollard": "curated_railing_module_v1",
-    "tree": "objaverse_tree_843278c62cb9494bafda67e7c14c5707",
+    "tree": "objaverse_tree_909de376b61d4a2fb073e195fb719619",
 }
 
 
@@ -3531,7 +3531,20 @@ def _build_osm_base_scene(
                     texture_overrides=texture_overrides,
                 )
 
-    if not carriageway.is_empty:
+    road_arm_geometries = list(getattr(placement_ctx, "road_arm_geometries", []) or [])
+    if road_arm_geometries:
+        for arm_idx, arm_geom in enumerate(road_arm_geometries):
+            if getattr(arm_geom, "is_empty", True):
+                continue
+            _extrude_polygon(
+                arm_geom,
+                0.06,
+                list(colors.get("carriageway", (65, 68, 72, 255))),
+                f"carriageway_arm_{arm_idx}",
+                roughness_key="carriageway",
+                surface_role="carriageway",
+            )
+    elif not carriageway.is_empty:
         _extrude_polygon(
             carriageway,
             0.06,
