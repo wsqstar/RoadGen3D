@@ -250,6 +250,9 @@ export function mountWorkbench(app: HTMLDivElement): void {
       previewUrl: "",
       viewerUrl: "",
       evaluation: { walkability: 0, safety: 0, beauty: 0, overall: 0 },
+      indicators: null,
+      evaluationText: "",
+      suggestions: [],
       status: "generating" as const,
       progress: 0,
     }));
@@ -280,14 +283,23 @@ export function mountWorkbench(app: HTMLDivElement): void {
           setStatus(`正在评估方案 ${scheme.id}...`);
           const evalResult = await evaluateScene(scheme.layoutPath);
           if (evalResult) {
-            scheme.evaluation = evalResult;
+            scheme.evaluation = evalResult.scores;
+            scheme.indicators = evalResult.indicators;
+            scheme.evaluationText = evalResult.evaluation;
+            scheme.suggestions = evalResult.suggestions;
           } else {
-            // Evaluation failed - mark as needs evaluation
+            // Evaluation failed - mark as unavailable
             scheme.evaluation = { walkability: -1, safety: -1, beauty: -1, overall: -1 };
+            scheme.indicators = null;
+            scheme.evaluationText = "";
+            scheme.suggestions = [];
           }
         } catch (evalError) {
           console.error(`方案 ${scheme.id} 评估失败:`, evalError);
           scheme.evaluation = { walkability: -1, safety: -1, beauty: -1, overall: -1 };
+          scheme.indicators = null;
+          scheme.evaluationText = "";
+          scheme.suggestions = [];
         }
 
         scheme.status = "ready";
@@ -520,19 +532,31 @@ export function mountWorkbench(app: HTMLDivElement): void {
   async function showEvaluation(): Promise<void> {
     state.currentStep = 3;
     switchStep(3);
-    setStatus("正在计算评估结果...");
+    setStatus("正在加载评估结果...");
 
-    // Generate evaluations for each scheme
+    // Build evaluations from scheme data (already populated from API)
     state.evaluations = state.schemes
       .filter((s) => s.status === "ready")
       .map((scheme) => ({
         sceneId: scheme.id,
         scores: scheme.evaluation,
-        indicators: generateMockIndicators(scheme.evaluation.walkability),
+        indicators: scheme.indicators || {
+          SID_CLR: 0,
+          CLEAR_CONT: 0,
+          FURN_D: 0,
+          LIGHT_UNI: 0,
+          TREE_SHADE: 0,
+          BUFFER_RATIO: 0,
+          TRANSIT_PROX: 0,
+          CROSS_PROV: 0,
+          ENTR_DENS: 0,
+          POI_MIX: 0,
+          MICRO_ENV: 0,
+        },
         pillarScores: {
-          Protection: scheme.evaluation.safety * 0.9 + Math.random() * 10,
-          Comfort: scheme.evaluation.walkability * 0.9 + Math.random() * 10,
-          Delight: scheme.evaluation.beauty * 0.9 + Math.random() * 10,
+          Protection: scheme.evaluation.safety,
+          Comfort: scheme.evaluation.walkability,
+          Delight: scheme.evaluation.beauty,
         },
       }));
 
@@ -543,23 +567,6 @@ export function mountWorkbench(app: HTMLDivElement): void {
     renderIndicatorsTable();
 
     setStatus("评估结果已生成");
-  }
-
-  function generateMockIndicators(walkabilityBase: number): WalkabilityIndicators {
-    const base = walkabilityBase / 100;
-    return {
-      SID_CLR: Math.min(1, base * (0.9 + Math.random() * 0.2)),
-      CLEAR_CONT: Math.min(1, base * (0.85 + Math.random() * 0.3)),
-      FURN_D: Math.min(1, base * (0.8 + Math.random() * 0.4)),
-      LIGHT_UNI: Math.min(1, base * (0.9 + Math.random() * 0.2)),
-      TREE_SHADE: Math.min(1, base * (0.7 + Math.random() * 0.5)),
-      BUFFER_RATIO: Math.min(1, base * (0.85 + Math.random() * 0.3)),
-      TRANSIT_PROX: Math.min(1, base * (0.8 + Math.random() * 0.4)),
-      CROSS_PROV: Math.min(1, base * (0.9 + Math.random() * 0.2)),
-      ENTR_DENS: Math.min(1, base * (0.75 + Math.random() * 0.5)),
-      POI_MIX: Math.min(1, base * (0.8 + Math.random() * 0.4)),
-      MICRO_ENV: Math.min(1, base * (0.85 + Math.random() * 0.3)),
-    };
   }
 
   function renderEvalSummary(): void {

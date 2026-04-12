@@ -311,6 +311,9 @@ export interface GeneratedScheme {
   previewUrl: string;   // 预览图 URL
   viewerUrl: string;    // 3D Viewer URL
   evaluation: EvaluationScores;
+  indicators: WalkabilityIndicators | null;  // 详细指标（来自 LLM）
+  evaluationText: string;  // LLM 文字评价
+  suggestions: string[];    // 改进建议
   status: SchemeStatus;
   progress: number;     // 0-100
 }

@@ -1,4 +1,4 @@
-import { API_BASE, EvaluationScores } from "./types";
+import { API_BASE, EvaluationScores, WalkabilityIndicators } from "./types";
 
 const DEFAULT_TIMEOUT_MS = 30000; // 30 seconds
 
@@ -67,10 +67,20 @@ async function handleJsonResponse<T>(response: Response): Promise<T> {
 }
 
 /**
- * Call unified evaluation API to get walkability/safety/beauty scores.
+ * Complete evaluation response from API
+ */
+export interface EvaluationResponse {
+  scores: EvaluationScores;
+  indicators: WalkabilityIndicators | null;
+  evaluation: string;
+  suggestions: string[];
+}
+
+/**
+ * Call unified evaluation API to get full evaluation results.
  * Returns null if API fails (no mock data).
  */
-export async function evaluateScene(layoutPath: string): Promise<EvaluationScores | null> {
+export async function evaluateScene(layoutPath: string): Promise<EvaluationResponse | null> {
   try {
     const response = await postJson<{
       walkability: number;
@@ -79,16 +89,22 @@ export async function evaluateScene(layoutPath: string): Promise<EvaluationScore
       overall: number;
       evaluation: string;
       suggestions: string[];
+      indicators: WalkabilityIndicators | null;
     }>("/api/design/evaluate/unified", {
       layout_path: layoutPath,
       image_path: null,
     }, 60000); // 60s timeout
 
     return {
-      walkability: response.walkability,
-      safety: response.safety,
-      beauty: response.beauty,
-      overall: response.overall,
+      scores: {
+        walkability: response.walkability,
+        safety: response.safety,
+        beauty: response.beauty,
+        overall: response.overall,
+      },
+      indicators: response.indicators,
+      evaluation: response.evaluation,
+      suggestions: response.suggestions,
     };
   } catch (error) {
     console.error("Evaluation API failed:", error);
