@@ -258,10 +258,9 @@ export function mountWorkbench(app: HTMLDivElement): void {
     renderSchemeGrid();
     setStatus("正在生成方案，请稍候...");
 
-    // Generate each scheme with a delay to simulate processing
+    // Generate each scheme
     for (let i = 0; i < state.schemes.length; i++) {
       const scheme = state.schemes[i];
-      console.log(`[生成] 开始处理方案 ${scheme.id}`);
       try {
         // Simulate generation progress
         for (let p = 0; p <= 100; p += 20) {
@@ -269,36 +268,29 @@ export function mountWorkbench(app: HTMLDivElement): void {
           renderSchemeGrid();
           await sleep(200);
         }
-        console.log(`[生成] 方案 ${scheme.id} 进度条完成`);
 
         // Call API to create scene job
-        console.log(`[生成] 方案 ${scheme.id} 调用 createSceneJob`);
         const result = await createSceneJob(state.selectedPreset!, scheme.id);
         scheme.layoutPath = result.scene_layout_path;
         scheme.viewerUrl = resolveViewerUrl(result.viewer_url, result.scene_layout_path);
         scheme.previewUrl = resolveApiUrl(result.scene_layout_path);
-        console.log(`[生成] 方案 ${scheme.id} createSceneJob 完成, layoutPath=${result.scene_layout_path}`);
 
         // Call LLM evaluation API (non-blocking error handling)
         try {
           setStatus(`正在评估方案 ${scheme.id}...`);
-          console.log(`[生成] 方案 ${scheme.id} 调用 evaluateScene`);
           scheme.evaluation = await evaluateScene(scheme.layoutPath);
-          console.log(`[生成] 方案 ${scheme.id} evaluateScene 完成`);
         } catch (evalError) {
-          console.warn(`[生成] 方案 ${scheme.id} 评估失败，使用默认值:`, evalError);
-          // Fallback to zeros if evaluation fails
+          console.warn(`方案 ${scheme.id} 评估失败，使用默认值:`, evalError);
           scheme.evaluation = { walkability: 0, safety: 0, beauty: 0, overall: 0 };
         }
 
         scheme.status = "ready";
         scheme.progress = 100;
-        console.log(`[生成] 方案 ${scheme.id} 设置为 ready`);
 
         renderSchemeGrid();
         updateSchemeSelection();
       } catch (error) {
-        console.error(`[生成] 方案 ${scheme.id} 失败:`, error);
+        console.error(`方案 ${scheme.id} 生成失败:`, error);
         scheme.status = "failed";
         scheme.progress = 0;
         renderSchemeGrid();
@@ -323,7 +315,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
     viewer_url: string;
   }> {
     try {
-      // Try to call the actual API
+      // Try to call the actual API with timeout
       const response = await postJson<{
         job_id: string;
         status: string;
@@ -346,13 +338,14 @@ export function mountWorkbench(app: HTMLDivElement): void {
         },
         patch_overrides: {},
         generation_options: { preset_id: preset.id },
-      });
+      }, 30000); // 30s timeout
 
       // Poll for completion
       const result = await pollJobCompletion(response.job_id);
       return result;
     } catch (error) {
-      // Return mock data for demo purposes
+      console.warn(`[createSceneJob] API 调用失败，使用 mock 数据:`, error);
+      // Return mock data - use a placeholder preview
       const mockLayoutDir = `/tmp/scene_${preset.id}_${seedSuffix}`;
       const mockLayoutPath = `${mockLayoutDir}/scene_layout.json`;
       return {
@@ -368,7 +361,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
     scene_glb_path: string;
     viewer_url: string;
   }> {
-    const maxAttempts = 60;
+    const maxAttempts = 120; // 120 * 2s = 4 minutes max
     for (let i = 0; i < maxAttempts; i++) {
       try {
         const status = await getJson<{
@@ -379,7 +372,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
             scene_glb_path: string;
             viewer_url: string;
           } | null;
-        }>(`/api/scene/jobs/${jobId}`);
+        }>(`/api/scene/jobs/${jobId}`, 10000); // 10s timeout per poll
 
         if (status.status === "succeeded" && status.result) {
           return status.result;
@@ -388,7 +381,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
           throw new Error("Job failed");
         }
       } catch {
-        // Continue polling
+        // Continue polling on error
       }
       await sleep(GENERATION_POLL_INTERVAL_MS);
     }
