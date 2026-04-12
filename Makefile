@@ -150,32 +150,57 @@ test-pipeline:
 	@echo "=========================================="
 	@echo ""
 	@mkdir -p $(TEST_REPORTS_DIR)
-	@echo "[1/3] 启动 API 服务..."
-	@trap 'kill 0' INT TERM EXIT; \
+	@echo "[1/4] 启动 API 与 Viewer 服务..."
+	@trap 'kill 0' INT TERM; \
 	$(MAKE) workbench-api & \
+	$(MAKE) viewer-web & \
 	sleep 3 && \
-	echo "[2/3] 等待 API 就绪..." && \
+	echo "[2/4] 等待 API 就绪..." && \
 	for i in 1 2 3 4 5; do \
 		if curl -s http://$(UI_API_HOST):$(UI_API_PORT)/api/health > /dev/null 2>&1; then \
-			echo "[2/3] ✓ API 已就绪"; \
+			echo "[2/4] ✓ API 已就绪"; \
+			break; \
+		fi; \
+		echo "    等待中... ($$i/5)"; \
+		sleep 2; \
+	done; \
+	echo "[3/4] 等待 Viewer 就绪..." && \
+	for i in 1 2 3 4 5; do \
+		if curl -s http://$(VIEWER_HOST):$(VIEWER_PORT) > /dev/null 2>&1; then \
+			echo "[3/4] ✓ Viewer 已就绪"; \
 			break; \
 		fi; \
 		echo "    等待中... ($$i/5)"; \
 		sleep 2; \
 	done; \
 	echo ""; \
-	echo "[3/3] 运行测试..."; \
+	echo "[4/4] 运行测试..."; \
 	uv run python scripts/test_workflow.py --output $(TEST_REPORTS_DIR); \
 	TEST_EXIT=$$?; \
 	echo ""; \
 	echo "[汇总] 生成报告汇总..."; \
 	uv run python scripts/test_pipeline.py; \
+	LATEST_REPORT=$$(ls -t $(TEST_REPORTS_DIR)/test_*.md 2>/dev/null | head -n 1); \
+	VIEWER_URL=""; \
+	if [ -n "$$LATEST_REPORT" ]; then \
+		VIEWER_URL=$$(grep '^- \*\*Viewer URL\*\*:' "$$LATEST_REPORT" 2>/dev/null | sed 's/^- \*\*Viewer URL\*\*: //'); \
+	fi; \
 	echo ""; \
 	echo "=========================================="; \
 	echo "Pipeline 完成!"; \
 	echo "报告目录: $(TEST_REPORTS_DIR)"; \
 	echo "汇总报告: $(TEST_REPORTS_DIR)/SUMMARY.md"; \
 	echo "=========================================="; \
+	echo ""; \
+	if [ -n "$$VIEWER_URL" ] && [ "$$VIEWER_URL" != "N/A" ]; then \
+		echo "Viewer 链接: $$VIEWER_URL"; \
+		echo ""; \
+	fi; \
+	echo "服务仍在运行，可继续查看 Viewer。按 Enter 键关闭 API 服务并退出..."; \
+	read _ || true; \
+	echo "正在关闭服务..."; \
+	kill 0 2>/dev/null || true; \
+	wait 2>/dev/null || true; \
 	exit $$TEST_EXIT
 
 # Run single test with random preset (requires API to be running)

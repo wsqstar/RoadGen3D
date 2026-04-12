@@ -1,16 +1,8 @@
 import { API_BASE, EvaluationScores, WalkabilityIndicators } from "./types";
 
-const DEFAULT_TIMEOUT_MS = 30000; // 30 seconds
+const DEFAULT_TIMEOUT_MS = 30000;
 
-export function requireElement<T extends Element>(root: ParentNode, selector: string): T {
-  const element = root.querySelector<T>(selector);
-  if (!element) {
-    throw new Error(`Missing required element: ${selector}`);
-  }
-  return element;
-}
-
-export async function postJson<T>(path: string, payload: unknown, timeoutMs: number = DEFAULT_TIMEOUT_MS): Promise<T> {
+export async function postJson<T>(path: string, payload: unknown, timeoutMs = DEFAULT_TIMEOUT_MS): Promise<T> {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
@@ -32,7 +24,7 @@ export async function postJson<T>(path: string, payload: unknown, timeoutMs: num
   }
 }
 
-export async function getJson<T>(path: string, timeoutMs: number = DEFAULT_TIMEOUT_MS): Promise<T> {
+export async function getJson<T>(path: string, timeoutMs = DEFAULT_TIMEOUT_MS): Promise<T> {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
@@ -66,9 +58,6 @@ async function handleJsonResponse<T>(response: Response): Promise<T> {
   return (await response.json()) as T;
 }
 
-/**
- * Complete evaluation response from API
- */
 export interface EvaluationResponse {
   scores: EvaluationScores;
   indicators: WalkabilityIndicators | null;
@@ -76,10 +65,6 @@ export interface EvaluationResponse {
   suggestions: string[];
 }
 
-/**
- * Call unified evaluation API to get full evaluation results.
- * Returns null if API fails (no mock data).
- */
 export async function evaluateScene(layoutPath: string): Promise<EvaluationResponse | null> {
   try {
     const response = await postJson<{
@@ -93,7 +78,7 @@ export async function evaluateScene(layoutPath: string): Promise<EvaluationRespo
     }>("/api/design/evaluate/unified", {
       layout_path: layoutPath,
       image_path: null,
-    }, 60000); // 60s timeout
+    }, 60000);
 
     return {
       scores: {
@@ -108,6 +93,6 @@ export async function evaluateScene(layoutPath: string): Promise<EvaluationRespo
     };
   } catch (error) {
     console.error("Evaluation API failed:", error);
-    return null; // Return null instead of mock data
+    return null;
   }
 }

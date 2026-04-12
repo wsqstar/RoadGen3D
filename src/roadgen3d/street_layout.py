@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import gc
 import json
 import logging
 import math
@@ -145,9 +146,32 @@ SOFTMAX_TEMPERATURE = 0.12
 CATEGORY_NO_REPEAT_FIRST = True
 FILL_PRIORITY = True
 
+# Default maximum number of full meshes to keep in memory at once
+# This limits memory usage while still allowing mesh reuse
+DEFAULT_MAX_MESH_CACHE_SIZE = 20
+
+
+@dataclass(frozen=True)
+class _MeshMetadata:
+    """Lightweight mesh metadata that doesn't require loading the full mesh.
+
+    This contains only bounding-box derived values needed for layout computation.
+    The full mesh is loaded lazily only when needed for GLB export.
+    """
+    asset_id: str
+    half_x: float
+    half_z: float
+    min_y: float
+    center_x: float = 0.0
+    center_z: float = 0.0
+    is_scene: bool = False
+    native_height_y: float = 0.0
+    mesh_path: str = ""  # Path for lazy loading
+
 
 @dataclass(frozen=True)
 class _MeshCacheEntry:
+    """Full mesh cache entry with both metadata and loaded mesh object."""
     mesh: object
     half_x: float
     half_z: float
@@ -156,6 +180,156 @@ class _MeshCacheEntry:
     center_z: float = 0.0
     is_scene: bool = False
     native_height_y: float = 0.0
+
+
+class _LazyMeshCache:
+    """Memory-efficient mesh cache with lazy loading.
+
+    Stores lightweight metadata for all assets, but only loads full mesh
+    objects when needed (for GLB export). Uses LRU eviction to limit memory.
+
+    Memory optimization:
+    - Layout computation phase: only uses metadata (half_x, half_z, etc.)
+    - Export phase: lazily loads full meshes for placed assets only
+
+    Supports two types of entries:
+    - _MeshMetadata: lightweight bbox info loaded from disk
+    - _MeshCacheEntry: full mesh object (either pre-loaded or lazy-loaded)
+    """
+
+    def __init__(
+        self,
+        metadata: Dict[str, _MeshMetadata],
+        max_mesh_cache_size: int = DEFAULT_MAX_MESH_CACHE_SIZE,
+    ) -> None:
+        # Store metadata entries
+        self._metadata: Dict[str, _MeshMetadata] = metadata
+        # Store full mesh entries (lazy-loaded)
+        self._mesh_cache: Dict[str, _MeshCacheEntry] = {}
+        self._max_size = max_mesh_cache_size
+        self._access_order: List[str] = []  # For LRU tracking
+
+    def get_metadata(self, asset_id: str) -> _MeshCacheEntry | _MeshMetadata:
+        """Get metadata without loading the full mesh.
+
+        For layout computation where only bbox info is needed.
+        """
+        return self._metadata[asset_id]
+
+    def get_entry(self, asset_id: str) -> _MeshCacheEntry:
+        """Get full mesh entry, loading mesh lazily if needed.
+
+        Uses LRU eviction to keep memory usage bounded.
+        """
+        # Fast path: already loaded
+        if asset_id in self._mesh_cache:
+            return self._mesh_cache[asset_id]
+
+        # Load the mesh from metadata
+        metadata = self._metadata[asset_id]
+        entry = _load_single_mesh(metadata)
+
+        # LRU eviction: remove oldest entries if cache is full
+        while len(self._mesh_cache) >= self._max_size:
+            if self._access_order:
+                oldest = self._access_order.pop(0)
+                if oldest in self._mesh_cache:
+                    del self._mesh_cache[oldest]
+
+        # Store in cache
+        self._mesh_cache[asset_id] = entry
+        self._access_order.append(asset_id)
+
+        return entry
+
+    def preload(self, asset_ids: Sequence[str]) -> None:
+        """Preload specific assets into the cache.
+
+        Useful when you know which assets will be needed for export.
+        """
+        for asset_id in asset_ids:
+            if asset_id not in self._mesh_cache and asset_id in self._metadata:
+                entry = _load_single_mesh(self._metadata[asset_id])
+
+                # Evict if needed before preload
+                while len(self._mesh_cache) >= self._max_size:
+                    if self._access_order:
+                        oldest = self._access_order.pop(0)
+                        if oldest in self._mesh_cache:
+                            del self._mesh_cache[oldest]
+
+                self._mesh_cache[asset_id] = entry
+                self._access_order.append(asset_id)
+
+    def set_full_entry(self, asset_id: str, entry: _MeshCacheEntry) -> None:
+        """Set a complete mesh entry directly (for placeholder/fallback buildings).
+
+        This bypasses lazy loading and stores the entry directly.
+        """
+        # Add to metadata if not present (needed for fallback buildings)
+        if asset_id not in self._metadata:
+            self._metadata[asset_id] = _MeshMetadata(
+                asset_id=asset_id,
+                half_x=entry.half_x,
+                half_z=entry.half_z,
+                min_y=entry.min_y,
+                center_x=entry.center_x,
+                center_z=entry.center_z,
+                is_scene=entry.is_scene,
+                native_height_y=entry.native_height_y,
+                mesh_path="",  # Placeholder has no path
+            )
+
+        # LRU eviction if needed
+        while len(self._mesh_cache) >= self._max_size:
+            if self._access_order:
+                oldest = self._access_order.pop(0)
+                if oldest in self._mesh_cache:
+                    del self._mesh_cache[oldest]
+
+        self._mesh_cache[asset_id] = entry
+        self._access_order.append(asset_id)
+
+    def __contains__(self, asset_id: str) -> bool:
+        return asset_id in self._metadata
+
+    def __getitem__(self, asset_id: str) -> _MeshCacheEntry | _MeshMetadata:
+        """Direct access - returns metadata by default."""
+        return self._metadata[asset_id]
+
+    def __iter__(self):
+        """Iterate over metadata keys for backward compatibility."""
+        return iter(self._metadata)
+
+    def keys(self):
+        return self._metadata.keys()
+
+    def values(self):
+        """Iterate over cached entries (loaded ones only)."""
+        return self._mesh_cache.values()
+
+    def items(self):
+        """Iterate over cached (asset_id, entry) pairs."""
+        return self._mesh_cache.items()
+
+    def get_trimmed_cache(self, used_asset_ids: set[str]) -> Dict[str, _MeshCacheEntry]:
+        """Get a dict of only the entries for used assets.
+
+        This is used to trim memory after scene export, keeping only
+        the meshes that were actually placed in the scene.
+        """
+        result = {}
+        for asset_id in used_asset_ids:
+            if asset_id in self._mesh_cache:
+                result[asset_id] = self._mesh_cache[asset_id]
+            elif asset_id in self._metadata:
+                # Asset was used but not loaded - load it now for the final export
+                result[asset_id] = self.get_entry(asset_id)
+        return result
+
+    def get(self, asset_id: str, default=None):
+        """Dict-like get - returns metadata by default."""
+        return self._metadata.get(asset_id, default)
 
 
 @dataclass(frozen=True)
@@ -342,7 +516,7 @@ def _create_curated_railing_entry(*, asset_id: str = "curated_railing_module_v1"
 
 def _inject_curated_virtual_assets(
     rows: List[Dict[str, object]],
-    mesh_cache: Dict[str, _MeshCacheEntry],
+    mesh_cache: _LazyMeshCache,
     *,
     profile: str,
 ) -> List[Dict[str, object]]:
@@ -356,7 +530,7 @@ def _inject_curated_virtual_assets(
     if railing_asset_id and railing_asset_id not in asset_ids_present:
         railing_row, railing_entry = _create_curated_railing_entry(asset_id=railing_asset_id)
         injected_rows.append(railing_row)
-        mesh_cache[railing_asset_id] = railing_entry
+        mesh_cache.set_full_entry(railing_asset_id, railing_entry)
     return injected_rows
 
 
@@ -464,7 +638,7 @@ def _placement_asset_source_key(
     return "unknown"
 
 
-def _native_size_for_entry(entry: _MeshCacheEntry) -> Dict[str, float]:
+def _native_size_for_entry(entry: _MeshCacheEntry | _MeshMetadata) -> Dict[str, float]:
     return {
         "width_m": float(max(entry.half_x * 2.0, 0.0)),
         "depth_m": float(max(entry.half_z * 2.0, 0.0)),
@@ -475,7 +649,7 @@ def _native_size_for_entry(entry: _MeshCacheEntry) -> Dict[str, float]:
 def _street_furniture_scale_info(
     *,
     category: str,
-    entry: _MeshCacheEntry,
+    entry: _MeshCacheEntry | _MeshMetadata,
     config: StreetComposeConfig,
 ) -> Dict[str, Any]:
     native_size = _native_size_for_entry(entry)
@@ -672,93 +846,170 @@ def _load_real_manifest(manifest_path: Path) -> List[Dict[str, object]]:
     return rows
 
 
-def _load_mesh_cache(rows: List[Dict[str, str]]) -> Dict[str, _MeshCacheEntry]:
-    """Load mesh cache with automatic Y-axis normalization.
-    
-    CRITICAL: Normalizes all meshes so their base sits at Y=0. This is essential
-    for consistent canonical scaling. Handles Objaverse assets that weren't 
-    normalized during import (unlike Urbanverse assets which are pre-normalized).
+def _load_single_mesh(metadata: _MeshMetadata) -> _MeshCacheEntry:
+    """Load a single mesh from disk and create a cache entry.
+
+    This function does the actual mesh loading and Y-axis normalization.
+    It's called lazily when the mesh is actually needed.
     """
     trimesh = _require_trimesh()
-    cache: Dict[str, _MeshCacheEntry] = {}
+    mesh_path = Path(metadata.mesh_path).resolve()
+
+    mesh_or_scene = trimesh.load(mesh_path, force="scene")
+    if isinstance(mesh_or_scene, trimesh.Scene):
+        if not mesh_or_scene.geometry:
+            raise ValueError(f"empty mesh scene for asset '{metadata.asset_id}': {mesh_path}")
+        display_geom = mesh_or_scene
+
+        # Get initial bounds
+        bounds = np.asarray(display_geom.bounds, dtype=np.float64)
+        min_y_val = float(bounds[0][1])
+        max_y_val = float(bounds[1][1])
+        height = max_y_val - min_y_val
+        span_x = float(bounds[1][0] - bounds[0][0])
+        span_z = float(bounds[1][2] - bounds[0][2])
+        span_xz = max(span_x, span_z)
+
+        # Detect abnormal geometry: height >> width/depth suggests disjoint clusters
+        has_disjoint_geometry = (
+            height > 3.0 and height > span_xz * 2.5 and min_y_val < -0.1
+        )
+
+        if has_disjoint_geometry:
+            all_vertices = []
+            for geom in display_geom.geometry.values():
+                if hasattr(geom, "vertices"):
+                    all_vertices.append(np.asarray(geom.vertices))
+
+            if all_vertices:
+                all_verts = np.vstack(all_vertices)
+                y_coords = all_verts[:, 1]
+                ground_level = float(np.percentile(y_coords, 5))
+
+                if abs(ground_level) > 1e-6:
+                    display_geom.apply_translation([0.0, -ground_level, 0.0])
+        elif abs(min_y_val) > 1e-6:
+            display_geom.apply_translation([0.0, -min_y_val, 0.0])
+
+        bounds = np.asarray(display_geom.bounds, dtype=np.float64)
+        is_scene = True
+    else:
+        if mesh_or_scene.is_empty:
+            raise ValueError(f"empty mesh for asset '{metadata.asset_id}': {mesh_path}")
+        display_geom = mesh_or_scene
+        bounds = np.asarray(display_geom.bounds, dtype=np.float64)
+        min_y_val = float(bounds[0][1])
+        if abs(min_y_val) > 1e-6:
+            display_geom.apply_translation([0.0, -min_y_val, 0.0])
+        bounds = np.asarray(display_geom.bounds, dtype=np.float64)
+        is_scene = False
+
+    span = bounds[1] - bounds[0]
+    return _MeshCacheEntry(
+        mesh=display_geom,
+        half_x=float(max(span[0] / 2.0, 1e-3)),
+        half_z=float(max(span[2] / 2.0, 1e-3)),
+        min_y=float(bounds[0][1]),
+        center_x=float((bounds[0][0] + bounds[1][0]) / 2.0),
+        center_z=float((bounds[0][2] + bounds[1][2]) / 2.0),
+        is_scene=bool(is_scene),
+        native_height_y=float(max(span[1], 1e-3)),
+    )
+
+
+def _load_mesh_metadata(rows: List[Dict[str, str]]) -> Dict[str, _MeshMetadata]:
+    """Load lightweight mesh metadata without loading actual mesh files.
+
+    This is a memory-efficient alternative to _load_mesh_cache for layout
+    computation phases where only bounding-box information is needed.
+    """
+    trimesh = _require_trimesh()
+    metadata: Dict[str, _MeshMetadata] = {}
+
     for row in rows:
         asset_id = row["asset_id"]
-        category = row.get("category", "").strip().lower()
         mesh_path = Path(row["mesh_path"]).resolve()
+
         if not mesh_path.exists():
             raise FileNotFoundError(f"mesh missing for asset '{asset_id}': {mesh_path}")
-        mesh_or_scene = trimesh.load(mesh_path, force="scene")
-        if isinstance(mesh_or_scene, trimesh.Scene):
-            if not mesh_or_scene.geometry:
-                raise ValueError(f"empty mesh scene for asset '{asset_id}': {mesh_path}")
-            display_geom = mesh_or_scene
-            
-            # Get initial bounds
-            bounds = np.asarray(display_geom.bounds, dtype=np.float64)
-            min_y_val = float(bounds[0][1])
-            max_y_val = float(bounds[1][1])
-            height = max_y_val - min_y_val
-            span_x = float(bounds[1][0] - bounds[0][0])
-            span_z = float(bounds[1][2] - bounds[0][2])
-            span_xz = max(span_x, span_z)
-            
-            # Detect abnormal geometry: height >> width/depth suggests disjoint clusters
-            # Common in poorly-authored Objaverse trees where canopy floats above trunk
-            has_disjoint_geometry = (
-                height > 3.0 and  # Significant height
-                height > span_xz * 2.5 and  # Much taller than wide
-                min_y_val < -0.1  # Has geometry below origin
+
+        # Load mesh to extract bounding box info (lightweight operation)
+        try:
+            mesh_or_scene = trimesh.load(mesh_path, force="scene", verbose=False)
+
+            if isinstance(mesh_or_scene, trimesh.Scene):
+                if not mesh_or_scene.geometry:
+                    raise ValueError(f"empty mesh scene for asset '{asset_id}': {mesh_path}")
+                display_geom = mesh_or_scene
+
+                bounds = np.asarray(display_geom.bounds, dtype=np.float64)
+                min_y_val = float(bounds[0][1])
+                max_y_val = float(bounds[1][1])
+                height = max_y_val - min_y_val
+                span_x = float(bounds[1][0] - bounds[0][0])
+                span_z = float(bounds[1][2] - bounds[0][2])
+                span_xz = max(span_x, span_z)
+
+                has_disjoint_geometry = (
+                    height > 3.0 and height > span_xz * 2.5 and min_y_val < -0.1
+                )
+
+                if has_disjoint_geometry:
+                    all_vertices = []
+                    for geom in display_geom.geometry.values():
+                        if hasattr(geom, "vertices"):
+                            all_vertices.append(np.asarray(geom.vertices))
+
+                    if all_vertices:
+                        all_verts = np.vstack(all_vertices)
+                        y_coords = all_verts[:, 1]
+                        ground_level = float(np.percentile(y_coords, 5))
+                        if abs(ground_level) > 1e-6:
+                            min_y_val = min_y_val - ground_level
+
+                span = bounds[1] - bounds[0]
+                is_scene = True
+            else:
+                if mesh_or_scene.is_empty:
+                    raise ValueError(f"empty mesh for asset '{asset_id}': {mesh_path}")
+                bounds = np.asarray(mesh_or_scene.bounds, dtype=np.float64)
+                min_y_val = float(bounds[0][1])
+                span = bounds[1] - bounds[0]
+                is_scene = False
+
+            metadata[asset_id] = _MeshMetadata(
+                asset_id=asset_id,
+                half_x=float(max(span[0] / 2.0, 1e-3)),
+                half_z=float(max(span[2] / 2.0, 1e-3)),
+                min_y=float(max(min_y_val, 0.0)),  # Normalized to >= 0
+                center_x=float((bounds[0][0] + bounds[1][0]) / 2.0),
+                center_z=float((bounds[0][2] + bounds[1][2]) / 2.0),
+                is_scene=bool(is_scene),
+                native_height_y=float(max(span[1], 1e-3)),
+                mesh_path=str(mesh_path),
             )
-            
-            if has_disjoint_geometry:
-                # For trees with disjoint geometry, find ground-level vertices
-                # and align those to Y=0, ignoring floating canopy clusters
-                all_vertices = []
-                for geom in display_geom.geometry.values():
-                    if hasattr(geom, 'vertices'):
-                        all_vertices.append(np.asarray(geom.vertices))
-                
-                if all_vertices:
-                    all_verts = np.vstack(all_vertices)
-                    y_coords = all_verts[:, 1]
-                    
-                    # Find the "ground level" - use lower quartile to ignore outliers
-                    ground_level = float(np.percentile(y_coords, 5))
-                    
-                    # Translate so ground level is at Y=0
-                    if abs(ground_level) > 1e-6:
-                        display_geom.apply_translation([0.0, -ground_level, 0.0])
-            elif abs(min_y_val) > 1e-6:
-                # Standard case: translate so minimum Y is at 0
-                display_geom.apply_translation([0.0, -min_y_val, 0.0])
-            
-            # Re-compute bounds after normalization
-            bounds = np.asarray(display_geom.bounds, dtype=np.float64)
-            is_scene = True
-        else:
-            if mesh_or_scene.is_empty:
-                raise ValueError(f"empty mesh for asset '{asset_id}': {mesh_path}")
-            display_geom = mesh_or_scene
-            # Normalize mesh so base is at Y=0 (critical for proper scaling)
-            bounds = np.asarray(display_geom.bounds, dtype=np.float64)
-            min_y_val = float(bounds[0][1])
-            if abs(min_y_val) > 1e-6:
-                display_geom.apply_translation([0.0, -min_y_val, 0.0])
-            # Re-compute bounds after normalization
-            bounds = np.asarray(display_geom.bounds, dtype=np.float64)
-            is_scene = False
-        span = bounds[1] - bounds[0]
-        cache[asset_id] = _MeshCacheEntry(
-            mesh=display_geom,
-            half_x=float(max(span[0] / 2.0, 1e-3)),
-            half_z=float(max(span[2] / 2.0, 1e-3)),
-            min_y=float(bounds[0][1]),  # Should now be ~0.0
-            center_x=float((bounds[0][0] + bounds[1][0]) / 2.0),
-            center_z=float((bounds[0][2] + bounds[1][2]) / 2.0),
-            is_scene=bool(is_scene),
-            native_height_y=float(max(span[1], 1e-3)),
-        )
-    return cache
+        finally:
+            # Explicitly delete to help GC reclaim memory faster
+            del mesh_or_scene
+            if "display_geom" in locals():
+                del display_geom
+
+    return metadata
+
+
+def _load_mesh_cache(rows: List[Dict[str, str]], max_mesh_cache_size: int = DEFAULT_MAX_MESH_CACHE_SIZE) -> _LazyMeshCache:
+    """Load mesh cache with lazy loading for memory efficiency.
+
+    Returns a _LazyMeshCache that stores metadata for all assets but only
+    loads full mesh objects when needed. This significantly reduces memory
+    usage during layout computation phases.
+
+    Memory optimization:
+    - For layout: use metadata only (half_x, half_z, etc.)
+    - For export: call cache.preload() for needed assets before export
+    """
+    metadata = _load_mesh_metadata(rows)
+    return _LazyMeshCache(metadata, max_mesh_cache_size=max_mesh_cache_size)
 
 
 def _bbox_intersects(a: Tuple[float, float, float, float], b: Tuple[float, float, float, float]) -> bool:
@@ -2265,13 +2516,17 @@ def _add_beauty_scene_proxies(
 def _add_instance_meshes(
     scene,
     placements: List[StreetPlacement],
-    mesh_cache: Dict[str, _MeshCacheEntry],
+    mesh_cache: _LazyMeshCache | Dict[str, _MeshCacheEntry],
     building_plans_by_instance: Optional[Mapping[str, BuildingPlacementPlan]] = None,
 ) -> None:
     trimesh = _require_trimesh()
     for placement in placements:
-        entry = mesh_cache[placement.asset_id]
-        mesh_or_scene = entry.mesh.copy()
+        # Support both _LazyMeshCache and plain dict
+        if isinstance(mesh_cache, _LazyMeshCache):
+            entry = mesh_cache.get_entry(placement.asset_id)
+        else:
+            entry = mesh_cache[placement.asset_id]
+        mesh = entry.mesh
         if placement.scale_xyz:
             scale = [float(value) for value in placement.scale_xyz]
         else:
@@ -2290,34 +2545,39 @@ def _add_instance_meshes(
                 float(placement.position_xyz[2]),
             ]
         )
+        # Build a combined 4×4 affine transform: T · R · S
+        if isinstance(scale, list):
+            s = [float(v) for v in scale]
+            scale_mat = np.diag([s[0], s[1], s[2], 1.0])
+        else:
+            sv = float(scale)
+            scale_mat = np.diag([sv, sv, sv, 1.0])
+        combined = translation @ rotation @ scale_mat
+
         building_plan = (
             building_plans_by_instance.get(placement.instance_id)
             if building_plans_by_instance is not None and placement.placement_group == "building"
             else None
         )
-        if isinstance(mesh_or_scene, trimesh.Scene):
-            # Scene-type entries (e.g. parametric trees with PBR materials):
-            # apply transforms, then add each sub-geometry individually.
-            if isinstance(scale, list):
-                mesh_or_scene.apply_scale(scale)
-            else:
-                mesh_or_scene.apply_scale(float(scale))
-            mesh_or_scene.apply_transform(rotation)
-            mesh_or_scene.apply_transform(translation)
-            for gidx, node_name in enumerate(mesh_or_scene.graph.nodes_geometry):
-                transform, geom_name = mesh_or_scene.graph[node_name]
-                geom = mesh_or_scene.geometry[geom_name]
-                placed = geom.copy()
-                placed.apply_transform(transform)
-                scene.add_geometry(placed, node_name=f"{placement.instance_id}_{geom_name}_{gidx}")
+        # Use scene.add_geometry with an explicit *transform* so that the
+        # cached mesh entries are never copied.  trimesh's Scene.copy() /
+        # Trimesh.copy() deep-copies every TextureVisuals (including PIL
+        # images), which is extremely slow for textured assets.
+        if isinstance(mesh, trimesh.Scene):
+            for gidx, node_name in enumerate(mesh.graph.nodes_geometry):
+                local_tf, geom_name = mesh.graph[node_name]
+                geom = mesh.geometry[geom_name]
+                scene.add_geometry(
+                    geom,
+                    node_name=f"{placement.instance_id}_{geom_name}_{gidx}",
+                    transform=combined @ local_tf,
+                )
         else:
-            if isinstance(scale, list):
-                mesh_or_scene.apply_scale(scale)
-            else:
-                mesh_or_scene.apply_scale(float(scale))
-            mesh_or_scene.apply_transform(rotation)
-            mesh_or_scene.apply_transform(translation)
-            scene.add_geometry(mesh_or_scene, node_name=placement.instance_id)
+            scene.add_geometry(
+                mesh,
+                node_name=placement.instance_id,
+                transform=combined,
+            )
         if building_plan is not None and bool(building_plan.door_added):
             door_meshes = _create_attached_building_door_meshes(plan=building_plan, entry=entry)
             for didx, door_mesh in enumerate(door_meshes):
@@ -2424,12 +2684,16 @@ def rebuild_glb_from_layout(
     rows = _load_real_manifest(Path(manifest_path))
     filtered_rows = [r for r in rows if str(r["asset_id"]) in referenced_asset_ids]
 
-    # --- 4. Build mesh cache for referenced assets ---
-    mesh_cache: Dict[str, _MeshCacheEntry] = {}
+    # --- 4. Build lazy mesh cache for referenced assets ---
+    # Returns _LazyMeshCache that loads metadata first, full meshes lazily
     if filtered_rows:
         mesh_cache = _load_mesh_cache(filtered_rows)
+    else:
+        # Create empty cache if no rows
+        mesh_cache = _LazyMeshCache({}, max_mesh_cache_size=DEFAULT_MAX_MESH_CACHE_SIZE)
 
-    # --- 5. Create placeholder meshes for LLM-invented asset_ids ---
+    # --- 5. Create placeholder entries for LLM-invented asset_ids ---
+    # These need full mesh entries (box placeholders)
     placeholder_ids = referenced_asset_ids - set(mesh_cache.keys())
     for pid in placeholder_ids:
         box = trimesh.creation.box(extents=(0.8, 0.4, 0.8))
@@ -2437,7 +2701,7 @@ def rebuild_glb_from_layout(
             mesh=box,
             vertex_colors=np.tile([100, 180, 100, 220], (len(box.vertices), 1)),
         )
-        mesh_cache[pid] = _MeshCacheEntry(
+        fallback_entry = _MeshCacheEntry(
             mesh=box,
             half_x=0.4,
             half_z=0.4,
@@ -2447,6 +2711,7 @@ def rebuild_glb_from_layout(
             is_scene=False,
             native_height_y=0.4,
         )
+        mesh_cache.set_full_entry(pid, fallback_entry)
 
     # --- 6. Reconstruct StreetPlacement objects ---
     placements: List[StreetPlacement] = []
@@ -2854,7 +3119,7 @@ def _build_production_steps(
     building_footprints: Sequence[BuildingFootprint],
     generated_lots: Sequence[GeneratedLot],
     building_plans: Sequence[BuildingPlacementPlan],
-    mesh_cache: Mapping[str, _MeshCacheEntry],
+    mesh_cache: Dict[str, _MeshCacheEntry],  # Can be either dict or _LazyMeshCache
     exclusion_zones: Sequence[object],
     palette: Mapping[str, Tuple[int, int, int, int]],
     osm_geometry: Mapping[str, object] | None,
@@ -2967,10 +3232,14 @@ def _build_production_steps(
                 texture_overrides=texture_overrides,
             )
         if visible_placements:
+            # For production steps, preload the meshes needed for export
+            # This ensures they're in cache before _add_instance_meshes tries to get them
+            if isinstance(mesh_cache, _LazyMeshCache):
+                mesh_cache.preload([p.asset_id for p in visible_placements])
             _add_instance_meshes(
                 scene=scene,
                 placements=list(visible_placements),
-                mesh_cache=dict(mesh_cache),
+                mesh_cache=mesh_cache,
                 building_plans_by_instance={
                     str(plan.instance_id): plan
                     for plan in building_plans
@@ -2981,6 +3250,8 @@ def _build_production_steps(
 
         glb_path = (step_dir / f"{index:02d}_{step_id}.glb").resolve()
         scene.export(glb_path)
+        del scene
+        gc.collect()
 
         companion_path = ""
         if step_id == "land_use_zoning":
@@ -4448,7 +4719,7 @@ def _evaluate_slot_candidate(
     slot: object,
     category: str,
     band_width_m: float,
-    entry: _MeshCacheEntry,
+    entry: _MeshCacheEntry | _MeshMetadata,
     scale_info: Mapping[str, object],
     placements: Sequence[StreetPlacement],
     spatial_hash: UniformSpatialHash,
@@ -4774,7 +5045,7 @@ def _place_building_targets(
     embedder: ClipTextEmbedder,
     index_store: FaissIndexStore,
     asset_by_id: Dict[str, Dict[str, object]],
-    mesh_cache: Dict[str, _MeshCacheEntry],
+    mesh_cache: _LazyMeshCache,
     rng: random.Random,
     start_instance_index: int,
     road_type: str,
@@ -4827,7 +5098,7 @@ def _place_building_targets(
         depth_m = float(target.get("depth_m", 10.0) or 10.0)
         _target_height_m = float(target.get("target_height_m", 0.0) or 0.0)
         if row is not None:
-            entry = mesh_cache[row["asset_id"]]
+            entry = mesh_cache.get_metadata(row["asset_id"])
             scale_x = max(frontage_width_m / max(entry.half_x * 2.0, 1e-3), 0.1)
             scale_z = max(depth_m / max(entry.half_z * 2.0, 1e-3), 0.1)
             if _target_height_m > 0.0 and entry.native_height_y > 0.01:
@@ -4844,7 +5115,7 @@ def _place_building_targets(
             fallback_reason = ""
         else:
             asset_id = f"building_fallback_{str(target.get('target_kind', 'footprint'))}_{target_idx:03d}"
-            mesh_cache[asset_id] = _placeholder_building_entry(
+            fallback_entry = _placeholder_building_entry(
                 asset_id=asset_id,
                 frontage_width_m=frontage_width_m,
                 depth_m=depth_m,
@@ -4852,6 +5123,8 @@ def _place_building_targets(
                 theme_name=theme_name,
                 target_height_m=_target_height_m,
             )
+            # Store the fallback entry (includes full mesh)
+            mesh_cache.set_full_entry(asset_id, fallback_entry)
             asset_by_id[asset_id] = {
                 "asset_id": asset_id,
                 "category": "building",
@@ -4860,7 +5133,7 @@ def _place_building_targets(
                 "theme_tags": [theme_name, str(target.get("size_class", ""))],
                 "height_class": str(target.get("height_class", "midrise") or "midrise"),
             }
-            entry = mesh_cache[asset_id]
+            entry = mesh_cache.get_metadata(asset_id)
             scale_xyz = [1.0, 1.0, 1.0]
             fallback_count += 1
             fallback_reason = "no_building_asset_match"
@@ -4990,7 +5263,7 @@ def _place_surrounding_buildings(
     embedder: ClipTextEmbedder,
     index_store: FaissIndexStore,
     asset_by_id: Dict[str, Dict[str, object]],
-    mesh_cache: Dict[str, _MeshCacheEntry],
+    mesh_cache: _LazyMeshCache,
     rng: random.Random,
     start_instance_index: int,
 ) -> _SurroundingBuildingResult:
@@ -5304,7 +5577,7 @@ def compose_street_scene(
     model_dir: Optional[Path] = None,
     local_files_only: bool = False,
     device: str = "auto",
-    export_format: str = "both",
+    export_format: str = "glb",
     out_dir: Path = Path("artifacts/real"),
     placement_policy: str = "rule",
     policy_ckpt: Optional[Path] = None,
@@ -6083,7 +6356,7 @@ def compose_street_scene(
                     "asset_id": str(row["asset_id"]),
                 }
 
-        entry = mesh_cache[row["asset_id"]]
+        entry = mesh_cache.get_metadata(row["asset_id"])
         scale_info = _street_furniture_scale_info(
             category=category,
             entry=entry,
@@ -6918,6 +7191,10 @@ def compose_street_scene(
     )
     solver_result = replace(solver_result, resolved_program=resolved_program)
 
+    # Free CLIP model + FAISS index (~1.7 GB) – no longer needed after placement
+    del embedder, index_store
+    gc.collect()
+
     dominant_palette_style = (
         theme_segments[0].style_preset
         if theme_segments and _is_corridor_layout_mode(config.layout_mode)
@@ -6961,10 +7238,13 @@ def compose_street_scene(
         texture_tracker=scene_texture_tracker,
         texture_overrides=texture_overrides,
     )
+    # Trim mesh_cache to only assets that are actually placed
+    used_asset_ids = {placement.asset_id for placement in placements}
+    trimmed_mesh_cache = mesh_cache.get_trimmed_cache(used_asset_ids)
     _add_instance_meshes(
         scene=scene,
         placements=placements,
-        mesh_cache=mesh_cache,
+        mesh_cache=trimmed_mesh_cache,
         building_plans_by_instance={
             str(plan.instance_id): plan
             for plan in building_plans
@@ -6989,6 +7269,7 @@ def compose_street_scene(
         if _is_corridor_layout_mode(config.layout_mode) and placement_ctx is not None
         else None
     )
+
     production_steps = _build_production_steps(
         out_dir=out_dir,
         config=config,
@@ -7001,7 +7282,7 @@ def compose_street_scene(
         building_footprints=building_footprints,
         generated_lots=generated_lots,
         building_plans=building_plans,
-        mesh_cache=mesh_cache,
+        mesh_cache=trimmed_mesh_cache,
         exclusion_zones=exclusion_zones,
         palette=palette,
         osm_geometry=serialized_osm_geometry,
@@ -7130,10 +7411,11 @@ def compose_street_scene(
         asset_source_generator_types.setdefault(source_key, set()).add(str(generator_key))
         if generator_key == "parametric":
             parametric_instance_count += 1
+    # Count Scene-type assets using metadata only (no mesh loading needed)
     asset_library_scene_instances = sum(
         1
         for placement in placements
-        if bool(mesh_cache.get(placement.asset_id)) and bool(mesh_cache[placement.asset_id].is_scene)
+        if mesh_cache.get(placement.asset_id) is not None and mesh_cache.get(placement.asset_id).is_scene
     )
 
     violations_total = sum(1 for placement in furniture_placements if placement.violated_rules)

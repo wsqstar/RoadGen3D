@@ -1,67 +1,54 @@
-/* ── Simplified Workbench Styles ──────────────────────────────────────────── */
+/* ── React Workbench Styles ──────────────────────────────────────────────── */
 
-/* ── CSS Variables ────────────────────────────────────────────────────────── */
 :root {
   color-scheme: light;
 
-  /* Primary colors */
   --primary: #3B82F6;
   --primary-hover: #2563EB;
   --primary-light: #DBEAFE;
 
-  /* Secondary colors */
   --secondary: #6B7280;
   --secondary-hover: #4B5563;
 
-  /* Evaluation dimension colors */
   --walkability: #3B82F6;
   --safety: #EF4444;
   --beauty: #10B981;
   --overall: #8B5CF6;
 
-  /* State colors */
   --success: #10B981;
   --warning: #F59E0B;
   --error: #EF4444;
 
-  /* Background colors */
   --bg-primary: #F9FAFB;
   --bg-secondary: #F3F4F6;
   --bg-card: #FFFFFF;
 
-  /* Text colors */
   --text-primary: #111827;
   --text-secondary: #6B7280;
   --text-muted: #9CA3AF;
 
-  /* Border colors */
   --border: #E5E7EB;
   --border-strong: #D1D5DB;
 
-  /* Shadow */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 
-  /* Spacing */
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
   --space-lg: 24px;
   --space-xl: 32px;
 
-  /* Border radius */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
   --radius-full: 9999px;
 
-  /* Font */
   --font-sans: "Inter", "PingFang SC", "Noto Sans SC", system-ui, -apple-system, sans-serif;
   --font-mono: "SF Mono", "Menlo", "Monaco", monospace;
 }
 
-/* ── Reset & Base ─────────────────────────────────────────────────────────── */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -90,7 +77,6 @@ a:hover {
   text-decoration: underline;
 }
 
-/* ── Workbench Container ──────────────────────────────────────────────────── */
 .workbench {
   max-width: 1200px;
   margin: 0 auto;
@@ -99,7 +85,7 @@ a:hover {
   gap: var(--space-lg);
 }
 
-/* ── Header ───────────────────────────────────────────────────────────────── */
+/* Header */
 .workbench-header {
   display: flex;
   justify-content: space-between;
@@ -110,10 +96,18 @@ a:hover {
   box-shadow: var(--shadow-sm);
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
 .workbench-header h1 {
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--text-primary);
+  white-space: nowrap;
 }
 
 .viewer-link {
@@ -133,15 +127,11 @@ a:hover {
   text-decoration: none;
 }
 
-/* ── Step Indicator ──────────────────────────────────────────────────────── */
+/* Step Indicator (inline in header) */
 .step-indicator {
   display: flex;
-  justify-content: center;
-  gap: var(--space-md);
-  padding: var(--space-md) var(--space-lg);
-  background: var(--bg-card);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
+  align-items: center;
+  gap: var(--space-sm);
 }
 
 .step {
@@ -199,7 +189,7 @@ a:hover {
   }
 }
 
-/* ── Content Area ────────────────────────────────────────────────────────── */
+/* Content Area */
 .workbench-content {
   display: flex;
   flex-direction: column;
@@ -212,7 +202,7 @@ a:hover {
   gap: var(--space-lg);
 }
 
-/* ── Section Headers ──────────────────────────────────────────────────────── */
+/* Section Headers */
 .section-header {
   text-align: center;
   padding: var(--space-md);
@@ -229,7 +219,7 @@ a:hover {
   font-size: 0.875rem;
 }
 
-/* ── Buttons ──────────────────────────────────────────────────────────────── */
+/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -267,7 +257,7 @@ a:hover {
   background: var(--border);
 }
 
-/* ── Step Actions ─────────────────────────────────────────────────────────── */
+/* Step Actions */
 .step-actions {
   display: flex;
   justify-content: center;
@@ -275,7 +265,7 @@ a:hover {
   padding: var(--space-md);
 }
 
-/* ── Preset Grid ─────────────────────────────────────────────────────────── */
+/* Preset Grid */
 .preset-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -335,7 +325,7 @@ a:hover {
   color: var(--text-muted);
 }
 
-/* ── Scheme Grid ─────────────────────────────────────────────────────────── */
+/* Scheme Grid */
 .scheme-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -366,7 +356,7 @@ a:hover {
   cursor: pointer;
 }
 
-/* ── Scheme Preview ──────────────────────────────────────────────────────── */
+/* Scheme Preview */
 .scheme-preview {
   height: 180px;
   background: var(--bg-secondary);
@@ -427,7 +417,7 @@ a:hover {
   color: var(--text-muted);
 }
 
-/* ── Scheme Info ─────────────────────────────────────────────────────────── */
+/* Scheme Info */
 .scheme-info {
   padding: var(--space-md);
   display: flex;
@@ -515,7 +505,7 @@ a:hover {
   padding: var(--space-md);
 }
 
-/* ── Empty State ────────────────────────────────────────────────────────── */
+/* Empty State */
 .empty-state {
   grid-column: 1 / -1;
   display: flex;
@@ -531,7 +521,7 @@ a:hover {
   margin-bottom: var(--space-sm);
 }
 
-/* ── Evaluation Panel ────────────────────────────────────────────────────── */
+/* Evaluation Panel */
 .evaluation-panel {
   display: flex;
   flex-direction: column;
@@ -629,7 +619,7 @@ a:hover {
   font-family: var(--font-mono);
 }
 
-/* ── Charts Row ─────────────────────────────────────────────────────────── */
+/* Charts Row */
 .charts-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -655,7 +645,7 @@ a:hover {
   margin: 0 auto;
 }
 
-/* ── Indicators Table ────────────────────────────────────────────────────── */
+/* Indicators Table */
 .indicators-table {
   background: var(--bg-card);
   border-radius: var(--radius-lg);
@@ -739,7 +729,7 @@ a:hover {
   background: var(--bg-secondary) !important;
 }
 
-/* ── Status Bar ─────────────────────────────────────────────────────────── */
+/* Status Bar */
 .status-bar {
   padding: var(--space-sm) var(--space-md);
   background: var(--bg-card);
@@ -753,7 +743,7 @@ a:hover {
   color: var(--text-secondary);
 }
 
-/* ── Responsive Adjustments ─────────────────────────────────────────────── */
+/* Responsive Adjustments */
 @media (max-width: 640px) {
   body {
     padding: var(--space-md);
@@ -765,8 +755,15 @@ a:hover {
     text-align: center;
   }
 
+  .header-left {
+    flex-direction: column;
+    gap: var(--space-sm);
+    justify-content: center;
+  }
+
   .step-indicator {
     flex-wrap: wrap;
+    justify-content: center;
   }
 
   .step {
