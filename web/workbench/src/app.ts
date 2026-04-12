@@ -261,6 +261,7 @@ export function mountWorkbench(app: HTMLDivElement): void {
     // Generate each scheme with a delay to simulate processing
     for (let i = 0; i < state.schemes.length; i++) {
       const scheme = state.schemes[i];
+      console.log(`[生成] 开始处理方案 ${scheme.id}`);
       try {
         // Simulate generation progress
         for (let p = 0; p <= 100; p += 20) {
@@ -268,32 +269,38 @@ export function mountWorkbench(app: HTMLDivElement): void {
           renderSchemeGrid();
           await sleep(200);
         }
+        console.log(`[生成] 方案 ${scheme.id} 进度条完成`);
 
         // Call API to create scene job
+        console.log(`[生成] 方案 ${scheme.id} 调用 createSceneJob`);
         const result = await createSceneJob(state.selectedPreset!, scheme.id);
         scheme.layoutPath = result.scene_layout_path;
         scheme.viewerUrl = resolveViewerUrl(result.viewer_url, result.scene_layout_path);
         scheme.previewUrl = resolveApiUrl(result.scene_layout_path);
+        console.log(`[生成] 方案 ${scheme.id} createSceneJob 完成, layoutPath=${result.scene_layout_path}`);
 
-        // Call LLM evaluation API
+        // Call LLM evaluation API (non-blocking error handling)
         try {
           setStatus(`正在评估方案 ${scheme.id}...`);
+          console.log(`[生成] 方案 ${scheme.id} 调用 evaluateScene`);
           scheme.evaluation = await evaluateScene(scheme.layoutPath);
+          console.log(`[生成] 方案 ${scheme.id} evaluateScene 完成`);
         } catch (evalError) {
-          console.warn(`Evaluation failed for ${scheme.id}:`, evalError);
+          console.warn(`[生成] 方案 ${scheme.id} 评估失败，使用默认值:`, evalError);
           // Fallback to zeros if evaluation fails
           scheme.evaluation = { walkability: 0, safety: 0, beauty: 0, overall: 0 };
         }
 
         scheme.status = "ready";
         scheme.progress = 100;
+        console.log(`[生成] 方案 ${scheme.id} 设置为 ready`);
 
         renderSchemeGrid();
         updateSchemeSelection();
       } catch (error) {
+        console.error(`[生成] 方案 ${scheme.id} 失败:`, error);
         scheme.status = "failed";
         scheme.progress = 0;
-        state.error = `方案 ${scheme.id} 生成失败: ${escapeHtml(String(error))}`;
         renderSchemeGrid();
       }
     }
