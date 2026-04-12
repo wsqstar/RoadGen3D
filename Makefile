@@ -26,9 +26,16 @@ help:
 	@echo "make eval              - Run M4 engineering evaluation"
 	@echo "make snapshot-diff     - Run snapshot diff pipeline (real LLM, single query)"
 	@echo ""
-	@echo "make test              - Run unit tests (pytest) to verify system integrity"
-	@echo "make test-pipeline     - Run automated test pipeline (starts API, runs tests, generates report)"
-	@echo "make test-single       - Run single automated test with random preset"
+	@echo "Test Commands:"
+	@echo "  make test             - Run unit tests (pytest) to verify system integrity"
+	@echo "  make test-pipeline    - Run full automated test with live progress (starts API + tests)"
+	@echo "  make test-single      - Run single test (requires API already running)"
+	@echo "  make test-preset     PRESET=<id> - Run with specific preset"
+	@echo "  make test-report      - View latest test report summary"
+	@echo ""
+	@echo "Test Pipeline Options:"
+	@echo "  PRESET=<id>          - Specific preset (pedestrian_friendly, commercial_vitality, etc.)"
+	@echo "  TEST_PYTEST_ARGS=... - Extra pytest arguments (default: -v --tb=short)"
 
 dev:
 	@trap 'kill 0' INT TERM EXIT; \
@@ -158,11 +165,11 @@ test-pipeline:
 	done; \
 	echo ""; \
 	echo "[3/3] 运行测试..."; \
-	$(PYTHON) scripts/test_workflow.py --output $(TEST_REPORTS_DIR); \
+	uv run python scripts/test_workflow.py --output $(TEST_REPORTS_DIR); \
 	TEST_EXIT=$$?; \
 	echo ""; \
 	echo "[汇总] 生成报告汇总..."; \
-	$(PYTHON) scripts/test_pipeline.py; \
+	uv run python scripts/test_pipeline.py; \
 	echo ""; \
 	echo "=========================================="; \
 	echo "Pipeline 完成!"; \
@@ -177,16 +184,16 @@ test-single:
 	@echo "=========================================="
 	@echo "运行单次自动化测试"
 	@echo "=========================================="
-	@$(PYTHON) scripts/test_workflow.py --output $(TEST_REPORTS_DIR); \
+	@uv run python scripts/test_workflow.py --output $(TEST_REPORTS_DIR); \
 	EXIT=$$?; \
-	$(PYTHON) scripts/test_pipeline.py; \
+	uv run python scripts/test_pipeline.py; \
 	exit $$EXIT
 
 # Run test with specific preset
 test-preset:
 	@mkdir -p $(TEST_REPORTS_DIR)
-	@$(PYTHON) scripts/test_workflow.py --preset $(PRESET) --output $(TEST_REPORTS_DIR); \
-	$(PYTHON) scripts/test_pipeline.py
+	@uv run python scripts/test_workflow.py --preset $(PRESET) --output $(TEST_REPORTS_DIR); \
+	uv run python scripts/test_pipeline.py
 
 # View latest test report
 test-report:

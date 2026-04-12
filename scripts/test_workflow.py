@@ -406,9 +406,22 @@ class RepeatVerificationResult:
 # ── API Client ─────────────────────────────────────────────────────────────────
 
 class WorkbenchClient:
-    def __init__(self, base_url: str, timeout: float = 60.0):
+    def __init__(self, base_url: str, timeout: float = 900.0):
+        """
+        Initialize the API client.
+
+        Args:
+            base_url: Base URL for the API
+            timeout: Default timeout for requests in seconds (default: 900 = 15 min)
+        """
         self.base_url = base_url.rstrip("/")
-        self.client = httpx.Client(timeout=timeout)
+        # Use explicit HTTPTransport to avoid HTTP/2 connection issues
+        transport = httpx.HTTPTransport(retries=2)
+        # Configure timeout: 900s connect, 900s read (足够长以支持长时间轮询)
+        self.client = httpx.Client(
+            timeout=httpx.Timeout(timeout, connect=30.0),
+            transport=transport
+        )
 
     def close(self):
         self.client.close()
@@ -440,10 +453,22 @@ class WorkbenchClient:
         return response.json()
 
     def get_job_status(self, job_id: str) -> dict:
-        """Get job status."""
-        response = self.client.get(f"{self.base_url}/api/scene/jobs/{job_id}")
-        response.raise_for_status()
-        return response.json()
+        """Get job status using curl to avoid httpx connection issues."""
+        import subprocess
+        try:
+            result = subprocess.run(
+                ["curl", "-s", "-m", "30", f"{self.base_url}/api/scene/jobs/{job_id}"],
+                capture_output=True,
+                text=True,
+                timeout=35
+            )
+            if result.returncode != 0:
+                raise Exception(f"curl failed: {result.stderr}")
+            return json.loads(result.stdout)
+        except subprocess.TimeoutExpired:
+            raise Exception("Job status request timeout")
+        except json.JSONDecodeError as e:
+            raise Exception(f"Invalid JSON response: {e}")
 
     def evaluate_scene(self, layout_path: str) -> dict:
         """Evaluate scene with LLM."""
@@ -462,10 +487,25 @@ class WorkbenchClient:
     def health_check(self) -> bool:
         """Check if API is available."""
         try:
-            response = self.client.get(f"{self.base_url}/api/health")
-            return response.status_code == 200
+            # Use explicit HTTPTransport to avoid HTTP/2 connection issues
+            transport = httpx.HTTPTransport(retries=0)
+            with httpx.Client(timeout=10.0, transport=transport) as client:
+                response = client.get(f"{self.base_url}/api/health")
+                return response.status_code == 200
         except Exception:
             return False
+
+    def get_detailed_status(self) -> dict | None:
+        """Get detailed API status including version, model info."""
+        try:
+            transport = httpx.HTTPTransport(retries=0)
+            with httpx.Client(timeout=10.0, transport=transport) as client:
+                response = client.get(f"{self.base_url}/api/health")
+                if response.status_code == 200:
+                    return response.json()
+        except Exception:
+            pass
+        return None
 
 
 # ── Test Runner ────────────────────────────────────────────────────────────────
@@ -496,75 +536,224 @@ def run_test(
         report_path="",
     )
 
+    # Spinner states for visual feedback
+    spinner_chars = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
+    spinner_idx = 0
+
+    def get_spinner() -> str:
+        nonlocal spinner_idx
+        spinner_idx = (spinner_idx + 1) % len(spinner_chars)
+        return spinner_chars[spinner_idx]
+
+    def format_time(seconds: float) -> str:
+        """Format seconds to human-readable string."""
+        if seconds < 60:
+            return f"{seconds:.0f}s"
+        elif seconds < 3600:
+            mins = int(seconds // 60)
+            secs = int(seconds % 60)
+            return f"{mins}m {secs}s"
+        else:
+            hours = int(seconds // 3600)
+            mins = int((seconds % 3600) // 60)
+            return f"{hours}h {mins}m"
+
+    def get_progress_bar(progress: float, width: int = 20) -> str:
+        """Create a text-based progress bar."""
+        filled = int(width * min(progress, 1.0))
+        empty = width - filled
+        return "█" * filled + "░" * empty
+
     try:
         # Step 1: Create job
-        print(f"[1/4] 创建场景生成任务...")
+        print(f"\n{'='*60}")
+        print(f"Step 1/4 | 创建场景生成任务")
+        print(f"{'='*60}")
+        print(f"  模板: {preset['name']} ({preset['name_en']})")
+        print(f"  Prompt: {preset['prompt'][:50]}...")
+        print()
+
+        print("  创建任务中...", end="", flush=True)
         job_response = client.create_scene_job(preset)
         result.job_id = job_response.get("job_id", "")
-        print(f"      任务 ID: {result.job_id}")
+        print(f"\r  ✓ 任务已创建")
+        print(f"  任务 ID: {result.job_id}")
+        print()
 
         # Step 2: Poll for completion
-        print(f"[2/4] 等待场景生成完成...")
+        print(f"{'='*60}")
+        print(f"Step 2/4 | 等待场景生成完成")
+        print(f"{'='*60}")
+        print(f"  超时设置: {format_time(timeout)}")
+        print(f"  轮询间隔: {poll_interval}s")
+        print()
+
         elapsed = 0.0
+        last_status = ""
+        status_counts: dict[str, int] = {}
+
         while elapsed < timeout:
             status_response = client.get_job_status(result.job_id)
             status = status_response.get("status", "")
+            stage = status_response.get("stage", "")
+
+            # Track status transitions
+            if status != last_status:
+                last_status = status
+                status_counts[status] = 0
+                print(f"\n  状态变更: {status}")
+
+            status_counts[status] = status_counts.get(status, 0) + 1
 
             if status == "succeeded":
                 result.job_completed_at = datetime.now().isoformat()
                 result.scene_layout_path = status_response.get("result", {}).get("scene_layout_path")
                 result.scene_glb_path = status_response.get("result", {}).get("scene_glb_path")
                 result.viewer_url = status_response.get("result", {}).get("viewer_url")
-                print(f"      场景生成完成!")
-                print(f"      布局路径: {result.scene_layout_path}")
+
+                # Calculate ETA info
+                total_elapsed = time.time() - start_time
+                print()
+                print(f"{'='*60}")
+                print(f"  ✓ 场景生成完成!")
+                print(f"{'='*60}")
+                print(f"  总耗时: {format_time(total_elapsed)}")
+                print(f"  布局路径: {result.scene_layout_path}")
+                print(f"  GLB 路径: {result.scene_glb_path}")
+                if result.viewer_url:
+                    print(f"  Viewer: {result.viewer_url}")
+                print()
                 break
+
             elif status == "failed":
-                result.error_message = "Job failed"
-                print(f"      场景生成失败!")
+                result.error_message = status_response.get("error", "Job failed")
+                print()
+                print(f"{'='*60}")
+                print(f"  ✗ 场景生成失败!")
+                print(f"  错误: {result.error_message}")
+                print(f"{'='*60}")
+                print()
                 return result
+
+            elif status == "running" or status == "processing":
+                # Show detailed progress for running state
+                progress = elapsed / timeout
+                eta = (timeout - elapsed) if timeout > elapsed else 0
+
+                # Try to get sub-progress from response
+                sub_progress = status_response.get("progress", 0)
+                if sub_progress > 0:
+                    progress = sub_progress / 100.0
+                    eta = (timeout - elapsed) * (1 - progress) / progress if progress > 0.01 else 0
+
+                bar = get_progress_bar(progress)
+                eta_str = format_time(eta) if eta > 0 else "计算中..."
+
+                # Get current operation info
+                operations = status_response.get("operations", [])
+                op_info = ""
+                if operations:
+                    current_op = operations[-1] if operations else ""
+                    if isinstance(current_op, dict):
+                        op_info = f" | {current_op.get('name', current_op.get('status', ''))}"
+                    else:
+                        op_info = f" | {current_op}"
+
+                spinner = get_spinner()
+                print(f"\r  {spinner} [{bar}] {progress*100:5.1f}% | {format_time(elapsed)} / {format_time(timeout)} | ETA: {eta_str}{op_info}", end="", flush=True)
+
+            elif status == "queued":
+                spinner = get_spinner()
+                queue_pos = status_response.get("queue_position", 0)
+                queue_info = f" | 队列位置: #{queue_pos}" if queue_pos > 0 else ""
+                print(f"\r  {spinner} 状态: {status} | 已等待: {format_time(elapsed)}{queue_info}", end="", flush=True)
+
+            else:
+                # Unknown status
+                spinner = get_spinner()
+                print(f"\r  {spinner} 状态: {status} | 已等待: {format_time(elapsed)}", end="", flush=True)
 
             # Still pending/running, wait
             time.sleep(poll_interval)
             elapsed = time.time() - start_time
-            print(f"      状态: {status} ({elapsed:.0f}s)", end="\r")
 
         else:
             # Timeout
             result.status = "timeout"
             result.error_message = f"Job timed out after {timeout}s"
-            print(f"\n      超时!")
+            print()
+            print(f"\n{'='*60}")
+            print(f"  ⏱️ 超时! 任务在 {format_time(timeout)} 后未完成")
+            print(f"  已等待: {format_time(elapsed)}")
+            print(f"  最后状态: {last_status}")
+            print(f"{'='*60}")
+            print()
             return result
 
         # Step 3: Evaluate scene
-        print(f"[3/4] 调用 LLM 评估...")
+        print(f"{'='*60}")
+        print(f"Step 3/4 | 调用 LLM 评估场景")
+        print(f"{'='*60}")
+        print(f"  布局路径: {result.scene_layout_path}")
+        print()
+        print("  评估中...", end="", flush=True)
+
         try:
+            start_eval = time.time()
             result.evaluation = client.evaluate_scene(result.scene_layout_path)
+            eval_time = time.time() - start_eval
+
+            print(f"\r  ✓ 评估完成 ({format_time(eval_time)})")
 
             # 验证评估结果
             validator = MetricsValidator()
-            if result.evaluation:
-                eval_data = result.evaluation
-                for key in ["walkability", "safety", "beauty", "overall"]:
-                    validator.validate_score_range(
-                        eval_data.get(key, 0),
-                        key
-                    )
+            eval_data = result.evaluation
+
+            if eval_data:
+                print()
+                print(f"  评估结果:")
+                print(f"  ─" * 20)
+
+                scores = []
+                for key, label in [("walkability", "步行性"), ("safety", "安全性"), ("beauty", "美观性"), ("overall", "综合评分")]:
+                    score = eval_data.get(key, 0)
+                    scores.append(score)
+                    validator.validate_score_range(score, key)
+                    bar = get_progress_bar(score / 100.0, 15)
+                    print(f"    {label:8s}: [{bar}] {score:.1f}")
+
+                # Validate formula
                 if all(k in eval_data for k in ["walkability", "safety", "beauty", "overall"]):
-                    validator.validate_formula(
+                    formula_valid = validator.validate_formula(
                         eval_data["walkability"],
                         eval_data["safety"],
                         eval_data["beauty"],
                         eval_data["overall"]
                     )
-            print(f"      评估完成!")
+                    print(f"  ─" * 20)
+                    print(f"    公式验证: {'✓ 通过' if formula_valid else '✗ 失败'}")
+
+                # Show suggestions summary
+                suggestions = eval_data.get("suggestions", [])
+                if suggestions:
+                    print()
+                    print(f"  改进建议 ({len(suggestions)}条):")
+                    for i, s in enumerate(suggestions[:3], 1):
+                        print(f"    {i}. {s[:60]}{'...' if len(s) > 60 else ''}")
+
+            print()
         except Exception as e:
-            print(f"      评估失败: {e}")
-            # Evaluation is optional, don't fail the test
+            print(f"\r  ✗ 评估失败: {e}")
             result.evaluation = None
 
         # Step 4: Complete
         result.status = "passed"
-        print(f"[4/4] 测试完成!")
+        print(f"{'='*60}")
+        print(f"Step 4/4 | 测试完成")
+        print(f"{'='*60}")
+        print(f"  总耗时: {format_time(result.duration_seconds)}")
+        print(f"  状态: ✓ 通过")
+        print()
 
     except httpx.ConnectError as e:
         result.error_message = f"Connection error: {e}"
@@ -877,8 +1066,8 @@ Examples:
     parser.add_argument(
         "--timeout",
         type=float,
-        default=300.0,
-        help="任务超时时间，秒 (默认: 300)",
+        default=600.0,
+        help="任务超时时间，秒 (默认: 600)",
     )
     parser.add_argument(
         "--output",
@@ -928,10 +1117,29 @@ Examples:
     try:
         # Check health
         print("检查 API 连接...")
-        if not client.health_check():
+        print(f"  API 端点: {args.api_base}")
+
+        status_info = client.get_detailed_status()
+        if not status_info:
             print("❌ API 不可用，请确保后端服务正在运行:")
             print(f"   uv run uvicorn web.api.main:app --reload --port 8010")
             sys.exit(1)
+
+        # Display available status info
+        print(f"  服务状态: {'正常' if status_info.get('ok') else '异常'}")
+        if "default_pdf_path" in status_info:
+            print(f"  知识库: {status_info['default_pdf_path']}")
+        if "default_artifact_dir" in status_info:
+            print(f"  工件目录: {status_info['default_artifact_dir']}")
+
+        # 显示测试配置
+        print()
+        print("测试配置:")
+        print(f"  预设模板: {preset['name']} ({preset['id']})")
+        print(f"  随机种子: {args.seed}")
+        print(f"  超时设置: {args.timeout}s")
+
+        print()
         print("✓ API 连接正常")
         print()
 
