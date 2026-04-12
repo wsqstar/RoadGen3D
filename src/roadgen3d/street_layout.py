@@ -15,6 +15,8 @@ from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
 
 import numpy as np
 
+ROOT = Path(__file__).resolve().parents[2]
+
 logger = logging.getLogger(__name__)
 
 from .beauty import (

@@ -10,11 +10,10 @@ WORKBENCH_WEB_PORT := 4174
 VIEWER_HOST := 127.0.0.1
 VIEWER_PORT := 4173
 
-.PHONY: dev gradio-dev ui-api workbench-api workbench-web workbench-install viewer-web viewer-install ui-web ui-install knowledge-build train collect eval snapshot-diff test-pipeline test-single help
+.PHONY: dev ui-api workbench-api workbench-web workbench-install viewer-web viewer-install ui-web ui-install knowledge-build train collect eval snapshot-diff test test-pipeline test-single help
 
 help:
 	@echo "make dev               - Launch workbench API + workbench web + viewer web"
-	@echo "make gradio-dev        - Launch legacy Gradio UI"
 	@echo "make workbench-api     - Launch the FastAPI design assistant"
 	@echo "make workbench-web     - Launch the new Vite generation workbench"
 	@echo "make workbench-install - Install web/workbench dependencies"
@@ -27,6 +26,7 @@ help:
 	@echo "make eval              - Run M4 engineering evaluation"
 	@echo "make snapshot-diff     - Run snapshot diff pipeline (real LLM, single query)"
 	@echo ""
+	@echo "make test              - Run unit tests (pytest) to verify system integrity"
 	@echo "make test-pipeline     - Run automated test pipeline (starts API, runs tests, generates report)"
 	@echo "make test-single       - Run single automated test with random preset"
 
@@ -38,7 +38,9 @@ dev:
 	wait
 
 gradio-dev:
-	$(PYTHON) scripts/m1_gradio_app.py --host 127.0.0.1 --port 7860 --inbrowser
+	@echo "ERROR: gradio-dev 已废弃。请使用 'make dev' 启动新的前后端分离架构"
+	@echo "  - make dev: 启动 workbench API + workbench web + viewer web"
+	@exit 1
 
 workbench-api:
 	@if lsof -nP -iTCP:$(UI_API_PORT) -sTCP:LISTEN >/dev/null 2>&1; then \
@@ -107,6 +109,28 @@ snapshot-diff:
 		--model-dir $(MODEL_DIR) \
 		--local-files-only \
 		--device cpu
+
+# ── Unit Tests ─────────────────────────────────────────────────────────────────
+
+TEST_PYTEST_ARGS ?= -v --tb=short
+
+# Run pytest unit tests (skips LLM-dependent tests if API not configured)
+test:
+	@echo "=========================================="
+	@echo "Running Unit Tests (pytest)"
+	@echo "=========================================="
+	@echo ""
+	@echo "Note: Tests requiring LLM API will be auto-skipped"
+	@echo "      if llm_base_url and key are not set in .env"
+	@echo ""
+	uv run pytest tests/ \
+		--ignore=tests/test_m2_pipeline.py \
+		--ignore=tests/test_m3_street_compose.py \
+		--ignore=tests/test_m3_external_tree_import.py \
+		--ignore=tests/test_m4_layout_policy.py \
+		--ignore=tests/test_m5_compose_constraints.py \
+		--ignore=tests/test_m6_neuralsymbolic_pipeline.py \
+		$(TEST_PYTEST_ARGS)
 
 # ── Test Pipeline ──────────────────────────────────────────────────────────────
 
