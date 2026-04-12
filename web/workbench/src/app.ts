@@ -275,13 +275,19 @@ export function mountWorkbench(app: HTMLDivElement): void {
         scheme.viewerUrl = resolveViewerUrl(result.viewer_url, result.scene_layout_path);
         scheme.previewUrl = resolveApiUrl(result.scene_layout_path);
 
-        // Call LLM evaluation API (non-blocking error handling)
+        // Call LLM evaluation API
         try {
           setStatus(`正在评估方案 ${scheme.id}...`);
-          scheme.evaluation = await evaluateScene(scheme.layoutPath);
+          const evalResult = await evaluateScene(scheme.layoutPath);
+          if (evalResult) {
+            scheme.evaluation = evalResult;
+          } else {
+            // Evaluation failed - mark as needs evaluation
+            scheme.evaluation = { walkability: -1, safety: -1, beauty: -1, overall: -1 };
+          }
         } catch (evalError) {
-          console.warn(`方案 ${scheme.id} 评估失败，使用默认值:`, evalError);
-          scheme.evaluation = { walkability: 0, safety: 0, beauty: 0, overall: 0 };
+          console.error(`方案 ${scheme.id} 评估失败:`, evalError);
+          scheme.evaluation = { walkability: -1, safety: -1, beauty: -1, overall: -1 };
         }
 
         scheme.status = "ready";
@@ -314,46 +320,34 @@ export function mountWorkbench(app: HTMLDivElement): void {
     scene_glb_path: string;
     viewer_url: string;
   }> {
-    try {
-      // Try to call the actual API with timeout
-      const response = await postJson<{
-        job_id: string;
-        status: string;
-        created_at: string;
-      }>("/api/scene/jobs", {
-        draft: {
-          normalized_scene_query: preset.prompt,
-          compose_config_patch: preset.configPatch,
-          citations_by_field: {},
-          design_summary: preset.prompt,
-          risk_notes: [],
-          parameter_sources_by_field: {},
-        },
-        scene_context: {
-          layout_mode: "graph_template",
-          aoi_bbox: null,
-          city_name_en: null,
-          reference_plan_id: null,
-          graph_template_id: DEFAULT_GRAPH_TEMPLATE_ID,
-        },
-        patch_overrides: {},
-        generation_options: { preset_id: preset.id },
-      }, 30000); // 30s timeout
+    // Call the scene job API
+    const response = await postJson<{
+      job_id: string;
+      status: string;
+      created_at: string;
+    }>("/api/scene/jobs", {
+      draft: {
+        normalized_scene_query: preset.prompt,
+        compose_config_patch: preset.configPatch,
+        citations_by_field: {},
+        design_summary: preset.prompt,
+        risk_notes: [],
+        parameter_sources_by_field: {},
+      },
+      scene_context: {
+        layout_mode: "graph_template",
+        aoi_bbox: null,
+        city_name_en: null,
+        reference_plan_id: null,
+        graph_template_id: DEFAULT_GRAPH_TEMPLATE_ID,
+      },
+      patch_overrides: {},
+      generation_options: { preset_id: preset.id },
+    }, 60000); // 60s timeout for job creation
 
-      // Poll for completion
-      const result = await pollJobCompletion(response.job_id);
-      return result;
-    } catch (error) {
-      console.warn(`[createSceneJob] API 调用失败，使用 mock 数据:`, error);
-      // Return mock data - use a placeholder preview
-      const mockLayoutDir = `/tmp/scene_${preset.id}_${seedSuffix}`;
-      const mockLayoutPath = `${mockLayoutDir}/scene_layout.json`;
-      return {
-        scene_layout_path: mockLayoutPath,
-        scene_glb_path: `${mockLayoutDir}/scene.glb`,
-        viewer_url: `${VIEWER_BASE}/?layout=${encodeURIComponent(mockLayoutPath)}`,
-      };
-    }
+    // Poll for completion
+    const result = await pollJobCompletion(response.job_id);
+    return result;
   }
 
   async function pollJobCompletion(jobId: string): Promise<{
@@ -444,24 +438,30 @@ export function mountWorkbench(app: HTMLDivElement): void {
             </div>
 
             ${isReady ? `
-              <div class="scheme-scores">
-                <div class="score-row">
-                  <span class="score-label">综合</span>
-                  <span class="score-value overall">${scheme.evaluation.overall}</span>
+              ${scheme.evaluation.overall >= 0 ? `
+                <div class="scheme-scores">
+                  <div class="score-row">
+                    <span class="score-label">综合</span>
+                    <span class="score-value overall">${scheme.evaluation.overall}</span>
+                  </div>
+                  <div class="score-row">
+                    <span class="score-label" style="color: ${EVALUATION_COLORS.walkability.primary}">步行性</span>
+                    <span class="score-value">${scheme.evaluation.walkability}</span>
+                  </div>
+                  <div class="score-row">
+                    <span class="score-label" style="color: ${EVALUATION_COLORS.safety.primary}">安全性</span>
+                    <span class="score-value">${scheme.evaluation.safety}</span>
+                  </div>
+                  <div class="score-row">
+                    <span class="score-label" style="color: ${EVALUATION_COLORS.beauty.primary}">美观度</span>
+                    <span class="score-value">${scheme.evaluation.beauty}</span>
+                  </div>
                 </div>
-                <div class="score-row">
-                  <span class="score-label" style="color: ${EVALUATION_COLORS.walkability.primary}">步行性</span>
-                  <span class="score-value">${scheme.evaluation.walkability}</span>
+              ` : `
+                <div class="scheme-status-text" style="color: #f44336;">
+                  评估服务不可用
                 </div>
-                <div class="score-row">
-                  <span class="score-label" style="color: ${EVALUATION_COLORS.safety.primary}">安全性</span>
-                  <span class="score-value">${scheme.evaluation.safety}</span>
-                </div>
-                <div class="score-row">
-                  <span class="score-label" style="color: ${EVALUATION_COLORS.beauty.primary}">美观度</span>
-                  <span class="score-value">${scheme.evaluation.beauty}</span>
-                </div>
-              </div>
+              `}
               <div class="scheme-actions">
                 <button class="btn-viewer" data-viewer-url="${escapeHtml(scheme.viewerUrl)}">3D 预览</button>
                 <button class="btn-select" data-scheme-id="${scheme.id}">选择此方案</button>

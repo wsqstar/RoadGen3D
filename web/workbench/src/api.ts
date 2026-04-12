@@ -68,24 +68,30 @@ async function handleJsonResponse<T>(response: Response): Promise<T> {
 
 /**
  * Call unified evaluation API to get walkability/safety/beauty scores.
+ * Returns null if API fails (no mock data).
  */
-export async function evaluateScene(layoutPath: string): Promise<EvaluationScores> {
-  const response = await postJson<{
-    walkability: number;
-    safety: number;
-    beauty: number;
-    overall: number;
-    evaluation: string;
-    suggestions: string[];
-  }>("/api/design/evaluate/unified", {
-    layout_path: layoutPath,
-    image_path: null,
-  }, 60000); // 60s timeout for evaluation
+export async function evaluateScene(layoutPath: string): Promise<EvaluationScores | null> {
+  try {
+    const response = await postJson<{
+      walkability: number;
+      safety: number;
+      beauty: number;
+      overall: number;
+      evaluation: string;
+      suggestions: string[];
+    }>("/api/design/evaluate/unified", {
+      layout_path: layoutPath,
+      image_path: null,
+    }, 60000); // 60s timeout
 
-  return {
-    walkability: response.walkability,
-    safety: response.safety,
-    beauty: response.beauty,
-    overall: response.overall,
-  };
+    return {
+      walkability: response.walkability,
+      safety: response.safety,
+      beauty: response.beauty,
+      overall: response.overall,
+    };
+  } catch (error) {
+    console.error("Evaluation API failed:", error);
+    return null; // Return null instead of mock data
+  }
 }
