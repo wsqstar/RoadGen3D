@@ -614,7 +614,6 @@ def run_test(
         print()
 
         # Generate random scene seed for variation
-        import time
         scene_seed = int(time.time() * 1000) % 100000 + random.randint(1, 999)
         print(f"  场景种子: {scene_seed}")
 
