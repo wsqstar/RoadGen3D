@@ -9,8 +9,9 @@ WORKBENCH_WEB_HOST := 127.0.0.1
 WORKBENCH_WEB_PORT := 4174
 VIEWER_HOST := 127.0.0.1
 VIEWER_PORT := 4173
+GRAPH_TEMPLATE := hkust_gz_gate
 
-.PHONY: dev ui-api workbench-api workbench-web workbench-install viewer-web viewer-install ui-web ui-install knowledge-build train collect eval snapshot-diff test test-pipeline test-single help
+.PHONY: dev ui-api workbench-api workbench-web workbench-install viewer-web viewer-install ui-web ui-install knowledge-build train collect eval snapshot-diff test test-pipeline test-batch test-single help
 
 help:
 	@echo "make dev               - Launch workbench API + workbench web + viewer web"
@@ -29,12 +30,16 @@ help:
 	@echo "Test Commands:"
 	@echo "  make test             - Run unit tests (pytest) to verify system integrity"
 	@echo "  make test-pipeline    - Run full automated test with live progress (starts API + tests)"
+	@echo "  make test-pipeline GRAPH_TEMPLATE=hkust_gz_gate_all - Run with alternate graph template"
+	@echo "  make test-batch       - Run batch test with all 6 templates in parallel (starts API + tests)"
+	@echo "  make test-batch PRESETS=pedestrian_friendly commercial_vitality - Run specific presets"
 	@echo "  make test-single      - Run single test (requires API already running)"
 	@echo "  make test-preset     PRESET=<id> - Run with specific preset"
 	@echo "  make test-report      - View latest test report summary"
 	@echo ""
 	@echo "Test Pipeline Options:"
 	@echo "  PRESET=<id>          - Specific preset (pedestrian_friendly, commercial_vitality, etc.)"
+	@echo "  PRESETS=<ids>        - Multiple presets for batch test (space-separated)"
 	@echo "  TEST_PYTEST_ARGS=... - Extra pytest arguments (default: -v --tb=short)"
 
 dev:
@@ -175,7 +180,7 @@ test-pipeline:
 	done; \
 	echo ""; \
 	echo "[4/4] 运行测试..."; \
-	uv run python scripts/test_workflow.py --output $(TEST_REPORTS_DIR); \
+	uv run python scripts/test_workflow.py --graph-template $(GRAPH_TEMPLATE) --output $(TEST_REPORTS_DIR); \
 	TEST_EXIT=$$?; \
 	echo ""; \
 	echo "[汇总] 生成报告汇总..."; \
@@ -203,13 +208,64 @@ test-pipeline:
 	wait 2>/dev/null || true; \
 	exit $$TEST_EXIT
 
+# Run batch test: start API, run all 6 templates in parallel, generate report
+test-batch:
+	@echo "=========================================="
+	@echo "批量测试 Pipeline (并行生成 6 个模板)"
+	@echo "=========================================="
+	@echo ""
+	@mkdir -p $(TEST_REPORTS_DIR)
+	@echo "[1/4] 启动 API 与 Viewer 服务..."
+	@trap 'kill 0' INT TERM; \
+	$(MAKE) workbench-api & \
+	$(MAKE) viewer-web & \
+	sleep 3 && \
+	echo "[2/4] 等待 API 就绪..." && \
+	for i in 1 2 3 4 5; do \
+		if curl -s http://$(UI_API_HOST):$(UI_API_PORT)/api/health > /dev/null 2>&1; then \
+			echo "[2/4] ✓ API 已就绪"; \
+			break; \
+		fi; \
+		echo "    等待中... ($$i/5)"; \
+		sleep 2; \
+	done; \
+	echo "[3/4] 等待 Viewer 就绪..." && \
+	for i in 1 2 3 4 5; do \
+		if curl -s http://$(VIEWER_HOST):$(VIEWER_PORT) > /dev/null 2>&1; then \
+			echo "[3/4] ✓ Viewer 已就绪"; \
+			break; \
+		fi; \
+		echo "    等待中... ($$i/5)"; \
+		sleep 2; \
+	done; \
+	echo ""; \
+	echo "[4/4] 运行批量测试..."; \
+	if [ -n "$(PRESETS)" ]; then \
+		uv run python scripts/test_batch.py --all --workers 6 --graph-template $(GRAPH_TEMPLATE) --output $(TEST_REPORTS_DIR) --presets $(PRESETS); \
+	else \
+		uv run python scripts/test_batch.py --all --workers 6 --graph-template $(GRAPH_TEMPLATE) --output $(TEST_REPORTS_DIR); \
+	fi; \
+	TEST_EXIT=$$?; \
+	echo ""; \
+	echo "=========================================="; \
+	echo "批量测试完成!"; \
+	echo "报告目录: $(TEST_REPORTS_DIR)"; \
+	echo "=========================================="; \
+	echo ""; \
+	echo "服务仍在运行，可继续查看 Viewer。按 Enter 键关闭 API 服务并退出..."; \
+	read _ || true; \
+	echo "正在关闭服务..."; \
+	kill 0 2>/dev/null || true; \
+	wait 2>/dev/null || true; \
+	exit $$TEST_EXIT
+
 # Run single test with random preset (requires API to be running)
 test-single:
 	@mkdir -p $(TEST_REPORTS_DIR)
 	@echo "=========================================="
 	@echo "运行单次自动化测试"
 	@echo "=========================================="
-	@uv run python scripts/test_workflow.py --output $(TEST_REPORTS_DIR); \
+	@uv run python scripts/test_workflow.py --graph-template $(GRAPH_TEMPLATE) --output $(TEST_REPORTS_DIR); \
 	EXIT=$$?; \
 	uv run python scripts/test_pipeline.py; \
 	exit $$EXIT
@@ -217,7 +273,7 @@ test-single:
 # Run test with specific preset
 test-preset:
 	@mkdir -p $(TEST_REPORTS_DIR)
-	@uv run python scripts/test_workflow.py --preset $(PRESET) --output $(TEST_REPORTS_DIR); \
+	@uv run python scripts/test_workflow.py --preset $(PRESET) --graph-template $(GRAPH_TEMPLATE) --output $(TEST_REPORTS_DIR); \
 	uv run python scripts/test_pipeline.py
 
 # View latest test report
