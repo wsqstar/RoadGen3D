@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import type { ScenePreset, GeneratedScheme } from "../lib/types";
+import type { DraftResponse } from "../lib/api";
 import { DEFAULT_GRAPH_TEMPLATE_ID, POLL_INTERVAL_MS, MAX_GENERATION_ATTEMPTS } from "../lib/types";
 import { postJson, getJson, evaluateScene, resolveApiUrl } from "../lib/api";
 import { resolveViewerUrl, sleep } from "../lib/utils";
@@ -227,8 +228,115 @@ export function useGeneration(
     throw new Error("Job timed out");
   }
 
+  async function createSceneJobFromDraft(
+    draft: DraftResponse,
+    seedSuffix: string,
+    onProgress?: (prog: JobProgress) => void
+  ): Promise<{
+    scene_layout_path: string;
+    scene_glb_path: string;
+    viewer_url: string;
+  }> {
+    const response = await postJson<{
+      job_id: string;
+      status: string;
+      created_at: string;
+    }>("/api/scene/jobs", {
+      draft: {
+        normalized_scene_query: draft.normalized_scene_query,
+        compose_config_patch: draft.compose_config_patch,
+        citations_by_field: draft.citations_by_field || {},
+        design_summary: draft.design_summary,
+        risk_notes: draft.risk_notes || [],
+        parameter_sources_by_field: {},
+      },
+      scene_context: {
+        layout_mode: "graph_template",
+        aoi_bbox: null,
+        city_name_en: null,
+        reference_plan_id: null,
+        graph_template_id: DEFAULT_GRAPH_TEMPLATE_ID,
+      },
+      patch_overrides: {},
+      generation_options: { preset_id: "custom_draft" },
+    }, 60000);
+
+    return await pollJobCompletion(response.job_id, onProgress);
+  }
+
+  const generateFromDraft = useCallback(async (draft: DraftResponse): Promise<GeneratedScheme[]> => {
+    onStatusChange("正在初始化生成任务...");
+
+    const schemeIds = ["A", "B", "C"];
+    const initialSchemes: GeneratedScheme[] = schemeIds.map((id) => ({
+      id,
+      name: `方案 ${id}`,
+      presetId: "custom_draft",
+      layoutPath: "",
+      previewUrl: "",
+      viewerUrl: "",
+      evaluation: { walkability: 0, safety: 0, beauty: 0, overall: 0 },
+      indicators: null,
+      evaluationText: "",
+      suggestions: [],
+      status: "generating",
+      progress: 0,
+    }));
+
+    setGenerationState({ type: "generating", schemes: initialSchemes });
+
+    const updatedSchemes = [...initialSchemes];
+
+    for (let i = 0; i < updatedSchemes.length; i++) {
+      const scheme = updatedSchemes[i];
+      try {
+        const updateProgress = (prog: JobProgress) => {
+          scheme.progress = prog.progress;
+          onStatusChange(`方案 ${scheme.id}: ${prog.message}`);
+          setGenerationState({ type: "generating", schemes: [...updatedSchemes] });
+        };
+
+        const result = await createSceneJobFromDraft(draft, scheme.id, updateProgress);
+        scheme.layoutPath = result.scene_layout_path;
+        scheme.viewerUrl = resolveViewerUrl(result.viewer_url, result.scene_layout_path);
+        scheme.previewUrl = resolveApiUrl(result.scene_layout_path);
+
+        updateProgress({ stage: "evaluating", progress: 90, message: "正在评估..." });
+        try {
+          const evalResult = await evaluateScene(scheme.layoutPath);
+          if (evalResult) {
+            scheme.evaluation = evalResult.scores;
+            scheme.indicators = evalResult.indicators || scheme.indicators;
+            scheme.evaluationText = evalResult.evaluation;
+            scheme.suggestions = evalResult.suggestions;
+          } else {
+            scheme.evaluation = { walkability: -1, safety: -1, beauty: -1, overall: -1 };
+          }
+        } catch (evalError) {
+          console.error(`方案 ${scheme.id} 评估失败:`, evalError);
+          scheme.evaluation = { walkability: -1, safety: -1, beauty: -1, overall: -1 };
+        }
+
+        scheme.status = "ready";
+        scheme.progress = 100;
+        setGenerationState({ type: "generating", schemes: [...updatedSchemes] });
+      } catch (error) {
+        console.error(`方案 ${scheme.id} 生成失败:`, error);
+        scheme.status = "failed";
+        scheme.progress = 0;
+        setGenerationState({ type: "generating", schemes: [...updatedSchemes] });
+      }
+    }
+
+    const successCount = updatedSchemes.filter((s) => s.status === "ready").length;
+    onStatusChange(`已生成 ${successCount}/3 个方案`);
+    setGenerationState({ type: "done", schemes: [...updatedSchemes] });
+    return updatedSchemes;
+  }, [onStatusChange]);
+
   return {
     generationState,
     generateSchemes,
+    generateFromDraft,
   };
 }

@@ -1,22 +1,28 @@
 import { useState, useMemo, useCallback } from "react";
 import type { ScenePreset, GeneratedScheme, EvaluationResult, WorkflowStep } from "./lib/types";
+import type { DraftResponse } from "./lib/api";
 import { Header } from "./components/Header";
 import { PresetGrid } from "./components/PresetGrid";
 import { SchemeGrid } from "./components/SchemeGrid";
 import { EvaluationPanel } from "./components/EvaluationPanel";
 import { StatusBar } from "./components/StatusBar";
+import { FreeTextInput } from "./components/FreeTextInput";
 import { useGeneration } from "./hooks/useGeneration";
 import "./App.css";
 
+type InputMode = "preset" | "free_text";
+
 function App() {
   const [currentStep, setCurrentStep] = useState<WorkflowStep>(1);
+  const [inputMode, setInputMode] = useState<InputMode>("preset");
   const [selectedPreset, setSelectedPreset] = useState<ScenePreset | null>(null);
+  const [customDraft, setCustomDraft] = useState<DraftResponse | null>(null);
   const [schemes, setSchemes] = useState<GeneratedScheme[]>([]);
   const [selectedSchemeId, setSelectedSchemeId] = useState<string | null>(null);
   const [evaluations, setEvaluations] = useState<EvaluationResult[]>([]);
   const [status, setStatus] = useState<string>("就绪");
 
-  const { generationState, generateSchemes } = useGeneration(setStatus);
+  const { generationState, generateSchemes, generateFromDraft } = useGeneration(setStatus);
 
   const isGenerating = generationState.type === "generating";
 
@@ -31,13 +37,34 @@ function App() {
 
   const handleSelectPreset = useCallback((preset: ScenePreset) => {
     setSelectedPreset(preset);
+    setCustomDraft(null);
+  }, []);
+
+  const handleDraftCreated = useCallback((draft: DraftResponse) => {
+    setCustomDraft(draft);
+    setSelectedPreset(null);
   }, []);
 
   const handleGenerate = useCallback(async () => {
-    if (!selectedPreset) return;
-    const result = await generateSchemes(selectedPreset);
-    setSchemes(result);
-  }, [selectedPreset, generateSchemes]);
+    if (inputMode === "free_text" && customDraft) {
+      const result = await generateFromDraft(customDraft);
+      setSchemes(result);
+    } else if (selectedPreset) {
+      const result = await generateSchemes(selectedPreset);
+      setSchemes(result);
+    }
+  }, [inputMode, customDraft, selectedPreset, generateSchemes, generateFromDraft]);
+
+  const handleSwitchToFreeText = useCallback(() => {
+    setInputMode("free_text");
+    setSelectedPreset(null);
+    setCustomDraft(null);
+  }, []);
+
+  const handleSwitchToPreset = useCallback(() => {
+    setInputMode("preset");
+    setCustomDraft(null);
+  }, []);
 
   const handleShowEvaluation = useCallback(() => {
     const readySchemes = displaySchemes.filter((s) => s.status === "ready");
@@ -84,19 +111,79 @@ function App() {
         {currentStep === 1 && (
           <section className="step-content">
             <div className="section-header">
-              <h2>选择街道场景模板</h2>
-              <p className="section-desc">选择一个预设场景，我将自动生成 3 个不同方案供您对比</p>
+              <h2>选择输入方式</h2>
+              <p className="section-desc">使用预设模板快速生成，或用自然语言描述你的需求</p>
             </div>
-            <PresetGrid selectedPreset={selectedPreset} onSelect={handleSelectPreset} />
-            <div className="step-actions">
+
+            <div className="input-mode-toggle">
               <button
-                className="btn primary"
-                onClick={handleGenerate}
-                disabled={!selectedPreset || isGenerating}
+                className={`mode-btn ${inputMode === "preset" ? "active" : ""}`}
+                onClick={handleSwitchToPreset}
               >
-                生成 3 个方案
+                📋 预设模板
+              </button>
+              <button
+                className={`mode-btn ${inputMode === "free_text" ? "active" : ""}`}
+                onClick={handleSwitchToFreeText}
+              >
+                ✏️ 自由描述
               </button>
             </div>
+
+            {inputMode === "preset" ? (
+              <>
+                <PresetGrid selectedPreset={selectedPreset} onSelect={handleSelectPreset} />
+                <div className="step-actions">
+                  <button
+                    className="btn primary"
+                    onClick={handleGenerate}
+                    disabled={!selectedPreset || isGenerating}
+                  >
+                    生成 3 个方案
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                {customDraft ? (
+                  <div className="draft-preview">
+                    <div className="draft-header">
+                      <span className="draft-badge">✓ 草案已生成</span>
+                      <button className="btn secondary" onClick={handleSwitchToFreeText}>
+                        重新描述
+                      </button>
+                    </div>
+                    <div className="draft-content">
+                      <h4>设计摘要</h4>
+                      <p>{customDraft.design_summary}</p>
+                      <h4>关键参数</h4>
+                      <div className="draft-params">
+                        {Object.entries(customDraft.compose_config_patch).map(([key, value]) => (
+                          <span key={key} className="param-tag">
+                            {key}: {String(value)}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="step-actions">
+                      <button
+                        className="btn primary"
+                        onClick={handleGenerate}
+                        disabled={isGenerating}
+                      >
+                        生成 3 个方案
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <FreeTextInput
+                    onDraftCreated={handleDraftCreated}
+                    onCancel={handleSwitchToPreset}
+                    onStatusChange={setStatus}
+                  />
+                )}
+              </>
+            )}
           </section>
         )}
 

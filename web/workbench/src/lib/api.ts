@@ -58,6 +58,14 @@ async function handleJsonResponse<T>(response: Response): Promise<T> {
   return (await response.json()) as T;
 }
 
+export interface DraftResponse {
+  normalized_scene_query: string;
+  compose_config_patch: Record<string, string | number>;
+  citations_by_field: Record<string, string[]>;
+  design_summary: string;
+  risk_notes: string[];
+}
+
 export interface EvaluationResponse {
   scores: EvaluationScores;
   indicators: WalkabilityIndicators | null;
@@ -93,6 +101,32 @@ export async function evaluateScene(layoutPath: string): Promise<EvaluationRespo
     };
   } catch (error) {
     console.error("Evaluation API failed:", error);
+    return null;
+  }
+}
+
+export interface ChatMessage {
+  role: "user" | "assistant" | "system";
+  content: string;
+}
+
+export async function draftDesign(
+  userInput: string,
+  topk = 6,
+  knowledgeSource = "graph_rag"
+): Promise<DraftResponse | null> {
+  try {
+    const response = await postJson<DraftResponse>("/api/design/draft", {
+      messages: [],
+      user_input: userInput,
+      current_patch: {},
+      topk,
+      knowledge_source: knowledgeSource,
+    }, 60000);
+
+    return response;
+  } catch (error) {
+    console.error("Draft design API failed:", error);
     return null;
   }
 }
