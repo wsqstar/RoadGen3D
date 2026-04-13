@@ -76,6 +76,7 @@ class PlacementContext:
     detailed_strip_profiles: List[Dict[str, Any]] = field(default_factory=list)
     strip_zones: Dict[str, Any] = field(default_factory=dict)
     segment_strip_zones: Dict[str, Dict[str, Any]] = field(default_factory=dict)
+    functional_zones: List[Dict[str, Any]] = field(default_factory=list)
 
 
 # ---------------------------------------------------------------------------
@@ -404,6 +405,53 @@ def _node_side_strip_layouts(node: Any) -> Tuple[float, Dict[str, List[Dict[str,
     return float(center_width_m), layouts
 
 
+def _node_center_strip_layouts(node: Any) -> List[Dict[str, Any]]:
+    strips = tuple(getattr(node, "cross_section_strips", ()) or ())
+    center_width_m = sum(
+        max(float(getattr(strip, "width_m", 0.0) or 0.0), 0.0)
+        for strip in strips
+        if str(getattr(strip, "zone", "") or "").strip().lower() == "center"
+    )
+    if center_width_m <= 0.0:
+        center_width_m = max(float(getattr(node, "road_width_m", 0.0) or 0.0), 0.0)
+    half_carriageway_m = center_width_m * 0.5
+    center_strips = sorted(
+        (
+            strip
+            for strip in strips
+            if str(getattr(strip, "zone", "") or "").strip().lower() == "center"
+        ),
+        key=lambda item: int(getattr(item, "order_index", 0) or 0),
+    )
+    layouts: List[Dict[str, Any]] = []
+    offset_m = -half_carriageway_m
+    for strip in center_strips:
+        width_m = max(float(getattr(strip, "width_m", 0.0) or 0.0), 0.0)
+        if width_m <= 0.0:
+            continue
+        inner_m = offset_m
+        outer_m = offset_m + width_m
+        center_m = (inner_m + outer_m) * 0.5
+        strip_kind = str(getattr(strip, "kind", "") or "").strip().lower()
+        layouts.append(
+            {
+                "segment_id": str(getattr(node, "segment_id", "") or ""),
+                "road_id": int(getattr(node, "road_id", 0) or 0),
+                "strip_id": str(getattr(strip, "strip_id", "") or ""),
+                "side": "center",
+                "kind": strip_kind,
+                "band_name": f"center_{strip_kind}",
+                "width_m": float(width_m),
+                "order_index": int(getattr(strip, "order_index", 0) or 0),
+                "inner_m": float(inner_m),
+                "outer_m": float(outer_m),
+                "center_m": float(center_m),
+            }
+        )
+        offset_m += width_m
+    return layouts
+
+
 def _merge_geometry_map(entries: Mapping[str, List[Any]], *, aoi_polygon: Any) -> Dict[str, Any]:
     merged: Dict[str, Any] = {}
     for key, geometries in entries.items():
@@ -433,7 +481,8 @@ def _build_graph_strip_context(
         segment_id = str(getattr(node, "segment_id", "") or "")
         if not segment_id:
             continue
-        center_width_m, layouts = _node_side_strip_layouts(node)
+        center_width_m, side_layouts = _node_side_strip_layouts(node)
+        center_layouts = _node_center_strip_layouts(node)
         if center_width_m <= 0.0:
             continue
         start_xy = tuple(float(value) for value in getattr(node, "start_xy", (0.0, 0.0)))
@@ -443,12 +492,12 @@ def _build_graph_strip_context(
         line = LineString([start_xy, end_xy])
         segment_widths[segment_id] = {
             "carriageway_width_m": float(center_width_m),
-            "left_total_width_m": float(sum(float(item["width_m"]) for item in layouts.get("left", ()))),
-            "right_total_width_m": float(sum(float(item["width_m"]) for item in layouts.get("right", ()))),
+            "left_total_width_m": float(sum(float(item["width_m"]) for item in side_layouts.get("left", ()))),
+            "right_total_width_m": float(sum(float(item["width_m"]) for item in side_layouts.get("right", ()))),
         }
         for side in ("left", "right"):
             sign = 1.0 if side == "left" else -1.0
-            for layout in layouts.get(side, ()):
+            for layout in side_layouts.get(side, ()):
                 outer = line.buffer(sign * float(layout["outer_abs_m"]), cap_style="flat", single_sided=True)
                 inner = line.buffer(sign * float(layout["inner_abs_m"]), cap_style="flat", single_sided=True)
                 strip_zone = _clip_to_aoi(outer.difference(inner), aoi_polygon)
@@ -462,6 +511,32 @@ def _build_graph_strip_context(
                 profiles.append(profile_record)
                 global_geometries.setdefault(band_name, []).append(strip_zone)
                 segment_geometries.setdefault(segment_id, {}).setdefault(band_name, []).append(strip_zone)
+
+        for layout in center_layouts:
+            inner_m = float(layout["inner_m"])
+            outer_m = float(layout["outer_m"])
+            if outer_m <= 0.0:
+                outer_zone = line.buffer(outer_m, cap_style="flat", single_sided=True)
+                inner_zone = line.buffer(inner_m, cap_style="flat", single_sided=True)
+                strip_zone = _clip_to_aoi(inner_zone.difference(outer_zone), aoi_polygon)
+            elif inner_m >= 0.0:
+                outer_zone = line.buffer(outer_m, cap_style="flat", single_sided=True)
+                inner_zone = line.buffer(inner_m, cap_style="flat", single_sided=True)
+                strip_zone = _clip_to_aoi(outer_zone.difference(inner_zone), aoi_polygon)
+            else:
+                left_zone = line.buffer(abs(inner_m), cap_style="flat", single_sided=True)
+                right_zone = line.buffer(outer_m, cap_style="flat", single_sided=True)
+                strip_zone = _clip_to_aoi(left_zone.union(right_zone), aoi_polygon)
+            if getattr(strip_zone, "is_empty", True):
+                continue
+            band_name = str(layout["band_name"])
+            profile_record = {
+                **dict(layout),
+                "carriageway_width_m": float(center_width_m),
+            }
+            profiles.append(profile_record)
+            global_geometries.setdefault(band_name, []).append(strip_zone)
+            segment_geometries.setdefault(segment_id, {}).setdefault(band_name, []).append(strip_zone)
 
     summary: Dict[str, float] = {}
     if segment_widths:

@@ -27,6 +27,8 @@ _TEXTURE_PATHS = {
     "tree_pit": _ASSET_ROOT / "tiles" / "tree_pit.png",
     "crossing": _ASSET_ROOT / "overlays" / "crosswalk_stripes.png",
     "lane_mark": _ASSET_ROOT / "overlays" / "lane_dashes.png",
+    "bike_lane": _ASSET_ROOT / "tiles" / "asphalt_base.png",
+    "median_green": _ASSET_ROOT / "tiles" / "grass_soft.png",
 }
 
 _TEXTURE_TILE_SCALE_M = {

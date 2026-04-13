@@ -414,7 +414,7 @@ _PARALLEL_TO_CARRIAGEWAY_CATEGORIES = {"bench", "bus_stop", "bollard"}
 # Ground-level categories whose full bounding box must stay out of the carriageway
 # and must not overlap other placed objects.  Tall / overhanging categories
 # (tree, lamp) only need their center point to land in the correct slot.
-_GROUND_LEVEL_CATEGORIES = frozenset({"bench", "trash", "bollard", "bus_stop"})
+_GROUND_LEVEL_CATEGORIES = frozenset({"bench", "trash", "bollard", "bus_stop", "kiosk", "sculpture"})
 # Ground-level categories whose full bounding box must stay out of the carriageway
 # and must not overlap other placed objects.  Tall / overhanging categories
 # (tree, lamp) only need their center point to land in the correct slot.
@@ -3531,6 +3531,57 @@ def _build_osm_base_scene(
                     texture_overrides=texture_overrides,
                 )
 
+    def _inject_functional_zone(zone: Dict[str, Any]) -> None:
+        from shapely import make_valid
+        from shapely.geometry import Polygon as ShapelyPolygon
+        from .parametric_assets import generate_parametric_asset
+
+        kind = str(zone.get("kind", "") or "").lower()
+        points = zone.get("points", []) or []
+        if len(points) < 3 or kind not in VALID_FUNCTIONAL_ZONE_KINDS:
+            return
+
+        poly = ShapelyPolygon(points)
+        if not poly.is_valid:
+            poly = make_valid(poly)
+        if getattr(poly, "is_empty", True):
+            return
+
+        # Extrude ground slab
+        color = list(colors.get(kind, colors.get("context_ground", (195, 185, 165, 255))))
+        _extrude_polygon(
+            poly,
+            0.06,
+            color,
+            f"functional_zone_{kind}_{zone.get('id', 'unk')}",
+            y_offset=0.003,
+            roughness_key=kind,
+            surface_role=kind,
+        )
+
+        # Place parametric structure at centroid for asset-bearing kinds
+        if kind in ("plaza", "garden", "parking"):
+            return
+
+        centroid = poly.centroid
+        if getattr(centroid, "is_empty", True):
+            return
+        cx, cz = float(centroid.x), float(centroid.y)
+
+        try:
+            result = generate_parametric_asset({
+                "asset_kind": kind,
+                "runtime_profile": "production",
+                "params": {"detail_level": 2, "style_tag": "modern"},
+            })
+            mesh = result.mesh
+            if mesh is None:
+                return
+            mesh.apply_translation([cx, 0.0, cz])
+            scene.add_geometry(mesh, node_name=f"parametric_zone_{kind}_{zone.get('id', 'unk')}")
+        except Exception:
+            logger.debug("Failed to generate parametric asset for zone %s", zone.get("id"), exc_info=True)
+
     road_arm_geometries = list(getattr(placement_ctx, "road_arm_geometries", []) or [])
     if road_arm_geometries:
         for arm_idx, arm_geom in enumerate(road_arm_geometries):
@@ -3557,6 +3608,31 @@ def _build_osm_base_scene(
         _extrude_polygon(
             sidewalk_zone, 0.08, list(colors.get("sidewalk", (165, 168, 172, 255))), "sidewalk",
             y_offset=SIDEWALK_ELEVATION_M, roughness_key="sidewalk", surface_role="sidewalk",
+        )
+
+    # Overlay center strips (bike lane, median) on top of carriageway
+    strip_zones = getattr(placement_ctx, "strip_zones", {}) or {}
+    center_bike_lane = strip_zones.get("center_bike_lane")
+    if center_bike_lane is not None and not getattr(center_bike_lane, "is_empty", True):
+        _extrude_polygon(
+            center_bike_lane,
+            0.065,
+            list(colors.get("bike_lane", (50, 110, 80, 255))),
+            "center_bike_lane",
+            y_offset=0.002,
+            roughness_key="bike_lane",
+            surface_role="bike_lane",
+        )
+    center_median = strip_zones.get("center_median")
+    if center_median is not None and not getattr(center_median, "is_empty", True):
+        _extrude_polygon(
+            center_median,
+            0.065,
+            list(colors.get("median_green", (95, 125, 75, 255))),
+            "center_median",
+            y_offset=0.002,
+            roughness_key="median_green",
+            surface_role="median_green",
         )
 
     # Curb: thin ring around the carriageway edge, extruded to sidewalk elevation
@@ -3724,6 +3800,9 @@ def _build_osm_base_scene(
             texture_tracker=texture_tracker,
             texture_overrides=texture_overrides,
         )
+
+    for zone in getattr(placement_ctx, "functional_zones", []) or []:
+        _inject_functional_zone(zone)
 
     return scene
 
@@ -7843,6 +7922,7 @@ def compose_street_scene(
         "building_placements": [plan.to_dict() for plan in building_plans],
         "building_retrieval_predictions": building_retrieval_predictions,
         "zoning_grid": list(zoning_grid),
+        "functional_zones": list(getattr(placement_ctx, "functional_zones", []) or []),
         "production_steps": [record.to_dict() for record in production_steps],
         "unplaced_slot_diagnostics": list(unplaced_slot_diagnostics),
         "placement_decision_log": {

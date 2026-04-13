@@ -31,9 +31,9 @@ _SPRITE_PATHS = {
     "lamp": _ASSET_ROOT / "sprites" / "lamp_top_01.png",
     "bus_stop": _ASSET_ROOT / "sprites" / "bus_stop_top_01.png",
     "trash": _ASSET_ROOT / "sprites" / "trash_top_01.png",
-    "mailbox": _ASSET_ROOT / "sprites" / "trash_top_01.png",
-    "hydrant": _ASSET_ROOT / "sprites" / "trash_top_01.png",
-    "bollard": _ASSET_ROOT / "sprites" / "lamp_top_01.png",
+    "mailbox": _ASSET_ROOT / "sprites" / "mailbox_top_01.png",
+    "hydrant": _ASSET_ROOT / "sprites" / "hydrant_top_01.png",
+    "bollard": _ASSET_ROOT / "sprites" / "bollard_top_01.png",
 }
 _SPRITE_SIZE_M = {
     "tree": (3.6, 3.6),
@@ -117,6 +117,11 @@ def _layout_bounds(layout_payload: Mapping[str, Any]) -> Tuple[float, float, flo
         if len(pos) >= 3:
             xs.append(float(pos[0]))
             zs.append(float(pos[2]))
+    for zone in layout_payload.get("functional_zones", []) or []:
+        for point in zone.get("points", []) or []:
+            if len(point) >= 2:
+                xs.append(float(point[0]))
+                zs.append(float(point[1]))
     if xs and zs:
         return min(xs) - 6.0, min(zs) - 6.0, max(xs) + 6.0, max(zs) + 6.0
 
@@ -426,6 +431,59 @@ def _draw_furniture(canvas, *, layout_payload: Mapping[str, Any], viewport: _Vie
         )
 
 
+def _draw_functional_zones(
+    canvas,
+    *,
+    layout_payload: Mapping[str, Any],
+    viewport: _Viewport,
+    palette: Mapping[str, Tuple[int, int, int, int]],
+) -> None:
+    pillow = _require_pillow()
+    if pillow is None:
+        return
+    Image, _, ImageDraw, ImageFilter = pillow
+
+    for zone in layout_payload.get("functional_zones", []) or []:
+        points = zone.get("points", []) or []
+        if len(points) < 3:
+            continue
+        polygon = _polygon_to_pixels(viewport, points)
+        if len(polygon) < 3:
+            continue
+
+        kind = str(zone.get("kind", "") or "").lower()
+        fill_color = _coerce_rgba(palette.get(kind), (195, 185, 165, 200))
+
+        _draw_soft_polygons(
+            canvas,
+            polygons=[polygon],
+            fill=fill_color,
+            blur_radius=0.0,
+        )
+
+        # Centroid marker
+        xs = [float(p[0]) for p in points]
+        zs = [float(p[1]) for p in points]
+        cx = sum(xs) / len(xs)
+        cz = sum(zs) / len(zs)
+        px, py = viewport.world_to_pixel(cx, cz)
+        radius = max(8, viewport.size_to_px(1.2) // 2)
+
+        shadow = Image.new("RGBA", (radius * 2, radius * 2), (0, 0, 0, 0))
+        ImageDraw.Draw(shadow).ellipse([0, 0, radius * 2, radius * 2], fill=(0, 0, 0, 90))
+        shadow = shadow.filter(ImageFilter.GaussianBlur(radius=max(2.0, radius * 0.2)))
+        canvas.alpha_composite(shadow, dest=(int(px - radius), int(py - radius)))
+
+        marker = Image.new("RGBA", (radius * 2, radius * 2), (0, 0, 0, 0))
+        ImageDraw.Draw(marker).ellipse(
+            [0, 0, radius * 2, radius * 2],
+            fill=fill_color[:3] + (255,),
+            outline=(255, 255, 255, 220),
+            width=max(1, radius // 6),
+        )
+        canvas.alpha_composite(marker, dest=(int(px - radius), int(py - radius)))
+
+
 def _draw_template_markings(canvas, *, layout_payload: Mapping[str, Any], viewport: _Viewport) -> None:
     summary = dict(layout_payload.get("summary", {}) or {})
     if dict(summary.get("osm_geometry", {}) or {}).get("carriageway_rings"):
@@ -552,6 +610,7 @@ def render_design_topdown(
     buildings = _building_polygons(layout_payload, viewport)
     _draw_buildings(background, polygons=buildings)
     _draw_furniture(background, layout_payload=layout_payload, viewport=viewport)
+    _draw_functional_zones(background, layout_payload=layout_payload, viewport=viewport, palette=palette)
 
     # Subtle vignette so the drawing reads more like a design board than a GIS export.
     gradient = Image.linear_gradient("L").resize((canvas_px, canvas_px))

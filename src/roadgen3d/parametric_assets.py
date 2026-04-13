@@ -51,18 +51,33 @@ _HEIGHT_CLASSES = frozenset({"lowrise", "midrise", "highrise"})
 _BUILDING_BASE_DARKEN = 0.85
 _BUILDING_SPANDREL_DARKEN = 0.92
 _DEFAULT_PROFILE = "default_v1"
-_MIN_FACES = {"bench": 300, "lamp": 500, "building": 8, "tree": 12}
+_MIN_FACES = {
+    "bench": 300,
+    "lamp": 500,
+    "building": 8,
+    "tree": 12,
+    "amphitheater": 24,
+    "playground": 20,
+    "outdoor_seating": 15,
+    "kiosk": 20,
+    "sculpture": 15,
+}
 _POLY_BUDGET_K = {
     "bench": {"preview": 8, "production": 15},
     "lamp": {"preview": 10, "production": 20},
     "building": {"preview": 30, "production": 80},
     "tree": {"preview": 12, "production": 30},
+    "amphitheater": {"preview": 15, "production": 35},
+    "playground": {"preview": 10, "production": 25},
+    "outdoor_seating": {"preview": 8, "production": 20},
+    "kiosk": {"preview": 8, "production": 20},
+    "sculpture": {"preview": 6, "production": 15},
 }
 
 
 @dataclass(frozen=True)
 class GenerationRequest:
-    asset_kind: Literal["bench", "lamp"]
+    asset_kind: Literal["bench", "lamp", "building", "tree", "amphitheater", "playground", "outdoor_seating", "kiosk", "sculpture"]
     runtime_profile: Literal["preview", "production"] = "preview"
     device_backend: Literal["auto", "mps", "cuda", "cpu"] = "auto"
     seed: int = 42
@@ -135,6 +150,51 @@ class TreeParams:
     canopy_radius_m: float = 1.10
     canopy_style: str = "sphere"
     canopy_color_name: str = "deciduous_green"
+    style_tag: str = "modern"
+    detail_level: int = 2
+
+
+@dataclass(frozen=True)
+class AmphitheaterParams:
+    width_m: float = 10.0
+    depth_m: float = 5.0
+    tier_count: int = 4
+    tier_height_m: float = 0.35
+    style_tag: str = "modern"
+    detail_level: int = 2
+
+
+@dataclass(frozen=True)
+class PlaygroundParams:
+    width_m: float = 3.5
+    depth_m: float = 4.0
+    platform_height_m: float = 0.8
+    slide_length_m: float = 2.5
+    style_tag: str = "modern"
+    detail_level: int = 2
+
+
+@dataclass(frozen=True)
+class OutdoorSeatingParams:
+    table_radius_m: float = 0.55
+    chair_count: int = 4
+    style_tag: str = "modern"
+    detail_level: int = 2
+
+
+@dataclass(frozen=True)
+class KioskParams:
+    width_m: float = 2.0
+    depth_m: float = 2.0
+    height_m: float = 2.8
+    style_tag: str = "modern"
+    detail_level: int = 2
+
+
+@dataclass(frozen=True)
+class SculptureParams:
+    height_m: float = 2.0
+    base_width_m: float = 0.8
     style_tag: str = "modern"
     detail_level: int = 2
 
@@ -456,8 +516,8 @@ def _to_request(payload: GenerationRequest | Mapping[str, object]) -> Generation
 
 def _validate_request(request: GenerationRequest, warnings_list: list[str]) -> GenerationRequest:
     asset_kind = str(request.asset_kind).strip().lower()
-    if asset_kind not in {"bench", "lamp", "building", "tree"}:
-        raise ValueError("asset_kind must be 'bench', 'lamp', 'building', or 'tree'")
+    if asset_kind not in {"bench", "lamp", "building", "tree", "amphitheater", "playground", "outdoor_seating", "kiosk", "sculpture"}:
+        raise ValueError("asset_kind must be one of bench, lamp, building, tree, amphitheater, playground, outdoor_seating, kiosk, sculpture")
     runtime_profile = str(request.runtime_profile).strip().lower()
     if runtime_profile not in {"preview", "production"}:
         raise ValueError("runtime_profile must be 'preview' or 'production'")
@@ -1558,6 +1618,121 @@ def _validate_tree_params(raw_params: Mapping[str, object], warnings_list: list[
     )
 
 
+def _validate_amphitheater_params(raw_params: Mapping[str, object], warnings_list: list[str]) -> AmphitheaterParams:
+    defaults = AmphitheaterParams()
+    return AmphitheaterParams(
+        width_m=_clamp(
+            _coerce_float(raw_params.get("width_m"), defaults.width_m, field_name="width_m"),
+            4.0, 20.0, field_name="width_m", warnings_list=warnings_list,
+        ),
+        depth_m=_clamp(
+            _coerce_float(raw_params.get("depth_m"), defaults.depth_m, field_name="depth_m"),
+            2.0, 10.0, field_name="depth_m", warnings_list=warnings_list,
+        ),
+        tier_count=_clamp_int(
+            _coerce_int(raw_params.get("tier_count"), defaults.tier_count, field_name="tier_count"),
+            2, 8, field_name="tier_count", warnings_list=warnings_list,
+        ),
+        tier_height_m=_clamp(
+            _coerce_float(raw_params.get("tier_height_m"), defaults.tier_height_m, field_name="tier_height_m"),
+            0.20, 0.60, field_name="tier_height_m", warnings_list=warnings_list,
+        ),
+        style_tag=_validate_style_tag(raw_params.get("style_tag", defaults.style_tag), warnings_list=warnings_list),
+        detail_level=_clamp_int(
+            _coerce_int(raw_params.get("detail_level"), defaults.detail_level, field_name="detail_level"),
+            0, 3, field_name="detail_level", warnings_list=warnings_list,
+        ),
+    )
+
+
+def _validate_playground_params(raw_params: Mapping[str, object], warnings_list: list[str]) -> PlaygroundParams:
+    defaults = PlaygroundParams()
+    return PlaygroundParams(
+        width_m=_clamp(
+            _coerce_float(raw_params.get("width_m"), defaults.width_m, field_name="width_m"),
+            2.0, 6.0, field_name="width_m", warnings_list=warnings_list,
+        ),
+        depth_m=_clamp(
+            _coerce_float(raw_params.get("depth_m"), defaults.depth_m, field_name="depth_m"),
+            2.0, 6.0, field_name="depth_m", warnings_list=warnings_list,
+        ),
+        platform_height_m=_clamp(
+            _coerce_float(raw_params.get("platform_height_m"), defaults.platform_height_m, field_name="platform_height_m"),
+            0.4, 1.5, field_name="platform_height_m", warnings_list=warnings_list,
+        ),
+        slide_length_m=_clamp(
+            _coerce_float(raw_params.get("slide_length_m"), defaults.slide_length_m, field_name="slide_length_m"),
+            1.5, 4.0, field_name="slide_length_m", warnings_list=warnings_list,
+        ),
+        style_tag=_validate_style_tag(raw_params.get("style_tag", defaults.style_tag), warnings_list=warnings_list),
+        detail_level=_clamp_int(
+            _coerce_int(raw_params.get("detail_level"), defaults.detail_level, field_name="detail_level"),
+            0, 3, field_name="detail_level", warnings_list=warnings_list,
+        ),
+    )
+
+
+def _validate_outdoor_seating_params(raw_params: Mapping[str, object], warnings_list: list[str]) -> OutdoorSeatingParams:
+    defaults = OutdoorSeatingParams()
+    return OutdoorSeatingParams(
+        table_radius_m=_clamp(
+            _coerce_float(raw_params.get("table_radius_m"), defaults.table_radius_m, field_name="table_radius_m"),
+            0.30, 0.80, field_name="table_radius_m", warnings_list=warnings_list,
+        ),
+        chair_count=_clamp_int(
+            _coerce_int(raw_params.get("chair_count"), defaults.chair_count, field_name="chair_count"),
+            2, 6, field_name="chair_count", warnings_list=warnings_list,
+        ),
+        style_tag=_validate_style_tag(raw_params.get("style_tag", defaults.style_tag), warnings_list=warnings_list),
+        detail_level=_clamp_int(
+            _coerce_int(raw_params.get("detail_level"), defaults.detail_level, field_name="detail_level"),
+            0, 3, field_name="detail_level", warnings_list=warnings_list,
+        ),
+    )
+
+
+def _validate_kiosk_params(raw_params: Mapping[str, object], warnings_list: list[str]) -> KioskParams:
+    defaults = KioskParams()
+    return KioskParams(
+        width_m=_clamp(
+            _coerce_float(raw_params.get("width_m"), defaults.width_m, field_name="width_m"),
+            1.2, 3.5, field_name="width_m", warnings_list=warnings_list,
+        ),
+        depth_m=_clamp(
+            _coerce_float(raw_params.get("depth_m"), defaults.depth_m, field_name="depth_m"),
+            1.2, 3.5, field_name="depth_m", warnings_list=warnings_list,
+        ),
+        height_m=_clamp(
+            _coerce_float(raw_params.get("height_m"), defaults.height_m, field_name="height_m"),
+            2.0, 4.0, field_name="height_m", warnings_list=warnings_list,
+        ),
+        style_tag=_validate_style_tag(raw_params.get("style_tag", defaults.style_tag), warnings_list=warnings_list),
+        detail_level=_clamp_int(
+            _coerce_int(raw_params.get("detail_level"), defaults.detail_level, field_name="detail_level"),
+            0, 3, field_name="detail_level", warnings_list=warnings_list,
+        ),
+    )
+
+
+def _validate_sculpture_params(raw_params: Mapping[str, object], warnings_list: list[str]) -> SculptureParams:
+    defaults = SculptureParams()
+    return SculptureParams(
+        height_m=_clamp(
+            _coerce_float(raw_params.get("height_m"), defaults.height_m, field_name="height_m"),
+            1.0, 4.0, field_name="height_m", warnings_list=warnings_list,
+        ),
+        base_width_m=_clamp(
+            _coerce_float(raw_params.get("base_width_m"), defaults.base_width_m, field_name="base_width_m"),
+            0.4, 1.5, field_name="base_width_m", warnings_list=warnings_list,
+        ),
+        style_tag=_validate_style_tag(raw_params.get("style_tag", defaults.style_tag), warnings_list=warnings_list),
+        detail_level=_clamp_int(
+            _coerce_int(raw_params.get("detail_level"), defaults.detail_level, field_name="detail_level"),
+            0, 3, field_name="detail_level", warnings_list=warnings_list,
+        ),
+    )
+
+
 def _pbr_color(mesh, rgba: Tuple[int, int, int, int]):
     """Assign a non-metallic PBR material to a mesh so it renders correctly in GLB viewers."""
     trimesh = _require_trimesh()
@@ -1693,6 +1868,225 @@ def _build_tree_mesh(params: TreeParams, *, detail_level: int):
     return scene, flat_mesh, audit
 
 
+class _AmphitheaterAudit:
+    def __init__(self, expected_dims: Tuple[float, float, float]) -> None:
+        self.expected_dims = expected_dims
+
+
+def _build_amphitheater_mesh(params: AmphitheaterParams, *, detail_level: int):
+    trimesh = _require_trimesh()
+    primary, _ = _material_palette("concrete", params.style_tag)
+    parts = []
+    width = float(params.width_m)
+    depth = float(params.depth_m)
+    tiers = max(2, int(params.tier_count))
+    tier_h = float(params.tier_height_m)
+    # Stack tiers: each tier is a box, wider toward back
+    for i in range(tiers):
+        t_width = width * (0.5 + 0.5 * (i + 1) / tiers)
+        t_depth = depth / tiers
+        box = trimesh.creation.box(extents=(t_width, tier_h, t_depth))
+        z_offset = -depth * 0.5 + t_depth * 0.5 + i * t_depth
+        box.apply_translation([0.0, tier_h * 0.5 + i * tier_h, z_offset])
+        parts.append(_color(box, primary))
+    flat = _ground(trimesh.util.concatenate(parts))
+    audit = _AmphitheaterAudit(expected_dims=_bbox_size(flat))
+    return flat, audit
+
+
+class _PlaygroundAudit:
+    def __init__(self, expected_dims: Tuple[float, float, float]) -> None:
+        self.expected_dims = expected_dims
+
+
+def _build_playground_mesh(params: PlaygroundParams, *, detail_level: int):
+    trimesh = _require_trimesh()
+    primary, accent = _material_palette("metal_wood", params.style_tag)
+    parts = []
+    w = float(params.width_m)
+    d = float(params.depth_m)
+    ph = float(params.platform_height_m)
+    sl = float(params.slide_length_m)
+    # platform
+    plat = trimesh.creation.box(extents=(w * 0.6, ph, d * 0.5))
+    plat.apply_translation([0.0, ph * 0.5, -d * 0.25])
+    parts.append(_color(plat, primary))
+    # slide board
+    board = trimesh.creation.box(extents=(w * 0.25, 0.06, sl))
+    board.apply_translation([0.0, ph + 0.03, sl * 0.25])
+    board.apply_transform(
+        trimesh.transformations.rotation_matrix(math.radians(-25.0), [1, 0, 0], [0, ph, 0])
+    )
+    parts.append(_color(board, accent))
+    # ladder rails
+    for sx in (-w * 0.22, w * 0.22):
+        rail = trimesh.creation.cylinder(radius=0.03, height=ph, sections=8)
+        rail.apply_translation([sx, ph * 0.5, -d * 0.45])
+        parts.append(_color(rail, accent))
+    flat = _ground(trimesh.util.concatenate(parts))
+    audit = _PlaygroundAudit(expected_dims=_bbox_size(flat))
+    return flat, audit
+
+
+class _OutdoorSeatingAudit:
+    def __init__(self, expected_dims: Tuple[float, float, float]) -> None:
+        self.expected_dims = expected_dims
+
+
+def _build_outdoor_seating_mesh(params: OutdoorSeatingParams, *, detail_level: int):
+    trimesh = _require_trimesh()
+    primary, accent = _material_palette("metal_wood", params.style_tag)
+    parts = []
+    r = float(params.table_radius_m)
+    n = max(2, int(params.chair_count))
+    # table
+    table = trimesh.creation.cylinder(radius=r, height=0.05, sections=16)
+    table.apply_translation([0.0, 0.75, 0.0])
+    parts.append(_color(table, accent))
+    # chairs
+    for i in range(n):
+        angle = (2 * math.pi / n) * i
+        cx = math.cos(angle) * r * 1.6
+        cz = math.sin(angle) * r * 1.6
+        seat = trimesh.creation.box(extents=(0.45, 0.05, 0.45))
+        seat.apply_translation([cx, 0.45, cz])
+        parts.append(_color(seat, primary))
+        back = trimesh.creation.box(extents=(0.45, 0.40, 0.05))
+        back.apply_translation([cx, 0.70, cz + 0.20])
+        parts.append(_color(back, primary))
+    flat = _ground(trimesh.util.concatenate(parts))
+    audit = _OutdoorSeatingAudit(expected_dims=_bbox_size(flat))
+    return flat, audit
+
+
+class _KioskAudit:
+    def __init__(self, expected_dims: Tuple[float, float, float]) -> None:
+        self.expected_dims = expected_dims
+
+
+def _build_kiosk_mesh(params: KioskParams, *, detail_level: int):
+    trimesh = _require_trimesh()
+    primary, accent = _material_palette("metal", params.style_tag)
+    parts = []
+    w = float(params.width_m)
+    d = float(params.depth_m)
+    h = float(params.height_m)
+    # 4 posts
+    for sx, sz in ((-w*0.45, -d*0.45), (w*0.45, -d*0.45), (w*0.45, d*0.45), (-w*0.45, d*0.45)):
+        post = trimesh.creation.cylinder(radius=0.04, height=h, sections=8)
+        post.apply_translation([sx, h * 0.5, sz])
+        parts.append(_color(post, primary))
+    # roof pyramid (cone with 4 sections looks pyramid-ish)
+    roof = trimesh.creation.cone(radius=max(w, d) * 0.55, height=h * 0.25, sections=4)
+    roof.apply_translation([0.0, h + h * 0.125, 0.0])
+    parts.append(_color(roof, accent))
+    flat = _ground(trimesh.util.concatenate(parts))
+    audit = _KioskAudit(expected_dims=_bbox_size(flat))
+    return flat, audit
+
+
+class _SculptureAudit:
+    def __init__(self, expected_dims: Tuple[float, float, float]) -> None:
+        self.expected_dims = expected_dims
+
+
+def _build_sculpture_mesh(params: SculptureParams, *, detail_level: int):
+    trimesh = _require_trimesh()
+    primary, _ = _material_palette("metal", params.style_tag)
+    parts = []
+    h = float(params.height_m)
+    bw = float(params.base_width_m)
+    # base
+    base = trimesh.creation.box(extents=(bw, h * 0.25, bw))
+    base.apply_translation([0.0, h * 0.125, 0.0])
+    parts.append(_color(base, primary))
+    # twisted upper body (cylinder + sphere)
+    body = trimesh.creation.cylinder(radius=bw * 0.35, height=h * 0.75, sections=8)
+    body.apply_translation([0.0, h * 0.25 + h * 0.375, 0.0])
+    parts.append(_color(body, primary))
+    top = trimesh.creation.icosphere(subdivisions=1, radius=bw * 0.4)
+    top.apply_translation([0.0, h - bw * 0.2, 0.0])
+    parts.append(_color(top, primary))
+    flat = _ground(trimesh.util.concatenate(parts))
+    audit = _SculptureAudit(expected_dims=_bbox_size(flat))
+    return flat, audit
+
+
+def _amphitheater_quality_metrics(mesh, params: AmphitheaterParams, runtime_profile: str, audit: _AmphitheaterAudit) -> GenerationQualityMetrics:
+    actual_dims = _bbox_size(mesh)
+    face_count = int(len(mesh.faces))
+    poly_budget_k = int(_POLY_BUDGET_K["amphitheater"][runtime_profile])
+    ground_contact_ok = abs(float(mesh.bounds[0][1])) <= 0.01
+    return GenerationQualityMetrics(
+        face_count=face_count,
+        poly_budget_k=poly_budget_k,
+        dimension_error_ratio=_dimension_error_ratio(actual_dims, audit.expected_dims),
+        ground_contact_ok=ground_contact_ok,
+        meets_min_faces=face_count >= _MIN_FACES["amphitheater"],
+        within_poly_budget=face_count <= poly_budget_k * 1000,
+    )
+
+
+def _playground_quality_metrics(mesh, params: PlaygroundParams, runtime_profile: str, audit: _PlaygroundAudit) -> GenerationQualityMetrics:
+    actual_dims = _bbox_size(mesh)
+    face_count = int(len(mesh.faces))
+    poly_budget_k = int(_POLY_BUDGET_K["playground"][runtime_profile])
+    ground_contact_ok = abs(float(mesh.bounds[0][1])) <= 0.01
+    return GenerationQualityMetrics(
+        face_count=face_count,
+        poly_budget_k=poly_budget_k,
+        dimension_error_ratio=_dimension_error_ratio(actual_dims, audit.expected_dims),
+        ground_contact_ok=ground_contact_ok,
+        meets_min_faces=face_count >= _MIN_FACES["playground"],
+        within_poly_budget=face_count <= poly_budget_k * 1000,
+    )
+
+
+def _outdoor_seating_quality_metrics(mesh, params: OutdoorSeatingParams, runtime_profile: str, audit: _OutdoorSeatingAudit) -> GenerationQualityMetrics:
+    actual_dims = _bbox_size(mesh)
+    face_count = int(len(mesh.faces))
+    poly_budget_k = int(_POLY_BUDGET_K["outdoor_seating"][runtime_profile])
+    ground_contact_ok = abs(float(mesh.bounds[0][1])) <= 0.01
+    return GenerationQualityMetrics(
+        face_count=face_count,
+        poly_budget_k=poly_budget_k,
+        dimension_error_ratio=_dimension_error_ratio(actual_dims, audit.expected_dims),
+        ground_contact_ok=ground_contact_ok,
+        meets_min_faces=face_count >= _MIN_FACES["outdoor_seating"],
+        within_poly_budget=face_count <= poly_budget_k * 1000,
+    )
+
+
+def _kiosk_quality_metrics(mesh, params: KioskParams, runtime_profile: str, audit: _KioskAudit) -> GenerationQualityMetrics:
+    actual_dims = _bbox_size(mesh)
+    face_count = int(len(mesh.faces))
+    poly_budget_k = int(_POLY_BUDGET_K["kiosk"][runtime_profile])
+    ground_contact_ok = abs(float(mesh.bounds[0][1])) <= 0.01
+    return GenerationQualityMetrics(
+        face_count=face_count,
+        poly_budget_k=poly_budget_k,
+        dimension_error_ratio=_dimension_error_ratio(actual_dims, audit.expected_dims),
+        ground_contact_ok=ground_contact_ok,
+        meets_min_faces=face_count >= _MIN_FACES["kiosk"],
+        within_poly_budget=face_count <= poly_budget_k * 1000,
+    )
+
+
+def _sculpture_quality_metrics(mesh, params: SculptureParams, runtime_profile: str, audit: _SculptureAudit) -> GenerationQualityMetrics:
+    actual_dims = _bbox_size(mesh)
+    face_count = int(len(mesh.faces))
+    poly_budget_k = int(_POLY_BUDGET_K["sculpture"][runtime_profile])
+    ground_contact_ok = abs(float(mesh.bounds[0][1])) <= 0.01
+    return GenerationQualityMetrics(
+        face_count=face_count,
+        poly_budget_k=poly_budget_k,
+        dimension_error_ratio=_dimension_error_ratio(actual_dims, audit.expected_dims),
+        ground_contact_ok=ground_contact_ok,
+        meets_min_faces=face_count >= _MIN_FACES["sculpture"],
+        within_poly_budget=face_count <= poly_budget_k * 1000,
+    )
+
+
 def _tree_quality_metrics(mesh, params: TreeParams, runtime_profile: str, audit: _TreeAudit) -> GenerationQualityMetrics:
     actual_dims = _bbox_size(mesh)
     face_count = int(len(mesh.faces))
@@ -1823,6 +2217,78 @@ def generate_parametric_asset(request: GenerationRequest | Mapping[str, object])
             quality_metrics=metrics,
             warnings=tuple(warnings_list),
             style_tags=(params.style_tag,),
+        )
+
+    # Helper to avoid repeating boilerplate for simple primitive assets
+    def _dispatch_primitive_asset(kind: str, validate_params, build_mesh, quality_metrics, material_family: str):
+        params = validate_params(normalized_request.params, warnings_list)
+        effective_detail_level = _effective_detail_level(normalized_request.runtime_profile, params.detail_level)
+        mesh, audit = build_mesh(params, detail_level=effective_detail_level)
+        metrics = quality_metrics(mesh, params, normalized_request.runtime_profile, audit)
+        if normalized_request.runtime_profile == "production" and effective_detail_level < 3 and not metrics.meets_min_faces:
+            warnings_list.append(f"production {kind} detail preset was upshifted once to satisfy quality gates")
+            effective_detail_level = 3
+            mesh, audit = build_mesh(params, detail_level=effective_detail_level)
+            metrics = quality_metrics(mesh, params, normalized_request.runtime_profile, audit)
+        _quality_gate(kind, metrics)
+        snapshot = asdict(params)
+        snapshot["effective_detail_level"] = int(effective_detail_level)
+        return ParametricAssetResult(
+            asset_kind=kind,
+            runtime_profile=normalized_request.runtime_profile,
+            resolved_device_backend=resolved_device_backend,
+            mesh=mesh,
+            bbox_size_xyz=_bbox_size(mesh),
+            bbox_bounds=(
+                tuple(float(v) for v in mesh.bounds[0]),
+                tuple(float(v) for v in mesh.bounds[1]),
+            ),
+            parameter_snapshot=snapshot,
+            quality_metrics=metrics,
+            warnings=tuple(warnings_list),
+            material_family=material_family,
+            style_tags=(params.style_tag,),
+        )
+
+    if normalized_request.asset_kind == "amphitheater":
+        return _dispatch_primitive_asset(
+            "amphitheater",
+            _validate_amphitheater_params,
+            _build_amphitheater_mesh,
+            _amphitheater_quality_metrics,
+            "concrete",
+        )
+    if normalized_request.asset_kind == "playground":
+        return _dispatch_primitive_asset(
+            "playground",
+            _validate_playground_params,
+            _build_playground_mesh,
+            _playground_quality_metrics,
+            "metal_wood",
+        )
+    if normalized_request.asset_kind == "outdoor_seating":
+        return _dispatch_primitive_asset(
+            "outdoor_seating",
+            _validate_outdoor_seating_params,
+            _build_outdoor_seating_mesh,
+            _outdoor_seating_quality_metrics,
+            "metal_wood",
+        )
+    if normalized_request.asset_kind == "kiosk":
+        return _dispatch_primitive_asset(
+            "kiosk",
+            _validate_kiosk_params,
+            _build_kiosk_mesh,
+            _kiosk_quality_metrics,
+            "metal",
+        )
+    if normalized_request.asset_kind == "sculpture":
+        return _dispatch_primitive_asset(
+            "sculpture",
+            _validate_sculpture_params,
+            _build_sculpture_mesh,
+            _sculpture_quality_metrics,
+            "metal",
         )
 
     params = _validate_lamp_params(normalized_request.params, warnings_list)

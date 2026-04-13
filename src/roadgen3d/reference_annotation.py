@@ -65,6 +65,20 @@ VALID_FURNITURE_KINDS = frozenset(
         "hydrant",
         "bus_stop",
         "tree",
+        "kiosk",
+        "sculpture",
+    }
+)
+VALID_FUNCTIONAL_ZONE_KINDS = frozenset(
+    {
+        "plaza",
+        "garden",
+        "playground",
+        "amphitheater",
+        "outdoor_seating",
+        "parking",
+        "kiosk",
+        "sculpture",
     }
 )
 NOMINAL_STRIP_WIDTHS: Dict[str, float] = {
@@ -746,6 +760,22 @@ class AnnotatedBuildingRegion:
 
 
 @dataclass(frozen=True)
+class AnnotatedFunctionalZone:
+    feature_id: str
+    label: str
+    kind: str
+    points: Tuple[AnnotationPoint, ...]
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "id": self.feature_id,
+            "label": self.label,
+            "kind": self.kind,
+            "points": [point.to_dict() for point in self.points],
+        }
+
+
+@dataclass(frozen=True)
 class ReferenceAnnotation:
     version: str
     plan_id: str
@@ -758,6 +788,7 @@ class ReferenceAnnotation:
     roundabouts: Tuple[AnnotatedRoundabout, ...]
     control_points: Tuple[AnnotatedMarker, ...]
     building_regions: Tuple[AnnotatedBuildingRegion, ...] = ()
+    functional_zones: Tuple[AnnotatedFunctionalZone, ...] = ()
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -772,6 +803,7 @@ class ReferenceAnnotation:
             "roundabouts": [item.to_dict() for item in self.roundabouts],
             "control_points": [item.to_dict() for item in self.control_points],
             "building_regions": [item.to_dict() for item in self.building_regions],
+            "functional_zones": [item.to_dict() for item in self.functional_zones],
         }
 
 
@@ -1196,6 +1228,47 @@ def _parse_building_region(value: Any, index: int) -> AnnotatedBuildingRegion:
     )
 
 
+def _parse_functional_zone(value: Any, index: int) -> AnnotatedFunctionalZone:
+    if not _is_record(value):
+        raise ValueError(f"functional_zones[{index}] must be an object.")
+    fallback_id = f"functional_zone_{index + 1:02d}"
+    feature_id = _as_string(value.get("id") or value.get("feature_id"), fallback_id)
+    label = _as_string(value.get("label"), feature_id)
+    kind = _safe_slug(_as_string(value.get("kind"), "plaza"), "plaza")
+    if kind not in VALID_FUNCTIONAL_ZONE_KINDS:
+        raise ValueError(
+            f"functional_zones[{index}].kind must be one of {sorted(VALID_FUNCTIONAL_ZONE_KINDS)}."
+        )
+    raw_points = value.get("points")
+    if not isinstance(raw_points, Sequence) or isinstance(raw_points, (str, bytes)):
+        points: Tuple[AnnotationPoint, ...] = ()
+    else:
+        points = tuple(
+            _parse_point(item, f"functional_zones[{index}].points[{point_idx}]")
+            for point_idx, item in enumerate(raw_points)
+        )
+    return AnnotatedFunctionalZone(
+        feature_id=feature_id,
+        label=label,
+        kind=kind,
+        points=points,
+    )
+
+
+def functional_zone_to_local_coords(
+    zone: AnnotatedFunctionalZone,
+    annotation: ReferenceAnnotation,
+) -> List[Tuple[float, float]]:
+    """Convert functional zone pixel coordinates to local metres (x_east, z_north)."""
+    center_x = float(annotation.image_width_px) * 0.5
+    center_y = float(annotation.image_height_px) * 0.5
+    ppm = max(float(annotation.pixels_per_meter), 1e-6)
+    return [
+        ((float(p.x) - center_x) / ppm, (center_y - float(p.y)) / ppm)
+        for p in zone.points
+    ]
+
+
 def _annotation_point_xy(point: AnnotationPoint) -> Tuple[float, float]:
     return (float(point.x), float(point.y))
 
@@ -1312,6 +1385,7 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
     roundabouts_raw = payload.get("roundabouts") or []
     control_points_raw = payload.get("control_points") or []
     building_regions_raw = payload.get("building_regions") or []
+    functional_zones_raw = payload.get("functional_zones") or []
 
     if not isinstance(centerlines_raw, Sequence) or isinstance(centerlines_raw, (str, bytes)):
         raise ValueError("centerlines must be an array.")
@@ -1323,6 +1397,8 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
         raise ValueError("control_points must be an array.")
     if not isinstance(building_regions_raw, Sequence) or isinstance(building_regions_raw, (str, bytes)):
         raise ValueError("building_regions must be an array.")
+    if not isinstance(functional_zones_raw, Sequence) or isinstance(functional_zones_raw, (str, bytes)):
+        raise ValueError("functional_zones must be an array.")
 
     centerlines = tuple(_parse_centerline(item, index) for index, item in enumerate(centerlines_raw))
     if not centerlines:
@@ -1355,6 +1431,10 @@ def parse_reference_annotation(payload: Mapping[str, Any]) -> ReferenceAnnotatio
         building_regions=tuple(
             _parse_building_region(item, index)
             for index, item in enumerate(building_regions_raw)
+        ),
+        functional_zones=tuple(
+            _parse_functional_zone(item, index)
+            for index, item in enumerate(functional_zones_raw)
         ),
     )
     _validate_explicit_junction_model(annotation)

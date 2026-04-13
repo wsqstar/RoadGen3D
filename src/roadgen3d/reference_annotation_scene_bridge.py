@@ -13,6 +13,7 @@ from .reference_annotation import (
     build_reference_annotation_compose_config,
     build_reference_annotation_graph_payload,
     build_segment_graph_from_annotation,
+    functional_zone_to_local_coords,
     parse_reference_annotation,
 )
 from .types import RoadSegmentGraph, StreetComposeConfig
@@ -158,6 +159,15 @@ def build_reference_annotation_scene_bridge(
         road_segment_graph=road_segment_graph,
     )
     placement_context.building_regions = _annotation_building_region_records(annotation)
+    placement_context.functional_zones = [
+        {
+            "id": zone.feature_id,
+            "label": zone.label,
+            "kind": zone.kind,
+            "points": functional_zone_to_local_coords(zone, annotation),
+        }
+        for zone in annotation.functional_zones
+    ]
     payload = build_reference_annotation_graph_payload(annotation, config=resolved_config)
     summary_metadata = {
         **dict(payload.get("summary", {}) or {}),
