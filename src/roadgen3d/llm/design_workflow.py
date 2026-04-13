@@ -354,12 +354,14 @@ class DesignAssistantService:
         *,
         layout_path: str,
         image_path: str | None = None,
+        knowledge_source: str = _DEFAULT_KNOWLEDGE_SOURCE,
     ) -> Dict[str, Any]:
         """Evaluate scene with unified 3-dimension scores (walkability/safety/beauty).
 
         Args:
             layout_path: Path to scene_layout.json
             image_path: Optional path to rendered preview image
+            knowledge_source: Knowledge source to use (pdf_rag, graph_rag, hybrid, or none)
 
         Returns:
             Dict with walkability, safety, beauty (0-100), overall (0-100), evaluation, suggestions
@@ -385,11 +387,35 @@ class DesignAssistantService:
             img = Path(image_path).expanduser().resolve()
             if img.exists():
                 image_data_url = f"data:image/png;base64,{base64.b64encode(img.read_bytes()).decode('ascii')}"
+
+        # Retrieve knowledge evidence for evaluation
+        evidence: List[RagEvidence] = []
+        resolved_knowledge = normalize_knowledge_source(knowledge_source)
+        if resolved_knowledge != "none":
+            # Build evaluation queries based on scene summary and design principles
+            eval_queries = [
+                "pedestrian friendly street design walkability evaluation criteria",
+                "street safety design guidelines complete streets",
+                "urban street beauty aesthetics landscape design",
+                "sidewalk design pedestrian comfort amenities",
+                "traffic safety street crossing pedestrian protection",
+            ]
+            try:
+                evidence = self._retrieve_evidence(
+                    queries=eval_queries,
+                    topk=6,
+                    knowledge_source=resolved_knowledge,
+                )
+            except RuntimeError:
+                # If knowledge retrieval fails (e.g., no artifacts), proceed without evidence
+                evidence = []
+
         from .prompts import build_unified_evaluation_messages
         messages = build_unified_evaluation_messages(
             summary=summary,
             placement_summary=placement_summary,
             image_data_url=image_data_url,
+            evidence=evidence if evidence else None,
         )
         eval_payload = llm.chat_json(messages)
 

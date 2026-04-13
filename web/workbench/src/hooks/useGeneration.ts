@@ -10,6 +10,13 @@ export type GenerationState =
   | { type: "done"; schemes: GeneratedScheme[] }
   | { type: "error"; message: string };
 
+// 进度阶段定义
+type JobProgress = {
+  stage: string;        // 当前阶段: "queued", "composing", "rendering", "exporting", "succeeded"
+  progress: number;      // 0-100
+  message: string;       // 友好的状态描述
+};
+
 export function useGeneration(
   onStatusChange: (message: string) => void
 ) {
@@ -41,19 +48,21 @@ export function useGeneration(
     for (let i = 0; i < updatedSchemes.length; i++) {
       const scheme = updatedSchemes[i];
       try {
-        for (let p = 0; p <= 100; p += 20) {
-          scheme.progress = p;
+        // 进度更新回调 - 实时反映真实进度
+        const updateProgress = (prog: JobProgress) => {
+          scheme.progress = prog.progress;
+          onStatusChange(`方案 ${scheme.id}: ${prog.message}`);
           setGenerationState({ type: "generating", schemes: [...updatedSchemes] });
-          await sleep(200);
-        }
+        };
 
-        const result = await createSceneJob(selectedPreset, scheme.id);
+        const result = await createSceneJob(selectedPreset, scheme.id, updateProgress);
         scheme.layoutPath = result.scene_layout_path;
         scheme.viewerUrl = resolveViewerUrl(result.viewer_url, result.scene_layout_path);
         scheme.previewUrl = resolveApiUrl(result.scene_layout_path);
 
+        // 评估阶段
+        updateProgress({ stage: "evaluating", progress: 90, message: "正在评估..." });
         try {
-          onStatusChange(`正在评估方案 ${scheme.id}...`);
           const evalResult = await evaluateScene(scheme.layoutPath);
           if (evalResult) {
             scheme.evaluation = evalResult.scores;
@@ -85,7 +94,11 @@ export function useGeneration(
     return updatedSchemes;
   }, [onStatusChange]);
 
-  async function createSceneJob(preset: ScenePreset, seedSuffix: string): Promise<{
+  async function createSceneJob(
+    preset: ScenePreset,
+    seedSuffix: string,
+    onProgress?: (prog: JobProgress) => void
+  ): Promise<{
     scene_layout_path: string;
     scene_glb_path: string;
     viewer_url: string;
@@ -114,25 +127,91 @@ export function useGeneration(
       generation_options: { preset_id: preset.id },
     }, 60000);
 
-    return await pollJobCompletion(response.job_id);
+    return await pollJobCompletion(response.job_id, onProgress);
   }
 
-  async function pollJobCompletion(jobId: string): Promise<{
+  async function pollJobCompletion(
+    jobId: string,
+    onProgress?: (prog: JobProgress) => void
+  ): Promise<{
     scene_layout_path: string;
     scene_glb_path: string;
     viewer_url: string;
   }> {
+    // 阶段到进度的映射
+    const stageToProgress = (stage: string, status: string): JobProgress => {
+      switch (status) {
+        case "queued":
+          return { stage: "queued", progress: 5, message: "任务排队中..." };
+        case "running":
+        case "processing":
+          switch (stage) {
+            case "layout_generation":
+              return { stage: "layout_generation", progress: 20, message: "正在生成布局..." };
+            case "graph_parsing":
+              return { stage: "graph_parsing", progress: 30, message: "正在解析图形..." };
+            case "constraint_solving":
+              return { stage: "constraint_solving", progress: 45, message: "正在求解约束..." };
+            case "asset_composition":
+              return { stage: "asset_composition", progress: 55, message: "正在组合资产..." };
+            case "mesh_generation":
+              return { stage: "mesh_generation", progress: 65, message: "正在生成网格..." };
+            case "scene_rendering":
+              return { stage: "scene_rendering", progress: 75, message: "正在渲染场景..." };
+            case "glb_export":
+              return { stage: "glb_export", progress: 85, message: "正在导出 GLB..." };
+            default:
+              return { stage: stage || "processing", progress: 50, message: "正在处理中..." };
+          }
+        case "succeeded":
+          return { stage: "succeeded", progress: 95, message: "生成完成!" };
+        case "failed":
+          return { stage: "failed", progress: 0, message: "生成失败" };
+        default:
+          return { stage: status, progress: 10, message: "等待中..." };
+      }
+    };
+
     for (let i = 0; i < MAX_GENERATION_ATTEMPTS; i++) {
       try {
         const status = await getJson<{
           job_id: string;
           status: string;
+          stage?: string;
+          progress?: number;
+          operations?: string[];
           result: {
             scene_layout_path: string;
             scene_glb_path: string;
             viewer_url: string;
           } | null;
         }>(`/api/scene/jobs/${jobId}`, 10000);
+
+        // 计算真实进度
+        const baseProg = stageToProgress(status.stage || "", status.status);
+        let progress = baseProg.progress;
+
+        // 如果 API 返回了 progress 字段，直接使用
+        if (status.progress !== undefined && status.progress > 0) {
+          progress = Math.round(status.progress);
+        }
+
+        // 获取当前操作信息
+        let message = baseProg.message;
+        if (status.operations && status.operations.length > 0) {
+          const currentOp = status.operations[status.operations.length - 1];
+          if (typeof currentOp === "string") {
+            message = currentOp;
+          } else if (typeof currentOp === "object" && currentOp !== null) {
+            const opName = (currentOp as { name?: string }).name || (currentOp as { status?: string }).status || baseProg.message;
+            message = opName;
+          }
+        }
+
+        // 回调更新进度
+        if (onProgress) {
+          onProgress({ stage: baseProg.stage, progress, message });
+        }
 
         if (status.status === "succeeded" && status.result) {
           return status.result;

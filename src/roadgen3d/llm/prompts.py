@@ -216,8 +216,15 @@ def build_unified_evaluation_messages(
     summary: dict,
     placement_summary: list[dict],
     image_data_url: str | None = None,
+    evidence: Sequence[RagEvidence] | None = None,
 ) -> list[Dict[str, str]]:
     """Build evaluation prompt with unified 3-dimension output.
+
+    Args:
+        summary: Scene summary dict
+        placement_summary: List of placement info
+        image_data_url: Optional base64 encoded image
+        evidence: Optional RAG evidence from knowledge base
 
     Returns:
         walkability: 0-100 score for pedestrian-friendliness
@@ -228,11 +235,29 @@ def build_unified_evaluation_messages(
         suggestions: improvement suggestions
         indicators: detailed walkability indicators
     """
+    # Serialize evidence if provided
+    evidence_section = ""
+    if evidence:
+        evidence_list = [
+            {
+                "chunk_id": item.chunk_id,
+                "section_title": item.section_title,
+                "page_start": item.page_start,
+                "page_end": item.page_end,
+                "text": item.text,
+            }
+            for item in evidence
+        ]
+        evidence_section = (
+            "\n\n## 参考知识（来自 Complete Streets 设计指南）\n"
+            "在评估时，请结合以下参考知识进行评判：\n"
+            f"{json.dumps(evidence_list, ensure_ascii=False, indent=2)}\n"
+        )
+
     system_prompt = (
         "你是 RoadGen3D 的场景评价专家。"
         "请基于街道场景布局信息，输出一个 JSON 对象。"
-        "你只能输出 JSON，不能输出其他内容。"
-        "\n"
+        "你只能输出 JSON，不能输出其他内容。" + evidence_section + "\n"
         "评估维度（必须全部输出）：\n"
         "1. walkability (步行性，0-100): 人行道宽度、净空连续性、家具密度、照明均匀、绿化遮荫\n"
         "2. safety (安全性，0-100): 交通隔离、过街设施、缓冲带、安全感知\n"

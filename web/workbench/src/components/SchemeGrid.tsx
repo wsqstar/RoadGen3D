@@ -85,30 +85,51 @@ export function SchemeGrid({ schemes, selectedSchemeId, onSelectScheme }: Scheme
               {isReady ? (
                 <>
                   {scheme.evaluation.overall >= 0 ? (
-                    <div className="scheme-scores">
-                      <div className="score-row">
-                        <span className="score-label">综合</span>
-                        <span className="score-value overall">{scheme.evaluation.overall}</span>
+                    <>
+                      <div className="scheme-scores">
+                        <div className="score-row">
+                          <span className="score-label">综合</span>
+                          <span className="score-value overall">{scheme.evaluation.overall}</span>
+                        </div>
+                        <div className="score-row">
+                          <span className="score-label" style={{ color: EVALUATION_COLORS.walkability.primary }}>
+                            步行性
+                          </span>
+                          <span className="score-value">{scheme.evaluation.walkability}</span>
+                        </div>
+                        <div className="score-row">
+                          <span className="score-label" style={{ color: EVALUATION_COLORS.safety.primary }}>
+                            安全性
+                          </span>
+                          <span className="score-value">{scheme.evaluation.safety}</span>
+                        </div>
+                        <div className="score-row">
+                          <span className="score-label" style={{ color: EVALUATION_COLORS.beauty.primary }}>
+                            美观度
+                          </span>
+                          <span className="score-value">{scheme.evaluation.beauty}</span>
+                        </div>
                       </div>
-                      <div className="score-row">
-                        <span className="score-label" style={{ color: EVALUATION_COLORS.walkability.primary }}>
-                          步行性
-                        </span>
-                        <span className="score-value">{scheme.evaluation.walkability}</span>
-                      </div>
-                      <div className="score-row">
-                        <span className="score-label" style={{ color: EVALUATION_COLORS.safety.primary }}>
-                          安全性
-                        </span>
-                        <span className="score-value">{scheme.evaluation.safety}</span>
-                      </div>
-                      <div className="score-row">
-                        <span className="score-label" style={{ color: EVALUATION_COLORS.beauty.primary }}>
-                          美观度
-                        </span>
-                        <span className="score-value">{scheme.evaluation.beauty}</span>
-                      </div>
-                    </div>
+
+                      {/* 评估反馈区域 */}
+                      {scheme.evaluationText && (
+                        <div className="scheme-evaluation-feedback">
+                          <div className="feedback-header">🏆 LLM 评价</div>
+                          <div className="feedback-text">{scheme.evaluationText}</div>
+                        </div>
+                      )}
+
+                      {scheme.suggestions && scheme.suggestions.length > 0 && (
+                        <div className="scheme-suggestions">
+                          <div className="suggestions-header">💡 改进建议</div>
+                          <ul className="suggestions-list">
+                            {scheme.suggestions.slice(0, 3).map((s, i) => (
+                              <li key={i} className="suggestion-item">{s}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </>
                   ) : (
                     <div className="scheme-status-text" style={{ color: "#f44336" }}>
                       评估服务不可用

@@ -474,6 +474,66 @@ a:hover {
   font-size: 1rem;
 }
 
+/* 评估反馈 - LLM 文本评价 */
+.scheme-evaluation-feedback {
+  margin-top: var(--space-sm);
+  padding: var(--space-sm);
+  background: linear-gradient(135deg, #fef9e7 0%, #fdf6e3 100%);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid #f59e0b;
+}
+
+.feedback-header {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #92400e;
+  margin-bottom: var(--space-xs);
+}
+
+.feedback-text {
+  font-size: 0.75rem;
+  color: #78350f;
+  line-height: 1.5;
+  max-height: 4.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* 改进建议 */
+.scheme-suggestions {
+  margin-top: var(--space-sm);
+  padding: var(--space-sm);
+  background: linear-gradient(135deg, #eff6ff 0%, #e0f2fe 100%);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid #3b82f6;
+}
+
+.suggestions-header {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1e40af;
+  margin-bottom: var(--space-xs);
+}
+
+.suggestions-list {
+  margin: 0;
+  padding-left: var(--space-md);
+  font-size: 0.7rem;
+  color: #1e3a8a;
+}
+
+.suggestion-item {
+  margin-bottom: var(--space-xs);
+  line-height: 1.4;
+}
+
+.suggestion-item:last-child {
+  margin-bottom: 0;
+}
+
 .scheme-actions {
   display: flex;
   gap: var(--space-sm);
