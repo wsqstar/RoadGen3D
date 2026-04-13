@@ -12,11 +12,18 @@ import "./App.css";
 
 type InputMode = "preset" | "free_text";
 
+interface ParameterSource {
+  key: string;
+  value: string | number;
+  source: "user" | "ai_inferred";
+}
+
 function App() {
   const [currentStep, setCurrentStep] = useState<WorkflowStep>(1);
   const [inputMode, setInputMode] = useState<InputMode>("preset");
   const [selectedPreset, setSelectedPreset] = useState<ScenePreset | null>(null);
   const [customDraft, setCustomDraft] = useState<DraftResponse | null>(null);
+  const [parameterSources, setParameterSources] = useState<ParameterSource[]>([]);
   const [schemes, setSchemes] = useState<GeneratedScheme[]>([]);
   const [selectedSchemeId, setSelectedSchemeId] = useState<string | null>(null);
   const [evaluations, setEvaluations] = useState<EvaluationResult[]>([]);
@@ -38,11 +45,13 @@ function App() {
   const handleSelectPreset = useCallback((preset: ScenePreset) => {
     setSelectedPreset(preset);
     setCustomDraft(null);
+    setParameterSources([]);
   }, []);
 
-  const handleDraftCreated = useCallback((draft: DraftResponse) => {
+  const handleDraftCreated = useCallback((draft: DraftResponse, sources: ParameterSource[]) => {
     setCustomDraft(draft);
     setSelectedPreset(null);
+    setParameterSources(sources);
   }, []);
 
   const handleGenerate = useCallback(async () => {
@@ -156,11 +165,12 @@ function App() {
                     <div className="draft-content">
                       <h4>设计摘要</h4>
                       <p>{customDraft.design_summary || "无"}</p>
-                      <h4>关键参数</h4>
+                      <h4>参数来源</h4>
                       <div className="draft-params">
-                        {Object.entries(customDraft.compose_config_patch || {}).map(([key, value]) => (
-                          <span key={key} className="param-tag">
+                        {parameterSources.map(({ key, value, source }) => (
+                          <span key={key} className={`param-tag ${source === "user" ? "param-user" : "param-ai"}`}>
                             {key}: {String(value)}
+                            {source === "user" ? " (用户)" : " (AI推断)"}
                           </span>
                         ))}
                       </div>

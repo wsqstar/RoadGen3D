@@ -41,6 +41,7 @@ class DraftRequestModel(BaseModel):
     current_patch: Dict[str, Any] = Field(default_factory=dict)
     topk: int = 6
     knowledge_source: str = "graph_rag"
+    force: bool = False  # Skip clarification and force draft generation with AI-filled defaults
 
 
 class GenerateRequestModel(BaseModel):
@@ -163,6 +164,7 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
                 current_patch=request.current_patch,
                 topk=int(request.topk),
                 knowledge_source=request.knowledge_source,
+                force=request.force,
             )
         except (GLMConfigurationError, GLMResponseError) as exc:
             raise HTTPException(status_code=503, detail=str(exc)) from exc

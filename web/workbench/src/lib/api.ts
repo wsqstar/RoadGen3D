@@ -86,6 +86,15 @@ export interface DraftResponse {
   risk_notes?: string[];
 }
 
+export interface DraftDesignOptions {
+  messages: ChatMessage[];
+  userInput: string;
+  currentPatch?: Record<string, string | number>;
+  topk?: number;
+  knowledgeSource?: string;
+  force?: boolean;  // Skip clarification, force draft generation
+}
+
 export interface EvaluationResponse {
   scores: EvaluationScores;
   indicators: WalkabilityIndicators | null;
@@ -130,18 +139,24 @@ export interface ChatMessage {
   content: string;
 }
 
-export async function draftDesign(
-  userInput: string,
-  topk = 6,
-  knowledgeSource = "graph_rag"
-): Promise<DraftResponse | null> {
+export async function draftDesign(options: DraftDesignOptions): Promise<DraftResponse | null> {
+  const {
+    messages = [],
+    userInput,
+    currentPatch = {},
+    topk = 6,
+    knowledgeSource = "graph_rag",
+    force = false,
+  } = options;
+
   try {
     const response = await postJson<DraftResponse>("/api/design/draft", {
-      messages: [],
+      messages,
       user_input: userInput,
-      current_patch: {},
+      current_patch: currentPatch,
       topk,
       knowledge_source: knowledgeSource,
+      force,
     }, 60000);
 
     return response;

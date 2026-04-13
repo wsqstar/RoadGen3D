@@ -118,24 +118,27 @@ class DesignAssistantService:
         current_patch: Mapping[str, Any] | None = None,
         topk: int = 6,
         knowledge_source: str = _DEFAULT_KNOWLEDGE_SOURCE,
+        force: bool = False,
     ) -> DesignDraftBundle:
         resolved_knowledge_source = normalize_knowledge_source(knowledge_source)
         cache_key = self._build_draft_cache_key(
             user_input=user_input,
             knowledge_source=resolved_knowledge_source,
         )
-        cached_bundle = self._load_cached_draft_bundle(
-            cache_key=cache_key,
-            fallback_query=user_input,
-            current_patch=current_patch,
-        )
-        if cached_bundle is not None:
-            return cached_bundle
+        # Skip cache if force=True to get fresh result with AI-filled defaults
+        if not force:
+            cached_bundle = self._load_cached_draft_bundle(
+                cache_key=cache_key,
+                fallback_query=user_input,
+                current_patch=current_patch,
+            )
+            if cached_bundle is not None:
+                return cached_bundle
         chat_messages = normalize_chat_messages(messages)
         llm = self._get_llm_client()
         intent_payload = llm.chat_json(build_design_intent_messages(chat_messages, user_input, current_patch))
         intent = parse_design_intent(intent_payload, fallback_query=user_input)
-        if requires_user_clarification(intent):
+        if requires_user_clarification(intent) and not force:
             warnings: List[str] = []
             if intent.follow_up_questions:
                 warnings.append("Additional clarification is required before drafting a street design.")
