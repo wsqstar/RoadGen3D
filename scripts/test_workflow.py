@@ -101,9 +101,9 @@ SCENE_PRESETS = [
         "config_patch": {
             "design_rule_profile": "pedestrian_priority_v1",
             "objective_profile": "greening",
-            "density": 0.2,
+            "density": 0.25,
             "ped_demand_level": "medium",
-            "bike_demand_level": "medium",
+            "bike_demand_level": "high",
             "transit_demand_level": "low",
             "vehicle_demand_level": "low",
         },
@@ -114,10 +114,10 @@ SCENE_PRESETS = [
         "name_en": "Quiet Residential",
         "prompt": "安静居住街道，绿树成荫，步行安全，适合全龄",
         "config_patch": {
-            "design_rule_profile": "pedestrian_priority_v1",
+            "design_rule_profile": "balanced_complete_street_v1",
             "objective_profile": "greening",
-            "density": 0.3,
-            "ped_demand_level": "low",
+            "density": 0.35,
+            "ped_demand_level": "high",
             "bike_demand_level": "medium",
             "transit_demand_level": "low",
             "vehicle_demand_level": "low",
@@ -387,8 +387,16 @@ class TestResult:
     evaluation: dict | None
     error_message: str | None
 
+    # Scene v2 (improved version)
+    scene_v2_layout_path: str | None = None
+    scene_v2_glb_path: str | None = None
+    viewer_url_v2: str | None = None
+    job_id_v2: str | None = None
+    evaluation_v2: dict | None = None
+    improvement_summary: str | None = None
+
     # Report path
-    report_path: str
+    report_path: str = ""
 
 
 @dataclass
@@ -405,15 +413,20 @@ class RepeatVerificationResult:
 # ── API Client ─────────────────────────────────────────────────────────────────
 
 class WorkbenchClient:
-    def __init__(self, base_url: str, timeout: float = 900.0):
+    def close(self):
+        self.client.close()
+
+    def __init__(self, base_url: str, timeout: float = 900.0, graph_template_id: str = DEFAULT_GRAPH_TEMPLATE_ID):
         """
         Initialize the API client.
 
         Args:
             base_url: Base URL for the API
             timeout: Default timeout for requests in seconds (default: 900 = 15 min)
+            graph_template_id: Graph template ID to use for scene generation
         """
         self.base_url = base_url.rstrip("/")
+        self.graph_template_id = graph_template_id
         # Use explicit HTTPTransport to avoid HTTP/2 connection issues
         transport = httpx.HTTPTransport(retries=2)
         # Configure timeout: 900s connect, 900s read (足够长以支持长时间轮询)
@@ -422,11 +435,9 @@ class WorkbenchClient:
             transport=transport
         )
 
-    def close(self):
-        self.client.close()
-
-    def create_scene_job(self, preset: dict) -> dict:
+    def create_scene_job(self, preset: dict, patch_overrides: dict = None) -> dict:
         """Create a scene generation job."""
+        patch_overrides = patch_overrides or {}
         payload = {
             "draft": {
                 "normalized_scene_query": preset["prompt"],
@@ -441,9 +452,9 @@ class WorkbenchClient:
                 "aoi_bbox": None,
                 "city_name_en": None,
                 "reference_plan_id": None,
-                "graph_template_id": DEFAULT_GRAPH_TEMPLATE_ID,
+                "graph_template_id": self.graph_template_id,
             },
-            "patch_overrides": {},
+            "patch_overrides": patch_overrides,
             "generation_options": {"preset_id": preset["id"]},
         }
 
@@ -691,7 +702,7 @@ def run_test(
 
         # Step 3: Evaluate scene
         print(f"{'='*60}")
-        print(f"Step 3/4 | 调用 LLM 评估场景")
+        print(f"Step 3/5 | 调用 LLM 评估场景")
         print(f"{'='*60}")
         print(f"  布局路径: {result.scene_layout_path}")
         print()
@@ -745,10 +756,49 @@ def run_test(
             print(f"\r  ✗ 评估失败: {e}")
             result.evaluation = None
 
+        # Step 3.5: Auto-improvement (如果评估有 config_patch)
+        if result.evaluation and result.evaluation.get("config_patch"):
+            patch = result.evaluation["config_patch"]
+            if patch:
+                print(f"\n{'='*60}")
+                print(f"Step 3.5/5 | 自动改进: 根据建议调整参数")
+                print(f"{'='*60}")
+                print(f"  应用配置修改: {json.dumps(patch, ensure_ascii=False, indent=2)[:200]}...")
+
+                result_v2 = run_test_v2_with_overrides(
+                    client, preset, result.job_id, patch,
+                    poll_interval=poll_interval, timeout=timeout
+                )
+
+                if result_v2 and result_v2.status == "passed":
+                    print(f"\n  ✓ 场景 v2 已生成")
+                    result.scene_v2_layout_path = result_v2.scene_layout_path
+                    result.scene_v2_glb_path = result_v2.scene_glb_path
+                    result.viewer_url_v2 = result_v2.viewer_url
+                    result.job_id_v2 = result_v2.job_id
+                    result.evaluation_v2 = result_v2.evaluation
+
+                    # 生成改进总结
+                    if result.evaluation and result.evaluation_v2:
+                        eval_v1 = result.evaluation
+                        eval_v2 = result.evaluation_v2
+                        improvements = []
+                        for key in ["walkability", "safety", "beauty", "overall"]:
+                            v1_score = eval_v1.get(key, 0)
+                            v2_score = eval_v2.get(key, 0)
+                            diff = v2_score - v1_score
+                            improvements.append(f"{key}: {v1_score:.0f}→{v2_score:.0f} ({diff:+.0f})")
+                        result.improvement_summary = "; ".join(improvements)
+                        print(f"  改进效果: {result.improvement_summary}")
+                else:
+                    print(f"\n  ✗ 场景 v2 生成失败，跳过改进")
+            else:
+                print(f"\n  config_patch 为空，跳过自动改进")
+
         # Step 4: Complete
         result.status = "passed"
         print(f"{'='*60}")
-        print(f"Step 4/4 | 测试完成")
+        print(f"Step 5/5 | 测试完成")
         print(f"{'='*60}")
         print(f"  总耗时: {format_time(result.duration_seconds)}")
         print(f"  状态: ✓ 通过")
@@ -763,6 +813,146 @@ def run_test(
     except Exception as e:
         result.error_message = f"Unexpected error: {e}"
         print(f"\n❌ 错误: {e}")
+    finally:
+        result.duration_seconds = time.time() - start_time
+
+    return result
+
+
+def run_test_v2_with_overrides(
+    client: WorkbenchClient,
+    preset: dict,
+    original_job_id: str,
+    patch_overrides: dict,
+    poll_interval: float = 2.0,
+    timeout: float = 300.0,
+) -> TestResult | None:
+    """使用 config_patch 覆盖参数生成场景 v2 (改进版本)。
+
+    Args:
+        client: API 客户端
+        preset: 原始预设配置
+        original_job_id: 原始任务 ID
+        patch_overrides: 配置修改建议
+        poll_interval: 轮询间隔
+        timeout: 超时时间
+
+    Returns:
+        TestResult: 包含 v2 场景和评估结果的 TestResult，如果失败则返回 None
+    """
+    start_time = time.time()
+    job_created_at = datetime.now().isoformat()
+
+    # 创建新的 result 对象用于 v2
+    result = TestResult(
+        preset_id=preset["id"],
+        preset_name=preset["name"],
+        job_id="",
+        status="failed",
+        job_created_at=job_created_at,
+        job_completed_at=None,
+        duration_seconds=0.0,
+        scene_layout_path=None,
+        scene_glb_path=None,
+        viewer_url=None,
+        evaluation=None,
+        error_message=None,
+        scene_v2_layout_path=None,
+        scene_v2_glb_path=None,
+        viewer_url_v2=None,
+        job_id_v2=None,
+        evaluation_v2=None,
+        improvement_summary=None,
+        report_path="",
+    )
+
+    try:
+        # 创建 v2 任务（使用 patch_overrides）
+        print(f"\n  创建 v2 改进任务...")
+        job_response = client.create_scene_job(preset, patch_overrides=patch_overrides)
+        result.job_id = job_response.get("job_id", "")
+        result.job_id_v2 = result.job_id
+        print(f"  v2 任务 ID: {result.job_id}")
+        print(f"  应用配置修改: {json.dumps(patch_overrides, ensure_ascii=False, indent=2)}")
+
+        # Spinner for polling
+        spinner_chars = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
+        spinner_idx = 0
+
+        def get_spinner() -> str:
+            nonlocal spinner_idx
+            spinner_idx = (spinner_idx + 1) % len(spinner_chars)
+            return spinner_chars[spinner_idx]
+
+        def format_time(seconds: float) -> str:
+            if seconds < 60:
+                return f"{seconds:.0f}s"
+            elif seconds < 3600:
+                mins = int(seconds // 60)
+                secs = int(seconds % 60)
+                return f"{mins}m {secs}s"
+            else:
+                hours = int(seconds // 3600)
+                mins = int((seconds % 3600) // 60)
+                return f"{hours}h {mins}m"
+
+        # 轮询等待 v2 场景生成
+        print(f"  等待 v2 场景生成...")
+        elapsed = 0.0
+        last_status = ""
+
+        while elapsed < timeout:
+            status_response = client.get_job_status(result.job_id)
+            status = status_response.get("status", "")
+
+            if status == "succeeded":
+                result.job_completed_at = datetime.now().isoformat()
+                result.scene_layout_path = status_response.get("result", {}).get("scene_layout_path")
+                result.scene_glb_path = status_response.get("result", {}).get("scene_glb_path")
+                result.viewer_url = status_response.get("result", {}).get("viewer_url")
+                result.scene_v2_layout_path = result.scene_layout_path
+                result.scene_v2_glb_path = result.scene_glb_path
+                result.viewer_url_v2 = result.viewer_url
+                result.status = "passed"
+                break
+
+            elif status == "failed":
+                result.error_message = status_response.get("error", "v2 Job failed")
+                print(f"\n  ✗ v2 场景生成失败: {result.error_message}")
+                return result
+
+            elif status in ("running", "processing", "queued"):
+                spinner = get_spinner()
+                print(f"\r  {spinner} v2 状态: {status} | 已等待: {format_time(elapsed)}", end="", flush=True)
+
+            else:
+                spinner = get_spinner()
+                print(f"\r  {spinner} v2 状态: {status} | 已等待: {format_time(elapsed)}", end="", flush=True)
+
+            time.sleep(poll_interval)
+            elapsed = time.time() - start_time
+
+        else:
+            # Timeout
+            result.status = "timeout"
+            result.error_message = f"v2 Job timed out after {timeout}s"
+            print(f"\n  ⏱️ v2 任务超时")
+            return result
+
+        # 评估 v2 场景
+        print(f"\n  评估 v2 场景...")
+        try:
+            result.evaluation = client.evaluate_scene(result.scene_layout_path)
+            result.evaluation_v2 = result.evaluation
+            print(f"  ✓ v2 评估完成")
+        except Exception as e:
+            print(f"\n  ✗ v2 评估失败: {e}")
+            result.evaluation = None
+            result.evaluation_v2 = None
+
+    except Exception as e:
+        result.error_message = f"v2 generation error: {e}"
+        print(f"\n❌ v2 生成错误: {e}")
     finally:
         result.duration_seconds = time.time() - start_time
 
@@ -876,11 +1066,17 @@ def generate_report(result: TestResult, output_dir: Path) -> str:
         "## 场景生成",
         "",
         f"- **状态**: {result.status}",
-        f"- **布局路径**: `{result.scene_layout_path or 'N/A'}`",
-        f"- **GLB 路径**: `{result.scene_glb_path or 'N/A'}`",
-        f"- **Viewer URL**: {result.viewer_url or 'N/A'}",
-        "",
+        f"- **v1 布局路径**: `{result.scene_layout_path or 'N/A'}`",
+        f"- **v1 GLB 路径**: `{result.scene_glb_path or 'N/A'}`",
+        f"- **v1 Viewer URL**: {result.viewer_url or 'N/A'}",
     ])
+    if result.scene_v2_layout_path:
+        lines.extend([
+            f"- **v2 布局路径**: `{result.scene_v2_layout_path}`",
+            f"- **v2 GLB 路径**: `{result.scene_v2_glb_path or 'N/A'}`",
+            f"- **v2 Viewer URL**: {result.viewer_url_v2 or 'N/A'}",
+        ])
+    lines.append("")
 
     # Evaluation section
     if result.evaluation:
@@ -952,6 +1148,73 @@ def generate_report(result: TestResult, output_dir: Path) -> str:
             for i, suggestion in enumerate(suggestions, 1):
                 lines.append(f"{i}. {suggestion}")
             lines.append("")
+
+        # Config patch
+        config_patch = eval_data.get("config_patch")
+        if config_patch:
+            lines.extend([
+                "",
+                "### 配置修改建议 (config_patch)",
+                "",
+                "```json",
+                json.dumps(config_patch, ensure_ascii=False, indent=2),
+                "```",
+                "",
+            ])
+
+        # v1 vs v2 comparison
+        if result.evaluation_v2:
+            eval_v1 = result.evaluation
+            eval_v2 = result.evaluation_v2
+
+            lines.extend([
+                "## 改进版本对比 (v1 → v2)",
+                "",
+                "### 综合评分对比",
+                "",
+                "| 版本 | 步行性 | 安全性 | 美观性 | 综合 |",
+                "|------|--------|--------|--------|------|",
+            ])
+
+            v1_overall = eval_v1.get("overall", 0)
+            v2_overall = eval_v2.get("overall", 0)
+            lines.append(
+                f"| v1 (原始) | {eval_v1.get('walkability', 0):.0f} | {eval_v1.get('safety', 0):.0f} | "
+                f"{eval_v1.get('beauty', 0):.0f} | {v1_overall:.0f} |"
+            )
+            lines.append(
+                f"| v2 (改进) | {eval_v2.get('walkability', 0):.0f} | {eval_v2.get('safety', 0):.0f} | "
+                f"{eval_v2.get('beauty', 0):.0f} | {v2_overall:.0f} |"
+            )
+            lines.append(
+                f"| 变化 | {eval_v2.get('walkability', 0) - eval_v1.get('walkability', 0):+.0f} | "
+                f"{eval_v2.get('safety', 0) - eval_v1.get('safety', 0):+.0f} | "
+                f"{eval_v2.get('beauty', 0) - eval_v1.get('beauty', 0):+.0f} | "
+                f"{v2_overall - v1_overall:+.0f} |"
+            )
+            lines.append("")
+
+            # v2 scene info
+            lines.extend([
+                "### v2 场景信息",
+                "",
+                f"- **v2 任务 ID**: `{result.job_id_v2 or 'N/A'}`",
+                f"- **v2 布局路径**: `{result.scene_v2_layout_path or 'N/A'}`",
+                f"- **v2 GLB 路径**: `{result.scene_v2_glb_path or 'N/A'}`",
+                f"- **v2 Viewer URL**: {result.viewer_url_v2 or 'N/A'}",
+                "",
+            ])
+
+            # v2 suggestions
+            suggestions_v2 = eval_v2.get("suggestions", [])
+            if suggestions_v2:
+                lines.extend([
+                    "### v2 改进建议",
+                    "",
+                ])
+                for i, suggestion in enumerate(suggestions_v2, 1):
+                    lines.append(f"{i}. {suggestion}")
+                lines.append("")
 
     elif result.status == "passed":
         lines.extend([
@@ -1085,6 +1348,11 @@ Examples:
         action="store_true",
         help="运行重复验证 (执行两次并对比结果)",
     )
+    parser.add_argument(
+        "--graph-template",
+        default=DEFAULT_GRAPH_TEMPLATE_ID,
+        help=f"指定使用的 graph template ID (默认: {DEFAULT_GRAPH_TEMPLATE_ID})",
+    )
 
     args = parser.parse_args()
 
@@ -1106,12 +1374,13 @@ Examples:
     print("=" * 60)
     print(f"模板: {preset['name']} ({preset['id']})")
     print(f"API: {args.api_base}")
+    print(f"Graph Template: {args.graph_template}")
     print(f"超时: {args.timeout}s")
     print(f"随机种子: {args.seed}")
     print("-" * 60)
 
     # Create client
-    client = WorkbenchClient(args.api_base)
+    client = WorkbenchClient(args.api_base, graph_template_id=args.graph_template)
 
     try:
         # Check health
