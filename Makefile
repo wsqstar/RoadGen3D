@@ -278,7 +278,17 @@ test-single:
 	@echo "=========================================="
 	@echo "运行单次自动化测试"
 	@echo "=========================================="
-	@uv run python scripts/test_workflow.py --graph-template $(GRAPH_TEMPLATE) --output $(TEST_REPORTS_DIR); \
+	@if [ "$(RANDOM_TEMPLATE)" = "1" ]; then \
+		TEMPLATE_FLAG="--random-template"; \
+	else \
+		TEMPLATE_FLAG="--graph-template $(GRAPH_TEMPLATE)"; \
+	fi; \
+	if [ "$(USE_LLM)" = "1" ]; then \
+		LLM_FLAG="--use-llm"; \
+	else \
+		LLM_FLAG=""; \
+	fi; \
+	uv run python scripts/test_workflow.py $$TEMPLATE_FLAG $$LLM_FLAG --output $(TEST_REPORTS_DIR); \
 	EXIT=$$?; \
 	uv run python scripts/test_pipeline.py; \
 	exit $$EXIT
@@ -286,7 +296,17 @@ test-single:
 # Run test with specific preset
 test-preset:
 	@mkdir -p $(TEST_REPORTS_DIR)
-	@uv run python scripts/test_workflow.py --preset $(PRESET) --graph-template $(GRAPH_TEMPLATE) --output $(TEST_REPORTS_DIR); \
+	@if [ "$(RANDOM_TEMPLATE)" = "1" ]; then \
+		TEMPLATE_FLAG="--random-template"; \
+	else \
+		TEMPLATE_FLAG="--graph-template $(GRAPH_TEMPLATE)"; \
+	fi; \
+	if [ "$(USE_LLM)" = "1" ]; then \
+		LLM_FLAG="--use-llm"; \
+	else \
+		LLM_FLAG=""; \
+	fi; \
+	uv run python scripts/test_workflow.py --preset $(PRESET) $$TEMPLATE_FLAG $$LLM_FLAG --output $(TEST_REPORTS_DIR); \
 	uv run python scripts/test_pipeline.py
 
 # View latest test report

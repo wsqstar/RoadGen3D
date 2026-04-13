@@ -140,6 +140,13 @@ SCENE_PRESETS = [
     },
 ]
 
+# 可用的 Graph Templates
+GRAPH_TEMPLATES = [
+    {"id": "hkust_gz_gate", "label": "HKUST-GZ Gate Graph"},
+    {"id": "hkust_gz_detailed", "label": "HKUST-GZ Detailed (5建筑区+10道路)"},
+    {"id": "hkust_gz_gate_all", "label": "HKUST-GZ Gate (All)"},
+]
+
 DEFAULT_GRAPH_TEMPLATE_ID = "hkust_gz_gate"
 DEFAULT_RANDOM_SEED = 42
 
@@ -1414,17 +1421,35 @@ Examples:
         help="运行重复验证 (执行两次并对比结果)",
     )
     parser.add_argument(
+        "--random-template",
+        action="store_true",
+        help="随机选择 graph template (默认: 随机)",
+    )
+    parser.add_argument(
         "--graph-template",
-        default=DEFAULT_GRAPH_TEMPLATE_ID,
-        help=f"指定使用的 graph template ID (默认: {DEFAULT_GRAPH_TEMPLATE_ID})",
+        default=None,
+        choices=[t["id"] for t in GRAPH_TEMPLATES],
+        help="指定使用的 graph template ID (默认: 随机选择)",
     )
     parser.add_argument(
         "--use-llm",
         action="store_true",
         help="启用 LLM 动态生成配置 (GraphRAG + LLM)",
     )
+    parser.add_argument(
+        "--list-templates",
+        action="store_true",
+        help="列出所有可用的 graph templates",
+    )
 
     args = parser.parse_args()
+
+    # List templates and exit if requested
+    if args.list_templates:
+        print("可用的 Graph Templates:")
+        for t in GRAPH_TEMPLATES:
+            print(f"  - {t['id']}: {t['label']}")
+        sys.exit(0)
 
     # 设置全局随机种子
     set_global_seed(args.seed)
@@ -1439,19 +1464,27 @@ Examples:
     else:
         preset = random.choice(SCENE_PRESETS)
 
+    # Select graph template
+    if args.graph_template:
+        graph_template_id = args.graph_template
+    elif args.random_template:
+        graph_template_id = random.choice(GRAPH_TEMPLATES)["id"]
+    else:
+        graph_template_id = DEFAULT_GRAPH_TEMPLATE_ID
+
     print("=" * 60)
     print("Workbench 自动化测试 (科研版)")
     print("=" * 60)
     print(f"模板: {preset['name']} ({preset['id']})")
     print(f"API: {args.api_base}")
-    print(f"Graph Template: {args.graph_template}")
+    print(f"Graph Template: {graph_template_id}")
     print(f"超时: {args.timeout}s")
     print(f"随机种子: {args.seed}")
     print(f"LLM 生成: {'启用' if args.use_llm else '禁用 (使用预设配置)'}")
     print("-" * 60)
 
     # Create client
-    client = WorkbenchClient(args.api_base, graph_template_id=args.graph_template)
+    client = WorkbenchClient(args.api_base, graph_template_id=graph_template_id)
 
     try:
         # Check health
