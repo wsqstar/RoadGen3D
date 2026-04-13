@@ -83,6 +83,7 @@ from .poi_taxonomy import (
     qualifies_poi_counts,
 )
 from .program_generator import ProgramGeneratorRuntime
+from .reference_annotation import VALID_FUNCTIONAL_ZONE_KINDS
 from .poi_rules import load_rule_set
 from .scene_graph_viz import build_scene_graph
 from .scene_textures import (
@@ -844,6 +845,108 @@ def _load_real_manifest(manifest_path: Path) -> List[Dict[str, object]]:
     if not rows:
         raise ValueError(f"real manifest is empty: {manifest_path}")
     return rows
+
+
+def _load_building_manifest(manifest_path: Path) -> List[Dict[str, object]]:
+    """Load building assets from UrbanVerse manifest.
+
+    Unlike street furniture assets, buildings don't require latent_path.
+    We generate text descriptions for CLIP embedding from available metadata.
+    """
+    if not manifest_path.exists():
+        return []  # No building manifest, return empty list
+
+    rows: List[Dict[str, object]] = []
+    base_dir = manifest_path.parent.resolve()
+    for line_no, line in enumerate(manifest_path.read_text(encoding="utf-8").splitlines(), start=1):
+        if not line.strip():
+            continue
+        payload = json.loads(line)
+        asset_id = str(payload.get("asset_id", "")).strip()
+        if not asset_id:
+            continue
+
+        # Resolve mesh path
+        mesh_path = str(payload.get("mesh_path", "")).strip()
+        if mesh_path:
+            mesh_path = _resolve_path(mesh_path, base_dir)
+        else:
+            continue  # Skip if no mesh path
+
+        # Generate text description from bucket and tags if not provided
+        text_desc = str(payload.get("text_desc", "")).strip()
+        if not text_desc:
+            bucket = str(payload.get("bucket", "")).strip()
+            tags = payload.get("tags", [])
+            tag_str = ", ".join(str(t) for t in tags) if tags else "urban building"
+            text_desc = f"UrbanVerse building from bucket {bucket}, {tag_str}"
+
+        row: Dict[str, object] = {
+            "asset_id": asset_id,
+            "category": "building",
+            "text_desc": text_desc,
+            "mesh_path": mesh_path,
+            "source": str(payload.get("source", "UrbanVerse")).strip(),
+            "bucket": str(payload.get("bucket", "")).strip(),
+            "tags": list(payload.get("tags", [])) if isinstance(payload.get("tags"), list) else [],
+            "asset_role": "building",
+            "scene_eligible": bool(payload.get("scene_eligible", True)),
+            "quality_tier": int(payload.get("quality_tier", 2)),
+        }
+
+        # Include dimensions if available
+        if "dimensions_m" in payload and isinstance(payload["dimensions_m"], dict):
+            dims = payload["dimensions_m"]
+            row["frontage_width_m"] = float(dims.get("width", 0))
+            row["depth_m"] = float(dims.get("depth", 0))
+            row["height_m"] = float(dims.get("height", 0))
+
+        rows.append(row)
+
+    return rows
+
+
+def _generate_building_text_embeddings(
+    rows: List[Dict[str, object]],
+    embedder: ClipTextEmbedder,
+) -> Dict[str, np.ndarray]:
+    """Generate CLIP text embeddings for building assets.
+
+    Returns a dict mapping asset_id to normalized embedding vector.
+    """
+    if not rows:
+        return {}
+
+    # Generate text descriptions for each building
+    texts = []
+    asset_ids = []
+    for row in rows:
+        # Create a descriptive text for CLIP embedding
+        bucket = str(row.get("bucket", "")).strip()
+        tags = row.get("tags", [])
+        theme_tags = row.get("theme_tags", [])
+        tag_str = ", ".join(str(t) for t in (tags + theme_tags)) if (tags or theme_tags) else "urban commercial building"
+
+        frontage = float(row.get("frontage_width_m", 0))
+        depth = float(row.get("depth_m", 0))
+        height = float(row.get("height_m", 0))
+
+        size_desc = ""
+        if height >= 30:
+            size_desc = "highrise commercial building"
+        elif height >= 15:
+            size_desc = "midrise office or residential building"
+        else:
+            size_desc = "lowrise storefront or residential building"
+
+        text = f"{size_desc}, urbanverse bucket {bucket}, {tag_str}, {frontage:.1f}m wide, {depth:.1f}m deep"
+        texts.append(text)
+        asset_ids.append(row["asset_id"])
+
+    # Encode all texts at once
+    embeddings = embedder.encode_texts(texts)
+
+    return {asset_id: embedding for asset_id, embedding in zip(asset_ids, embeddings)}
 
 
 def _load_single_mesh(metadata: _MeshMetadata) -> _MeshCacheEntry:
@@ -3485,52 +3588,6 @@ def _build_osm_base_scene(
                 logger.debug("Skipping degenerate %s polygon %d", name_prefix, idx)
                 continue
 
-    def _add_polyline_segments(
-        polylines,
-        *,
-        default_width_m: float,
-        height_m: float,
-        color,
-        name_prefix: str,
-        y_offset: float = 0.0,
-        roughness_key: str = "",
-        surface_role: str = "",
-    ) -> None:
-        for polyline_index, polyline in enumerate(polylines or ()):
-            points = [
-                (float(point[0]), float(point[1]))
-                for point in (polyline.get("points_xy", []) or ())
-                if len(point) >= 2
-            ]
-            if len(points) < 2:
-                continue
-            width_m = max(float(polyline.get("width_m", default_width_m) or default_width_m), 0.05)
-            for segment_index, (start, end) in enumerate(zip(points, points[1:])):
-                dx = float(end[0]) - float(start[0])
-                dz = float(end[1]) - float(start[1])
-                segment_length_m = math.hypot(dx, dz)
-                if segment_length_m <= 1e-6:
-                    continue
-                _add_road_box(
-                    scene,
-                    length_m=float(segment_length_m),
-                    width_m=float(width_m),
-                    height_m=float(height_m),
-                    local_x_m=0.0,
-                    local_z_m=0.0,
-                    road_center_x_m=(float(start[0]) + float(end[0])) * 0.5,
-                    road_center_z_m=(float(start[1]) + float(end[1])) * 0.5,
-                    road_yaw_deg=math.degrees(math.atan2(dz, dx)),
-                    y_min_m=float(y_offset),
-                    color=color,
-                    surface_role=surface_role,
-                    node_name=f"{name_prefix}_{polyline_index}_{segment_index}",
-                    roughness=(roughness or {}).get(roughness_key or surface_role or "sidewalk", 0.9),
-                    texture_mode=texture_mode,
-                    texture_tracker=texture_tracker,
-                    texture_overrides=texture_overrides,
-                )
-
     def _inject_functional_zone(zone: Dict[str, Any]) -> None:
         from shapely import make_valid
         from shapely.geometry import Polygon as ShapelyPolygon
@@ -3560,27 +3617,82 @@ def _build_osm_base_scene(
         )
 
         # Place parametric structure at centroid for asset-bearing kinds
-        if kind in ("plaza", "garden", "parking"):
-            return
+        if kind not in ("plaza", "garden", "parking"):
+            centroid = poly.centroid
+            if not getattr(centroid, "is_empty", True):
+                cx, cz = float(centroid.x), float(centroid.y)
+                try:
+                    result = generate_parametric_asset({
+                        "asset_kind": kind,
+                        "runtime_profile": "production",
+                        "params": {"detail_level": 2, "style_tag": "modern"},
+                    })
+                    mesh = result.mesh
+                    if mesh is not None:
+                        mesh.apply_translation([cx, 0.0, cz])
+                        scene.add_geometry(mesh, node_name=f"parametric_zone_{kind}_{zone.get('id', 'unk')}")
+                except Exception:
+                    logger.debug("Failed to generate parametric asset for zone %s", zone.get("id"), exc_info=True)
 
-        centroid = poly.centroid
-        if getattr(centroid, "is_empty", True):
-            return
-        cx, cz = float(centroid.x), float(centroid.y)
+        # Render user-placed furniture instances inside the functional zone
+        trimesh = _require_trimesh()
+        for fidx, inst in enumerate(zone.get("furniture_instances", []) or []):
+            fx = float(inst.get("x", 0.0))
+            fy = float(inst.get("y", 0.0))
+            fkind = str(inst.get("kind", "bench") or "bench").lower()
+            yaw_deg = float(inst.get("yaw_deg") or 0.0)
+            yaw_rad = math.radians(yaw_deg)
 
-        try:
-            result = generate_parametric_asset({
-                "asset_kind": kind,
-                "runtime_profile": "production",
-                "params": {"detail_level": 2, "style_tag": "modern"},
-            })
-            mesh = result.mesh
-            if mesh is None:
-                return
-            mesh.apply_translation([cx, 0.0, cz])
-            scene.add_geometry(mesh, node_name=f"parametric_zone_{kind}_{zone.get('id', 'unk')}")
-        except Exception:
-            logger.debug("Failed to generate parametric asset for zone %s", zone.get("id"), exc_info=True)
+            # Helper to place a mesh with yaw rotation around Y axis
+            def _place_zone_furniture_mesh(mesh: object, node_name: str) -> None:
+                if yaw_rad != 0.0:
+                    rot = np.array([
+                        [math.cos(yaw_rad), 0.0, math.sin(yaw_rad), 0.0],
+                        [0.0, 1.0, 0.0, 0.0],
+                        [-math.sin(yaw_rad), 0.0, math.cos(yaw_rad), 0.0],
+                        [0.0, 0.0, 0.0, 1.0],
+                    ])
+                    mesh.apply_transform(rot)
+                mesh.apply_translation([fx, 0.0, fy])
+                scene.add_geometry(mesh, node_name=node_name)
+
+            if fkind in ("bench", "lamp", "tree", "kiosk", "sculpture"):
+                try:
+                    result = generate_parametric_asset({
+                        "asset_kind": fkind,
+                        "runtime_profile": "production",
+                        "params": {"detail_level": 2, "style_tag": "modern"},
+                    })
+                    fmesh = result.mesh
+                    if fmesh is not None:
+                        _place_zone_furniture_mesh(fmesh, f"zone_{zone.get('id', 'unk')}_{fkind}_{fidx}")
+                        continue
+                except Exception:
+                    logger.debug("Failed to generate parametric asset for zone furniture %s", fkind, exc_info=True)
+
+            # Fallback placeholders for unsupported or failed kinds
+            if fkind == "trash":
+                placeholder = trimesh.creation.cylinder(radius=0.25, height=0.6, sections=16)
+                placeholder.visual.face_colors = (120, 120, 120, 255)
+            elif fkind == "mailbox":
+                placeholder = trimesh.creation.box(extents=(0.3, 0.5, 0.2))
+                placeholder.visual.face_colors = (80, 120, 180, 255)
+            elif fkind == "bollard":
+                placeholder = trimesh.creation.cylinder(radius=0.1, height=0.9, sections=12)
+                placeholder.visual.face_colors = (220, 200, 60, 255)
+            elif fkind == "sign":
+                placeholder = trimesh.creation.box(extents=(0.05, 1.5, 0.4))
+                placeholder.visual.face_colors = (80, 160, 100, 255)
+            elif fkind == "hydrant":
+                placeholder = trimesh.creation.cylinder(radius=0.15, height=0.5, sections=12)
+                placeholder.visual.face_colors = (200, 60, 60, 255)
+            elif fkind == "bus_stop":
+                placeholder = trimesh.creation.box(extents=(0.5, 2.0, 1.2))
+                placeholder.visual.face_colors = (100, 140, 200, 255)
+            else:
+                placeholder = trimesh.creation.box(extents=(0.5, 0.5, 0.5))
+                placeholder.visual.face_colors = (160, 160, 160, 255)
+            _place_zone_furniture_mesh(placeholder, f"zone_{zone.get('id', 'unk')}_{fkind}_{fidx}")
 
     road_arm_geometries = list(getattr(placement_ctx, "road_arm_geometries", []) or [])
     if road_arm_geometries:
@@ -3634,6 +3746,39 @@ def _build_osm_base_scene(
             roughness_key="median_green",
             surface_role="median_green",
         )
+    center_grass_belt = strip_zones.get("center_grass_belt")
+    if center_grass_belt is not None and not getattr(center_grass_belt, "is_empty", True):
+        _extrude_polygon(
+            center_grass_belt,
+            0.065,
+            list(colors.get("grass_belt", (100, 150, 80, 255))),
+            "center_grass_belt",
+            y_offset=0.002,
+            roughness_key="grass_belt",
+            surface_role="grass_belt",
+        )
+    center_shared_street_surface = strip_zones.get("center_shared_street_surface")
+    if center_shared_street_surface is not None and not getattr(center_shared_street_surface, "is_empty", True):
+        _extrude_polygon(
+            center_shared_street_surface,
+            0.065,
+            list(colors.get("shared_street_surface", (180, 160, 140, 255))),
+            "center_shared_street_surface",
+            y_offset=0.002,
+            roughness_key="shared_street_surface",
+            surface_role="shared_street_surface",
+        )
+    colored_pavement = strip_zones.get("colored_pavement")
+    if colored_pavement is not None and not getattr(colored_pavement, "is_empty", True):
+        _extrude_polygon(
+            colored_pavement,
+            0.065,
+            list(colors.get("colored_pavement", (200, 175, 150, 255))),
+            "colored_pavement",
+            y_offset=0.002,
+            roughness_key="colored_pavement",
+            surface_role="colored_pavement",
+        )
 
     # Curb: thin ring around the carriageway edge, extruded to sidewalk elevation
     curb_width = 0.12
@@ -3674,80 +3819,48 @@ def _build_osm_base_scene(
                     list(colors.get("lane_mark", (245, 245, 245, 255))),
                     f"junction_crosswalk_{junction_index}_{patch_index}",
                     y_offset=0.008,
-                    roughness_key="lane_mark",
-                    surface_role="lane_mark",
+                    roughness_key="crossing",
+                    surface_role="crossing",
                 )
-            if junction_kind == "cross_junction":
-                _add_polyline_segments(
-                    junction.get("sidewalk_corner_polylines", []) or (),
-                    default_width_m=2.5,
-                    height_m=0.08,
-                    color=list(colors.get("sidewalk", (165, 168, 172, 255))),
-                    name_prefix=f"junction_sidewalk_corner_polyline_{junction_index}",
+            for patch_index, patch in enumerate(junction.get("sidewalk_corner_patches", []) or ()):
+                geometry = patch.get("geometry")
+                if geometry is None or getattr(geometry, "is_empty", True):
+                    continue
+                _extrude_polygon(
+                    geometry,
+                    0.08,
+                    list(colors.get("sidewalk", (165, 168, 172, 255))),
+                    f"junction_sidewalk_corner_{junction_index}_{patch_index}",
                     y_offset=SIDEWALK_ELEVATION_M,
                     roughness_key="sidewalk",
                     surface_role="sidewalk",
                 )
-                _add_polyline_segments(
-                    junction.get("nearroad_corner_polylines", []) or (),
-                    default_width_m=1.5,
-                    height_m=0.05,
-                    color=list(colors.get("furnishing", colors.get("sidewalk", (165, 168, 172, 255)))),
-                    name_prefix=f"junction_nearroad_corner_polyline_{junction_index}",
+            for patch_index, patch in enumerate(junction.get("nearroad_corner_patches", []) or ()):
+                geometry = patch.get("geometry")
+                if geometry is None or getattr(geometry, "is_empty", True):
+                    continue
+                _extrude_polygon(
+                    geometry,
+                    0.05,
+                    list(colors.get("furnishing", colors.get("sidewalk", (165, 168, 172, 255)))),
+                    f"junction_nearroad_corner_{junction_index}_{patch_index}",
                     y_offset=SIDEWALK_ELEVATION_M,
                     roughness_key="furnishing",
                     surface_role="furnishing",
                 )
-                _add_polyline_segments(
-                    junction.get("frontage_corner_polylines", []) or (),
-                    default_width_m=2.0,
-                    height_m=0.05,
-                    color=list(colors.get("context_ground", (168, 163, 150, 255))),
-                    name_prefix=f"junction_frontage_corner_polyline_{junction_index}",
+            for patch_index, patch in enumerate(junction.get("frontage_corner_patches", []) or ()):
+                geometry = patch.get("geometry")
+                if geometry is None or getattr(geometry, "is_empty", True):
+                    continue
+                _extrude_polygon(
+                    geometry,
+                    0.05,
+                    list(colors.get("context_ground", (168, 163, 150, 255))),
+                    f"junction_frontage_corner_{junction_index}_{patch_index}",
                     y_offset=SIDEWALK_ELEVATION_M,
                     roughness_key="context_ground",
                     surface_role="context_ground",
                 )
-            else:
-                for patch_index, patch in enumerate(junction.get("sidewalk_corner_patches", []) or ()):
-                    geometry = patch.get("geometry")
-                    if geometry is None or getattr(geometry, "is_empty", True):
-                        continue
-                    _extrude_polygon(
-                        geometry,
-                        0.08,
-                        list(colors.get("sidewalk", (165, 168, 172, 255))),
-                        f"junction_sidewalk_corner_{junction_index}_{patch_index}",
-                        y_offset=SIDEWALK_ELEVATION_M,
-                        roughness_key="sidewalk",
-                        surface_role="sidewalk",
-                    )
-                for patch_index, patch in enumerate(junction.get("nearroad_corner_patches", []) or ()):
-                    geometry = patch.get("geometry")
-                    if geometry is None or getattr(geometry, "is_empty", True):
-                        continue
-                    _extrude_polygon(
-                        geometry,
-                        0.05,
-                        list(colors.get("furnishing", colors.get("sidewalk", (165, 168, 172, 255)))),
-                        f"junction_nearroad_corner_{junction_index}_{patch_index}",
-                        y_offset=SIDEWALK_ELEVATION_M,
-                        roughness_key="furnishing",
-                        surface_role="furnishing",
-                    )
-                for patch_index, patch in enumerate(junction.get("frontage_corner_patches", []) or ()):
-                    geometry = patch.get("geometry")
-                    if geometry is None or getattr(geometry, "is_empty", True):
-                        continue
-                    _extrude_polygon(
-                        geometry,
-                        0.05,
-                        list(colors.get("context_ground", (168, 163, 150, 255))),
-                        f"junction_frontage_corner_{junction_index}_{patch_index}",
-                        y_offset=SIDEWALK_ELEVATION_M,
-                        roughness_key="context_ground",
-                        surface_role="context_ground",
-                    )
 
     fallback_length_m = 20.0
     if scene_bounds:
@@ -4121,6 +4234,27 @@ def _serialize_osm_geometry(placement_ctx: object) -> dict:
                         "width_m": round(float(polyline.get("width_m", 0.0) or 0.0), 3),
                     }
                     for polyline in item.get("frontage_corner_polylines", []) or ()
+                ]
+                junction_item["sidewalk_corner_patches"] = [
+                    {
+                        "patch_id": str(patch.get("patch_id", "") or ""),
+                        "rings": _extract_rings(patch.get("geometry")),
+                    }
+                    for patch in item.get("sidewalk_corner_patches", []) or ()
+                ]
+                junction_item["nearroad_corner_patches"] = [
+                    {
+                        "patch_id": str(patch.get("patch_id", "") or ""),
+                        "rings": _extract_rings(patch.get("geometry")),
+                    }
+                    for patch in item.get("nearroad_corner_patches", []) or ()
+                ]
+                junction_item["frontage_corner_patches"] = [
+                    {
+                        "patch_id": str(patch.get("patch_id", "") or ""),
+                        "rings": _extract_rings(patch.get("geometry")),
+                    }
+                    for patch in item.get("frontage_corner_patches", []) or ()
                 ]
             else:
                 junction_item["sidewalk_corner_patches"] = [
@@ -5778,6 +5912,37 @@ def compose_street_scene(
         index_path=index_path,
         id_map_path=id_map_path,
     )
+
+    # Load building assets from UrbanVerse manifest
+    building_manifest_path = ROOT / "assets" / "building" / "buildings_manifest.jsonl"
+    building_rows = _load_building_manifest(building_manifest_path)
+    building_asset_count = 0
+    if building_rows:
+        logger.info("Loaded %d building assets from UrbanVerse manifest", len(building_rows))
+        # Filter scene-eligible buildings
+        scene_eligible_rows = [row for row in building_rows if bool(row.get("scene_eligible", True))]
+        logger.info("After filtering scene-eligible: %d building assets", len(scene_eligible_rows))
+
+        if scene_eligible_rows:
+            # Load mesh metadata for building assets and add to mesh cache
+            building_mesh_metadata = _load_mesh_metadata(scene_eligible_rows)
+            for asset_id, metadata in building_mesh_metadata.items():
+                mesh_cache._metadata[asset_id] = metadata  # Add to metadata dict
+
+            # Add building rows to asset_by_id
+            for row in scene_eligible_rows:
+                asset_by_id[row["asset_id"]] = row
+
+            # Generate CLIP embeddings for building assets and add to index
+            building_embeddings = _generate_building_text_embeddings(scene_eligible_rows, embedder)
+            if building_embeddings:
+                asset_ids = list(building_embeddings.keys())
+                embeddings_list = [building_embeddings[aid] for aid in asset_ids]
+                embedding_matrix = np.stack(embeddings_list)
+                index_store.add(embedding_matrix, asset_ids)
+                building_asset_count = len(asset_ids)
+                logger.info("Added %d building assets to retrieval index", building_asset_count)
+    building_index_enabled = building_asset_count > 0
 
     policy_runtime: Optional[LayoutPolicyRuntime] = None
     policy_used = "rule"

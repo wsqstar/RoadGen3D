@@ -93,3 +93,20 @@ class FaissIndexStore:
                 hits.append(RetrievalHit(asset_id=self.asset_ids[int(idx)], score=float(score)))
             all_hits.append(hits)
         return all_hits
+
+    def add(self, embeddings: np.ndarray, asset_ids: Sequence[str]) -> None:
+        """Add new embeddings and asset IDs to the existing index.
+
+        This allows building up an index incrementally, useful for adding
+        building assets to an existing furniture index.
+        """
+        faiss = _import_faiss()
+        matrix = np.asarray(embeddings, dtype=np.float32)
+        if matrix.ndim != 2:
+            raise ValueError(f"Embeddings must be rank-2, got shape {matrix.shape}.")
+        if matrix.shape[0] != len(asset_ids):
+            raise ValueError(
+                f"Embedding row count ({matrix.shape[0]}) does not match id count ({len(asset_ids)})."
+            )
+        self.index.add(matrix)
+        self.asset_ids.extend(asset_ids)
