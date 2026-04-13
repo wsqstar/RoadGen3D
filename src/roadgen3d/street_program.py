@@ -336,16 +336,39 @@ def _build_detailed_cross_section_bands(
                     allowed_categories=detailed_strip_allowed_categories(strip_kind),
                 )
             )
-    bands.append(
-        StreetBand(
-            name="carriageway",
-            kind="carriageway",
-            side="center",
-            width_m=float(road_width_m),
-            z_center_m=0.0,
-            allowed_categories=(),
+
+    # Add center bands from detailed profiles so that median / bike lane / grass belt are visible
+    for profile in iter_detailed_strip_profiles(placement_context):
+        side = str(profile.get("side", "") or "").strip().lower()
+        if side != "center":
+            continue
+        width_m = float(profile.get("width_m", 0.0) or 0.0)
+        if width_m <= 0.0:
+            continue
+        z_center_m = float(profile.get("center_m", 0.0) or profile.get("center_offset_m", 0.0) or 0.0)
+        strip_kind = str(profile.get("kind", "") or "").strip().lower()
+        bands.append(
+            StreetBand(
+                name=f"center_{strip_kind}",
+                kind=detailed_strip_band_kind(strip_kind, side="center", profile_name=profile_name),
+                side="center",
+                width_m=float(width_m),
+                z_center_m=float(z_center_m),
+                allowed_categories=(),
+            )
         )
-    )
+
+    if not any(str(b.side) == "center" for b in bands):
+        bands.append(
+            StreetBand(
+                name="carriageway",
+                kind="carriageway",
+                side="center",
+                width_m=float(road_width_m),
+                z_center_m=0.0,
+                allowed_categories=(),
+            )
+        )
     ordered = sorted(
         bands,
         key=lambda band: (

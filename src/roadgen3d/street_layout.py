@@ -2129,21 +2129,7 @@ def _build_base_scene(
     )
     scene.add_geometry(context_ground, node_name="context_ground")
 
-    road = trimesh.creation.box(extents=(length_m, 0.06, road_width_m))
     colors = palette or {}
-    road_color = list(colors.get("carriageway", (65, 68, 72, 255)))
-    road.apply_translation([0.0, -0.03, 0.0])
-    road = _apply_surface_finish(
-        road,
-        surface_role="carriageway",
-        rgba=road_color,
-        roughness=(roughness or {}).get("carriageway", 0.95),
-        texture_mode=texture_mode,
-        texture_tracker=texture_tracker,
-        texture_overrides=texture_overrides,
-    )
-    scene.add_geometry(road, node_name="road_slab")
-
     sidewalk_color = list(colors.get("sidewalk", (165, 168, 172, 255)))
     furnishing_color = list(colors.get("furnishing", tuple(sidewalk_color)))
     clear_color = list(colors.get("clear_path", tuple(sidewalk_color)))
@@ -2151,22 +2137,87 @@ def _build_base_scene(
     # Sidewalk top at Y = SIDEWALK_ELEVATION_M; slab is 0.08 m thick
     sw_y_translation = SIDEWALK_ELEVATION_M - 0.04  # centre of 0.08-thick slab
 
+    center_bands: List[Any] = []
+    side_bands: List[Any] = []
+    has_center_non_carriageway = False
     if street_program is not None and getattr(street_program, "bands", None):
+        for band in getattr(street_program, "bands", ()) or ():
+            side = str(getattr(band, "side", "") or "").strip().lower()
+            kind = str(getattr(band, "kind", "") or "").strip().lower()
+            if side == "center":
+                center_bands.append(band)
+                if kind != "carriageway":
+                    has_center_non_carriageway = True
+            elif side in ("left", "right"):
+                side_bands.append(band)
+
+    if not has_center_non_carriageway:
+        road = trimesh.creation.box(extents=(length_m, 0.06, road_width_m))
+        road_color = list(colors.get("carriageway", (65, 68, 72, 255)))
+        road.apply_translation([0.0, -0.03, 0.0])
+        road = _apply_surface_finish(
+            road,
+            surface_role="carriageway",
+            rgba=road_color,
+            roughness=(roughness or {}).get("carriageway", 0.95),
+            texture_mode=texture_mode,
+            texture_tracker=texture_tracker,
+            texture_overrides=texture_overrides,
+        )
+        scene.add_geometry(road, node_name="road_slab")
+    else:
+        for band in center_bands:
+            kind = str(getattr(band, "kind", "") or "").strip().lower()
+            width_m = float(getattr(band, "width_m", 0.0) or 0.0)
+            if kind in ("median", "grass_belt") and width_m < 0.5:
+                width_m = 0.5
+            if width_m <= 0.0:
+                continue
+            z_center_m = float(getattr(band, "z_center_m", 0.0) or 0.0)
+            band_color = list(
+                colors.get(
+                    kind,
+                    colors.get(
+                        "carriageway",
+                        (65, 68, 72, 255),
+                    ),
+                )
+            )
+            roughness_key = kind
+            if kind == "drive_lane":
+                roughness_key = "carriageway"
+            elif kind == "median":
+                roughness_key = "median_green"
+            slab = trimesh.creation.box(extents=(length_m, 0.06, width_m))
+            slab.apply_translation([0.0, -0.03, z_center_m])
+            slab = _apply_surface_finish(
+                slab,
+                surface_role=roughness_key,
+                rgba=band_color,
+                roughness=(roughness or {}).get(roughness_key, 0.95),
+                texture_mode=texture_mode,
+                texture_tracker=texture_tracker,
+                texture_overrides=texture_overrides,
+            )
+            scene.add_geometry(slab, node_name=f"road_{getattr(band, 'name', kind)}")
+
+    if side_bands:
         left_offset = road_width_m / 2.0
         right_offset = road_width_m / 2.0
-        for band in getattr(street_program, "bands", ()) or ():
-            if getattr(band, "kind", "") == "carriageway":
+        for band in side_bands:
+            band_kind = str(getattr(band, "kind", "") or "").strip().lower()
+            if band_kind == "carriageway":
                 continue
             width_m = float(getattr(band, "width_m", 0.0) or 0.0)
             if width_m <= 0.0:
                 continue
-            band_kind = str(getattr(band, "kind", "") or "")
             color = clear_color if band_kind == "clear_path" else furnishing_color
             slab = trimesh.creation.box(extents=(length_m, 0.08, width_m))
-            if getattr(band, "side", "") == "left":
+            side = str(getattr(band, "side", "") or "").strip().lower()
+            if side == "left":
                 slab.apply_translation([0.0, sw_y_translation, left_offset + width_m / 2.0])
                 left_offset += width_m
-            elif getattr(band, "side", "") == "right":
+            elif side == "right":
                 slab.apply_translation([0.0, sw_y_translation, -right_offset - width_m / 2.0])
                 right_offset += width_m
             else:
@@ -2488,6 +2539,98 @@ def _add_centerline_markings(
         )
         dash_idx += 1
         dash_x += dash_length_m + dash_gap_m
+
+
+def _add_lane_edge_markings(
+    scene,
+    *,
+    road_length_m: float,
+    road_center_x_m: float,
+    road_center_z_m: float,
+    road_yaw_deg: float,
+    detailed_strip_profiles: list,
+    road_coords: Sequence[Tuple[float, float]] | None = None,
+    edge_color: Sequence[int] = (230, 200, 50, 255),  # Yellow for lane edges
+    roughness: float = 0.30,
+    node_name_prefix: str = "lane_edge",
+    texture_mode: str = "topdown_tiles_v1",
+    texture_tracker=None,
+    texture_overrides: Mapping[str, str] | None = None,
+) -> None:
+    """Add solid lane edge markings along the road.
+
+    Renders continuous yellow solid lines at the edges of each drive_lane strip.
+    Uses the inner_m and outer_m values from detailed_strip_profiles to determine positions.
+    """
+    # Collect all edge positions from center drive_lane strips
+    edge_offsets: List[float] = []
+    for profile in detailed_strip_profiles:
+        if str(profile.get("side", "")).lower() == "center" and profile.get("kind") == "drive_lane":
+            inner = float(profile.get("inner_m", 0))
+            outer = float(profile.get("outer_m", 0))
+            if inner not in edge_offsets:
+                edge_offsets.append(inner)
+            if outer not in edge_offsets:
+                edge_offsets.append(outer)
+
+    if not edge_offsets:
+        return
+
+    # Sort offsets from left (negative) to right (positive)
+    edge_offsets.sort()
+
+    coords = tuple((float(point[0]), float(point[1])) for point in (road_coords or ()))
+
+    # If we have road coordinates, render continuous lines along the road
+    if len(coords) >= 2:
+        road_len = max(float(road_length_m), _polyline_length_m(coords))
+        for edge_offset in edge_offsets:
+            # Skip the outermost edges (carriageway edges) - we want internal lane edges only
+            # Actually, let's include them but make them white (curb line) instead of yellow
+            # For now, let's just render all edge lines
+            edge_idx = edge_offsets.index(edge_offset)
+            _add_road_box(
+                scene,
+                length_m=road_len,
+                width_m=0.12,  # Solid edge line width
+                height_m=0.01,
+                local_x_m=float(edge_offset),
+                local_z_m=0.0,
+                road_center_x_m=road_center_x_m,
+                road_center_z_m=road_center_z_m,
+                road_yaw_deg=road_yaw_deg,
+                y_min_m=0.005,
+                color=edge_color,
+                surface_role="lane_edge_mark",
+                node_name=f"{node_name_prefix}_{edge_idx}",
+                roughness=roughness,
+                texture_mode=texture_mode,
+                texture_tracker=texture_tracker,
+                texture_overrides=texture_overrides,
+            )
+    else:
+        # Fallback: render lines without following road shape
+        for edge_offset in edge_offsets:
+            edge_idx = edge_offsets.index(edge_offset)
+            _add_road_box(
+                scene,
+                length_m=float(road_length_m),
+                width_m=0.12,
+                height_m=0.01,
+                local_x_m=float(edge_offset),
+                local_z_m=0.0,
+                road_center_x_m=road_center_x_m,
+                road_center_z_m=road_center_z_m,
+                road_yaw_deg=road_yaw_deg,
+                y_min_m=0.005,
+                color=edge_color,
+                surface_role="lane_edge_mark",
+                node_name=f"{node_name_prefix}_{edge_idx}",
+                roughness=roughness,
+                texture_mode=texture_mode,
+                texture_tracker=texture_tracker,
+                texture_overrides=texture_overrides,
+            )
 
 
 def _add_beauty_scene_proxies(
@@ -3897,6 +4040,22 @@ def _build_osm_base_scene(
                 texture_tracker=texture_tracker,
                 texture_overrides=texture_overrides,
             )
+            # Add lane edge markings for this road reference
+            _add_lane_edge_markings(
+                scene,
+                road_length_m=float(max(_polyline_length_m(coords), 0.0) or road_length_m),
+                road_center_x_m=float(road_center_x_m),
+                road_center_z_m=float(road_center_z_m),
+                road_yaw_deg=float(road_yaw_deg),
+                detailed_strip_profiles=list(getattr(placement_ctx, "detailed_strip_profiles", []) or []),
+                road_coords=coords,
+                edge_color=list(colors.get("lane_edge", (230, 200, 50, 255))),
+                roughness=(roughness or {}).get("lane_edge", 0.30),
+                node_name_prefix=f"lane_edge_{road_index}",
+                texture_mode=texture_mode,
+                texture_tracker=texture_tracker,
+                texture_overrides=texture_overrides,
+            )
     else:
         _add_centerline_markings(
             scene,
@@ -3909,6 +4068,21 @@ def _build_osm_base_scene(
             road_coords=_road_reference_coords(placement_ctx),
             color=colors.get("lane_mark", (245, 245, 245, 255)),
             roughness=(roughness or {}).get("lane_mark", 0.30),
+            texture_mode=texture_mode,
+            texture_tracker=texture_tracker,
+            texture_overrides=texture_overrides,
+        )
+        # Add lane edge markings (fallback path)
+        _add_lane_edge_markings(
+            scene,
+            road_length_m=float(road_length_m),
+            road_center_x_m=float(road_center_x_m),
+            road_center_z_m=float(road_center_z_m),
+            road_yaw_deg=float(road_yaw_deg),
+            detailed_strip_profiles=list(getattr(placement_ctx, "detailed_strip_profiles", []) or []),
+            road_coords=_road_reference_coords(placement_ctx),
+            edge_color=list(colors.get("lane_edge", (230, 200, 50, 255))),
+            roughness=(roughness or {}).get("lane_edge", 0.30),
             texture_mode=texture_mode,
             texture_tracker=texture_tracker,
             texture_overrides=texture_overrides,

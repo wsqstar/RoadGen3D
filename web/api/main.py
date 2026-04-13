@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, UploadFile, File as FastAPIFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
@@ -19,7 +19,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 from roadgen3d.json_safe import make_json_safe  # noqa: E402
-from roadgen3d.llm import GLMConfigurationError, GLMResponseError  # noqa: E402
+from roadgen3d.llm import LLMConfigurationError, LLMResponseError  # noqa: E402
 from roadgen3d.graph_templates import get_graph_template, list_graph_templates  # noqa: E402
 from roadgen3d.metaurban_procedural import get_metaurban_reference_plan, list_metaurban_reference_plans  # noqa: E402
 from roadgen3d.reference_annotation import (  # noqa: E402
@@ -28,6 +28,12 @@ from roadgen3d.reference_annotation import (  # noqa: E402
 )
 from roadgen3d.llm.design_workflow import DesignAssistantService, parse_design_draft  # noqa: E402
 from roadgen3d.services.design_types import sanitize_scene_context  # noqa: E402
+from roadgen3d.knowledge.source_registry import (  # noqa: E402
+    add_source,
+    allocate_upload_paths,
+    list_sources,
+)
+from roadgen3d.knowledge.pdf_rag import PdfKnowledgeBaseBuilder  # noqa: E402
 
 
 class ChatMessageModel(BaseModel):
@@ -166,7 +172,7 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
                 knowledge_source=request.knowledge_source,
                 force=request.force,
             )
-        except (GLMConfigurationError, GLMResponseError) as exc:
+        except (LLMConfigurationError, LLMResponseError) as exc:
             raise HTTPException(status_code=503, detail=str(exc)) from exc
         except RuntimeError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
@@ -236,7 +242,38 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
     @app.get("/api/knowledge/sources")
     def list_knowledge_sources() -> Dict[str, Any]:
         service = app.state.design_service
-        return make_json_safe({"items": service.list_knowledge_sources()})
+        built_ins = service.list_knowledge_sources()
+        customs = [s.to_dict() for s in list_sources()]
+        return make_json_safe({"items": built_ins + customs})
+
+    @app.post("/api/knowledge/upload")
+    def upload_knowledge(
+        label: str = Query(..., min_length=1, max_length=200),
+        file: UploadFile = FastAPIFile(...),
+    ) -> Dict[str, Any]:
+        if not str(file.content_type or "").lower().endswith(("pdf", "octet-stream")):
+            raise HTTPException(status_code=400, detail="Only PDF files are supported.")
+        source_id, pdf_path, artifact_dir = allocate_upload_paths(label)
+        try:
+            pdf_path.write_bytes(file.file.read())
+        except Exception as exc:
+            raise HTTPException(status_code=500, detail=f"Failed to save uploaded file: {exc}") from exc
+        try:
+            builder = PdfKnowledgeBaseBuilder()
+            builder.build(pdf_path, artifact_dir)
+        except Exception as exc:
+            raise HTTPException(status_code=500, detail=f"Failed to build knowledge base: {exc}") from exc
+        from roadgen3d.knowledge.source_registry import KnowledgeSourceRecord
+        record = add_source(
+            KnowledgeSourceRecord(
+                source_id=source_id,
+                label=label,
+                source_type="pdf_rag",
+                pdf_path=str(pdf_path),
+                artifact_dir=str(artifact_dir),
+            )
+        )
+        return make_json_safe({"source_id": record.source_id, "label": record.label, "type": record.source_type})
 
     @app.post("/api/knowledge/search")
     def search_knowledge(request: KnowledgeSearchRequestModel) -> Dict[str, Any]:

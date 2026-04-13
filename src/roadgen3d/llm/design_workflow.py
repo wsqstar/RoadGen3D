@@ -16,7 +16,7 @@ from ..knowledge import (
 )
 from ..knowledge.pdf_rag import KnowledgeSearchHit
 from . import (
-    GLMClient,
+    LLMClient,
     build_parameter_followup_query_messages,
     build_design_draft_messages,
     build_design_intent_messages,
@@ -66,7 +66,7 @@ class DesignAssistantService:
     def __init__(
         self,
         *,
-        llm_client: GLMClient | Any | None = None,
+        llm_client: LLMClient | Any | None = None,
         knowledge_builder: PdfKnowledgeBaseBuilder | None = None,
         knowledge_retriever: PdfKnowledgeBaseRetriever | Any | None = None,
         graph_knowledge_retriever: GraphRagKnowledgeRetriever | Any | None = None,
@@ -352,6 +352,143 @@ class DesignAssistantService:
             "config_patch": dict(eval_payload.get("config_patch", {}) or {}),
         }
 
+    def evaluate_scene_with_history(
+        self,
+        *,
+        layout_path: str,
+        image_path: str | None = None,
+        previous_layout_path: str | None = None,
+        previous_image_path: str | None = None,
+        previous_score: float = 0.0,
+        previous_evaluation: str = "",
+        knowledge_source: str = _DEFAULT_KNOWLEDGE_SOURCE,
+    ) -> Dict[str, Any]:
+        """Evaluate scene with before/after comparison against a previous iteration.
+
+        Returns the same fields as evaluate_scene_unified plus a `comparison` object.
+        """
+        import base64
+        layout = Path(layout_path).expanduser().resolve()
+        if not layout.exists():
+            raise RuntimeError(f"Layout file not found: {layout}")
+        payload = json.loads(layout.read_text(encoding="utf-8"))
+        summary = payload.get("summary", {}) or {}
+        placements = payload.get("placements", []) or []
+        llm = self._get_llm_client()
+        placement_summary = []
+        for p in placements[:30]:
+            placement_summary.append({
+                "instance_id": p.get("instance_id", ""),
+                "category": p.get("category", ""),
+                "asset_id": p.get("asset_id", ""),
+                "position_xyz": p.get("position_xyz"),
+            })
+
+        def _to_data_url(path: str | None) -> str | None:
+            if not path:
+                return None
+            img = Path(path).expanduser().resolve()
+            if not img.exists():
+                return None
+            return f"data:image/png;base64,{base64.b64encode(img.read_bytes()).decode('ascii')}"
+
+        image_data_url = _to_data_url(image_path)
+        previous_image_data_url = _to_data_url(previous_image_path)
+
+        previous_summary: dict = {}
+        if previous_layout_path:
+            prev = Path(previous_layout_path).expanduser().resolve()
+            if prev.exists():
+                previous_summary = json.loads(prev.read_text(encoding="utf-8")).get("summary", {}) or {}
+
+        # Retrieve evidence for evaluation
+        evidence: List[RagEvidence] = []
+        resolved_knowledge = normalize_knowledge_source(knowledge_source)
+        if resolved_knowledge != "none":
+            eval_queries = [
+                "pedestrian friendly street design walkability evaluation criteria",
+                "street safety design guidelines complete streets",
+                "urban street beauty aesthetics landscape design",
+                "sidewalk design pedestrian comfort amenities",
+                "traffic safety street crossing pedestrian protection",
+            ]
+            try:
+                evidence = self._retrieve_evidence(
+                    queries=eval_queries,
+                    topk=6,
+                    knowledge_source=resolved_knowledge,
+                )
+            except RuntimeError:
+                evidence = []
+
+        from .prompts import build_comparative_evaluation_messages
+        messages = build_comparative_evaluation_messages(
+            summary=summary,
+            placement_summary=placement_summary,
+            image_data_url=image_data_url,
+            previous_summary=previous_summary,
+            previous_image_data_url=previous_image_data_url,
+            previous_score=previous_score,
+            previous_evaluation=previous_evaluation,
+            evidence=evidence if evidence else None,
+        )
+        eval_payload = llm.chat_json(messages)
+
+        walkability = int(eval_payload.get("walkability", 0) or 0)
+        safety = int(eval_payload.get("safety", 0) or 0)
+        beauty = int(eval_payload.get("beauty", 0) or 0)
+        overall = round(walkability * 0.45 + safety * 0.35 + beauty * 0.20)
+
+        return {
+            "walkability": max(0, min(100, walkability)),
+            "safety": max(0, min(100, safety)),
+            "beauty": max(0, min(100, beauty)),
+            "overall": max(0, min(100, overall)),
+            "evaluation": str(eval_payload.get("evaluation", "")),
+            "suggestions": list(eval_payload.get("suggestions", []) or []),
+            "comparison": dict(eval_payload.get("comparison", {}) or {}),
+            "indicators": dict(eval_payload.get("indicators", {}) or {}),
+            "config_patch": dict(eval_payload.get("config_patch", {}) or {}),
+        }
+
+    def propose_improvement(
+        self,
+        *,
+        current_evaluation: str,
+        comparison: Mapping[str, Any],
+        current_patch: Mapping[str, Any],
+        weakness_queries: Sequence[str] | None = None,
+        knowledge_source: str = _DEFAULT_KNOWLEDGE_SOURCE,
+    ) -> Dict[str, Any]:
+        """Propose a config_patch grounded in RAG evidence for the weakest dimensions."""
+        llm = self._get_llm_client()
+        evidence: List[RagEvidence] = []
+        resolved_knowledge = normalize_knowledge_source(knowledge_source)
+        if resolved_knowledge != "none" and weakness_queries:
+            try:
+                evidence = self._retrieve_evidence(
+                    queries=weakness_queries,
+                    topk=6,
+                    knowledge_source=resolved_knowledge,
+                )
+            except RuntimeError:
+                evidence = []
+
+        from .prompts import build_improvement_messages
+        messages = build_improvement_messages(
+            current_evaluation=current_evaluation,
+            comparison=dict(comparison),
+            current_patch=dict(current_patch),
+            evidence=evidence,
+        )
+        payload = llm.chat_json(messages)
+        patch = sanitize_compose_config_patch(payload.get("config_patch"))
+        return {
+            "config_patch": patch,
+            "citations": list(payload.get("citations", []) or []),
+            "reasoning": str(payload.get("reasoning", "") or "").strip(),
+        }
+
     def evaluate_scene_unified(
         self,
         *,
@@ -438,6 +575,7 @@ class DesignAssistantService:
             "evaluation": str(eval_payload.get("evaluation", "")),
             "suggestions": list(eval_payload.get("suggestions", []) or []),
             "indicators": dict(eval_payload.get("indicators", {}) or {}),
+            "config_patch": dict(eval_payload.get("config_patch", {}) or {}),
         }
 
     def generate_initial_config_from_graph(
@@ -473,9 +611,9 @@ class DesignAssistantService:
             "design_summary": design_summary,
         }
 
-    def _get_llm_client(self) -> GLMClient | Any:
+    def _get_llm_client(self) -> LLMClient | Any:
         if self.llm_client is None:
-            self.llm_client = GLMClient()
+            self.llm_client = LLMClient()
         return self.llm_client
 
     def _get_pdf_retriever(self) -> PdfKnowledgeBaseRetriever | Any:
@@ -618,6 +756,16 @@ class DesignAssistantService:
                 raise RuntimeError(graph_status.get("error") or "GraphRAG artifacts are not available.")
             return (("graph_rag", self._get_graph_retriever()),)
 
+        # Check for custom uploaded sources
+        from ..knowledge.source_registry import get_source
+        custom_source = get_source(resolved)
+        if custom_source is not None:
+            if custom_source.source_type == "pdf_rag" and custom_source.artifact_dir:
+                from ..knowledge.pdf_rag import PdfKnowledgeBaseRetriever
+                retriever = PdfKnowledgeBaseRetriever(artifact_dir=custom_source.artifact_dir)
+                return ((custom_source.source_id, retriever),)
+            raise RuntimeError(f"Unsupported custom knowledge source type: {custom_source.source_type}")
+
         retrievers: List[Tuple[str, Any]] = []
         pdf_status = self._build_pdf_knowledge_status()
         if pdf_status.get("available"):
@@ -666,7 +814,7 @@ class DesignAssistantService:
     def _generate_design_draft(
         self,
         *,
-        llm: GLMClient | Any,
+        llm: LLMClient | Any,
         chat_messages: Sequence[ChatMessage],
         intent: DesignIntent,
         evidence: Sequence[RagEvidence],
@@ -693,7 +841,7 @@ class DesignAssistantService:
     def _plan_missing_parameter_queries(
         self,
         *,
-        llm: GLMClient | Any,
+        llm: LLMClient | Any,
         intent: DesignIntent,
         evidence: Sequence[RagEvidence],
         current_patch: Mapping[str, Any],
@@ -724,7 +872,7 @@ class DesignAssistantService:
     def _prepare_retrieval_queries(
         self,
         *,
-        llm: GLMClient | Any,
+        llm: LLMClient | Any,
         intent: DesignIntent,
         user_input: str,
     ) -> Tuple[str, ...]:
@@ -740,7 +888,7 @@ class DesignAssistantService:
     def _normalize_retrieval_queries(
         self,
         *,
-        llm: GLMClient | Any,
+        llm: LLMClient | Any,
         queries: Sequence[str],
     ) -> Tuple[str, ...]:
         base_queries = tuple(dict.fromkeys(query for query in queries if str(query or "").strip()))
@@ -990,6 +1138,7 @@ def _normalize_cache_prompt(value: object) -> str:
 
 def normalize_knowledge_source(value: object) -> str:
     normalized = str(value or _DEFAULT_KNOWLEDGE_SOURCE).strip().lower()
-    if normalized not in _ALLOWED_KNOWLEDGE_SOURCES:
-        return _DEFAULT_KNOWLEDGE_SOURCE
-    return normalized
+    if normalized in _ALLOWED_KNOWLEDGE_SOURCES:
+        return normalized
+    # Allow custom source IDs (e.g., uploaded PDFs) to pass through
+    return str(value or _DEFAULT_KNOWLEDGE_SOURCE).strip()

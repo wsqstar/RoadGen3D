@@ -8,7 +8,7 @@ queries and evaluates them meaningfully.
 Test 5 uses a mock service to deterministically verify the early-stop logic.
 
 Set environment variables ``llm_base_url`` and ``key`` (as read by
-``GLMSettings.from_env()``) to run the real-LLM tests.  They will be
+``LLMSettings.from_env()``) to run the real-LLM tests.  They will be
 automatically skipped otherwise.
 """
 
@@ -48,7 +48,7 @@ from roadgen3d.services.design_types import (
 # ---------------------------------------------------------------------------
 
 def _llm_available() -> bool:
-    """Check whether the GLM API env vars are present (loads .env if needed)."""
+    """Check whether the LLM API env vars are present (loads .env if needed)."""
     try:
         from dotenv import load_dotenv  # type: ignore
         load_dotenv()
@@ -172,7 +172,7 @@ def _run_single_version_real_llm(
     """
     import time
     import httpx
-    from roadgen3d.llm.glm_client import GLMResponseError
+    from roadgen3d.llm.llm_client import LLMResponseError
 
     real_service = DesignAssistantService()
 
@@ -227,7 +227,7 @@ def _run_single_version_real_llm(
                 "views": [],
                 "iteration_log_path": str(version_dir / "iteration_log.json"),
             }
-        except (GLMResponseError, httpx.ConnectError, httpx.TimeoutException) as exc:
+        except (LLMResponseError, httpx.ConnectError, httpx.TimeoutException) as exc:
             last_exc = exc
             print(f"[retry] LLM error (attempt {attempt}/{retries}): {exc}")
             if attempt < retries:
@@ -467,6 +467,36 @@ class TestAutoEvalLLMIterationsImproveOrStop:
                     "score": 5.0,
                     "suggestions": [],
                     "config_patch": {},
+                }
+
+            def evaluate_scene_unified(self, *, layout_path, image_path=None, knowledge_source="graph_rag"):
+                return {
+                    "walkability": 50,
+                    "safety": 50,
+                    "beauty": 50,
+                    "overall": 50,
+                    "evaluation": "No change",
+                    "suggestions": [],
+                    "config_patch": {},
+                }
+
+            def evaluate_scene_with_history(self, *, layout_path, image_path=None, previous_layout_path=None, previous_image_path=None, previous_score=0.0, previous_evaluation="", knowledge_source="graph_rag"):
+                return {
+                    "walkability": 50,
+                    "safety": 50,
+                    "beauty": 50,
+                    "overall": 50,
+                    "evaluation": "No change",
+                    "suggestions": [],
+                    "comparison": {"improved_areas": [], "regressed_areas": [], "unchanged_areas": [], "reasoning": ""},
+                    "config_patch": {},
+                }
+
+            def propose_improvement(self, *, current_evaluation, comparison, current_patch, weakness_queries=None, knowledge_source="graph_rag"):
+                return {
+                    "config_patch": {},
+                    "citations": [],
+                    "reasoning": "",
                 }
 
         version_dir = output_dir / "version_stagnating"

@@ -175,15 +175,21 @@ def _build_runtime_compose_config(
 
 def _augment_layout_summary(layout_path: str | Path, extra_summary: Mapping[str, Any]) -> None:
     path = Path(layout_path)
-    if not path.exists() or not extra_summary:
+    if not path.exists():
         return
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except Exception:
         return
     summary = dict(payload.get("summary", {}) or {})
-    summary.update(dict(make_json_safe(extra_summary)))
-    payload["summary"] = summary
+    if extra_summary:
+        summary.update(dict(make_json_safe(extra_summary)))
+    # Inject audio profile
+    try:
+        from ..scene_audio import inject_audio_profile
+        inject_audio_profile(payload)
+    except Exception:
+        pass
     path.write_text(json.dumps(make_json_safe(payload), ensure_ascii=True, indent=2), encoding="utf-8")
 
 

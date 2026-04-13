@@ -42,7 +42,7 @@ VALID_CROSS_SECTION_MODES = frozenset({CROSS_SECTION_MODE_COARSE, CROSS_SECTION_
 VALID_CROSS_SECTION_ZONES = frozenset({"left", "center", "right"})
 VALID_STRIP_DIRECTIONS = frozenset({"forward", "reverse", "bidirectional", "none"})
 LANE_STRIP_KINDS = frozenset({"drive_lane", "bus_lane", "bike_lane", "parking_lane"})
-CENTER_STRIP_KINDS = frozenset({"drive_lane", "bus_lane", "bike_lane", "parking_lane", "median"})
+CENTER_STRIP_KINDS = frozenset({"drive_lane", "bus_lane", "bike_lane", "parking_lane", "median", "grass_belt", "shared_street_surface", "colored_pavement"})
 SIDE_STRIP_KINDS = frozenset(
     {
         "nearroad_buffer",
@@ -50,6 +50,7 @@ SIDE_STRIP_KINDS = frozenset(
         "clear_sidewalk",
         "farfromroad_buffer",
         "frontage_reserve",
+        "colored_pavement",
     }
 )
 VALID_STRIP_KINDS = frozenset(CENTER_STRIP_KINDS | SIDE_STRIP_KINDS)
@@ -118,6 +119,9 @@ METAURBAN_STRIP_DISPLAY_LABELS: Dict[str, str] = {
     "clear_sidewalk": "Main Sidewalk",
     "farfromroad_buffer": "Outer Buffer",
     "frontage_reserve": "Valid Region",
+    "grass_belt": "Central Green Belt",
+    "shared_street_surface": "Shared Street Surface",
+    "colored_pavement": "Colored Pavement",
 }
 METAURBAN_STRIP_ZONE_HINTS: Dict[str, str] = {
     "drive_lane": "carriageway",
@@ -130,6 +134,9 @@ METAURBAN_STRIP_ZONE_HINTS: Dict[str, str] = {
     "clear_sidewalk": "main_sidewalk",
     "farfromroad_buffer": "farfromroad_sidewalk",
     "frontage_reserve": "valid_region",
+    "grass_belt": "median",
+    "shared_street_surface": "mixed_use",
+    "colored_pavement": "decorative_surface",
 }
 METAURBAN_STRIP_ASSET_HINTS: Dict[str, Tuple[str, ...]] = {
     "drive_lane": (),
@@ -142,6 +149,9 @@ METAURBAN_STRIP_ASSET_HINTS: Dict[str, Tuple[str, ...]] = {
     "clear_sidewalk": ("Pedestrian", "Wheelchair", "Mailbox"),
     "farfromroad_buffer": ("Bench",),
     "frontage_reserve": ("Building",),
+    "grass_belt": ("Tree",),
+    "shared_street_surface": (),
+    "colored_pavement": (),
 }
 METAURBAN_STRIP_PLACEMENT_HINTS: Dict[str, str] = {
     "drive_lane": "Roadway travel space.",
@@ -154,6 +164,9 @@ METAURBAN_STRIP_PLACEMENT_HINTS: Dict[str, str] = {
     "clear_sidewalk": "MetaUrban main_sidewalk pedestrian flows and mailbox-scale objects typically sit here.",
     "farfromroad_buffer": "MetaUrban farfromroad_sidewalk furniture or planting can extend here.",
     "frontage_reserve": "MetaUrban valid_region buildings and frontage reserve typically start here.",
+    "grass_belt": "Central grass or planted median strip.",
+    "shared_street_surface": "Shared pedestrian/vehicle street surface.",
+    "colored_pavement": "Decorative colored paving band.",
 }
 METAURBAN_ASSET_DOWNLOAD_COMMAND = "python metaurban/pull_asset.py --update"
 
@@ -349,6 +362,24 @@ class AnnotatedStreetFurnitureInstance:
             "kind": self.kind,
             "station_m": float(self.station_m),
             "lateral_offset_m": float(self.lateral_offset_m),
+            "yaw_deg": float(self.yaw_deg) if self.yaw_deg is not None else None,
+        }
+
+
+@dataclass(frozen=True)
+class AnnotatedZoneFurnitureInstance:
+    instance_id: str
+    kind: str
+    x_px: float
+    y_px: float
+    yaw_deg: float | None = None
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "instance_id": self.instance_id,
+            "kind": self.kind,
+            "x_px": float(self.x_px),
+            "y_px": float(self.y_px),
             "yaw_deg": float(self.yaw_deg) if self.yaw_deg is not None else None,
         }
 
@@ -765,6 +796,7 @@ class AnnotatedFunctionalZone:
     label: str
     kind: str
     points: Tuple[AnnotationPoint, ...]
+    furniture_instances: Tuple[AnnotatedZoneFurnitureInstance, ...] = ()
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -772,6 +804,7 @@ class AnnotatedFunctionalZone:
             "label": self.label,
             "kind": self.kind,
             "points": [point.to_dict() for point in self.points],
+            "furniture_instances": [item.to_dict() for item in self.furniture_instances],
         }
 
 
@@ -969,6 +1002,47 @@ def _parse_street_furniture_instance(
         yaw_deg=_as_optional_float(
             value.get("yaw_deg"),
             f"centerlines[{centerline_index}].street_furniture_instances[{furniture_index}].yaw_deg",
+        ),
+    )
+
+
+def _parse_zone_furniture_instance(
+    value: Any,
+    zone_index: int,
+    furniture_index: int,
+    fallback_prefix: str,
+) -> AnnotatedZoneFurnitureInstance:
+    if not _is_record(value):
+        raise ValueError(
+            f"functional_zones[{zone_index}].furniture_instances[{furniture_index}] must be an object."
+        )
+    kind = _safe_slug(
+        _as_string(value.get("kind"), "bench"),
+        "bench",
+    )
+    if kind not in VALID_FURNITURE_KINDS:
+        raise ValueError(
+            f"functional_zones[{zone_index}].furniture_instances[{furniture_index}].kind must be one of {sorted(VALID_FURNITURE_KINDS)}."
+        )
+    return AnnotatedZoneFurnitureInstance(
+        instance_id=_as_string(
+            value.get("instance_id") or value.get("id"),
+            f"{fallback_prefix}_furniture_{furniture_index + 1:02d}",
+        ),
+        kind=kind,
+        x_px=_as_float(
+            value.get("x_px"),
+            f"functional_zones[{zone_index}].furniture_instances[{furniture_index}].x_px",
+            default=0.0,
+        ),
+        y_px=_as_float(
+            value.get("y_px"),
+            f"functional_zones[{zone_index}].furniture_instances[{furniture_index}].y_px",
+            default=0.0,
+        ),
+        yaw_deg=_as_optional_float(
+            value.get("yaw_deg"),
+            f"functional_zones[{zone_index}].furniture_instances[{furniture_index}].yaw_deg",
         ),
     )
 
@@ -1247,11 +1321,25 @@ def _parse_functional_zone(value: Any, index: int) -> AnnotatedFunctionalZone:
             _parse_point(item, f"functional_zones[{index}].points[{point_idx}]")
             for point_idx, item in enumerate(raw_points)
         )
+    raw_furniture = value.get("furniture_instances") or []
+    if not isinstance(raw_furniture, Sequence) or isinstance(raw_furniture, (str, bytes)):
+        furniture_instances: Tuple[AnnotatedZoneFurnitureInstance, ...] = ()
+    else:
+        furniture_instances = tuple(
+            _parse_zone_furniture_instance(
+                item,
+                zone_index=index,
+                furniture_index=furniture_index,
+                fallback_prefix=feature_id,
+            )
+            for furniture_index, item in enumerate(raw_furniture)
+        )
     return AnnotatedFunctionalZone(
         feature_id=feature_id,
         label=label,
         kind=kind,
         points=points,
+        furniture_instances=furniture_instances,
     )
 
 

@@ -1314,10 +1314,15 @@ def _build_cross_corner_kernel_geometries(
     *,
     target_segment_length_m: float = 0.75,
 ) -> Dict[str, List[Dict[str, Any]]]:
+    from shapely.geometry import Polygon
+
     quadrant_corner_kernels: List[Dict[str, Any]] = []
     sidewalk_corner_polylines: List[Dict[str, Any]] = []
     nearroad_corner_polylines: List[Dict[str, Any]] = []
     frontage_corner_polylines: List[Dict[str, Any]] = []
+    sidewalk_corner_patches: List[Dict[str, Any]] = []
+    nearroad_corner_patches: List[Dict[str, Any]] = []
+    frontage_corner_patches: List[Dict[str, Any]] = []
 
     for arm_index, arm in enumerate(ordered_arms):
         next_arm = ordered_arms[(arm_index + 1) % len(ordered_arms)]
@@ -1339,7 +1344,7 @@ def _build_cross_corner_kernel_geometries(
 
         quadrant_id = f"{junction_id}_quadrant_{arm_index:02d}"
         kernel_id = f"{quadrant_id}_kernel"
-        start_tangent = (-float(arm["tangent"][0]), -float(arm["tangent"][1]))
+        start_tangent = (float(arm["tangent"][0]), float(arm["tangent"][1]))
         end_tangent = (float(next_arm["tangent"][0]), float(next_arm["tangent"][1]))
 
         canonical_start = None
@@ -1394,10 +1399,10 @@ def _build_cross_corner_kernel_geometries(
             }
         )
 
-        for kind, prefix, bucket in (
-            ("nearroad_furnishing", "nearroad", nearroad_corner_polylines),
-            ("clear_sidewalk", "sidewalk", sidewalk_corner_polylines),
-            ("frontage_reserve", "frontage", frontage_corner_polylines),
+        for kind, prefix, bucket, patch_bucket in (
+            ("nearroad_furnishing", "nearroad", nearroad_corner_polylines, nearroad_corner_patches),
+            ("clear_sidewalk", "sidewalk", sidewalk_corner_polylines, sidewalk_corner_patches),
+            ("frontage_reserve", "frontage", frontage_corner_polylines, frontage_corner_patches),
         ):
             offsets_a = _corner_strip_offset_range(arm, corner_center, kind)
             offsets_b = _corner_strip_offset_range(next_arm, corner_center, kind)
@@ -1441,11 +1446,54 @@ def _build_cross_corner_kernel_geometries(
                 }
             )
 
+            inner_start = _point_on_boundary_with_offset(
+                tuple(float(value) for value in arm["split_boundary_center"]),
+                tuple(float(value) for value in arm["normal"]),
+                float(offsets_a[2]),
+            )
+            outer_start = _point_on_boundary_with_offset(
+                tuple(float(value) for value in arm["split_boundary_center"]),
+                tuple(float(value) for value in arm["normal"]),
+                float(offsets_a[3]),
+            )
+            inner_end = _point_on_boundary_with_offset(
+                tuple(float(value) for value in next_arm["split_boundary_center"]),
+                tuple(float(value) for value in next_arm["normal"]),
+                float(offsets_b[2]),
+            )
+            outer_end = _point_on_boundary_with_offset(
+                tuple(float(value) for value in next_arm["split_boundary_center"]),
+                tuple(float(value) for value in next_arm["normal"]),
+                float(offsets_b[3]),
+            )
+            patch = Polygon(
+                [
+                    _round_xy(corner_center),
+                    _round_xy(inner_start),
+                    _round_xy(outer_start),
+                    _round_xy(outer_end),
+                    _round_xy(inner_end),
+                    _round_xy(corner_center),
+                ]
+            )
+            if not patch.is_valid:
+                patch = patch.buffer(0)
+            if not getattr(patch, "is_empty", True):
+                patch_bucket.append(
+                    {
+                        "patch_id": f"{junction_id}_{prefix}_{arm_index:02d}",
+                        "geometry": patch,
+                    }
+                )
+
     return {
         "quadrant_corner_kernels": quadrant_corner_kernels,
         "sidewalk_corner_polylines": sidewalk_corner_polylines,
         "nearroad_corner_polylines": nearroad_corner_polylines,
         "frontage_corner_polylines": frontage_corner_polylines,
+        "sidewalk_corner_patches": sidewalk_corner_patches,
+        "nearroad_corner_patches": nearroad_corner_patches,
+        "frontage_corner_patches": frontage_corner_patches,
     }
 
 
@@ -1694,6 +1742,9 @@ def _build_explicit_graph_junction_geometries(
             sidewalk_corner_polylines = list(cross_corner_data["sidewalk_corner_polylines"])
             nearroad_corner_polylines = list(cross_corner_data["nearroad_corner_polylines"])
             frontage_corner_polylines = list(cross_corner_data["frontage_corner_polylines"])
+            sidewalk_corner_patches = list(cross_corner_data["sidewalk_corner_patches"])
+            nearroad_corner_patches = list(cross_corner_data["nearroad_corner_patches"])
+            frontage_corner_patches = list(cross_corner_data["frontage_corner_patches"])
         else:
             for arm_index, arm in enumerate(ordered_arms):
                 next_arm = ordered_arms[(arm_index + 1) % len(ordered_arms)]
@@ -1783,6 +1834,9 @@ def _build_explicit_graph_junction_geometries(
             junction_geometry["sidewalk_corner_polylines"] = sidewalk_corner_polylines
             junction_geometry["nearroad_corner_polylines"] = nearroad_corner_polylines
             junction_geometry["frontage_corner_polylines"] = frontage_corner_polylines
+            junction_geometry["sidewalk_corner_patches"] = sidewalk_corner_patches
+            junction_geometry["nearroad_corner_patches"] = nearroad_corner_patches
+            junction_geometry["frontage_corner_patches"] = frontage_corner_patches
         else:
             junction_geometry["sidewalk_corner_patches"] = sidewalk_corner_patches
             junction_geometry["nearroad_corner_patches"] = nearroad_corner_patches
@@ -2063,6 +2117,9 @@ def build_junction_geometries(
             sidewalk_corner_polylines = list(cross_corner_data["sidewalk_corner_polylines"])
             nearroad_corner_polylines = list(cross_corner_data["nearroad_corner_polylines"])
             frontage_corner_polylines = list(cross_corner_data["frontage_corner_polylines"])
+            sidewalk_corner_patches = list(cross_corner_data["sidewalk_corner_patches"])
+            nearroad_corner_patches = list(cross_corner_data["nearroad_corner_patches"])
+            frontage_corner_patches = list(cross_corner_data["frontage_corner_patches"])
         else:
             for arm_index, arm in enumerate(ordered_arms):
                 next_arm = ordered_arms[(arm_index + 1) % len(ordered_arms)]
@@ -2148,6 +2205,9 @@ def build_junction_geometries(
             junction_geometry["sidewalk_corner_polylines"] = sidewalk_corner_polylines
             junction_geometry["nearroad_corner_polylines"] = nearroad_corner_polylines
             junction_geometry["frontage_corner_polylines"] = frontage_corner_polylines
+            junction_geometry["sidewalk_corner_patches"] = sidewalk_corner_patches
+            junction_geometry["nearroad_corner_patches"] = nearroad_corner_patches
+            junction_geometry["frontage_corner_patches"] = frontage_corner_patches
         else:
             junction_geometry["sidewalk_corner_patches"] = sidewalk_corner_patches
             junction_geometry["nearroad_corner_patches"] = nearroad_corner_patches

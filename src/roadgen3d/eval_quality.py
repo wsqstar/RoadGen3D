@@ -10,6 +10,13 @@ from typing import Any, Dict, Iterable, Mapping, MutableMapping, Sequence
 
 from .eval_metrics import compute_balance_score, compute_spacing_uniformity
 
+try:
+    from .llm.safety_eval import evaluate_safety
+    from .llm.beauty_eval import evaluate_beauty
+except Exception:
+    evaluate_safety = None  # type: ignore[misc,assignment]
+    evaluate_beauty = None  # type: ignore[misc,assignment]
+
 AMENITY_CATEGORIES = {"bench", "lamp", "trash", "bus_stop", "mailbox", "hydrant"}
 TREE_CANOPY_SIZE_M = (3.6, 3.6)
 ANCHOR_POI_WEIGHTS = {
@@ -79,6 +86,7 @@ class WalkabilityResult:
     pillar_scores: Dict[str, float] = field(default_factory=dict)
     walkability_index: float = 0.0
     metadata: Dict[str, Any] = field(default_factory=dict)
+    top_contributors: List[Dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -86,6 +94,7 @@ class WalkabilityResult:
             "pillar_scores": self.pillar_scores,
             "walkability_index": float(self.walkability_index),
             "metadata": self.metadata,
+            "top_contributors": self.top_contributors,
         }
 
 
@@ -240,18 +249,97 @@ def compute_walkability_indicators(layout_payload: Mapping[str, Any]) -> Walkabi
         "Comfort": round(comfort, 4),
         "Delight": round(delight, 4),
     }
+    pillar_weights = {"Protection": 0.4, "Comfort": 0.35, "Delight": 0.25}
+    top_contributors = _compute_top_contributors(indicators, pillar_weights)
+
     metadata = {
         "length_m": round(length_m, 3),
         "sidewalk_width_m": round(sidewalk_width, 3),
         "left_clear_path_width_m": round(left_clear, 3),
         "right_clear_path_width_m": round(right_clear, 3),
     }
-    return WalkabilityResult(indicators=indicators, pillar_scores=pillar_scores, walkability_index=walkability_index, metadata=metadata)
+    return WalkabilityResult(
+        indicators=indicators,
+        pillar_scores=pillar_scores,
+        walkability_index=walkability_index,
+        metadata=metadata,
+        top_contributors=top_contributors,
+    )
 
 
 def write_walkability_report(result: WalkabilityResult, out_path: Path) -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(result.to_dict(), indent=2, ensure_ascii=True), encoding="utf-8")
+
+
+def _compute_top_contributors(indicators: Mapping[str, float], pillar_weights: Mapping[str, float]) -> List[Dict[str, Any]]:
+    """Return the top-3 indicators whose +0.1 improvement would most increase the walkability index."""
+    protection_keys = {"LIGHT_UNI", "BUFFER_RATIO", "CROSS_PROV"}
+    comfort_keys = {"SID_CLR", "CLEAR_CONT", "TREE_SHADE", "MICRO_ENV"}
+    delight_keys = {"FURN_D", "TRANSIT_PROX", "ENTR_DENS", "POI_MIX"}
+
+    pillar_map = {}
+    for k in protection_keys:
+        pillar_map[k] = "Protection"
+    for k in comfort_keys:
+        pillar_map[k] = "Comfort"
+    for k in delight_keys:
+        pillar_map[k] = "Delight"
+
+    impacts = []
+    for key, value in indicators.items():
+        pillar = pillar_map.get(key)
+        if pillar is None:
+            continue
+        # Current pillar mean
+        keys_in_pillar = [k for k, p in pillar_map.items() if p == pillar]
+        current_mean = _mean([indicators.get(k, 0.0) for k in keys_in_pillar])
+        # Pillar mean if this indicator increased by 0.1 (clamped)
+        new_value = min(value + 0.1, 1.0)
+        new_mean = _mean([new_value if k == key else indicators.get(k, 0.0) for k in keys_in_pillar])
+        delta_pillar = new_mean - current_mean
+        delta_index = pillar_weights.get(pillar, 0.0) * delta_pillar
+        impacts.append({"indicator": key, "delta_index": round(delta_index, 6)})
+
+    impacts.sort(key=lambda x: x["delta_index"], reverse=True)
+    return impacts[:3]
+
+
+def _compute_safety_diagnosis(features: Mapping[str, float], llm_scores: Mapping[str, Any] | None) -> Dict[str, Any]:
+    """Identify the weakest safety dimension."""
+    items = []
+    for key in ("CROSS_PROV", "LIGHT_UNI", "BUFFER_RATIO", "BOLLARD_DENSITY", "VISIBILITY_PENALTY"):
+        val = float(features.get(key, 0.0))
+        # For visibility penalty, lower is better
+        score = 1.0 - val if key == "VISIBILITY_PENALTY" else val
+        items.append({"feature": key, "score": round(score, 4)})
+    if llm_scores:
+        for key in ("lighting", "visibility", "protection", "activation"):
+            val = float(llm_scores.get(key, 0.0))
+            items.append({"feature": f"llm_{key}", "score": round(val, 4)})
+    if not items:
+        return {"weakest": None, "score": 0.0}
+    weakest = min(items, key=lambda x: x["score"])
+    return {"weakest": weakest["feature"], "score": weakest["score"], "all_scores": items}
+
+
+def _compute_beauty_diagnosis(features: Mapping[str, float], llm_scores: Mapping[str, Any] | None) -> Dict[str, Any]:
+    """Identify the weakest beauty dimension."""
+    items = []
+    for key in ("presentation_score", "active_front_ratio", "anchor_poi_score", "style_coherence", "spacing_rhythm"):
+        val = float(features.get(key, 0.0))
+        items.append({"feature": key, "score": round(val, 4)})
+    # visual_clutter is inverted (lower is better)
+    clutter = float(features.get("visual_clutter", 0.0))
+    items.append({"feature": "visual_clutter", "score": round(1.0 - clutter, 4)})
+    if llm_scores:
+        for key in ("coherence", "human_scale", "material_contrast", "visual_interest"):
+            val = float(llm_scores.get(key, 0.0))
+            items.append({"feature": f"llm_{key}", "score": round(val, 4)})
+    if not items:
+        return {"weakest": None, "score": 0.0}
+    weakest = min(items, key=lambda x: x["score"])
+    return {"weakest": weakest["feature"], "score": weakest["score"], "all_scores": items}
 
 
 def _feature_value(source: Mapping[str, float], key: str, default: float = 0.0) -> float:
@@ -261,6 +349,7 @@ def _feature_value(source: Mapping[str, float], key: str, default: float = 0.0) 
 def compute_structured_safety_report(
     layout_payload: Mapping[str, Any],
     walkability: WalkabilityResult | None = None,
+    llm_scores: Mapping[str, Any] | None = None,
 ) -> Dict[str, Any]:
     summary = dict(layout_payload.get("summary", {}) or {})
     placements = _placements(layout_payload)
@@ -287,12 +376,33 @@ def compute_structured_safety_report(
         + max(0.0, 0.1 - features["VISIBILITY_PENALTY"])
     )
     structural = round(_clamp(structural, 0.0, 1.0), 4)
+
+    final_score = structural
+    needs_review = False
+    if llm_scores:
+        llm_mean = _mean([llm_scores.get(k, 0.0) for k in ("lighting", "visibility", "protection", "activation")])
+        final_score = round(
+            _clamp(0.6 * llm_mean + 0.15 * features["CROSS_PROV"] + 0.15 * features["LIGHT_UNI"] + 0.10 * features["BUFFER_RATIO"]),
+            4,
+        )
+        # Flag if LLM sub-scores are highly inconsistent
+        llm_values = [float(llm_scores.get(k, 0.0)) for k in ("lighting", "visibility", "protection", "activation")]
+        if len(llm_values) > 1:
+            mean_val = _mean(llm_values)
+            variance = _mean([(v - mean_val) ** 2 for v in llm_values])
+            stddev = math.sqrt(max(variance, 0.0))
+            if stddev > 0.20:  # threshold on 0-1 scale; 0.20 ~= 1.0 on 0-5 scale
+                needs_review = True
+
+    diagnosis = _compute_safety_diagnosis(features, llm_scores)
     report = {
         "features": features,
         "structural_score": structural,
-        "llm_scores": None,
-        "final_score": structural,
+        "llm_scores": dict(llm_scores) if llm_scores else None,
+        "final_score": final_score,
         "llm_required": True,
+        "needs_review": needs_review,
+        "diagnosis": diagnosis,
     }
     return report
 
@@ -325,7 +435,10 @@ def _anchor_poi_score(summary: Mapping[str, Any], length_m: float) -> float:
     return _clamp(density / 0.12)
 
 
-def compute_structured_beauty_report(layout_payload: Mapping[str, Any]) -> Dict[str, Any]:
+def compute_structured_beauty_report(
+    layout_payload: Mapping[str, Any],
+    llm_scores: Mapping[str, Any] | None = None,
+) -> Dict[str, Any]:
     summary = dict(layout_payload.get("summary", {}) or {})
     presentation = summary.get("composition_report", {}) or {}
     style_coherence = float(presentation.get("style_coherence", summary.get("style_coherence", 0.0)) or 0.0)
@@ -342,20 +455,47 @@ def compute_structured_beauty_report(layout_payload: Mapping[str, Any]) -> Dict[
         _clamp(0.4 * presentation_score + 0.1 * active_front_ratio + 0.1 * anchor_poi + 0.1 * (1.0 - visual_clutter)),
         4,
     )
+
+    features = {
+        "style_coherence": _clamp(style_coherence),
+        "visual_clutter": _clamp(visual_clutter),
+        "spacing_rhythm": _clamp(spacing_rhythm),
+        "focal_readability": _clamp(focal_readability),
+        "presentation_score": _clamp(presentation_score),
+        "active_front_ratio": active_front_ratio,
+        "anchor_poi_score": anchor_poi,
+    }
+
+    final_score = structural
+    needs_review = False
+    if llm_scores:
+        llm_mean = _mean([llm_scores.get(k, 0.0) for k in ("coherence", "human_scale", "material_contrast", "visual_interest")])
+        final_score = round(
+            _clamp(
+                0.4 * llm_mean
+                + 0.4 * presentation_score
+                + 0.1 * active_front_ratio
+                + 0.1 * anchor_poi
+            ),
+            4,
+        )
+        llm_values = [float(llm_scores.get(k, 0.0)) for k in ("coherence", "human_scale", "material_contrast", "visual_interest")]
+        if len(llm_values) > 1:
+            mean_val = _mean(llm_values)
+            variance = _mean([(v - mean_val) ** 2 for v in llm_values])
+            stddev = math.sqrt(max(variance, 0.0))
+            if stddev > 0.20:
+                needs_review = True
+
+    diagnosis = _compute_beauty_diagnosis(features, llm_scores)
     report = {
-        "features": {
-            "style_coherence": _clamp(style_coherence),
-            "visual_clutter": _clamp(visual_clutter),
-            "spacing_rhythm": _clamp(spacing_rhythm),
-            "focal_readability": _clamp(focal_readability),
-            "presentation_score": _clamp(presentation_score),
-            "active_front_ratio": active_front_ratio,
-            "anchor_poi_score": anchor_poi,
-        },
+        "features": features,
         "structural_score": structural,
-        "llm_scores": None,
-        "final_score": structural,
+        "llm_scores": dict(llm_scores) if llm_scores else None,
+        "final_score": final_score,
         "llm_required": True,
+        "needs_review": needs_review,
+        "diagnosis": diagnosis,
     }
     return report
 

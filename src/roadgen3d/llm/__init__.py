@@ -1,6 +1,6 @@
 """LLM clients and prompting helpers for the design assistant."""
 
-from .glm_client import GLMClient, GLMConfigurationError, GLMResponseError
+from .llm_client import LLMClient, LLMConfigurationError, LLMResponseError
 from .prompts import (
     build_parameter_followup_query_messages,
     build_design_draft_messages,
@@ -15,9 +15,9 @@ from .prompts import (
 # from .design_workflow import DesignAssistantService
 
 __all__ = [
-    "GLMClient",
-    "GLMConfigurationError",
-    "GLMResponseError",
+    "LLMClient",
+    "LLMConfigurationError",
+    "LLMResponseError",
     "build_parameter_followup_query_messages",
     "build_design_draft_messages",
     "build_design_intent_messages",

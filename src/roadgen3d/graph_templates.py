@@ -57,6 +57,15 @@ _GRAPH_TEMPLATE_DEFINITIONS: Dict[str, Dict[str, object]] = {
         "annotation_path": (ROOT / "assets" / "graph_templates" / "hkust_gz_detailed" / "annotation.json").resolve(),
         "image_path": (ROOT / "assets" / "hkust-gz" / "image.png").resolve(),
     },
+    "hkust_gz_gate_all": {
+        "label": "HKUST-GZ Gate (All)",
+        "description": (
+            "Full HKUST(GZ) gate graph payload including annotation, graph, road profiles, "
+            "and cross-section profiles. Imported from external graph_all JSON."
+        ),
+        "annotation_path": (ROOT / "assets" / "graph_templates" / "hkust_gz_gate_all" / "annotation.json").resolve(),
+        "image_path": (ROOT / "assets" / "hkust-gz" / "image.png").resolve(),
+    },
 }
 
 

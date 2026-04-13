@@ -159,12 +159,25 @@ def build_reference_annotation_scene_bridge(
         road_segment_graph=road_segment_graph,
     )
     placement_context.building_regions = _annotation_building_region_records(annotation)
+    center_x = float(annotation.image_width_px) * 0.5
+    center_y = float(annotation.image_height_px) * 0.5
+    ppm = max(float(annotation.pixels_per_meter), 1e-6)
     placement_context.functional_zones = [
         {
             "id": zone.feature_id,
             "label": zone.label,
             "kind": zone.kind,
             "points": functional_zone_to_local_coords(zone, annotation),
+            "furniture_instances": [
+                {
+                    "instance_id": inst.instance_id,
+                    "kind": inst.kind,
+                    "x": (inst.x_px - center_x) / ppm,
+                    "y": (center_y - inst.y_px) / ppm,
+                    "yaw_deg": inst.yaw_deg,
+                }
+                for inst in zone.furniture_instances
+            ],
         }
         for zone in annotation.functional_zones
     ]

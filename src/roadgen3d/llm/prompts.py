@@ -274,6 +274,10 @@ def build_unified_evaluation_messages(
         "\n"
         "可选字段：\n"
         "indicators (object): 详细指标，仅当有足够信息时提供\n"
+        "config_patch (object): 具体的配置修改建议，仅当有明显改进空间时提供\n"
+        "config_patch 可包含以下字段：design_rule_profile, objective_profile, density, "
+        "ped_demand_level, bike_demand_level, transit_demand_level, vehicle_demand_level, "
+        "sidewalk_width_m, lane_count, road_width_m\n"
     )
     user_payload = {
         "summary": summary,
@@ -432,6 +436,138 @@ def build_layout_evaluation_messages(
     return [
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": user_content},  # type: ignore[list-item]
+    ]
+
+
+def build_comparative_evaluation_messages(
+    *,
+    summary: dict,
+    placement_summary: list[dict],
+    image_data_url: str | None = None,
+    previous_summary: dict | None = None,
+    previous_image_data_url: str | None = None,
+    previous_score: float = 0.0,
+    previous_evaluation: str = "",
+    evidence: Sequence[RagEvidence] | None = None,
+) -> list[Dict[str, str]]:
+    """Build evaluation prompt that compares current scene with previous iteration."""
+    evidence_section = ""
+    if evidence:
+        evidence_list = [
+            {
+                "chunk_id": item.chunk_id,
+                "section_title": item.section_title,
+                "page_start": item.page_start,
+                "page_end": item.page_end,
+                "text": item.text,
+            }
+            for item in evidence
+        ]
+        evidence_section = (
+            "\n\n## 参考知识（来自 Complete Streets 设计指南）\n"
+            "在评估时，请结合以下参考知识进行评判：\n"
+            f"{json.dumps(evidence_list, ensure_ascii=False, indent=2)}\n"
+        )
+
+    system_prompt = (
+        "你是 RoadGen3D 的场景评价专家。"
+        "你需要对比当前迭代与上一次迭代的街道场景，输出一个 JSON 对象。"
+        "你只能输出 JSON，不能输出其他内容。" + evidence_section + "\n"
+        "评估维度（必须全部输出）：\n"
+        "1. walkability (步行性，0-100): 人行道宽度、净空连续性、家具密度、照明均匀、绿化遮荫\n"
+        "2. safety (安全性，0-100): 交通隔离、过街设施、缓冲带、安全感知\n"
+        "3. beauty (美观性，0-100): 植物配置协调性、街道家具风格统一、空间丰富度\n"
+        "4. overall (综合分，0-100): 基于步行性45%、安全性35%、美观性20%的加权总分\n"
+        "\n"
+        "必须返回的字段：\n"
+        "walkability (int, 0-100)\n"
+        "safety (int, 0-100)\n"
+        "beauty (int, 0-100)\n"
+        "overall (int, 0-100): 必须是 walkability*0.45 + safety*0.35 + beauty*0.20\n"
+        "evaluation (string): 中文评价，简要说明该方案的优缺点\n"
+        "suggestions (string[]): 1-3条具体改进建议\n"
+        "comparison (object): 必须包含以下子字段\n"
+        "  - improved_areas (string[]): 相比上一次迭代明显改善的维度\n"
+        "  - regressed_areas (string[]): 相比上一次迭代明显退步的维度\n"
+        "  - unchanged_areas (string[]): 基本保持不变的维度\n"
+        "  - reasoning (string): 对比分析的简要理由\n"
+        "\n"
+        "可选字段：\n"
+        "indicators (object): 详细指标\n"
+        "config_patch (object): 配置修改建议，字段限定为：design_rule_profile, objective_profile, density, "
+        "ped_demand_level, bike_demand_level, transit_demand_level, vehicle_demand_level, "
+        "sidewalk_width_m, lane_count, road_width_m\n"
+    )
+
+    user_content: list[dict] = []
+    user_payload: dict = {
+        "summary": summary,
+        "placements_preview": placement_summary[:30],
+        "previous_iteration": {
+            "summary": previous_summary or {},
+            "score": previous_score,
+            "evaluation": previous_evaluation,
+        },
+        "instruction": "请评价当前街道场景，并与上一次迭代进行对比，指出改进、退步和不变的地方。",
+    }
+    user_content.append({"type": "text", "text": json.dumps(user_payload, ensure_ascii=False)})
+    if image_data_url:
+        user_content.append({"type": "image_url", "image_url": {"url": image_data_url, "detail": "low"}})
+    if previous_image_data_url:
+        user_content.append({"type": "image_url", "image_url": {"url": previous_image_data_url, "detail": "low"}})
+
+    return [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": user_content},  # type: ignore[list-item]
+    ]
+
+
+def build_improvement_messages(
+    *,
+    current_evaluation: str,
+    comparison: dict,
+    current_patch: dict,
+    evidence: Sequence[RagEvidence],
+) -> list[Dict[str, str]]:
+    """Build prompt for LLM to propose config_patch grounded in RAG evidence."""
+    serialized_evidence = [
+        {
+            "chunk_id": item.chunk_id,
+            "section_title": item.section_title,
+            "page_start": item.page_start,
+            "page_end": item.page_end,
+            "text": item.text,
+            "parameter_hints": item.parameter_hints,
+        }
+        for item in evidence
+    ]
+
+    system_prompt = (
+        "你是 RoadGen3D 的街道设计改进专家。"
+        "请基于当前评价、前后对比结果以及下面的设计指南片段，输出一个 JSON 对象。"
+        "你只能输出 JSON，不能输出其他内容。\n"
+        "必须返回的字段：\n"
+        "config_patch (object): 具体的配置修改建议\n"
+        "citations (string[]): 你引用到的 chunk_id 列表\n"
+        "reasoning (string): 改进理由，必须明确说明引用了哪条设计原则\n"
+        "\n"
+        "config_patch 可包含以下字段：design_rule_profile, objective_profile, density, "
+        "ped_demand_level, bike_demand_level, transit_demand_level, vehicle_demand_level, "
+        "sidewalk_width_m, lane_count, road_width_m, style_preset, beauty_mode, query\n"
+        "如果没有明显改进空间，可以返回空的 config_patch。"
+    )
+
+    user_payload = {
+        "current_evaluation": current_evaluation,
+        "comparison": comparison,
+        "current_patch": current_patch,
+        "evidence": serialized_evidence,
+        "instruction": "基于评价、对比和设计指南片段，提出具体的配置修改建议，并在 reasoning 中引用设计原则。",
+    }
+
+    return [
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": json.dumps(user_payload, ensure_ascii=False)},
     ]
 
 

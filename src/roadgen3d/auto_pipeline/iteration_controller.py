@@ -17,6 +17,8 @@ from ..eval_quality import (
     write_walkability_report,
     write_json_report,
 )
+from ..llm.safety_eval import evaluate_safety
+from ..llm.beauty_eval import evaluate_beauty
 from ..llm.design_workflow import DesignAssistantService
 from ..services.design_runtime import generate_scene_from_graph_context
 from ..services.design_types import (
@@ -44,6 +46,9 @@ class IterationSnapshot:
     safety_report: Dict[str, Any] | None = None
     beauty_report: Dict[str, Any] | None = None
     evaluation_score: float = 0.0  # Combined evaluation score
+    comparison: Dict[str, Any] = field(default_factory=dict)
+    cited_evidence: List[str] = field(default_factory=list)
+    improvement_reasoning: str = ""
 
 
 @dataclass
@@ -75,11 +80,13 @@ class AutoIterationController:
         device: str = "cpu",
         query: str = "modern clean urban street",
         design_service: DesignAssistantService | None = None,
+        enable_llm_eval: bool = False,
     ) -> None:
         self.graph_ctx = graph_ctx
         self.base_map_path = Path(base_map_path) if base_map_path else None
         self.max_iterations = max(1, int(max_iterations))
         self.query = query
+        self.enable_llm_eval = bool(enable_llm_eval)
 
         root = Path(__file__).resolve().parents[3]
         self.output_dir = Path(output_dir).expanduser().resolve()
@@ -151,24 +158,55 @@ class AutoIterationController:
                 print(f"[auto_pipeline] Warning: preview rendering failed: {exc}")
                 preview_path = ""
 
-            # Step – LLM evaluation
+            # Step – LLM evaluation (with before/after comparison from iteration 1 onward)
             print(f"[auto_pipeline] Iteration {i}: evaluating scene ...")
-            eval_result = self.design_service.evaluate_scene(
-                layout_path=layout_path,
-                image_path=preview_path or None,
-            )
+            if i > 0 and snapshots:
+                prev = snapshots[i - 1]
+                eval_result = self.design_service.evaluate_scene_with_history(
+                    layout_path=layout_path,
+                    image_path=preview_path or None,
+                    previous_layout_path=prev.layout_path,
+                    previous_image_path=prev.preview_path or None,
+                    previous_score=prev.score,
+                    previous_evaluation=prev.evaluation,
+                )
+            else:
+                eval_result = self.design_service.evaluate_scene_unified(
+                    layout_path=layout_path,
+                    image_path=preview_path or None,
+                )
 
-            score = float(eval_result.get("score", 0))
+            score = float(eval_result.get("overall", eval_result.get("score", 0)) or 0) / 10.0
             evaluation_text = str(eval_result.get("evaluation", ""))
             suggestions = list(eval_result.get("suggestions", []) or [])
+            comparison = dict(eval_result.get("comparison", {}))
 
             # Step – Compute structured evaluation metrics (walkability, safety, beauty)
             print(f"[auto_pipeline] Iteration {i}: computing evaluation metrics ...")
             layout_payload = json.loads(Path(layout_path).read_text(encoding="utf-8"))
             
             walkability = compute_walkability_indicators(layout_payload)
-            safety_report = compute_structured_safety_report(layout_payload, walkability)
-            beauty_report = compute_structured_beauty_report(layout_payload)
+
+            # Compute structural safety/beauty first to extract features for LLM eval
+            _safety_structural = compute_structured_safety_report(layout_payload, walkability)
+            _beauty_structural = compute_structured_beauty_report(layout_payload)
+
+            # Optional LLM-based safety/beauty scoring
+            llm_safety_scores = None
+            llm_beauty_scores = None
+            if self.enable_llm_eval:
+                print(f"[auto_pipeline] Iteration {i}: running LLM safety/beauty eval ...")
+                llm_safety_scores = evaluate_safety(
+                    features=_safety_structural.get("features", {}),
+                    image_path=preview_path or None,
+                )
+                llm_beauty_scores = evaluate_beauty(
+                    features=_beauty_structural.get("features", {}),
+                    image_path=preview_path or None,
+                )
+
+            safety_report = compute_structured_safety_report(layout_payload, walkability, llm_scores=llm_safety_scores)
+            beauty_report = compute_structured_beauty_report(layout_payload, llm_scores=llm_beauty_scores)
 
             # Compute combined evaluation score (0-10)
             # EvaluationScore = 0.45 * WalkabilityIndex + 0.35 * SafetyScore + 0.20 * BeautyScore
@@ -210,6 +248,7 @@ class AutoIterationController:
                 safety_report=safety_report,
                 beauty_report=beauty_report,
                 evaluation_score=evaluation_score,
+                comparison=comparison,
             )
             snapshots.append(snapshot)
 
@@ -219,6 +258,11 @@ class AutoIterationController:
                 f"Evaluation={evaluation_score:.2f} "
                 f"(Walk={walkability_index:.2f}, Safety={safety_score:.2f}, Beauty={beauty_score:.2f})"
             )
+
+            # Detect regression from comparison
+            regressed_areas = list(comparison.get("regressed_areas", []) or [])
+            if regressed_areas:
+                print(f"[auto_pipeline] Warning: regression detected in {regressed_areas}")
 
             # Track best by evaluation_score (combined metric)
             if evaluation_score > best_score:
@@ -233,10 +277,46 @@ class AutoIterationController:
                 print("[auto_pipeline] Early stopping: no score improvement for 2 consecutive rounds.")
                 break
 
-            # Apply LLM-suggested config_patch for next iteration
-            suggested_patch = sanitize_compose_config_patch(eval_result.get("config_patch"))
+            # Build weakness-aware RAG queries for improvement
+            weakness_queries: List[str] = []
+            if regressed_areas:
+                for area in regressed_areas:
+                    weakness_queries.append(f"{area} street design guidelines complete streets")
+            if walkability_index < 0.5:
+                weakness_queries.append("pedestrian friendly street design walkability")
+            if safety_score < 0.5:
+                weakness_queries.append("street safety design guidelines")
+            if beauty_score < 0.5:
+                weakness_queries.append("urban street beauty aesthetics landscape design")
+
+            # Generate reference-grounded improvement patch
+            improvement_result = self.design_service.propose_improvement(
+                current_evaluation=evaluation_text,
+                comparison=comparison,
+                current_patch=current_patch,
+                weakness_queries=weakness_queries or None,
+            )
+            suggested_patch = sanitize_compose_config_patch(improvement_result.get("config_patch"))
             if suggested_patch:
                 current_patch.update(suggested_patch)
+            snapshot.cited_evidence = list(improvement_result.get("citations", []) or [])
+            snapshot.improvement_reasoning = str(improvement_result.get("reasoning", "") or "").strip()
+
+            # Log improvement details
+            improvement_path = iter_dir / "improvement.json"
+            improvement_path.write_text(
+                json.dumps(
+                    {
+                        "config_patch": dict(suggested_patch) if suggested_patch else {},
+                        "citations": snapshot.cited_evidence,
+                        "reasoning": snapshot.improvement_reasoning,
+                        "weakness_queries": weakness_queries,
+                    },
+                    ensure_ascii=False,
+                    indent=2,
+                ),
+                encoding="utf-8",
+            )
 
         # Copy best result to final/
         best_snap = snapshots[best_iteration]
