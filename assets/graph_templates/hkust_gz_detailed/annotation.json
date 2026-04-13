@@ -1,0 +1,1276 @@
+{
+  "version": "roadgen3d_reference_annotation_v2",
+  "plan_id": "hkust_gz_gate",
+  "image_path": "/api/reference-plans/hkust_gz_gate/image",
+  "image_width_px": 1024,
+  "image_height_px": 170,
+  "pixels_per_meter": 1.5,
+  "centerlines": [
+    {
+      "id": "centerline_04",
+      "label": "centerline_04",
+      "points": [
+        {
+          "x": 59.63421042102877,
+          "y": 96.80631426735219
+        },
+        {
+          "x": 291.8923706361792,
+          "y": 97.55542048387584
+        }
+      ],
+      "road_width_m": 25.500000000000004,
+      "reference_width_px": null,
+      "forward_drive_lane_count": 2,
+      "reverse_drive_lane_count": 2,
+      "bike_lane_count": 0,
+      "bus_lane_count": 0,
+      "parking_lane_count": 0,
+      "highway_type": "annotated_centerline",
+      "cross_section_mode": "detailed",
+      "cross_section_strips": [
+        {
+          "strip_id": "left_01",
+          "zone": "left",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "left_02",
+          "zone": "left",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "left_03",
+          "zone": "left",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_01",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 0
+        },
+        {
+          "strip_id": "center_02",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 1
+        },
+        {
+          "strip_id": "center_03",
+          "zone": "center",
+          "kind": "median",
+          "width_m": 0.3,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_04",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 3
+        },
+        {
+          "strip_id": "center_05",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 4
+        },
+        {
+          "strip_id": "right_01",
+          "zone": "right",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "right_02",
+          "zone": "right",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "right_03",
+          "zone": "right",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        }
+      ],
+      "street_furniture_instances": [],
+      "start_junction_id": "",
+      "end_junction_id": "junction_01"
+    },
+    {
+      "id": "centerline_07",
+      "label": "centerline_07",
+      "points": [
+        {
+          "x": 291.8923706361792,
+          "y": 97.55542048387584
+        },
+        {
+          "x": 514.1713107081886,
+          "y": 98.27234055099419
+        }
+      ],
+      "road_width_m": 25.500000000000004,
+      "reference_width_px": null,
+      "forward_drive_lane_count": 2,
+      "reverse_drive_lane_count": 2,
+      "bike_lane_count": 0,
+      "bus_lane_count": 0,
+      "parking_lane_count": 0,
+      "highway_type": "annotated_centerline",
+      "cross_section_mode": "detailed",
+      "cross_section_strips": [
+        {
+          "strip_id": "left_01",
+          "zone": "left",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "left_02",
+          "zone": "left",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "left_03",
+          "zone": "left",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_01",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 0
+        },
+        {
+          "strip_id": "center_02",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 1
+        },
+        {
+          "strip_id": "center_03",
+          "zone": "center",
+          "kind": "median",
+          "width_m": 0.3,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_04",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 3
+        },
+        {
+          "strip_id": "center_05",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 4
+        },
+        {
+          "strip_id": "right_01",
+          "zone": "right",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "right_02",
+          "zone": "right",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "right_03",
+          "zone": "right",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        }
+      ],
+      "street_furniture_instances": [],
+      "start_junction_id": "junction_01",
+      "end_junction_id": "junction_02"
+    },
+    {
+      "id": "centerline_10",
+      "label": "centerline_10",
+      "points": [
+        {
+          "x": 514.1713107081886,
+          "y": 98.27234055099419
+        },
+        {
+          "x": 746.1506546343144,
+          "y": 99.02054749657216
+        }
+      ],
+      "road_width_m": 25.500000000000004,
+      "reference_width_px": null,
+      "forward_drive_lane_count": 2,
+      "reverse_drive_lane_count": 2,
+      "bike_lane_count": 0,
+      "bus_lane_count": 0,
+      "parking_lane_count": 0,
+      "highway_type": "annotated_centerline",
+      "cross_section_mode": "detailed",
+      "cross_section_strips": [
+        {
+          "strip_id": "left_01",
+          "zone": "left",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "left_02",
+          "zone": "left",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "left_03",
+          "zone": "left",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_01",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 0
+        },
+        {
+          "strip_id": "center_02",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 1
+        },
+        {
+          "strip_id": "center_03",
+          "zone": "center",
+          "kind": "median",
+          "width_m": 0.3,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_04",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 3
+        },
+        {
+          "strip_id": "center_05",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 4
+        },
+        {
+          "strip_id": "right_01",
+          "zone": "right",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "right_02",
+          "zone": "right",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "right_03",
+          "zone": "right",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        }
+      ],
+      "street_furniture_instances": [],
+      "start_junction_id": "junction_02",
+      "end_junction_id": "junction_03"
+    },
+    {
+      "id": "centerline_11",
+      "label": "centerline_11",
+      "points": [
+        {
+          "x": 746.1506546343144,
+          "y": 99.02054749657216
+        },
+        {
+          "x": 1009.1657042262913,
+          "y": 99.8688544344473
+        }
+      ],
+      "road_width_m": 25.500000000000004,
+      "reference_width_px": null,
+      "forward_drive_lane_count": 2,
+      "reverse_drive_lane_count": 2,
+      "bike_lane_count": 0,
+      "bus_lane_count": 0,
+      "parking_lane_count": 0,
+      "highway_type": "annotated_centerline",
+      "cross_section_mode": "detailed",
+      "cross_section_strips": [
+        {
+          "strip_id": "left_01",
+          "zone": "left",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "left_02",
+          "zone": "left",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "left_03",
+          "zone": "left",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_01",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 0
+        },
+        {
+          "strip_id": "center_02",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 1
+        },
+        {
+          "strip_id": "center_03",
+          "zone": "center",
+          "kind": "median",
+          "width_m": 0.3,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_04",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 3
+        },
+        {
+          "strip_id": "center_05",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 4
+        },
+        {
+          "strip_id": "right_01",
+          "zone": "right",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "right_02",
+          "zone": "right",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "right_03",
+          "zone": "right",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        }
+      ],
+      "street_furniture_instances": [],
+      "start_junction_id": "junction_03",
+      "end_junction_id": ""
+    },
+    {
+      "id": "centerline_02",
+      "label": "centerline_02",
+      "points": [
+        {
+          "x": 291.8923706361792,
+          "y": 97.55542048387584
+        },
+        {
+          "x": 291.69877610354996,
+          "y": 157.57883102883045
+        }
+      ],
+      "road_width_m": 25.500000000000004,
+      "reference_width_px": null,
+      "forward_drive_lane_count": 2,
+      "reverse_drive_lane_count": 2,
+      "bike_lane_count": 0,
+      "bus_lane_count": 0,
+      "parking_lane_count": 0,
+      "highway_type": "annotated_centerline",
+      "cross_section_mode": "detailed",
+      "cross_section_strips": [
+        {
+          "strip_id": "left_01",
+          "zone": "left",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "left_02",
+          "zone": "left",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "left_03",
+          "zone": "left",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_01",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 0
+        },
+        {
+          "strip_id": "center_02",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 1
+        },
+        {
+          "strip_id": "center_03",
+          "zone": "center",
+          "kind": "median",
+          "width_m": 0.3,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_04",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 3
+        },
+        {
+          "strip_id": "center_05",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 4
+        },
+        {
+          "strip_id": "right_01",
+          "zone": "right",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "right_02",
+          "zone": "right",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "right_03",
+          "zone": "right",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        }
+      ],
+      "street_furniture_instances": [],
+      "start_junction_id": "junction_01",
+      "end_junction_id": ""
+    },
+    {
+      "id": "centerline_03",
+      "label": "centerline_03",
+      "points": [
+        {
+          "x": 291.8923706361792,
+          "y": 97.55542048387584
+        },
+        {
+          "x": 292.0859651688084,
+          "y": 37.53200993892121
+        }
+      ],
+      "road_width_m": 25.500000000000004,
+      "reference_width_px": null,
+      "forward_drive_lane_count": 2,
+      "reverse_drive_lane_count": 2,
+      "bike_lane_count": 0,
+      "bus_lane_count": 0,
+      "parking_lane_count": 0,
+      "highway_type": "annotated_centerline",
+      "cross_section_mode": "detailed",
+      "cross_section_strips": [
+        {
+          "strip_id": "left_01",
+          "zone": "left",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "left_02",
+          "zone": "left",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "left_03",
+          "zone": "left",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_01",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 0
+        },
+        {
+          "strip_id": "center_02",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 1
+        },
+        {
+          "strip_id": "center_03",
+          "zone": "center",
+          "kind": "median",
+          "width_m": 0.3,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_04",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 3
+        },
+        {
+          "strip_id": "center_05",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 4
+        },
+        {
+          "strip_id": "right_01",
+          "zone": "right",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "right_02",
+          "zone": "right",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "right_03",
+          "zone": "right",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        }
+      ],
+      "street_furniture_instances": [],
+      "start_junction_id": "junction_01",
+      "end_junction_id": ""
+    },
+    {
+      "id": "centerline_01",
+      "label": "centerline_01",
+      "points": [
+        {
+          "x": 514.1713107081886,
+          "y": 98.27234055099419
+        },
+        {
+          "x": 513.9936577134009,
+          "y": 153.35312457861562
+        }
+      ],
+      "road_width_m": 25.500000000000004,
+      "reference_width_px": null,
+      "forward_drive_lane_count": 2,
+      "reverse_drive_lane_count": 2,
+      "bike_lane_count": 0,
+      "bus_lane_count": 0,
+      "parking_lane_count": 0,
+      "highway_type": "annotated_centerline",
+      "cross_section_mode": "detailed",
+      "cross_section_strips": [
+        {
+          "strip_id": "left_01",
+          "zone": "left",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "left_02",
+          "zone": "left",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "left_03",
+          "zone": "left",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_01",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 0
+        },
+        {
+          "strip_id": "center_02",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 1
+        },
+        {
+          "strip_id": "center_03",
+          "zone": "center",
+          "kind": "median",
+          "width_m": 0.3,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_04",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 3
+        },
+        {
+          "strip_id": "center_05",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 4
+        },
+        {
+          "strip_id": "right_01",
+          "zone": "right",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "right_02",
+          "zone": "right",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "right_03",
+          "zone": "right",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        }
+      ],
+      "street_furniture_instances": [],
+      "start_junction_id": "junction_02",
+      "end_junction_id": ""
+    },
+    {
+      "id": "centerline_06",
+      "label": "centerline_06",
+      "points": [
+        {
+          "x": 514.1713107081886,
+          "y": 98.27234055099419
+        },
+        {
+          "x": 514.3489637029762,
+          "y": 43.19155652337274
+        }
+      ],
+      "road_width_m": 25.500000000000004,
+      "reference_width_px": null,
+      "forward_drive_lane_count": 2,
+      "reverse_drive_lane_count": 2,
+      "bike_lane_count": 0,
+      "bus_lane_count": 0,
+      "parking_lane_count": 0,
+      "highway_type": "annotated_centerline",
+      "cross_section_mode": "detailed",
+      "cross_section_strips": [
+        {
+          "strip_id": "left_01",
+          "zone": "left",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "left_02",
+          "zone": "left",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "left_03",
+          "zone": "left",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_01",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 0
+        },
+        {
+          "strip_id": "center_02",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 1
+        },
+        {
+          "strip_id": "center_03",
+          "zone": "center",
+          "kind": "median",
+          "width_m": 0.3,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_04",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 3
+        },
+        {
+          "strip_id": "center_05",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 4
+        },
+        {
+          "strip_id": "right_01",
+          "zone": "right",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "right_02",
+          "zone": "right",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "right_03",
+          "zone": "right",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        }
+      ],
+      "street_furniture_instances": [],
+      "start_junction_id": "junction_02",
+      "end_junction_id": ""
+    },
+    {
+      "id": "centerline_05",
+      "label": "centerline_05",
+      "points": [
+        {
+          "x": 746.1506546343144,
+          "y": 99.02054749657216
+        },
+        {
+          "x": 745.963679472792,
+          "y": 156.9916416661619
+        }
+      ],
+      "road_width_m": 25.500000000000004,
+      "reference_width_px": null,
+      "forward_drive_lane_count": 2,
+      "reverse_drive_lane_count": 2,
+      "bike_lane_count": 0,
+      "bus_lane_count": 0,
+      "parking_lane_count": 0,
+      "highway_type": "annotated_centerline",
+      "cross_section_mode": "detailed",
+      "cross_section_strips": [
+        {
+          "strip_id": "left_01",
+          "zone": "left",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "left_02",
+          "zone": "left",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "left_03",
+          "zone": "left",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_01",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 0
+        },
+        {
+          "strip_id": "center_02",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 1
+        },
+        {
+          "strip_id": "center_03",
+          "zone": "center",
+          "kind": "median",
+          "width_m": 0.3,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_04",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 3
+        },
+        {
+          "strip_id": "center_05",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 4
+        },
+        {
+          "strip_id": "right_01",
+          "zone": "right",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "right_02",
+          "zone": "right",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "right_03",
+          "zone": "right",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        }
+      ],
+      "street_furniture_instances": [],
+      "start_junction_id": "junction_03",
+      "end_junction_id": ""
+    },
+    {
+      "id": "centerline_09",
+      "label": "centerline_09",
+      "points": [
+        {
+          "x": 746.1506546343144,
+          "y": 99.02054749657216
+        },
+        {
+          "x": 746.3376297958367,
+          "y": 41.04945332698242
+        }
+      ],
+      "road_width_m": 25.500000000000004,
+      "reference_width_px": null,
+      "forward_drive_lane_count": 2,
+      "reverse_drive_lane_count": 2,
+      "bike_lane_count": 0,
+      "bus_lane_count": 0,
+      "parking_lane_count": 0,
+      "highway_type": "annotated_centerline",
+      "cross_section_mode": "detailed",
+      "cross_section_strips": [
+        {
+          "strip_id": "left_01",
+          "zone": "left",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "left_02",
+          "zone": "left",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "left_03",
+          "zone": "left",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_01",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 0
+        },
+        {
+          "strip_id": "center_02",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "reverse",
+          "order_index": 1
+        },
+        {
+          "strip_id": "center_03",
+          "zone": "center",
+          "kind": "median",
+          "width_m": 0.3,
+          "direction": "none",
+          "order_index": 2
+        },
+        {
+          "strip_id": "center_04",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 3
+        },
+        {
+          "strip_id": "center_05",
+          "zone": "center",
+          "kind": "drive_lane",
+          "width_m": 3.3,
+          "direction": "forward",
+          "order_index": 4
+        },
+        {
+          "strip_id": "right_01",
+          "zone": "right",
+          "kind": "nearroad_furnishing",
+          "width_m": 1.5,
+          "direction": "none",
+          "order_index": 0
+        },
+        {
+          "strip_id": "right_02",
+          "zone": "right",
+          "kind": "clear_sidewalk",
+          "width_m": 2.5,
+          "direction": "none",
+          "order_index": 1
+        },
+        {
+          "strip_id": "right_03",
+          "zone": "right",
+          "kind": "frontage_reserve",
+          "width_m": 2,
+          "direction": "none",
+          "order_index": 2
+        }
+      ],
+      "street_furniture_instances": [],
+      "start_junction_id": "junction_03",
+      "end_junction_id": ""
+    }
+  ],
+  "junctions": [
+    {
+      "id": "junction_01",
+      "label": "junction_01",
+      "x": 291.8923706361792,
+      "y": 97.55542048387584,
+      "kind": "cross_junction",
+      "connected_centerline_ids": [
+        "centerline_04",
+        "centerline_07",
+        "centerline_02",
+        "centerline_03"
+      ],
+      "crosswalk_depth_m": 3,
+      "source_mode": "explicit"
+    },
+    {
+      "id": "junction_02",
+      "label": "junction_02",
+      "x": 514.1713107081886,
+      "y": 98.27234055099419,
+      "kind": "cross_junction",
+      "connected_centerline_ids": [
+        "centerline_07",
+        "centerline_10",
+        "centerline_01",
+        "centerline_06"
+      ],
+      "crosswalk_depth_m": 3,
+      "source_mode": "explicit"
+    },
+    {
+      "id": "junction_03",
+      "label": "junction_03",
+      "x": 746.1506546343144,
+      "y": 99.02054749657216,
+      "kind": "cross_junction",
+      "connected_centerline_ids": [
+        "centerline_10",
+        "centerline_11",
+        "centerline_05",
+        "centerline_09"
+      ],
+      "crosswalk_depth_m": 3,
+      "source_mode": "explicit"
+    }
+  ],
+  "roundabouts": [],
+  "control_points": [],
+  "building_regions": [
+    {
+      "id": "building_region_01",
+      "label": "building_region_01",
+      "center_px": {
+        "x": 629.7897110063537,
+        "y": 36.62814923415255
+      },
+      "width_px": 183.03750768600116,
+      "height_px": 56.84594313052201,
+      "yaw_deg": 0
+    },
+    {
+      "id": "building_region_02",
+      "label": "building_region_02",
+      "center_px": {
+        "x": 878.7981143676983,
+        "y": 35.60824105868282
+      },
+      "width_px": 211.64664890346376,
+      "height_px": 59.64003240865774,
+      "yaw_deg": 0
+    },
+    {
+      "id": "building_region_03",
+      "label": "building_region_03",
+      "center_px": {
+        "x": 873.1854888296782,
+        "y": 147.26195069254214
+      },
+      "width_px": 209.019881123181,
+      "height_px": 41.18658127242564,
+      "yaw_deg": 0
+    },
+    {
+      "id": "building_region_04",
+      "label": "building_region_04",
+      "center_px": {
+        "x": 632.7362164377946,
+        "y": 148.1785562714611
+      },
+      "width_px": 182.99487599918018,
+      "height_px": 36.26413056059263,
+      "yaw_deg": 0
+    },
+    {
+      "id": "building_region_05",
+      "label": "building_region_05",
+      "center_px": {
+        "x": 402.98913711826197,
+        "y": 142.56250241135848
+      },
+      "width_px": 181.75199836031976,
+      "height_px": 49.14252093059147,
+      "yaw_deg": 0
+    }
+  ]
+}

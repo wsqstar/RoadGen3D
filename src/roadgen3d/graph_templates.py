@@ -48,6 +48,15 @@ _GRAPH_TEMPLATE_DEFINITIONS: Dict[str, Dict[str, object]] = {
         "annotation_path": (ROOT / "assets" / "graph_templates" / "hkust_gz_gate" / "annotation.json").resolve(),
         "image_path": (ROOT / "assets" / "hkust-gz" / "image.png").resolve(),
     },
+    "hkust_gz_detailed": {
+        "label": "HKUST-GZ Detailed",
+        "description": (
+            "Detailed HKUST(GZ) street graph with 5 building regions, 10 road centerlines, "
+            "and 3 cross junctions. Extended coverage with building footprint annotations."
+        ),
+        "annotation_path": (ROOT / "assets" / "graph_templates" / "hkust_gz_detailed" / "annotation.json").resolve(),
+        "image_path": (ROOT / "assets" / "hkust-gz" / "image.png").resolve(),
+    },
 }
 
 
