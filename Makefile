@@ -229,8 +229,12 @@ test-pipeline:
 		echo "Viewer 链接: $$VIEWER_URL"; \
 		echo ""; \
 	fi; \
-	echo "服务仍在运行，可继续查看 Viewer。按 Enter 键关闭 API 服务并退出..."; \
-	read _ || true; \
+	echo "服务仍在运行，可继续查看 Viewer。"; \
+	echo "按 Ctrl+C 关闭 API 服务并退出，或按 Enter 立即退出..."; \
+	sleep infinity & \
+	WAIT_PID=$$!; \
+	trap 'kill $$WAIT_PID 2>/dev/null; kill 0 2>/dev/null; exit' INT TERM; \
+	wait $$WAIT_PID 2>/dev/null; \
 	echo "正在关闭服务..."; \
 	kill 0 2>/dev/null || true; \
 	wait 2>/dev/null || true; \
@@ -290,8 +294,12 @@ test-batch:
 	echo "报告目录: $(TEST_REPORTS_DIR)"; \
 	echo "=========================================="; \
 	echo ""; \
-	echo "服务仍在运行，可继续查看 Viewer。按 Enter 键关闭 API 服务并退出..."; \
-	read _ || true; \
+	echo "服务仍在运行，可继续查看 Viewer。"; \
+	echo "按 Ctrl+C 关闭 API 服务并退出，或按 Enter 立即退出..."; \
+	sleep infinity & \
+	WAIT_PID=$$!; \
+	trap 'kill $$WAIT_PID 2>/dev/null; kill 0 2>/dev/null; exit' INT TERM; \
+	wait $$WAIT_PID 2>/dev/null; \
 	echo "正在关闭服务..."; \
 	kill 0 2>/dev/null || true; \
 	wait 2>/dev/null || true; \
