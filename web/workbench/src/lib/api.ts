@@ -58,12 +58,32 @@ async function handleJsonResponse<T>(response: Response): Promise<T> {
   return (await response.json()) as T;
 }
 
+export interface DesignIntent {
+  user_goals: string[];
+  style_preferences: string[];
+  safety_priorities: string[];
+  follow_up_questions: string[];
+  rag_queries: string[];
+}
+
 export interface DraftResponse {
-  normalized_scene_query: string;
-  compose_config_patch: Record<string, string | number>;
-  citations_by_field: Record<string, string[]>;
-  design_summary: string;
-  risk_notes: string[];
+  stage?: string;
+  intent?: DesignIntent;
+  draft?: {
+    normalized_scene_query: string;
+    compose_config_patch: Record<string, string | number>;
+    citations_by_field: Record<string, string[]>;
+    design_summary: string;
+    risk_notes: string[];
+  } | null;
+  warnings?: string[];
+  evidence?: unknown[];
+  // Direct draft fields (backward compatibility)
+  normalized_scene_query?: string;
+  compose_config_patch?: Record<string, string | number>;
+  citations_by_field?: Record<string, string[]>;
+  design_summary?: string;
+  risk_notes?: string[];
 }
 
 export interface EvaluationResponse {

@@ -24,17 +24,38 @@ export function FreeTextInput({ onDraftCreated, onCancel, onStatusChange }: Free
 
     try {
       const { draftDesign } = await import("../lib/api");
-      const draft = await draftDesign(inputText.trim());
+      const response = await draftDesign(inputText.trim());
 
-      if (draft) {
+      if (!response) {
+        setError("无法连接到后端服务，请确保服务已启动");
+        onStatusChange("连接失败");
+        return;
+      }
+
+      // Handle clarification required case - draft is nested inside response.draft
+      if (response.stage === "clarification_required") {
+        const questions = response.intent?.follow_up_questions || [];
+        if (questions.length > 0) {
+          setError(`需要更多信息：${questions.join(" ")}`);
+        } else {
+          setError("您的描述过于简略，请提供更多细节（例如：街道宽度、需要的设施等）");
+        }
+        onStatusChange("需要更多描述信息");
+        return;
+      }
+
+      // Extract the actual draft - either from nested draft or direct fields
+      const actualDraft = response.draft || response;
+      if (actualDraft.compose_config_patch && Object.keys(actualDraft.compose_config_patch).length > 0) {
         onStatusChange("设计草案已生成，正在准备场景参数...");
-        onDraftCreated(draft);
+        onDraftCreated(actualDraft);
       } else {
-        setError("生成设计草案失败，请重试");
+        setError("生成设计草案失败，请确保后端服务已启动且 LLM API 已配置");
         onStatusChange("生成失败");
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "未知错误");
+      const errorMessage = err instanceof Error ? err.message : "未知错误";
+      setError(`网络错误: ${errorMessage}`);
       onStatusChange("生成失败");
     } finally {
       setIsLoading(false);

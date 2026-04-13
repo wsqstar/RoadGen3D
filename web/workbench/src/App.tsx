@@ -155,10 +155,10 @@ function App() {
                     </div>
                     <div className="draft-content">
                       <h4>设计摘要</h4>
-                      <p>{customDraft.design_summary}</p>
+                      <p>{customDraft.design_summary || "无"}</p>
                       <h4>关键参数</h4>
                       <div className="draft-params">
-                        {Object.entries(customDraft.compose_config_patch).map(([key, value]) => (
+                        {Object.entries(customDraft.compose_config_patch || {}).map(([key, value]) => (
                           <span key={key} className="param-tag">
                             {key}: {String(value)}
                           </span>
