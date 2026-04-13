@@ -15,6 +15,7 @@ from __future__ import annotations
 import argparse
 import concurrent.futures
 import json
+import random
 import sys
 import threading
 import time
@@ -168,8 +169,9 @@ class WorkbenchClient:
             transport=transport
         )
 
-    def create_scene_job(self, preset: dict) -> dict:
+    def create_scene_job(self, preset: dict, patch_overrides: dict = None) -> dict:
         """Create a scene generation job."""
+        patch_overrides = patch_overrides or {}
         payload = {
             "draft": {
                 "normalized_scene_query": preset["prompt"],
@@ -186,7 +188,7 @@ class WorkbenchClient:
                 "reference_plan_id": None,
                 "graph_template_id": self.graph_template_id,
             },
-            "patch_overrides": {},
+            "patch_overrides": patch_overrides,
             "generation_options": {"preset_id": preset["id"]},
         }
         response = self.client.post(f"{self.base_url}/api/scene/jobs", json=payload)
@@ -260,9 +262,12 @@ def run_single_test(
     result.start_time = time.time()
 
     try:
+        # Generate random scene seed for variation
+        scene_seed = int(time.time() * 1000000 + id(preset)) % 1000000 + random.randint(1, 9999)
+
         # Create job
-        print_status(f"  [Job] 创建任务: {preset['name']} ({preset['id']})")
-        job_response = client.create_scene_job(preset)
+        print_status(f"  [Job] 创建任务: {preset['name']} ({preset['id']}) seed={scene_seed}")
+        job_response = client.create_scene_job(preset, patch_overrides={"seed": scene_seed})
         result.job_id = job_response.get("job_id", "")
 
         # Poll for completion

@@ -78,7 +78,7 @@ def build_compose_config_from_draft(
         sidewalk_width_m=float(patch.get("sidewalk_width_m", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["sidewalk_width_m"])),
         lane_count=int(patch.get("lane_count", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["lane_count"])),
         density=float(patch.get("density", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["density"])),
-        seed=42,
+        seed=int(patch.get("seed", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES.get("seed", 42))),
         topk_per_category=20,
         max_trials_per_slot=30,
         design_rule_profile=str(patch.get("design_rule_profile", DEFAULT_COMPOSE_CONFIG_PATCH_VALUES["design_rule_profile"])),

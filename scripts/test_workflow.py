@@ -583,8 +583,14 @@ def run_test(
         print(f"  Prompt: {preset['prompt'][:50]}...")
         print()
 
+        # Generate random scene seed for variation
+        import time
+        scene_seed = int(time.time() * 1000) % 100000 + random.randint(1, 999)
+        print(f"  场景种子: {scene_seed}")
+        print()
+
         print("  创建任务中...", end="", flush=True)
-        job_response = client.create_scene_job(preset)
+        job_response = client.create_scene_job(preset, patch_overrides={"seed": scene_seed})
         result.job_id = job_response.get("job_id", "")
         print(f"\r  ✓ 任务已创建")
         print(f"  任务 ID: {result.job_id}")
@@ -945,6 +951,24 @@ def run_test_v2_with_overrides(
             result.evaluation = client.evaluate_scene(result.scene_layout_path)
             result.evaluation_v2 = result.evaluation
             print(f"  ✓ v2 评估完成")
+
+            # 打印 v2 场景详细信息
+            print(f"\n  v2 场景信息:")
+            print(f"  ─" * 20)
+            print(f"  v2 任务 ID: {result.job_id}")
+            print(f"  v2 布局路径: {result.scene_layout_path}")
+            print(f"  v2 GLB 路径: {result.scene_glb_path}")
+            print(f"  v2 Viewer URL: {result.viewer_url or 'N/A'}")
+
+            # 打印 v2 评估结果
+            if result.evaluation_v2:
+                print(f"\n  v2 评估结果:")
+                print(f"  ─" * 20)
+                for key, label in [("walkability", "步行性"), ("safety", "安全性"), ("beauty", "美观性"), ("overall", "综合评分")]:
+                    score = result.evaluation_v2.get(key, 0)
+                    bar = get_progress_bar(score / 100.0, 15)
+                    print(f"    {label:8s}: [{bar}] {score:.1f}")
+
         except Exception as e:
             print(f"\n  ✗ v2 评估失败: {e}")
             result.evaluation = None
