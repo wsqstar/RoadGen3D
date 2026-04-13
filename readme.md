@@ -1,5 +1,27 @@
 # RoadGen3D
 
+## 快速测试命令
+
+```bash
+# 默认：随机选择模板，禁用 LLM
+make test-pipeline
+
+# 指定模板
+make test-pipeline GRAPH_TEMPLATE=hkust_gz_gate_all
+
+# 启用 LLM 动态生成（GraphRAG + LLM）
+make test-pipeline USE_LLM=1
+
+# 指定模板 + 启用 LLM
+make test-pipeline GRAPH_TEMPLATE=hkust_gz_gate_all USE_LLM=1
+
+# 批量测试：并行生成 6 个模板
+make test-batch
+
+# 启动完整开发环境
+make dev
+```
+
 > **本项目使用 [uv](https://github.com/astral-sh/uv) 管理 Python 依赖和运行环境。**
 >
 > 所有 Python 命令通过 `uv run python` 或 `uv run pytest` 执行，无需手动创建虚拟环境或安装依赖。
@@ -332,7 +354,16 @@ uv run python scripts/auto_scene_pipeline.py \
   --device cpu \
   --query "modern clean urban street" \
   --manifest data/real/real_assets_manifest.jsonl
+```
 
+> **Graph Template 特征速查**
+> | Template | 中央绿化 | 说明 |
+> |----------|----------|------|
+> | `hkust_gz_gate` | 无 | 标准校门四车道，无中央分隔带 |
+> | `hkust_gz_detailed` | median（中分带） | 详细剖面，带中央绿化隔离带 |
+> | `hkust_gz_gate_all` | grass_belt + median | 最完整剖面，兼具中央绿化带与中分带 |
+
+```bash
 # Using Viewer-exported graph JSON
 uv run python scripts/auto_scene_pipeline.py \
   --graph-json path/to/exported_graph.json \
