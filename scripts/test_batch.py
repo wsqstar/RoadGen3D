@@ -131,6 +131,13 @@ SCENE_PRESETS = [
     },
 ]
 
+# 可用的 Graph Templates
+GRAPH_TEMPLATES = [
+    {"id": "hkust_gz_gate", "label": "HKUST-GZ Gate Graph"},
+    {"id": "hkust_gz_detailed", "label": "HKUST-GZ Detailed (5建筑区+10道路)"},
+    {"id": "hkust_gz_gate_all", "label": "HKUST-GZ Gate (All)"},
+]
+
 DEFAULT_GRAPH_TEMPLATE_ID = "hkust_gz_gate"
 DEFAULT_RANDOM_SEED = 42
 
@@ -160,33 +167,56 @@ class WorkbenchClient:
     def close(self):
         self.client.close()
 
-    def __init__(self, base_url: str, timeout: float = 900.0, graph_template_id: str = DEFAULT_GRAPH_TEMPLATE_ID):
+    def __init__(self, base_url: str, timeout: float = 900.0, graph_template_id: str = DEFAULT_GRAPH_TEMPLATE_ID, use_llm: bool = False):
         self.base_url = base_url.rstrip("/")
         self.graph_template_id = graph_template_id
+        self.use_llm = use_llm
         transport = httpx.HTTPTransport(retries=2)
         self.client = httpx.Client(
             timeout=httpx.Timeout(timeout, connect=30.0),
             transport=transport
         )
 
-    def create_scene_job(self, preset: dict, patch_overrides: dict = None) -> dict:
+    def generate_draft(self, user_input: str, preset_id: str, knowledge_source: str = "graph_rag") -> dict:
+        """Generate design draft using LLM with RAG."""
+        payload = {
+            "messages": [],
+            "user_input": user_input,
+            "current_patch": {},
+            "topk": 6,
+            "knowledge_source": knowledge_source,
+            "force": True,  # Skip clarification, force generation
+        }
+        response = self.client.post(f"{self.base_url}/api/design/draft", json=payload)
+        response.raise_for_status()
+        return response.json()
+
+    def create_scene_job(self, preset: dict, patch_overrides: dict = None, graph_template_id: str = None, draft: dict = None) -> dict:
         """Create a scene generation job."""
         patch_overrides = patch_overrides or {}
+
+        # Use LLM-generated draft if available
+        if draft:
+            scene_draft = draft.get("draft", draft)
+            compose_config_patch = scene_draft.get("compose_config_patch", preset["config_patch"])
+        else:
+            compose_config_patch = preset["config_patch"]
+
         payload = {
             "draft": {
                 "normalized_scene_query": preset["prompt"],
-                "compose_config_patch": preset["config_patch"],
-                "citations_by_field": {},
-                "design_summary": preset["prompt"],
+                "compose_config_patch": compose_config_patch,
+                "citations_by_field": draft.get("draft", {}).get("citations_by_field", {}) if draft else {},
+                "design_summary": draft.get("draft", {}).get("design_summary", preset["prompt"]) if draft else preset["prompt"],
                 "risk_notes": [],
-                "parameter_sources_by_field": {},
+                "parameter_sources_by_field": draft.get("draft", {}).get("parameter_sources_by_field", {}) if draft else {},
             },
             "scene_context": {
                 "layout_mode": "graph_template",
                 "aoi_bbox": None,
                 "city_name_en": None,
                 "reference_plan_id": None,
-                "graph_template_id": self.graph_template_id,
+                "graph_template_id": graph_template_id or self.graph_template_id,
             },
             "patch_overrides": patch_overrides,
             "generation_options": {"preset_id": preset["id"]},
@@ -248,6 +278,8 @@ def run_single_test(
     timeout: float = 600.0,
     lock: threading.Lock = None,
     progress_callback: callable = None,
+    graph_template_id: str = None,
+    use_llm: bool = False,
 ) -> BatchResult:
     """Run a single preset test and update result object."""
 
@@ -264,10 +296,31 @@ def run_single_test(
     try:
         # Generate random scene seed for variation
         scene_seed = int(time.time() * 1000000 + id(preset)) % 1000000 + random.randint(1, 9999)
+        template_id = graph_template_id or client.graph_template_id
+
+        # Generate LLM draft if enabled
+        draft = None
+        if use_llm:
+            print_status(f"  [LLM] 生成设计中: {preset['name']} ({preset['id']})")
+            try:
+                draft = client.generate_draft(
+                    user_input=preset["prompt"],
+                    preset_id=preset["id"],
+                    knowledge_source="graph_rag"
+                )
+                print_status(f"  [LLM] 设计已生成")
+            except Exception as e:
+                print_status(f"  [LLM] 生成失败，回退到预设配置: {e}")
+                draft = None
 
         # Create job
-        print_status(f"  [Job] 创建任务: {preset['name']} ({preset['id']}) seed={scene_seed}")
-        job_response = client.create_scene_job(preset, patch_overrides={"seed": scene_seed})
+        print_status(f"  [Job] 创建任务: {preset['name']} ({preset['id']}) template={template_id} seed={scene_seed}")
+        job_response = client.create_scene_job(
+            preset,
+            patch_overrides={"seed": scene_seed},
+            graph_template_id=template_id,
+            draft=draft
+        )
         result.job_id = job_response.get("job_id", "")
 
         # Poll for completion
@@ -322,11 +375,21 @@ def run_batch(
     presets: list[dict],
     max_workers: int = 6,
     timeout: float = 600.0,
+    random_template: bool = False,
+    use_llm: bool = False,
 ) -> list[BatchResult]:
     """Run multiple preset tests in parallel."""
 
     # Initialize results
     results = [BatchResult(preset_id=p["id"], preset_name=p["name"]) for p in presets]
+
+    # Determine template assignments
+    if random_template:
+        # Each preset gets a random template
+        template_assignments = [random.choice(GRAPH_TEMPLATES)["id"] for _ in presets]
+        print(f"  模板分配: {dict(zip([p['id'] for p in presets], template_assignments))}")
+    else:
+        template_assignments = [client.graph_template_id] * len(presets)
 
     # Lock for synchronized printing
     lock = threading.Lock()
@@ -342,12 +405,16 @@ def run_batch(
             print(f"\r  [{completed}/{total}] {bar} {progress*100:5.1f}% | {preset_id}: {status}  ", end="", flush=True)
 
     print(f"启动 {len(presets)} 个并行任务 (max_workers={max_workers})")
+    if random_template:
+        print("  模式: 随机模板 + LLM生成" if use_llm else "  模式: 随机模板")
+    elif use_llm:
+        print("  模式: LLM动态生成")
     print()
 
     # Use ThreadPoolExecutor for parallel execution
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = {}
-        for preset, result in zip(presets, results):
+        for preset, result, template_id in zip(presets, results, template_assignments):
             future = executor.submit(
                 run_single_test,
                 client,
@@ -357,6 +424,8 @@ def run_batch(
                 timeout=timeout,
                 lock=lock,
                 progress_callback=progress_callback,
+                graph_template_id=template_id,
+                use_llm=use_llm,
             )
             futures[future] = preset
 
@@ -488,10 +557,29 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
+  # 默认: 随机选择 3 个 preset
   uv run python scripts/test_batch.py
+
+  # 指定 preset
   uv run python scripts/test_batch.py --presets pedestrian_friendly commercial_vitality
+
+  # 运行所有 6 个 preset
   uv run python scripts/test_batch.py --all
-  uv run python scripts/test_batch.py --all --workers 3
+
+  # 随机为每个 preset 分配不同的 graph template
+  uv run python scripts/test_batch.py --all --random-template
+
+  # 启用 LLM 动态生成配置
+  uv run python scripts/test_batch.py --all --use-llm
+
+  # 组合: 随机 template + LLM 生成
+  uv run python scripts/test_batch.py --all --random-template --use-llm
+
+  # 指定 graph template
+  uv run python scripts/test_batch.py --all --graph-template hkust_gz_detailed
+
+  # 列出所有可用的 templates
+  uv run python scripts/test_batch.py --list-templates
         """,
     )
     parser.add_argument(
@@ -531,11 +619,34 @@ Examples:
     )
     parser.add_argument(
         "--graph-template",
-        default=DEFAULT_GRAPH_TEMPLATE_ID,
-        help=f"指定使用的 graph template ID (默认: {DEFAULT_GRAPH_TEMPLATE_ID})",
+        default=None,  # None means random
+        choices=[t["id"] for t in GRAPH_TEMPLATES],
+        help=f"指定使用的 graph template ID (默认: 随机选择)",
+    )
+    parser.add_argument(
+        "--random-template",
+        action="store_true",
+        help="为每个 preset 随机分配不同的 graph template",
+    )
+    parser.add_argument(
+        "--use-llm",
+        action="store_true",
+        help="启用 LLM 动态生成配置 (GraphRAG + LLM)",
+    )
+    parser.add_argument(
+        "--list-templates",
+        action="store_true",
+        help="列出所有可用的 graph templates",
     )
 
     args = parser.parse_args()
+
+    # List templates and exit if requested
+    if args.list_templates:
+        print("可用的 Graph Templates:")
+        for t in GRAPH_TEMPLATES:
+            print(f"  - {t['id']}: {t['label']}")
+        sys.exit(0)
 
     # Load .env if available
     if load_dotenv:
@@ -550,8 +661,10 @@ Examples:
             print("错误: 未找到指定的模板")
             sys.exit(1)
     else:
-        import random
         selected_presets = random.sample(SCENE_PRESETS, min(3, len(SCENE_PRESETS)))
+
+    # Determine graph template
+    graph_template_id = args.graph_template or DEFAULT_GRAPH_TEMPLATE_ID
 
     print("=" * 60)
     print("批量测试 - 并行场景生成")
@@ -560,13 +673,14 @@ Examples:
     for p in selected_presets:
         print(f"  - {p['name']} ({p['id']})")
     print(f"API: {args.api_base}")
-    print(f"Graph Template: {args.graph_template}")
+    print(f"Graph Template: {graph_template_id if not args.random_template else '(随机分配)'}")
     print(f"并行数: {args.workers}")
     print(f"超时: {args.timeout}s")
+    print(f"LLM 生成: {'启用' if args.use_llm else '禁用 (使用预设配置)'}")
     print("-" * 60)
 
     # Create client
-    client = WorkbenchClient(args.api_base, graph_template_id=args.graph_template)
+    client = WorkbenchClient(args.api_base, graph_template_id=graph_template_id, use_llm=args.use_llm)
 
     try:
         # Check health
@@ -585,6 +699,8 @@ Examples:
             selected_presets,
             max_workers=args.workers,
             timeout=args.timeout,
+            random_template=args.random_template,
+            use_llm=args.use_llm,
         )
         total_time = time.time() - start_time
 

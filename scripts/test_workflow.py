@@ -435,17 +435,39 @@ class WorkbenchClient:
             transport=transport
         )
 
-    def create_scene_job(self, preset: dict, patch_overrides: dict = None) -> dict:
+    def generate_draft(self, user_input: str, preset_id: str, knowledge_source: str = "graph_rag") -> dict:
+        """Generate design draft using LLM with RAG."""
+        payload = {
+            "messages": [],
+            "user_input": user_input,
+            "current_patch": {},
+            "topk": 6,
+            "knowledge_source": knowledge_source,
+            "force": True,
+        }
+        response = self.client.post(f"{self.base_url}/api/design/draft", json=payload)
+        response.raise_for_status()
+        return response.json()
+
+    def create_scene_job(self, preset: dict, patch_overrides: dict = None, draft: dict = None) -> dict:
         """Create a scene generation job."""
         patch_overrides = patch_overrides or {}
+
+        # Use LLM-generated draft if available
+        if draft:
+            scene_draft = draft.get("draft", draft)
+            compose_config_patch = scene_draft.get("compose_config_patch", preset["config_patch"])
+        else:
+            compose_config_patch = preset["config_patch"]
+
         payload = {
             "draft": {
                 "normalized_scene_query": preset["prompt"],
-                "compose_config_patch": preset["config_patch"],
-                "citations_by_field": {},
-                "design_summary": preset["prompt"],
+                "compose_config_patch": compose_config_patch,
+                "citations_by_field": draft.get("draft", {}).get("citations_by_field", {}) if draft else {},
+                "design_summary": draft.get("draft", {}).get("design_summary", preset["prompt"]) if draft else preset["prompt"],
                 "risk_notes": [],
-                "parameter_sources_by_field": {},
+                "parameter_sources_by_field": draft.get("draft", {}).get("parameter_sources_by_field", {}) if draft else {},
             },
             "scene_context": {
                 "layout_mode": "graph_template",
@@ -525,6 +547,7 @@ def run_test(
     preset: dict,
     poll_interval: float = 2.0,
     timeout: float = 300.0,
+    use_llm: bool = False,
 ) -> TestResult:
     """Run the workflow test for a given preset."""
 
@@ -587,10 +610,28 @@ def run_test(
         import time
         scene_seed = int(time.time() * 1000) % 100000 + random.randint(1, 999)
         print(f"  场景种子: {scene_seed}")
-        print()
 
+        # Generate LLM draft if enabled
+        draft = None
+        if use_llm:
+            print(f"  LLM 生成: 启用")
+            try:
+                print("  [LLM] 生成设计中...", end="", flush=True)
+                draft = client.generate_draft(
+                    user_input=preset["prompt"],
+                    preset_id=preset["id"],
+                    knowledge_source="graph_rag"
+                )
+                print(f"\r  [LLM] 设计已生成")
+            except Exception as e:
+                print(f"\r  [LLM] 生成失败，回退到预设配置: {e}")
+                draft = None
+        else:
+            print(f"  LLM 生成: 禁用 (使用预设配置)")
+
+        print()
         print("  创建任务中...", end="", flush=True)
-        job_response = client.create_scene_job(preset, patch_overrides={"seed": scene_seed})
+        job_response = client.create_scene_job(preset, patch_overrides={"seed": scene_seed}, draft=draft)
         result.job_id = job_response.get("job_id", "")
         print(f"\r  ✓ 任务已创建")
         print(f"  任务 ID: {result.job_id}")
@@ -1377,6 +1418,11 @@ Examples:
         default=DEFAULT_GRAPH_TEMPLATE_ID,
         help=f"指定使用的 graph template ID (默认: {DEFAULT_GRAPH_TEMPLATE_ID})",
     )
+    parser.add_argument(
+        "--use-llm",
+        action="store_true",
+        help="启用 LLM 动态生成配置 (GraphRAG + LLM)",
+    )
 
     args = parser.parse_args()
 
@@ -1401,6 +1447,7 @@ Examples:
     print(f"Graph Template: {args.graph_template}")
     print(f"超时: {args.timeout}s")
     print(f"随机种子: {args.seed}")
+    print(f"LLM 生成: {'启用' if args.use_llm else '禁用 (使用预设配置)'}")
     print("-" * 60)
 
     # Create client
@@ -1443,7 +1490,7 @@ Examples:
             sys.exit(0 if result.repeatability_passed else 1)
         else:
             # 普通测试模式
-            result = run_test(client, preset, timeout=args.timeout)
+            result = run_test(client, preset, timeout=args.timeout, use_llm=args.use_llm)
 
             # Generate report
             print()

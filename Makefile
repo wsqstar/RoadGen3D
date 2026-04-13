@@ -32,7 +32,8 @@ help:
 	@echo "  make test-pipeline    - Run full automated test with live progress (starts API + tests)"
 	@echo "  make test-pipeline GRAPH_TEMPLATE=hkust_gz_gate_all - Run with alternate graph template"
 	@echo "  make test-batch       - Run batch test with all 6 templates in parallel (starts API + tests)"
-	@echo "  make test-batch PRESETS=pedestrian_friendly commercial_vitality - Run specific presets"
+	@echo "  make test-batch RANDOM_TEMPLATE=1 - Random graph template per preset"
+	@echo "  make test-batch USE_LLM=1 - Enable LLM dynamic config generation"
 	@echo "  make test-single      - Run single test (requires API already running)"
 	@echo "  make test-preset     PRESET=<id> - Run with specific preset"
 	@echo "  make test-report      - View latest test report summary"
@@ -40,6 +41,8 @@ help:
 	@echo "Test Pipeline Options:"
 	@echo "  PRESET=<id>          - Specific preset (pedestrian_friendly, commercial_vitality, etc.)"
 	@echo "  PRESETS=<ids>        - Multiple presets for batch test (space-separated)"
+	@echo "  RANDOM_TEMPLATE=1     - Random graph template per preset"
+	@echo "  USE_LLM=1            - Enable LLM dynamic config generation"
 	@echo "  TEST_PYTEST_ARGS=... - Extra pytest arguments (default: -v --tb=short)"
 
 dev:
@@ -240,10 +243,20 @@ test-batch:
 	done; \
 	echo ""; \
 	echo "[4/4] 运行批量测试..."; \
-	if [ -n "$(PRESETS)" ]; then \
-		uv run python scripts/test_batch.py --all --workers 6 --graph-template $(GRAPH_TEMPLATE) --output $(TEST_REPORTS_DIR) --presets $(PRESETS); \
+	if [ "$(RANDOM_TEMPLATE)" = "1" ]; then \
+		RANDOM_FLAG="--random-template"; \
 	else \
-		uv run python scripts/test_batch.py --all --workers 6 --graph-template $(GRAPH_TEMPLATE) --output $(TEST_REPORTS_DIR); \
+		RANDOM_FLAG="--graph-template $(GRAPH_TEMPLATE)"; \
+	fi; \
+	if [ "$(USE_LLM)" = "1" ]; then \
+		LLM_FLAG="--use-llm"; \
+	else \
+		LLM_FLAG=""; \
+	fi; \
+	if [ -n "$(PRESETS)" ]; then \
+		uv run python scripts/test_batch.py --all --workers 6 $$RANDOM_FLAG $$LLM_FLAG --output $(TEST_REPORTS_DIR) --presets $(PRESETS); \
+	else \
+		uv run python scripts/test_batch.py --all --workers 6 $$RANDOM_FLAG $$LLM_FLAG --output $(TEST_REPORTS_DIR); \
 	fi; \
 	TEST_EXIT=$$?; \
 	echo ""; \
