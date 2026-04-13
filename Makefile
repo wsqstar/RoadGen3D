@@ -29,20 +29,23 @@ help:
 	@echo ""
 	@echo "Test Commands:"
 	@echo "  make test             - Run unit tests (pytest) to verify system integrity"
-	@echo "  make test-pipeline    - Run full automated test with live progress (starts API + tests)"
-	@echo "  make test-pipeline GRAPH_TEMPLATE=hkust_gz_gate_all - Run with alternate graph template"
-	@echo "  make test-batch       - Run batch test with all 6 templates in parallel (starts API + tests)"
+	@echo "  make test-pipeline    - Run test with random template (default)"
+	@echo "  make test-pipeline GRAPH_TEMPLATE=hkust_gz_gate_all - Run with specific template"
+	@echo "  make test-pipeline USE_LLM=1 - Enable LLM dynamic config generation"
+	@echo "  make test-pipeline RANDOM_TEMPLATE=1 - Force random template (default)"
+	@echo "  make test-batch       - Run batch test with all 6 templates in parallel"
 	@echo "  make test-batch RANDOM_TEMPLATE=1 - Random graph template per preset"
 	@echo "  make test-batch USE_LLM=1 - Enable LLM dynamic config generation"
-	@echo "  make test-single      - Run single test (requires API already running)"
+	@echo "  make test-single      - Run single test with random template (requires API)"
+	@echo "  make test-single GRAPH_TEMPLATE=xxx - Use specific template"
 	@echo "  make test-preset     PRESET=<id> - Run with specific preset"
 	@echo "  make test-report      - View latest test report summary"
 	@echo ""
 	@echo "Test Pipeline Options:"
-	@echo "  PRESET=<id>          - Specific preset (pedestrian_friendly, commercial_vitality, etc.)"
-	@echo "  PRESETS=<ids>        - Multiple presets for batch test (space-separated)"
-	@echo "  RANDOM_TEMPLATE=1     - Random graph template per preset"
-	@echo "  USE_LLM=1            - Enable LLM dynamic config generation"
+	@echo "  GRAPH_TEMPLATE=<id>   - Use specific graph template (disables random)"
+	@echo "  RANDOM_TEMPLATE=1      - Force random template (default for test-pipeline)"
+	@echo "  USE_LLM=1             - Enable LLM dynamic config generation"
+	@echo "  PRESET=<id>          - Specific preset for test-single/test-preset"
 	@echo "  TEST_PYTEST_ARGS=... - Extra pytest arguments (default: -v --tb=short)"
 
 dev:
@@ -152,6 +155,11 @@ test:
 TEST_REPORTS_DIR := artifacts/test_reports
 
 # Run full automated test pipeline: start API, run test, generate report
+# Default: random template, no LLM
+# Options:
+#   GRAPH_TEMPLATE=<id>  - Use specific template (disables random)
+#   RANDOM_TEMPLATE=1    - Force random template selection
+#   USE_LLM=1           - Enable LLM dynamic config generation
 test-pipeline:
 	@echo "=========================================="
 	@echo "Workbench 自动化测试 Pipeline"
@@ -183,7 +191,24 @@ test-pipeline:
 	done; \
 	echo ""; \
 	echo "[4/4] 运行测试..."; \
-	uv run python scripts/test_workflow.py --graph-template $(GRAPH_TEMPLATE) --output $(TEST_REPORTS_DIR); \
+	if [ "$(RANDOM_TEMPLATE)" = "1" ]; then \
+		echo "    [配置] 随机选择 Graph Template"; \
+		TEMPLATE_FLAG="--random-template"; \
+	elif [ -n "$(GRAPH_TEMPLATE)" ]; then \
+		echo "    [配置] 使用 Graph Template: $(GRAPH_TEMPLATE)"; \
+		TEMPLATE_FLAG="--graph-template $(GRAPH_TEMPLATE)"; \
+	else \
+		echo "    [配置] 随机选择 Graph Template"; \
+		TEMPLATE_FLAG="--random-template"; \
+	fi; \
+	if [ "$(USE_LLM)" = "1" ]; then \
+		echo "    [配置] 启用 LLM 动态生成"; \
+		LLM_FLAG="--use-llm"; \
+	else \
+		echo "    [配置] 使用预设配置 (LLM 禁用)"; \
+		LLM_FLAG=""; \
+	fi; \
+	uv run python scripts/test_workflow.py $$TEMPLATE_FLAG $$LLM_FLAG --output $(TEST_REPORTS_DIR); \
 	TEST_EXIT=$$?; \
 	echo ""; \
 	echo "[汇总] 生成报告汇总..."; \
