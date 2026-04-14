@@ -33,6 +33,15 @@ function App() {
 
   const [isOptimizing, setIsOptimizing] = useState(false);
 
+  const isGenerating = generationState.type === "generating";
+
+  const displaySchemes = useMemo(() => {
+    if (generationState.type === "generating" || generationState.type === "done") {
+      return generationState.schemes;
+    }
+    return schemes;
+  }, [generationState, schemes]);
+
   const handleOptimizeScheme = useCallback(async (schemeId: string, patch: Record<string, any>) => {
     const scheme = displaySchemes.find(s => s.id === schemeId);
     if (!scheme) return;
@@ -53,15 +62,6 @@ function App() {
       setIsOptimizing(false);
     }
   }, [applyAndRegenerate, displaySchemes]);
-
-  const isGenerating = generationState.type === "generating";
-
-  const displaySchemes = useMemo(() => {
-    if (generationState.type === "generating" || generationState.type === "done") {
-      return generationState.schemes;
-    }
-    return schemes;
-  }, [generationState, schemes]);
 
   const hasReadySchemes = displaySchemes.some((s) => s.status === "ready");
 
