@@ -5969,6 +5969,38 @@ def _place_surrounding_buildings(
     )
 
 
+_LIGHTING_PARAMS: Dict[str, Dict[str, Any]] = {
+    "bright_day": {
+        "exposure": 1.3,
+        "keyLightIntensity": 1.2,
+        "fillLightIntensity": 0.8,
+        "warmth": -0.1,
+        "shadowStrength": 0.3,
+    },
+    "overcast": {
+        "exposure": 1.05,
+        "keyLightIntensity": 0.75,
+        "fillLightIntensity": 0.95,
+        "warmth": -0.15,
+        "shadowStrength": 0.15,
+    },
+    "golden_hour": {
+        "exposure": 1.18,
+        "keyLightIntensity": 1.05,
+        "fillLightIntensity": 0.48,
+        "warmth": 0.85,
+        "shadowStrength": 0.58,
+    },
+    "night_presentation": {
+        "exposure": 1.05,
+        "keyLightIntensity": 1.05,
+        "fillLightIntensity": 0.24,
+        "warmth": 0.2,
+        "shadowStrength": 0.72,
+    },
+}
+
+
 def _derive_lighting_preset(sky_selection: Any) -> str:
     """Map sky selection to a viewer lighting preset."""
     if sky_selection is None:
@@ -5990,6 +6022,13 @@ def _derive_lighting_preset(sky_selection: Any) -> str:
     if any(tag in all_tags for tag in ("overcast", "cloudy", "foggy", "rainy")):
         return "overcast"
     return "bright_day"
+
+
+def _derive_lighting_params(sky_selection: Any) -> Dict[str, Any]:
+    """Map sky selection to concrete lighting parameter values."""
+    preset = _derive_lighting_preset(sky_selection)
+    params = dict(_LIGHTING_PARAMS.get(preset, _LIGHTING_PARAMS["bright_day"]))
+    return {"preset": preset, **params}
 
 
 def compose_street_scene(
@@ -8354,6 +8393,7 @@ def compose_street_scene(
             outputs[f"presentation_{view.get('name', 'view')}"] = str(view["path"])
 
     outputs["lighting_preset"] = _derive_lighting_preset(sky_selection)
+    outputs["lighting_params"] = _derive_lighting_params(sky_selection)
 
     layout_path.write_text(json.dumps(layout_payload, indent=2, ensure_ascii=True), encoding="utf-8")
 

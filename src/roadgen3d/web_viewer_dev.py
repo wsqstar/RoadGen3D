@@ -259,6 +259,7 @@ def build_layout_manifest(layout_path: str | Path) -> Dict[str, Any]:
         "spawn_point": spawn_payload["spawn_point"],
         "forward_vector": spawn_payload["forward_vector"],
         "lighting_preset": outputs.get("lighting_preset", "bright_day"),
+        "lighting_params": outputs.get("lighting_params"),
     }
 
 
