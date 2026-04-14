@@ -91,6 +91,8 @@ Or start individual services via `make workbench-api`, `make workbench-web`, `ma
 └─────────────┘     └─────────────┘     └─────────────────────┘
 ```
 
+> 📖 **想了解完整的系统架构和工作流？** 请查看 [系统架构与工作流程文档](docs/ARCHITECTURE.md)，其中详细描述了 Workbench、Viewer、Test Pipeline 之间的关系，以及"生成-评估-优化"闭环的完整实现。
+
 启动服务：
 
 ```bash
