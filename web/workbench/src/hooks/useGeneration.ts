@@ -6,6 +6,13 @@ import { postJson, getJson, evaluateScene, resolveApiUrl, proposeImprovement, ev
 import { resolveViewerUrl, sleep } from "../lib/utils";
 import type { GeneratedScheme, EvaluationResponse, ComparisonResult } from "../lib/types";
 
+// 方案变体定义：确保A/B/C有显著差异
+const SCHEME_VARIANTS = {
+  A: { seed: 42, densityMod: 1.0, widthMod: 1.0 },    // 基准方案
+  B: { seed: 137, densityMod: 1.2, widthMod: 0.9 },    // 紧凑高密度方案
+  C: { seed: 256, densityMod: 0.8, widthMod: 1.1 },    // 舒展低密度方案
+};
+
 export type GenerationState =
   | { type: "idle" }
   | { type: "generating"; schemes: GeneratedScheme[] }
@@ -49,6 +56,18 @@ export function useGeneration(
 
     for (let i = 0; i < updatedSchemes.length; i++) {
       const scheme = updatedSchemes[i];
+      
+      // 获取当前方案的变体配置（种子 + 参数微扰）
+      const variant = SCHEME_VARIANTS[scheme.id as keyof typeof SCHEME_VARIANTS];
+      const baseConfig = selectedPreset.configPatch;
+      
+      // 计算微扰后的参数（限制在合理范围内）
+      const perturbedConfig = {
+        ...baseConfig,
+        density: Math.max(0.1, Math.min(1.5, Number(baseConfig.density || 0.6) * variant.densityMod)),
+        road_width_m: Math.max(5.0, Math.min(30.0, Number(baseConfig.road_width_m || 13.5) * variant.widthMod)),
+      };
+
       try {
         // 进度更新回调 - 实时反映真实进度
         const updateProgress = (prog: JobProgress) => {
@@ -57,7 +76,14 @@ export function useGeneration(
           setGenerationState({ type: "generating", schemes: [...updatedSchemes] });
         };
 
-        const result = await createSceneJob(selectedPreset, scheme.id, updateProgress);
+        // 传入变体参数：种子和微扰配置
+        const result = await createSceneJob(
+          selectedPreset, 
+          scheme.id, 
+          updateProgress, 
+          variant.seed, 
+          perturbedConfig
+        );
         scheme.layoutPath = result.scene_layout_path;
         scheme.viewerUrl = resolveViewerUrl(result.viewer_url, result.scene_layout_path);
         scheme.previewUrl = resolveApiUrl(result.scene_layout_path);
@@ -99,7 +125,9 @@ export function useGeneration(
   async function createSceneJob(
     preset: ScenePreset,
     seedSuffix: string,
-    onProgress?: (prog: JobProgress) => void
+    onProgress?: (prog: JobProgress) => void,
+    randomSeed?: number,
+    perturbedConfig?: Record<string, any>
   ): Promise<{
     scene_layout_path: string;
     scene_glb_path: string;
@@ -112,7 +140,7 @@ export function useGeneration(
     }>("/api/scene/jobs", {
       draft: {
         normalized_scene_query: preset.prompt,
-        compose_config_patch: preset.configPatch,
+        compose_config_patch: perturbedConfig || preset.configPatch,
         citations_by_field: {},
         design_summary: preset.prompt,
         risk_notes: [],
@@ -126,7 +154,7 @@ export function useGeneration(
         graph_template_id: DEFAULT_GRAPH_TEMPLATE_ID,
       },
       patch_overrides: {},
-      generation_options: { preset_id: preset.id },
+      generation_options: { preset_id: preset.id, random_seed: randomSeed },
     }, 60000);
 
     return await pollJobCompletion(response.job_id, onProgress);
@@ -232,7 +260,9 @@ export function useGeneration(
   async function createSceneJobFromDraft(
     draft: DraftResponse,
     seedSuffix: string,
-    onProgress?: (prog: JobProgress) => void
+    onProgress?: (prog: JobProgress) => void,
+    randomSeed?: number,
+    perturbedConfig?: Record<string, any>
   ): Promise<{
     scene_layout_path: string;
     scene_glb_path: string;
@@ -245,7 +275,7 @@ export function useGeneration(
     }>("/api/scene/jobs", {
       draft: {
         normalized_scene_query: draft.normalized_scene_query,
-        compose_config_patch: draft.compose_config_patch,
+        compose_config_patch: perturbedConfig || draft.compose_config_patch,
         citations_by_field: draft.citations_by_field || {},
         design_summary: draft.design_summary,
         risk_notes: draft.risk_notes || [],
@@ -259,7 +289,7 @@ export function useGeneration(
         graph_template_id: DEFAULT_GRAPH_TEMPLATE_ID,
       },
       patch_overrides: {},
-      generation_options: { preset_id: "custom_draft" },
+      generation_options: { preset_id: "custom_draft", random_seed: randomSeed },
     }, 60000);
 
     return await pollJobCompletion(response.job_id, onProgress);
@@ -290,6 +320,18 @@ export function useGeneration(
 
     for (let i = 0; i < updatedSchemes.length; i++) {
       const scheme = updatedSchemes[i];
+      
+      // 获取方案变体 (与预设模式保持一致的差异性)
+      const variant = SCHEME_VARIANTS[scheme.id as keyof typeof SCHEME_VARIANTS];
+      const baseConfig = draft.compose_config_patch || {};
+      
+      // 计算微扰配置
+      const perturbedConfig = {
+        ...baseConfig,
+        density: Math.max(0.1, Math.min(2.0, (Number(baseConfig.density) || 0.6) * variant.densityMod)),
+        road_width_m: Math.max(5.0, Math.min(30.0, (Number(baseConfig.road_width_m) || 13.5) * variant.widthMod)),
+      };
+
       try {
         const updateProgress = (prog: JobProgress) => {
           scheme.progress = prog.progress;
@@ -297,7 +339,14 @@ export function useGeneration(
           setGenerationState({ type: "generating", schemes: [...updatedSchemes] });
         };
 
-        const result = await createSceneJobFromDraft(draft, scheme.id, updateProgress);
+        // 传入变体参数
+        const result = await createSceneJobFromDraft(
+          draft, 
+          scheme.id, 
+          updateProgress, 
+          variant.seed, 
+          perturbedConfig
+        );
         scheme.layoutPath = result.scene_layout_path;
         scheme.viewerUrl = resolveViewerUrl(result.viewer_url, result.scene_layout_path);
         scheme.previewUrl = resolveApiUrl(result.scene_layout_path);

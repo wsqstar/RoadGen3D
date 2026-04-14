@@ -348,6 +348,24 @@ def generate_scene_from_draft(
 ) -> SceneGenerationResult:
     """Run the existing scene pipeline using a confirmed design draft."""
 
+    # Apply random seed if provided in generation_options (Seed Control)
+    import random
+    seed = None
+    if isinstance(generation_options, Mapping):
+        seed = generation_options.get("random_seed")
+    if seed is not None:
+        try:
+            seed = int(seed)
+            random.seed(seed)
+            # Ensure numpy is also seeded if available (common in layout solvers)
+            try:
+                import numpy as np
+                np.random.seed(seed)
+            except ImportError:
+                pass
+        except (ValueError, TypeError):
+            pass
+
     options = (
         generation_options
         if isinstance(generation_options, SceneGenerationOptions)
