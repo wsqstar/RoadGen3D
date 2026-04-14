@@ -92,8 +92,15 @@ def render_diff_overlay(
         img_a = Image.open(tmp_a).convert("RGBA")
         img_b = Image.open(tmp_b).convert("RGBA")
 
-        # Normalize to common size
+        # Normalize to common size and cap at 4096 to avoid OOM
         target_size = (max(img_a.width, img_b.width), max(img_a.height, img_b.height))
+        max_dimension = 4096
+        if target_size[0] > max_dimension or target_size[1] > max_dimension:
+            scale = max_dimension / max(target_size)
+            target_size = (
+                max(1, int(round(target_size[0] * scale))),
+                max(1, int(round(target_size[1] * scale))),
+            )
         if img_a.size != target_size:
             img_a = img_a.resize(target_size, Image.Resampling.LANCZOS)  # type: ignore[attr-defined]
         if img_b.size != target_size:

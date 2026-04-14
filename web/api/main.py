@@ -279,7 +279,13 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
         if mode not in ("overlay", "delta"):
             raise HTTPException(status_code=400, detail="Invalid mode. Use overlay or delta.")
 
-        cache_key = sha256(f"{layout_a_path}|{layout_b_path}|{mode}".encode("utf-8")).hexdigest()[:16]
+        stat_a = layout_a_path.stat()
+        stat_b = layout_b_path.stat()
+        cache_key = sha256(
+            f"{layout_a_path}:{stat_a.st_mtime}:{stat_a.st_size}|"
+            f"{layout_b_path}:{stat_b.st_mtime}:{stat_b.st_size}|"
+            f"{mode}".encode("utf-8")
+        ).hexdigest()[:16]
         cache_dir = ROOT / "artifacts" / "diff_images"
         cache_dir.mkdir(parents=True, exist_ok=True)
         cache_path = cache_dir / f"{cache_key}_{mode}.png"
