@@ -6,9 +6,11 @@ import { toRadarChartData, toBarChartData } from "../lib/utils";
 interface EvaluationPanelProps {
   evaluations: EvaluationResult[];
   selectedSchemeId: string | null;
+  onOptimize?: (schemeId: string, patch: Record<string, any>) => void;
+  isOptimizing?: boolean;
 }
 
-export function EvaluationPanel({ evaluations, selectedSchemeId }: EvaluationPanelProps) {
+export function EvaluationPanel({ evaluations, selectedSchemeId, onOptimize, isOptimizing }: EvaluationPanelProps) {
   const radarRef = useRef<HTMLCanvasElement>(null);
   const barRef = useRef<HTMLCanvasElement>(null);
 
@@ -84,6 +86,48 @@ export function EvaluationPanel({ evaluations, selectedSchemeId }: EvaluationPan
           <IndicatorsTable evaluations={evaluations} />
         )}
       </div>
+
+      {/* 优化建议区块 */}
+      {selectedEval && (selectedEval.suggestions?.length || selectedEval.config_patch) && (
+        <div className="optimization-section">
+          <h3>🚀 优化建议</h3>
+          
+          {selectedEval.suggestions && selectedEval.suggestions.length > 0 && (
+            <div className="suggestions-list">
+              <h4>改进建议:</h4>
+              <ul>
+                {selectedEval.suggestions.map((suggestion, idx) => (
+                  <li key={idx}>{suggestion}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {selectedEval.config_patch && Object.keys(selectedEval.config_patch).length > 0 && (
+            <div className="config-patch">
+              <h4>建议参数修改:</h4>
+              <div className="patch-preview">
+                {Object.entries(selectedEval.config_patch).map(([key, value]) => (
+                  <div key={key} className="patch-item">
+                    <span className="patch-key">{key}:</span>
+                    <span className="patch-value">{String(value)}</span>
+                  </div>
+                ))}
+              </div>
+              
+              {onOptimize && (
+                <button
+                  className="btn optimize-btn"
+                  onClick={() => onOptimize(selectedEval.sceneId, selectedEval.config_patch!)}
+                  disabled={isOptimizing}
+                >
+                  {isOptimizing ? "优化中..." : "✨ 一键优化"}
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

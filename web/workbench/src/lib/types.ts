@@ -70,6 +70,28 @@ export type EvaluationResult = {
     Comfort: number;
     Delight: number;
   };
+  evaluation?: string;
+  suggestions?: string[];
+  config_patch?: Record<string, any>;
+  comparison?: {
+    improved_areas: string[];
+    regressed_areas: string[];
+    unchanged_areas: string[];
+    reasoning: string;
+  };
+};
+
+export type ComparisonResult = {
+  improved_areas: string[];
+  regressed_areas: string[];
+  unchanged_areas: string[];
+  reasoning: string;
+};
+
+export type ImprovementResult = {
+  config_patch: Record<string, any>;
+  citations?: string[];
+  reasoning?: string;
 };
 
 export type SchemeStatus = "idle" | "generating" | "ready" | "failed";

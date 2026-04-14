@@ -85,6 +85,22 @@ class EvaluateRequestModel(BaseModel):
     image_path: str | None = None
 
 
+class EvaluateCompareRequestModel(BaseModel):
+    current_layout_path: str
+    current_image_path: str | None = None
+    previous_layout_path: str | None = None
+    previous_image_path: str | None = None
+    previous_score: float | None = None
+    previous_evaluation: str | None = None
+
+
+class ImproveRequestModel(BaseModel):
+    current_evaluation: str
+    comparison: Dict[str, Any] | None = None
+    current_patch: Dict[str, Any] | None = None
+    weakness_queries: List[str] | None = None
+
+
 def create_app(*, design_service: DesignAssistantService | Any | None = None) -> FastAPI:
     app = FastAPI(title="RoadGen3D Design Assistant API", version="0.2.0")
     app.add_middleware(
@@ -311,6 +327,38 @@ def create_app(*, design_service: DesignAssistantService | Any | None = None) ->
             result = service.evaluate_scene_unified(
                 layout_path=request.layout_path,
                 image_path=request.image_path,
+            )
+        except RuntimeError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        return make_json_safe(result)
+
+    @app.post("/api/design/evaluate/compare")
+    def evaluate_scene_compare(request: EvaluateCompareRequestModel) -> Dict[str, Any]:
+        """Evaluate scene with history comparison."""
+        service = app.state.design_service
+        try:
+            result = service.evaluate_scene_with_history(
+                layout_path=request.current_layout_path,
+                image_path=request.current_image_path,
+                previous_layout_path=request.previous_layout_path,
+                previous_image_path=request.previous_image_path,
+                previous_score=request.previous_score or 0.0,
+                previous_evaluation=request.previous_evaluation or "",
+            )
+        except RuntimeError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        return make_json_safe(result)
+
+    @app.post("/api/design/improve")
+    def propose_improvement(request: ImproveRequestModel) -> Dict[str, Any]:
+        """Propose improvement based on evaluation and RAG evidence."""
+        service = app.state.design_service
+        try:
+            result = service.propose_improvement(
+                current_evaluation=request.current_evaluation,
+                comparison=request.comparison or {},
+                current_patch=request.current_patch or {},
+                weakness_queries=request.weakness_queries or [],
             )
         except RuntimeError as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc

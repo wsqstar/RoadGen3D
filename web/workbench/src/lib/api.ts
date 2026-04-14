@@ -1,4 +1,4 @@
-import { API_BASE, EvaluationScores, WalkabilityIndicators } from "./types";
+import { API_BASE, EvaluationScores, WalkabilityIndicators, ComparisonResult, ImprovementResult } from "./types";
 
 const DEFAULT_TIMEOUT_MS = 30000;
 
@@ -100,6 +100,8 @@ export interface EvaluationResponse {
   indicators: WalkabilityIndicators | null;
   evaluation: string;
   suggestions: string[];
+  config_patch?: Record<string, any>;
+  comparison?: ComparisonResult;
 }
 
 export async function evaluateScene(layoutPath: string): Promise<EvaluationResponse | null> {
@@ -112,6 +114,7 @@ export async function evaluateScene(layoutPath: string): Promise<EvaluationRespo
       evaluation: string;
       suggestions: string[];
       indicators: WalkabilityIndicators | null;
+      config_patch?: Record<string, any>;
     }>("/api/design/evaluate/unified", {
       layout_path: layoutPath,
       image_path: null,
@@ -127,9 +130,80 @@ export async function evaluateScene(layoutPath: string): Promise<EvaluationRespo
       indicators: response.indicators,
       evaluation: response.evaluation,
       suggestions: response.suggestions,
+      config_patch: response.config_patch,
     };
   } catch (error) {
     console.error("Evaluation API failed:", error);
+    return null;
+  }
+}
+
+export async function evaluateSceneWithHistory(
+  currentLayoutPath: string,
+  previousLayoutPath: string,
+  previousScore?: number,
+  previousEvaluation?: string
+): Promise<EvaluationResponse | null> {
+  try {
+    const response = await postJson<{
+      walkability: number;
+      safety: number;
+      beauty: number;
+      overall: number;
+      evaluation: string;
+      suggestions: string[];
+      indicators: WalkabilityIndicators | null;
+      comparison: ComparisonResult;
+    }>("/api/design/evaluate/compare", {
+      current_layout_path: currentLayoutPath,
+      previous_layout_path: previousLayoutPath,
+      previous_score: previousScore,
+      previous_evaluation: previousEvaluation,
+    }, 60000);
+
+    return {
+      scores: {
+        walkability: response.walkability,
+        safety: response.safety,
+        beauty: response.beauty,
+        overall: response.overall,
+      },
+      indicators: response.indicators,
+      evaluation: response.evaluation,
+      suggestions: response.suggestions,
+      comparison: response.comparison,
+    };
+  } catch (error) {
+    console.error("Evaluation compare API failed:", error);
+    return null;
+  }
+}
+
+export async function proposeImprovement(
+  currentEvaluation: string,
+  currentPatch: Record<string, any>,
+  comparison?: ComparisonResult,
+  weaknessQueries?: string[]
+): Promise<ImprovementResult | null> {
+  try {
+    const response = await postJson<{
+      config_patch: Record<string, any>;
+      citations?: string[];
+      reasoning?: string;
+    }>("/api/design/improve", {
+      current_evaluation: currentEvaluation,
+      comparison: comparison || {},
+      current_patch: currentPatch,
+      weakness_queries: weaknessQueries || [],
+    }, 60000);
+
+    return {
+      config_patch: response.config_patch,
+      citations: response.citations,
+      reasoning: response.reasoning,
+    };
+  } catch (error) {
+    console.error("Improve API failed:", error);
     return null;
   }
 }

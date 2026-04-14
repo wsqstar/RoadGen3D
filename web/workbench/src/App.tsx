@@ -29,7 +29,30 @@ function App() {
   const [evaluations, setEvaluations] = useState<EvaluationResult[]>([]);
   const [status, setStatus] = useState<string>("就绪");
 
-  const { generationState, generateSchemes, generateFromDraft } = useGeneration(setStatus);
+  const { generationState, generateSchemes, generateFromDraft, applyAndRegenerate } = useGeneration(setStatus);
+
+  const [isOptimizing, setIsOptimizing] = useState(false);
+
+  const handleOptimizeScheme = useCallback(async (schemeId: string, patch: Record<string, any>) => {
+    const scheme = displaySchemes.find(s => s.id === schemeId);
+    if (!scheme) return;
+
+    setIsOptimizing(true);
+    try {
+      const newSchemes = await applyAndRegenerate(patch, scheme, displaySchemes);
+      setSchemes(newSchemes);
+      setEvaluations(newSchemes.filter(s => s.status === "ready").map(s => ({
+        sceneId: s.id,
+        scores: s.evaluation,
+        indicators: s.indicators!,
+        pillarScores: { Protection: 0, Comfort: 0, Delight: 0 },
+      })));
+    } catch (error) {
+      console.error("Optimization failed:", error);
+    } finally {
+      setIsOptimizing(false);
+    }
+  }, [applyAndRegenerate, displaySchemes]);
 
   const isGenerating = generationState.type === "generating";
 
@@ -231,7 +254,12 @@ function App() {
               <h2>评估可视化</h2>
               <p className="section-desc">查看方案的详细评估结果，对比多维度指标</p>
             </div>
-            <EvaluationPanel evaluations={evaluations} selectedSchemeId={selectedSchemeId} />
+            <EvaluationPanel
+              evaluations={evaluations}
+              selectedSchemeId={selectedSchemeId}
+              onOptimize={handleOptimizeScheme}
+              isOptimizing={isOptimizing}
+            />
             <div className="step-actions">
               <button className="btn secondary" onClick={() => setCurrentStep(2)}>
                 返回方案对比

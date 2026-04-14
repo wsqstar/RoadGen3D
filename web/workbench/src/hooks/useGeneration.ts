@@ -1,9 +1,10 @@
 import { useState, useCallback } from "react";
 import type { ScenePreset, GeneratedScheme } from "../lib/types";
 import type { DraftResponse } from "../lib/api";
-import { DEFAULT_GRAPH_TEMPLATE_ID, POLL_INTERVAL_MS, MAX_GENERATION_ATTEMPTS } from "../lib/types";
-import { postJson, getJson, evaluateScene, resolveApiUrl } from "../lib/api";
+import { DEFAULT_GRAPH_TEMPLATE_ID, POLL_INTERVAL_MS, MAX_GENERATION_ATTEMPTS, SCENE_PRESETS } from "../lib/types";
+import { postJson, getJson, evaluateScene, resolveApiUrl, proposeImprovement, evaluateSceneWithHistory } from "../lib/api";
 import { resolveViewerUrl, sleep } from "../lib/utils";
+import type { GeneratedScheme, EvaluationResponse, ComparisonResult } from "../lib/types";
 
 export type GenerationState =
   | { type: "idle" }
@@ -334,9 +335,138 @@ export function useGeneration(
     return updatedSchemes;
   }, [onStatusChange]);
 
+  /**
+   * Apply a config patch and regenerate the scene
+   * This is the "一键优化" function
+   */
+  const applyAndRegenerate = useCallback(async (
+    patch: Record<string, any>,
+    targetScheme: GeneratedScheme,
+    currentSchemes: GeneratedScheme[]
+  ): Promise<GeneratedScheme[]> => {
+    onStatusChange(`正在应用优化建议...`);
+
+    // Create a copy of schemes with the target scheme in "generating" state
+    const updatedSchemes = currentSchemes.map(s => 
+      s.id === targetScheme.id 
+        ? { ...s, status: "generating" as const, progress: 10, evaluation: { walkability: 0, safety: 0, beauty: 0, overall: 0 } }
+        : s
+    );
+    setGenerationState({ type: "generating", schemes: updatedSchemes });
+
+    try {
+      // Get the current config patch from the preset or draft
+      // For now, we'll use the target scheme's preset to get the base config
+      const preset = SCENE_PRESETS.find(p => p.id === targetScheme.presetId);
+      const baseConfig = preset?.configPatch || {};
+
+      // Merge the patch with the base config
+      const newConfig = { ...baseConfig, ...patch };
+
+      // Create a new job with the patched config
+      const result = await createSceneJobFromPatch(
+        targetScheme.presetId,
+        targetScheme.id,
+        newConfig,
+        (prog) => {
+          const scheme = updatedSchemes.find(s => s.id === targetScheme.id);
+          if (scheme) {
+            scheme.progress = prog.progress;
+            onStatusChange(`方案 ${targetScheme.id}: ${prog.message}`);
+            setGenerationState({ type: "generating", schemes: [...updatedSchemes] });
+          }
+        }
+      );
+
+      // Update the scheme with the new result
+      const schemeIndex = updatedSchemes.findIndex(s => s.id === targetScheme.id);
+      if (schemeIndex !== -1) {
+        const scheme = updatedSchemes[schemeIndex];
+        scheme.layoutPath = result.scene_layout_path;
+        scheme.viewerUrl = resolveViewerUrl(result.viewer_url, result.scene_layout_path);
+        scheme.previewUrl = resolveApiUrl(result.scene_layout_path);
+
+        // Evaluate the new scene
+        onStatusChange(`正在评估优化后的方案...`);
+        try {
+          const evalResult = await evaluateScene(scheme.layoutPath);
+          if (evalResult) {
+            scheme.evaluation = evalResult.scores;
+            scheme.indicators = evalResult.indicators || scheme.indicators;
+            scheme.evaluationText = evalResult.evaluation;
+            scheme.suggestions = evalResult.suggestions;
+          }
+        } catch (evalError) {
+          console.error(`方案 ${targetScheme.id} 评估失败:`, evalError);
+        }
+
+        scheme.status = "ready";
+        scheme.progress = 100;
+      }
+
+      setGenerationState({ type: "done", schemes: updatedSchemes });
+      onStatusChange(`优化完成!`);
+      return updatedSchemes;
+    } catch (error) {
+      console.error(`方案 ${targetScheme.id} 优化失败:`, error);
+      const schemeIndex = updatedSchemes.findIndex(s => s.id === targetScheme.id);
+      if (schemeIndex !== -1) {
+        updatedSchemes[schemeIndex].status = "failed";
+        updatedSchemes[schemeIndex].progress = 0;
+      }
+      setGenerationState({ type: "done", schemes: updatedSchemes });
+      onStatusChange(`优化失败: ${error instanceof Error ? error.message : String(error)}`);
+      return updatedSchemes;
+    }
+  }
+
+  /**
+   * Create a scene job with a specific config patch
+   */
+  async function createSceneJobFromPatch(
+    presetId: string,
+    seedSuffix: string,
+    configPatch: Record<string, any>,
+    onProgress?: (prog: JobProgress) => void
+  ): Promise<{
+    scene_layout_path: string;
+    scene_glb_path: string;
+    viewer_url: string;
+  }> {
+    const preset = SCENE_PRESETS.find(p => p.id === presetId);
+    const prompt = preset?.prompt || "优化后的街道设计";
+
+    const response = await postJson<{
+      job_id: string;
+      status: string;
+      created_at: string;
+    }>("/api/scene/jobs", {
+      draft: {
+        normalized_scene_query: prompt,
+        compose_config_patch: configPatch,
+        citations_by_field: {},
+        design_summary: prompt,
+        risk_notes: [],
+        parameter_sources_by_field: {},
+      },
+      scene_context: {
+        layout_mode: "graph_template",
+        aoi_bbox: null,
+        city_name_en: null,
+        reference_plan_id: null,
+        graph_template_id: DEFAULT_GRAPH_TEMPLATE_ID,
+      },
+      patch_overrides: {},
+      generation_options: { preset_id: presetId },
+    }, 60000);
+
+    return await pollJobCompletion(response.job_id, onProgress);
+  }, []);
+
   return {
     generationState,
     generateSchemes,
     generateFromDraft,
+    applyAndRegenerate,
   };
 }
