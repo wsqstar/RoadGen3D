@@ -124,7 +124,7 @@ nohup make test-pipeline > artifacts/test_reports/pipeline.log 2>&1 &
 echo "PID: $!"
 
 # 或者使用 watch 定期执行
-watch -n 300 make test-single  # 每 5 分钟执行一次
+watch -n 300 make test-preset  # 每 5 分钟执行一次
 
 # 查看汇总报告
 make test-report

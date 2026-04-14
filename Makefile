@@ -11,7 +11,7 @@ VIEWER_HOST := 127.0.0.1
 VIEWER_PORT := 4173
 GRAPH_TEMPLATE := hkust_gz_gate
 
-.PHONY: dev ui-api workbench-api workbench-web workbench-install viewer-web viewer-install ui-web ui-install knowledge-build train collect eval snapshot-diff test test-pipeline test-batch test-single help
+.PHONY: dev ui-api workbench-api workbench-web workbench-install viewer-web viewer-install ui-web ui-install knowledge-build train collect eval snapshot-diff test test-pipeline test-batch test-preset help
 
 help:
 	@echo "make dev               - Launch workbench API + workbench web + viewer web"
@@ -36,9 +36,8 @@ help:
 	@echo "  make test-batch       - Run batch test with all 6 templates in parallel"
 	@echo "  make test-batch RANDOM_TEMPLATE=1 - Random graph template per preset"
 	@echo "  make test-batch USE_LLM=1 - Enable LLM dynamic config generation"
-	@echo "  make test-single      - Run single test with random template (requires API)"
-	@echo "  make test-single GRAPH_TEMPLATE=xxx - Use specific template"
-	@echo "  make test-preset     PRESET=<id> - Run with specific preset"
+	@echo "  make test-preset      - Run single test (PRESET=<id> for specific preset)"
+	@echo "  make test-preset PRESET=<id> GRAPH_TEMPLATE=xxx - Run with specific preset and template"
 	@echo "  make test-report      - View latest test report summary"
 	@echo ""
 	@echo "Test Pipeline Options:"
@@ -305,11 +304,15 @@ test-batch:
 	wait 2>/dev/null || true; \
 	exit $$TEST_EXIT
 
-# Run single test with random preset (requires API to be running)
-test-single:
+# Run single test (requires API to be running)
+# Options:
+#   PRESET=<id>         - Specific preset (default: random)
+#   GRAPH_TEMPLATE=<id> - Graph template (default: random)
+#   USE_LLM=1          - Enable LLM dynamic generation
+test-preset:
 	@mkdir -p $(TEST_REPORTS_DIR)
 	@echo "=========================================="
-	@echo "运行单次自动化测试"
+	@echo "单次测试 (随机 preset)"
 	@echo "=========================================="
 	@if [ "$(RANDOM_TEMPLATE)" = "1" ]; then \
 		TEMPLATE_FLAG="--random-template"; \
@@ -325,22 +328,6 @@ test-single:
 	EXIT=$$?; \
 	uv run python scripts/test_pipeline.py; \
 	exit $$EXIT
-
-# Run test with specific preset
-test-preset:
-	@mkdir -p $(TEST_REPORTS_DIR)
-	@if [ "$(RANDOM_TEMPLATE)" = "1" ]; then \
-		TEMPLATE_FLAG="--random-template"; \
-	else \
-		TEMPLATE_FLAG="--graph-template $(GRAPH_TEMPLATE)"; \
-	fi; \
-	if [ "$(USE_LLM)" = "1" ]; then \
-		LLM_FLAG="--use-llm"; \
-	else \
-		LLM_FLAG=""; \
-	fi; \
-	uv run python scripts/test_workflow.py --preset $(PRESET) $$TEMPLATE_FLAG $$LLM_FLAG --output $(TEST_REPORTS_DIR); \
-	uv run python scripts/test_pipeline.py
 
 # View latest test report
 test-report:
